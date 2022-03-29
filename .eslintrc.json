@@ -1,0 +1,23 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:storybook/recommended",
+    "prettier"
+  ],
+  "env": {
+    "es6": true,
+    // your environment, node and/or browser:
+    "node": true,
+    "browser": true
+  },
+  "rules": {
+    "@typescript-eslint/no-var-requires": 0,
+    "no-console": 1,
+    "prettier/prettier": 2
+  }
+}
