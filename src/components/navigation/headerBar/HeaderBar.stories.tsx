@@ -1,7 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import HeaderBar from 'components/navigation/headerBar/HeaderBar';
 import yLogo from 'assets/yfd/logo-orange.svg';
-import { useState } from 'react';
 
 export default {
   title: 'Navigation/HeaderBar',
@@ -10,8 +9,7 @@ export default {
     id: 'home',
     src: yLogo,
     alt: 'Y Logo',
-    navLinks: ['link', 'link 2', 'link 3', 'link 4'],
-    open: false
+    navLinks: ['link', 'link 2', 'link 3', 'link 4']
   },
   decorators: [
     (Story) => (
@@ -23,8 +21,7 @@ export default {
 } as ComponentMeta<typeof HeaderBar>;
 
 export const Template: ComponentStory<typeof HeaderBar> = (args) => {
-  const [open, setOpen] = useState(false);
-  return <HeaderBar {...args} open={open} setOpen={setOpen} />;
+  return <HeaderBar {...args} />;
 };
 Template.argTypes = {
   id: {
@@ -33,11 +30,6 @@ Template.argTypes = {
     }
   },
   src: {
-    table: {
-      disable: true
-    }
-  },
-  setOpen: {
     table: {
       disable: true
     }

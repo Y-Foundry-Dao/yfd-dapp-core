@@ -21,7 +21,6 @@ const msgQuery = {
 };
 
 export default function App() {
-  const [open, setOpen] = useState<boolean>(false);
   const [walletAddress, setWalletAddress] = useState('');
   const [tx, setTx] = useState('');
   const [contract, setContract] = useState(
@@ -57,8 +56,6 @@ export default function App() {
         src={yLogo}
         alt="Y Logo"
         navLinks={['about', 'medium', 'join community', 'roadmap']}
-        open={open}
-        setOpen={setOpen}
       />
       <ConnectedInfo />
       <ConnectButton />

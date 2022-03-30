@@ -2,17 +2,17 @@ import styled from 'styled-components';
 import Logo from 'components/navigation/logo/Logo';
 import NavLinks from 'components/navigation/navlinks/NavLinks';
 import Burger from 'components/navigation/burger/Burger';
+import { useState } from 'react';
 
 interface Props {
   id: string;
   src: string;
   alt: string;
   navLinks: Array<string>;
-  open: boolean;
-  setOpen: (open: boolean) => void;
 }
 
-function HeaderBar({ id, src, alt, navLinks, open, setOpen }: Props) {
+function HeaderBar({ id, src, alt, navLinks }: Props) {
+  const [open, setOpen] = useState(false);
   return (
     <Header id={id}>
       <Logo src={src} alt={alt} />
