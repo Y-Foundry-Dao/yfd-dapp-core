@@ -1,14 +1,7 @@
 import { useWallet } from '@terra-money/wallet-provider';
 
 function ConnectedInfo() {
-  const {
-    status,
-    network,
-    wallets,
-    availableConnectTypes,
-    availableInstallTypes,
-    supportFeatures
-  } = useWallet();
+  const { status, network, wallets } = useWallet();
 
   return (
     <section>
@@ -17,10 +10,7 @@ function ConnectedInfo() {
           {
             status,
             network,
-            wallets,
-            supportFeatures: Array.from(supportFeatures),
-            availableConnectTypes,
-            availableInstallTypes
+            wallets
           },
           null,
           2
