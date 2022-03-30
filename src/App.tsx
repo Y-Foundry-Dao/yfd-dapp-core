@@ -1,15 +1,19 @@
 import { useEffect, useState } from 'react';
 
-import HeaderBar from 'components/navigation/headerBar/HeaderBar';
-import yLogo from 'assets/yfd/logo-orange.svg';
-import longLogo from 'assets/yfd/logo-horizontal-orange-white.svg';
-import FooterBar from 'components/footer/footerBar/FooterBar';
+import { MsgExecuteContract } from '@terra-money/terra.js';
+
 import socialInfo from 'utilities/socialInfo';
+
+import HeaderBar from 'components/navigation/headerBar/HeaderBar';
 import ConnectButton from 'components/buttons/ConnectButton';
 import ConnectedInfo from 'components/buttons/ConnectedInfo';
 import DepositButton from 'components/buttons/deposit/DepositButton';
-import { useWallet, TxResult } from '@terra-money/wallet-provider';
-import { MsgExecuteContract } from '@terra-money/terra.js';
+import FooterBar from 'components/footer/footerBar/FooterBar';
+
+import yLogo from 'assets/yfd/logo-orange.svg';
+import longLogo from 'assets/yfd/logo-horizontal-orange-white.svg';
+import useContract from 'utilities/hooks/useContract';
+import useWalletAddress from 'utilities/hooks/useWalletAddress';
 import { MBTC, MBTC_UST } from 'utilities/variables';
 
 const msgQuery = {
@@ -22,33 +26,14 @@ const msgQuery = {
 };
 
 export default function App() {
-  const [walletAddress, setWalletAddress] = useState('');
-  const [tx, setTx] = useState('');
   const [contract, setContract] = useState(
     'terra1vczcg64dm6aekryfyq9x09p26nn6k6xwzpwml7'
   );
-
-  const { post, status, wallets } = useWallet();
-
-  useEffect(() => {
-    if (status == 'WALLET_CONNECTED') {
-      setWalletAddress(wallets[0]?.terraAddress);
-    }
-  }, [status, walletAddress, wallets]);
-
-  const depositUst = new MsgExecuteContract(walletAddress, contract, msgQuery, {
-    uusd: 150000000
+  const { walletAddress } = useWalletAddress();
+  const { executeMsg, clearTx, tx } = useContract();
+  const msg = new MsgExecuteContract(walletAddress, contract, msgQuery, {
+    uusd: 50000000
   });
-
-  const callback = async () => {
-    try {
-      const result: TxResult = await post({ msgs: [depositUst] });
-      setTx(result.result.txhash);
-      return result.result.txhash;
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <main>
@@ -64,7 +49,7 @@ export default function App() {
         children="open position"
         disabled={false}
         onClick={async () => {
-          return callback();
+          return await executeMsg(msg);
         }}
       />
       <FooterBar logo={longLogo} alt="YFD Logo" socialInfo={socialInfo} />
