@@ -10,12 +10,13 @@ import ConnectedInfo from 'components/buttons/ConnectedInfo';
 import DepositButton from 'components/buttons/deposit/DepositButton';
 import { useWallet, TxResult } from '@terra-money/wallet-provider';
 import { MsgExecuteContract } from '@terra-money/terra.js';
+import { MBTC, MBTC_UST } from 'utilities/variables';
 
 const msgQuery = {
   deposit: {
     loops: '3',
-    asset: 'terra1csr22xvxs6r3gkjsl7pmjkmpt39mwjsrm0e2r8',
-    asset_pair: 'terra134jl4dt20mqfryhnmhauryr754vuw7990jdell',
+    asset: MBTC,
+    asset_pair: MBTC_UST,
     collateral_ratio: '2.5'
   }
 };
