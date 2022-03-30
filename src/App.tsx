@@ -43,8 +43,19 @@ export default function App() {
         alt="Y Logo"
         navLinks={['about', 'medium', 'join community', 'roadmap']}
       />
-      <ConnectedInfo />
       <ConnectButton />
+      <ConnectedInfo />
+      <label htmlFor="contractAddress">
+        Contract Address
+        <input
+          id="contractAddress"
+          type="text"
+          value={contract}
+          onChange={(event) => setContract(event.currentTarget.value)}
+        />
+      </label>
+      <p>Current Contract Address: {contract}</p>
+      <br></br>
       <DepositButton
         children="open position"
         disabled={false}
@@ -52,6 +63,14 @@ export default function App() {
           return await executeMsg(msg);
         }}
       />
+      <button onClick={() => clearTx()}>clear tx hash</button>
+      <a
+        href={`https://finder.terra.money/testnet/tx/${tx}`}
+        target="_blank"
+        rel="noreferrer"
+      >
+        {tx}
+      </a>
       <FooterBar logo={longLogo} alt="YFD Logo" socialInfo={socialInfo} />
     </main>
   );
