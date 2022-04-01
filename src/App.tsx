@@ -1,7 +1,3 @@
-import { useState } from 'react';
-
-import { MsgExecuteContract } from '@terra-money/terra.js';
-
 import socialInfo from 'utilities/socialInfo';
 
 import HeaderBar from 'components/navigation/headerBar/HeaderBar';
@@ -11,32 +7,27 @@ import FooterBar from 'components/footer/footerBar/FooterBar';
 
 import yLogo from 'assets/yfd/logo-orange.svg';
 import longLogo from 'assets/yfd/logo-horizontal-orange-white.svg';
-import useContract from 'utilities/hooks/useContract';
-import useWalletAddress from 'utilities/hooks/useWalletAddress';
-import { MBTC, MBTC_UST } from 'utilities/variables';
 import useInstantiateContract from 'utilities/hooks/useInstantiateContract';
-
-const msgQuery = {
-  deposit: {
-    loops: '3',
-    asset: MBTC,
-    asset_pair: MBTC_UST,
-    collateral_ratio: '2.5'
-  }
-};
+import { useEffect } from 'react';
 
 export default function App() {
-  const [contract, setContract] = useState(
-    'terra1vczcg64dm6aekryfyq9x09p26nn6k6xwzpwml7'
-  );
-  const { walletAddress } = useWalletAddress();
-  const { executeMsg, clearTx, tx } = useContract();
+  const {
+    instantiateContract,
+    txHashInstantiate,
+    contract,
+    setContract,
+    txHashDeposit,
+    setTxHashDeposit
+  } = useInstantiateContract();
 
-  const { instantiateContract, txResult } = useInstantiateContract();
-
-  const msg = new MsgExecuteContract(walletAddress, contract, msgQuery, {
-    uusd: 50000000
-  });
+  useEffect(() => {
+    if (!txHashDeposit) {
+      return;
+    } else {
+      console.log(txHashDeposit);
+      return setTxHashDeposit(txHashDeposit);
+    }
+  }, [txHashDeposit]);
 
   return (
     <main>
@@ -46,20 +37,11 @@ export default function App() {
         alt="Y Logo"
         navLinks={['about', 'medium', 'join community', 'roadmap']}
       />
+
       <ConnectButton />
       <br></br>
       <br></br>
       <br></br>
-      <button onClick={() => instantiateContract()}>
-        Instantiate Smart Contract
-      </button>
-      <a
-        href={`https://finder.terra.money/testnet/tx/${txResult?.txhash}`}
-        target="_blank"
-        rel="noreferrer"
-      >
-        {txResult?.txhash}
-      </a>
       <label htmlFor="contractAddress">
         Contract Address
         <input
@@ -71,21 +53,35 @@ export default function App() {
       </label>
       <p>Current Contract Address: {contract}</p>
       <br></br>
+      <p>tx for contract instantiation</p>
+      <a
+        href={`https://finder.terra.money/testnet/tx/${txHashInstantiate?.txhash}`}
+        target="_blank"
+        rel="noreferrer"
+      >
+        {txHashInstantiate?.txhash}
+      </a>
+      <br></br>
+      <br></br>
+
+      <br></br>
+      <p>tx for deposit</p>
+      <a
+        href={`https://finder.terra.money/testnet/tx/${txHashDeposit}`}
+        target="_blank"
+        rel="noreferrer"
+      >
+        {txHashDeposit}
+      </a>
+      <br></br>
+      <br></br>
       <DepositButton
         children="open position"
         disabled={false}
         onClick={async () => {
-          return await executeMsg(msg);
+          return await instantiateContract();
         }}
       />
-      <button onClick={() => clearTx()}>clear tx hash</button>
-      <a
-        href={`https://finder.terra.money/testnet/tx/${tx}`}
-        target="_blank"
-        rel="noreferrer"
-      >
-        {tx}
-      </a>
       <FooterBar logo={longLogo} alt="YFD Logo" socialInfo={socialInfo} />
     </main>
   );
