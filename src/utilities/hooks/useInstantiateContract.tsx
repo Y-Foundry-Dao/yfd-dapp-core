@@ -1,4 +1,9 @@
-import { Fee, SyncTxBroadcastResult } from '@terra-money/terra.js';
+import { useCallback, useState } from 'react';
+import {
+  Fee,
+  SyncTxBroadcastResult,
+  MsgInstantiateContract
+} from '@terra-money/terra.js';
 import {
   createLCDClient,
   CreateTxFailed,
@@ -9,11 +14,8 @@ import {
   useConnectedWallet,
   UserDenied
 } from '@terra-money/wallet-provider';
-import { useCallback, useState } from 'react';
-import { MsgInstantiateContract } from '@terra-money/terra.js';
 
 import instantiateMsg from 'utilities/instantiateMsg';
-import useWalletAddress from './useWalletAddress';
 
 const useInstantiateContract = () => {
   const [signResult, setSignResult] = useState<SignResult | null>(null);
