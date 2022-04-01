@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { useState } from 'react';
 import { TemplateBurgerMenu } from 'components/navigation/burgerMenu/BurgerMenu.stories';
-import useOnClickOutside from 'utilities/useOnClickOutside';
+import useOnClickOutside from 'utilities/hooks/useOnClickOutside';
 import { useRef } from 'react';
 
 export default {

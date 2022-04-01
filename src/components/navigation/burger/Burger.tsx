@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import BurgerIcon from 'components/navigation/burgerIcon/BurgerIcon';
 import BurgerMenu from 'components/navigation/burgerMenu/BurgerMenu';
 
-import useOnClickOutside from 'utilities/useOnClickOutside';
+import useOnClickOutside from 'utilities/hooks/useOnClickOutside';
 
 interface ComponentProps {
   open: boolean;

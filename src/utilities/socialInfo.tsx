@@ -1,17 +1,17 @@
-import { discord, telegram, twitter } from 'utilities/variables';
+import { DISCORD, TELEGRAM, TWITTER } from 'utilities/variables';
 import SocialIcon from 'components/footer/socialIcon/SocialIcon';
 
 const socialInfo = {
   discord: {
-    link: discord,
+    link: DISCORD,
     icon: <SocialIcon social="discord" />
   },
   telegram: {
-    link: telegram,
+    link: TELEGRAM,
     icon: <SocialIcon social="telegram" />
   },
   twitter: {
-    link: twitter,
+    link: TWITTER,
     icon: <SocialIcon social="twitter" />
   }
 };
