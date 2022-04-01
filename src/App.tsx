@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { MsgExecuteContract } from '@terra-money/terra.js';
 
@@ -6,7 +6,6 @@ import socialInfo from 'utilities/socialInfo';
 
 import HeaderBar from 'components/navigation/headerBar/HeaderBar';
 import ConnectButton from 'components/buttons/ConnectButton';
-import ConnectedInfo from 'components/buttons/ConnectedInfo';
 import DepositButton from 'components/buttons/deposit/DepositButton';
 import FooterBar from 'components/footer/footerBar/FooterBar';
 
@@ -15,6 +14,7 @@ import longLogo from 'assets/yfd/logo-horizontal-orange-white.svg';
 import useContract from 'utilities/hooks/useContract';
 import useWalletAddress from 'utilities/hooks/useWalletAddress';
 import { MBTC, MBTC_UST } from 'utilities/variables';
+import useInstantiateContract from 'utilities/hooks/useInstantiateContract';
 
 const msgQuery = {
   deposit: {
@@ -31,6 +31,9 @@ export default function App() {
   );
   const { walletAddress } = useWalletAddress();
   const { executeMsg, clearTx, tx } = useContract();
+
+  const { instantiateContract, txResult } = useInstantiateContract();
+
   const msg = new MsgExecuteContract(walletAddress, contract, msgQuery, {
     uusd: 50000000
   });
@@ -44,7 +47,19 @@ export default function App() {
         navLinks={['about', 'medium', 'join community', 'roadmap']}
       />
       <ConnectButton />
-      <ConnectedInfo />
+      <br></br>
+      <br></br>
+      <br></br>
+      <button onClick={() => instantiateContract()}>
+        Instantiate Smart Contract
+      </button>
+      <a
+        href={`https://finder.terra.money/testnet/tx/${txResult?.txhash}`}
+        target="_blank"
+        rel="noreferrer"
+      >
+        {txResult?.txhash}
+      </a>
       <label htmlFor="contractAddress">
         Contract Address
         <input
