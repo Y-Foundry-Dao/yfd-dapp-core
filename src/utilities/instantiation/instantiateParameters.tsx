@@ -1,4 +1,4 @@
-const instantiateMsg = {
+const instantiateParameters = {
   anchor_money_market: {
     contract_addr: 'terra15dwd5mj8v59wpj0wvt233mf5efdff808c5tkal',
     deposit_coin_denom: 'uusd',
@@ -12,4 +12,4 @@ const instantiateMsg = {
   }
 };
 
-export default instantiateMsg;
+export default instantiateParameters;
