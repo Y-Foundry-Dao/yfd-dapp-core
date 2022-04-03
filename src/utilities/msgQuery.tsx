@@ -1,4 +1,4 @@
-import { MBTC_UST, MBTC } from './variables';
+import { MBTC_UST, MBTC } from 'utilities/variables';
 
 const msgQuery = {
   deposit: {

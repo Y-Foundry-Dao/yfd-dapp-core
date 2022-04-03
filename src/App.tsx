@@ -1,4 +1,7 @@
+import { useState } from 'react';
+
 import socialInfo from 'utilities/socialInfo';
+import useInstantiateContract from 'utilities/hooks/useInstantiateContract';
 
 import HeaderBar from 'components/navigation/headerBar/HeaderBar';
 import ConnectButton from 'components/buttons/ConnectButton';
@@ -7,27 +10,20 @@ import FooterBar from 'components/footer/footerBar/FooterBar';
 
 import yLogo from 'assets/yfd/logo-orange.svg';
 import longLogo from 'assets/yfd/logo-horizontal-orange-white.svg';
-import useInstantiateContract from 'utilities/hooks/useInstantiateContract';
-import { useEffect } from 'react';
+
+import TxHashLink from 'components/openPosition/txHash/TxHashLink';
+import InputContract from 'components/openPosition/input/InputContract';
+import InputAmount from 'components/openPosition/input/InputAmount';
 
 export default function App() {
+  const [amount, setAmount] = useState<number>(0);
   const {
     instantiateContract,
-    txHashInstantiate,
+    txHashFromInstantiate,
     contract,
     setContract,
-    txHashDeposit,
-    setTxHashDeposit
+    txHashFromExecute
   } = useInstantiateContract();
-
-  useEffect(() => {
-    if (!txHashDeposit) {
-      return;
-    } else {
-      console.log(txHashDeposit);
-      return setTxHashDeposit(txHashDeposit);
-    }
-  }, [txHashDeposit]);
 
   return (
     <main>
@@ -37,49 +33,19 @@ export default function App() {
         alt="Y Logo"
         navLinks={['about', 'medium', 'join community', 'roadmap']}
       />
-
       <ConnectButton />
-      <br></br>
-      <br></br>
-      <br></br>
-      <label htmlFor="contractAddress">
-        Contract Address
-        <input
-          id="contractAddress"
-          type="text"
-          value={contract}
-          onChange={(event) => setContract(event.currentTarget.value)}
-        />
-      </label>
+      <InputContract contract={contract} setContract={setContract} />
       <p>Current Contract Address: {contract}</p>
-      <br></br>
       <p>tx for contract instantiation</p>
-      <a
-        href={`https://finder.terra.money/testnet/tx/${txHashInstantiate?.txhash}`}
-        target="_blank"
-        rel="noreferrer"
-      >
-        {txHashInstantiate?.txhash}
-      </a>
-      <br></br>
-      <br></br>
-
-      <br></br>
+      <TxHashLink txHash={txHashFromInstantiate?.txhash} />
       <p>tx for deposit</p>
-      <a
-        href={`https://finder.terra.money/testnet/tx/${txHashDeposit}`}
-        target="_blank"
-        rel="noreferrer"
-      >
-        {txHashDeposit}
-      </a>
-      <br></br>
-      <br></br>
+      <TxHashLink txHash={txHashFromExecute} />
+      <InputAmount amount={amount} setAmount={setAmount} />
       <DepositButton
         children="open position"
         disabled={false}
         onClick={async () => {
-          return await instantiateContract();
+          return await instantiateContract(amount);
         }}
       />
       <FooterBar logo={longLogo} alt="YFD Logo" socialInfo={socialInfo} />
