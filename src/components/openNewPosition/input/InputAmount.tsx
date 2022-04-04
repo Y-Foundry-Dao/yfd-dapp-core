@@ -6,10 +6,10 @@ interface Props {
 function InputAmount({ amount, setAmount }: Props) {
   return (
     <label htmlFor="amount">
-      Amount to Deposit
+      Amount to Deposit in UST
       <input
         id="amount"
-        type="text"
+        type="number"
         value={amount == null ? '' : amount}
         onChange={(event) => setAmount(Number(event.currentTarget.value))}
       />
