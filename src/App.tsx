@@ -27,8 +27,6 @@ export default function App() {
       />
       <ConnectButton />
       {modalIsOpen ? <DepositModal setModalIsOpen={setModalIsOpen} /> : null}
-
-      {modalIsOpen ? 'modal should be open!' : 'modal should not be open'}
       <StrategyCard
         src={strategyLogo}
         alt="Degen Stable Farm logo"

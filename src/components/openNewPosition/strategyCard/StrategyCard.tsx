@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import EnterButton from 'components/openNewPosition/button/EnterButton';
 import StrategyLogo from 'components/openNewPosition/image/StrategyLogo';
 import Title from 'components/openNewPosition/title/Title';
