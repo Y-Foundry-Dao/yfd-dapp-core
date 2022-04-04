@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 interface Props {
   contract: string;
   setContract: (value: string) => void;
