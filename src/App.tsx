@@ -1,24 +1,29 @@
 import { useState } from 'react';
+import styled from 'styled-components';
 
 import socialInfo from 'utilities/socialInfo';
-import useInstantiateContract from 'utilities/hooks/useInstantiateContract';
 
 import HeaderBar from 'components/navigation/headerBar/HeaderBar';
-import ConnectButton from 'components/buttons/ConnectButton';
+import ConnectButton from 'components/buttons/connect/ConnectButton';
 import FooterBar from 'components/footer/footerBar/FooterBar';
 
 import yLogo from 'assets/yfd/logo-orange.svg';
 import longLogo from 'assets/yfd/logo-horizontal-orange-white.svg';
 import strategyLogo from 'assets/yfd/logo-strategy.svg';
 
-import StrategyCard from 'components/openNewPosition/strategyCard/StrategyCard';
-import DepositModal from 'components/openNewPosition/depositModal/DepositModal';
+import OptionCard from 'components/availableOptionsCard/optionCard/OptionCard';
+import DepositModal from 'components/depositModal/modal/DepositModal';
+
+interface Props {
+  modalIsOpen: boolean;
+}
 
 export default function App() {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 
   return (
-    <main>
+    <Main modalIsOpen={modalIsOpen}>
+      <Blur modalIsOpen={modalIsOpen} />
       <HeaderBar
         id="home"
         src={yLogo}
@@ -27,7 +32,8 @@ export default function App() {
       />
       <ConnectButton />
       {modalIsOpen ? <DepositModal setModalIsOpen={setModalIsOpen} /> : null}
-      <StrategyCard
+      <h1>Available Options</h1>
+      <OptionCard
         src={strategyLogo}
         alt="Degen Stable Farm logo"
         title="Degen Stable Farm"
@@ -36,6 +42,21 @@ export default function App() {
         setModalIsOpen={setModalIsOpen}
       />
       <FooterBar logo={longLogo} alt="YFD Logo" socialInfo={socialInfo} />
-    </main>
+    </Main>
   );
 }
+
+const Main = styled.main<Props>`
+  z-index: 0;
+  pointer-events: ${({ modalIsOpen }) => (modalIsOpen ? 'none' : 'auto')};
+  > * {
+    filter: ${({ modalIsOpen }) => (modalIsOpen ? 'blur(20px)' : 'blur(0)')};
+  }
+`;
+
+const Blur = styled.div<Props>`
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: ${({ modalIsOpen }) => (modalIsOpen ? '1' : '-1')};
+`;

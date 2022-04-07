@@ -29,6 +29,8 @@ const Header = styled.header`
   width: 100%;
   height: 70px;
   background: rgba(4, 3, 7, 0.5);
+  filter: blur(0);
+  pointer-events: auto;
 
   @media (min-width: 1440px) {
     height: 81px;
