@@ -74,8 +74,8 @@ const ModalHolder = styled.div`
   border-radius: 20px;
   width: 64%;
   z-index: 6;
-  filter: blur(0);
   pointer-events: auto;
+  filter: blur(0) !important;
 `;
 
 const Modal = styled.div`
