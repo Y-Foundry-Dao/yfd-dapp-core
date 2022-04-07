@@ -1,4 +1,5 @@
 import React, { CSSProperties, FC, KeyboardEvent, useCallback } from 'react';
+import styled from 'styled-components';
 
 interface Props {
   className?: string;
@@ -63,15 +64,37 @@ const InputCurrency: FC<Props> = ({
   });
 
   return (
-    <input
-      className={className}
-      inputMode="numeric"
-      onChange={handleChange}
-      onKeyDown={handleKeyDown}
-      style={style}
-      value={valueDisplay}
-    />
+    <Label>
+      Deposit
+      <Input
+        className={className}
+        inputMode="numeric"
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        style={style}
+        value={valueDisplay}
+      />
+    </Label>
   );
 };
+
+const Input = styled.input`
+  background: linear-gradient(
+    90.83deg,
+    rgba(245, 250, 255, 0.1) -11.59%,
+    rgba(237, 245, 255, 0) 106.85%
+  );
+  border-radius: 11px;
+  border: none;
+  height: 65px;
+  color: ${(props) => `${props.theme.colors.white}`};
+  text-align: center;
+  font-size: 1.2rem;
+`;
+
+const Label = styled.label`
+  display: flex;
+  flex-direction: column;
+`;
 
 export default InputCurrency;
