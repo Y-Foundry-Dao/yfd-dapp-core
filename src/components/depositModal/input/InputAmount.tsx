@@ -16,7 +16,7 @@ function InputAmount({ amount, setAmount }: Props) {
 
   return (
     <Label>
-      Deposit
+      Deposit:
       <Input
         type="number"
         value={amount}
