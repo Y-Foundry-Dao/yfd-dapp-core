@@ -2,20 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface Props {
+  className?: string;
   children?: React.ReactNode;
   disabled: boolean;
   onClick: () => void;
 }
 
-function DepositButton({ children, disabled, onClick }: Props) {
+function DepositButton({ className, children, disabled, onClick }: Props) {
   return (
-    <Button onClick={onClick} disabled={disabled}>
+    <Button className={className} onClick={onClick} disabled={disabled}>
       {children}
     </Button>
   );
 }
 
-const Button = styled.button`
+const Button = styled.button<Props>`
   background-color: ${(props) => `${props.theme.colors.blue}`};
   color: ${(props) => `${props.theme.colors.white}`};
   border: none;

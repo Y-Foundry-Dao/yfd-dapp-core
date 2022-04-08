@@ -1,10 +1,10 @@
-import DepositButton from './DepositButton';
+import Button from 'components/buttons/basic/Button';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { withDesign } from 'storybook-addon-designs';
 
 export default {
-  title: 'OpenPosition/DepositButton',
-  component: DepositButton,
+  title: 'Basics/Button',
+  component: Button,
   decorators: [withDesign],
   parameters: {
     design: {
@@ -14,14 +14,13 @@ export default {
   },
   args: { disabled: false, children: 'Button' },
   argTypes: { onClick: { table: { disable: true } } }
-} as ComponentMeta<typeof DepositButton>;
+} as ComponentMeta<typeof Button>;
 
-export const DepositTemplate: ComponentStory<typeof DepositButton> = (args) => (
-  <DepositButton {...args} />
+export const Template: ComponentStory<typeof Button> = (args) => (
+  <Button {...args} />
 );
 
-export const Disabled: ComponentStory<typeof DepositButton> =
-  DepositTemplate.bind({});
+export const Disabled: ComponentStory<typeof Button> = Template.bind({});
 
 Disabled.args = { disabled: true };
 Disabled.argTypes = {
@@ -32,8 +31,12 @@ Disabled.argTypes = {
   }
 };
 
-export const OpenPosition: ComponentStory<typeof DepositButton> =
-  DepositTemplate.bind({});
+export const OpenPosition: ComponentStory<typeof Button> = Template.bind({});
 
 OpenPosition.args = { children: 'open position' };
 OpenPosition.argTypes = { children: { table: { disable: true } } };
+
+export const EnterButton: ComponentStory<typeof Button> = Template.bind({});
+
+EnterButton.args = { children: 'enter' };
+EnterButton.argTypes = { children: { table: { disable: true } } };

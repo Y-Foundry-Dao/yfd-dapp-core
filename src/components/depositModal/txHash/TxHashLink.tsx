@@ -1,17 +1,24 @@
+import styled from 'styled-components';
+
 interface Props {
   txHash: string | undefined;
 }
 
 function TxHashLink({ txHash }: Props) {
   return (
-    <a
+    <A
       href={`https://finder.terra.money/testnet/tx/${txHash}`}
       target="_blank"
       rel="noreferrer"
     >
       {txHash}
-    </a>
+    </A>
   );
 }
+
+const A = styled.a`
+  text-overflow: ellipsis;
+  overflow: hidden;
+`;
 
 export default TxHashLink;
