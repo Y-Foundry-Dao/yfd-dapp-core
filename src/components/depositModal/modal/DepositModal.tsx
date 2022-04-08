@@ -7,6 +7,7 @@ import InputContract from 'components/depositModal/input/InputContract';
 import InputAmount from 'components/depositModal/input/InputAmount';
 
 import useInstantiateContract from 'utilities/hooks/useInstantiateContract';
+import AvailableAmount from '../availableAmount/AvailableAmount';
 
 interface Props {
   setModalIsOpen: (arg0: boolean) => void;
@@ -34,6 +35,7 @@ function DepositModal({ setModalIsOpen }: Props) {
         <p>tx for deposit</p>
         <TxHashLink txHash={txHashFromExecute} />
         <InputAmount amount={Number(amount)} setAmount={setAmount} />
+        <AvailableAmount setAmount={setAmount} />
         <DepositButton
           children="open position"
           disabled={false}
@@ -72,7 +74,7 @@ const ModalHolder = styled.div`
   top: 20%;
   background: rgba(8, 6, 11, 0.9);
   border-radius: 20px;
-  width: 64%;
+  width: 70%;
   z-index: 6;
   pointer-events: auto;
   filter: blur(0) !important;
@@ -83,8 +85,8 @@ const Modal = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  width: 60%;
-  margin-left: 18%;
+  width: 70%;
+  margin-left: 10%;
 `;
 
 export default DepositModal;
