@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Button from 'components/buttons/basic/Button';
 import TxHashLink from 'components/depositModal/txHash/TxHashLink';
 import InputContract from 'components/depositModal/input/InputContract';
-import InputCurrency from '../input/InputCurrency';
+import InputAmount from 'components/depositModal/input/InputAmount';
 
 import useInstantiateContract from 'utilities/hooks/useInstantiateContract';
 
@@ -14,11 +14,6 @@ interface Props {
 
 function DepositModal({ setModalIsOpen }: Props) {
   const [amount, setAmount] = useState<number>(0);
-  const handleValueChange = useCallback((amount) => {
-    // eslint-disable-next-line
-    console.log(amount);
-    setAmount(amount);
-  }, []);
   const {
     instantiateContract,
     txHashFromInstantiate,
@@ -38,12 +33,7 @@ function DepositModal({ setModalIsOpen }: Props) {
         <TxHashLink txHash={txHashFromInstantiate?.txhash} />
         <p>tx for deposit</p>
         <TxHashLink txHash={txHashFromExecute} />
-        <InputCurrency
-          max={100000000000}
-          onValueChange={handleValueChange}
-          style={{ textAlign: 'center' }}
-          value={amount}
-        />
+        <InputAmount amount={Number(amount)} setAmount={setAmount} />
         <DepositButton
           children="open position"
           disabled={false}
