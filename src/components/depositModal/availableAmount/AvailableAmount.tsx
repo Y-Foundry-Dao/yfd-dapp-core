@@ -32,7 +32,9 @@ function AvailableAmount({ setAmount }: Props) {
           if (coin.denom === 'uusd') {
             return (
               <Div key={i}>
-                <Amount>{`${coin.amount * 10 ** -6} UST`}</Amount>
+                <Amount onClick={() => setAmount(coin.amount * 10 ** -6)}>{`${
+                  coin.amount * 10 ** -6
+                } UST`}</Amount>
                 <MaxButton
                   children="max"
                   onClick={() => setAmount(coin.amount * 10 ** -6)}
@@ -59,6 +61,7 @@ const Header = styled.h3`
 const Amount = styled.p`
   color: #29dec6;
   margin-left: 1%;
+  cursor: pointer;
 `;
 
 const Available = styled.div`
