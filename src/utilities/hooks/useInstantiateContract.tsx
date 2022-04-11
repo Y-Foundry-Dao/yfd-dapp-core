@@ -9,7 +9,7 @@ import {
   UserDenied
 } from '@terra-money/wallet-provider';
 
-import msgQuery from 'utilities/msgQuery';
+import msgDeposit from 'utilities/msgDeposit';
 import useContract from 'utilities/hooks/useContract';
 import signAndBroadcast from 'utilities/instantiation/signAndBroadcast';
 
@@ -36,13 +36,14 @@ const useInstantiateContract = () => {
         setTxHashFromInstantiate(TxResult);
 
         const contractAddress = TxResult.logs[0].events[0].attributes[3].value;
+        localStorage.setItem('contractAddress', contractAddress);
         setContract(contractAddress);
 
         const amountInCoin: Coins.Input = { uusd: amount * Math.pow(10, 6) };
         return await executeMsg(
           connectedWallet,
           contractAddress,
-          msgQuery,
+          msgDeposit,
           amountInCoin
         );
       } catch (error) {

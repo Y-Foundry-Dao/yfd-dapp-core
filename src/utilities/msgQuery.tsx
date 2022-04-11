@@ -1,11 +1,6 @@
-import { MBTC_UST, MBTC } from 'utilities/variables';
-
 const msgQuery = {
-  deposit: {
-    loops: '3',
-    asset: MBTC,
-    asset_pair: MBTC_UST,
-    collateral_ratio: '2.5'
+  mirror_position: {
+    position_index: localStorage.getItem('position_idx')
   }
 };
 
