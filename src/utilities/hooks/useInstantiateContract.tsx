@@ -36,6 +36,7 @@ const useInstantiateContract = () => {
         setTxHashFromInstantiate(TxResult);
 
         const contractAddress = TxResult.logs[0].events[0].attributes[3].value;
+        localStorage.setItem('contractAddress', contractAddress);
         setContract(contractAddress);
 
         const amountInCoin: Coins.Input = { uusd: amount * Math.pow(10, 6) };
