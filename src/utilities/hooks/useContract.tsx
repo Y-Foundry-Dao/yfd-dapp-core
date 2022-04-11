@@ -34,7 +34,9 @@ const useContract = () => {
             // query txhash
             const data = await terra.tx
               .txInfo(result.result.txhash)
-              .catch(() => {}); //eslint-disable-line
+              .catch((error) => {
+                setTxHashFromExecute('Waiting for TX to Broadcast...');
+              }); //eslint-disable-line
             // if hash is onchain return data
             if (data) return data;
             // else wait 250ms and then repeat
