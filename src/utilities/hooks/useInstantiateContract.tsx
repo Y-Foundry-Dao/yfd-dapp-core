@@ -9,7 +9,7 @@ import {
   UserDenied
 } from '@terra-money/wallet-provider';
 
-import msgQuery from 'utilities/msgQuery';
+import msgDeposit from 'utilities/msgDeposit';
 import useContract from 'utilities/hooks/useContract';
 import signAndBroadcast from 'utilities/instantiation/signAndBroadcast';
 
@@ -42,7 +42,7 @@ const useInstantiateContract = () => {
         return await executeMsg(
           connectedWallet,
           contractAddress,
-          msgQuery,
+          msgDeposit,
           amountInCoin
         );
       } catch (error) {
