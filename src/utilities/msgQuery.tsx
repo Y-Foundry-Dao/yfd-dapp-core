@@ -1,7 +1,8 @@
-const msgQuery = {
-  mirror_position: {
-    position_index: localStorage.getItem('position_idx')
-  }
-};
-
-export default msgQuery;
+export default function msgQuery(position_idx: string) {
+  const query = {
+    mirror_position: {
+      position_index: position_idx
+    }
+  };
+  return query;
+}
