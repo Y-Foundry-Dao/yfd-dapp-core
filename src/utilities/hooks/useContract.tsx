@@ -69,12 +69,8 @@ const useContract = () => {
   // msgQuery - our query message we want to send to the API
   const queryMsg = async (contractAddress: string, msgQuery: object) => {
     try {
-      // if (contractAddress == '') {
-      //   return;
-      // }
       return await terra.wasm.contractQuery(contractAddress, msgQuery);
     } catch (error) {
-      console.log('test');
       console.log(error);
     }
   };
