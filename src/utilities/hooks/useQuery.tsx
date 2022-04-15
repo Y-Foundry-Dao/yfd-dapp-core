@@ -2,11 +2,16 @@ import useContract from './useContract';
 
 const useQuery = () => {
   const { queryMsg } = useContract();
-  const query = async (contract: string, msgQuery: any) => {
+  const query = async (contract: string) => {
     try {
       if (localStorage.getItem('position_idx') !== null) {
-        const position_idx = localStorage.getItem('position_idx');
-        const newQuery = msgQuery(position_idx);
+        const position_idx: string | null =
+          localStorage.getItem('position_idx');
+        const newQuery = {
+          mirror_position: {
+            position_index: position_idx
+          }
+        };
         await queryMsg(contract, newQuery).then((result) => {
           console.log('Open Position:', result);
           return result;
