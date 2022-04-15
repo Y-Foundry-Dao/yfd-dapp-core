@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Button from 'components/buttons/basic/Button';
@@ -6,27 +6,42 @@ import TxHashLink from 'components/depositModal/txHash/TxHashLink';
 import InputContract from 'components/depositModal/input/InputContract';
 import InputAmount from 'components/depositModal/input/InputAmount';
 
-import useInstantiateContract from 'utilities/hooks/useInstantiateContract';
+import useQuery from 'utilities/hooks/useQuery';
 import AvailableAmount from '../availableAmount/AvailableAmount';
 
 interface Props {
   setModalIsOpen: (arg0: boolean) => void;
+  instantiateContract: any;
+  txHashFromInstantiate: any;
+  contract: any;
+  setContract: any;
+  txHashFromExecute: any;
 }
 
-function DepositModal({ setModalIsOpen }: Props) {
+function DepositModal({
+  setModalIsOpen,
+  instantiateContract,
+  txHashFromInstantiate,
+  contract,
+  setContract,
+  txHashFromExecute
+}: Props) {
   const [amount, setAmount] = useState<number>(0);
-  const {
-    instantiateContract,
-    txHashFromInstantiate,
-    contract,
-    setContract,
-    txHashFromExecute
-  } = useInstantiateContract();
+  const { query } = useQuery();
+  useEffect(() => {
+    if (localStorage.getItem('contractAddress') !== null) {
+      setContract(localStorage.getItem('contractAddress'));
+    }
+  }, []);
+
+  const handleClick = async () => {
+    return await query(contract).then(() => setModalIsOpen(false));
+  };
 
   return (
     <ModalHolder>
       <Modal>
-        <CloseButton onClick={() => setModalIsOpen(false)}>x</CloseButton>
+        <CloseButton onClick={handleClick}>x</CloseButton>
         <Header>Degen Stable Farm</Header>
         <InputContract contract={contract} setContract={setContract} />
         <p>Current Contract Address: {contract}</p>

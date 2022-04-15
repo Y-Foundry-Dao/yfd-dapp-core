@@ -14,8 +14,9 @@ import useContract from 'utilities/hooks/useContract';
 import signAndBroadcast from 'utilities/instantiation/signAndBroadcast';
 
 const useInstantiateContract = () => {
-  const [txHashFromInstantiate, setTxHashFromInstantiate] =
-    useState<BlockTxBroadcastResult | null>(null);
+  const [txHashFromInstantiate, setTxHashFromInstantiate] = useState<
+    BlockTxBroadcastResult | null | string
+  >(null);
   const [txError, setTxError] = useState<string | null>(null);
   const [contract, setContract] = useState<string>('');
 
@@ -32,6 +33,7 @@ const useInstantiateContract = () => {
           alert(`Please only execute this example on Testnet`);
           return;
         }
+        setTxHashFromInstantiate('Waiting for Terra Station');
         const TxResult = await signAndBroadcast(connectedWallet);
         setTxHashFromInstantiate(TxResult);
 

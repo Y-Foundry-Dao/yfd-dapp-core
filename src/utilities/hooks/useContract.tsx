@@ -1,10 +1,6 @@
 import { useState } from 'react';
 
-import {
-  useWallet,
-  TxResult,
-  ConnectedWallet
-} from '@terra-money/wallet-provider';
+import { useWallet, ConnectedWallet } from '@terra-money/wallet-provider';
 import { Coins, Msg, MsgExecuteContract } from '@terra-money/terra.js';
 import { terra } from 'utilities/lcd';
 
@@ -12,26 +8,35 @@ const useContract = () => {
   const { post } = useWallet();
   const [txHashFromExecute, setTxHashFromExecute] = useState('');
 
+  // custom executeMsg function
+  // Takes 4 parameters
+  // connectedWallet - comes from wallet-provider
+  // contractAddress - address of the contract you want to execute your message on
+  // msgExecute - the message you want to send to the contract to execute
+  // amount - the amount you want to send with the message
   const executeMsg = async (
     connectedWallet: ConnectedWallet,
     contractAddress: string,
-    msgQuery: object,
+    msgExecute: object,
     amount: Coins.Input = {}
   ) => {
     try {
+      // Creates a new message with our parameters
       const msg: Msg = new MsgExecuteContract(
         connectedWallet.walletAddress,
         contractAddress,
-        msgQuery,
+        msgExecute,
         amount
       );
 
-      const result: void | TxResult = await post({ msgs: [msg] })
+      // posts the message to the blockchain
+      await post({ msgs: [msg] })
         .then(async (result) => {
           // TODO: use a for or add a timeout to prevent infinite loops
           //eslint-disable-next-line
           while (true) {
             // query txhash
+            // Causes errors in console because it hits the catch statement until the transaction has been broadcast
             const data = await terra.tx
               .txInfo(result.result.txhash)
               .catch((error) => {
@@ -58,11 +63,13 @@ const useContract = () => {
     }
   };
 
+  // custom queryMsg function
+  // takes 2 parameters
+  // contractAddress - the contract address we would like to query
+  // msgQuery - our query message we want to send to the API
   const queryMsg = async (contractAddress: string, msgQuery: object) => {
     try {
-      return await terra.wasm.contractQuery(contractAddress, {
-        query: msgQuery
-      });
+      return await terra.wasm.contractQuery(contractAddress, msgQuery);
     } catch (error) {
       console.log(error);
     }

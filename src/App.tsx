@@ -13,6 +13,8 @@ import strategyLogo from 'assets/yfd/logo-strategy.svg';
 
 import OptionCard from 'components/availableOptionsCard/optionCard/OptionCard';
 import DepositModal from 'components/depositModal/modal/DepositModal';
+import PositionCard from 'components/openPositionsCard/PositionCard';
+import useInstantiateContract from 'utilities/hooks/useInstantiateContract';
 
 interface Props {
   modalIsOpen: boolean;
@@ -20,6 +22,13 @@ interface Props {
 
 export default function App() {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const {
+    instantiateContract,
+    txHashFromInstantiate,
+    contract,
+    setContract,
+    txHashFromExecute
+  } = useInstantiateContract();
 
   return (
     <Main modalIsOpen={modalIsOpen}>
@@ -31,7 +40,17 @@ export default function App() {
         navLinks={['about', 'medium', 'join community', 'roadmap']}
       />
       <ConnectButton />
-      {modalIsOpen ? <DepositModal setModalIsOpen={setModalIsOpen} /> : null}
+      <PositionCard contract={contract} />
+      {modalIsOpen ? (
+        <DepositModal
+          instantiateContract={instantiateContract}
+          txHashFromInstantiate={txHashFromInstantiate}
+          setContract={setContract}
+          txHashFromExecute={txHashFromExecute}
+          contract={contract}
+          setModalIsOpen={setModalIsOpen}
+        />
+      ) : null}
       <h1>Available Options</h1>
       <OptionCard
         src={strategyLogo}
