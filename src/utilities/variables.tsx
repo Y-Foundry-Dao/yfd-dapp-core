@@ -4,3 +4,6 @@ export const TWITTER = 'https://twitter.com/yieldfoundrydao';
 export const MEDIUM = 'https://medium.com/@yfoundry/';
 export const MBTC = 'terra1csr22xvxs6r3gkjsl7pmjkmpt39mwjsrm0e2r8';
 export const MBTC_UST = 'terra134jl4dt20mqfryhnmhauryr754vuw7990jdell';
+export const MSPY = 'terra15t9afkpj0wnh8m74n8n2f8tspkn7r65vnru45s';
+export const MSPY_UST = 'terra10q4qsd2sfl4wc6nv0d77zud4ur40ygf5602pzd';
+export const AUST = 'terra1ajt556dpzvjwl0kl5tzku3fc3p3knkg9mkv8jl';
