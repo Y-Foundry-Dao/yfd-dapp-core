@@ -7,7 +7,6 @@ import InputContract from 'components/depositModal/input/InputContract';
 import InputAmount from 'components/depositModal/input/InputAmount';
 
 import useQuery from 'utilities/hooks/useQuery';
-import msgQuery from 'utilities/msgQuery';
 import AvailableAmount from '../availableAmount/AvailableAmount';
 
 interface Props {
@@ -36,7 +35,7 @@ function DepositModal({
   }, []);
 
   const handleClick = async () => {
-    return await query(contract, msgQuery).then(() => setModalIsOpen(false));
+    return await query(contract).then(() => setModalIsOpen(false));
   };
 
   return (
