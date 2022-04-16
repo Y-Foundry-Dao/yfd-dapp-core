@@ -40,6 +40,7 @@ export default function App() {
         navLinks={['about', 'medium', 'join community', 'roadmap']}
       />
       <ConnectButton />
+      <h1>My Open Position</h1>
       <PositionCard contract={contract} />
       {modalIsOpen ? (
         <DepositModal

@@ -7,7 +7,7 @@ interface Props {
 function TxHashLink({ txHash }: Props) {
   return (
     <A
-      href={`https://finder.terra.money/testnet/tx/${txHash}`}
+      href={`https://terrasco.pe/testnet/tx/${txHash}`}
       target="_blank"
       rel="noreferrer"
     >
