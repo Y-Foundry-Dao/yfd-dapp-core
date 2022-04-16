@@ -1,6 +1,6 @@
 import { MBTC_UST, MBTC } from 'utilities/variables';
 
-const msgDeposit = {
+const msgAddToPosition = {
   deposit: {
     loops: '4',
     asset: MBTC,
@@ -10,4 +10,4 @@ const msgDeposit = {
   }
 };
 
-export default msgDeposit;
+export default msgAddToPosition;
