@@ -1,11 +1,5 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { WalletStatus, useWallet } from '@terra-money/wallet-provider';
-import Box from '@mui/material/Box';
-import { ConnectedWalletMenu } from './components/ConnectedWalletMenu';
-import { ConnectWalletMenu } from './components/ConnectWalletMenu';
-
-import Toolbar from '@mui/material/Toolbar';
 
 import socialInfo from 'utilities/socialInfo';
 
@@ -35,7 +29,7 @@ export default function App() {
     setContract,
     txHashFromExecute
   } = useInstantiateContract();
-  const { status } = useWallet();
+
   return (
     <Main modalIsOpen={modalIsOpen}>
       <Blur modalIsOpen={modalIsOpen} />
@@ -45,16 +39,7 @@ export default function App() {
         alt="Y Logo"
         navLinks={['about', 'medium', 'join community', 'roadmap']}
       />
-      <Box sx={{ flexGrow: 1 }}>
-        <Toolbar>
-          {status === WalletStatus.WALLET_CONNECTED ? (
-            <ConnectedWalletMenu />
-          ) : (
-            <ConnectWalletMenu />
-          )}
-        </Toolbar>
-      </Box>
-
+      <ConnectButton />
       <h1>My Open Position</h1>
       <PositionCard contract={contract} />
       {modalIsOpen ? (
