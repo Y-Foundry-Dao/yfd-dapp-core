@@ -7,11 +7,11 @@ interface Props {
 
 function InputAmount({ amount, setAmount }: Props) {
   const handleChange = (e: any) => {
-    setAmount(e.target.value);
+    return setAmount(e.target.value);
   };
   const handleBlur = (e: any) => {
     const num = amount.toFixed(2);
-    setAmount(Number(num));
+    return setAmount(Number(num));
   };
 
   return (
