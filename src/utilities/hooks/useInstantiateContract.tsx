@@ -37,7 +37,7 @@ const useInstantiateContract = () => {
         const TxResult = await signAndBroadcast(connectedWallet);
         setTxHashFromInstantiate(TxResult);
 
-        const contractAddress = TxResult.logs[0].events[0].attributes[3].value;
+        const contractAddress = TxResult.logs[0].events[1].attributes[3].value;
         localStorage.setItem('contractAddress', contractAddress);
         setContract(contractAddress);
 
