@@ -9,7 +9,7 @@ import {
   UserDenied
 } from '@terra-money/wallet-provider';
 
-import msgDeposit from 'utilities/msgDeposit';
+import msgDeposit from 'utilities/messagesExecute/msgDeposit';
 import useContract from 'utilities/hooks/useContract';
 import signAndBroadcast from 'utilities/instantiation/signAndBroadcast';
 

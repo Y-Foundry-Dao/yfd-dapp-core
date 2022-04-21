@@ -27,7 +27,7 @@ function DepositModal({
   txHashFromExecute
 }: Props) {
   const [amount, setAmount] = useState<number>(0);
-  const { query } = useQuery();
+  const { queryPositionFromStorage } = useQuery();
   useEffect(() => {
     if (localStorage.getItem('contractAddress') !== null) {
       setContract(localStorage.getItem('contractAddress'));
@@ -35,7 +35,9 @@ function DepositModal({
   }, []);
 
   const handleClick = async () => {
-    return await query(contract).then(() => setModalIsOpen(false));
+    return await queryPositionFromStorage(contract).then(() =>
+      setModalIsOpen(false)
+    );
   };
 
   return (
