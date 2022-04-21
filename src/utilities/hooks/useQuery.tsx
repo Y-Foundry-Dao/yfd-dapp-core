@@ -1,5 +1,6 @@
-import useContract from './useContract';
+import useContract from './useContractDGSF';
 import queryPosition from 'utilities/messagesQuery/position';
+import queryPositions from 'utilities/messagesQuery/positions';
 
 const useQuery = () => {
   const { queryMsg } = useContract();
@@ -14,6 +15,18 @@ const useQuery = () => {
           return result;
         });
       }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const queryAllPositions = async (contract: string) => {
+    try {
+      const newQuery = queryPositions();
+      await queryMsg(contract, newQuery).then((result) => {
+        console.log('allOpenPositions:', result);
+        return result;
+      });
     } catch (error) {
       console.log(error);
     }
