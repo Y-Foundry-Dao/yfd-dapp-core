@@ -10,7 +10,7 @@ const instantiateParameters = {
   mirror_oracle: {
     contract_addr: 'terra1uvxhec74deupp47enh7z5pk55f3cvcz8nj4ww9'
   },
-  registry_addr: 'terra15fuaz955fwwyjqqagjxgkptugwqdgq5n34cjcf'
+  registry_addr: 'terra16gg7alyat08s99rafzdwvnpmjcxl4s3kww3cyq'
 };
 
 export default instantiateParameters;
