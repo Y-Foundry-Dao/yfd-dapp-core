@@ -1,3 +1,4 @@
+import { CONTRACT_REGISTRY } from 'utilities/variables';
 const instantiateParameters = {
   anchor_money_market: {
     contract_addr: 'terra15dwd5mj8v59wpj0wvt233mf5efdff808c5tkal',
@@ -10,7 +11,7 @@ const instantiateParameters = {
   mirror_oracle: {
     contract_addr: 'terra1uvxhec74deupp47enh7z5pk55f3cvcz8nj4ww9'
   },
-  registry_addr: 'terra16gg7alyat08s99rafzdwvnpmjcxl4s3kww3cyq'
+  registry_addr: CONTRACT_REGISTRY
 };
 
 export default instantiateParameters;
