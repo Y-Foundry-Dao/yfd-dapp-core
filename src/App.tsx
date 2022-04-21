@@ -20,8 +20,9 @@ import strategyLogo from 'assets/yfd/logo-strategy.svg';
 
 import OptionCard from 'components/availableOptionsCard/optionCard/OptionCard';
 import DepositModal from 'components/depositModal/modal/DepositModal';
-import PositionCard from 'components/openPositionsCard/PositionCard';
+import PositionCard from 'components/openPositions/PositionCard';
 import useInstantiateContract from 'utilities/hooks/useInstantiateContract';
+import Positions from 'components/openPositions/Positions';
 
 interface Props {
   modalIsOpen: boolean;
@@ -57,7 +58,8 @@ export default function App() {
         </Toolbar>
       </Box>
       <h1>My Open Position</h1>
-      <PositionCard contract={contract} />
+      <Positions />
+      <PositionCard />
       {modalIsOpen ? (
         <DepositModal
           instantiateContract={instantiateContract}

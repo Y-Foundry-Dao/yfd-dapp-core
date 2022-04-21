@@ -1,31 +1,39 @@
 import InputAmount from 'components/depositModal/input/InputAmount';
 import DepositButton from 'components/buttons/basic/Button';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import msgAddToPosition from 'utilities/messagesExecute/msgAddToPosition';
-import useContract from 'utilities/hooks/useContract';
+import useContract from 'utilities/hooks/useContractDGSF';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import styled from 'styled-components';
 import { Coins } from '@terra-money/terra.js';
 import TxHashLink from 'components/depositModal/txHash/TxHashLink';
+import useContractRegistry from 'utilities/hooks/useContractRegistry';
 
-interface Props {
-  contract: string;
-}
-
-function PositionCard({ contract }: Props) {
+function PositionCard() {
   const [positionIdx, setPositionIdx] = useState('');
   const [amount, setAmount] = useState<any>(0);
   const { executeMsg, txHashFromExecute } = useContract();
   const connectedWallet: any = useConnectedWallet();
   const [contractTest, setContractTest] = useState('');
-  useEffect(() => {
+  const { queryRegistry } = useContractRegistry();
+
+  const testFunction = useCallback(async () => {
     if (localStorage.getItem('position_idx') !== null) {
       const positionFromStorage: any = localStorage.getItem('position_idx');
       const contractFromStorage: any = localStorage.getItem('contractAddress');
       setContractTest(contractFromStorage);
+      console.log(await queryRegistry());
+      const response: any = await queryRegistry();
+      const contractInstantiations = await response.instantiations;
+      contractInstantiations.map((instantiation: any) => {
+        return console.log(instantiation);
+      });
       return setPositionIdx(positionFromStorage);
     }
-  }, [positionIdx, contract]);
+  }, []);
+  useEffect(() => {
+    testFunction();
+  }, []);
 
   const handleClick = async (amount: any) => {
     const amountInCoin: Coins.Input = { uusd: amount * Math.pow(10, 6) };
