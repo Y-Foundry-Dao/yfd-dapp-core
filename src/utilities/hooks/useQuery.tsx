@@ -23,8 +23,7 @@ const useQuery = () => {
   const queryAllPositions = async (contract: string) => {
     try {
       const newQuery = queryPositions();
-      await queryMsg(contract, newQuery).then((result) => {
-        console.log('allOpenPositions:', result);
+      return await queryMsg(contract, newQuery).then((result) => {
         return result;
       });
     } catch (error) {
