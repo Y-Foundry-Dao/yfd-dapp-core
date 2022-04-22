@@ -32,7 +32,8 @@ const useQuery = () => {
     }
   };
   return {
-    queryPositionFromStorage
+    queryPositionFromStorage,
+    queryAllPositions
   };
 };
 
