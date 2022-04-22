@@ -1,10 +1,18 @@
 import React from 'react';
 import PositionCard from './PositionCard';
 
-function Positions() {
+interface Props {
+  positions: Array<string>;
+}
+
+function Positions({ positions }: Props) {
   return (
     <div>
-      <PositionCard />
+      {/* <PositionCard /> */}
+      {positions.map((position, i) => {
+        // return <p key={i}>{position}</p>;
+        return <PositionCard key={i} position={position} />;
+      })}
     </div>
   );
 }

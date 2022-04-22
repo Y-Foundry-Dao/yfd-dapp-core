@@ -9,30 +9,28 @@ import { Coins } from '@terra-money/terra.js';
 import TxHashLink from 'components/depositModal/txHash/TxHashLink';
 import useContractRegistry from 'utilities/hooks/useContractRegistry';
 
-function PositionCard() {
+interface Props {
+  position: string;
+}
+
+function PositionCard({ position }: Props) {
   const [positionIdx, setPositionIdx] = useState('');
   const [amount, setAmount] = useState<any>(0);
   const { executeMsg, txHashFromExecute } = useContract();
   const connectedWallet: any = useConnectedWallet();
   const [contractTest, setContractTest] = useState('');
-  const { queryRegistry } = useContractRegistry();
 
-  const testFunction = useCallback(async () => {
+  const setPositionFromStorage = useCallback(async () => {
     if (localStorage.getItem('position_idx') !== null) {
       const positionFromStorage: any = localStorage.getItem('position_idx');
       const contractFromStorage: any = localStorage.getItem('contractAddress');
       setContractTest(contractFromStorage);
-      console.log(await queryRegistry());
-      const response: any = await queryRegistry();
-      const contractInstantiations = await response.instantiations;
-      contractInstantiations.map((instantiation: any) => {
-        return console.log(instantiation);
-      });
       return setPositionIdx(positionFromStorage);
     }
   }, []);
   useEffect(() => {
-    testFunction();
+    setPositionFromStorage();
+    setPositionIdx(position);
   }, []);
 
   const handleClick = async (amount: any) => {
