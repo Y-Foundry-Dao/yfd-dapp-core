@@ -15,7 +15,6 @@ import Toolbar from '@mui/material/Toolbar';
 import socialInfo from 'utilities/socialInfo';
 
 import HeaderBar from 'components/navigation/headerBar/HeaderBar';
-import ConnectButton from 'components/buttons/connect/ConnectButton';
 import FooterBar from 'components/footer/footerBar/FooterBar';
 
 import yLogo from 'assets/yfd/logo-orange.svg';
@@ -24,12 +23,10 @@ import strategyLogo from 'assets/yfd/logo-strategy.svg';
 
 import OptionCard from 'components/availableOptionsCard/optionCard/OptionCard';
 import DepositModal from 'components/depositModal/modal/DepositModal';
-import PositionCard from 'components/openPositions/PositionCard';
 import useInstantiateContract from 'utilities/hooks/useInstantiateContract';
 import Positions from 'components/openPositions/Positions';
 
 import useContractRegistry from 'utilities/hooks/useContractRegistry';
-import queryPositions from 'utilities/messagesQuery/positions';
 import useQuery from 'utilities/hooks/useQuery';
 
 interface Props {
@@ -39,8 +36,6 @@ interface Props {
 export default function App() {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const [positionsArray, setPositionsArray] = useState<any[]>([]);
-  const [positionIdx, setPositionIdx] = useState('');
-  const [contractTest, setContractTest] = useState('');
   const { queryRegistry } = useContractRegistry();
   const {
     instantiateContract,
@@ -66,11 +61,8 @@ export default function App() {
             instantiation.contract_addr
           );
           const positionsArr = allPositions.positions;
-          console.log(positionsArr);
           if (positionsArr.length > 0) {
             positionsArr.map((positionArr: any) => {
-              console.log(positionArr.idx);
-              console.log(positionArr.owner);
               openPositionsIndex = [
                 ...openPositionsIndex,
                 [positionArr.idx, positionArr.owner]
@@ -111,7 +103,6 @@ export default function App() {
       </Box>
       <h1>My Open Position</h1>
       <Positions positions={positionsArray} />
-      {/* <PositionCard /> */}
       {modalIsOpen ? (
         <DepositModal
           instantiateContract={instantiateContract}

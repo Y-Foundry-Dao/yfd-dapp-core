@@ -7,6 +7,7 @@ import { useConnectedWallet } from '@terra-money/wallet-provider';
 import styled from 'styled-components';
 import { Coins } from '@terra-money/terra.js';
 import TxHashLink from 'components/depositModal/txHash/TxHashLink';
+import { MBTC, MBTC_UST } from 'utilities/variables';
 
 interface Props {
   position: string;
@@ -25,8 +26,17 @@ function PositionCard({ position, contract }: Props) {
     setPositionIdx(position);
   }, []);
 
-  const handleClick = async (amount: any) => {
+  const handleClick = async (amount: any, position: any) => {
     const amountInCoin: Coins.Input = { uusd: amount * Math.pow(10, 6) };
+    const msgAddToPosition = {
+      deposit: {
+        loops: '4',
+        asset: MBTC,
+        asset_pair: MBTC_UST,
+        collateral_ratio: '2.5',
+        position_idx: position
+      }
+    };
     return await executeMsg(
       connectedWallet,
       contractTest,
@@ -50,7 +60,7 @@ function PositionCard({ position, contract }: Props) {
         children="Update Position"
         disabled={false}
         onClick={async () => {
-          return await handleClick(amount);
+          return await handleClick(amount, position);
         }}
       />
     </Position>
