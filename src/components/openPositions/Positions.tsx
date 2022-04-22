@@ -1,4 +1,3 @@
-import React from 'react';
 import PositionCard from './PositionCard';
 
 interface Props {
@@ -8,10 +7,10 @@ interface Props {
 function Positions({ positions }: Props) {
   return (
     <div>
-      {/* <PositionCard /> */}
       {positions.map((position, i) => {
-        // return <p key={i}>{position}</p>;
-        return <PositionCard key={i} position={position} />;
+        return (
+          <PositionCard key={i} position={position[0]} contract={position[1]} />
+        );
       })}
     </div>
   );

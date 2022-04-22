@@ -1,35 +1,27 @@
 import InputAmount from 'components/depositModal/input/InputAmount';
 import DepositButton from 'components/buttons/basic/Button';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import msgAddToPosition from 'utilities/messagesExecute/msgAddToPosition';
 import useContract from 'utilities/hooks/useContractDGSF';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import styled from 'styled-components';
 import { Coins } from '@terra-money/terra.js';
 import TxHashLink from 'components/depositModal/txHash/TxHashLink';
-import useContractRegistry from 'utilities/hooks/useContractRegistry';
 
 interface Props {
   position: string;
+  contract: string;
 }
 
-function PositionCard({ position }: Props) {
+function PositionCard({ position, contract }: Props) {
   const [positionIdx, setPositionIdx] = useState('');
   const [amount, setAmount] = useState<any>(0);
   const { executeMsg, txHashFromExecute } = useContract();
   const connectedWallet: any = useConnectedWallet();
   const [contractTest, setContractTest] = useState('');
 
-  const setPositionFromStorage = useCallback(async () => {
-    if (localStorage.getItem('position_idx') !== null) {
-      const positionFromStorage: any = localStorage.getItem('position_idx');
-      const contractFromStorage: any = localStorage.getItem('contractAddress');
-      setContractTest(contractFromStorage);
-      return setPositionIdx(positionFromStorage);
-    }
-  }, []);
   useEffect(() => {
-    setPositionFromStorage();
+    setContractTest(contract);
     setPositionIdx(position);
   }, []);
 
@@ -46,6 +38,12 @@ function PositionCard({ position }: Props) {
   return (
     <Position>
       <p>{positionIdx}</p>
+      <a
+        href={`https://terrasco.pe/testnet/address/${contract}`}
+        target="_blank"
+      >
+        {contract}
+      </a>
       {txHashFromExecute ? <TxHashLink txHash={txHashFromExecute} /> : null}
       <InputAmount amount={Number(amount)} setAmount={setAmount} />
       <DepositButton

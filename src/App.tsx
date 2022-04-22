@@ -70,7 +70,11 @@ export default function App() {
           if (positionsArr.length > 0) {
             positionsArr.map((positionArr: any) => {
               console.log(positionArr.idx);
-              openPositionsIndex = [...openPositionsIndex, positionArr.idx];
+              console.log(positionArr.owner);
+              openPositionsIndex = [
+                ...openPositionsIndex,
+                [positionArr.idx, positionArr.owner]
+              ];
               console.log(openPositionsIndex);
               setPositionsArray(openPositionsIndex);
             });
