@@ -10,7 +10,7 @@ import {
 } from '@terra-money/wallet-provider';
 
 import msgDeposit from 'utilities/messagesExecute/msgDeposit';
-import useContract from 'utilities/hooks/useContract';
+import useContract from 'utilities/hooks/useContractDGSF';
 import signAndBroadcast from 'utilities/instantiation/signAndBroadcast';
 
 const useInstantiateContract = () => {

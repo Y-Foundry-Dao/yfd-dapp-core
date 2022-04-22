@@ -1,7 +1,11 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { WalletStatus, useWallet } from '@terra-money/wallet-provider';
+import {
+  WalletStatus,
+  useWallet,
+  useConnectedWallet
+} from '@terra-money/wallet-provider';
 import Box from '@mui/material/Box';
 import { ConnectedWalletMenu } from './components/ConnectedWalletMenu';
 import { ConnectWalletMenu } from './components/ConnectWalletMenu';
@@ -11,7 +15,6 @@ import Toolbar from '@mui/material/Toolbar';
 import socialInfo from 'utilities/socialInfo';
 
 import HeaderBar from 'components/navigation/headerBar/HeaderBar';
-import ConnectButton from 'components/buttons/connect/ConnectButton';
 import FooterBar from 'components/footer/footerBar/FooterBar';
 
 import yLogo from 'assets/yfd/logo-orange.svg';
@@ -20,8 +23,11 @@ import strategyLogo from 'assets/yfd/logo-strategy.svg';
 
 import OptionCard from 'components/availableOptionsCard/optionCard/OptionCard';
 import DepositModal from 'components/depositModal/modal/DepositModal';
-import PositionCard from 'components/openPositionsCard/PositionCard';
 import useInstantiateContract from 'utilities/hooks/useInstantiateContract';
+import Positions from 'components/openPositions/Positions';
+
+import useContractRegistry from 'utilities/hooks/useContractRegistry';
+import useQuery from 'utilities/hooks/useQuery';
 
 interface Props {
   modalIsOpen: boolean;
@@ -29,6 +35,8 @@ interface Props {
 
 export default function App() {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [positionsArray, setPositionsArray] = useState<any[]>([]);
+  const { queryRegistry } = useContractRegistry();
   const {
     instantiateContract,
     txHashFromInstantiate,
@@ -36,7 +44,44 @@ export default function App() {
     setContract,
     txHashFromExecute
   } = useInstantiateContract();
+  const connectedWallet: any = useConnectedWallet();
   const { status } = useWallet();
+  const { queryAllPositions } = useQuery();
+
+  const getAllOpenPositions = async () => {
+    if (status == WalletStatus.WALLET_CONNECTED) {
+      const response: any = await queryRegistry();
+      const contractInstantiations = await response.instantiations;
+
+      let openPositionsIndex: any[] = [];
+
+      contractInstantiations.map(async (instantiation: any) => {
+        if (connectedWallet.walletAddress == instantiation.instance_owner) {
+          const allPositions: any = await queryAllPositions(
+            instantiation.contract_addr
+          );
+          const positionsArr = allPositions.positions;
+          if (positionsArr.length > 0) {
+            positionsArr.map((positionArr: any) => {
+              openPositionsIndex = [
+                ...openPositionsIndex,
+                [positionArr.idx, positionArr.owner]
+              ];
+              console.log(openPositionsIndex);
+              setPositionsArray(openPositionsIndex);
+            });
+          }
+        }
+      });
+      return openPositionsIndex;
+    }
+  };
+  useEffect(() => {
+    const getOpenPositions = async () => {
+      await getAllOpenPositions();
+    };
+    getOpenPositions();
+  }, [connectedWallet]);
 
   return (
     <Main modalIsOpen={modalIsOpen}>
@@ -57,7 +102,7 @@ export default function App() {
         </Toolbar>
       </Box>
       <h1>My Open Position</h1>
-      <PositionCard contract={contract} />
+      <Positions positions={positionsArray} />
       {modalIsOpen ? (
         <DepositModal
           instantiateContract={instantiateContract}

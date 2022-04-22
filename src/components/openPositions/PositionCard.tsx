@@ -2,33 +2,41 @@ import InputAmount from 'components/depositModal/input/InputAmount';
 import DepositButton from 'components/buttons/basic/Button';
 import { useEffect, useState } from 'react';
 import msgAddToPosition from 'utilities/messagesExecute/msgAddToPosition';
-import useContract from 'utilities/hooks/useContract';
+import useContract from 'utilities/hooks/useContractDGSF';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import styled from 'styled-components';
 import { Coins } from '@terra-money/terra.js';
 import TxHashLink from 'components/depositModal/txHash/TxHashLink';
+import { MBTC, MBTC_UST } from 'utilities/variables';
 
 interface Props {
+  position: string;
   contract: string;
 }
 
-function PositionCard({ contract }: Props) {
+function PositionCard({ position, contract }: Props) {
   const [positionIdx, setPositionIdx] = useState('');
   const [amount, setAmount] = useState<any>(0);
   const { executeMsg, txHashFromExecute } = useContract();
   const connectedWallet: any = useConnectedWallet();
   const [contractTest, setContractTest] = useState('');
-  useEffect(() => {
-    if (localStorage.getItem('position_idx') !== null) {
-      const positionFromStorage: any = localStorage.getItem('position_idx');
-      const contractFromStorage: any = localStorage.getItem('contractAddress');
-      setContractTest(contractFromStorage);
-      return setPositionIdx(positionFromStorage);
-    }
-  }, [positionIdx, contract]);
 
-  const handleClick = async (amount: any) => {
+  useEffect(() => {
+    setContractTest(contract);
+    setPositionIdx(position);
+  }, []);
+
+  const handleClick = async (amount: any, position: any) => {
     const amountInCoin: Coins.Input = { uusd: amount * Math.pow(10, 6) };
+    const msgAddToPosition = {
+      deposit: {
+        loops: '4',
+        asset: MBTC,
+        asset_pair: MBTC_UST,
+        collateral_ratio: '2.5',
+        position_idx: position
+      }
+    };
     return await executeMsg(
       connectedWallet,
       contractTest,
@@ -40,13 +48,19 @@ function PositionCard({ contract }: Props) {
   return (
     <Position>
       <p>{positionIdx}</p>
+      <a
+        href={`https://terrasco.pe/testnet/address/${contract}`}
+        target="_blank"
+      >
+        {contract}
+      </a>
       {txHashFromExecute ? <TxHashLink txHash={txHashFromExecute} /> : null}
       <InputAmount amount={Number(amount)} setAmount={setAmount} />
       <DepositButton
         children="Update Position"
         disabled={false}
         onClick={async () => {
-          return await handleClick(amount);
+          return await handleClick(amount, position);
         }}
       />
     </Position>
