@@ -1,6 +1,6 @@
 const queryPosition = (index: any) => {
   return {
-    mirror_position: {
+    position: {
       position_index: `${index}`
     }
   };

@@ -4,7 +4,7 @@ import { useWallet, ConnectedWallet } from '@terra-money/wallet-provider';
 import { Coins, Msg, MsgExecuteContract } from '@terra-money/terra.js';
 import { terra } from 'utilities/lcd';
 
-const useContract = () => {
+const useContractDGSF = () => {
   const { post } = useWallet();
   const [txHashFromExecute, setTxHashFromExecute] = useState('');
 
@@ -51,11 +51,6 @@ const useContract = () => {
         .then((txresult: any) => {
           // this will be executed when the tx has been included into a block
           const txHash = txresult.txhash;
-          localStorage.setItem('txHashDeposit', txHash);
-          localStorage.setItem(
-            'position_idx',
-            txresult.logs[0].eventsByType.from_contract.position_idx[0]
-          );
           return setTxHashFromExecute(txHash);
         });
     } catch (error) {
@@ -69,7 +64,9 @@ const useContract = () => {
   // msgQuery - our query message we want to send to the API
   const queryMsg = async (contractAddress: string, msgQuery: object) => {
     try {
-      return await terra.wasm.contractQuery(contractAddress, msgQuery);
+      if (contractAddress) {
+        return await terra.wasm.contractQuery(contractAddress, msgQuery);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -83,4 +80,4 @@ const useContract = () => {
   };
 };
 
-export default useContract;
+export default useContractDGSF;

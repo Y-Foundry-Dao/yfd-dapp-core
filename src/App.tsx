@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import {
@@ -36,12 +36,13 @@ interface Props {
 export default function App() {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const [positionsArray, setPositionsArray] = useState<any[]>([]);
+  const [contractToDeposit, setContractToDeposit] = useState('');
   const { queryRegistry } = useContractRegistry();
   const {
     instantiateContract,
     txHashFromInstantiate,
-    contract,
-    setContract,
+    contractFromInstantiation,
+    setContractFromInstantiation,
     txHashFromExecute
   } = useInstantiateContract();
   const connectedWallet: any = useConnectedWallet();
@@ -57,6 +58,7 @@ export default function App() {
 
       contractInstantiations.map(async (instantiation: any) => {
         if (connectedWallet.walletAddress == instantiation.instance_owner) {
+          setContractToDeposit(instantiation.contract_addr);
           const allPositions: any = await queryAllPositions(
             instantiation.contract_addr
           );
@@ -67,7 +69,6 @@ export default function App() {
                 ...openPositionsIndex,
                 [positionArr.idx, positionArr.owner]
               ];
-              console.log(openPositionsIndex);
               setPositionsArray(openPositionsIndex);
             });
           }
@@ -107,9 +108,11 @@ export default function App() {
         <DepositModal
           instantiateContract={instantiateContract}
           txHashFromInstantiate={txHashFromInstantiate}
-          setContract={setContract}
-          txHashFromExecute={txHashFromExecute}
-          contract={contract}
+          txHashFromExecuteInstantiate={txHashFromExecute}
+          contractToDeposit={contractToDeposit}
+          setContractToDeposit={setContractToDeposit}
+          contractFromInstantiation={contractFromInstantiation}
+          setContractFromInstantiation={setContractFromInstantiation}
           setModalIsOpen={setModalIsOpen}
         />
       ) : null}

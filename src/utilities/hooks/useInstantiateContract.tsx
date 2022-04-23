@@ -18,7 +18,8 @@ const useInstantiateContract = () => {
     BlockTxBroadcastResult | null | string
   >(null);
   const [txError, setTxError] = useState<string | null>(null);
-  const [contract, setContract] = useState<string>('');
+  const [contractFromInstantiation, setContractFromInstantiation] =
+    useState<string>('');
 
   const { executeMsg, txHashFromExecute } = useContract();
   const connectedWallet = useConnectedWallet();
@@ -37,14 +38,14 @@ const useInstantiateContract = () => {
         const TxResult = await signAndBroadcast(connectedWallet);
         setTxHashFromInstantiate(TxResult);
 
-        const contractAddress = TxResult.logs[0].events[1].attributes[3].value;
-        localStorage.setItem('contractAddress', contractAddress);
-        setContract(contractAddress);
+        const contractAddressFromInstantiate =
+          TxResult.logs[0].events[1].attributes[3].value;
+        setContractFromInstantiation(contractAddressFromInstantiate);
 
         const amountInCoin: Coins.Input = { uusd: amount * Math.pow(10, 6) };
         return await executeMsg(
           connectedWallet,
-          contractAddress,
+          contractAddressFromInstantiate,
           msgDeposit,
           amountInCoin
         );
@@ -73,8 +74,8 @@ const useInstantiateContract = () => {
   return {
     instantiateContract,
     txHashFromInstantiate,
-    contract,
-    setContract,
+    contractFromInstantiation,
+    setContractFromInstantiation,
     txHashFromExecute
   };
 };

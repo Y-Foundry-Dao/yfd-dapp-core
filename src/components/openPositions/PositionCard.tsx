@@ -1,13 +1,13 @@
 import InputAmount from 'components/depositModal/input/InputAmount';
 import DepositButton from 'components/buttons/basic/Button';
 import { useEffect, useState } from 'react';
-import msgAddToPosition from 'utilities/messagesExecute/msgAddToPosition';
 import useContract from 'utilities/hooks/useContractDGSF';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import styled from 'styled-components';
 import { Coins } from '@terra-money/terra.js';
 import TxHashLink from 'components/depositModal/txHash/TxHashLink';
 import { MBTC, MBTC_UST } from 'utilities/variables';
+import PositionInfo from 'components/openPositions/PositionInfo';
 
 interface Props {
   position: string;
@@ -48,6 +48,7 @@ function PositionCard({ position, contract }: Props) {
   return (
     <Position>
       <p>{positionIdx}</p>
+      <PositionInfo position={positionIdx} contract={contractTest} />
       <a
         href={`https://terrasco.pe/testnet/address/${contract}`}
         target="_blank"

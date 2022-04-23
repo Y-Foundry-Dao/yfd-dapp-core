@@ -8,15 +8,15 @@ interface Props {
   onClick: () => void;
 }
 
-function DepositButton({ className, children, disabled, onClick }: Props) {
+function Button({ className, children, disabled, onClick }: Props) {
   return (
-    <Button className={className} onClick={onClick} disabled={disabled}>
+    <StyledButton className={className} onClick={onClick} disabled={disabled}>
       {children}
-    </Button>
+    </StyledButton>
   );
 }
 
-const Button = styled.button<Props>`
+const StyledButton = styled.button<Props>`
   background-color: ${(props) => `${props.theme.colors.blue}`};
   color: ${(props) => `${props.theme.colors.white}`};
   border: none;
@@ -27,4 +27,4 @@ const Button = styled.button<Props>`
   text-transform: uppercase;
 `;
 
-export default DepositButton;
+export default Button;
