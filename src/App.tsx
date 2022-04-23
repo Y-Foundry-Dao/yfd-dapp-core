@@ -69,7 +69,6 @@ export default function App() {
                 ...openPositionsIndex,
                 [positionArr.idx, positionArr.owner]
               ];
-              console.log(openPositionsIndex);
               setPositionsArray(openPositionsIndex);
             });
           }
