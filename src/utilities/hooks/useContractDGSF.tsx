@@ -51,11 +51,6 @@ const useContractDGSF = () => {
         .then((txresult: any) => {
           // this will be executed when the tx has been included into a block
           const txHash = txresult.txhash;
-          // localStorage.setItem('txHashDeposit', txHash);
-          // localStorage.setItem(
-          //   'position_idx',
-          //   txresult.logs[0].eventsByType.from_contract.position_idx[0]
-          // );
           return setTxHashFromExecute(txHash);
         });
     } catch (error) {
@@ -69,7 +64,9 @@ const useContractDGSF = () => {
   // msgQuery - our query message we want to send to the API
   const queryMsg = async (contractAddress: string, msgQuery: object) => {
     try {
-      return await terra.wasm.contractQuery(contractAddress, msgQuery);
+      if (contractAddress) {
+        return await terra.wasm.contractQuery(contractAddress, msgQuery);
+      }
     } catch (error) {
       console.log(error);
     }

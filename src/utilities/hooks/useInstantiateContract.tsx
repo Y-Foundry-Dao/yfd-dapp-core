@@ -40,7 +40,6 @@ const useInstantiateContract = () => {
 
         const contractAddressFromInstantiate =
           TxResult.logs[0].events[1].attributes[3].value;
-        // localStorage.setItem('contractAddress', contractAddressFromInstantiate);
         setContractFromInstantiation(contractAddressFromInstantiate);
 
         const amountInCoin: Coins.Input = { uusd: amount * Math.pow(10, 6) };
