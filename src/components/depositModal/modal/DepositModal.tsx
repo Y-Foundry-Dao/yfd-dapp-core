@@ -11,7 +11,7 @@ import AvailableAmount from '../availableAmount/AvailableAmount';
 
 import msgDeposit from 'utilities/messagesExecute/msgDeposit';
 import useContract from 'utilities/hooks/useContractDGSF';
-import { BlockTxBroadcastResult, Coins } from '@terra-money/terra.js';
+import { Coins } from '@terra-money/terra.js';
 import {
   CreateTxFailed,
   Timeout,
