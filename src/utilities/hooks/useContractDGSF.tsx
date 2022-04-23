@@ -4,7 +4,7 @@ import { useWallet, ConnectedWallet } from '@terra-money/wallet-provider';
 import { Coins, Msg, MsgExecuteContract } from '@terra-money/terra.js';
 import { terra } from 'utilities/lcd';
 
-const useContract = () => {
+const useContractDGSF = () => {
   const { post } = useWallet();
   const [txHashFromExecute, setTxHashFromExecute] = useState('');
 
@@ -83,4 +83,4 @@ const useContract = () => {
   };
 };
 
-export default useContract;
+export default useContractDGSF;
