@@ -1,5 +1,5 @@
-import theme from 'styles/theme';
+import { base } from 'styles/theme';
 
-type ThemeType = typeof theme;
+type ThemeType = typeof base;
 
 export default ThemeType;

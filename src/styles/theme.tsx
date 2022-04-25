@@ -1,4 +1,4 @@
-const theme = {
+const base = {
   colors: {
     color1: '#040307',
     color2: '#D8552A',
@@ -8,5 +8,11 @@ const theme = {
     color6: 'rgba(255, 255, 255, 0.8)'
   }
 };
-
-export default theme;
+const primary = {
+  ...base,
+  colors: {
+    ...base.colors,
+    color5: 'linear-gradient(180deg, #FEC221 0%, #D8552A 100%);'
+  }
+};
+export { base, primary };
