@@ -11,8 +11,12 @@ function InputAmount({ amount, setAmount, label }: Props) {
     return setAmount(e.target.value);
   };
   const handleBlur = (e: any) => {
-    const num = amount.toFixed(2);
-    return setAmount(Number(num));
+    if (typeof amount === 'string') {
+      return setAmount(amount);
+    } else {
+      const num: any = amount.toFixed(2);
+      return setAmount(Number(num));
+    }
   };
 
   return (

@@ -20,13 +20,14 @@ function PositionCard({ position, contract }: Props) {
   const { executeMsg, txHashFromExecute } = useContract();
   const connectedWallet: any = useConnectedWallet();
   const [contractTest, setContractTest] = useState('');
+  const [amountToBorrow, setAmountToBorrow] = useState<any>(0);
 
   useEffect(() => {
     setContractTest(contract);
     setPositionIdx(position);
   }, []);
 
-  const handleClick = async (amount: any, position: any) => {
+  const handleClickAddToPosition = async (amount: number, position: string) => {
     const amountInCoin: Coins.Input = { uusd: amount * Math.pow(10, 6) };
     const msgAddToPosition = {
       deposit: {
@@ -45,9 +46,52 @@ function PositionCard({ position, contract }: Props) {
     );
   };
 
+  const handleClickBorrowFromPosition = async (
+    amount: number,
+    position: string
+  ) => {
+    const amountInCoin: number = amount * Math.pow(10, 6);
+    const msgBorrowFromPosition = {
+      mirror: {
+        mint: {
+          asset: {
+            info: {
+              token: {
+                contract_addr: MBTC
+              }
+            },
+            amount: String(amountInCoin)
+          },
+          position_idx: position
+        }
+      }
+    };
+    return await executeMsg(
+      connectedWallet,
+      contractTest,
+      msgBorrowFromPosition
+    );
+  };
+
   return (
     <Position>
       <p>{positionIdx}</p>
+      <InputAmount
+        amount={amountToBorrow}
+        setAmount={setAmountToBorrow}
+        label="Borrow mAsset"
+      />
+      <Button
+        children="Borrow mAsset"
+        disabled={false}
+        onClick={async () => {
+          return await handleClickBorrowFromPosition(
+            Number(amountToBorrow),
+            position
+          );
+        }}
+      />
+
       <PositionInfo position={positionIdx} contract={contractTest} />
       <a
         href={`https://terrasco.pe/testnet/address/${contract}`}
@@ -65,7 +109,7 @@ function PositionCard({ position, contract }: Props) {
         children="Update Position"
         disabled={false}
         onClick={async () => {
-          return await handleClick(amount, position);
+          return await handleClickAddToPosition(amount, position);
         }}
       />
     </Position>
