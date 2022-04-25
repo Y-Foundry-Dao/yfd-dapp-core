@@ -17,8 +17,8 @@ function Button({ className, children, disabled, onClick }: Props) {
 }
 
 const StyledButton = styled.button<Props>`
-  background-color: ${(props) => `${props.theme.colors.blue}`};
-  color: ${(props) => `${props.theme.colors.white}`};
+  background: ${(props) => `${props.theme.colors.color5}`};
+  color: ${(props) => `${props.theme.colors.color4}`};
   border: none;
   border-radius: 10px;
   padding: 13px 32px;

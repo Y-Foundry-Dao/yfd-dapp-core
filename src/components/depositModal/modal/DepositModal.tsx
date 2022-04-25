@@ -182,7 +182,7 @@ const Header = styled.h2`
 `;
 
 const CloseButton = styled.button`
-  color: ${(props) => `${props.theme.colors.white}`};
+  color: ${(props) => `${props.theme.colors.color4}`};
   background-color: rgba(8, 6, 11, 0.9);
   border: none;
   position: relative;

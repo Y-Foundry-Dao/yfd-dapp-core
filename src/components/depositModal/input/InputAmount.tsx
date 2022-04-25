@@ -43,7 +43,7 @@ const Input = styled.input`
   height: 50px;
   margin-top: 10px;
   margin-bottom: 10px;
-  color: ${(props) => `${props.theme.colors.white}`};
+  color: ${(props) => `${props.theme.colors.color4}`};
   text-align: center;
   font-size: 1.2rem;
   font-weight: 600;
