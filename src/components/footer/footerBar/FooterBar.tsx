@@ -4,6 +4,10 @@ import SocialIcons from 'components/footer/socialIcons/SocialIcons';
 
 type SocialId = string;
 
+interface Footer {
+  burgerIsOpen: boolean;
+}
+
 interface Social {
   link: string;
   icon: JSX.Element;
@@ -13,11 +17,12 @@ interface Props {
   logo: string;
   alt: string;
   socialInfo: Record<SocialId, Social>;
+  burgerIsOpen: boolean;
 }
 
-function FooterBar({ logo, alt, socialInfo }: Props) {
+function FooterBar({ logo, alt, socialInfo, burgerIsOpen }: Props) {
   return (
-    <Footer>
+    <Footer burgerIsOpen={burgerIsOpen}>
       <Img src={logo} alt={alt} />
       <SocialIcons socialInfo={socialInfo} />
     </Footer>
@@ -45,12 +50,13 @@ const Img = styled.img`
   }
 `;
 
-const Footer = styled.footer`
+const Footer = styled.footer<Footer>`
   height: 55px;
   width: 90%;
   display: flex;
   justify-content: space-between;
   margin-bottom: 6%;
+  visibility: ${({ burgerIsOpen }) => (burgerIsOpen ? 'hidden' : 'visible')};
 
   @media (min-width: 425px) {
     margin-bottom: 4%;
