@@ -48,7 +48,7 @@ const Burger: React.FC<StyleProps> = styled.button<StyleProps>`
   div {
     width: 1.9rem;
     height: 0.19rem;
-    background: ${(props) => `${props.theme.colors.white}`};
+    background: ${(props) => `${props.theme.colors.color4}`};
     border-radius: 10px;
     position: relative;
     transform-origin: 1px;
