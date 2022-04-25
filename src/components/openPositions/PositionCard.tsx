@@ -6,7 +6,7 @@ import { useConnectedWallet } from '@terra-money/wallet-provider';
 import styled from 'styled-components';
 import { Coins } from '@terra-money/terra.js';
 import TxHashLink from 'components/depositModal/txHash/TxHashLink';
-import { MBTC, MBTC_UST } from 'utilities/variables';
+import { AUST, MBTC, MBTC_UST } from 'utilities/variables';
 import PositionInfo from 'components/openPositions/PositionInfo';
 
 interface Props {
@@ -21,6 +21,7 @@ function PositionCard({ position, contract }: Props) {
   const connectedWallet: any = useConnectedWallet();
   const [contractTest, setContractTest] = useState('');
   const [amountToBorrow, setAmountToBorrow] = useState<any>(0);
+  const [amountToWithdraw, setAmountToWithdraw] = useState<any>(0);
 
   useEffect(() => {
     setContractTest(contract);
@@ -73,6 +74,33 @@ function PositionCard({ position, contract }: Props) {
     );
   };
 
+  const handleClickWithdrawFromPosition = async (
+    amount: number,
+    position: string
+  ) => {
+    const amountInCoin: number = amount * Math.pow(10, 6);
+    const msgWithdrawFromPosition = {
+      mirror: {
+        withdraw: {
+          collateral: {
+            info: {
+              token: {
+                contract_addr: AUST
+              }
+            },
+            amount: String(amountInCoin)
+          },
+          position_idx: position
+        }
+      }
+    };
+    return await executeMsg(
+      connectedWallet,
+      contractTest,
+      msgWithdrawFromPosition
+    );
+  };
+
   return (
     <Position>
       <p>{positionIdx}</p>
@@ -87,6 +115,22 @@ function PositionCard({ position, contract }: Props) {
         onClick={async () => {
           return await handleClickBorrowFromPosition(
             Number(amountToBorrow),
+            position
+          );
+        }}
+      />
+
+      <InputAmount
+        amount={amountToWithdraw}
+        setAmount={setAmountToWithdraw}
+        label="Withdraw aUST"
+      />
+      <Button
+        children="Withdraw aUST"
+        disabled={false}
+        onClick={async () => {
+          return await handleClickWithdrawFromPosition(
+            Number(amountToWithdraw),
             position
           );
         }}
