@@ -3,20 +3,25 @@ import styled from 'styled-components';
 interface Props {
   amount: number;
   setAmount: (value: number) => void;
+  label: string;
 }
 
-function InputAmount({ amount, setAmount }: Props) {
+function InputAmount({ amount, setAmount, label }: Props) {
   const handleChange = (e: any) => {
     return setAmount(e.target.value);
   };
   const handleBlur = (e: any) => {
-    const num = amount.toFixed(2);
-    return setAmount(Number(num));
+    if (typeof amount === 'string') {
+      return setAmount(amount);
+    } else {
+      const num: any = amount.toFixed(2);
+      return setAmount(Number(num));
+    }
   };
 
   return (
     <Label>
-      Deposit:
+      {label}:
       <Input
         type="number"
         value={amount}
