@@ -103,8 +103,17 @@ function PositionCard({ position, contract }: Props) {
 
   return (
     <Position>
-      <p>{positionIdx}</p>
-      <InputAmount
+      <ContractInfo>
+        <PositionIndex>{positionIdx}</PositionIndex>
+        <a
+          href={`https://terrasco.pe/testnet/address/${contract}`}
+          target="_blank"
+        >
+          View Contract
+        </a>
+      </ContractInfo>
+
+      {/* <InputAmount
         amount={amountToBorrow}
         setAmount={setAmountToBorrow}
         label="Borrow mAsset"
@@ -118,9 +127,9 @@ function PositionCard({ position, contract }: Props) {
             position
           );
         }}
-      />
+      /> */}
 
-      <InputAmount
+      {/* <InputAmount
         amount={amountToWithdraw}
         setAmount={setAmountToWithdraw}
         label="Withdraw aUST"
@@ -134,21 +143,16 @@ function PositionCard({ position, contract }: Props) {
             position
           );
         }}
-      />
+      /> */}
 
       <PositionInfo position={positionIdx} contract={contractTest} />
-      <a
-        href={`https://terrasco.pe/testnet/address/${contract}`}
-        target="_blank"
-      >
-        {contract}
-      </a>
-      {txHashFromExecute ? <TxHashLink txHash={txHashFromExecute} /> : null}
+
+      {/* {txHashFromExecute ? <TxHashLink txHash={txHashFromExecute} /> : null}
       <InputAmount
         amount={Number(amount)}
         setAmount={setAmount}
         label="Deposit UST"
-      />
+      /> */}
       <Button
         children="Update Position"
         disabled={false}
@@ -159,6 +163,16 @@ function PositionCard({ position, contract }: Props) {
     </Position>
   );
 }
+
+const PositionIndex = styled.p`
+  margin: 0;
+`;
+
+const ContractInfo = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 5%;
+`;
 
 const Position = styled.div`
   border: 2px solid ${(props) => `${props.theme.colors.color2}`};

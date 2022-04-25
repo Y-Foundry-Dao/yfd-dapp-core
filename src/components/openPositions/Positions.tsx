@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import PositionCard from './PositionCard';
 
 interface Props {
@@ -6,14 +7,19 @@ interface Props {
 
 function Positions({ positions }: Props) {
   return (
-    <div>
+    <OpenPositions>
       {positions.map((position, i) => {
         return (
           <PositionCard key={i} position={position[0]} contract={position[1]} />
         );
       })}
-    </div>
+    </OpenPositions>
   );
 }
+
+const OpenPositions = styled.div`
+  display: flex;
+  width: 100%;
+`;
 
 export default Positions;
