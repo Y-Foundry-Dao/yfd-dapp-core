@@ -19,6 +19,7 @@ function Positions({ positions }: Props) {
 
 const OpenPositions = styled.div`
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
 `;
 
