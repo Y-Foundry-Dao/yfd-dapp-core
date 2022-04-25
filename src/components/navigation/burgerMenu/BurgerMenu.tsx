@@ -37,6 +37,7 @@ const StyledMenu: any = styled.nav<Props>`
   background: ${(props) => `${props.theme.colors.black}`};
   opacity: ${({ open }) => (open ? 1 : 0)};
   z-index: ${({ open }) => (open ? 1 : -1)};
+  visibility: ${({ open }) => (open ? 'visible' : 'hidden')};
   transition: opacity 0.35s ease-in-out;
 `;
 
