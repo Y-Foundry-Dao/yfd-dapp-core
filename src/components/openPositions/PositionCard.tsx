@@ -1,5 +1,5 @@
 import InputAmount from 'components/depositModal/input/InputAmount';
-import DepositButton from 'components/buttons/basic/Button';
+import Button from 'components/buttons/basic/Button';
 import { useEffect, useState } from 'react';
 import useContract from 'utilities/hooks/useContractDGSF';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
@@ -56,8 +56,12 @@ function PositionCard({ position, contract }: Props) {
         {contract}
       </a>
       {txHashFromExecute ? <TxHashLink txHash={txHashFromExecute} /> : null}
-      <InputAmount amount={Number(amount)} setAmount={setAmount} />
-      <DepositButton
+      <InputAmount
+        amount={Number(amount)}
+        setAmount={setAmount}
+        label="Deposit UST"
+      />
+      <Button
         children="Update Position"
         disabled={false}
         onClick={async () => {

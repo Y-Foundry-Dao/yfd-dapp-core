@@ -3,9 +3,10 @@ import styled from 'styled-components';
 interface Props {
   amount: number;
   setAmount: (value: number) => void;
+  label: string;
 }
 
-function InputAmount({ amount, setAmount }: Props) {
+function InputAmount({ amount, setAmount, label }: Props) {
   const handleChange = (e: any) => {
     return setAmount(e.target.value);
   };
@@ -16,7 +17,7 @@ function InputAmount({ amount, setAmount }: Props) {
 
   return (
     <Label>
-      Deposit:
+      {label}:
       <Input
         type="number"
         value={amount}
