@@ -69,7 +69,7 @@ function PositionCard({ position, contract }: Props) {
 }
 
 const Position = styled.div`
-  border: 2px solid ${(props) => `${props.theme.colors.blue}`};
+  border: 2px solid ${(props) => `${props.theme.colors.color2}`};
   width: 25%;
   margin: 3% 6%;
   padding: 2% 3% 3% 2%;

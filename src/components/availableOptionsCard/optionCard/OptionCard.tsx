@@ -35,7 +35,7 @@ function strategyCard({ src, alt, title, strategist, setModalIsOpen }: Props) {
 }
 
 const Card = styled.div`
-  border: 2px solid ${(props) => `${props.theme.colors.blue}`};
+  border: 2px solid ${(props) => `${props.theme.colors.color5}`};
   width: 25%;
   margin: 3% 6%;
   padding: 2% 3% 3% 2%;

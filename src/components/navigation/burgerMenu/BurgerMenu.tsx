@@ -34,7 +34,7 @@ const StyledMenu: any = styled.nav<Props>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${(props) => `${props.theme.colors.black}`};
+  background: ${(props) => `${props.theme.colors.color1}`};
   opacity: ${({ open }) => (open ? 1 : 0)};
   z-index: ${({ open }) => (open ? 1 : -1)};
   transition: opacity 0.35s ease-in-out;
@@ -56,12 +56,12 @@ const Li = styled.li`
 `;
 
 const Link = styled.a`
-  color: ${(props) => `${props.theme.colors.gray}`};
+  color: ${(props) => `${props.theme.colors.color6}`};
   text-decoration: none;
   text-transform: uppercase;
 
   &:hover {
-    color: ${(props) => `${props.theme.colors.orange}`};
+    color: ${(props) => `${props.theme.colors.color2}`};
     transition: 0.15s linear;
   }
 `;

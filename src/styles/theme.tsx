@@ -1,11 +1,11 @@
 const theme = {
   colors: {
-    black: '#040307',
-    orange: '#D8552A',
-    tan: '#D7B9A3',
-    white: '#FCFEFF',
-    blue: '#1F43BF',
-    gray: 'rgba(255, 255, 255, 0.8)'
+    color1: '#040307',
+    color2: '#D8552A',
+    color3: '#D7B9A3',
+    color4: '#FCFEFF',
+    color5: '#1F43BF',
+    color6: 'rgba(255, 255, 255, 0.8)'
   }
 };
 
