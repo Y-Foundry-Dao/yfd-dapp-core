@@ -124,7 +124,11 @@ function DepositModal({
               : txHashFromExecute
           }
         />
-        <InputAmount amount={Number(amount)} setAmount={setAmount} />
+        <InputAmount
+          amount={Number(amount)}
+          setAmount={setAmount}
+          label="Deposit UST"
+        />
         <AvailableAmount setAmount={setAmount} />
         <DepositButtons>
           <DepositButton
