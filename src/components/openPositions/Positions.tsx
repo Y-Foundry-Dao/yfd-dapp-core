@@ -6,13 +6,19 @@ import UpdateModal from 'components/openPositions/UpdateModal';
 interface Props {
   positions: Array<string>;
   updateModalIsOpen: boolean;
+  burgerIsOpen: boolean;
   setModalIsOpen: (arg0: boolean) => void;
 }
 
-function Positions({ positions, updateModalIsOpen, setModalIsOpen }: Props) {
+function Positions({
+  positions,
+  updateModalIsOpen,
+  setModalIsOpen,
+  burgerIsOpen
+}: Props) {
   const [contractForPosition, setContractForPosition] = useState('');
   const [positionToUpdate, setPositionToUpdate] = useState('');
-  return (
+  return burgerIsOpen === false ? (
     <OpenPositions>
       {updateModalIsOpen ? (
         <UpdateModal
@@ -37,7 +43,7 @@ function Positions({ positions, updateModalIsOpen, setModalIsOpen }: Props) {
         );
       })}
     </OpenPositions>
-  );
+  ) : null;
 }
 
 const OpenPositions = styled.div`

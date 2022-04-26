@@ -114,6 +114,7 @@ export default function App() {
       <h1>My Open Position</h1>
       <Positions
         updateModalIsOpen={updateModalIsOpen}
+        burgerIsOpen={burgerIsOpen}
         setModalIsOpen={setUpdateModalIsOpen}
         positions={positionsArray}
       />

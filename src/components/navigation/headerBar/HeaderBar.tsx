@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import Logo from 'components/navigation/logo/Logo';
 import NavLinks from 'components/navigation/navlinks/NavLinks';
