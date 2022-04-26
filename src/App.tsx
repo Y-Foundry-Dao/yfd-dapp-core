@@ -38,6 +38,7 @@ interface StyledProps {
 }
 
 export default function App() {
+  const [burgerIsOpen, setBurgerIsOpen] = useState<boolean>(false);
   const [depositModalIsOpen, setDepositModalIsOpen] = useState<boolean>(false);
   const [updateModalIsOpen, setUpdateModalIsOpen] = useState<boolean>(false);
   const [positionsArray, setPositionsArray] = useState<any[]>([]);

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import Logo from 'components/navigation/logo/Logo';
 import NavLinks from 'components/navigation/navlinks/NavLinks';
@@ -9,13 +10,22 @@ interface Props {
   alt: string;
   navLinks: Array<string>;
   modalIsOpen: boolean;
+  open: boolean;
+  setOpen: (arg0: boolean) => void;
 }
 interface StyledProps {
   modalIsOpen: boolean;
 }
 
-function HeaderBar({ id, src, alt, navLinks, modalIsOpen }: Props) {
-  const [open, setOpen] = useState(false);
+function HeaderBar({
+  id,
+  src,
+  alt,
+  navLinks,
+  modalIsOpen,
+  open,
+  setOpen
+}: Props) {
   return (
     <Header modalIsOpen={modalIsOpen} id={id}>
       <Logo src={src} alt={alt} />
