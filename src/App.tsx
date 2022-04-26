@@ -34,7 +34,8 @@ interface Props {
 }
 
 export default function App() {
-  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [depositModalIsOpen, setDepositModalIsOpen] = useState<boolean>(false);
+  const [updateModalIsOpen, setUpdateModalIsOpen] = useState<boolean>(false);
   const [positionsArray, setPositionsArray] = useState<any[]>([]);
   const [contractToDeposit, setContractToDeposit] = useState('');
   const { queryRegistry } = useContractRegistry();
@@ -85,9 +86,10 @@ export default function App() {
   }, [connectedWallet]);
 
   return (
-    <Main modalIsOpen={modalIsOpen}>
-      <Blur modalIsOpen={modalIsOpen} />
+    <Main modalIsOpen={depositModalIsOpen || updateModalIsOpen}>
+      <Blur modalIsOpen={depositModalIsOpen || updateModalIsOpen} />
       <HeaderBar
+        modalIsOpen={updateModalIsOpen || depositModalIsOpen}
         id="home"
         src={yLogo}
         alt="Y Logo"
@@ -103,8 +105,12 @@ export default function App() {
         </Toolbar>
       </Box>
       <h1>My Open Position</h1>
-      <Positions positions={positionsArray} />
-      {modalIsOpen ? (
+      <Positions
+        updateModalIsOpen={updateModalIsOpen}
+        setModalIsOpen={setUpdateModalIsOpen}
+        positions={positionsArray}
+      />
+      {depositModalIsOpen ? (
         <DepositModal
           instantiateContract={instantiateContract}
           txHashFromInstantiate={txHashFromInstantiate}
@@ -113,7 +119,7 @@ export default function App() {
           setContractToDeposit={setContractToDeposit}
           contractFromInstantiation={contractFromInstantiation}
           setContractFromInstantiation={setContractFromInstantiation}
-          setModalIsOpen={setModalIsOpen}
+          setModalIsOpen={setDepositModalIsOpen}
         />
       ) : null}
       <h1>Available Options</h1>
@@ -122,8 +128,8 @@ export default function App() {
         alt="Degen Stable Farm logo"
         title="Degen Stable Farm"
         strategist="DR CLE4NCUTS"
-        modalIsOpen={modalIsOpen}
-        setModalIsOpen={setModalIsOpen}
+        modalIsOpen={depositModalIsOpen}
+        setModalIsOpen={setDepositModalIsOpen}
       />
       <FooterBar logo={longLogo} alt="YFD Logo" socialInfo={socialInfo} />
     </Main>

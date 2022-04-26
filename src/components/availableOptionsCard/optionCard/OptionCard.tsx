@@ -42,7 +42,6 @@ const Card = styled.div`
   border-radius: 20px;
   background: rgba(8, 6, 11, 0.75);
   min-width: 300px;
-  z-index: 1;
 `;
 
 const LogoAndButton = styled.div`
