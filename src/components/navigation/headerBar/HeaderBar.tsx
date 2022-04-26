@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import Logo from 'components/navigation/logo/Logo';
 import NavLinks from 'components/navigation/navlinks/NavLinks';
 import Burger from 'components/navigation/burger/Burger';
-import { useState } from 'react';
 
 interface Props {
   id: string;

@@ -33,6 +33,10 @@ interface Props {
   modalIsOpen: boolean;
 }
 
+interface StyledProps {
+  burgerIsOpen: boolean;
+}
+
 export default function App() {
   const [depositModalIsOpen, setDepositModalIsOpen] = useState<boolean>(false);
   const [updateModalIsOpen, setUpdateModalIsOpen] = useState<boolean>(false);
@@ -94,8 +98,10 @@ export default function App() {
         src={yLogo}
         alt="Y Logo"
         navLinks={['about', 'medium', 'join community', 'roadmap']}
+        open={burgerIsOpen}
+        setOpen={setBurgerIsOpen}
       />
-      <Box sx={{ flexGrow: 1 }}>
+      <WalletConnectButton burgerIsOpen={burgerIsOpen} sx={{ flexGrow: 1 }}>
         <Toolbar>
           {status === WalletStatus.WALLET_CONNECTED ? (
             <ConnectedWalletMenu />
@@ -103,7 +109,7 @@ export default function App() {
             <ConnectWalletMenu />
           )}
         </Toolbar>
-      </Box>
+      </WalletConnectButton>
       <h1>My Open Position</h1>
       <Positions
         updateModalIsOpen={updateModalIsOpen}
@@ -131,16 +137,26 @@ export default function App() {
         modalIsOpen={depositModalIsOpen}
         setModalIsOpen={setDepositModalIsOpen}
       />
-      <FooterBar logo={longLogo} alt="YFD Logo" socialInfo={socialInfo} />
+      <FooterBar
+        burgerIsOpen={burgerIsOpen}
+        logo={longLogo}
+        alt="YFD Logo"
+        socialInfo={socialInfo}
+      />
     </Main>
   );
 }
+
+const WalletConnectButton = styled(Box)<StyledProps>`
+  position: relative;
+  z-index: ${({ burgerIsOpen }) => (burgerIsOpen ? '-1' : '1')};
+`;
 
 const Main = styled.main<Props>`
   z-index: 0;
   pointer-events: ${({ modalIsOpen }) => (modalIsOpen ? 'none' : 'auto')};
   > * {
-    filter: ${({ modalIsOpen }) => (modalIsOpen ? 'blur(20px)' : 'blur(0)')};
+    filter: ${({ modalIsOpen }) => modalIsOpen && 'blur(20px)'};
   }
 `;
 
