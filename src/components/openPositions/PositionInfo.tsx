@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import useQuery from 'utilities/hooks/useQuery';
+import styled from 'styled-components';
 
 interface Props {
   position: string;
@@ -27,12 +28,48 @@ function PositionInfo({ position, contract }: Props) {
 
   return (
     <div>
-      PositionInfo
-      <p>Collateral Value: {positionState.collateral_value_ust} UST</p>
-      <p>Asset Value: {positionState.asset_value_ust} UST</p>
-      <p>Collateral Ratio: {positionState.collateral_ratio}</p>
+      <StylizedTable>
+        <tr>
+          <StylizedTd>Collateral Value:</StylizedTd>
+          <td></td>
+        </tr>
+        <tr>
+          <td colSpan={2}>{positionState.collateral_value_ust} UST</td>
+        </tr>
+        <tr>
+          <StylizedTd>Asset Value:</StylizedTd>
+          <td></td>
+        </tr>
+        <tr>
+          <td colSpan={2}>{positionState.asset_value_ust} UST</td>
+        </tr>
+        <tr>
+          <StylizedTd>Collateral Ratio:</StylizedTd>
+          <td></td>
+        </tr>
+        <tr>
+          <td colSpan={2}>{positionState.collateral_ratio}</td>
+        </tr>
+      </StylizedTable>
     </div>
   );
 }
+
+const StylizedTable = styled.table`
+  text-align: left;
+  margin-bottom: 20px;
+  margin-left: 30px;
+`;
+
+const StylizedTd = styled.td`
+  color: ${(props) => `${props.theme.colors.color3}`};
+  padding-top: 15px;
+  text-align: left;
+`;
+
+const StylizedTitle = styled.h2`
+  color: ${(props) => `${props.theme.colors.color3}`};
+  padding-top: 15px;
+`;
 
 export default PositionInfo;

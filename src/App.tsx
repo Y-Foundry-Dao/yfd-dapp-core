@@ -98,7 +98,7 @@ export default function App() {
         id="home"
         src={yLogo}
         alt="Y Logo"
-        navLinks={['about', 'medium', 'join community', 'roadmap']}
+        navLinks={['about', 'medium', 'join community', 'brand kit', 'roadmap']}
         open={burgerIsOpen}
         setOpen={setBurgerIsOpen}
       />
@@ -111,34 +111,42 @@ export default function App() {
           )}
         </Toolbar>
       </WalletConnectButton>
-      <h1>My Open Position</h1>
-      <Positions
-        updateModalIsOpen={updateModalIsOpen}
-        burgerIsOpen={burgerIsOpen}
-        setModalIsOpen={setUpdateModalIsOpen}
-        positions={positionsArray}
-      />
-      {depositModalIsOpen ? (
-        <DepositModal
-          instantiateContract={instantiateContract}
-          txHashFromInstantiate={txHashFromInstantiate}
-          txHashFromExecuteInstantiate={txHashFromExecute}
-          contractToDeposit={contractToDeposit}
-          setContractToDeposit={setContractToDeposit}
-          contractFromInstantiation={contractFromInstantiation}
-          setContractFromInstantiation={setContractFromInstantiation}
-          setModalIsOpen={setDepositModalIsOpen}
-        />
-      ) : null}
-      <h1>Available Options</h1>
-      <OptionCard
-        src={strategyLogo}
-        alt="Degen Stable Farm logo"
-        title="Degen Stable Farm"
-        strategist="DR CLE4NCUTS"
-        modalIsOpen={depositModalIsOpen}
-        setModalIsOpen={setDepositModalIsOpen}
-      />
+      <StylizedDiv>
+        <OpenPositions>
+          <h1>Foundry</h1>
+          <StylizedTitle>My Open Positions</StylizedTitle>
+          <Positions
+            updateModalIsOpen={updateModalIsOpen}
+            burgerIsOpen={burgerIsOpen}
+            setModalIsOpen={setUpdateModalIsOpen}
+            positions={positionsArray}
+          />
+          {depositModalIsOpen ? (
+            <DepositModal
+              instantiateContract={instantiateContract}
+              txHashFromInstantiate={txHashFromInstantiate}
+              txHashFromExecuteInstantiate={txHashFromExecute}
+              contractToDeposit={contractToDeposit}
+              setContractToDeposit={setContractToDeposit}
+              contractFromInstantiation={contractFromInstantiation}
+              setContractFromInstantiation={setContractFromInstantiation}
+              setModalIsOpen={setDepositModalIsOpen}
+            />
+          ) : null}
+        </OpenPositions>
+
+        <StylizedTitle>Available Options</StylizedTitle>
+        <AvailablePositions>
+          <OptionCard
+            src={strategyLogo}
+            alt="Degen Stable Farm logo"
+            title="Degen Stable Farm"
+            strategist="DR CLE4NCUTS"
+            modalIsOpen={depositModalIsOpen}
+            setModalIsOpen={setDepositModalIsOpen}
+          />
+        </AvailablePositions>
+      </StylizedDiv>
       <FooterBar
         burgerIsOpen={burgerIsOpen}
         logo={longLogo}
@@ -162,9 +170,42 @@ const Main = styled.main<Props>`
   }
 `;
 
+const StylizedDiv = styled.div`
+  width: 92%;
+  margin: auto;
+  padding-bottom: 30px;
+`;
+
+const StylizedTitle = styled.h2`
+  color: ${(props) => `${props.theme.colors.color3}`};
+  padding-top: 15px;
+`;
+
+const OpenPositions = styled.div`
+  color: ${(props) => `${props.theme.colors.color3}`};
+`;
+
 const Blur = styled.div<Props>`
   position: absolute;
   width: 100vw;
   height: 100vh;
   z-index: ${({ modalIsOpen }) => (modalIsOpen ? '1' : '-1')};
+`;
+
+const AvailablePositions = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 1%;
+  margin-right: 1%;
+  width: 100%;
+  filter: blur(0px) !important;
+  background: linear-gradient(hsl(203, 25%, 8%), hsl(203, 50%, 0%));
+  padding: 2rem 0.5rem;
+  text-align: center;
+  color: hsl(300, 50%, 95%);
+  border-top: 1px solid hsl(215, 5%, 50%);
+  border-right: 1px solid hsl(215, 5%, 25%);
+  border-left: 1px solid hsl(215, 5%, 25%);
+  border-bottom: 1px solid hsl(215, 4%, 15%);
+  border-radius: 1.375rem;
 `;

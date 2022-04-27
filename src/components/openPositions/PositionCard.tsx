@@ -31,14 +31,15 @@ function PositionCard({
 
   return (
     <Position modalIsOpen={modalIsOpen}>
+      <img src={`/logo-64-orange-transparent-square.png`} />
+      <h2>DGSF Position {position}</h2>
       <ContractInfo>
-        <PositionIndex>{position}</PositionIndex>
-        <a
+        <Link
           href={`https://terrasco.pe/testnet/address/${contract}`}
           target="_blank"
         >
           View Contract
-        </a>
+        </Link>
       </ContractInfo>
       <PositionInfo position={position} contract={contract} />
       <Button
@@ -51,13 +52,31 @@ function PositionCard({
 }
 
 const PositionIndex = styled.p`
-  margin: 0;
+  margin: 5px;
 `;
 
 const ContractInfo = styled.div`
   display: flex;
   justify-content: space-evenly;
+`;
+
+const Link = styled.a`
+  color: ${(props) => `${props.theme.colors.color3}`};
+  text-decoration: none;
+  width: auto;
+  margin-left: 10px;
   margin-bottom: 5%;
+  border: 2px solid ${(props) => `${props.theme.colors.color2}`};
+  background: linear-gradient(hsl(203, 25%, 8%), hsl(203, 50%, 0%));
+  padding: 0.6rem;
+  padding-left: 2rem;
+  padding-right: 2.2rem;
+  text-align: center;
+  border-top: 1px solid hsl(215, 5%, 50%);
+  border-right: 1px solid hsl(215, 5%, 25%);
+  border-left: 1px solid hsl(215, 5%, 25%);
+  border-bottom: 1px solid hsl(215, 4%, 15%);
+  border-radius: 1.375rem;
 `;
 
 const Position = styled.div<StyledProps>`
