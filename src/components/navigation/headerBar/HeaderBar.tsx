@@ -8,17 +8,25 @@ interface Props {
   src: string;
   alt: string;
   navLinks: Array<string>;
+  modalIsOpen: boolean;
   open: boolean;
   setOpen: (arg0: boolean) => void;
 }
-
 interface StyledProps {
-  open: boolean;
+  modalIsOpen: boolean;
 }
 
-function HeaderBar({ id, src, alt, navLinks, open, setOpen }: Props) {
+function HeaderBar({
+  id,
+  src,
+  alt,
+  navLinks,
+  modalIsOpen,
+  open,
+  setOpen
+}: Props) {
   return (
-    <Header open={open} id={id}>
+    <Header modalIsOpen={modalIsOpen} id={id}>
       <Logo src={src} alt={alt} />
       <NavLinks navLinks={navLinks} />
       <Burger open={open} setOpen={setOpen} navLinks={navLinks} />
@@ -27,7 +35,7 @@ function HeaderBar({ id, src, alt, navLinks, open, setOpen }: Props) {
 }
 
 const Header = styled.header<StyledProps>`
-  position: ${({ open }) => open && 'relative'};
+  top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;

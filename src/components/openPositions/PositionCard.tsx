@@ -1,166 +1,66 @@
-import InputAmount from 'components/depositModal/input/InputAmount';
 import Button from 'components/buttons/basic/Button';
-import { useEffect, useState } from 'react';
-import useContract from 'utilities/hooks/useContractDGSF';
-import { useConnectedWallet } from '@terra-money/wallet-provider';
 import styled from 'styled-components';
-import { Coins } from '@terra-money/terra.js';
-import TxHashLink from 'components/depositModal/txHash/TxHashLink';
-import { AUST, MBTC, MBTC_UST } from 'utilities/variables';
 import PositionInfo from 'components/openPositions/PositionInfo';
 
 interface Props {
   position: string;
   contract: string;
+  modalIsOpen: boolean;
+  setModalIsOpen: (arg0: boolean) => void;
+  setPositionToUpdate: (arg0: string) => void;
+  setContractForPosition: (arg0: string) => void;
 }
 
-function PositionCard({ position, contract }: Props) {
-  const [positionIdx, setPositionIdx] = useState('');
-  const [amount, setAmount] = useState<any>(0);
-  const { executeMsg, txHashFromExecute } = useContract();
-  const connectedWallet: any = useConnectedWallet();
-  const [contractTest, setContractTest] = useState('');
-  const [amountToBorrow, setAmountToBorrow] = useState<any>(0);
-  const [amountToWithdraw, setAmountToWithdraw] = useState<any>(0);
+interface StyledProps {
+  modalIsOpen: boolean;
+}
 
-  useEffect(() => {
-    setContractTest(contract);
-    setPositionIdx(position);
-  }, []);
-
-  const handleClickAddToPosition = async (amount: number, position: string) => {
-    const amountInCoin: Coins.Input = { uusd: amount * Math.pow(10, 6) };
-    const msgAddToPosition = {
-      deposit: {
-        loops: '4',
-        asset: MBTC,
-        asset_pair: MBTC_UST,
-        collateral_ratio: '2.5',
-        position_idx: position
-      }
-    };
-    return await executeMsg(
-      connectedWallet,
-      contractTest,
-      msgAddToPosition,
-      amountInCoin
-    );
-  };
-
-  const handleClickBorrowFromPosition = async (
-    amount: number,
-    position: string
-  ) => {
-    const amountInCoin: number = amount * Math.pow(10, 6);
-    const msgBorrowFromPosition = {
-      mirror: {
-        mint: {
-          asset: {
-            info: {
-              token: {
-                contract_addr: MBTC
-              }
-            },
-            amount: String(amountInCoin)
-          },
-          position_idx: position
-        }
-      }
-    };
-    return await executeMsg(
-      connectedWallet,
-      contractTest,
-      msgBorrowFromPosition
-    );
-  };
-
-  const handleClickWithdrawFromPosition = async (
-    amount: number,
-    position: string
-  ) => {
-    const amountInCoin: number = amount * Math.pow(10, 6);
-    const msgWithdrawFromPosition = {
-      mirror: {
-        withdraw: {
-          collateral: {
-            info: {
-              token: {
-                contract_addr: AUST
-              }
-            },
-            amount: String(amountInCoin)
-          },
-          position_idx: position
-        }
-      }
-    };
-    return await executeMsg(
-      connectedWallet,
-      contractTest,
-      msgWithdrawFromPosition
-    );
+function PositionCard({
+  position,
+  contract,
+  modalIsOpen,
+  setModalIsOpen,
+  setPositionToUpdate,
+  setContractForPosition
+}: Props) {
+  const handleClick = () => {
+    setPositionToUpdate(position);
+    setContractForPosition(contract);
+    return setModalIsOpen(true);
   };
 
   return (
-    <Position>
-      <p>{positionIdx}</p>
-      <InputAmount
-        amount={amountToBorrow}
-        setAmount={setAmountToBorrow}
-        label="Borrow mAsset"
-      />
-      <Button
-        children="Borrow mAsset"
-        disabled={false}
-        onClick={async () => {
-          return await handleClickBorrowFromPosition(
-            Number(amountToBorrow),
-            position
-          );
-        }}
-      />
-
-      <InputAmount
-        amount={amountToWithdraw}
-        setAmount={setAmountToWithdraw}
-        label="Withdraw aUST"
-      />
-      <Button
-        children="Withdraw aUST"
-        disabled={false}
-        onClick={async () => {
-          return await handleClickWithdrawFromPosition(
-            Number(amountToWithdraw),
-            position
-          );
-        }}
-      />
-
-      <PositionInfo position={positionIdx} contract={contractTest} />
-      <a
-        href={`https://terrasco.pe/testnet/address/${contract}`}
-        target="_blank"
-      >
-        {contract}
-      </a>
-      {txHashFromExecute ? <TxHashLink txHash={txHashFromExecute} /> : null}
-      <InputAmount
-        amount={Number(amount)}
-        setAmount={setAmount}
-        label="Deposit UST"
-      />
+    <Position modalIsOpen={modalIsOpen}>
+      <ContractInfo>
+        <PositionIndex>{position}</PositionIndex>
+        <a
+          href={`https://terrasco.pe/testnet/address/${contract}`}
+          target="_blank"
+        >
+          View Contract
+        </a>
+      </ContractInfo>
+      <PositionInfo position={position} contract={contract} />
       <Button
         children="Update Position"
         disabled={false}
-        onClick={async () => {
-          return await handleClickAddToPosition(amount, position);
-        }}
+        onClick={() => handleClick()}
       />
     </Position>
   );
 }
 
-const Position = styled.div`
+const PositionIndex = styled.p`
+  margin: 0;
+`;
+
+const ContractInfo = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 5%;
+`;
+
+const Position = styled.div<StyledProps>`
   border: 2px solid ${(props) => `${props.theme.colors.color2}`};
   width: 25%;
   margin: 3% 6%;
@@ -170,6 +70,7 @@ const Position = styled.div`
   min-width: 300px;
   z-index: 1;
   overflow: hidden;
+  filter: ${({ modalIsOpen }) => (modalIsOpen ? 'blur(20px)' : 'blur(0)')};
 `;
 
 export default PositionCard;

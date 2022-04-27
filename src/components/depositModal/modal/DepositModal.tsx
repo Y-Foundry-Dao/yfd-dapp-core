@@ -194,7 +194,7 @@ const CloseButton = styled.button`
 const ModalHolder = styled.div`
   position: fixed;
   left: 18%;
-  top: 0%;
+  top: 10%;
   background: rgba(8, 6, 11, 0.9);
   border-radius: 20px;
   width: 70%;

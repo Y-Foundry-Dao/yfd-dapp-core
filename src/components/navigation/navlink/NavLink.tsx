@@ -25,13 +25,13 @@ const fadeIn = keyframes`
 
 const StyledLink = styled(Link)`
   position: relative;
-  color: ${(props) => `${props.theme.colors.gray}`};
+  color: ${(props) => `${props.theme.colors.color6}`};
   text-decoration: none;
   text-transform: uppercase;
   z-index: 2;
   cursor: pointer;
   &:hover {
-    color: ${(props) => `${props.theme.colors.orange}`};
+    color: ${(props) => `${props.theme.colors.color2}`};
     transition: all 0.2s linear;
 
     /* Styles for orange underline on hover */
@@ -43,7 +43,7 @@ const StyledLink = styled(Link)`
       width: 42px;
       height: 2px;
       animation: ${fadeIn} 0.2s 1 linear;
-      background: ${(props) => `${props.theme.colors.orange}`};
+      background: ${(props) => `${props.theme.colors.color2}`};
       border-radius: 10px;
     }
   }
