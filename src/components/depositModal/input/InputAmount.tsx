@@ -10,24 +10,11 @@ function InputAmount({ amount, setAmount, label }: Props) {
   const handleChange = (e: any) => {
     return setAmount(e.target.value);
   };
-  const handleBlur = (e: any) => {
-    if (typeof amount === 'string') {
-      return setAmount(amount);
-    } else {
-      const num: any = amount.toFixed(2);
-      return setAmount(Number(num));
-    }
-  };
 
   return (
     <Label>
       {label}:
-      <Input
-        type="number"
-        value={amount}
-        onChange={handleChange}
-        onBlur={handleBlur}
-      />
+      <Input type="number" value={amount} onChange={handleChange} />
     </Label>
   );
 }
