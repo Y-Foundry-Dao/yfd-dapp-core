@@ -101,16 +101,8 @@ export default function App() {
         navLinks={['about', 'medium', 'join community', 'roadmap']}
         open={burgerIsOpen}
         setOpen={setBurgerIsOpen}
+        walletConnected={status}
       />
-      <WalletConnectButton burgerIsOpen={burgerIsOpen} sx={{ flexGrow: 1 }}>
-        <Toolbar>
-          {status === WalletStatus.WALLET_CONNECTED ? (
-            <ConnectedWalletMenu />
-          ) : (
-            <ConnectWalletMenu />
-          )}
-        </Toolbar>
-      </WalletConnectButton>
       <h1>My Open Position</h1>
       <Positions
         updateModalIsOpen={updateModalIsOpen}
