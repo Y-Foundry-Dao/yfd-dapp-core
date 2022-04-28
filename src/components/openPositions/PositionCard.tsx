@@ -5,6 +5,14 @@ import cardstyles from './card.module.css';
 import PositionInfo from 'components/openPositions/PositionInfo';
 import ReactCardFlip from 'react-card-flip';
 
+import InputAmount from 'components/depositModal/input/InputAmount';
+
+import { MBTC, AUST, MBTC_UST } from 'utilities/variables';
+import useContract from 'utilities/hooks/useContractDGSF';
+import { Coins } from '@terra-money/terra.js';
+import { useConnectedWallet } from '@terra-money/wallet-provider';
+import Base64 from 'utilities/base64';
+
 interface Props {
   position: string;
   contract: string;
@@ -59,16 +67,41 @@ function PositionCard({
       </div>
       <div className={cardstyles.card}>
         <Position modalIsOpen={modalIsOpen} className={cardstyles.back}>
-          <img src={`/logo-64-orange-transparent-square.png`} />
-          <h2>Manage Position {position}</h2>
-          <PositionInfo position={position} contract={contract} />
-          <ButtonFlip onClick={(e) => handleFlip(e)}>Flip Card</ButtonFlip>
-          <br />
+          <CardBackTitle>Manage Position</CardBackTitle>
+          <div>#{position}</div>
+          <div>
+            <UpdateTable>
+              <tr>
+                <TdHeader>Increase Collateral Value:</TdHeader>
+                <td></td>
+              </tr>
+              <TrPositionUpdate>
+                <td colSpan={2}>Add xxx UST</td>
+              </TrPositionUpdate>
+              <tr>
+                <TdHeader>Partially Close Position:</TdHeader>
+                <td></td>
+              </tr>
+              <TrPositionUpdate>
+                <TdValue colSpan={2}>xxx mAsset</TdValue>
+              </TrPositionUpdate>
+              <tr>
+                <TdHeader>Mint mAsset:</TdHeader>
+                <td></td>
+              </tr>
+              <TrPositionUpdate>
+                <td colSpan={2}>xxx</td>
+              </TrPositionUpdate>
+            </UpdateTable>
+          </div>
           <Button
             children="Update Position"
             disabled={false}
             onClick={() => handleClick()}
           />
+          <ButtonFlipCardBack>
+            <Link onClick={(e) => handleFlip(e)}>Flip Card</Link>
+          </ButtonFlipCardBack>
         </Position>
       </div>
     </ReactCardFlip>
@@ -76,6 +109,38 @@ function PositionCard({
 }
 const PositionIndex = styled.p`
   margin: 5px;
+`;
+
+const ButtonFlipCardBack = styled.div`
+  margin-top: 25%;
+  margin-bottom: 10%;
+`;
+
+const TrPositionUpdate = styled.tr`
+  margin-bottom: 10px;
+`;
+
+const UpdateTable = styled.table`
+  width: 100%;
+  text-align: center;
+  align: center;
+  margin-top: 25px;
+  margin-bottom: 50px;
+`;
+
+const TdHeader = styled.td`
+  padding-top: 15px;
+  color: ${(props) => `${props.theme.colors.color3}`};
+  border-bottom: 1px dotted hsl(215, 7%, 25%);
+`;
+
+const TdValue = styled.td`
+  align: center;
+`;
+
+const CardBackTitle = styled.h2`
+  margin-bottom: 0px;
+  padding-bottom: 0px;
 `;
 
 const ContractInfo = styled.div`
@@ -103,6 +168,7 @@ const Link = styled.a`
   border-left: 1px solid hsl(215, 5%, 25%);
   border-bottom: 1px solid hsl(215, 4%, 15%);
   border-radius: 1.375rem;
+  cursor: pointer;
 `;
 
 const ButtonFlip = styled.button`
