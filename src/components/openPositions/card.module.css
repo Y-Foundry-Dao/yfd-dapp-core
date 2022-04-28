@@ -1,0 +1,25 @@
+.card {
+    width: 100%;
+    min-width: 390px;
+    margin-left: 25%;
+    margin-right: 50%;
+    margin-top: 10%;
+  }
+  
+  .front {
+    margin-right: 35px;
+}
+
+  .back {
+    margin-right: 35px;
+  }
+  
+  .price {
+  }
+  
+  .container {
+      padding: 5px;
+  }
+  
+  .cardImage {
+  }
