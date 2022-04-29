@@ -5,6 +5,10 @@ import cardstyles from './card.module.css';
 import PositionInfo from 'components/openPositions/PositionInfo';
 import ReactCardFlip from 'react-card-flip';
 
+import cardLogoYFD from 'src/assets/yfd/logo_square_orange_64_transparent.png';
+import cardLogoDGSF from 'src/assets/yfd/logo-dgsf.svg';
+import cardLogoHedge from 'src/assets/yfd/logo_square_blue.png';
+
 import InputAmount from 'components/depositModal/input/InputAmount';
 
 import { MBTC, AUST, MBTC_UST } from 'utilities/variables';
@@ -50,7 +54,7 @@ function PositionCard({
       <div className={cardstyles.card}>
         <Position modalIsOpen={modalIsOpen} className={cardstyles.front}>
           <div className={CardLogo}>
-            <img src={`/logo-64-orange-transparent-square.png`} />
+            <img src={cardLogoYFD} />
           </div>
           <h2>DGSF Position {position}</h2>
           <ContractInfo>
