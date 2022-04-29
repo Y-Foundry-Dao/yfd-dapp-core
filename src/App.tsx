@@ -104,38 +104,36 @@ export default function App() {
         walletConnected={status}
       />
       <StylizedDiv>
-        <OpenPositions>
-          <h1>Foundry</h1>
-          <StylizedTitle>My Open Positions</StylizedTitle>
-          <Positions
-            updateModalIsOpen={updateModalIsOpen}
-            burgerIsOpen={burgerIsOpen}
-            setModalIsOpen={setUpdateModalIsOpen}
-            positions={positionsArray}
+        <h1>Foundry</h1>
+        <StylizedTitle>My Open Positions</StylizedTitle>
+        <Positions
+          updateModalIsOpen={updateModalIsOpen}
+          burgerIsOpen={burgerIsOpen}
+          setModalIsOpen={setUpdateModalIsOpen}
+          positions={positionsArray}
+        />
+        {depositModalIsOpen ? (
+          <DepositModal
+            instantiateContract={instantiateContract}
+            txHashFromInstantiate={txHashFromInstantiate}
+            txHashFromExecuteInstantiate={txHashFromExecute}
+            contractToDeposit={contractToDeposit}
+            setContractToDeposit={setContractToDeposit}
+            contractFromInstantiation={contractFromInstantiation}
+            setContractFromInstantiation={setContractFromInstantiation}
+            setModalIsOpen={setDepositModalIsOpen}
           />
-          {depositModalIsOpen ? (
-            <DepositModal
-              instantiateContract={instantiateContract}
-              txHashFromInstantiate={txHashFromInstantiate}
-              txHashFromExecuteInstantiate={txHashFromExecute}
-              contractToDeposit={contractToDeposit}
-              setContractToDeposit={setContractToDeposit}
-              contractFromInstantiation={contractFromInstantiation}
-              setContractFromInstantiation={setContractFromInstantiation}
-              setModalIsOpen={setDepositModalIsOpen}
-            />
-          ) : null}
+        ) : null}
+        <OpenPositions>
           <StylizedTitle>Available Options</StylizedTitle>
-          <AvailablePositions>
-            <OptionCard
-              src={strategyLogo}
-              alt="Degen Stable Farm logo"
-              title="Degen Stable Farm"
-              strategist="DR CLE4NCUTS"
-              modalIsOpen={depositModalIsOpen}
-              setModalIsOpen={setDepositModalIsOpen}
-            />
-          </AvailablePositions>
+          <OptionCard
+            src={strategyLogo}
+            alt="Degen Stable Farm logo"
+            title="Degen Stable Farm"
+            strategist="DR CLE4NCUTS"
+            modalIsOpen={depositModalIsOpen}
+            setModalIsOpen={setDepositModalIsOpen}
+          />
         </OpenPositions>
       </StylizedDiv>
       <FooterBar
@@ -151,9 +149,6 @@ export default function App() {
 const Main = styled.main<Props>`
   z-index: 0;
   pointer-events: ${({ modalIsOpen }) => (modalIsOpen ? 'none' : 'auto')};
-  > * {
-    filter: ${({ modalIsOpen }) => modalIsOpen && 'blur(20px)'};
-  }
 `;
 
 const StylizedDiv = styled.div`
@@ -176,6 +171,9 @@ const Blur = styled.div<Props>`
   width: 100vw;
   height: 100vh;
   z-index: ${({ modalIsOpen }) => (modalIsOpen ? '1' : '-1')};
+  > * {
+    filter: ${({ modalIsOpen }) => modalIsOpen && 'blur(20px)'};
+  }
 `;
 
 const AvailablePositions = styled.div`
@@ -194,4 +192,5 @@ const AvailablePositions = styled.div`
   border-left: 1px solid hsl(215, 5%, 25%);
   border-bottom: 1px solid hsl(215, 4%, 15%);
   border-radius: 1.375rem;
+  z-index: 1;
 `;
