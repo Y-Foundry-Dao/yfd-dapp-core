@@ -101,16 +101,8 @@ export default function App() {
         navLinks={['about', 'medium', 'join community', 'brand kit', 'roadmap']}
         open={burgerIsOpen}
         setOpen={setBurgerIsOpen}
+        walletConnected={status}
       />
-      <WalletConnectButton burgerIsOpen={burgerIsOpen} sx={{ flexGrow: 1 }}>
-        <Toolbar>
-          {status === WalletStatus.WALLET_CONNECTED ? (
-            <ConnectedWalletMenu />
-          ) : (
-            <ConnectWalletMenu />
-          )}
-        </Toolbar>
-      </WalletConnectButton>
       <StylizedDiv>
         <OpenPositions>
           <h1>Foundry</h1>
@@ -133,19 +125,18 @@ export default function App() {
               setModalIsOpen={setDepositModalIsOpen}
             />
           ) : null}
+          <StylizedTitle>Available Options</StylizedTitle>
+          <AvailablePositions>
+            <OptionCard
+              src={strategyLogo}
+              alt="Degen Stable Farm logo"
+              title="Degen Stable Farm"
+              strategist="DR CLE4NCUTS"
+              modalIsOpen={depositModalIsOpen}
+              setModalIsOpen={setDepositModalIsOpen}
+            />
+          </AvailablePositions>
         </OpenPositions>
-
-        <StylizedTitle>Available Options</StylizedTitle>
-        <AvailablePositions>
-          <OptionCard
-            src={strategyLogo}
-            alt="Degen Stable Farm logo"
-            title="Degen Stable Farm"
-            strategist="DR CLE4NCUTS"
-            modalIsOpen={depositModalIsOpen}
-            setModalIsOpen={setDepositModalIsOpen}
-          />
-        </AvailablePositions>
       </StylizedDiv>
       <FooterBar
         burgerIsOpen={burgerIsOpen}
@@ -156,11 +147,6 @@ export default function App() {
     </Main>
   );
 }
-
-const WalletConnectButton = styled(Box)<StyledProps>`
-  position: relative;
-  z-index: ${({ burgerIsOpen }) => (burgerIsOpen ? '-1' : '1')};
-`;
 
 const Main = styled.main<Props>`
   z-index: 0;

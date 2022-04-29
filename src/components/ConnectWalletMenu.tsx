@@ -3,8 +3,6 @@ import React from 'react';
 import { useWallet } from '@terra-money/wallet-provider';
 
 import AccountBalanceWallet from '@mui/icons-material/AccountBalanceWallet';
-
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
@@ -13,7 +11,6 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 
 import Avatar from '@mui/material/Avatar';
-import Divider from '@mui/material/Divider';
 
 export function ConnectWalletMenu() {
   const { availableConnections, connect } = useWallet();
@@ -50,16 +47,6 @@ export function ConnectWalletMenu() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <Typography
-          variant="subtitle2"
-          component="div"
-          sx={{ m: 2, textAlign: 'center' }}
-        >
-          Connect Wallet
-        </Typography>
-
-        <Divider sx={{ mb: 2 }} />
-
         {availableConnections.map(({ type, name, icon, identifier = '' }) => (
           <MenuItem
             key={'connection-' + type + identifier}

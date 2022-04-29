@@ -123,20 +123,6 @@ export function ConnectedWalletMenu() {
               </Button>
             </Box>
 
-            <Divider sx={{ m: 2 }} />
-
-            {bank &&
-              bank.map((coin) => (
-                <MenuItem key={'amount-' + coin.denom}>
-                  <ListItemText
-                    primary={Number(coin.amount).toFixed(2)}
-                    secondary={coin.denom}
-                  />
-                </MenuItem>
-              ))}
-
-            <Divider sx={{ mt: 4 }} />
-
             <MenuItem
               key="disconnect"
               onClick={() => {
