@@ -47,6 +47,7 @@ function DepositModal({
   const { queryAllPositions } = useQuery();
   const { executeMsg, txHashFromExecute } = useContract();
   const connectedWallet = useConnectedWallet();
+  const [depositModalIsOpen, setDepositModalIsOpen] = useState<boolean>(false);
 
   const executeDeposit = useCallback(
     async (amount: number, contract: string) => {
@@ -89,7 +90,7 @@ function DepositModal({
 
   const handleClick = async () => {
     return await queryAllPositions(contractToDeposit).then(() =>
-      setModalIsOpen(false)
+      setDepositModalIsOpen(false)
     );
   };
 
@@ -98,50 +99,54 @@ function DepositModal({
   };
 
   return (
-    <ModalHolder>
-      <Modal>
-        <CloseButton onClick={handleClick}>x</CloseButton>
-        <Header>Degen Stable Farm</Header>
-        <InputContract
-          contract={
-            contractFromInstantiation
-              ? contractFromInstantiation
-              : contractToDeposit
-          }
-          setContract={
-            contractFromInstantiation
-              ? setContractFromInstantiation
-              : setContractToDeposit
-          }
+    <Deposit>
+      <InputAmount
+        amount={Number(amount)}
+        setAmount={setAmount}
+        label="Deposit UST:"
+      />
+      <AvailableAmount setAmount={setAmount} />
+      <DepositButtons>
+        <DepositButton
+          children="open position"
+          disabled={false}
+          onClick={async () => {
+            return await handleDeposit(
+              amount,
+              contractFromInstantiation
+                ? contractFromInstantiation
+                : contractToDeposit
+            );
+          }}
         />
-        <p>tx for contract instantiation</p>
-        <TxHashLink txHash={txHashFromInstantiate?.txhash} />
-        <p>tx for deposit</p>
-        <TxHashLink
-          txHash={
-            txHashFromExecuteInstantiate
-              ? txHashFromExecuteInstantiate
-              : txHashFromExecute
-          }
-        />
-        <InputAmount
-          amount={Number(amount)}
-          setAmount={setAmount}
-          label="Deposit UST"
-        />
-        <AvailableAmount setAmount={setAmount} />
-        <DepositButtons>
-          <DepositButton
-            children="open position"
-            disabled={false}
-            onClick={async () => {
-              return await handleDeposit(
-                amount,
-                contractFromInstantiation
-                  ? contractFromInstantiation
-                  : contractToDeposit
-              );
-            }}
+      </DepositButtons>
+      <LinkAdvanced onClick={() => setDepositModalIsOpen(!depositModalIsOpen)}>
+        👷 authorized personal only
+      </LinkAdvanced>
+      {depositModalIsOpen ? (
+        <StyledAdvanced>
+          <StyledAdvancedAngle>ADVANCED!</StyledAdvancedAngle>
+          <InputContract
+            contract={
+              contractFromInstantiation
+                ? contractFromInstantiation
+                : contractToDeposit
+            }
+            setContract={
+              contractFromInstantiation
+                ? setContractFromInstantiation
+                : setContractToDeposit
+            }
+          />
+          <p>tx for contract instantiation</p>
+          <TxHashLink txHash={txHashFromInstantiate?.txhash} />
+          <p>tx for deposit</p>
+          <TxHashLink
+            txHash={
+              txHashFromExecuteInstantiate
+                ? txHashFromExecuteInstantiate
+                : txHashFromExecute
+            }
           />
           <InstantiateButton
             children="Instantiate Contract"
@@ -150,9 +155,9 @@ function DepositModal({
               return await instantiateContract(amount);
             }}
           />
-        </DepositButtons>
-      </Modal>
-    </ModalHolder>
+        </StyledAdvanced>
+      ) : null}
+    </Deposit>
   );
 }
 const DepositButtons = styled.div`
@@ -162,17 +167,32 @@ const DepositButtons = styled.div`
   margin-top: 4%;
 `;
 
+const StyledAdvanced = styled.div`
+  border: 3px dashed #444;
+  padding: 7%;
+  margin: 0px;
+`;
+
 const DepositButton = styled(Button)`
   align-self: center;
-  width: 70%;
+  margin: 15% 5% 5% 5%;
   cursor: pointer;
 `;
 const InstantiateButton = styled(Button)`
-  align-self: flex-end;
-  width: 30%;
+  color: ${(props) => `${props.theme.colors.color3}`};
+  text-decoration: none;
+  width: auto;
+  background: linear-gradient(hsl(203, 25%, 8%), hsl(203, 50%, 0%));
+  text-align: center;
+  border-top: 1px solid hsl(215, 5%, 50%);
+  border-right: 1px solid hsl(215, 5%, 25%);
+  border-left: 1px solid hsl(215, 5%, 25%);
+  border-bottom: 1px solid hsl(215, 4%, 15%);
+  border-radius: 1.375rem;
+  letter-spacing: 2px;
   cursor: pointer;
-  background: black;
-  font-size: 0.6rem;
+  display: inline-block;
+  align-self: flex-end;
 `;
 
 const Header = styled.h2`
@@ -181,14 +201,34 @@ const Header = styled.h2`
   margin-bottom: 10%;
 `;
 
-const CloseButton = styled.button`
-  color: ${(props) => `${props.theme.colors.color4}`};
-  background-color: rgba(8, 6, 11, 0.9);
-  border: none;
-  position: relative;
-  width: 30px;
-  right: -110%;
-  font-size: 1.4rem;
+const LinkAdvanced = styled.button`
+  color: ${(props) => `${props.theme.colors.color3}`};
+  display: block;
+  text-decoration: none;
+  width: auto;
+  margin-top: 30%;
+  margin-left: 10px;
+  margin-bottom: 5%;
+  background: linear-gradient(hsl(203, 25%, 8%), hsl(203, 50%, 0%));
+  padding: 0.6rem;
+  padding-left: 2rem;
+  padding-right: 2.2rem;
+  text-align: center;
+  border-top: 1px solid hsl(215, 5%, 50%);
+  border-right: 1px solid hsl(215, 5%, 25%);
+  border-left: 1px solid hsl(215, 5%, 25%);
+  border-bottom: 1px solid hsl(215, 4%, 15%);
+  border-radius: 1.375rem;
+  cursor: not-allowed;
+`;
+
+const Deposit = styled.div`
+  padding: 4%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 70%;
+  margin-left: 10%;
 `;
 
 const ModalHolder = styled.div`
@@ -201,6 +241,7 @@ const ModalHolder = styled.div`
   z-index: 6;
   pointer-events: auto;
   filter: blur(0) !important;
+  border: 1px dashed gold;
 `;
 
 const Modal = styled.div`
@@ -210,6 +251,90 @@ const Modal = styled.div`
   align-items: stretch;
   width: 70%;
   margin-left: 10%;
+  border: 1px dashed gold;
+`;
+
+const StyledAdvancedAngle = styled.h2`
+  text-transform: uppercase;
+  transform: translate(-50%, -50%) skew(10deg) rotate(-10deg);
+  font-size: 2vw;
+  position: absolute;
+  margin-top: -1%;
+  text-rendering: optimizeLegibility;
+  font-weight: 900;
+  color: ${(props) => `${props.theme.colors.color2}`};
+  text-shadow: 1px 4px 6px black, 2px 0 0 gold, 1px 2px 4px white;
+  white-space: nowrap;
+
+  &:before {
+    content: attr(data-heading);
+    position: absolute;
+    left: 0;
+    top: -4.8%;
+    overflow: hidden;
+    width: 100%;
+    height: 50%;
+    color: #fbf7f4;
+    transform: translate(1.6vw, 0) skew(-13deg) scale(1, 1.2);
+    z-index: 2;
+    text-shadow: 2px -1px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  &:after {
+    position: absolute;
+    content: attr(data-heading);
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    width: 20%;
+    height: 20%;
+    z-index: 1;
+    color: #d3cfcc;
+    transform: translate(0vw, 0) skew(13deg) scale(1, 0.8);
+    clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0% 100%);
+    text-shadow: 2px -1px 6px rgba(0, 0, 0, 0.3);
+  }
+`;
+
+const StyledTitleAngle = styled.h2`
+  text-transform: uppercase;
+  transform: translate(-50%, -50%) skew(10deg) rotate(-10deg);
+  font-size: 2vw;
+  position: absolute;
+  text-rendering: optimizeLegibility;
+  font-weight: 900;
+  color: ${(props) => `${props.theme.colors.color2}`};
+  text-shadow: 1px 4px 6px black, 2px 0 0 gold, 1px 2px 4px white;
+  white-space: nowrap;
+
+  &:before {
+    content: attr(data-heading);
+    position: absolute;
+    left: 0;
+    top: -4.8%;
+    overflow: hidden;
+    width: 100%;
+    height: 50%;
+    color: #fbf7f4;
+    transform: translate(1.6vw, 0) skew(-13deg) scale(1, 1.2);
+    z-index: 2;
+    text-shadow: 2px -1px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  &:after {
+    position: absolute;
+    content: attr(data-heading);
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    width: 20%;
+    height: 20%;
+    z-index: 1;
+    color: #d3cfcc;
+    transform: translate(0vw, 0) skew(13deg) scale(1, 0.8);
+    clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0% 100%);
+    text-shadow: 2px -1px 6px rgba(0, 0, 0, 0.3);
+  }
 `;
 
 export default DepositModal;

@@ -13,7 +13,7 @@ function InputAmount({ amount, setAmount, label }: Props) {
 
   return (
     <Label>
-      {label}:
+      <StyledTitle>{label}</StyledTitle>
       <Input type="number" value={amount} onChange={handleChange} />
     </Label>
   );
@@ -27,11 +27,11 @@ const Input = styled.input`
   );
   border-radius: 11px;
   border: none;
-  height: 50px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  height: 35px;
+  margin-top: 2%;
   color: ${(props) => `${props.theme.colors.color4}`};
   text-align: center;
+
   font-size: 1.2rem;
   font-weight: 600;
 `;
@@ -39,6 +39,28 @@ const Input = styled.input`
 const Label = styled.label`
   display: flex;
   flex-direction: column;
+  padding-bottom: 2%;
+`;
+
+const StyledTitle = styled.h2`
+  text-shadow: 1px 3px 6px black, 0 0 0 gray, 1px 4px 2px #333;
+  margin: 0% 0 0 0;
+  padding-bottom: 0px;
+  font-size: 1em;
+  color: ${(props) => `${props.theme.colors.color3}`};
+  display: grid;
+  grid-template-columns: 1fr max-content 1fr;
+  grid-template-rows: 21px;
+  grid-gap: 10px;
+  align-items: center;
+}
+
+:after, :before {
+  content: " ";
+  display: block;
+  border-bottom: 1px solid ${(props) => `${props.theme.colors.color3}`};
+  box-shadow: 0 6px 7px -7px ${(props) => `${props.theme.colors.color1}`};
+  height: 5px;
 `;
 
 export default InputAmount;

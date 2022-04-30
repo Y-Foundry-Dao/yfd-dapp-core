@@ -9,7 +9,8 @@ function Title({ title }: Props) {
 }
 
 const P = styled.p`
-  margin: 10% 0 0 0;
+  text-align: center;
+  margin: 15px 0 0 0px;
   font-size: 1.6rem;
 `;
 

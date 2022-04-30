@@ -5,11 +5,14 @@ interface Props {
 }
 
 function Strategist({ strategist }: Props) {
-  return <I>{strategist}</I>;
+  return <P>{strategist}</P>;
 }
 
-const I = styled.i`
-  float: right;
+const P = styled.p`
+  text-align: center;
+  margin: 0%;
+  padding: 0%;
+  font-style: italic;
   font-size: 1.1rem;
 `;
 

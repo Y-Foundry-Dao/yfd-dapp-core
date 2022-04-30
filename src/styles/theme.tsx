@@ -1,7 +1,7 @@
 const base = {
   colors: {
     color1: '#040307',
-    color2: '#D8552A',
+    color2: '#D8552A', // orange
     color3: '#D7B9A3',
     color4: '#FCFEFF',
     color5: '#1F43BF',
