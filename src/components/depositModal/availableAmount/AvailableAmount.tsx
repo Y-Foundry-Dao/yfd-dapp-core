@@ -26,20 +26,18 @@ function AvailableAmount({ setAmount }: Props) {
 
   return (
     <Available>
-      <Header>Available:</Header>
       {bank &&
         bank.map((coin: any, i: number) => {
           if (coin.denom === 'uusd') {
             return (
               <Div key={i}>
-                <Amount onClick={() => setAmount(coin.amount * 10 ** -6)}>{`${
-                  coin.amount * 10 ** -6
-                } UST`}</Amount>
-                <MaxButton
-                  children="max"
-                  onClick={() => setAmount(coin.amount * 10 ** -6)}
-                  disabled={false}
-                />
+                <AmountAvailable>
+                  {`${coin.amount * 10 ** -6} UST`}
+                </AmountAvailable>
+
+                <Amount onClick={() => setAmount(coin.amount * 10 ** -6)}>
+                  MAX
+                </Amount>
               </Div>
             );
           }
@@ -51,27 +49,51 @@ function AvailableAmount({ setAmount }: Props) {
 const Div = styled.div`
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  text-align: right;
+  align-content: strech;
+  justify-content: space-evenly;
+  align-items: baseline;
 `;
 
 const Header = styled.h3`
   font-size: 1rem;
 `;
 
-const Amount = styled.p`
+const AmountAvailable = styled.span`
+  text-align: left;
+  width: 50%;
+  font-size: 0.7em;
+  color: #ccc;
+  width: 100%;
+  padding-left: 7%;
+`;
+
+const Amount = styled.span`
   color: #29dec6;
-  margin-left: 1%;
+  margin-left: 3%;
+  margin-top: 0px;
   cursor: pointer;
+  text-align: right;
+  width: 100%;
+  padding-right: 7%;
 `;
 
 const Available = styled.div`
-  display: flex;
+  //border: 1px dotted blue;
+`;
+
+const MaxDeposit = styled.span`
+  text-align: right;
+  width: 100%;
+  letter-spacing: 2px;
 `;
 
 const MaxButton = styled(Button)`
-  align-self: center;
+  align-items: center;
   font-weight: 500;
-  margin-right: 0;
+  padding: 5%;
+  height: 50%;
+  letter-spacing: 2px;
 `;
 
 export default AvailableAmount;

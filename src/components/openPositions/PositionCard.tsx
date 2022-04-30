@@ -181,8 +181,9 @@ const ButtonFlip = styled.button`
   border: none;
   border-radius: 10px;
   padding: 13px 32px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
+  letter-spacing: 2px;
   text-transform: uppercase;
   cursor: pointer;
   text-shadow: 1px 1px 5px black;

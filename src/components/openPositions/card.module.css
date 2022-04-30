@@ -1,5 +1,4 @@
 .card {
-    width: 100%;
     min-width: 390px;
     margin-left: 25%;
     margin-right: 50%;
@@ -9,13 +8,11 @@
   
   .front {
     margin-right: 35px;
-    min-height: 490px;
 }
 
   .back {
     padding-top: 0px;
     margin-top: 0px;
-    min-height: 525px;
   }
   
   .price {

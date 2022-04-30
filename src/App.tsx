@@ -24,8 +24,6 @@ import hedgeLogo from 'assets/yfd/logo_square_blue.png';
 import shieldedshortsLogo from 'assets/yfd/logo_square_mauve.png';
 
 import OptionCard from 'components/availableOptionsCard/optionCard/OptionCard';
-import DepositModal from 'components/depositModal/modal/DepositModal';
-import useInstantiateContract from 'utilities/hooks/useInstantiateContract';
 import Positions from 'components/openPositions/Positions';
 
 import useContractRegistry from 'utilities/hooks/useContractRegistry';
@@ -41,21 +39,14 @@ interface StyledProps {
 
 export default function App() {
   const [burgerIsOpen, setBurgerIsOpen] = useState<boolean>(false);
-  const [depositModalIsOpen, setDepositModalIsOpen] = useState<boolean>(false);
   const [updateModalIsOpen, setUpdateModalIsOpen] = useState<boolean>(false);
   const [positionsArray, setPositionsArray] = useState<any[]>([]);
-  const [contractToDeposit, setContractToDeposit] = useState('');
   const { queryRegistry } = useContractRegistry();
-  const {
-    instantiateContract,
-    txHashFromInstantiate,
-    contractFromInstantiation,
-    setContractFromInstantiation,
-    txHashFromExecute
-  } = useInstantiateContract();
   const connectedWallet: any = useConnectedWallet();
   const { status } = useWallet();
   const { queryAllPositions } = useQuery();
+  const [contractToDeposit, setContractToDeposit] = useState('');
+  const [depositModalIsOpen, setDepositModalIsOpen] = useState<boolean>(false);
 
   const getAllOpenPositions = async () => {
     if (status == WalletStatus.WALLET_CONNECTED) {
@@ -114,18 +105,6 @@ export default function App() {
           setModalIsOpen={setUpdateModalIsOpen}
           positions={positionsArray}
         />
-        {depositModalIsOpen ? (
-          <DepositModal
-            instantiateContract={instantiateContract}
-            txHashFromInstantiate={txHashFromInstantiate}
-            txHashFromExecuteInstantiate={txHashFromExecute}
-            contractToDeposit={contractToDeposit}
-            setContractToDeposit={setContractToDeposit}
-            contractFromInstantiation={contractFromInstantiation}
-            setContractFromInstantiation={setContractFromInstantiation}
-            setModalIsOpen={setDepositModalIsOpen}
-          />
-        ) : null}
         <OpenPositions>
           <StylizedTitle>Available Options</StylizedTitle>
           <OptionCard
@@ -133,22 +112,6 @@ export default function App() {
             alt="Degen Stable Farm logo"
             title="Degen Stable Farm"
             strategist="DR CLE4NCUTS"
-            modalIsOpen={depositModalIsOpen}
-            setModalIsOpen={setDepositModalIsOpen}
-          />
-          <OptionCard
-            src={hedgeLogo}
-            alt="Hedge+ logo"
-            title="Hedge+"
-            strategist="Y-Foundry DAO"
-            modalIsOpen={depositModalIsOpen}
-            setModalIsOpen={setDepositModalIsOpen}
-          />
-          <OptionCard
-            src={shieldedshortsLogo}
-            alt="Shielded Shorts logo"
-            title="Shielded Shorts"
-            strategist="Y-Foundry DAO"
             modalIsOpen={depositModalIsOpen}
             setModalIsOpen={setDepositModalIsOpen}
           />
