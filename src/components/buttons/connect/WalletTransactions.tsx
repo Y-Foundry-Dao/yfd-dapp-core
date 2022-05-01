@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLCDClient, useConnectedWallet } from '@terra-money/wallet-provider';
 
 import Typography from '@mui/material/Typography';

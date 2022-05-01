@@ -49,7 +49,7 @@ function Positions({
 const OpenPositions = styled.div`
   display: inline-flex;
   flex-wrap: wrap;
-  align-context: space-around;
+  align-content: space-around;
   justify-content: flex-start;
   align-self: auto;
   filter: blur(0px) !important;

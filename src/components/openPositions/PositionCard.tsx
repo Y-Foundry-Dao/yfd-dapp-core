@@ -6,16 +6,6 @@ import PositionInfo from 'components/openPositions/PositionInfo';
 import ReactCardFlip from 'react-card-flip';
 
 import cardLogoYFD from 'src/assets/yfd/logo_square_orange_64_transparent.png';
-import cardLogoDGSF from 'src/assets/yfd/logo-dgsf.svg';
-import cardLogoHedge from 'src/assets/yfd/logo_square_blue.png';
-
-import InputAmount from 'components/depositModal/input/InputAmount';
-
-import { MBTC, AUST, MBTC_UST } from 'utilities/variables';
-import useContract from 'utilities/hooks/useContractDGSF';
-import { Coins } from '@terra-money/terra.js';
-import { useConnectedWallet } from '@terra-money/wallet-provider';
-import Base64 from 'utilities/base64';
 
 interface Props {
   position: string;
@@ -111,9 +101,6 @@ function PositionCard({
     </ReactCardFlip>
   );
 }
-const PositionIndex = styled.p`
-  margin: 5px;
-`;
 
 const ButtonFlipCardBack = styled.div`
   margin-top: 25%;

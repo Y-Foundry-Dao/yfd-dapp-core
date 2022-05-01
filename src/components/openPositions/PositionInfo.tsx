@@ -16,8 +16,6 @@ function PositionInfo({ position, contract }: Props) {
       setPositionState(state);
       return state;
     }
-
-    // return console.log(positionState);
   };
   useEffect(() => {
     getPositionState();
