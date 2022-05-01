@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import Button from 'components/buttons/basic/Button';
-import InputAmount from 'components/depositModal/input/InputAmount';
+import InputAmount from 'components/input/InputAmount';
 
 import { MBTC, AUST, MBTC_UST } from 'utilities/variables';
 import useContract from 'utilities/hooks/useContractDGSF';

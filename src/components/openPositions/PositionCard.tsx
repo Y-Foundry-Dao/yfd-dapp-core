@@ -9,7 +9,7 @@ import cardLogoYFD from 'src/assets/yfd/logo_square_orange_64_transparent.png';
 import cardLogoDGSF from 'src/assets/yfd/logo-dgsf.svg';
 import cardLogoHedge from 'src/assets/yfd/logo_square_blue.png';
 
-import InputAmount from 'components/depositModal/input/InputAmount';
+import InputAmount from 'components/input/InputAmount';
 
 import { MBTC, AUST, MBTC_UST } from 'utilities/variables';
 import useContract from 'utilities/hooks/useContractDGSF';

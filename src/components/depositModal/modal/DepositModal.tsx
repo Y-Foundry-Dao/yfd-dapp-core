@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 import Button from 'components/buttons/basic/Button';
 import TxHashLink from 'components/depositModal/txHash/TxHashLink';
-import InputContract from 'components/depositModal/input/InputContract';
-import InputAmount from 'components/depositModal/input/InputAmount';
+import InputContract from 'components/input/InputContract';
+import InputAmount from 'components/input/InputAmount';
 
 import useQuery from 'utilities/hooks/useQuery';
 import AvailableAmount from '../availableAmount/AvailableAmount';
