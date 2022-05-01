@@ -1,8 +1,13 @@
-import { useConnectedWallet } from '@terra-money/wallet-provider';
 import { Coins } from '@terra-money/terra.js';
 import useContractDGSF from './useContractDGSF';
-import { AUST, MBTC, MBTC_UST } from 'utilities/variables';
+import { AUST, MBTC } from 'utilities/variables';
 import Base64 from 'utilities/base64';
+import msgPositionDeposit from 'utilities/messagesExecute/msgPositionDeposit';
+import msgCW20Send from 'utilities/messagesExecute/msgCW20Send';
+import msgPositionBorrow from 'utilities/messagesExecute/msgPositionBorrow';
+import msgPositionWithdraw from 'utilities/messagesExecute/msgPositionWithdraw';
+import msgMirrorDepositEncode from 'utilities/messagesToEncode/msgMirrorDepositEncode';
+import msgMirrorBurnEncode from 'utilities/messagesToEncode/msgMirrorBurnEncode';
 
 const useHandleClicks = () => {
   const { executeMsg } = useContractDGSF();
@@ -13,48 +18,28 @@ const useHandleClicks = () => {
     position: string
   ) => {
     const amountInCoin: Coins.Input = { uusd: amount * Math.pow(10, 6) };
-    const msgAddToPosition = {
-      deposit: {
-        loops: '4',
-        asset: MBTC,
-        asset_pair: MBTC_UST,
-        collateral_ratio: '2.5',
-        position_idx: position
-      }
-    };
+    const msgAddToPosition = msgPositionDeposit(position);
     return await executeMsg(contract, msgAddToPosition, amountInCoin);
   };
 
   const handleClickDepositMirror = async (
-    amount: number,
+    contract: string,
     position: string,
-    contract: string
+    amount: number
   ) => {
     const amountConverted: number = amount * Math.pow(10, 6);
-
-    const msgToEncode = `{
-      "deposit": {
-        "position_idx": "${position}",
-        "collateral": {
-          "amount": "${amountConverted}",
-          "info": {
-            "token": {
-              "contract_addr": "${AUST}"
-            }
-          }
-        }
-      }
-    }`;
-
+    const msgToEncode = msgMirrorDepositEncode(
+      contract,
+      position,
+      amountConverted
+    );
     const encodedMessage = Base64.btoa(msgToEncode);
-    const msgDepositMirror = {
-      send: {
-        msg: encodedMessage,
-        amount: String(amountConverted),
-        contract: contract
-      }
-    };
-    return await executeMsg(AUST, msgDepositMirror);
+    const msgMirrorDeposit = msgCW20Send(
+      encodedMessage,
+      amountConverted,
+      contract
+    );
+    return await executeMsg(AUST, msgMirrorDeposit);
   };
 
   const handleClickRepayPosition = async (
@@ -63,70 +48,41 @@ const useHandleClicks = () => {
     contract: string
   ) => {
     const amountConverted: number = amount * Math.pow(10, 6);
-
-    const msgToEncode = `{
-      "burn": {
-        "position_idx": "${position}"
-      }
-    }`;
-
+    const msgToEncode = msgMirrorBurnEncode(position);
     const encodedMessage = Base64.btoa(msgToEncode);
-
-    const msgBurnMirror = {
-      send: {
-        msg: encodedMessage,
-        amount: String(amountConverted),
-        contract: contract
-      }
-    };
-    return await executeMsg(MBTC, msgBurnMirror);
+    const msgMirrorBurn = msgCW20Send(
+      encodedMessage,
+      amountConverted,
+      contract
+    );
+    return await executeMsg(MBTC, msgMirrorBurn);
   };
 
   const handleClickBorrowFromPosition = async (
-    amount: number,
     contract: string,
+    amount: number,
     position: string
   ) => {
     const amountInCoin: number = amount * Math.pow(10, 6);
-    const msgBorrowFromPosition = {
-      mirror: {
-        mint: {
-          asset: {
-            info: {
-              token: {
-                contract_addr: MBTC
-              }
-            },
-            amount: String(amountInCoin)
-          },
-          position_idx: position
-        }
-      }
-    };
+    const msgBorrowFromPosition = msgPositionBorrow(
+      MBTC,
+      amountInCoin,
+      position
+    );
     return await executeMsg(contract, msgBorrowFromPosition);
   };
 
   const handleClickWithdrawFromPosition = async (
-    amount: number,
     contract: string,
+    amount: number,
     position: string
   ) => {
     const amountInCoin: number = amount * Math.pow(10, 6);
-    const msgWithdrawFromPosition = {
-      mirror: {
-        withdraw: {
-          collateral: {
-            info: {
-              token: {
-                contract_addr: AUST
-              }
-            },
-            amount: String(amountInCoin)
-          },
-          position_idx: position
-        }
-      }
-    };
+    const msgWithdrawFromPosition = msgPositionWithdraw(
+      contract,
+      amountInCoin,
+      position
+    );
     return await executeMsg(contract, msgWithdrawFromPosition);
   };
 
