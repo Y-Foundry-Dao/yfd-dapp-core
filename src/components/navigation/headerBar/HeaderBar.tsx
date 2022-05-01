@@ -4,8 +4,9 @@ import NavLinks from 'components/navigation/navlinks/NavLinks';
 import Burger from 'components/navigation/burger/Burger';
 import { WalletProvider } from '@terra-money/wallet-provider';
 import Toolbar from '@mui/material/Toolbar';
-import { ConnectedWalletMenu } from 'components/ConnectedWalletMenu';
-import { ConnectWalletMenu } from 'components/ConnectWalletMenu';
+import { ConnectedWalletMenu } from 'components/buttons/connect/ConnectedWalletMenu';
+import { ConnectWalletMenu } from 'components/buttons/connect/ConnectWalletMenu';
+import { ConnectedWallet } from '@terra-money/wallet-provider';
 
 interface Props {
   id: string;
