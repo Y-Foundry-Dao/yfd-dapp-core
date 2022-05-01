@@ -4,11 +4,7 @@ import styled from 'styled-components';
 import Button from 'components/buttons/basic/Button';
 import InputAmount from 'components/input/InputAmount';
 
-import { MBTC, AUST, MBTC_UST } from 'utilities/variables';
-import useContract from 'utilities/hooks/useContractDGSF';
-import { Coins } from '@terra-money/terra.js';
-import { useConnectedWallet } from '@terra-money/wallet-provider';
-import Base64 from 'utilities/base64';
+import useHandleClicks from 'utilities/hooks/useHandleClicks';
 
 interface Props {
   position: string;
@@ -29,145 +25,27 @@ function UpdateModal({
   positionToUpdate,
   setModalIsOpen
 }: Props) {
-  const { executeMsg } = useContract();
-  const connectedWallet: any = useConnectedWallet();
+  const {
+    handleClickDepositMirror,
+    handleClickRepayPosition,
+    handleClickBorrowFromPosition,
+    handleClickWithdrawFromPosition,
+    handleClickDepositDgsf
+  } = useHandleClicks();
   const [amountToDepositDgsf, setAmountToDepositDgsf] = useState<any>(0);
   const [amountToBorrow, setAmountToBorrow] = useState<any>(0);
   const [amountToWithdraw, setAmountToWithdraw] = useState<any>(0);
   const [amountToBurn, setAmountToBurn] = useState<any>(0);
   const [amountToDepositMirror, setAmountToDepositMirror] = useState<any>(0);
 
-  const handleClick = async () => {
+  const handleClickCloseModal = async () => {
     return setModalIsOpen(false);
-  };
-
-  const handleClickDepositDgsf = async (amount: number, position: string) => {
-    const amountInCoin: Coins.Input = { uusd: amount * Math.pow(10, 6) };
-    const msgAddToPosition = {
-      deposit: {
-        loops: '4',
-        asset: MBTC,
-        asset_pair: MBTC_UST,
-        collateral_ratio: '2.5',
-        position_idx: position
-      }
-    };
-    return await executeMsg(
-      connectedWallet,
-      contract,
-      msgAddToPosition,
-      amountInCoin
-    );
-  };
-
-  const handleClickDepositMirror = async (
-    amount: number,
-    position: string,
-    contract: string
-  ) => {
-    const amountConverted: number = amount * Math.pow(10, 6);
-
-    const msgToEncode = `{
-      "deposit": {
-        "position_idx": "${position}",
-        "collateral": {
-          "amount": "${amountConverted}",
-          "info": {
-            "token": {
-              "contract_addr": "${AUST}"
-            }
-          }
-        }
-      }
-    }`;
-
-    const encodedMessage = Base64.btoa(msgToEncode);
-    const msgDepositMirror = {
-      send: {
-        msg: encodedMessage,
-        amount: String(amountConverted),
-        contract: contract
-      }
-    };
-
-    return await executeMsg(connectedWallet, AUST, msgDepositMirror);
-  };
-
-  const handleClickRepayPosition = async (
-    amount: number,
-    position: string,
-    contract: string
-  ) => {
-    const amountConverted: number = amount * Math.pow(10, 6);
-
-    const msgToEncode = `{
-      "burn": {
-        "position_idx": "${position}"
-      }
-    }`;
-
-    const encodedMessage = Base64.btoa(msgToEncode);
-
-    const msgBurnMirror = {
-      send: {
-        msg: encodedMessage,
-        amount: String(amountConverted),
-        contract: contract
-      }
-    };
-    return await executeMsg(connectedWallet, MBTC, msgBurnMirror);
-  };
-
-  const handleClickBorrowFromPosition = async (
-    amount: number,
-    position: string
-  ) => {
-    const amountInCoin: number = amount * Math.pow(10, 6);
-    const msgBorrowFromPosition = {
-      mirror: {
-        mint: {
-          asset: {
-            info: {
-              token: {
-                contract_addr: MBTC
-              }
-            },
-            amount: String(amountInCoin)
-          },
-          position_idx: position
-        }
-      }
-    };
-    return await executeMsg(connectedWallet, contract, msgBorrowFromPosition);
-  };
-
-  const handleClickWithdrawFromPosition = async (
-    amount: number,
-    position: string
-  ) => {
-    const amountInCoin: number = amount * Math.pow(10, 6);
-    const msgWithdrawFromPosition = {
-      mirror: {
-        withdraw: {
-          collateral: {
-            info: {
-              token: {
-                contract_addr: AUST
-              }
-            },
-            amount: String(amountInCoin)
-          },
-          position_idx: position
-        }
-      }
-    };
-    return await executeMsg(connectedWallet, contract, msgWithdrawFromPosition);
   };
 
   return (
     <ModalHolder position={position} positionToUpdate={positionToUpdate}>
       <Modal>
-        <CloseButton onClick={handleClick}>x</CloseButton>
+        <CloseButton onClick={handleClickCloseModal}>x</CloseButton>
         <Header>Degen Stable Farm ID: {position}</Header>
 
         <InputAmount
@@ -181,6 +59,7 @@ function UpdateModal({
           onClick={async () => {
             return await handleClickDepositDgsf(
               amountToDepositDgsf,
+              contract,
               positionToUpdate
             );
           }}
@@ -197,6 +76,7 @@ function UpdateModal({
           onClick={async () => {
             return await handleClickBorrowFromPosition(
               Number(amountToBorrow),
+              contract,
               position
             );
           }}
@@ -230,6 +110,7 @@ function UpdateModal({
           onClick={async () => {
             return await handleClickWithdrawFromPosition(
               Number(amountToWithdraw),
+              contract,
               position
             );
           }}
