@@ -75,8 +75,8 @@ function UpdateModal({
           disabled={false}
           onClick={async () => {
             return await handleClickBorrowFromPosition(
-              Number(amountToBorrow),
               contract,
+              Number(amountToBorrow),
               position
             );
           }}
@@ -109,8 +109,8 @@ function UpdateModal({
           disabled={false}
           onClick={async () => {
             return await handleClickWithdrawFromPosition(
-              Number(amountToWithdraw),
               contract,
+              Number(amountToWithdraw),
               position
             );
           }}
@@ -126,9 +126,9 @@ function UpdateModal({
           disabled={false}
           onClick={async () => {
             return await handleClickDepositMirror(
-              amountToDepositMirror,
+              contract,
               positionToUpdate,
-              contract
+              amountToDepositMirror
             );
           }}
         />
