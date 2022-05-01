@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import Logo from 'components/navigation/logo/Logo';
 import NavLinks from 'components/navigation/navlinks/NavLinks';
 import Burger from 'components/navigation/burger/Burger';
-import { WalletProvider } from '@terra-money/wallet-provider';
 import Toolbar from '@mui/material/Toolbar';
 import { ConnectedWalletMenu } from 'components/buttons/connect/ConnectedWalletMenu';
 import { ConnectWalletMenu } from 'components/buttons/connect/ConnectWalletMenu';
@@ -15,7 +14,7 @@ interface Props {
   navLinks: Array<string>;
   modalIsOpen: boolean;
   open: boolean;
-  walletConnected: string;
+  walletConnected: ConnectedWallet;
   setOpen: (arg0: boolean) => void;
 }
 interface StyledProps {
@@ -37,11 +36,7 @@ function HeaderBar({
       <Logo src={src} alt={alt} />
       <NavLinks navLinks={navLinks} />
       <Toolbar>
-        {walletConnected === 'WALLET_CONNECTED' ? (
-          <ConnectedWalletMenu />
-        ) : (
-          <ConnectWalletMenu />
-        )}
+        {walletConnected ? <ConnectedWalletMenu /> : <ConnectWalletMenu />}
       </Toolbar>
       <Burger open={open} setOpen={setOpen} navLinks={navLinks} />
     </Header>

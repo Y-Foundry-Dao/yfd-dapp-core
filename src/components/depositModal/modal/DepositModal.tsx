@@ -6,7 +6,6 @@ import TxHashLink from 'components/depositModal/txHash/TxHashLink';
 import InputContract from 'components/input/InputContract';
 import InputAmount from 'components/input/InputAmount';
 
-import useQuery from 'utilities/hooks/useQuery';
 import AvailableAmount from 'components/depositModal/availableAmount/AvailableAmount';
 
 import msgDeposit from 'utilities/messagesExecute/msgDeposit';
@@ -42,7 +41,6 @@ function DepositModal({
 }: Props) {
   const [txError, setTxError] = useState<string | null>(null);
   const [amount, setAmount] = useState<number>(0);
-  const { queryAllPositions } = useQuery();
   const { executeMsg, txHashFromExecute } = useContract();
   const connectedWallet = useConnectedWallet();
   const [depositModalIsOpen, setDepositModalIsOpen] = useState<boolean>(false);
@@ -187,12 +185,6 @@ const InstantiateButton = styled(Button)`
   align-self: flex-end;
 `;
 
-const Header = styled.h2`
-  align-self: center;
-  margin-top: -4%;
-  margin-bottom: 10%;
-`;
-
 const LinkAdvanced = styled.button`
   color: ${(props) => `${props.theme.colors.color3}`};
   display: block;
@@ -223,76 +215,12 @@ const Deposit = styled.div`
   margin-left: 10%;
 `;
 
-const ModalHolder = styled.div`
-  position: fixed;
-  left: 18%;
-  top: 10%;
-  background: rgba(8, 6, 11, 0.9);
-  border-radius: 20px;
-  width: 70%;
-  z-index: 6;
-  pointer-events: auto;
-  filter: blur(0) !important;
-  border: 1px dashed gold;
-`;
-
-const Modal = styled.div`
-  padding: 4%;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  width: 70%;
-  margin-left: 10%;
-  border: 1px dashed gold;
-`;
-
 const StyledAdvancedAngle = styled.h2`
   text-transform: uppercase;
   transform: translate(-50%, -50%) skew(10deg) rotate(-10deg);
   font-size: 2vw;
   position: absolute;
   margin-top: -1%;
-  text-rendering: optimizeLegibility;
-  font-weight: 900;
-  color: ${(props) => `${props.theme.colors.color2}`};
-  text-shadow: 1px 4px 6px black, 2px 0 0 gold, 1px 2px 4px white;
-  white-space: nowrap;
-
-  &:before {
-    content: attr(data-heading);
-    position: absolute;
-    left: 0;
-    top: -4.8%;
-    overflow: hidden;
-    width: 100%;
-    height: 50%;
-    color: #fbf7f4;
-    transform: translate(1.6vw, 0) skew(-13deg) scale(1, 1.2);
-    z-index: 2;
-    text-shadow: 2px -1px 6px rgba(0, 0, 0, 0.2);
-  }
-
-  &:after {
-    position: absolute;
-    content: attr(data-heading);
-    left: 0;
-    top: 0;
-    overflow: hidden;
-    width: 20%;
-    height: 20%;
-    z-index: 1;
-    color: #d3cfcc;
-    transform: translate(0vw, 0) skew(13deg) scale(1, 0.8);
-    clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0% 100%);
-    text-shadow: 2px -1px 6px rgba(0, 0, 0, 0.3);
-  }
-`;
-
-const StyledTitleAngle = styled.h2`
-  text-transform: uppercase;
-  transform: translate(-50%, -50%) skew(10deg) rotate(-10deg);
-  font-size: 2vw;
-  position: absolute;
   text-rendering: optimizeLegibility;
   font-weight: 900;
   color: ${(props) => `${props.theme.colors.color2}`};
