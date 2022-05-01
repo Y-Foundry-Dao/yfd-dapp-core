@@ -239,6 +239,27 @@ const Link = styled.a`
   cursor: pointer;
 `;
 
+const LinkAdvanced = styled.button`
+  color: ${(props) => `${props.theme.colors.color3}`};
+  display: block;
+  text-decoration: none;
+  width: auto;
+  margin-top: 30%;
+  margin-left: 10px;
+  margin-bottom: 5%;
+  background: linear-gradient(hsl(203, 25%, 8%), hsl(203, 50%, 0%));
+  padding: 0.6rem;
+  padding-left: 2rem;
+  padding-right: 2.2rem;
+  text-align: center;
+  border-top: 1px solid hsl(215, 5%, 50%);
+  border-right: 1px solid hsl(215, 5%, 25%);
+  border-left: 1px solid hsl(215, 5%, 25%);
+  border-bottom: 1px solid hsl(215, 4%, 15%);
+  border-radius: 1.375rem;
+  cursor: not-allowed;
+`;
+
 const ButtonFlip = styled.button`
   background: ${(props) => `${props.theme.colors.color7}`};
   color: ${(props) => `${props.theme.colors.color4}`};

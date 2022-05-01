@@ -2,7 +2,6 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import PositionCard from './PositionCard';
 import UpdateModal from 'components/openPositions/UpdateModal';
-import ReactCardFlip from 'react-card-flip';
 
 interface Props {
   positions: Array<string>;

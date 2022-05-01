@@ -67,9 +67,4 @@ const StylizedTd = styled.td`
   text-align: left;
 `;
 
-const StylizedTitle = styled.h2`
-  color: ${(props) => `${props.theme.colors.color3}`};
-  padding-top: 15px;
-`;
-
 export default PositionInfo;
