@@ -16,15 +16,11 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
-import Divider from '@mui/material/Divider';
 
 export function ConnectedWalletMenu() {
   const terra = useLCDClient();
   const connectedWallet = useConnectedWallet();
   const { disconnect } = useWallet();
-  const [bank, setBank] = useState<
-    null | { amount: string; denom: string }[]
-  >();
   const [address, setAddress] = useState<null | string>();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -51,12 +47,9 @@ export function ConnectedWalletMenu() {
 
           return coin;
         });
-        setBank(coins.toData());
       });
 
       setAddress(`${maskString(connectedWallet.walletAddress)} `);
-    } else {
-      setBank(null);
     }
   }, [connectedWallet, terra]);
 

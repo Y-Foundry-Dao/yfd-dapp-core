@@ -16,8 +16,6 @@ function PositionInfo({ position, contract }: Props) {
       setPositionState(state);
       return state;
     }
-
-    // return console.log(positionState);
   };
   useEffect(() => {
     getPositionState();
@@ -65,11 +63,6 @@ const StylizedTd = styled.td`
   color: ${(props) => `${props.theme.colors.color3}`};
   padding-top: 15px;
   text-align: left;
-`;
-
-const StylizedTitle = styled.h2`
-  color: ${(props) => `${props.theme.colors.color3}`};
-  padding-top: 15px;
 `;
 
 export default PositionInfo;
