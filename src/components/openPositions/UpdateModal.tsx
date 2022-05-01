@@ -52,12 +52,7 @@ function UpdateModal({
         position_idx: position
       }
     };
-    return await executeMsg(
-      connectedWallet,
-      contract,
-      msgAddToPosition,
-      amountInCoin
-    );
+    return await executeMsg(contract, msgAddToPosition, amountInCoin);
   };
 
   const handleClickDepositMirror = async (
@@ -90,7 +85,7 @@ function UpdateModal({
       }
     };
 
-    return await executeMsg(connectedWallet, AUST, msgDepositMirror);
+    return await executeMsg(AUST, msgDepositMirror);
   };
 
   const handleClickRepayPosition = async (
@@ -115,7 +110,7 @@ function UpdateModal({
         contract: contract
       }
     };
-    return await executeMsg(connectedWallet, MBTC, msgBurnMirror);
+    return await executeMsg(MBTC, msgBurnMirror);
   };
 
   const handleClickBorrowFromPosition = async (
@@ -138,7 +133,7 @@ function UpdateModal({
         }
       }
     };
-    return await executeMsg(connectedWallet, contract, msgBorrowFromPosition);
+    return await executeMsg(contract, msgBorrowFromPosition);
   };
 
   const handleClickWithdrawFromPosition = async (
@@ -161,7 +156,7 @@ function UpdateModal({
         }
       }
     };
-    return await executeMsg(connectedWallet, contract, msgWithdrawFromPosition);
+    return await executeMsg(contract, msgWithdrawFromPosition);
   };
 
   return (

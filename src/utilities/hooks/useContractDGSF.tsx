@@ -1,11 +1,16 @@
 import { useState } from 'react';
 
-import { useWallet, ConnectedWallet } from '@terra-money/wallet-provider';
+import {
+  useWallet,
+  ConnectedWallet,
+  useConnectedWallet
+} from '@terra-money/wallet-provider';
 import { Coins, Msg, MsgExecuteContract } from '@terra-money/terra.js';
 import { terra } from 'utilities/lcd';
 
 const useContractDGSF = () => {
   const { post } = useWallet();
+  const connectedWallet = useConnectedWallet();
   const [txHashFromExecute, setTxHashFromExecute] = useState('');
 
   // custom executeMsg function
@@ -15,13 +20,15 @@ const useContractDGSF = () => {
   // msgExecute - the message you want to send to the contract to execute
   // amount - the amount you want to send with the message
   const executeMsg = async (
-    connectedWallet: ConnectedWallet,
     contractAddress: string,
     msgExecute: object,
     amount: Coins.Input = {}
   ) => {
     try {
       // Creates a new message with our parameters
+      if (!connectedWallet) {
+        return;
+      }
       const msg: Msg = new MsgExecuteContract(
         connectedWallet.walletAddress,
         contractAddress,
