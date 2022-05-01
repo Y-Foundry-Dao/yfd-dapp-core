@@ -6,7 +6,6 @@ import Base64 from 'utilities/base64';
 
 const useHandleClicks = () => {
   const { executeMsg } = useContractDGSF();
-  const connectedWallet: any = useConnectedWallet();
 
   const handleClickDepositDgsf = async (
     amount: number,
@@ -23,12 +22,7 @@ const useHandleClicks = () => {
         position_idx: position
       }
     };
-    return await executeMsg(
-      connectedWallet,
-      contract,
-      msgAddToPosition,
-      amountInCoin
-    );
+    return await executeMsg(contract, msgAddToPosition, amountInCoin);
   };
 
   const handleClickDepositMirror = async (
@@ -60,7 +54,7 @@ const useHandleClicks = () => {
         contract: contract
       }
     };
-    return await executeMsg(connectedWallet, AUST, msgDepositMirror);
+    return await executeMsg(AUST, msgDepositMirror);
   };
 
   const handleClickRepayPosition = async (
@@ -85,7 +79,7 @@ const useHandleClicks = () => {
         contract: contract
       }
     };
-    return await executeMsg(connectedWallet, MBTC, msgBurnMirror);
+    return await executeMsg(MBTC, msgBurnMirror);
   };
 
   const handleClickBorrowFromPosition = async (
@@ -109,7 +103,7 @@ const useHandleClicks = () => {
         }
       }
     };
-    return await executeMsg(connectedWallet, contract, msgBorrowFromPosition);
+    return await executeMsg(contract, msgBorrowFromPosition);
   };
 
   const handleClickWithdrawFromPosition = async (
@@ -133,7 +127,7 @@ const useHandleClicks = () => {
         }
       }
     };
-    return await executeMsg(connectedWallet, contract, msgWithdrawFromPosition);
+    return await executeMsg(contract, msgWithdrawFromPosition);
   };
 
   return {
