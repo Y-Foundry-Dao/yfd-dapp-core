@@ -1,7 +1,6 @@
-import { Coins } from '@terra-money/terra.js';
 import { useConnectedWallet, useLCDClient } from '@terra-money/wallet-provider';
 import Button from 'components/buttons/basic/Button';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 interface Props {

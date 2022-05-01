@@ -7,7 +7,7 @@ import InputContract from 'components/input/InputContract';
 import InputAmount from 'components/input/InputAmount';
 
 import useQuery from 'utilities/hooks/useQuery';
-import AvailableAmount from '../availableAmount/AvailableAmount';
+import AvailableAmount from 'components/depositModal/availableAmount/AvailableAmount';
 
 import msgDeposit from 'utilities/messagesExecute/msgDeposit';
 import useContract from 'utilities/hooks/useContractDGSF';
@@ -22,7 +22,6 @@ import {
 } from '@terra-money/wallet-provider';
 
 interface Props {
-  setModalIsOpen: (arg0: boolean) => void;
   instantiateContract: any;
   txHashFromInstantiate: any;
   contractToDeposit: string;
@@ -33,7 +32,6 @@ interface Props {
 }
 
 function DepositModal({
-  setModalIsOpen,
   instantiateContract,
   txHashFromInstantiate,
   contractToDeposit,
@@ -87,12 +85,6 @@ function DepositModal({
     },
     [connectedWallet]
   );
-
-  const handleClick = async () => {
-    return await queryAllPositions(contractToDeposit).then(() =>
-      setDepositModalIsOpen(false)
-    );
-  };
 
   const handleDeposit = async (amount: any, contract: string) => {
     return await executeDeposit(amount, contract);

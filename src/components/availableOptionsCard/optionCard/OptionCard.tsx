@@ -1,20 +1,11 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import {
-  WalletStatus,
-  useWallet,
-  useConnectedWallet
-} from '@terra-money/wallet-provider';
-
-import { ConnectedWalletMenu } from 'components/ConnectedWalletMenu';
-import { ConnectWalletMenu } from 'components/ConnectWalletMenu';
+import { useConnectedWallet } from '@terra-money/wallet-provider';
 
 import ReactCardFlip from 'react-card-flip';
 import cardstyles from 'components/availableOptionsCard/card.module.css';
 
-import Button from 'components/buttons/basic/Button';
-import StrategyLogo from 'components/availableOptionsCard/image/StrategyLogo';
 import Title from 'components/availableOptionsCard/title/Title';
 import Strategist from 'components/availableOptionsCard/strategist/Strategist';
 
@@ -22,7 +13,6 @@ import DepositModal from 'components/depositModal/modal/DepositModal';
 import useInstantiateContract from 'utilities/hooks/useInstantiateContract';
 
 import useContractRegistry from 'utilities/hooks/useContractRegistry';
-import useQuery from 'utilities/hooks/useQuery';
 
 interface Props {
   src: string;
@@ -33,45 +23,13 @@ interface Props {
   setModalIsOpen: (modalIsOpen: boolean) => void;
 }
 
-function strategyCard({ src, alt, title, strategist, setModalIsOpen }: Props) {
-  const [burgerIsOpen, setBurgerIsOpen] = useState<boolean>(false);
-  const [updateModalIsOpen, setUpdateModalIsOpen] = useState<boolean>(false);
-  const [positionsArray, setPositionsArray] = useState<any[]>([]);
-  const { queryRegistry } = useContractRegistry();
-  const connectedWallet: any = useConnectedWallet();
-  const { status } = useWallet();
-  const { queryAllPositions } = useQuery();
+function strategyCard({ src, alt, title, strategist }: Props) {
+  const [isFlipped, setIsFlipped] = useState(false);
   const [contractToDeposit, setContractToDeposit] = useState('');
-  const [depositModalIsOpen, setDepositModalIsOpen] = useState<boolean>(false);
 
-  const getAllOpenPositions = async () => {
-    if (status == WalletStatus.WALLET_CONNECTED) {
-      const response: any = await queryRegistry();
-      const contractInstantiations = await response.instantiations;
+  const connectedWallet: any = useConnectedWallet();
+  const { queryRegistry } = useContractRegistry();
 
-      let openPositionsIndex: any[] = [];
-
-      contractInstantiations.map(async (instantiation: any) => {
-        if (connectedWallet.walletAddress == instantiation.instance_owner) {
-          setContractToDeposit(instantiation.contract_addr);
-          const allPositions: any = await queryAllPositions(
-            instantiation.contract_addr
-          );
-          const positionsArr = allPositions.positions;
-          if (positionsArr.length > 0) {
-            positionsArr.map((positionArr: any) => {
-              openPositionsIndex = [
-                ...openPositionsIndex,
-                [positionArr.idx, positionArr.owner]
-              ];
-              setPositionsArray(openPositionsIndex);
-            });
-          }
-        }
-      });
-      return openPositionsIndex;
-    }
-  };
   const {
     instantiateContract,
     txHashFromInstantiate,
@@ -79,16 +37,30 @@ function strategyCard({ src, alt, title, strategist, setModalIsOpen }: Props) {
     setContractFromInstantiation,
     txHashFromExecute
   } = useInstantiateContract();
-  const [isFlipped, setIsFlipped] = useState(false);
+
   const handleFlip = (e: React.MouseEvent) => {
     e.preventDefault();
     return setIsFlipped(!isFlipped);
   };
+
+  const queryRegistryGetDefaultContract = async () => {
+    if (!connectedWallet) {
+      return;
+    }
+    const response: any = await queryRegistry();
+    const contractInstantiations = await response.instantiations;
+
+    contractInstantiations.map(async (instantiation: any) => {
+      if (connectedWallet.walletAddress == instantiation.instance_owner) {
+        return setContractToDeposit(instantiation.contract_addr);
+      }
+    });
+  };
   useEffect(() => {
-    const getOpenPositions = async () => {
-      await getAllOpenPositions();
+    const setDefaultContract = async () => {
+      await queryRegistryGetDefaultContract();
     };
-    getOpenPositions();
+    setDefaultContract();
   }, [connectedWallet]);
   return (
     <ReactCardFlip isFlipped={isFlipped}>
@@ -134,7 +106,6 @@ function strategyCard({ src, alt, title, strategist, setModalIsOpen }: Props) {
               setContractToDeposit={setContractToDeposit}
               contractFromInstantiation={contractFromInstantiation}
               setContractFromInstantiation={setContractFromInstantiation}
-              setModalIsOpen={setDepositModalIsOpen}
             />
             <CardFlip>
               <span onClick={(e) => handleFlip(e)}>↩️</span>
@@ -183,7 +154,6 @@ const StyledPageTitle = styled.h1`
     4px 4px 0 #333;
   color: ${(props) => `${props.theme.colors.color3}`};
   border-bottom: 5px solid ${(props) => `${props.theme.colors.color3}`};
-  // box-shadow: 0 6px 7px -7px ${(props) => `${props.theme.colors.color1}`};
   border-top: 5px solid ${(props) => `${props.theme.colors.color3}`};
 `;
 
@@ -199,14 +169,15 @@ const StyledTitle = styled.h2`
   grid-template-rows: 21px;
   grid-gap: 10px;
   align-items: center;
-}
 
-:after, :before {
-  content: " ";
-  display: block;
-  border-bottom: 1px solid ${(props) => `${props.theme.colors.color3}`};
-  box-shadow: 0 6px 7px -7px ${(props) => `${props.theme.colors.color1}`};
-  height: 5px;
+  :after,
+  :before {
+    content: ' ';
+    display: block;
+    border-bottom: 1px solid ${(props) => `${props.theme.colors.color3}`};
+    box-shadow: 0 6px 7px -7px ${(props) => `${props.theme.colors.color1}`};
+    height: 5px;
+  }
 `;
 
 const StyledText = styled.div`
