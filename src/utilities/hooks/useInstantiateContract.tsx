@@ -44,7 +44,6 @@ const useInstantiateContract = () => {
 
         const amountInCoin: Coins.Input = { uusd: amount * Math.pow(10, 6) };
         return await executeMsg(
-          connectedWallet,
           contractAddressFromInstantiate,
           msgDeposit,
           amountInCoin
