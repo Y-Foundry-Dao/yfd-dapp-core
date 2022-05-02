@@ -56,12 +56,7 @@ function DepositModal({
           return;
         }
         const amountInCoin: Coins.Input = { uusd: amount * Math.pow(10, 6) };
-        return await executeMsg(
-          connectedWallet,
-          contract,
-          msgDeposit,
-          amountInCoin
-        );
+        return await executeMsg(contract, msgDeposit, amountInCoin);
       } catch (error) {
         if (error instanceof UserDenied) {
           setTxError('User Denied');
