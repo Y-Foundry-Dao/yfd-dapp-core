@@ -13,9 +13,9 @@ const useHandleClicks = () => {
   const { executeMsg } = useContractDGSF();
 
   const handleClickDGSFDeposit = async (
-    amount: number,
     contract: string,
-    position: string
+    position: string,
+    amount: number
   ) => {
     const amountInCoin: Coins.Input = { uusd: amount * Math.pow(10, 6) };
     const msgAddToPosition = msgPositionDeposit(position);
@@ -35,53 +35,53 @@ const useHandleClicks = () => {
     );
     const encodedMessage = Base64.btoa(msgToEncode);
     const msgMirrorDeposit = msgCW20Send(
+      contract,
       encodedMessage,
-      amountConverted,
-      contract
+      amountConverted
     );
     return await executeMsg(AUST, msgMirrorDeposit);
   };
 
   const handleClickMirrorBurn = async (
-    amount: number,
+    contract: string,
     position: string,
-    contract: string
+    amount: number
   ) => {
     const amountConverted: number = amount * Math.pow(10, 6);
     const msgToEncode = msgMirrorBurnEncode(position);
     const encodedMessage = Base64.btoa(msgToEncode);
     const msgMirrorBurn = msgCW20Send(
+      contract,
       encodedMessage,
-      amountConverted,
-      contract
+      amountConverted
     );
     return await executeMsg(MBTC, msgMirrorBurn);
   };
 
   const handleClickMirrorBorrow = async (
     contract: string,
-    amount: number,
-    position: string
+    position: string,
+    amount: number
   ) => {
     const amountInCoin: number = amount * Math.pow(10, 6);
     const msgBorrowFromPosition = msgPositionBorrow(
       MBTC,
-      amountInCoin,
-      position
+      position,
+      amountInCoin
     );
     return await executeMsg(contract, msgBorrowFromPosition);
   };
 
   const handleClickMirrorWithdraw = async (
     contract: string,
-    amount: number,
-    position: string
+    position: string,
+    amount: number
   ) => {
     const amountInCoin: number = amount * Math.pow(10, 6);
     const msgWithdrawFromPosition = msgPositionWithdraw(
       contract,
-      amountInCoin,
-      position
+      position,
+      amountInCoin
     );
     return await executeMsg(contract, msgWithdrawFromPosition);
   };

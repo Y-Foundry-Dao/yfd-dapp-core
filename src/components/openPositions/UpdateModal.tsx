@@ -58,9 +58,9 @@ function UpdateModal({
           disabled={false}
           onClick={async () => {
             return await handleClickDGSFDeposit(
-              amountToDepositDgsf,
               contract,
-              positionToUpdate
+              positionToUpdate,
+              amountToDepositDgsf
             );
           }}
         />
@@ -76,8 +76,8 @@ function UpdateModal({
           onClick={async () => {
             return await handleClickMirrorBorrow(
               contract,
-              Number(amountToBorrow),
-              position
+              position,
+              Number(amountToBorrow)
             );
           }}
         />
@@ -92,9 +92,9 @@ function UpdateModal({
           disabled={false}
           onClick={async () => {
             return await handleClickMirrorBurn(
-              amountToBurn,
+              contract,
               positionToUpdate,
-              contract
+              amountToBurn
             );
           }}
         />
@@ -110,8 +110,8 @@ function UpdateModal({
           onClick={async () => {
             return await handleClickMirrorWithdraw(
               contract,
-              Number(amountToWithdraw),
-              position
+              position,
+              Number(amountToWithdraw)
             );
           }}
         />
