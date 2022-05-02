@@ -26,11 +26,11 @@ function UpdateModal({
   setModalIsOpen
 }: Props) {
   const {
-    handleClickDepositMirror,
-    handleClickRepayPosition,
-    handleClickBorrowFromPosition,
-    handleClickWithdrawFromPosition,
-    handleClickDepositDgsf
+    handleClickMirrorDeposit,
+    handleClickMirrorBurn,
+    handleClickMirrorBorrow,
+    handleClickMirrorWithdraw,
+    handleClickDGSFDeposit
   } = useHandleClicks();
   const [amountToDepositDgsf, setAmountToDepositDgsf] = useState<any>(0);
   const [amountToBorrow, setAmountToBorrow] = useState<any>(0);
@@ -57,7 +57,7 @@ function UpdateModal({
           children="Add to Position"
           disabled={false}
           onClick={async () => {
-            return await handleClickDepositDgsf(
+            return await handleClickDGSFDeposit(
               amountToDepositDgsf,
               contract,
               positionToUpdate
@@ -74,7 +74,7 @@ function UpdateModal({
           children="Borrow mAsset"
           disabled={false}
           onClick={async () => {
-            return await handleClickBorrowFromPosition(
+            return await handleClickMirrorBorrow(
               contract,
               Number(amountToBorrow),
               position
@@ -91,7 +91,7 @@ function UpdateModal({
           children="Pay Back Debt"
           disabled={false}
           onClick={async () => {
-            return await handleClickRepayPosition(
+            return await handleClickMirrorBurn(
               amountToBurn,
               positionToUpdate,
               contract
@@ -108,7 +108,7 @@ function UpdateModal({
           children="Withdraw aUST"
           disabled={false}
           onClick={async () => {
-            return await handleClickWithdrawFromPosition(
+            return await handleClickMirrorWithdraw(
               contract,
               Number(amountToWithdraw),
               position
@@ -125,7 +125,7 @@ function UpdateModal({
           children="Deposit aUST"
           disabled={false}
           onClick={async () => {
-            return await handleClickDepositMirror(
+            return await handleClickMirrorDeposit(
               contract,
               positionToUpdate,
               amountToDepositMirror

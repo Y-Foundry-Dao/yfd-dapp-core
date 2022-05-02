@@ -6,13 +6,13 @@ import msgPositionDeposit from 'utilities/messagesExecute/msgPositionDeposit';
 import msgCW20Send from 'utilities/messagesExecute/msgCW20Send';
 import msgPositionBorrow from 'utilities/messagesExecute/msgPositionBorrow';
 import msgPositionWithdraw from 'utilities/messagesExecute/msgPositionWithdraw';
-import msgMirrorDepositEncode from 'utilities/messagesToEncode/msgMirrorDepositEncode';
-import msgMirrorBurnEncode from 'utilities/messagesToEncode/msgMirrorBurnEncode';
+import msgMirrorDepositEncode from 'utilities/messagesToEncode/msgMirrorEncodeDeposit';
+import msgMirrorBurnEncode from 'utilities/messagesToEncode/msgMirrorEncodeBurn';
 
 const useHandleClicks = () => {
   const { executeMsg } = useContractDGSF();
 
-  const handleClickDepositDgsf = async (
+  const handleClickDGSFDeposit = async (
     amount: number,
     contract: string,
     position: string
@@ -22,7 +22,7 @@ const useHandleClicks = () => {
     return await executeMsg(contract, msgAddToPosition, amountInCoin);
   };
 
-  const handleClickDepositMirror = async (
+  const handleClickMirrorDeposit = async (
     contract: string,
     position: string,
     amount: number
@@ -42,7 +42,7 @@ const useHandleClicks = () => {
     return await executeMsg(AUST, msgMirrorDeposit);
   };
 
-  const handleClickRepayPosition = async (
+  const handleClickMirrorBurn = async (
     amount: number,
     position: string,
     contract: string
@@ -58,7 +58,7 @@ const useHandleClicks = () => {
     return await executeMsg(MBTC, msgMirrorBurn);
   };
 
-  const handleClickBorrowFromPosition = async (
+  const handleClickMirrorBorrow = async (
     contract: string,
     amount: number,
     position: string
@@ -72,7 +72,7 @@ const useHandleClicks = () => {
     return await executeMsg(contract, msgBorrowFromPosition);
   };
 
-  const handleClickWithdrawFromPosition = async (
+  const handleClickMirrorWithdraw = async (
     contract: string,
     amount: number,
     position: string
@@ -87,11 +87,11 @@ const useHandleClicks = () => {
   };
 
   return {
-    handleClickDepositMirror,
-    handleClickRepayPosition,
-    handleClickBorrowFromPosition,
-    handleClickWithdrawFromPosition,
-    handleClickDepositDgsf
+    handleClickMirrorDeposit,
+    handleClickMirrorBurn,
+    handleClickMirrorBorrow,
+    handleClickMirrorWithdraw,
+    handleClickDGSFDeposit
   };
 };
 
