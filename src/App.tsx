@@ -87,7 +87,7 @@ export default function App() {
         <Positions
           updateModalIsOpen={updateModalIsOpen}
           burgerIsOpen={burgerIsOpen}
-          setModalIsOpen={setUpdateModalIsOpen}
+          setUpdateModalIsOpen={setUpdateModalIsOpen}
           positions={positionsArray}
         />
         <OpenPositions>
