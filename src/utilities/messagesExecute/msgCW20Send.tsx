@@ -1,7 +1,7 @@
 const msgCW20Send = (
+  contract: string,
   encodedMessage: any,
-  amountConverted: number,
-  contract: string
+  amountConverted: number
 ) => {
   return {
     send: {

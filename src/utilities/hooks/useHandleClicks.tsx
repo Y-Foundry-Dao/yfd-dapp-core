@@ -6,23 +6,23 @@ import msgPositionDeposit from 'utilities/messagesExecute/msgPositionDeposit';
 import msgCW20Send from 'utilities/messagesExecute/msgCW20Send';
 import msgPositionBorrow from 'utilities/messagesExecute/msgPositionBorrow';
 import msgPositionWithdraw from 'utilities/messagesExecute/msgPositionWithdraw';
-import msgMirrorDepositEncode from 'utilities/messagesToEncode/msgMirrorDepositEncode';
-import msgMirrorBurnEncode from 'utilities/messagesToEncode/msgMirrorBurnEncode';
+import msgMirrorDepositEncode from 'utilities/messagesToEncode/msgMirrorEncodeDeposit';
+import msgMirrorBurnEncode from 'utilities/messagesToEncode/msgMirrorEncodeBurn';
 
 const useHandleClicks = () => {
   const { executeMsg } = useContractDGSF();
 
-  const handleClickDepositDgsf = async (
-    amount: number,
+  const handleClickDGSFDeposit = async (
     contract: string,
-    position: string
+    position: string,
+    amount: number
   ) => {
     const amountInCoin: Coins.Input = { uusd: amount * Math.pow(10, 6) };
     const msgAddToPosition = msgPositionDeposit(position);
     return await executeMsg(contract, msgAddToPosition, amountInCoin);
   };
 
-  const handleClickDepositMirror = async (
+  const handleClickMirrorDeposit = async (
     contract: string,
     position: string,
     amount: number
@@ -35,63 +35,63 @@ const useHandleClicks = () => {
     );
     const encodedMessage = Base64.btoa(msgToEncode);
     const msgMirrorDeposit = msgCW20Send(
+      contract,
       encodedMessage,
-      amountConverted,
-      contract
+      amountConverted
     );
     return await executeMsg(AUST, msgMirrorDeposit);
   };
 
-  const handleClickRepayPosition = async (
-    amount: number,
+  const handleClickMirrorBurn = async (
+    contract: string,
     position: string,
-    contract: string
+    amount: number
   ) => {
     const amountConverted: number = amount * Math.pow(10, 6);
     const msgToEncode = msgMirrorBurnEncode(position);
     const encodedMessage = Base64.btoa(msgToEncode);
     const msgMirrorBurn = msgCW20Send(
+      contract,
       encodedMessage,
-      amountConverted,
-      contract
+      amountConverted
     );
     return await executeMsg(MBTC, msgMirrorBurn);
   };
 
-  const handleClickBorrowFromPosition = async (
+  const handleClickMirrorBorrow = async (
     contract: string,
-    amount: number,
-    position: string
+    position: string,
+    amount: number
   ) => {
     const amountInCoin: number = amount * Math.pow(10, 6);
     const msgBorrowFromPosition = msgPositionBorrow(
       MBTC,
-      amountInCoin,
-      position
+      position,
+      amountInCoin
     );
     return await executeMsg(contract, msgBorrowFromPosition);
   };
 
-  const handleClickWithdrawFromPosition = async (
+  const handleClickMirrorWithdraw = async (
     contract: string,
-    amount: number,
-    position: string
+    position: string,
+    amount: number
   ) => {
     const amountInCoin: number = amount * Math.pow(10, 6);
     const msgWithdrawFromPosition = msgPositionWithdraw(
       contract,
-      amountInCoin,
-      position
+      position,
+      amountInCoin
     );
     return await executeMsg(contract, msgWithdrawFromPosition);
   };
 
   return {
-    handleClickDepositMirror,
-    handleClickRepayPosition,
-    handleClickBorrowFromPosition,
-    handleClickWithdrawFromPosition,
-    handleClickDepositDgsf
+    handleClickMirrorDeposit,
+    handleClickMirrorBurn,
+    handleClickMirrorBorrow,
+    handleClickMirrorWithdraw,
+    handleClickDGSFDeposit
   };
 };
 

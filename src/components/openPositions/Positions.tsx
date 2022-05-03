@@ -7,13 +7,13 @@ interface Props {
   positions: Array<string>;
   updateModalIsOpen: boolean;
   burgerIsOpen: boolean;
-  setModalIsOpen: (arg0: boolean) => void;
+  setUpdateModalIsOpen: (arg0: boolean) => void;
 }
 
 function Positions({
   positions,
   updateModalIsOpen,
-  setModalIsOpen,
+  setUpdateModalIsOpen,
   burgerIsOpen
 }: Props) {
   const [contractForPosition, setContractForPosition] = useState('');
@@ -26,7 +26,7 @@ function Positions({
           positionToUpdate={positionToUpdate}
           contract={contractForPosition}
           modalIsOpen={updateModalIsOpen}
-          setModalIsOpen={setModalIsOpen}
+          setModalIsOpen={setUpdateModalIsOpen}
         />
       ) : null}
       {positions.map((position, i) => {
@@ -34,7 +34,7 @@ function Positions({
           <PositionCard
             key={i}
             modalIsOpen={updateModalIsOpen}
-            setModalIsOpen={setModalIsOpen}
+            setModalIsOpen={setUpdateModalIsOpen}
             position={position[0]}
             contract={position[1]}
             setPositionToUpdate={setPositionToUpdate}

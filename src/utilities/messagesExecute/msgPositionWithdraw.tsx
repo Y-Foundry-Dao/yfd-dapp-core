@@ -1,7 +1,7 @@
 const msgPositionWithdraw = (
   contract: string,
-  amount: number,
-  position: string
+  position: string,
+  amount: number
 ) => {
   return {
     mirror: {
