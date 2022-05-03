@@ -17,6 +17,10 @@ import Positions from 'components/openPositions/Positions';
 
 import useContractRegistry from 'utilities/hooks/useContractRegistry';
 import useQuery from 'utilities/hooks/useQuery';
+import useContractDGSF from 'utilities/hooks/useContractDGSF';
+
+import mirrorObject from 'utilities/mirrorObject';
+import queryBalance from 'utilities/messagesQuery/balance';
 
 interface Props {
   modalIsOpen: boolean;
@@ -28,9 +32,36 @@ export default function App() {
   const [positionsArray, setPositionsArray] = useState<any[]>([]);
   const { queryRegistry } = useContractRegistry();
   const connectedWallet: any = useConnectedWallet();
+  const { queryMsg } = useContractDGSF();
 
   const { queryAllPositions } = useQuery();
   const [depositModalIsOpen, setDepositModalIsOpen] = useState<boolean>(false);
+  const [mirrorObjState, setMirrorObjState] = useState<any>(mirrorObject);
+
+  const getAssetBalances = async () => {
+    if (!connectedWallet) {
+      return;
+    }
+    const walletAddress = connectedWallet.walletAddress;
+
+    const queryBalanceMessage = queryBalance(walletAddress);
+
+    const newObj: any = {};
+
+    Object.entries(mirrorObject).map(async ([key, value], i) => {
+      const balanceResponse: any = await queryMsg(
+        value.contract,
+        queryBalanceMessage
+      );
+      const balance = balanceResponse.balance;
+      newObj[key] = { contract: value.contract, balance };
+      return setMirrorObjState({
+        ...newObj
+      });
+    });
+
+    return;
+  };
 
   const getAllOpenPositions = async () => {
     if (!connectedWallet) {
@@ -62,10 +93,9 @@ export default function App() {
     return openPositionsIndex;
   };
   useEffect(() => {
-    const getOpenPositions = async () => {
-      await getAllOpenPositions();
-    };
-    getOpenPositions();
+    getAssetBalances();
+    getAllOpenPositions();
+    console.log(mirrorObjState);
   }, [connectedWallet]);
 
   return (
@@ -89,6 +119,7 @@ export default function App() {
           burgerIsOpen={burgerIsOpen}
           setUpdateModalIsOpen={setUpdateModalIsOpen}
           positions={positionsArray}
+          mirrorObjState={mirrorObjState}
         />
         <OpenPositions>
           <StylizedTitle>Available Options</StylizedTitle>

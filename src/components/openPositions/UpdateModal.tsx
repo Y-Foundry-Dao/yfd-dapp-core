@@ -12,6 +12,7 @@ interface Props {
   modalIsOpen: boolean;
   positionToUpdate: string;
   setModalIsOpen: (arg0: boolean) => void;
+  mirrorObjState: any;
 }
 
 interface StyledProps {
@@ -23,7 +24,8 @@ function UpdateModal({
   position,
   contract,
   positionToUpdate,
-  setModalIsOpen
+  setModalIsOpen,
+  mirrorObjState
 }: Props) {
   const {
     handleClickMirrorDeposit,
@@ -87,6 +89,9 @@ function UpdateModal({
           setAmount={setAmountToBurn}
           label="Burn mAssets"
         />
+        <StyledBalance>
+          Available mBTC: {mirrorObjState.MBTC.balance * Math.pow(10, -6)}
+        </StyledBalance>
         <Button
           children="Pay Back Debt"
           disabled={false}
@@ -136,6 +141,10 @@ function UpdateModal({
     </ModalHolder>
   );
 }
+
+const StyledBalance = styled.p`
+  color: white;
+`;
 
 const Header = styled.h2`
   align-self: center;

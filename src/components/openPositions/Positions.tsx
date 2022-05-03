@@ -8,13 +8,15 @@ interface Props {
   updateModalIsOpen: boolean;
   burgerIsOpen: boolean;
   setUpdateModalIsOpen: (arg0: boolean) => void;
+  mirrorObjState: any;
 }
 
 function Positions({
   positions,
   updateModalIsOpen,
   setUpdateModalIsOpen,
-  burgerIsOpen
+  burgerIsOpen,
+  mirrorObjState
 }: Props) {
   const [contractForPosition, setContractForPosition] = useState('');
   const [positionToUpdate, setPositionToUpdate] = useState('');
@@ -27,6 +29,7 @@ function Positions({
           contract={contractForPosition}
           modalIsOpen={updateModalIsOpen}
           setModalIsOpen={setUpdateModalIsOpen}
+          mirrorObjState={mirrorObjState}
         />
       ) : null}
       {positions.map((position, i) => {
