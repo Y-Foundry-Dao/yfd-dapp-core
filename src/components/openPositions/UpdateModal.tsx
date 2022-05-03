@@ -26,11 +26,11 @@ function UpdateModal({
   setModalIsOpen
 }: Props) {
   const {
-    handleClickDepositMirror,
-    handleClickRepayPosition,
-    handleClickBorrowFromPosition,
-    handleClickWithdrawFromPosition,
-    handleClickDepositDgsf
+    handleClickMirrorDeposit,
+    handleClickMirrorBurn,
+    handleClickMirrorBorrow,
+    handleClickMirrorWithdraw,
+    handleClickDGSFDeposit
   } = useHandleClicks();
   const [amountToDepositDgsf, setAmountToDepositDgsf] = useState<any>(0);
   const [amountToBorrow, setAmountToBorrow] = useState<any>(0);
@@ -57,10 +57,10 @@ function UpdateModal({
           children="Add to Position"
           disabled={false}
           onClick={async () => {
-            return await handleClickDepositDgsf(
-              amountToDepositDgsf,
+            return await handleClickDGSFDeposit(
               contract,
-              positionToUpdate
+              positionToUpdate,
+              amountToDepositDgsf
             );
           }}
         />
@@ -74,10 +74,10 @@ function UpdateModal({
           children="Borrow mAsset"
           disabled={false}
           onClick={async () => {
-            return await handleClickBorrowFromPosition(
+            return await handleClickMirrorBorrow(
               contract,
-              Number(amountToBorrow),
-              position
+              position,
+              Number(amountToBorrow)
             );
           }}
         />
@@ -91,10 +91,10 @@ function UpdateModal({
           children="Pay Back Debt"
           disabled={false}
           onClick={async () => {
-            return await handleClickRepayPosition(
-              amountToBurn,
+            return await handleClickMirrorBurn(
+              contract,
               positionToUpdate,
-              contract
+              amountToBurn
             );
           }}
         />
@@ -108,10 +108,10 @@ function UpdateModal({
           children="Withdraw aUST"
           disabled={false}
           onClick={async () => {
-            return await handleClickWithdrawFromPosition(
+            return await handleClickMirrorWithdraw(
               contract,
-              Number(amountToWithdraw),
-              position
+              position,
+              Number(amountToWithdraw)
             );
           }}
         />
@@ -125,7 +125,7 @@ function UpdateModal({
           children="Deposit aUST"
           disabled={false}
           onClick={async () => {
-            return await handleClickDepositMirror(
+            return await handleClickMirrorDeposit(
               contract,
               positionToUpdate,
               amountToDepositMirror

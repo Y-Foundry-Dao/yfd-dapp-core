@@ -1,7 +1,7 @@
 const msgPositionBorrow = (
   contract: string,
-  amountInCoin: number,
-  position: string
+  position: string,
+  amountInCoin: number
 ) => {
   return {
     mirror: {

@@ -77,8 +77,8 @@ export default function App() {
         src={yLogo}
         alt="Y Logo"
         navLinks={['about', 'medium', 'join community', 'brand kit', 'roadmap']}
-        open={burgerIsOpen}
-        setOpen={setBurgerIsOpen}
+        burgerIsOpen={burgerIsOpen}
+        setBurgerIsOpen={setBurgerIsOpen}
         walletConnected={connectedWallet}
       />
       <StylizedDiv>
@@ -87,7 +87,7 @@ export default function App() {
         <Positions
           updateModalIsOpen={updateModalIsOpen}
           burgerIsOpen={burgerIsOpen}
-          setModalIsOpen={setUpdateModalIsOpen}
+          setUpdateModalIsOpen={setUpdateModalIsOpen}
           positions={positionsArray}
         />
         <OpenPositions>

@@ -42,7 +42,7 @@ export const BurgerTemplate: ComponentStory<typeof Burger> = (args) => {
   const burgerRef = useRef<HTMLDivElement>(null);
 
   useOnClickOutside(burgerRef, () => setOpen(false));
-  return <Burger {...args} open={open} setOpen={setOpen} />;
+  return <Burger {...args} burgerIsOpen={open} setBurgerIsOpen={setOpen} />;
 };
 
 export const LandingPage: ComponentStory<typeof Burger> = (args) => {
@@ -51,7 +51,7 @@ export const LandingPage: ComponentStory<typeof Burger> = (args) => {
   const burgerRef = useRef<HTMLDivElement>(null);
 
   useOnClickOutside(burgerRef, () => setOpen(false));
-  return <Burger {...args} open={open} setOpen={setOpen} />;
+  return <Burger {...args} burgerIsOpen={open} setBurgerIsOpen={setOpen} />;
 };
 LandingPage.args = {
   navLinks: ['about', 'medium', 'join community', 'roadmap']
