@@ -18,12 +18,16 @@ import Positions from 'components/openPositions/Positions';
 import useContractRegistry from 'utilities/hooks/useContractRegistry';
 import useQuery from 'utilities/hooks/useQuery';
 
+import { useRecoilState } from 'recoil';
+import burgerAtom from 'recoil/burger/atom';
+
 interface Props {
   modalIsOpen: boolean;
 }
 
 export default function App() {
-  const [burgerIsOpen, setBurgerIsOpen] = useState<boolean>(false);
+  // const [burgerIsOpen, setBurgerIsOpen] = useState<boolean>(false);
+  const [burgerIsOpen, setBurgerIsOpen] = useRecoilState(burgerAtom);
   const [updateModalIsOpen, setUpdateModalIsOpen] = useState<boolean>(false);
   const [positionsArray, setPositionsArray] = useState<any[]>([]);
   const { queryRegistry } = useContractRegistry();
@@ -77,8 +81,6 @@ export default function App() {
         src={yLogo}
         alt="Y Logo"
         navLinks={['about', 'medium', 'join community', 'brand kit', 'roadmap']}
-        burgerIsOpen={burgerIsOpen}
-        setBurgerIsOpen={setBurgerIsOpen}
         walletConnected={connectedWallet}
       />
       <StylizedDiv>

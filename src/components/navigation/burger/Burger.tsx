@@ -4,14 +4,15 @@ import BurgerIcon from 'components/navigation/burgerIcon/BurgerIcon';
 import BurgerMenu from 'components/navigation/burgerMenu/BurgerMenu';
 
 import useOnClickOutside from 'utilities/hooks/useOnClickOutside';
+import burgerAtom from 'recoil/burger/atom';
+import { useRecoilState } from 'recoil';
 
 interface ComponentProps {
-  burgerIsOpen: boolean;
-  setBurgerIsOpen: (open: boolean) => void;
   navLinks: Array<string>;
 }
 
-function Burger({ burgerIsOpen, setBurgerIsOpen, navLinks }: ComponentProps) {
+function Burger({ navLinks }: ComponentProps) {
+  const [burgerIsOpen, setBurgerIsOpen] = useRecoilState(burgerAtom);
   const burgerRef = useRef<HTMLDivElement>(null);
 
   // closes menu when clicking anywhere outside of it
