@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 import SocialIcons from 'components/footer/socialIcons/SocialIcons';
+import burgerAtom from 'recoil/burger/atom';
+import { useRecoilState } from 'recoil';
 
 type SocialId = string;
 
@@ -17,10 +19,10 @@ interface Props {
   logo: string;
   alt: string;
   socialInfo: Record<SocialId, Social>;
-  burgerIsOpen: boolean;
 }
 
-function FooterBar({ logo, alt, socialInfo, burgerIsOpen }: Props) {
+function FooterBar({ logo, alt, socialInfo }: Props) {
+  const [burgerIsOpen] = useRecoilState(burgerAtom);
   return (
     <Footer burgerIsOpen={burgerIsOpen}>
       <Img src={logo} alt={alt} />

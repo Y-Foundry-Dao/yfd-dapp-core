@@ -26,8 +26,7 @@ interface Props {
 }
 
 export default function App() {
-  // const [burgerIsOpen, setBurgerIsOpen] = useState<boolean>(false);
-  const [burgerIsOpen, setBurgerIsOpen] = useRecoilState(burgerAtom);
+  // const [burgerIsOpen, setBurgerIsOpen] = useRecoilState(burgerAtom);
   const [updateModalIsOpen, setUpdateModalIsOpen] = useState<boolean>(false);
   const [positionsArray, setPositionsArray] = useState<any[]>([]);
   const { queryRegistry } = useContractRegistry();
@@ -88,7 +87,6 @@ export default function App() {
         <StylizedTitle>My Open Positions</StylizedTitle>
         <Positions
           updateModalIsOpen={updateModalIsOpen}
-          burgerIsOpen={burgerIsOpen}
           setUpdateModalIsOpen={setUpdateModalIsOpen}
           positions={positionsArray}
         />
@@ -104,12 +102,7 @@ export default function App() {
           />
         </OpenPositions>
       </StylizedDiv>
-      <FooterBar
-        burgerIsOpen={burgerIsOpen}
-        logo={longLogo}
-        alt="YFD Logo"
-        socialInfo={socialInfo}
-      />
+      <FooterBar logo={longLogo} alt="YFD Logo" socialInfo={socialInfo} />
     </Main>
   );
 }
