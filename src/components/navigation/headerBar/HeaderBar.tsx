@@ -13,9 +13,7 @@ interface Props {
   alt: string;
   navLinks: Array<string>;
   modalIsOpen: boolean;
-  burgerIsOpen: boolean;
   walletConnected: ConnectedWallet;
-  setBurgerIsOpen: (arg0: boolean) => void;
 }
 interface StyledProps {
   modalIsOpen: boolean;
@@ -27,9 +25,7 @@ function HeaderBar({
   alt,
   navLinks,
   modalIsOpen,
-  burgerIsOpen,
-  walletConnected,
-  setBurgerIsOpen
+  walletConnected
 }: Props) {
   return (
     <Header modalIsOpen={modalIsOpen} id={id}>
@@ -38,11 +34,7 @@ function HeaderBar({
       <Toolbar>
         {walletConnected ? <ConnectedWalletMenu /> : <ConnectWalletMenu />}
       </Toolbar>
-      <Burger
-        burgerIsOpen={burgerIsOpen}
-        setBurgerIsOpen={setBurgerIsOpen}
-        navLinks={navLinks}
-      />
+      <Burger navLinks={navLinks} />
     </Header>
   );
 }

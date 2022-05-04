@@ -2,22 +2,25 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import PositionCard from './PositionCard';
 import UpdateModal from 'components/openPositions/UpdateModal';
+import { useRecoilState } from 'recoil';
+import burgerAtom from 'recoil/burger/atom';
 
 interface Props {
   positions: Array<string>;
   updateModalIsOpen: boolean;
-  burgerIsOpen: boolean;
   setUpdateModalIsOpen: (arg0: boolean) => void;
 }
 
 function Positions({
   positions,
   updateModalIsOpen,
-  setUpdateModalIsOpen,
-  burgerIsOpen
+  setUpdateModalIsOpen
 }: Props) {
   const [contractForPosition, setContractForPosition] = useState('');
   const [positionToUpdate, setPositionToUpdate] = useState('');
+
+  const [burgerIsOpen, setBurgerIsOpen] = useRecoilState(burgerAtom);
+
   return burgerIsOpen === false ? (
     <OpenPositions>
       {updateModalIsOpen ? (
