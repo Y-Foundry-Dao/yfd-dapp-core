@@ -19,8 +19,6 @@ interface Props {
   alt: string;
   title: string;
   strategist: string;
-  modalIsOpen: boolean;
-  setModalIsOpen: (modalIsOpen: boolean) => void;
 }
 
 function strategyCard({ src, alt, title, strategist }: Props) {
