@@ -7,14 +7,10 @@ import burgerAtom from 'recoil/burger/atom';
 import modalIsOpenUpdateAtom from 'recoil/modalIsOpenUpdate/atom';
 import positionsAtom from 'recoil/positions/atom';
 
-interface Props {
-  mirrorObjState: any;
-}
-function Positions({
-  mirrorObjState
-}: Props) {
+function Positions() {
   const [contractForPosition, setContractForPosition] = useState('');
   const [positionToUpdate, setPositionToUpdate] = useState('');
+
   const [updateModalIsOpen, setUpdateModalIsOpen] = useRecoilState(
     modalIsOpenUpdateAtom
   );
@@ -31,7 +27,6 @@ function Positions({
           contract={contractForPosition}
           modalIsOpen={updateModalIsOpen}
           setModalIsOpen={setUpdateModalIsOpen}
-          mirrorObjState={mirrorObjState}
         />
       ) : null}
       {positions.map((position: any, i: any) => {

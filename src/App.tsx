@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 
 import { useConnectedWallet } from '@terra-money/wallet-provider';
@@ -16,13 +16,14 @@ import OptionCard from 'components/availableOptionsCard/optionCard/OptionCard';
 import Positions from 'components/openPositions/Positions';
 
 import useContractRegistry from 'utilities/hooks/useContractRegistry';
+import useContractDGSF from 'utilities/hooks/useContractDGSF';
 import useQuery from 'utilities/hooks/useQuery';
 import modalIsOpenUpdateAtom from 'recoil/modalIsOpenUpdate/atom';
 import modalIsOpenDepositAtom from 'recoil/modalIsOpenDeposit/atom';
 import positionsAtom from 'recoil/positions/atom';
-import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 
-import mirrorObject from 'utilities/mirrorObject';
+import mirrorObjectAtom from 'recoil/mirror/atom';
 import queryBalance from 'utilities/messagesQuery/balance';
 
 interface Props {
@@ -34,21 +35,20 @@ export default function App() {
   const depositModalIsOpen = useRecoilValue(modalIsOpenDepositAtom);
   const setPositionsArray = useSetRecoilState(positionsAtom);
 
+  const [mirrorObject, setMirrorObject] = useRecoilState(mirrorObjectAtom);
+
   const { queryRegistry } = useContractRegistry();
   const connectedWallet: any = useConnectedWallet();
   const { queryMsg } = useContractDGSF();
 
   const { queryAllPositions } = useQuery();
-  const [depositModalIsOpen, setDepositModalIsOpen] = useState<boolean>(false);
 
   const getAssetBalances = async () => {
     if (!connectedWallet) {
       return;
     }
     const walletAddress = connectedWallet.walletAddress;
-
     const queryBalanceMessage = queryBalance(walletAddress);
-
     const newObj: any = {};
 
     Object.entries(mirrorObject).map(async ([key, value], i) => {
@@ -58,7 +58,7 @@ export default function App() {
       );
       const balance = balanceResponse.balance;
       newObj[key] = { contract: value.contract, balance };
-      return setMirrorObjState({
+      return setMirrorObject({
         ...newObj
       });
     });
@@ -98,7 +98,6 @@ export default function App() {
   useEffect(() => {
     getAssetBalances();
     getAllOpenPositions();
-    console.log(mirrorObjState);
   }, [connectedWallet]);
 
   return (
@@ -115,7 +114,7 @@ export default function App() {
       <StylizedDiv>
         <StyledPageTitle>Foundry</StyledPageTitle>
         <StylizedTitle>My Open Positions</StylizedTitle>
-        <Positions mirrorObjState={mirrorObjState} />
+        <Positions />
         <OpenPositions>
           <StylizedTitle>Available Options</StylizedTitle>
           <OptionCard

@@ -6,13 +6,15 @@ import InputAmount from 'components/input/InputAmount';
 
 import useHandleClicks from 'utilities/hooks/useHandleClicks';
 
+import mirrorObjectAtom from 'recoil/mirror/atom';
+import { useRecoilState, useRecoilValue } from 'recoil';
+
 interface Props {
   position: string;
   contract: string;
   modalIsOpen: boolean;
   positionToUpdate: string;
   setModalIsOpen: (arg0: boolean) => void;
-  mirrorObjState: any;
 }
 
 interface StyledProps {
@@ -24,8 +26,7 @@ function UpdateModal({
   position,
   contract,
   positionToUpdate,
-  setModalIsOpen,
-  mirrorObjState
+  setModalIsOpen
 }: Props) {
   const {
     handleClickMirrorDeposit,
@@ -39,6 +40,8 @@ function UpdateModal({
   const [amountToWithdraw, setAmountToWithdraw] = useState<any>(0);
   const [amountToBurn, setAmountToBurn] = useState<any>(0);
   const [amountToDepositMirror, setAmountToDepositMirror] = useState<any>(0);
+
+  const mirrorObject: any = useRecoilValue(mirrorObjectAtom);
 
   const handleClickCloseModal = async () => {
     return setModalIsOpen(false);
@@ -90,7 +93,7 @@ function UpdateModal({
           label="Burn mAssets"
         />
         <StyledBalance>
-          Available mBTC: {mirrorObjState.MBTC.balance * Math.pow(10, -6)}
+          Available mBTC: {mirrorObject.MBTC.balance}
         </StyledBalance>
         <Button
           children="Pay Back Debt"
