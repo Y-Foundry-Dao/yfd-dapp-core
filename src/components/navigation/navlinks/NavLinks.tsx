@@ -1,11 +1,11 @@
 import NavLink from 'components/navigation/navlink/NavLink';
 import styled from 'styled-components';
+import { useRecoilValue } from 'recoil';
+import navLinksAtom from 'recoil/navLinks/atom';
 
-interface Props {
-  navLinks: Array<string>;
-}
+function NavLinks() {
+  const navLinks = useRecoilValue(navLinksAtom);
 
-function NavLinks({ navLinks }: Props) {
   return (
     <Nav>
       <Ul>

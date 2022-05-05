@@ -76,11 +76,9 @@ export default function App() {
     <Main modalIsOpen={depositModalIsOpen || updateModalIsOpen}>
       <Blur modalIsOpen={depositModalIsOpen || updateModalIsOpen} />
       <HeaderBar
-        modalIsOpen={updateModalIsOpen || depositModalIsOpen}
         id="home"
         src={yLogo}
         alt="Y Logo"
-        navLinks={['about', 'medium', 'join community', 'brand kit', 'roadmap']}
         walletConnected={connectedWallet}
       />
       <StylizedDiv>

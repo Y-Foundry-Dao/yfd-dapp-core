@@ -11,35 +11,23 @@ interface Props {
   id: string;
   src: string;
   alt: string;
-  navLinks: Array<string>;
-  modalIsOpen: boolean;
   walletConnected: ConnectedWallet;
 }
-interface StyledProps {
-  modalIsOpen: boolean;
-}
 
-function HeaderBar({
-  id,
-  src,
-  alt,
-  navLinks,
-  modalIsOpen,
-  walletConnected
-}: Props) {
+function HeaderBar({ id, src, alt, walletConnected }: Props) {
   return (
-    <Header modalIsOpen={modalIsOpen} id={id}>
+    <Header id={id}>
       <Logo src={src} alt={alt} />
-      <NavLinks navLinks={navLinks} />
+      <NavLinks />
       <Toolbar>
         {walletConnected ? <ConnectedWalletMenu /> : <ConnectWalletMenu />}
       </Toolbar>
-      <Burger navLinks={navLinks} />
+      <Burger />
     </Header>
   );
 }
 
-const Header = styled.header<StyledProps>`
+const Header = styled.header`
   top: 0;
   display: flex;
   justify-content: space-between;

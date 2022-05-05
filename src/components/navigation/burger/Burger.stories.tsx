@@ -10,15 +10,9 @@ export default {
   title: 'Navigation/Burger',
   component: Burger,
   args: {
-    open: false,
-    navLinks: { ...TemplateBurgerMenu.args?.navLinks }
+    open: false
   },
   argTypes: {
-    navLinks: {
-      table: {
-        disable: true
-      }
-    },
     setOpen: {
       table: {
         disable: true
@@ -42,7 +36,7 @@ export const BurgerTemplate: ComponentStory<typeof Burger> = (args) => {
   const burgerRef = useRef<HTMLDivElement>(null);
 
   useOnClickOutside(burgerRef, () => setOpen(false));
-  return <Burger {...args} />;
+  return <Burger />;
 };
 
 export const LandingPage: ComponentStory<typeof Burger> = (args) => {
@@ -51,7 +45,7 @@ export const LandingPage: ComponentStory<typeof Burger> = (args) => {
   const burgerRef = useRef<HTMLDivElement>(null);
 
   useOnClickOutside(burgerRef, () => setOpen(false));
-  return <Burger {...args} />;
+  return <Burger />;
 };
 LandingPage.args = {
   navLinks: ['about', 'medium', 'join community', 'roadmap']
