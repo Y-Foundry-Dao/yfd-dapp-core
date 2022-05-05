@@ -17,7 +17,10 @@ import Positions from 'components/openPositions/Positions';
 
 import useContractRegistry from 'utilities/hooks/useContractRegistry';
 import useQuery from 'utilities/hooks/useQuery';
-import useContractDGSF from 'utilities/hooks/useContractDGSF';
+import modalIsOpenUpdateAtom from 'recoil/modalIsOpenUpdate/atom';
+import modalIsOpenDepositAtom from 'recoil/modalIsOpenDeposit/atom';
+import positionsAtom from 'recoil/positions/atom';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
 
 import mirrorObject from 'utilities/mirrorObject';
 import queryBalance from 'utilities/messagesQuery/balance';
@@ -27,16 +30,16 @@ interface Props {
 }
 
 export default function App() {
-  const [burgerIsOpen, setBurgerIsOpen] = useState<boolean>(false);
-  const [updateModalIsOpen, setUpdateModalIsOpen] = useState<boolean>(false);
-  const [positionsArray, setPositionsArray] = useState<any[]>([]);
+  const updateModalIsOpen = useRecoilValue(modalIsOpenUpdateAtom);
+  const depositModalIsOpen = useRecoilValue(modalIsOpenDepositAtom);
+  const setPositionsArray = useSetRecoilState(positionsAtom);
+
   const { queryRegistry } = useContractRegistry();
   const connectedWallet: any = useConnectedWallet();
   const { queryMsg } = useContractDGSF();
 
   const { queryAllPositions } = useQuery();
   const [depositModalIsOpen, setDepositModalIsOpen] = useState<boolean>(false);
-  const [mirrorObjState, setMirrorObjState] = useState<any>(mirrorObject);
 
   const getAssetBalances = async () => {
     if (!connectedWallet) {
@@ -107,20 +110,12 @@ export default function App() {
         src={yLogo}
         alt="Y Logo"
         navLinks={['about', 'medium', 'join community', 'brand kit', 'roadmap']}
-        burgerIsOpen={burgerIsOpen}
-        setBurgerIsOpen={setBurgerIsOpen}
         walletConnected={connectedWallet}
       />
       <StylizedDiv>
         <StyledPageTitle>Foundry</StyledPageTitle>
         <StylizedTitle>My Open Positions</StylizedTitle>
-        <Positions
-          updateModalIsOpen={updateModalIsOpen}
-          burgerIsOpen={burgerIsOpen}
-          setUpdateModalIsOpen={setUpdateModalIsOpen}
-          positions={positionsArray}
-          mirrorObjState={mirrorObjState}
-        />
+        <Positions mirrorObjState={mirrorObjState} />
         <OpenPositions>
           <StylizedTitle>Available Options</StylizedTitle>
           <OptionCard
@@ -128,17 +123,10 @@ export default function App() {
             alt="Degen Stable Farm logo"
             title="Degen Stable Farm"
             strategist="DR CLE4NCUTS"
-            modalIsOpen={depositModalIsOpen}
-            setModalIsOpen={setDepositModalIsOpen}
           />
         </OpenPositions>
       </StylizedDiv>
-      <FooterBar
-        burgerIsOpen={burgerIsOpen}
-        logo={longLogo}
-        alt="YFD Logo"
-        socialInfo={socialInfo}
-      />
+      <FooterBar logo={longLogo} alt="YFD Logo" socialInfo={socialInfo} />
     </Main>
   );
 }
