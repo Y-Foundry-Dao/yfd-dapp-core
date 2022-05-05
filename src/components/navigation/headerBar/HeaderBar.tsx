@@ -7,16 +7,11 @@ import { useConnectedWallet } from '@terra-money/wallet-provider';
 import { ConnectedWalletMenu } from 'components/buttons/connect/ConnectedWalletMenu';
 import { ConnectWalletMenu } from 'components/buttons/connect/ConnectWalletMenu';
 
-interface Props {
-  src: string;
-  alt: string;
-}
-
-function HeaderBar({ src, alt }: Props) {
+function HeaderBar() {
   const connectedWallet: any = useConnectedWallet();
   return (
     <Header id="home">
-      <Logo src={src} alt={alt} />
+      <Logo />
       <NavLinks />
       <Toolbar>
         {connectedWallet ? <ConnectedWalletMenu /> : <ConnectWalletMenu />}

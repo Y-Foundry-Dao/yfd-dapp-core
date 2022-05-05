@@ -8,7 +8,6 @@ import socialInfo from 'utilities/socialInfo';
 import HeaderBar from 'components/navigation/headerBar/HeaderBar';
 import FooterBar from 'components/footer/footerBar/FooterBar';
 
-import yLogo from 'assets/yfd/logo-orange.svg';
 import longLogo from 'assets/yfd/logo-horizontal-orange-white.svg';
 import dgsfLogo from 'assets/yfd/logo-dgsf.svg';
 
@@ -75,7 +74,7 @@ export default function App() {
   return (
     <Main modalIsOpen={depositModalIsOpen || updateModalIsOpen}>
       <Blur modalIsOpen={depositModalIsOpen || updateModalIsOpen} />
-      <HeaderBar src={yLogo} alt="Y Logo" />
+      <HeaderBar />
       <StylizedDiv>
         <StyledPageTitle>Foundry</StyledPageTitle>
         <StylizedTitle>My Open Positions</StylizedTitle>

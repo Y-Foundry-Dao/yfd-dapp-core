@@ -1,14 +1,10 @@
 import styled from 'styled-components';
+import yLogo from 'assets/yfd/logo-orange.svg';
 
-interface Props {
-  src: string;
-  alt: string;
-}
-
-function Logo({ src, alt }: Props) {
+function Logo() {
   return (
     <>
-      <Img src={src} alt={alt} />
+      <Img src={yLogo} alt="Y Logo" />
     </>
   );
 }
