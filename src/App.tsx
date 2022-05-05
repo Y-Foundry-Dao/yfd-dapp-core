@@ -3,8 +3,14 @@ import styled from 'styled-components';
 
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 
+import useContractRegistry from 'utilities/hooks/useContractRegistry';
+import useContractDGSF from 'utilities/hooks/useContractDGSF';
+import useQuery from 'utilities/hooks/useQuery';
+import queryBalance from 'utilities/messagesQuery/balance';
 import socialInfo from 'utilities/socialInfo';
 
+import OptionCard from 'components/availableOptionsCard/optionCard/OptionCard';
+import Positions from 'components/openPositions/Positions';
 import HeaderBar from 'components/navigation/headerBar/HeaderBar';
 import FooterBar from 'components/footer/footerBar/FooterBar';
 
@@ -12,19 +18,11 @@ import yLogo from 'assets/yfd/logo-orange.svg';
 import longLogo from 'assets/yfd/logo-horizontal-orange-white.svg';
 import dgsfLogo from 'assets/yfd/logo-dgsf.svg';
 
-import OptionCard from 'components/availableOptionsCard/optionCard/OptionCard';
-import Positions from 'components/openPositions/Positions';
-
-import useContractRegistry from 'utilities/hooks/useContractRegistry';
-import useContractDGSF from 'utilities/hooks/useContractDGSF';
-import useQuery from 'utilities/hooks/useQuery';
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import modalIsOpenUpdateAtom from 'recoil/modalIsOpenUpdate/atom';
 import modalIsOpenDepositAtom from 'recoil/modalIsOpenDeposit/atom';
 import positionsAtom from 'recoil/positions/atom';
-import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
-
 import mirrorObjectAtom from 'recoil/mirror/atom';
-import queryBalance from 'utilities/messagesQuery/balance';
 
 interface Props {
   modalIsOpen: boolean;
