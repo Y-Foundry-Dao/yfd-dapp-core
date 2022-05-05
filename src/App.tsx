@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 
 import { useConnectedWallet } from '@terra-money/wallet-provider';
@@ -75,12 +75,7 @@ export default function App() {
   return (
     <Main modalIsOpen={depositModalIsOpen || updateModalIsOpen}>
       <Blur modalIsOpen={depositModalIsOpen || updateModalIsOpen} />
-      <HeaderBar
-        id="home"
-        src={yLogo}
-        alt="Y Logo"
-        walletConnected={connectedWallet}
-      />
+      <HeaderBar src={yLogo} alt="Y Logo" />
       <StylizedDiv>
         <StyledPageTitle>Foundry</StyledPageTitle>
         <StylizedTitle>My Open Positions</StylizedTitle>

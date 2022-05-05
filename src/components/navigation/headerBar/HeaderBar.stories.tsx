@@ -24,11 +24,6 @@ export const Template: ComponentStory<typeof HeaderBar> = (args) => {
   return <HeaderBar {...args} />;
 };
 Template.argTypes = {
-  id: {
-    table: {
-      disable: true
-    }
-  },
   src: {
     table: {
       disable: true
