@@ -30,9 +30,9 @@ function AvailableAmount({ setAmount }: Props) {
           if (coin.denom === 'uusd') {
             return (
               <Div key={i}>
-                <AmountAvailable>
-                  {`${coin.amount * 10 ** -6} UST`}
-                </AmountAvailable>
+                <AmountAvailable>{`${
+                  coin.amount * 10 ** -6
+                } UST`}</AmountAvailable>
 
                 <Amount onClick={() => setAmount(coin.amount * 10 ** -6)}>
                   MAX
