@@ -1,13 +1,14 @@
 import styled from 'styled-components';
+import { useRecoilValue } from 'recoil';
+import navLinksAtom from 'recoil/navLinks/atom';
 
 interface Props {
   open: boolean;
   setOpen: (open: boolean) => void;
-  navLinks: Array<string>;
 }
 
-function Menu(props: Props) {
-  const { open, setOpen, navLinks } = props;
+function Menu({ open, setOpen }: Props) {
+  const navLinks = useRecoilValue(navLinksAtom);
 
   return (
     <StyledMenu open={open}>
