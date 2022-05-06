@@ -3,43 +3,25 @@ import Logo from 'components/navigation/logo/Logo';
 import NavLinks from 'components/navigation/navlinks/NavLinks';
 import Burger from 'components/navigation/burger/Burger';
 import Toolbar from '@mui/material/Toolbar';
+import { useConnectedWallet } from '@terra-money/wallet-provider';
 import { ConnectedWalletMenu } from 'components/buttons/connect/ConnectedWalletMenu';
 import { ConnectWalletMenu } from 'components/buttons/connect/ConnectWalletMenu';
-import { ConnectedWallet } from '@terra-money/wallet-provider';
 
-interface Props {
-  id: string;
-  src: string;
-  alt: string;
-  navLinks: Array<string>;
-  modalIsOpen: boolean;
-  walletConnected: ConnectedWallet;
-}
-interface StyledProps {
-  modalIsOpen: boolean;
-}
-
-function HeaderBar({
-  id,
-  src,
-  alt,
-  navLinks,
-  modalIsOpen,
-  walletConnected
-}: Props) {
+function HeaderBar() {
+  const connectedWallet: any = useConnectedWallet();
   return (
-    <Header modalIsOpen={modalIsOpen} id={id}>
-      <Logo src={src} alt={alt} />
-      <NavLinks navLinks={navLinks} />
+    <Header id="home">
+      <Logo />
+      <NavLinks />
       <Toolbar>
-        {walletConnected ? <ConnectedWalletMenu /> : <ConnectWalletMenu />}
+        {connectedWallet ? <ConnectedWalletMenu /> : <ConnectWalletMenu />}
       </Toolbar>
-      <Burger navLinks={navLinks} />
+      <Burger />
     </Header>
   );
 }
 
-const Header = styled.header<StyledProps>`
+const Header = styled.header`
   top: 0;
   display: flex;
   justify-content: space-between;

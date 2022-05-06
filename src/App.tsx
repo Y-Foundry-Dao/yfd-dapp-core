@@ -14,7 +14,6 @@ import Positions from 'components/openPositions/Positions';
 import HeaderBar from 'components/navigation/headerBar/HeaderBar';
 import FooterBar from 'components/footer/footerBar/FooterBar';
 
-import yLogo from 'assets/yfd/logo-orange.svg';
 import longLogo from 'assets/yfd/logo-horizontal-orange-white.svg';
 import dgsfLogo from 'assets/yfd/logo-dgsf.svg';
 
@@ -101,14 +100,7 @@ export default function App() {
   return (
     <Main modalIsOpen={depositModalIsOpen || updateModalIsOpen}>
       <Blur modalIsOpen={depositModalIsOpen || updateModalIsOpen} />
-      <HeaderBar
-        modalIsOpen={updateModalIsOpen || depositModalIsOpen}
-        id="home"
-        src={yLogo}
-        alt="Y Logo"
-        navLinks={['about', 'medium', 'join community', 'brand kit', 'roadmap']}
-        walletConnected={connectedWallet}
-      />
+      <HeaderBar />
       <StylizedDiv>
         <StyledPageTitle>Foundry</StyledPageTitle>
         <StylizedTitle>My Open Positions</StylizedTitle>
