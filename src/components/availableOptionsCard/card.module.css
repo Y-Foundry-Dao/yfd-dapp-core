@@ -1,10 +1,10 @@
 .card {
-  width: 400px;
+  width: 330px;
   margin: 3% 6%;
   padding: 2% 3% 3% 2%;
   border-radius: 20px;
   background: rgba(8, 6, 11, 0.75);
-  min-width: 400px;
+  min-width: 330px;
 }
   
   .front {

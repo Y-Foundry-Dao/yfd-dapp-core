@@ -31,7 +31,6 @@ const Input = styled.input`
   margin-top: 2%;
   color: ${(props) => `${props.theme.colors.color4}`};
   text-align: center;
-
   font-size: 1.2rem;
   font-weight: 600;
 `;
@@ -44,7 +43,7 @@ const Label = styled.label`
 
 const StyledTitle = styled.h2`
   text-shadow: 1px 3px 6px black, 0 0 0 gray, 1px 4px 2px #333;
-  margin: 0% 0 0 0;
+  margin: 15% 0 0 0;
   padding-bottom: 0px;
   font-size: 1em;
   color: ${(props) => `${props.theme.colors.color3}`};

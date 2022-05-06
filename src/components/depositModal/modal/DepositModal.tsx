@@ -104,10 +104,12 @@ function DepositModal({
             );
           }}
         />
+        <LinkAdvanced
+          onClick={() => setDepositModalIsOpen(!depositModalIsOpen)}
+        >
+          👷
+        </LinkAdvanced>
       </DepositButtons>
-      <LinkAdvanced onClick={() => setDepositModalIsOpen(!depositModalIsOpen)}>
-        👷 authorized personal only
-      </LinkAdvanced>
       {depositModalIsOpen ? (
         <StyledAdvanced>
           <StyledAdvancedAngle>ADVANCED!</StyledAdvancedAngle>
@@ -147,9 +149,10 @@ function DepositModal({
 }
 const DepositButtons = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 4%;
+  align-items: stretch;
+  justify-content: space-evenly;
+  margin-top: 25%;
+  width: 100%;
 `;
 
 const StyledAdvanced = styled.div`
@@ -160,8 +163,10 @@ const StyledAdvanced = styled.div`
 
 const DepositButton = styled(Button)`
   align-self: center;
-  margin: 15% 5% 5% 5%;
+  width: auto;
   cursor: pointer;
+  margin-right: 5%;
+  letter-spacing: 2px;
 `;
 const InstantiateButton = styled(Button)`
   color: ${(props) => `${props.theme.colors.color3}`};
@@ -183,15 +188,11 @@ const InstantiateButton = styled(Button)`
 const LinkAdvanced = styled.button`
   color: ${(props) => `${props.theme.colors.color3}`};
   display: block;
+  font-size: 2em;
   text-decoration: none;
-  width: auto;
-  margin-top: 30%;
-  margin-left: 10px;
-  margin-bottom: 5%;
-  background: linear-gradient(hsl(203, 25%, 8%), hsl(203, 50%, 0%));
-  padding: 0.6rem;
-  padding-left: 2rem;
-  padding-right: 2.2rem;
+  width: 25%;
+  background: linear-gradient(hsl(203, 25%, 58%), hsl(265, 30%, 32%));
+  padding-bottom: 5%;
   text-align: center;
   border-top: 1px solid hsl(215, 5%, 50%);
   border-right: 1px solid hsl(215, 5%, 25%);
