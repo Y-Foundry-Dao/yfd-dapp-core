@@ -3,13 +3,8 @@ import styled from 'styled-components';
 
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 
-import socialInfo from 'utilities/socialInfo';
-
 import HeaderBar from 'components/navigation/headerBar/HeaderBar';
 import FooterBar from 'components/footer/footerBar/FooterBar';
-
-import longLogo from 'assets/yfd/logo-horizontal-orange-white.svg';
-import dgsfLogo from 'assets/yfd/logo-dgsf.svg';
 
 import OptionCard from 'components/availableOptionsCard/optionCard/OptionCard';
 import Positions from 'components/openPositions/Positions';
@@ -81,15 +76,10 @@ export default function App() {
         <Positions />
         <OpenPositions>
           <StylizedTitle>Available Options</StylizedTitle>
-          <OptionCard
-            src={dgsfLogo}
-            alt="Degen Stable Farm logo"
-            title="Degen Stable Farm"
-            strategist="DR CLE4NCUTS"
-          />
+          <OptionCard />
         </OpenPositions>
       </StylizedDiv>
-      <FooterBar logo={longLogo} alt="YFD Logo" socialInfo={socialInfo} />
+      <FooterBar />
     </Main>
   );
 }

@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 
-interface Props {
-  strategist: string;
-}
-
-function Strategist({ strategist }: Props) {
-  return <P>{strategist}</P>;
+function Strategist() {
+  return <P>DR CLE4NCUTS</P>;
 }
 
 const P = styled.p`

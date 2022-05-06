@@ -1,30 +1,17 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import positionToUpdateAtom from 'recoil/positionToUpdate/atom';
+
 import Button from 'components/buttons/basic/Button';
 import InputAmount from 'components/input/InputAmount';
 
 import useHandleClicks from 'utilities/hooks/useHandleClicks';
+import contractForPositionAtom from 'recoil/contractForPosition/atom';
+import modalIsOpenUpdateAtom from 'recoil/modalIsOpenUpdate/atom';
 
-interface Props {
-  position: string;
-  contract: string;
-  modalIsOpen: boolean;
-  positionToUpdate: string;
-  setModalIsOpen: (arg0: boolean) => void;
-}
-
-interface StyledProps {
-  position: string;
-  positionToUpdate: string;
-}
-
-function UpdateModal({
-  position,
-  contract,
-  positionToUpdate,
-  setModalIsOpen
-}: Props) {
+function UpdateModal() {
   const {
     handleClickMirrorDeposit,
     handleClickMirrorBurn,
@@ -32,6 +19,9 @@ function UpdateModal({
     handleClickMirrorWithdraw,
     handleClickDGSFDeposit
   } = useHandleClicks();
+  const setUpdateModalIsOpen = useSetRecoilState(modalIsOpenUpdateAtom);
+  const contractForPosition = useRecoilValue(contractForPositionAtom);
+  const positionToUpdate = useRecoilValue(positionToUpdateAtom);
   const [amountToDepositDgsf, setAmountToDepositDgsf] = useState<any>(0);
   const [amountToBorrow, setAmountToBorrow] = useState<any>(0);
   const [amountToWithdraw, setAmountToWithdraw] = useState<any>(0);
@@ -39,14 +29,14 @@ function UpdateModal({
   const [amountToDepositMirror, setAmountToDepositMirror] = useState<any>(0);
 
   const handleClickCloseModal = async () => {
-    return setModalIsOpen(false);
+    return setUpdateModalIsOpen(false);
   };
 
   return (
-    <ModalHolder position={position} positionToUpdate={positionToUpdate}>
+    <ModalHolder>
       <Modal>
         <CloseButton onClick={handleClickCloseModal}>x</CloseButton>
-        <Header>Degen Stable Farm ID: {position}</Header>
+        <Header>Degen Stable Farm ID: {positionToUpdate}</Header>
 
         <InputAmount
           amount={Number(amountToDepositDgsf)}
@@ -58,7 +48,7 @@ function UpdateModal({
           disabled={false}
           onClick={async () => {
             return await handleClickDGSFDeposit(
-              contract,
+              contractForPosition,
               positionToUpdate,
               amountToDepositDgsf
             );
@@ -75,8 +65,8 @@ function UpdateModal({
           disabled={false}
           onClick={async () => {
             return await handleClickMirrorBorrow(
-              contract,
-              position,
+              contractForPosition,
+              positionToUpdate,
               Number(amountToBorrow)
             );
           }}
@@ -92,7 +82,7 @@ function UpdateModal({
           disabled={false}
           onClick={async () => {
             return await handleClickMirrorBurn(
-              contract,
+              contractForPosition,
               positionToUpdate,
               amountToBurn
             );
@@ -109,8 +99,8 @@ function UpdateModal({
           disabled={false}
           onClick={async () => {
             return await handleClickMirrorWithdraw(
-              contract,
-              position,
+              contractForPosition,
+              positionToUpdate,
               Number(amountToWithdraw)
             );
           }}
@@ -126,7 +116,7 @@ function UpdateModal({
           disabled={false}
           onClick={async () => {
             return await handleClickMirrorDeposit(
-              contract,
+              contractForPosition,
               positionToUpdate,
               amountToDepositMirror
             );
@@ -153,7 +143,7 @@ const CloseButton = styled.button`
   font-size: 1.4rem;
 `;
 
-const ModalHolder = styled.div<StyledProps>`
+const ModalHolder = styled.div`
   position: fixed;
   left: 18%;
   top: 0;
