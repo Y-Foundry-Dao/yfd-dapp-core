@@ -7,24 +7,12 @@ import InputAmount from 'components/input/InputAmount';
 import useHandleClicks from 'utilities/hooks/useHandleClicks';
 
 interface Props {
-  position: string;
   contract: string;
-  modalIsOpen: boolean;
   positionToUpdate: string;
   setModalIsOpen: (arg0: boolean) => void;
 }
 
-interface StyledProps {
-  position: string;
-  positionToUpdate: string;
-}
-
-function UpdateModal({
-  position,
-  contract,
-  positionToUpdate,
-  setModalIsOpen
-}: Props) {
+function UpdateModal({ contract, positionToUpdate, setModalIsOpen }: Props) {
   const {
     handleClickMirrorDeposit,
     handleClickMirrorBurn,
@@ -43,10 +31,10 @@ function UpdateModal({
   };
 
   return (
-    <ModalHolder position={position} positionToUpdate={positionToUpdate}>
+    <ModalHolder>
       <Modal>
         <CloseButton onClick={handleClickCloseModal}>x</CloseButton>
-        <Header>Degen Stable Farm ID: {position}</Header>
+        <Header>Degen Stable Farm ID: {positionToUpdate}</Header>
 
         <InputAmount
           amount={Number(amountToDepositDgsf)}
@@ -76,7 +64,7 @@ function UpdateModal({
           onClick={async () => {
             return await handleClickMirrorBorrow(
               contract,
-              position,
+              positionToUpdate,
               Number(amountToBorrow)
             );
           }}
@@ -110,7 +98,7 @@ function UpdateModal({
           onClick={async () => {
             return await handleClickMirrorWithdraw(
               contract,
-              position,
+              positionToUpdate,
               Number(amountToWithdraw)
             );
           }}
@@ -153,7 +141,7 @@ const CloseButton = styled.button`
   font-size: 1.4rem;
 `;
 
-const ModalHolder = styled.div<StyledProps>`
+const ModalHolder = styled.div`
   position: fixed;
   left: 18%;
   top: 0;

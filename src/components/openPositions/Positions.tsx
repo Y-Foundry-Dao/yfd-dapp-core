@@ -21,10 +21,8 @@ function Positions() {
     <OpenPositions>
       {updateModalIsOpen ? (
         <UpdateModal
-          position={positionToUpdate}
           positionToUpdate={positionToUpdate}
           contract={contractForPosition}
-          modalIsOpen={updateModalIsOpen}
           setModalIsOpen={setUpdateModalIsOpen}
         />
       ) : null}
