@@ -1,32 +1,20 @@
 import styled from 'styled-components';
 
+import longLogo from 'assets/yfd/logo-horizontal-orange-white.svg';
 import SocialIcons from 'components/footer/socialIcons/SocialIcons';
 import burgerAtom from 'recoil/burger/atom';
 import { useRecoilState } from 'recoil';
-
-type SocialId = string;
 
 interface Footer {
   burgerIsOpen: boolean;
 }
 
-interface Social {
-  link: string;
-  icon: JSX.Element;
-}
-
-interface Props {
-  logo: string;
-  alt: string;
-  socialInfo: Record<SocialId, Social>;
-}
-
-function FooterBar({ logo, alt, socialInfo }: Props) {
+function FooterBar() {
   const [burgerIsOpen] = useRecoilState(burgerAtom);
   return (
     <Footer burgerIsOpen={burgerIsOpen}>
-      <Img src={logo} alt={alt} />
-      <SocialIcons socialInfo={socialInfo} />
+      <Img src={longLogo} alt="YFD Logo" />
+      <SocialIcons />
     </Footer>
   );
 }

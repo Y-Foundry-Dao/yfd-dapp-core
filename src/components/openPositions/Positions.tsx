@@ -1,45 +1,22 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import PositionCard from './PositionCard';
 import UpdateModal from 'components/openPositions/UpdateModal';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import burgerAtom from 'recoil/burger/atom';
 import modalIsOpenUpdateAtom from 'recoil/modalIsOpenUpdate/atom';
 import positionsAtom from 'recoil/positions/atom';
 
 function Positions() {
-  const [contractForPosition, setContractForPosition] = useState('');
-  const [positionToUpdate, setPositionToUpdate] = useState('');
-
-  const [updateModalIsOpen, setUpdateModalIsOpen] = useRecoilState(
-    modalIsOpenUpdateAtom
-  );
-
+  const modalIsOpenUpdate = useRecoilValue(modalIsOpenUpdateAtom);
   const positions = useRecoilValue(positionsAtom);
   const burgerIsOpen = useRecoilValue(burgerAtom);
 
   return burgerIsOpen === false ? (
     <OpenPositions>
-      {updateModalIsOpen ? (
-        <UpdateModal
-          position={positionToUpdate}
-          positionToUpdate={positionToUpdate}
-          contract={contractForPosition}
-          modalIsOpen={updateModalIsOpen}
-          setModalIsOpen={setUpdateModalIsOpen}
-        />
-      ) : null}
-      {positions.map((position: any, i: any) => {
+      {modalIsOpenUpdate ? <UpdateModal /> : null}
+      {positions.map((position: any, i: number) => {
         return (
-          <PositionCard
-            key={i}
-            modalIsOpen={updateModalIsOpen}
-            setModalIsOpen={setUpdateModalIsOpen}
-            position={position[0]}
-            contract={position[1]}
-            setPositionToUpdate={setPositionToUpdate}
-            setContractForPosition={setContractForPosition}
-          />
+          <PositionCard key={i} position={position[0]} contract={position[1]} />
         );
       })}
     </OpenPositions>

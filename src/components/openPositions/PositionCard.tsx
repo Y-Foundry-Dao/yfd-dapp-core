@@ -4,36 +4,36 @@ import styled from 'styled-components';
 import cardstyles from './card.module.css';
 import PositionInfo from 'components/openPositions/PositionInfo';
 import ReactCardFlip from 'react-card-flip';
+import positionToUpdateAtom from 'recoil/positionToUpdate/atom';
+import { useSetRecoilState, useRecoilState } from 'recoil';
 
 import cardLogoYFD from 'src/assets/yfd/logo_square_orange_64_transparent.png';
+import contractForPositionAtom from 'recoil/contractForPosition/atom';
+import modalIsOpenUpdateAtom from 'recoil/modalIsOpenUpdate/atom';
 
 interface Props {
   position: string;
   contract: string;
-  modalIsOpen: boolean;
-  setModalIsOpen: (arg0: boolean) => void;
-  setPositionToUpdate: (arg0: string) => void;
-  setContractForPosition: (arg0: string) => void;
 }
 
 interface StyledProps {
-  modalIsOpen: boolean;
+  modalIsOpenUpdate: boolean;
 }
 
-function PositionCard({
-  position,
-  contract,
-  modalIsOpen,
-  setModalIsOpen,
-  setPositionToUpdate,
-  setContractForPosition
-}: Props) {
+function PositionCard({ position, contract }: Props) {
+  const [modalIsOpenUpdate, setModalIsOpenUpdate] = useRecoilState(
+    modalIsOpenUpdateAtom
+  );
+  const setPositionToUpdate = useSetRecoilState(positionToUpdateAtom);
+  const setContractForPosition = useSetRecoilState(contractForPositionAtom);
+  const [isFlipped, setIsFlipped] = useState(false);
+
   const handleClick = () => {
     setPositionToUpdate(position);
     setContractForPosition(contract);
-    return setModalIsOpen(true);
+    return setModalIsOpenUpdate(true);
   };
-  const [isFlipped, setIsFlipped] = useState(false);
+
   const handleFlip = (e: React.MouseEvent) => {
     e.preventDefault();
     return setIsFlipped(!isFlipped);
@@ -42,7 +42,10 @@ function PositionCard({
   return (
     <ReactCardFlip isFlipped={isFlipped}>
       <div className={cardstyles.card}>
-        <Position modalIsOpen={modalIsOpen} className={cardstyles.front}>
+        <Position
+          modalIsOpenUpdate={modalIsOpenUpdate}
+          className={cardstyles.front}
+        >
           <div className={CardLogo}>
             <img src={cardLogoYFD} />
           </div>
@@ -60,7 +63,10 @@ function PositionCard({
         </Position>
       </div>
       <div className={cardstyles.card}>
-        <Position modalIsOpen={modalIsOpen} className={cardstyles.back}>
+        <Position
+          modalIsOpenUpdate={modalIsOpenUpdate}
+          className={cardstyles.back}
+        >
           <CardBackTitle>Manage Position</CardBackTitle>
           <div>#{position}</div>
           <div>
@@ -186,7 +192,8 @@ const Position = styled.div<StyledProps>`
   min-width: 300px;
   z-index: 1;
   overflow: hidden;
-  filter: ${({ modalIsOpen }) => (modalIsOpen ? 'blur(20px)' : 'blur(0)')};
+  filter: ${({ modalIsOpenUpdate }) =>
+    modalIsOpenUpdate ? 'blur(20px)' : 'blur(0)'};
 `;
 
 export default PositionCard;
