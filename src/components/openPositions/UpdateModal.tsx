@@ -1,18 +1,17 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import positionToUpdateAtom from 'recoil/positionToUpdate/atom';
+
 import Button from 'components/buttons/basic/Button';
 import InputAmount from 'components/input/InputAmount';
 
 import useHandleClicks from 'utilities/hooks/useHandleClicks';
+import contractForPositionAtom from 'recoil/contractForPosition/atom';
+import modalIsOpenUpdateAtom from 'recoil/modalIsOpenUpdate/atom';
 
-interface Props {
-  contract: string;
-  positionToUpdate: string;
-  setModalIsOpen: (arg0: boolean) => void;
-}
-
-function UpdateModal({ contract, positionToUpdate, setModalIsOpen }: Props) {
+function UpdateModal() {
   const {
     handleClickMirrorDeposit,
     handleClickMirrorBurn,
@@ -20,6 +19,9 @@ function UpdateModal({ contract, positionToUpdate, setModalIsOpen }: Props) {
     handleClickMirrorWithdraw,
     handleClickDGSFDeposit
   } = useHandleClicks();
+  const setUpdateModalIsOpen = useSetRecoilState(modalIsOpenUpdateAtom);
+  const contractForPosition = useRecoilValue(contractForPositionAtom);
+  const positionToUpdate = useRecoilValue(positionToUpdateAtom);
   const [amountToDepositDgsf, setAmountToDepositDgsf] = useState<any>(0);
   const [amountToBorrow, setAmountToBorrow] = useState<any>(0);
   const [amountToWithdraw, setAmountToWithdraw] = useState<any>(0);
@@ -27,7 +29,7 @@ function UpdateModal({ contract, positionToUpdate, setModalIsOpen }: Props) {
   const [amountToDepositMirror, setAmountToDepositMirror] = useState<any>(0);
 
   const handleClickCloseModal = async () => {
-    return setModalIsOpen(false);
+    return setUpdateModalIsOpen(false);
   };
 
   return (
@@ -46,7 +48,7 @@ function UpdateModal({ contract, positionToUpdate, setModalIsOpen }: Props) {
           disabled={false}
           onClick={async () => {
             return await handleClickDGSFDeposit(
-              contract,
+              contractForPosition,
               positionToUpdate,
               amountToDepositDgsf
             );
@@ -63,7 +65,7 @@ function UpdateModal({ contract, positionToUpdate, setModalIsOpen }: Props) {
           disabled={false}
           onClick={async () => {
             return await handleClickMirrorBorrow(
-              contract,
+              contractForPosition,
               positionToUpdate,
               Number(amountToBorrow)
             );
@@ -80,7 +82,7 @@ function UpdateModal({ contract, positionToUpdate, setModalIsOpen }: Props) {
           disabled={false}
           onClick={async () => {
             return await handleClickMirrorBurn(
-              contract,
+              contractForPosition,
               positionToUpdate,
               amountToBurn
             );
@@ -97,7 +99,7 @@ function UpdateModal({ contract, positionToUpdate, setModalIsOpen }: Props) {
           disabled={false}
           onClick={async () => {
             return await handleClickMirrorWithdraw(
-              contract,
+              contractForPosition,
               positionToUpdate,
               Number(amountToWithdraw)
             );
@@ -114,7 +116,7 @@ function UpdateModal({ contract, positionToUpdate, setModalIsOpen }: Props) {
           disabled={false}
           onClick={async () => {
             return await handleClickMirrorDeposit(
-              contract,
+              contractForPosition,
               positionToUpdate,
               amountToDepositMirror
             );

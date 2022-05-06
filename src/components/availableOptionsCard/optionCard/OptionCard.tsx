@@ -2,26 +2,19 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { useConnectedWallet } from '@terra-money/wallet-provider';
-
 import ReactCardFlip from 'react-card-flip';
-import cardstyles from 'components/availableOptionsCard/card.module.css';
 
+import dgsfLogo from 'assets/yfd/logo-dgsf.svg';
+
+import cardstyles from 'components/availableOptionsCard/card.module.css';
 import Title from 'components/availableOptionsCard/title/Title';
 import Strategist from 'components/availableOptionsCard/strategist/Strategist';
-
 import DepositModal from 'components/depositModal/modal/DepositModal';
-import useInstantiateContract from 'utilities/hooks/useInstantiateContract';
 
+import useInstantiateContract from 'utilities/hooks/useInstantiateContract';
 import useContractRegistry from 'utilities/hooks/useContractRegistry';
 
-interface Props {
-  src: string;
-  alt: string;
-  title: string;
-  strategist: string;
-}
-
-function strategyCard({ src, alt, title, strategist }: Props) {
+function strategyCard() {
   const [isFlipped, setIsFlipped] = useState(false);
   const [contractToDeposit, setContractToDeposit] = useState('');
 
@@ -66,15 +59,15 @@ function strategyCard({ src, alt, title, strategist }: Props) {
         <CardFront className={cardstyles.front}>
           <Logo>
             <img
-              src={src}
-              alt={alt}
+              src={dgsfLogo}
+              alt="Degen Stable Farm logo"
               className={cardstyles.cardImage}
               onClick={(e) => handleFlip(e)}
             />
           </Logo>
           <Text>
-            <Title title={title} />
-            <Strategist strategist={strategist} />
+            <Title />
+            <Strategist />
           </Text>
           <ButtonFlip onClick={(e) => handleFlip(e)}>ENTER</ButtonFlip>
           <StyledTitle>More Information</StyledTitle>
@@ -89,8 +82,8 @@ function strategyCard({ src, alt, title, strategist }: Props) {
           <div className={cardstyles.backInner}>
             <Logo>
               <img
-                src={src}
-                alt={alt}
+                src={dgsfLogo}
+                alt="Degen Stable Farm logo"
                 className={cardstyles.cardImageBack}
                 onClick={(e) => handleFlip(e)}
               />

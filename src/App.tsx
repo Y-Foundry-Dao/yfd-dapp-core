@@ -7,7 +7,6 @@ import HeaderBar from 'components/navigation/headerBar/HeaderBar';
 import FooterBar from 'components/footer/footerBar/FooterBar';
 
 import yLogo from 'assets/yfd/logo-orange.svg';
-import dgsfLogo from 'assets/yfd/logo-dgsf.svg';
 
 import OptionCard from 'components/availableOptionsCard/optionCard/OptionCard';
 import Positions from 'components/openPositions/Positions';
@@ -84,12 +83,7 @@ export default function App() {
         <Positions />
         <OpenPositions>
           <StylizedTitle>Available Options</StylizedTitle>
-          <OptionCard
-            src={dgsfLogo}
-            alt="Degen Stable Farm logo"
-            title="Degen Stable Farm"
-            strategist="DR CLE4NCUTS"
-          />
+          <OptionCard />
         </OpenPositions>
       </StylizedDiv>
       <FooterBar />

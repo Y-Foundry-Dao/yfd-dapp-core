@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 
-interface Props {
-  title: string;
-}
-
-function Title({ title }: Props) {
-  return <P>{title}</P>;
+function Title() {
+  return <P>Degen Stable Farm</P>;
 }
 
 const P = styled.p`
