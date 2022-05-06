@@ -1,15 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 
 import { useConnectedWallet } from '@terra-money/wallet-provider';
-
-import socialInfo from 'utilities/socialInfo';
 
 import HeaderBar from 'components/navigation/headerBar/HeaderBar';
 import FooterBar from 'components/footer/footerBar/FooterBar';
 
 import yLogo from 'assets/yfd/logo-orange.svg';
-import longLogo from 'assets/yfd/logo-horizontal-orange-white.svg';
 import dgsfLogo from 'assets/yfd/logo-dgsf.svg';
 
 import OptionCard from 'components/availableOptionsCard/optionCard/OptionCard';
@@ -95,7 +92,7 @@ export default function App() {
           />
         </OpenPositions>
       </StylizedDiv>
-      <FooterBar logo={longLogo} alt="YFD Logo" socialInfo={socialInfo} />
+      <FooterBar />
     </Main>
   );
 }

@@ -1,17 +1,7 @@
 import styled from 'styled-components';
+import socialInfo from 'utilities/socialInfo';
 
-type SocialId = string;
-
-interface Social {
-  link: string;
-  icon: JSX.Element;
-}
-
-interface Props {
-  socialInfo: Record<SocialId, Social>;
-}
-
-function SocialIcons({ socialInfo }: Props) {
+function SocialIcons() {
   return (
     <Ul>
       {Object.values(socialInfo).map((social, i) => {
