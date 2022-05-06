@@ -3,18 +3,22 @@ import styled from 'styled-components';
 
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 
-import HeaderBar from 'components/navigation/headerBar/HeaderBar';
-import FooterBar from 'components/footer/footerBar/FooterBar';
+import useContractRegistry from 'utilities/hooks/useContractRegistry';
+import useContractDGSF from 'utilities/hooks/useContractDGSF';
+import useQuery from 'utilities/hooks/useQuery';
+import queryBalance from 'utilities/messagesQuery/balance';
 
 import OptionCard from 'components/availableOptionsCard/optionCard/OptionCard';
 import Positions from 'components/openPositions/Positions';
+import HeaderBar from 'components/navigation/headerBar/HeaderBar';
+import FooterBar from 'components/footer/footerBar/FooterBar';
 
-import useContractRegistry from 'utilities/hooks/useContractRegistry';
-import useQuery from 'utilities/hooks/useQuery';
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
+
 import modalIsOpenUpdateAtom from 'recoil/modalIsOpenUpdate/atom';
 import modalIsOpenDepositAtom from 'recoil/modalIsOpenDeposit/atom';
 import positionsAtom from 'recoil/positions/atom';
-import { useSetRecoilState, useRecoilValue } from 'recoil';
+import mirrorObjectAtom from 'recoil/mirror/atom';
 
 interface Props {
   modalIsOpen: boolean;
@@ -25,10 +29,36 @@ export default function App() {
   const depositModalIsOpen = useRecoilValue(modalIsOpenDepositAtom);
   const setPositionsArray = useSetRecoilState(positionsAtom);
 
+  const [mirrorObject, setMirrorObject] = useRecoilState(mirrorObjectAtom);
+
   const { queryRegistry } = useContractRegistry();
   const connectedWallet: any = useConnectedWallet();
+  const { queryMsg } = useContractDGSF();
 
   const { queryAllPositions } = useQuery();
+
+  const getAssetBalances = async () => {
+    if (!connectedWallet) {
+      return;
+    }
+    const walletAddress = connectedWallet.walletAddress;
+    const queryBalanceMessage = queryBalance(walletAddress);
+    const newObj: any = {};
+
+    Object.entries(mirrorObject).map(async ([key, value], i) => {
+      const balanceResponse: any = await queryMsg(
+        value.contract,
+        queryBalanceMessage
+      );
+      const balance = balanceResponse.balance;
+      newObj[key] = { contract: value.contract, balance };
+      return setMirrorObject({
+        ...newObj
+      });
+    });
+
+    return;
+  };
 
   const getAllOpenPositions = async () => {
     if (!connectedWallet) {
@@ -60,10 +90,8 @@ export default function App() {
     return openPositionsIndex;
   };
   useEffect(() => {
-    const getOpenPositions = async () => {
-      await getAllOpenPositions();
-    };
-    getOpenPositions();
+    getAssetBalances();
+    getAllOpenPositions();
   }, [connectedWallet]);
 
   return (
