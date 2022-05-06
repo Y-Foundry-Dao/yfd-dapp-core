@@ -6,8 +6,6 @@ import { useConnectedWallet } from '@terra-money/wallet-provider';
 import HeaderBar from 'components/navigation/headerBar/HeaderBar';
 import FooterBar from 'components/footer/footerBar/FooterBar';
 
-import yLogo from 'assets/yfd/logo-orange.svg';
-
 import OptionCard from 'components/availableOptionsCard/optionCard/OptionCard';
 import Positions from 'components/openPositions/Positions';
 
@@ -71,12 +69,7 @@ export default function App() {
   return (
     <Main modalIsOpen={depositModalIsOpen || updateModalIsOpen}>
       <Blur modalIsOpen={depositModalIsOpen || updateModalIsOpen} />
-      <HeaderBar
-        id="home"
-        src={yLogo}
-        alt="Y Logo"
-        walletConnected={connectedWallet}
-      />
+      <HeaderBar />
       <StylizedDiv>
         <StyledPageTitle>Foundry</StyledPageTitle>
         <StylizedTitle>My Open Positions</StylizedTitle>
