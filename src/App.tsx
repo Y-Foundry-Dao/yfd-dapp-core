@@ -3,18 +3,16 @@ import styled from 'styled-components';
 
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 
-import HeaderBar from 'components/navigation/headerBar/HeaderBar';
+import HeaderBar from 'components/header/headerBar/HeaderBar';
 import FooterBar from 'components/footer/footerBar/FooterBar';
 
-import OptionCard from 'components/availableOptionsCard/optionCard/OptionCard';
-import Positions from 'components/openPositions/Positions';
-
-import useContractRegistry from 'utilities/hooks/useContractRegistry';
-import useQuery from 'utilities/hooks/useQuery';
+import useContractRegistry from 'hooks/useContractRegistry';
+import useQuery from 'hooks/useQuery';
 import modalIsOpenUpdateAtom from 'recoil/modalIsOpenUpdate/atom';
 import modalIsOpenDepositAtom from 'recoil/modalIsOpenDeposit/atom';
 import positionsAtom from 'recoil/positions/atom';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
+import Body from 'components/body/Body';
 
 interface Props {
   modalIsOpen: boolean;
@@ -70,15 +68,7 @@ export default function App() {
     <Main modalIsOpen={depositModalIsOpen || updateModalIsOpen}>
       <Blur modalIsOpen={depositModalIsOpen || updateModalIsOpen} />
       <HeaderBar />
-      <StylizedDiv>
-        <StyledPageTitle>Foundry</StyledPageTitle>
-        <StylizedTitle>My Open Positions</StylizedTitle>
-        <Positions />
-        <OpenPositions>
-          <StylizedTitle>Available Options</StylizedTitle>
-          <OptionCard />
-        </OpenPositions>
-      </StylizedDiv>
+      <Body />
       <FooterBar />
     </Main>
   );
@@ -87,54 +77,6 @@ export default function App() {
 const Main = styled.main<Props>`
   z-index: 0;
   pointer-events: ${({ modalIsOpen }) => (modalIsOpen ? 'none' : 'auto')};
-`;
-
-const StylizedDiv = styled.div`
-  width: 92%;
-  margin: auto;
-  padding-bottom: 30px;
-  color: ${(props) => `${props.theme.colors.color5}`};
-`;
-
-const StylizedTitle = styled.h2`
-  text-shadow: 1px 3px 6px black, 0 0 0 gray, 1px 4px 2px #333;
-  margin-bottom: -1%;
-  margin-top: 3%;
-  color: ${(props) => `${props.theme.colors.color3}`};
-  display: grid;
-  grid-template-columns: 1fr max-content 1fr;
-  grid-template-rows: 27px 0;
-  grid-gap: 20px;
-  align-items: center;
-
-  :after,
-  :before {
-    content: ' ';
-    display: block;
-    border-bottom: 1px solid ${(props) => `${props.theme.colors.color3}`};
-    box-shadow: 0 6px 7px -7px ${(props) => `${props.theme.colors.color1}`};
-    height: 5px;
-  }
-`;
-
-const StyledPageTitle = styled.h1`
-  text-shadow: 1px 4px 6px black, 0 0 0 gray, 1px 4px 2px orange;
-  text-align: center;
-  position: relative;
-  width: 100%;
-  margin: 2% auto 0 auto;
-  text-transform: uppercase;
-  text-rendering: optimizeLegibility;
-  letter-spacing: 0.3em;
-  text-shadow: 0px 1px 0 ${(props) => `${props.theme.colors.color1}`},
-    4px 4px 0 #333;
-  color: ${(props) => `${props.theme.colors.color3}`};
-  border-bottom: 5px solid ${(props) => `${props.theme.colors.color3}`};
-  border-top: 5px solid ${(props) => `${props.theme.colors.color3}`};
-`;
-
-const OpenPositions = styled.div`
-  color: ${(props) => `${props.theme.colors.color5}`};
 `;
 
 const Blur = styled.div<Props>`
