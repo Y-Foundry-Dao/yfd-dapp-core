@@ -51,7 +51,7 @@ export default function App() {
         queryBalanceMessage
       );
       const balance = balanceResponse.balance;
-      newObj[key] = { contract: value.contract, balance };
+      newObj[key] = { contract: value.contract, label: value.label, balance };
       return setMirrorObject({
         ...newObj
       });
