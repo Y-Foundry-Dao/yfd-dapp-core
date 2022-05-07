@@ -11,6 +11,8 @@ import useHandleClicks from 'hooks/useHandleClicks';
 import contractForPositionAtom from 'recoil/contractForPosition/atom';
 import modalIsOpenUpdateAtom from 'recoil/modalIsOpenUpdate/atom';
 
+import mirrorObjectAtom from 'recoil/mirror/atom';
+
 function UpdateModal() {
   const {
     handleClickMirrorDeposit,
@@ -27,6 +29,8 @@ function UpdateModal() {
   const [amountToWithdraw, setAmountToWithdraw] = useState<any>(0);
   const [amountToBurn, setAmountToBurn] = useState<any>(0);
   const [amountToDepositMirror, setAmountToDepositMirror] = useState<any>(0);
+
+  const mirrorObject: any = useRecoilValue(mirrorObjectAtom);
 
   const handleClickCloseModal = async () => {
     return setUpdateModalIsOpen(false);
@@ -77,6 +81,9 @@ function UpdateModal() {
           setAmount={setAmountToBurn}
           label="Burn mAssets"
         />
+        <StyledBalance>
+          Available mBTC: {mirrorObject.MBTC.balance}
+        </StyledBalance>
         <Button
           children="Pay Back Debt"
           disabled={false}
@@ -126,6 +133,10 @@ function UpdateModal() {
     </ModalHolder>
   );
 }
+
+const StyledBalance = styled.p`
+  color: white;
+`;
 
 const Header = styled.h2`
   align-self: center;

@@ -11,8 +11,12 @@ import useQuery from 'hooks/useQuery';
 import modalIsOpenUpdateAtom from 'recoil/modalIsOpenUpdate/atom';
 import modalIsOpenDepositAtom from 'recoil/modalIsOpenDeposit/atom';
 import positionsAtom from 'recoil/positions/atom';
-import { useSetRecoilState, useRecoilValue } from 'recoil';
 import Body from 'components/body/Body';
+import useContractDGSF from 'hooks/useContractDGSF';
+import queryBalance from 'utilities/messagesQuery/balance';
+
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
+import mirrorObjectAtom from 'recoil/mirror/atom';
 
 interface Props {
   modalIsOpen: boolean;
@@ -23,10 +27,36 @@ export default function App() {
   const depositModalIsOpen = useRecoilValue(modalIsOpenDepositAtom);
   const setPositionsArray = useSetRecoilState(positionsAtom);
 
+  const [mirrorObject, setMirrorObject] = useRecoilState(mirrorObjectAtom);
+
   const { queryRegistry } = useContractRegistry();
   const connectedWallet: any = useConnectedWallet();
+  const { queryMsg } = useContractDGSF();
 
   const { queryAllPositions } = useQuery();
+
+  const getAssetBalances = async () => {
+    if (!connectedWallet) {
+      return;
+    }
+    const walletAddress = connectedWallet.walletAddress;
+    const queryBalanceMessage = queryBalance(walletAddress);
+    const newObj: any = {};
+
+    Object.entries(mirrorObject).map(async ([key, value], i) => {
+      const balanceResponse: any = await queryMsg(
+        value.contract,
+        queryBalanceMessage
+      );
+      const balance = balanceResponse.balance;
+      newObj[key] = { contract: value.contract, balance };
+      return setMirrorObject({
+        ...newObj
+      });
+    });
+
+    return;
+  };
 
   const getAllOpenPositions = async () => {
     if (!connectedWallet) {
@@ -58,10 +88,8 @@ export default function App() {
     return openPositionsIndex;
   };
   useEffect(() => {
-    const getOpenPositions = async () => {
-      await getAllOpenPositions();
-    };
-    getOpenPositions();
+    getAssetBalances();
+    getAllOpenPositions();
   }, [connectedWallet]);
 
   return (
