@@ -19,6 +19,10 @@ import {
   useConnectedWallet,
   UserDenied
 } from '@terra-money/wallet-provider';
+import Selector from 'components/selector/Selector';
+
+import { useRecoilValue } from 'recoil';
+import assetToBorrowAtom from 'recoil/assetToBorrow/atom';
 
 interface Props {
   instantiateContract: any;
@@ -39,6 +43,7 @@ function DepositModal({
   setContractFromInstantiation,
   txHashFromExecuteInstantiate
 }: Props) {
+  const assetToBorrow = useRecoilValue(assetToBorrowAtom);
   const [txError, setTxError] = useState<string | null>(null);
   const [amount, setAmount] = useState<number>(0);
   const { executeMsg, txHashFromExecute } = useContract();
@@ -113,6 +118,8 @@ function DepositModal({
       {depositModalIsOpen ? (
         <StyledAdvanced>
           <StyledAdvancedAngle>ADVANCED!</StyledAdvancedAngle>
+          <Selector />
+          <p>{assetToBorrow}</p>
           <InputContract
             contract={
               contractFromInstantiation
