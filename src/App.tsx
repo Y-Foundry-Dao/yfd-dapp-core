@@ -5,18 +5,19 @@ import { useConnectedWallet } from '@terra-money/wallet-provider';
 
 import HeaderBar from 'components/header/headerBar/HeaderBar';
 import FooterBar from 'components/footer/footerBar/FooterBar';
+import Body from 'components/body/Body';
 
 import useContractRegistry from 'hooks/useContractRegistry';
-import useQuery from 'hooks/useQuery';
-import modalIsOpenUpdateAtom from 'recoil/modalIsOpenUpdate/atom';
-import modalIsOpenDepositAtom from 'recoil/modalIsOpenDeposit/atom';
-import positionsAtom from 'recoil/positions/atom';
-import Body from 'components/body/Body';
 import useContractDGSF from 'hooks/useContractDGSF';
-import queryBalance from 'utilities/messagesQuery/balance';
+import useQuery from 'hooks/useQuery';
 
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import mirrorObjectAtom from 'recoil/mirror/atom';
+import modalIsOpenUpdateAtom from 'recoil/modalIsOpenUpdate/atom';
+import modalIsOpenDepositAtom from 'recoil/modalIsOpenDeposit/atom';
+import positionsAtom from 'recoil/positions/atom';
+
+import queryBalance from 'utilities/messagesQuery/balance';
 
 interface Props {
   modalIsOpen: boolean;
