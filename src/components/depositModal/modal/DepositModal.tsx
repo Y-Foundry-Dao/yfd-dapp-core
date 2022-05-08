@@ -24,6 +24,9 @@ import Selector from 'components/selector/Selector';
 import { useRecoilValue } from 'recoil';
 import assetToBorrowAtom from 'recoil/assetToBorrow/atom';
 
+import tokenFactory from 'utilities/messagesQuery/tokenFactory';
+import { TOKEN_FACTORY } from 'utilities/variables';
+
 interface Props {
   instantiateContract: any;
   txHashFromInstantiate: any;
@@ -46,7 +49,7 @@ function DepositModal({
   const assetToBorrow = useRecoilValue(assetToBorrowAtom);
   const [txError, setTxError] = useState<string | null>(null);
   const [amount, setAmount] = useState<number>(0);
-  const { executeMsg, txHashFromExecute } = useContract();
+  const { executeMsg, txHashFromExecute, queryMsg } = useContract();
   const connectedWallet = useConnectedWallet();
   const [depositModalIsOpen, setDepositModalIsOpen] = useState<boolean>(false);
 
@@ -60,8 +63,13 @@ function DepositModal({
           alert(`Please only execute this example on Testnet`);
           return;
         }
+        const pairResponse: any = await queryMsg(
+          TOKEN_FACTORY,
+          tokenFactory(assetToBorrow)
+        );
         const amountInCoin: Coins.Input = { uusd: amount * Math.pow(10, 6) };
-        return await executeMsg(contract, msgDeposit, amountInCoin);
+        const deposit = msgDeposit(assetToBorrow, pairResponse.contract_addr);
+        return await executeMsg(contract, deposit, amountInCoin);
       } catch (error) {
         if (error instanceof UserDenied) {
           setTxError('User Denied');
@@ -81,7 +89,7 @@ function DepositModal({
         }
       }
     },
-    [connectedWallet]
+    [connectedWallet, assetToBorrow]
   );
 
   const handleDeposit = async (amount: any, contract: string) => {

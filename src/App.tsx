@@ -20,24 +20,25 @@ import modalIsOpenDepositAtom from 'recoil/modalIsOpenDeposit/atom';
 import positionsAtom from 'recoil/positions/atom';
 import assetsObjectAtom from 'recoil/assets/atom';
 
+import tokenFactory from 'utilities/messagesQuery/tokenFactory';
+import { TOKEN_FACTORY } from 'utilities/variables';
+
 interface Props {
   modalIsOpen: boolean;
 }
 
 export default function App() {
+  const connectedWallet: any = useConnectedWallet();
   const updateModalIsOpen = useRecoilValue(modalIsOpenUpdateAtom);
   const depositModalIsOpen = useRecoilValue(modalIsOpenDepositAtom);
   const setPositionsArray = useSetRecoilState(positionsAtom);
-
   const [assetsObject, setAssetsObject] = useRecoilState(assetsObjectAtom);
 
   const { queryRegistry } = useContractRegistry();
-  const connectedWallet: any = useConnectedWallet();
   const { queryMsg } = useContractDGSF();
-
   const { queryAllPositions } = useQuery();
 
-  const getAssetBalances = async () => {
+  const getAssetObjectState = async () => {
     if (!connectedWallet) {
       return;
     }
@@ -46,12 +47,21 @@ export default function App() {
     const newObj: any = {};
 
     Object.entries(assetsObject).map(async ([key, value], i) => {
+      const pairResponse: any = await queryMsg(
+        TOKEN_FACTORY,
+        tokenFactory(value.contract)
+      );
       const balanceResponse: any = await queryMsg(
         value.contract,
         queryBalanceMessage
       );
       const balance = balanceResponse.balance;
-      newObj[key] = { contract: value.contract, label: value.label, balance };
+      newObj[key] = {
+        contract: value.contract,
+        pair: pairResponse.contract_addr,
+        label: value.label,
+        balance
+      };
       return setAssetsObject({
         ...newObj
       });
@@ -90,7 +100,7 @@ export default function App() {
     return openPositionsIndex;
   };
   useEffect(() => {
-    getAssetBalances();
+    getAssetObjectState();
     getAllOpenPositions();
   }, [connectedWallet]);
 
