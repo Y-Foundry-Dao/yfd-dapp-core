@@ -1,7 +1,6 @@
 import Options from 'components/body/availableOptions/OptionsList';
+import Positions from 'components/body/openPositions/PositionsList';
 import styled from 'styled-components';
-
-import Positions from 'components/body/openPositions/Positions';
 
 function Body() {
   return (
