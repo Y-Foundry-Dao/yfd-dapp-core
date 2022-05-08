@@ -1,12 +1,12 @@
-import { MBTC_UST, MBTC } from 'utilities/variables';
-
-const msgDeposit = {
-  deposit: {
-    loops: '4',
-    asset: MBTC,
-    asset_pair: MBTC_UST,
-    collateral_ratio: '2.5'
-  }
+const msgDeposit = (asset: any, pair: any) => {
+  return {
+    deposit: {
+      loops: '4',
+      asset: asset,
+      asset_pair: pair,
+      collateral_ratio: '2.5'
+    }
+  };
 };
 
 export default msgDeposit;
