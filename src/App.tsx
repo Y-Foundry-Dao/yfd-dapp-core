@@ -18,7 +18,7 @@ import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import modalIsOpenUpdateAtom from 'recoil/modalIsOpenUpdate/atom';
 import modalIsOpenDepositAtom from 'recoil/modalIsOpenDeposit/atom';
 import positionsAtom from 'recoil/positions/atom';
-import mirrorObjectAtom from 'recoil/mirror/atom';
+import assetsObjectAtom from 'recoil/assets/atom';
 
 interface Props {
   modalIsOpen: boolean;
@@ -29,7 +29,7 @@ export default function App() {
   const depositModalIsOpen = useRecoilValue(modalIsOpenDepositAtom);
   const setPositionsArray = useSetRecoilState(positionsAtom);
 
-  const [mirrorObject, setMirrorObject] = useRecoilState(mirrorObjectAtom);
+  const [assetsObject, setAssetsObject] = useRecoilState(assetsObjectAtom);
 
   const { queryRegistry } = useContractRegistry();
   const connectedWallet: any = useConnectedWallet();
@@ -45,14 +45,14 @@ export default function App() {
     const queryBalanceMessage = queryBalance(walletAddress);
     const newObj: any = {};
 
-    Object.entries(mirrorObject).map(async ([key, value], i) => {
+    Object.entries(assetsObject).map(async ([key, value], i) => {
       const balanceResponse: any = await queryMsg(
         value.contract,
         queryBalanceMessage
       );
       const balance = balanceResponse.balance;
       newObj[key] = { contract: value.contract, label: value.label, balance };
-      return setMirrorObject({
+      return setAssetsObject({
         ...newObj
       });
     });

@@ -1,4 +1,4 @@
-const mirror = {
+const assets = {
   AUST: {
     label: 'aUST',
     contract: 'terra1ajt556dpzvjwl0kl5tzku3fc3p3knkg9mkv8jl'
@@ -65,4 +65,4 @@ const mirror = {
   }
 };
 
-export default mirror;
+export default assets;
