@@ -11,7 +11,7 @@ import useHandleClicks from 'hooks/useHandleClicks';
 import contractForPositionAtom from 'recoil/contractForPosition/atom';
 import modalIsOpenUpdateAtom from 'recoil/modalIsOpenUpdate/atom';
 
-import mirrorObjectAtom from 'recoil/mirror/atom';
+import mirrorObjectAtom from 'recoil/assets/atom';
 
 function UpdateModal() {
   const {

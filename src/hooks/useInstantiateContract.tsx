@@ -13,7 +13,14 @@ import msgDeposit from 'utilities/messagesExecute/msgDeposit';
 import useContract from 'hooks/useContractDGSF';
 import signAndBroadcast from 'utilities/instantiation/signAndBroadcast';
 
+import { useRecoilValue } from 'recoil';
+import assetToBorrowAtom from 'recoil/assetToBorrow/atom';
+
+import tokenFactory from 'utilities/messagesQuery/tokenFactory';
+import { TOKEN_FACTORY } from 'utilities/variables';
+
 const useInstantiateContract = () => {
+  const assetToBorrow = useRecoilValue(assetToBorrowAtom);
   const [txHashFromInstantiate, setTxHashFromInstantiate] = useState<
     BlockTxBroadcastResult | null | string
   >(null);
@@ -21,7 +28,7 @@ const useInstantiateContract = () => {
   const [contractFromInstantiation, setContractFromInstantiation] =
     useState<string>('');
 
-  const { executeMsg, txHashFromExecute } = useContract();
+  const { executeMsg, queryMsg, txHashFromExecute } = useContract();
   const connectedWallet = useConnectedWallet();
 
   const instantiateContract = useCallback(
@@ -42,10 +49,15 @@ const useInstantiateContract = () => {
           TxResult.logs[0].events[1].attributes[3].value;
         setContractFromInstantiation(contractAddressFromInstantiate);
 
+        const pairResponse: any = await queryMsg(
+          TOKEN_FACTORY,
+          tokenFactory(assetToBorrow)
+        );
+        const deposit = msgDeposit(assetToBorrow, pairResponse.contract_addr);
         const amountInCoin: Coins.Input = { uusd: amount * Math.pow(10, 6) };
         return await executeMsg(
           contractAddressFromInstantiate,
-          msgDeposit,
+          deposit,
           amountInCoin
         );
       } catch (error) {
@@ -67,7 +79,7 @@ const useInstantiateContract = () => {
         }
       }
     },
-    [connectedWallet]
+    [connectedWallet, assetToBorrow]
   );
 
   return {

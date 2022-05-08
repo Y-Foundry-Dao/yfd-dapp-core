@@ -11,7 +11,7 @@ function PositionInfo({ position, contract }: Props) {
   const { queryPositionState } = useQuery();
   const [positionState, setPositionState] = useState<any>({});
   const getPositionState = async () => {
-    if (contract) {
+    if (position) {
       const state = await queryPositionState(position, contract);
       setPositionState(state);
       return state;

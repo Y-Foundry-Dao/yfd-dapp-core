@@ -9,8 +9,14 @@ import msgPositionWithdraw from 'utilities/messagesExecute/msgPositionWithdraw';
 import msgMirrorDepositEncode from 'utilities/messagesToEncode/msgMirrorEncodeDeposit';
 import msgMirrorBurnEncode from 'utilities/messagesToEncode/msgMirrorEncodeBurn';
 
+import tokenFactory from 'utilities/messagesQuery/tokenFactory';
+import { TOKEN_FACTORY } from 'utilities/variables';
+
+import useQuery from './useQuery';
+
 const useHandleClicks = () => {
-  const { executeMsg } = useContractDGSF();
+  const { executeMsg, queryMsg } = useContractDGSF();
+  const { queryPositionState } = useQuery();
 
   const handleClickDGSFDeposit = async (
     contract: string,
@@ -18,7 +24,20 @@ const useHandleClicks = () => {
     amount: number
   ) => {
     const amountInCoin: Coins.Input = { uusd: amount * Math.pow(10, 6) };
-    const msgAddToPosition = msgPositionDeposit(position);
+
+    const positionState: any = await queryPositionState(position, contract);
+    const assetToUpdate = positionState.asset.info.token.contract_addr;
+
+    const pairResponse: any = await queryMsg(
+      TOKEN_FACTORY,
+      tokenFactory(assetToUpdate)
+    );
+    const assetPair = pairResponse.contract_addr;
+    const msgAddToPosition = msgPositionDeposit(
+      assetToUpdate,
+      assetPair,
+      position
+    );
     return await executeMsg(contract, msgAddToPosition, amountInCoin);
   };
 
