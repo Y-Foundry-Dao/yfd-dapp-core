@@ -19,10 +19,10 @@ function PositionInfo({ position, contract }: Props) {
   };
   useEffect(() => {
     getPositionState();
-    return () => {
-      setPositionState({});
-    };
-  }, [contract]);
+    // return () => {
+    //   setPositionState({});
+    // };
+  }, [contract, position]);
 
   return (
     <div>
