@@ -2,7 +2,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import assetsObjectAtom from 'recoil/assets/atom';
+import assetsObjectAtom from 'recoil/assetsObject/atom';
 import assetToBorrowAtom from 'recoil/assetToBorrow/atom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 

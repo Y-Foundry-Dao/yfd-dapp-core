@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 
-import HeaderBar from 'components/header/headerBar/HeaderBar';
-import FooterBar from 'components/footer/footerBar/FooterBar';
+import HeaderBar from 'components/header/HeaderBar';
+import FooterBar from 'components/footer/FooterBar';
 import Body from 'components/body/Body';
 
 import useContractRegistry from 'hooks/useContractRegistry';
@@ -17,7 +17,7 @@ import modalIsOpenDepositAtom from 'recoil/modalIsOpenDeposit/atom';
 import positionsAtom from 'recoil/positions/atom';
 
 import queryBalance from 'utilities/messagesQuery/balance';
-import assetsObjectAtom from 'recoil/assets/atom';
+import assetsObjectAtom from 'recoil/assetsObject/atom';
 
 import tokenFactory from 'utilities/messagesQuery/tokenFactory';
 import { TOKEN_FACTORY } from 'utilities/variables';

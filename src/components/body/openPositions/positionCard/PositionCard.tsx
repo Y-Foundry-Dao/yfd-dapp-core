@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Button from 'components/basic/buttons/standard/Button';
 import styled from 'styled-components';
-import cardstyles from './card.module.css';
-import PositionInfo from 'components/body/openPositions/PositionInfo';
+import cardstyles from 'components/body/openPositions/styles/card.module.css';
+import PositionInfo from 'components/body/openPositions/positionCard/positionInfo/PositionInfo';
 import ReactCardFlip from 'react-card-flip';
 import positionToUpdateAtom from 'recoil/positionToUpdate/atom';
 import { useSetRecoilState, useRecoilState } from 'recoil';

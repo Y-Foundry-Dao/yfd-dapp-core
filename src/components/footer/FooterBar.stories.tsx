@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import FooterBar from 'components/footer/footerBar/FooterBar';
+import FooterBar from 'components/footer/FooterBar';
 
 export default {
   title: 'footer/footerbar',

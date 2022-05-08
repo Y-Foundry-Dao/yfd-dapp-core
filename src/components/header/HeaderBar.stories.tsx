@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import HeaderBar from 'components/header/headerBar/HeaderBar';
+import HeaderBar from 'components/header/HeaderBar';
 import yLogo from 'assets/yfd/logo-orange.svg';
 
 export default {

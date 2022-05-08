@@ -1,7 +1,6 @@
-import React from 'react';
+import Options from 'components/body/availableOptions/OptionsList';
 import styled from 'styled-components';
 
-import OptionCard from 'components/body/availableOptions/optionCard/OptionCard';
 import Positions from 'components/body/openPositions/Positions';
 
 function Body() {
@@ -10,10 +9,7 @@ function Body() {
       <StyledPageTitle>Foundry</StyledPageTitle>
       <StylizedTitle>My Open Positions</StylizedTitle>
       <Positions />
-      <AvailableOptions>
-        <StylizedTitle>Available Options</StylizedTitle>
-        <OptionCard />
-      </AvailableOptions>
+      <Options />
     </StylizedDiv>
   );
 }
@@ -60,10 +56,6 @@ const StyledPageTitle = styled.h1`
   color: ${(props) => `${props.theme.colors.color3}`};
   border-bottom: 5px solid ${(props) => `${props.theme.colors.color3}`};
   border-top: 5px solid ${(props) => `${props.theme.colors.color3}`};
-`;
-
-const AvailableOptions = styled.div`
-  color: ${(props) => `${props.theme.colors.color5}`};
 `;
 
 export default Body;

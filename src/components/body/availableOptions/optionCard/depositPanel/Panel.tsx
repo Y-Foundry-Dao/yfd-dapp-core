@@ -2,11 +2,11 @@ import { useState, useCallback } from 'react';
 import styled from 'styled-components';
 
 import Button from 'components/basic/buttons/standard/Button';
-import TxHashLink from 'components/body/availableOptions/depositModal/txHash/TxHashLink';
+import TxHashLink from 'components/body/availableOptions/optionCard/depositPanel/txHashLink/TxHashLink';
 import InputContract from 'components/basic/input/InputContract';
 import InputAmount from 'components/basic/input/InputAmount';
 
-import AvailableAmount from 'components/body/availableOptions/depositModal/availableAmount/AvailableAmount';
+import AvailableAmount from 'components/body/availableOptions/optionCard/depositPanel/availableAmount/AvailableAmount';
 
 import msgDeposit from 'utilities/messagesExecute/msgDeposit';
 import useContract from 'hooks/useContractDGSF';
@@ -19,7 +19,7 @@ import {
   useConnectedWallet,
   UserDenied
 } from '@terra-money/wallet-provider';
-import Selector from 'components/selector/Selector';
+import Selector from 'components/body/availableOptions/optionCard/depositPanel/selector/Selector';
 
 import { useRecoilValue } from 'recoil';
 import assetToBorrowAtom from 'recoil/assetToBorrow/atom';
@@ -37,7 +37,7 @@ interface Props {
   txHashFromExecuteInstantiate: any;
 }
 
-function DepositModal({
+function DepositPanel({
   instantiateContract,
   txHashFromInstantiate,
   contractToDeposit,
@@ -51,7 +51,7 @@ function DepositModal({
   const [amount, setAmount] = useState<number>(0);
   const { executeMsg, txHashFromExecute, queryMsg } = useContract();
   const connectedWallet = useConnectedWallet();
-  const [depositModalIsOpen, setDepositModalIsOpen] = useState<boolean>(false);
+  const [depositPanelIsOpen, setDepositPanelIsOpen] = useState<boolean>(false);
 
   const executeDeposit = useCallback(
     async (amount: number, contract: string) => {
@@ -118,12 +118,12 @@ function DepositModal({
           }}
         />
         <LinkAdvanced
-          onClick={() => setDepositModalIsOpen(!depositModalIsOpen)}
+          onClick={() => setDepositPanelIsOpen(!depositPanelIsOpen)}
         >
           👷
         </LinkAdvanced>
       </DepositButtons>
-      {depositModalIsOpen ? (
+      {depositPanelIsOpen ? (
         <StyledAdvanced>
           <StyledAdvancedAngle>ADVANCED!</StyledAdvancedAngle>
           <Selector />
@@ -268,4 +268,4 @@ const StyledAdvancedAngle = styled.h2`
   }
 `;
 
-export default DepositModal;
+export default DepositPanel;
