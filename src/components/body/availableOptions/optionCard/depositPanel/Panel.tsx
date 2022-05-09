@@ -26,6 +26,8 @@ import assetToBorrowAtom from 'recoil/assetToBorrow/atom';
 
 import tokenFactory from 'utilities/messagesQuery/tokenFactory';
 import { TOKEN_FACTORY } from 'utilities/variables';
+import InputLoop from 'components/basic/input/InputLoop';
+import loopAmountAtom from 'recoil/loopAmount/atom';
 
 interface Props {
   instantiateContract: any;
@@ -47,6 +49,7 @@ function DepositPanel({
   txHashFromExecuteInstantiate
 }: Props) {
   const assetToBorrow = useRecoilValue(assetToBorrowAtom);
+  const loopAmount = useRecoilValue(loopAmountAtom);
   const [txError, setTxError] = useState<string | null>(null);
   const [amount, setAmount] = useState<number>(0);
   const { executeMsg, txHashFromExecute, queryMsg } = useContract();
@@ -68,7 +71,11 @@ function DepositPanel({
           tokenFactory(assetToBorrow)
         );
         const amountInCoin: Coins.Input = { uusd: amount * Math.pow(10, 6) };
-        const deposit = msgDeposit(assetToBorrow, pairResponse.contract_addr);
+        const deposit = msgDeposit(
+          assetToBorrow,
+          pairResponse.contract_addr,
+          loopAmount
+        );
         return await executeMsg(contract, deposit, amountInCoin);
       } catch (error) {
         if (error instanceof UserDenied) {
@@ -89,7 +96,7 @@ function DepositPanel({
         }
       }
     },
-    [connectedWallet, assetToBorrow]
+    [connectedWallet, assetToBorrow, loopAmount]
   );
 
   const handleDeposit = async (amount: any, contract: string) => {
@@ -128,6 +135,7 @@ function DepositPanel({
           <StyledAdvancedAngle>ADVANCED!</StyledAdvancedAngle>
           <Selector />
           <p>{assetToBorrow}</p>
+          <InputLoop />
           <InputContract
             contract={
               contractFromInstantiation

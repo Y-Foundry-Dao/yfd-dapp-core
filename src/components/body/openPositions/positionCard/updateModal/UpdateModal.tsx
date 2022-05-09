@@ -12,6 +12,7 @@ import contractForPositionAtom from 'recoil/contractForPosition/atom';
 import modalIsOpenUpdateAtom from 'recoil/modalIsOpenUpdate/atom';
 
 import assetsObjectAtom from 'recoil/assetsObject/atom';
+import InputLoop from 'components/basic/input/InputLoop';
 
 function UpdateModal() {
   const {
@@ -47,6 +48,7 @@ function UpdateModal() {
           setAmount={setAmountToDepositDgsf}
           label="Add UST to position with default deposit parameters (4 loops, 2.5 collateral ratio):"
         />
+        <InputLoop />
         <Button
           children="Add to Position"
           disabled={false}
