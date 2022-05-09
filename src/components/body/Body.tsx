@@ -4,17 +4,17 @@ import styled from 'styled-components';
 
 function Body() {
   return (
-    <StylizedDiv>
+    <PageBody>
       <StyledPageTitle>Foundry</StyledPageTitle>
       <StylizedTitle>My Open Positions</StylizedTitle>
       <Positions />
       <Options />
-    </StylizedDiv>
+    </PageBody>
   );
 }
 
-const StylizedDiv = styled.div`
-  width: 92%;
+const PageBody = styled.div`
+  grid-area: pageBody;
   margin: auto;
   padding-bottom: 30px;
   color: ${(props) => `${props.theme.colors.color5}`};

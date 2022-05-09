@@ -18,16 +18,14 @@ function SocialIcons() {
 }
 
 const Ul = styled.ul`
+  display: flex;
   list-style-type: none;
-  height: 100%;
-  width: 28%;
-  margin: 0 5% 0 0;
   padding: 0;
   font-weight: 600;
   display: flex;
   align-items: center;
   align-self: center;
-  justify-content: space-around;
+  justify-content: space-between;
 
   @media (min-width: 425px) {
     width: 25%;
@@ -50,8 +48,8 @@ const Li = styled.li`
 
 const Link = styled.a`
   display: block;
-  width: 100%;
   z-index: 1;
+  cursor: pointer;
 `;
 
 export default SocialIcons;
