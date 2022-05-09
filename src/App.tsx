@@ -5,7 +5,7 @@ import { useConnectedWallet } from '@terra-money/wallet-provider';
 
 import HeaderBar from 'components/header/HeaderBar';
 import FooterBar from 'components/footer/FooterBar';
-import Body from 'components/body/Body';
+import PageBody from 'components/body/Body';
 
 import useContractRegistry from 'hooks/useContractRegistry';
 import useContractDGSF from 'hooks/useContractDGSF';
@@ -107,13 +107,15 @@ export default function App() {
     <Main modalIsOpen={depositModalIsOpen || updateModalIsOpen}>
       <Blur modalIsOpen={depositModalIsOpen || updateModalIsOpen} />
       <HeaderBar />
-      <Body />
+      <PageBody />
       <FooterBar />
     </Main>
   );
 }
 
 const Main = styled.main<Props>`
+  display: grid;
+  grid: 'pageHeader' 'pageBody' 'pageFooter';
   z-index: 0;
   pointer-events: ${({ modalIsOpen }) => (modalIsOpen ? 'none' : 'auto')};
 `;

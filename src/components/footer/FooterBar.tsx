@@ -41,6 +41,7 @@ const Img = styled.img`
 `;
 
 const Footer = styled.footer<Footer>`
+  grid-area: pageFooter;
   height: 55px;
   width: 90%;
   display: flex;
