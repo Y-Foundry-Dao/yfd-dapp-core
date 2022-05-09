@@ -13,8 +13,11 @@ import tokenFactory from 'utilities/messagesQuery/tokenFactory';
 import { TOKEN_FACTORY } from 'utilities/variables';
 
 import useQuery from './useQuery';
+import { useRecoilValue } from 'recoil';
+import loopAmountAtom from 'recoil/loopAmount/atom';
 
 const useHandleClicks = () => {
+  const loopAmount = useRecoilValue(loopAmountAtom);
   const { executeMsg, queryMsg } = useContractDGSF();
   const { queryPositionState } = useQuery();
 
@@ -33,9 +36,11 @@ const useHandleClicks = () => {
       tokenFactory(assetToUpdate)
     );
     const assetPair = pairResponse.contract_addr;
+    console.log(loopAmount);
     const msgAddToPosition = msgPositionDeposit(
       assetToUpdate,
       assetPair,
+      loopAmount,
       position
     );
     return await executeMsg(contract, msgAddToPosition, amountInCoin);

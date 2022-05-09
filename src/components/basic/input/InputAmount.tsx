@@ -52,14 +52,15 @@ const StyledTitle = styled.h2`
   grid-template-rows: 21px;
   grid-gap: 10px;
   align-items: center;
-}
 
-:after, :before {
-  content: " ";
-  display: block;
-  border-bottom: 1px solid ${(props) => `${props.theme.colors.color3}`};
-  box-shadow: 0 6px 7px -7px ${(props) => `${props.theme.colors.color1}`};
-  height: 5px;
+  :after,
+  :before {
+    content: ' ';
+    display: block;
+    border-bottom: 1px solid ${(props) => `${props.theme.colors.color3}`};
+    box-shadow: 0 6px 7px -7px ${(props) => `${props.theme.colors.color1}`};
+    height: 5px;
+  }
 `;
 
 export default InputAmount;

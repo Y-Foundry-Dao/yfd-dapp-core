@@ -18,8 +18,10 @@ import assetToBorrowAtom from 'recoil/assetToBorrow/atom';
 
 import tokenFactory from 'utilities/messagesQuery/tokenFactory';
 import { TOKEN_FACTORY } from 'utilities/variables';
+import loopAmountAtom from 'recoil/loopAmount/atom';
 
 const useInstantiateContract = () => {
+  const loopAmount = useRecoilValue(loopAmountAtom);
   const assetToBorrow = useRecoilValue(assetToBorrowAtom);
   const [txHashFromInstantiate, setTxHashFromInstantiate] = useState<
     BlockTxBroadcastResult | null | string
@@ -53,7 +55,11 @@ const useInstantiateContract = () => {
           TOKEN_FACTORY,
           tokenFactory(assetToBorrow)
         );
-        const deposit = msgDeposit(assetToBorrow, pairResponse.contract_addr);
+        const deposit = msgDeposit(
+          assetToBorrow,
+          pairResponse.contract_addr,
+          loopAmount
+        );
         const amountInCoin: Coins.Input = { uusd: amount * Math.pow(10, 6) };
         return await executeMsg(
           contractAddressFromInstantiate,
