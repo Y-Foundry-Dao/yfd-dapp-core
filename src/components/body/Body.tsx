@@ -1,4 +1,4 @@
-import Options from 'components/body/availableOptions/OptionsList';
+import Options from 'components/body/availableOptions/Options';
 import Positions from 'components/body/openPositions/Positions';
 import styled from 'styled-components';
 
