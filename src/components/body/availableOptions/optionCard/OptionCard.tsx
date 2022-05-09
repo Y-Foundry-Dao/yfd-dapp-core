@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import cardstyles from 'components/body/availableOptions/styles/card.module.css';
+import dgsfLogo from 'assets/yfd/logo-dgsf.svg';
 
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import ReactCardFlip from 'react-card-flip';
 
-import dgsfLogo from 'assets/yfd/logo-dgsf.svg';
-
-import cardstyles from 'components/body/availableOptions/styles/card.module.css';
 import Title from 'components/body/availableOptions/optionCard/title/Title';
 import Strategist from 'components/body/availableOptions/optionCard/strategist/Strategist';
+
 import DepositPanel from 'components/body/availableOptions/optionCard/depositPanel/Panel';
 
 import useInstantiateContract from 'hooks/useInstantiateContract';

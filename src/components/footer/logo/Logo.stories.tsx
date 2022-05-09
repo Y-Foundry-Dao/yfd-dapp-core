@@ -15,9 +15,7 @@ export default {
   }
 } as ComponentMeta<typeof Logo>;
 
-export const LongLogo: ComponentStory<typeof Logo> = (args) => (
-  <Logo {...args} />
-);
+export const LongLogo: ComponentStory<typeof Logo> = (args) => <Logo />;
 
 LongLogo.args = {
   src: horizontalLogo,

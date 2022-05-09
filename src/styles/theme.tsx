@@ -7,6 +7,30 @@ const base = {
     color5: '#1F43BF',
     color6: 'rgba(255, 255, 255, 0.8)',
     color7: '#1F43BF'
+  },
+  background: {
+    color1: 'rgba(206,188,155,1)',
+    color2: 'rgba(85,63,50,1)',
+    color3: 'rgba(42,31,25,1)',
+    color4: ''
+  },
+  scrollbar: {
+    color1: '#040307',
+    colorTrack: '#202833',
+    width: '16px',
+    borderRadius: '10px',
+    thumbColor1: '#DA5F37',
+    thumbColor2: '#805446',
+    thumbBorderColor: '#202833'
+  },
+  header: {
+    backgroundColor: 'rgba(4, 3, 7, 0.5)'
+  },
+  sectionTitle: {
+    textColor: '#D7B9A3',
+    textShadowColor1: '#000',
+    textShadowColor2: 'gray',
+    textShadowColor3: '#333'
   }
 };
 const primary = {

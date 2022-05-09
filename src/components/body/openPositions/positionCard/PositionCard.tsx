@@ -184,8 +184,6 @@ const ButtonFlip = styled.button`
 const Position = styled.div<StyledProps>`
   box-shadow: 1px 1px 9px 0 ${(props) => `${props.theme.colors.color3}`};
   border: 2px solid ${(props) => `${props.theme.colors.color3}`};
-  width: 25%;
-  margin: 3% 6%;
   padding: 10% 3% 5% 2%;
   border-radius: 20px;
   background: rgba(8, 6, 11, 0.75);

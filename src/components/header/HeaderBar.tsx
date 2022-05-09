@@ -22,18 +22,17 @@ function HeaderBar() {
 }
 
 const Header = styled.header`
-  top: 0;
+  grid-area: pageHeader;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  height: 70px;
-  background: rgba(4, 3, 7, 0.5);
+  flex-wrap: nowrap;
+  background: ${(props) => `${props.theme.header.backgroundColor}`};
   pointer-events: auto;
   filter: blur(0) !important;
 
-  @media (min-width: 1440px) {
-    height: 81px;
+  @media (min-width: 755px) and (max-width: 920px) {
+    font-size: small;
   }
 `;
 
