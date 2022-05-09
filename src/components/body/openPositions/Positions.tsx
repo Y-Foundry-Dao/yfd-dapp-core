@@ -42,7 +42,7 @@ const SectionTitle = styled.h2`
 `;
 
 const OpenPositions = styled.div`
-  // unique section styling
+  padding-bottom: 2%;
 `;
 
 export default Positions;
