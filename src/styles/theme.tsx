@@ -25,6 +25,12 @@ const base = {
   },
   header: {
     backgroundColor: 'rgba(4, 3, 7, 0.5)'
+  },
+  sectionTitle: {
+    textColor: '#D7B9A3',
+    textShadowColor1: '#000',
+    textShadowColor2: 'gray',
+    textShadowColor3: '#333'
   }
 };
 const primary = {

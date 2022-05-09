@@ -12,19 +12,19 @@ function Positions() {
   const burgerIsOpen = useRecoilValue(burgerAtom);
 
   return burgerIsOpen === false ? (
-    <OpenPositions>
+    <OpenPositionsList>
       {modalIsOpenUpdate ? <UpdateModal /> : null}
       {positions.map((position: any, i: number) => {
         return (
           <PositionCard key={i} position={position[0]} contract={position[1]} />
         );
       })}
-    </OpenPositions>
+    </OpenPositionsList>
   ) : null;
 }
 
-const OpenPositions = styled.div`
-  display: inline-flex;
+const OpenPositionsList = styled.div`
+  display: flex;
   flex-wrap: wrap;
   align-content: space-around;
   justify-content: flex-start;
