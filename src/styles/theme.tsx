@@ -22,6 +22,9 @@ const base = {
     thumbColor1: '#DA5F37',
     thumbColor2: '#805446',
     thumbBorderColor: '#202833'
+  },
+  header: {
+    backgroundColor: 'rgba(4, 3, 7, 0.5)'
   }
 };
 const primary = {
