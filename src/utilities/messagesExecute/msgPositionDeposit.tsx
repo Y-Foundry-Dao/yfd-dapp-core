@@ -1,7 +1,12 @@
-const msgPositionDeposit = (asset: any, assetPair: any, position: string) => {
+const msgPositionDeposit = (
+  asset: any,
+  assetPair: any,
+  loops: any,
+  position: string
+) => {
   return {
     deposit: {
-      loops: '4',
+      loops: loops,
       asset: asset,
       asset_pair: assetPair,
       collateral_ratio: '2.5',
