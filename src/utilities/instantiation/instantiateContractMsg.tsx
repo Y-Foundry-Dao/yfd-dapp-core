@@ -6,7 +6,7 @@ const instantiateContractMsg = (walletAddress: HumanAddr) => {
   const instantiateMsg = new MsgInstantiateContract(
     walletAddress,
     walletAddress,
-    65469,
+    71080,
     instantiateParameters
   );
   return instantiateMsg;
