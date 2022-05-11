@@ -11,6 +11,9 @@ const instantiateParameters = {
   mirror_oracle: {
     contract_addr: 'terra1uvxhec74deupp47enh7z5pk55f3cvcz8nj4ww9'
   },
+  terraswap_factory: {
+    contract_addr: 'terra18qpjm4zkvqnpjpw0zn0tdr8gdzvt8au35v45xf'
+  },
   registry_addr: CONTRACT_REGISTRY
 };
 
