@@ -4,34 +4,18 @@ import styled from 'styled-components';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import positionToUpdateAtom from 'recoil/positionToUpdate/atom';
 
-import Button from 'components/basic/buttons/standard/Button';
-import InputAmount from 'components/basic/input/InputAmount';
+import UpdateDgsfDeposit from './updateDgsfDeposit/UpdateDgsfDeposit';
+import UpdateMirrorDeposit from './updateMirrorDeposit/UpdateMirrorDeposit';
 
-import useHandleClicks from 'hooks/useHandleClicks';
-import contractForPositionAtom from 'recoil/contractForPosition/atom';
 import modalIsOpenUpdateAtom from 'recoil/modalIsOpenUpdate/atom';
 
-import assetsObjectAtom from 'recoil/assetsObject/atom';
-import InputLoop from 'components/basic/input/InputLoop';
+import UpdateMirrorWithdraw from './updateMirrorWithdraw/UpdateMirrorWithdraw';
+import UpdateMirrorBorrow from './updateMirrorBorrow/UpdateMirrorBorrow';
+import UpdateMirrorBurn from './updateMirrorBurn/UpdateMirrorBurn';
 
 function UpdateModal() {
-  const {
-    handleClickMirrorDeposit,
-    handleClickMirrorBurn,
-    handleClickMirrorBorrow,
-    handleClickMirrorWithdraw,
-    handleClickDGSFDeposit
-  } = useHandleClicks();
   const setUpdateModalIsOpen = useSetRecoilState(modalIsOpenUpdateAtom);
-  const contractForPosition = useRecoilValue(contractForPositionAtom);
   const positionToUpdate = useRecoilValue(positionToUpdateAtom);
-  const [amountToDepositDgsf, setAmountToDepositDgsf] = useState<any>(0);
-  const [amountToBorrow, setAmountToBorrow] = useState<any>(0);
-  const [amountToWithdraw, setAmountToWithdraw] = useState<any>(0);
-  const [amountToBurn, setAmountToBurn] = useState<any>(0);
-  const [amountToDepositMirror, setAmountToDepositMirror] = useState<any>(0);
-
-  const assetsObject: any = useRecoilValue(assetsObjectAtom);
 
   const handleClickCloseModal = async () => {
     return setUpdateModalIsOpen(false);
@@ -42,103 +26,15 @@ function UpdateModal() {
       <Modal>
         <CloseButton onClick={handleClickCloseModal}>x</CloseButton>
         <Header>Degen Stable Farm ID: {positionToUpdate}</Header>
-
-        <InputAmount
-          amount={Number(amountToDepositDgsf)}
-          setAmount={setAmountToDepositDgsf}
-          label="Add UST to position with default deposit parameters (4 loops, 2.5 collateral ratio):"
-        />
-        <InputLoop />
-        <Button
-          children="Add to Position"
-          disabled={false}
-          onClick={async () => {
-            return await handleClickDGSFDeposit(
-              contractForPosition,
-              positionToUpdate,
-              amountToDepositDgsf
-            );
-          }}
-        />
-
-        <InputAmount
-          amount={amountToBorrow}
-          setAmount={setAmountToBorrow}
-          label="Borrow mAsset"
-        />
-        <Button
-          children="Borrow mAsset"
-          disabled={false}
-          onClick={async () => {
-            return await handleClickMirrorBorrow(
-              contractForPosition,
-              positionToUpdate,
-              Number(amountToBorrow)
-            );
-          }}
-        />
-
-        <InputAmount
-          amount={Number(amountToBurn)}
-          setAmount={setAmountToBurn}
-          label="Burn mAssets"
-        />
-        <StyledBalance>
-          Available mBTC: {assetsObject.MBTC.balance}
-        </StyledBalance>
-        <Button
-          children="Pay Back Debt"
-          disabled={false}
-          onClick={async () => {
-            return await handleClickMirrorBurn(
-              contractForPosition,
-              positionToUpdate,
-              amountToBurn
-            );
-          }}
-        />
-
-        <InputAmount
-          amount={amountToWithdraw}
-          setAmount={setAmountToWithdraw}
-          label="Withdraw aUST"
-        />
-        <Button
-          children="Withdraw aUST"
-          disabled={false}
-          onClick={async () => {
-            return await handleClickMirrorWithdraw(
-              contractForPosition,
-              positionToUpdate,
-              Number(amountToWithdraw)
-            );
-          }}
-        />
-
-        <InputAmount
-          amount={Number(amountToDepositMirror)}
-          setAmount={setAmountToDepositMirror}
-          label="Deposit aUST"
-        />
-        <Button
-          children="Deposit aUST"
-          disabled={false}
-          onClick={async () => {
-            return await handleClickMirrorDeposit(
-              contractForPosition,
-              positionToUpdate,
-              amountToDepositMirror
-            );
-          }}
-        />
+        <UpdateDgsfDeposit />
+        <UpdateMirrorBorrow />
+        <UpdateMirrorBurn />
+        <UpdateMirrorWithdraw />
+        <UpdateMirrorDeposit />
       </Modal>
     </ModalHolder>
   );
 }
-
-const StyledBalance = styled.p`
-  color: white;
-`;
 
 const Header = styled.h2`
   align-self: center;
