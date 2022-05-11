@@ -7,7 +7,7 @@ import positionToUpdateAtom from 'recoil/positionToUpdate/atom';
 import contractForPositionAtom from 'recoil/contractForPosition/atom';
 import useHandleClicks from 'hooks/useHandleClicks';
 
-function UpdateDepositDgsf() {
+function UpdateDgsfDeposit() {
   const { handleClickDGSFDeposit } = useHandleClicks();
   const [amountToDepositDgsf, setAmountToDepositDgsf] = useState<any>(0);
   const contractForPosition = useRecoilValue(contractForPositionAtom);
@@ -35,4 +35,4 @@ function UpdateDepositDgsf() {
   );
 }
 
-export default UpdateDepositDgsf;
+export default UpdateDgsfDeposit;

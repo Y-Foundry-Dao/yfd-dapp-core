@@ -6,8 +6,8 @@ import positionToUpdateAtom from 'recoil/positionToUpdate/atom';
 
 import Button from 'components/basic/buttons/standard/Button';
 import InputAmount from 'components/basic/input/InputAmount';
-import UpdateDepositDgsf from './updateDepositDgsf/UpdateDepositDgsf';
-import UpdateDepositMirror from './updateDepositMirror/UpdateDepositMirror';
+import UpdateDgsfDeposit from './updateDgsfDeposit/UpdateDgsfDeposit';
+import UpdateMirrorDeposit from './updateMirrorDeposit/UpdateMirrorDeposit';
 
 import useHandleClicks from 'hooks/useHandleClicks';
 import contractForPositionAtom from 'recoil/contractForPosition/atom';
@@ -40,7 +40,7 @@ function UpdateModal() {
       <Modal>
         <CloseButton onClick={handleClickCloseModal}>x</CloseButton>
         <Header>Degen Stable Farm ID: {positionToUpdate}</Header>
-        <UpdateDepositDgsf />
+        <UpdateDgsfDeposit />
         <InputAmount
           amount={amountToBorrow}
           setAmount={setAmountToBorrow}
@@ -94,7 +94,7 @@ function UpdateModal() {
             );
           }}
         />
-        <UpdateDepositMirror />
+        <UpdateMirrorDeposit />
       </Modal>
     </ModalHolder>
   );

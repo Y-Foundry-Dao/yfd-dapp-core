@@ -6,7 +6,7 @@ import positionToUpdateAtom from 'recoil/positionToUpdate/atom';
 import contractForPositionAtom from 'recoil/contractForPosition/atom';
 import useHandleClicks from 'hooks/useHandleClicks';
 
-function UpdateDepositMirror() {
+function UpdateMirrorDeposit() {
   const { handleClickMirrorDeposit } = useHandleClicks();
   const [amountToDepositMirror, setAmountToDepositMirror] = useState<any>(0);
   const contractForPosition = useRecoilValue(contractForPositionAtom);
@@ -33,4 +33,4 @@ function UpdateDepositMirror() {
   );
 }
 
-export default UpdateDepositMirror;
+export default UpdateMirrorDeposit;
