@@ -1,15 +1,17 @@
-import { useState } from 'react';
 import Button from 'components/basic/buttons/standard/Button';
 import InputAmount from 'components/basic/input/InputAmount';
 import InputLoop from 'components/basic/input/InputLoop';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import positionToUpdateAtom from 'recoil/positionToUpdate/atom';
 import contractForPositionAtom from 'recoil/contractForPosition/atom';
 import useHandleClicks from 'hooks/useHandleClicks';
+import amountDgsfDepositAtom from 'recoil/amountDgsfDeposit/atom';
 
 function UpdateDgsfDeposit() {
   const { handleClickDGSFDeposit } = useHandleClicks();
-  const [amountToDepositDgsf, setAmountToDepositDgsf] = useState<any>(0);
+  const [amountToDepositDgsf, setAmountToDepositDgsf] = useRecoilState(
+    amountDgsfDepositAtom
+  );
   const contractForPosition = useRecoilValue(contractForPositionAtom);
   const positionToUpdate = useRecoilValue(positionToUpdateAtom);
   return (
