@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import Button from 'components/basic/buttons/standard/Button';
 import InputAmount from 'components/basic/input/InputAmount';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import positionToUpdateAtom from 'recoil/positionToUpdate/atom';
 import contractForPositionAtom from 'recoil/contractForPosition/atom';
 import useHandleClicks from 'hooks/useHandleClicks';
+import amountMirrorBorrowAtom from 'recoil/amountMirrorBorrow/atom';
 
 function UpdateMirrorBorrow() {
   const { handleClickMirrorBorrow } = useHandleClicks();
-  const [amountToBorrow, setAmountToBorrow] = useState<any>(0);
+  const [amountToBorrow, setAmountToBorrow] = useRecoilState(
+    amountMirrorBorrowAtom
+  );
   const contractForPosition = useRecoilValue(contractForPositionAtom);
   const positionToUpdate = useRecoilValue(positionToUpdateAtom);
   return (
