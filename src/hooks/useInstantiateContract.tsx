@@ -1,9 +1,5 @@
 import { useCallback, useState } from 'react';
-import {
-  BlockTxBroadcastResult,
-  Coins,
-  WaitTxBroadcastResult
-} from '@terra-money/terra.js';
+import { Coins, WaitTxBroadcastResult } from '@terra-money/terra.js';
 import {
   CreateTxFailed,
   Timeout,
