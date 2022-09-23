@@ -25,7 +25,7 @@ const BurgerIcon: React.FC<ComponentProps> = ({
   );
 };
 
-const Burger: React.FC<StyleProps> = styled.button<StyleProps>`
+const Burger = styled.button<StyleProps>`
   position: ${({ open }) => (open ? 'fixed' : 'absolute')};
   top: 18px;
   right: 30px;

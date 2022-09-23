@@ -35,16 +35,17 @@ function Component() {
     return networkExists === 'not exists';
   }, [networkExists]);
 
+  //commented out because these sampled aren't being used and it was causing a typescript error
   useEffect(() => {
-    hasNetwork(TEST_NETWORK).then((result) =>
-      setNetworkExists(result ? 'exists' : 'not exists')
-    );
+    // hasNetwork(TEST_NETWORK).then((result) =>
+    //   setNetworkExists(result ? 'exists' : 'not exists')
+    // );
   }, [hasNetwork]);
 
   const add = useCallback(() => {
-    addNetwork(TEST_NETWORK).then((result) =>
-      setNetworkExists(result ? 'exists' : 'not exists')
-    );
+    // addNetwork(TEST_NETWORK).then((result) =>
+    //   setNetworkExists(result ? 'exists' : 'not exists')
+    // );
   }, [addNetwork]);
 
   return (
