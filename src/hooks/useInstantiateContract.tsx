@@ -1,5 +1,9 @@
 import { useCallback, useState } from 'react';
-import { BlockTxBroadcastResult, Coins } from '@terra-money/terra.js';
+import {
+  BlockTxBroadcastResult,
+  Coins,
+  WaitTxBroadcastResult
+} from '@terra-money/terra.js';
 import {
   CreateTxFailed,
   Timeout,
@@ -24,11 +28,11 @@ const useInstantiateContract = () => {
   const loopAmount = useRecoilValue(loopAmountAtom);
   const assetToBorrow = useRecoilValue(assetToBorrowAtom);
   const [txHashFromInstantiate, setTxHashFromInstantiate] = useState<
-    BlockTxBroadcastResult | null | string
+    WaitTxBroadcastResult | null | string
   >(null);
   const [txError, setTxError] = useState<string | null>(null);
   const [contractFromInstantiation, setContractFromInstantiation] =
-    useState<string>('');
+    useState('');
 
   const { executeMsg, queryMsg, txHashFromExecute } = useContract();
   const connectedWallet = useConnectedWallet();
@@ -44,7 +48,9 @@ const useInstantiateContract = () => {
           return;
         }
         setTxHashFromInstantiate('Waiting for Terra Station');
-        const TxResult = await signAndBroadcast(connectedWallet);
+        const TxResult: WaitTxBroadcastResult = await signAndBroadcast(
+          connectedWallet
+        );
         setTxHashFromInstantiate(TxResult);
 
         const contractAddressFromInstantiate =
