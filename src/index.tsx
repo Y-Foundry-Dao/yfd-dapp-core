@@ -1,12 +1,16 @@
-import ReactDOM from 'react-dom';
-import App from 'App';
+import { createRoot } from 'react-dom/client';
+import { RecoilRoot } from 'recoil';
 import { getChainOptions, WalletProvider } from '@terra-money/wallet-provider';
+
+import App from 'App';
 import GlobalCss from 'styles/global.css';
 import ThemeComponent from 'styles/ThemeComponent';
-import { RecoilRoot } from 'recoil';
+
+const container = document.getElementById('root');
+const root = createRoot(container!);
 
 getChainOptions().then((chainOptions) => {
-  ReactDOM.render(
+  root.render(
     <WalletProvider {...chainOptions}>
       <ThemeComponent>
         <GlobalCss />
@@ -14,7 +18,6 @@ getChainOptions().then((chainOptions) => {
           <App />
         </RecoilRoot>
       </ThemeComponent>
-    </WalletProvider>,
-    document.getElementById('root')
+    </WalletProvider>
   );
 });
