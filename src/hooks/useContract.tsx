@@ -1,14 +1,10 @@
 import { useState } from 'react';
 
-import {
-  useWallet,
-  ConnectedWallet,
-  useConnectedWallet
-} from '@terra-money/wallet-provider';
+import { useWallet, useConnectedWallet } from '@terra-money/wallet-provider';
 import { Coins, Msg, MsgExecuteContract } from '@terra-money/terra.js';
 import { terra } from 'utilities/lcd';
 
-const useContractDGSF = () => {
+const useContract = () => {
   const { post } = useWallet();
   const connectedWallet = useConnectedWallet();
   const [txHashFromExecute, setTxHashFromExecute] = useState('');
@@ -37,13 +33,15 @@ const useContractDGSF = () => {
       );
 
       // posts the message to the blockchain
-      await post({ msgs: [msg] })
+      const tx = await post({ msgs: [msg] })
         .then(async (result) => {
           // TODO: use a for or add a timeout to prevent infinite loops
           //eslint-disable-next-line
           while (true) {
             // query txhash
             // Causes errors in console because it hits the catch statement until the transaction has been broadcast
+            // console.log(result.result);
+            // setTxHashFromExecute(result.result.txhash);
             const data = await terra.tx
               .txInfo(result.result.txhash)
               .catch((error) => {
@@ -57,9 +55,13 @@ const useContractDGSF = () => {
         })
         .then((txresult: any) => {
           // this will be executed when the tx has been included into a block
+          console.log(txresult);
           const txHash = txresult.txhash;
-          return setTxHashFromExecute(txHash);
+          return txHash;
         });
+
+      console.log(tx);
+      return tx;
     } catch (error) {
       console.log(error);
     }
@@ -87,4 +89,4 @@ const useContractDGSF = () => {
   };
 };
 
-export default useContractDGSF;
+export default useContract;

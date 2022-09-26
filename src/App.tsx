@@ -8,7 +8,7 @@ import FooterBar from 'components/footer/FooterBar';
 import PageBody from 'components/body/Body';
 
 import useContractRegistry from 'hooks/useContractRegistry';
-import useContractDGSF from 'hooks/useContractDGSF';
+import useContract from 'hooks/useContract';
 import useQuery from 'hooks/useQuery';
 
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
@@ -34,74 +34,74 @@ export default function App() {
   const [assetsObject, setAssetsObject] = useRecoilState(assetsObjectAtom);
 
   const { queryRegistry } = useContractRegistry();
-  const { queryMsg } = useContractDGSF();
+  const { queryMsg } = useContract();
   const { queryAllPositions } = useQuery();
 
-  const getAssetObjectState = async () => {
-    if (!connectedWallet) {
-      return;
-    }
-    const walletAddress = connectedWallet.walletAddress;
-    const queryBalanceMessage = queryBalance(walletAddress);
-    const newObj: any = {};
+  // const getAssetObjectState = async () => {
+  //   if (!connectedWallet) {
+  //     return;
+  //   }
+  //   const walletAddress = connectedWallet.walletAddress;
+  //   const queryBalanceMessage = queryBalance(walletAddress);
+  //   const newObj: any = {};
 
-    Object.entries(assetsObject).map(async ([key, value], i) => {
-      const pairResponse: any = await queryMsg(
-        TOKEN_FACTORY,
-        tokenFactory(value.contract)
-      );
-      const balanceResponse: any = await queryMsg(
-        value.contract,
-        queryBalanceMessage
-      );
-      const balance = balanceResponse.balance;
-      newObj[key] = {
-        contract: value.contract,
-        pair: pairResponse.contract_addr,
-        label: value.label,
-        balance
-      };
-      return setAssetsObject({
-        ...newObj
-      });
-    });
+  //   Object.entries(assetsObject).map(async ([key, value], i) => {
+  //     const pairResponse: any = await queryMsg(
+  //       TOKEN_FACTORY,
+  //       tokenFactory(value.contract)
+  //     );
+  //     const balanceResponse: any = await queryMsg(
+  //       value.contract,
+  //       queryBalanceMessage
+  //     );
+  //     const balance = balanceResponse.balance;
+  //     newObj[key] = {
+  //       contract: value.contract,
+  //       pair: pairResponse.contract_addr,
+  //       label: value.label,
+  //       balance
+  //     };
+  //     return setAssetsObject({
+  //       ...newObj
+  //     });
+  //   });
 
-    return;
-  };
+  //   return;
+  // };
 
-  const getAllOpenPositions = async () => {
-    if (!connectedWallet) {
-      return;
-    }
+  // const getAllOpenPositions = async () => {
+  //   if (!connectedWallet) {
+  //     return;
+  //   }
 
-    const response: any = await queryRegistry();
-    const contractInstantiations = await response.instantiations;
+  //   const response: any = await queryRegistry();
+  //   const contractInstantiations = await response.instantiations;
 
-    let openPositionsIndex: any[] = [];
+  //   let openPositionsIndex: any[] = [];
 
-    contractInstantiations.map(async (instantiation: any) => {
-      if (connectedWallet.walletAddress == instantiation.instance_owner) {
-        const allPositions: any = await queryAllPositions(
-          instantiation.contract_addr
-        );
-        const positionsArr = allPositions.positions;
-        if (positionsArr.length > 0) {
-          positionsArr.map((positionArr: any) => {
-            openPositionsIndex = [
-              ...openPositionsIndex,
-              [positionArr.idx, positionArr.owner]
-            ];
-            setPositionsArray(openPositionsIndex);
-          });
-        }
-      }
-    });
-    return openPositionsIndex;
-  };
-  useEffect(() => {
-    getAssetObjectState();
-    getAllOpenPositions();
-  }, [connectedWallet]);
+  //   contractInstantiations.map(async (instantiation: any) => {
+  //     if (connectedWallet.walletAddress == instantiation.instance_owner) {
+  //       const allPositions: any = await queryAllPositions(
+  //         instantiation.contract_addr
+  //       );
+  //       const positionsArr = allPositions.positions;
+  //       if (positionsArr.length > 0) {
+  //         positionsArr.map((positionArr: any) => {
+  //           openPositionsIndex = [
+  //             ...openPositionsIndex,
+  //             [positionArr.idx, positionArr.owner]
+  //           ];
+  //           setPositionsArray(openPositionsIndex);
+  //         });
+  //       }
+  //     }
+  //   });
+  //   return openPositionsIndex;
+  // };
+  // useEffect(() => {
+  //   getAssetObjectState();
+  //   getAllOpenPositions();
+  // }, [connectedWallet]);
 
   return (
     <Main modalIsOpen={depositModalIsOpen || updateModalIsOpen}>

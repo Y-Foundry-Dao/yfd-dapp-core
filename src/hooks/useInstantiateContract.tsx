@@ -10,7 +10,7 @@ import {
 } from '@terra-money/wallet-provider';
 
 import msgDeposit from 'utilities/messagesExecute/msgDeposit';
-import useContract from 'hooks/useContractDGSF';
+import useContract from 'hooks/useContract';
 import signAndBroadcast from 'utilities/instantiation/signAndBroadcast';
 
 import { useRecoilValue } from 'recoil';

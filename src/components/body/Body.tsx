@@ -1,13 +1,16 @@
 import Options from 'components/body/availableOptions/Options';
 import Positions from 'components/body/openPositions/Positions';
+import { useState } from 'react';
 import styled from 'styled-components';
+import StakeYFD from './stake/StakeYFD';
 
 function Body() {
   return (
     <PageBody>
       <PageTitle>Foundry</PageTitle>
-      <Positions />
-      <Options />
+      <StakeYFD />
+      {/* <Positions /> */}
+      {/* <Options /> */}
     </PageBody>
   );
 }

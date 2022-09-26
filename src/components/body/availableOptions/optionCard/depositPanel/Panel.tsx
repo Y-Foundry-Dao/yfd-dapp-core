@@ -9,7 +9,7 @@ import InputAmount from 'components/basic/input/InputAmount';
 import AvailableAmount from 'components/body/availableOptions/optionCard/depositPanel/availableAmount/AvailableAmount';
 
 import msgDeposit from 'utilities/messagesExecute/msgDeposit';
-import useContract from 'hooks/useContractDGSF';
+import useContract from 'hooks/useContract';
 import { Coins } from '@terra-money/terra.js';
 import {
   CreateTxFailed,

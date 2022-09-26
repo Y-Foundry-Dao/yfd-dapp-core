@@ -1,4 +1,4 @@
-import useContract from 'hooks/useContractDGSF';
+import useContract from 'hooks/useContract';
 import queryPositions from 'utilities/messagesQuery/positions';
 import queryMsgPositionState from 'utilities/messagesQuery/positionState';
 
