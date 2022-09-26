@@ -16,7 +16,7 @@ function StakeYFD() {
   const { handleClickStakeYFD } = useHandleClicks();
   const { txHashFromExecute } = useContract();
   const { txHashTest } = useHandleClicks();
-  const [newTxHash, setNewTxHash] = useState('test');
+  const [newTxHash, setNewTxHash] = useState('');
 
   useEffect(() => {
     console.log(txHashTest);
