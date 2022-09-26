@@ -13,14 +13,19 @@ import tokenFactory from 'utilities/messagesQuery/tokenFactory';
 import { TOKEN_FACTORY } from 'utilities/variables';
 
 import useQuery from './useQuery';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import loopAmountAtom from 'recoil/loopAmount/atom';
 import msgEncodedStake from 'utilities/messagesToEncode/msgEncodedStake';
 import msgStakeYFD from 'utilities/messagesExecute/msgStakeYFD';
+import { useState } from 'react';
+import amountDepositYFDAtom from 'recoil/amountDepositYFD/atom';
 
 const useHandleClicks = () => {
   const loopAmount = useRecoilValue(loopAmountAtom);
   const { executeMsg, queryMsg, setTxHashFromExecute } = useContract();
+  const [txHashTest, setTxHashTest] = useState('');
+  const [amountDepositYFD, setAmountDepositYFD] =
+    useRecoilState(amountDepositYFDAtom);
 
   const { queryPositionState } = useQuery();
 
@@ -64,8 +69,11 @@ const useHandleClicks = () => {
     // For now the contract is hard coded to testnet but can be made dynamic later
     // By detecting what network we are from and using the appropriate networks contract from there
     const tx = await executeMsg(YFD_TEST, msgStakeYFDToken);
+
     console.log(tx);
-    setTxHashFromExecute(tx);
+    setTxHashTest(tx);
+    setAmountDepositYFD(0);
+    return;
   };
 
   const handleClickMirrorDeposit = async (
@@ -138,7 +146,8 @@ const useHandleClicks = () => {
     handleClickMirrorBorrow,
     handleClickMirrorWithdraw,
     handleClickDGSFDeposit,
-    handleClickStakeYFD
+    handleClickStakeYFD,
+    txHashTest
   };
 };
 

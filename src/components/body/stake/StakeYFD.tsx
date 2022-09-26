@@ -1,42 +1,53 @@
 import { Button } from '@mui/material';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useHandleClicks from 'hooks/useHandleClicks';
 import CurrencyInput from 'react-currency-input-field';
 import TxHashLink from '../availableOptions/optionCard/depositPanel/txHashLink/TxHashLink';
 import useContract from 'hooks/useContract';
 import BalanceYFD from './BalanceYFD';
 import BalancefYFD from './BalancefYFD';
+import { useRecoilState } from 'recoil';
+import amountDepositYFDAtom from 'recoil/amountDepositYFD/atom';
+import InputCurrency from 'components/basic/input/InputCurrency';
 
 function StakeYFD() {
-  const [amountDepositYFD, setAmountDepositYFD] = useState(0);
+  const [amountDepositYFD, setAmountDepositYFD] =
+    useRecoilState(amountDepositYFDAtom);
   const { handleClickStakeYFD } = useHandleClicks();
   const { txHashFromExecute } = useContract();
+  const { txHashTest } = useHandleClicks();
+  const [newTxHash, setNewTxHash] = useState('test');
 
   useEffect(() => {
-    console.log(txHashFromExecute);
-  }, [txHashFromExecute]);
+    console.log(txHashTest);
+  }, [txHashTest, amountDepositYFD]);
 
   return (
     <>
       <div>{txHashFromExecute}</div>
-      <BalanceYFD />
-      <BalancefYFD />
-      <CurrencyInput
+      <InputCurrency
         id="stake-yfd-input"
         name="stake-yfd-input"
-        allowNegativeValue={false}
         placeholder="Enter YFD Amount"
         decimalsLimit={5}
-        onValueChange={(value) => setAmountDepositYFD(Number(value))}
+        setAmount={setAmountDepositYFD}
+        amount={amountDepositYFD}
+        label="Deposit YFD"
       />
       <Button
         variant="contained"
         onClick={async () => {
+          console.log(amountDepositYFD);
           return await handleClickStakeYFD(amountDepositYFD);
         }}
       >
         deposit yfd
       </Button>
+      <BalanceYFD />
+      <BalancefYFD />
+      <div>{txHashFromExecute}</div>
+      <div>{txHashTest}</div>
+      <div>{newTxHash}</div>
     </>
   );
 }
