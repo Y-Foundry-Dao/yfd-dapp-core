@@ -27,7 +27,7 @@ function BalanceYFD() {
     });
   }, [connectedWallet, amountDepositYFD]);
   return (
-    <div>BalanceYFD: {(Number(balance) * Math.pow(10, -6)).toFixed(5)}</div>
+    <div>Balance YFD: {(Number(balance) * Math.pow(10, -6)).toFixed(5)}</div>
   );
 }
 
