@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+// import { Button } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import useHandleClicks from 'hooks/useHandleClicks';
 import CurrencyInput from 'react-currency-input-field';
@@ -9,6 +9,7 @@ import BalancefYFD from './BalancefYFD';
 import { useRecoilState } from 'recoil';
 import amountDepositYFDAtom from 'recoil/amountDepositYFD/atom';
 import InputCurrency from 'components/basic/input/InputCurrency';
+import { Button } from '@chakra-ui/react';
 
 function StakeYFD() {
   const [amountDepositYFD, setAmountDepositYFD] =
@@ -35,7 +36,6 @@ function StakeYFD() {
         label="Deposit YFD"
       />
       <Button
-        variant="contained"
         onClick={async () => {
           console.log(amountDepositYFD);
           return await handleClickStakeYFD(amountDepositYFD);
