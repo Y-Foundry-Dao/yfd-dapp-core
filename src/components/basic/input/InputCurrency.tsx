@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import CurrencyInput from 'react-currency-input-field';
-import amountDepositYFDAtom from 'recoil/amountDepositYFD/atom';
 
 interface Props {
   id: string;
@@ -22,7 +21,7 @@ function InputCurrency({
   label
 }: Props) {
   const handleValueChange = (value: any) => {
-    value !== typeof String && setAmount(Number(value) || 0);
+    setAmount(value === undefined ? 0 : value);
   };
 
   return (
@@ -32,8 +31,10 @@ function InputCurrency({
         id={id}
         name={name}
         placeholder={placeholder}
+        defaultValue={0}
         allowNegativeValue={false}
         decimalsLimit={decimalsLimit}
+        allowDecimals={true}
         onValueChange={handleValueChange}
         value={amount}
       />
