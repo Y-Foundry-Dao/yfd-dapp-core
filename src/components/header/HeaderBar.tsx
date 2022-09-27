@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Logo from 'components/header/logo/Logo';
 import NavLinks from 'components/header/navigation/navlinks/NavLinks';
 import Burger from 'components/header/burger/Burger';
-import Toolbar from '@mui/material/Toolbar';
+// import Toolbar from '@mui/material/Toolbar';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import { ConnectedWalletMenu } from 'components/header/wallet/ConnectedWalletMenu';
 import { ConnectWalletMenu } from 'components/header/wallet/ConnectWalletMenu';
@@ -13,9 +13,9 @@ function HeaderBar() {
     <Header id="home">
       <Logo />
       <NavLinks />
-      <Toolbar>
+      {/* <Toolbar>
         {connectedWallet ? <ConnectedWalletMenu /> : <ConnectWalletMenu />}
-      </Toolbar>
+      </Toolbar> */}
       <Burger />
     </Header>
   );
