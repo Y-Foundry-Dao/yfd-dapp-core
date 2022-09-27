@@ -6,10 +6,10 @@ import dgsfLogo from 'assets/yfd/logo-dgsf.svg';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import ReactCardFlip from 'react-card-flip';
 
-import Title from 'components/body/availableOptions/optionCard/title/Title';
-import Strategist from 'components/body/availableOptions/optionCard/strategist/Strategist';
+import Title from 'components/pageBody/availableOptions/optionCard/title/Title';
+import Strategist from 'components/pageBody/availableOptions/optionCard/strategist/Strategist';
 
-import DepositPanel from 'components/body/availableOptions/optionCard/depositPanel/Panel';
+import DepositPanel from 'components/pageBody/availableOptions/optionCard/depositPanel/Panel';
 
 import useInstantiateContract from 'hooks/useInstantiateContract';
 import useContractRegistry from 'hooks/useContractRegistry';

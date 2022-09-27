@@ -2,11 +2,11 @@ import { useState, useCallback } from 'react';
 import styled from 'styled-components';
 
 import Button from 'components/basic/buttons/standard/Button';
-import TxHashLink from 'components/body/availableOptions/optionCard/depositPanel/txHashLink/TxHashLink';
+import TxHashLink from 'components/pageBody/availableOptions/optionCard/depositPanel/txHashLink/TxHashLink';
 import InputContract from 'components/basic/input/InputContract';
 import InputAmount from 'components/basic/input/InputAmount';
 
-import AvailableAmount from 'components/body/availableOptions/optionCard/depositPanel/availableAmount/AvailableAmount';
+import AvailableAmount from 'components/pageBody/availableOptions/optionCard/depositPanel/availableAmount/AvailableAmount';
 
 import msgDeposit from 'utilities/messagesExecute/msgDeposit';
 import useContract from 'hooks/useContract';
@@ -19,7 +19,7 @@ import {
   useConnectedWallet,
   UserDenied
 } from '@terra-money/wallet-provider';
-import Selector from 'components/body/availableOptions/optionCard/depositPanel/selector/Selector';
+import Selector from 'components/pageBody/availableOptions/optionCard/depositPanel/selector/Selector';
 
 import { useRecoilValue } from 'recoil';
 import assetToBorrowAtom from 'recoil/assetToBorrow/atom';

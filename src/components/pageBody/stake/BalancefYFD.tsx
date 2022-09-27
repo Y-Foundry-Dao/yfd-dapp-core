@@ -23,6 +23,8 @@ function BalancefYFD() {
       console.log(res);
       if (res !== undefined) {
         setBalance(res.balance);
+      } else {
+        setBalance('0');
       }
     });
   }, [connectedWallet, amountDepositYFD]);

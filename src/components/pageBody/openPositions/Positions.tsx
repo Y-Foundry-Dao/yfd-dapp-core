@@ -1,18 +1,22 @@
 import styled from 'styled-components';
-import OptionList from 'components/body/availableOptions/OptionsList';
+import OpenPositionsList from 'components/pageBody/openPositions/PositionsList';
+import { useRecoilValue } from 'recoil';
+import burgerAtom from 'recoil/burger/atom';
+import modalIsOpenUpdateAtom from 'recoil/modalIsOpenUpdate/atom';
+import positionsAtom from 'recoil/positions/atom';
 
-export default function Options() {
-  return (
-    <AvailableOptions>
-      <SectionTitle>Available Options</SectionTitle>
-      <OptionList />
-    </AvailableOptions>
-  );
+function Positions() {
+  const modalIsOpenUpdate = useRecoilValue(modalIsOpenUpdateAtom);
+  const positionList = useRecoilValue(positionsAtom);
+  const burgerIsOpen = useRecoilValue(burgerAtom);
+
+  return burgerIsOpen === false ? (
+    <OpenPositions>
+      <SectionTitle>My Open Positions</SectionTitle>
+      <OpenPositionsList />
+    </OpenPositions>
+  ) : null;
 }
-
-const AvailableOptions = styled.div`
-  color: ${(props) => `${props.theme.colors.color5}`};
-`;
 
 const SectionTitle = styled.h2`
   text-shadow: 1px 3px 6px
@@ -36,3 +40,9 @@ const SectionTitle = styled.h2`
     height: 5px;
   }
 `;
+
+const OpenPositions = styled.div`
+  padding-bottom: 2%;
+`;
+
+export default Positions;

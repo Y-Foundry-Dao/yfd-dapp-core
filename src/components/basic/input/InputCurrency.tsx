@@ -25,8 +25,8 @@ function InputCurrency({
   };
 
   return (
-    <Label>
-      <StyledTitle>{label}</StyledTitle>
+    <label>
+      <h2>{label}</h2>
       <CurrencyInput
         id={id}
         name={name}
@@ -38,36 +38,35 @@ function InputCurrency({
         onValueChange={handleValueChange}
         value={amount}
       />
-    </Label>
+    </label>
   );
 }
 
-const Label = styled.label`
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 2%;
-`;
+// const Label = styled.label`
+//   display: flex;
+//   flex-direction: column;
+//   padding-bottom: 2%;
+// `;
 
-const StyledTitle = styled.h2`
-  text-shadow: 1px 3px 6px black, 0 0 0 gray, 1px 4px 2px #333;
-  margin: 15% 0 0 0;
-  padding-bottom: 0px;
-  font-size: 1em;
-  color: ${(props) => `${props.theme.colors.color3}`};
-  display: grid;
-  grid-template-columns: 1fr max-content 1fr;
-  grid-template-rows: 21px;
-  grid-gap: 10px;
-  align-items: center;
+// const StyledTitle = styled.h2`
+//   text-shadow: 1px 3px 6px black, 0 0 0 gray, 1px 4px 2px #333;
+//   margin: 15% 0 0 0;
+//   padding-bottom: 0px;
+//   font-size: 1em;
 
-  :after,
-  :before {
-    content: ' ';
-    display: block;
-    border-bottom: 1px solid ${(props) => `${props.theme.colors.color3}`};
-    box-shadow: 0 6px 7px -7px ${(props) => `${props.theme.colors.color1}`};
-    height: 5px;
-  }
-`;
+//   display: grid;
+//   grid-template-columns: 1fr max-content 1fr;
+//   grid-template-rows: 21px;
+//   grid-gap: 10px;
+//   align-items: center;
+
+//   :after,
+//   :before {
+//     content: ' ';
+//     display: block;
+
+//     height: 5px;
+//   }
+// `;
 
 export default InputCurrency;

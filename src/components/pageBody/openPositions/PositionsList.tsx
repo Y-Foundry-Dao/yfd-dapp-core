@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import PositionCard from './positionCard/PositionCard';
-import UpdateModal from 'components/body/openPositions/positionCard/updateModal/UpdateModal';
+import UpdateModal from 'components/pageBody/openPositions/positionCard/updateModal/UpdateModal';
 import { useRecoilValue } from 'recoil';
 import burgerAtom from 'recoil/burger/atom';
 import modalIsOpenUpdateAtom from 'recoil/modalIsOpenUpdate/atom';

@@ -5,7 +5,7 @@ import { useConnectedWallet } from '@terra-money/wallet-provider';
 
 import HeaderBar from 'components/header/HeaderBar';
 import FooterBar from 'components/footer/FooterBar';
-import PageBody from 'components/body/Body';
+import PageBody from 'components/pageBody/PageBody';
 
 import useContractRegistry from 'hooks/useContractRegistry';
 import useContract from 'hooks/useContract';
@@ -21,6 +21,7 @@ import assetsObjectAtom from 'recoil/assetsObject/atom';
 
 import tokenFactory from 'utilities/messagesQuery/tokenFactory';
 import { TOKEN_FACTORY } from 'utilities/variables';
+import HeaderChakra from 'components/header/headerChakra/HeaderChakra';
 
 interface Props {
   modalIsOpen: boolean;
@@ -104,28 +105,31 @@ export default function App() {
   // }, [connectedWallet]);
 
   return (
-    <Main modalIsOpen={depositModalIsOpen || updateModalIsOpen}>
-      <Blur modalIsOpen={depositModalIsOpen || updateModalIsOpen} />
-      <HeaderBar />
+    <main
+    // modalIsOpen={depositModalIsOpen || updateModalIsOpen}
+    >
+      {/* <Blur modalIsOpen={depositModalIsOpen || updateModalIsOpen} /> */}
+      {/* <HeaderBar /> */}
+      <HeaderChakra />
       <PageBody />
-      <FooterBar />
-    </Main>
+      {/* <FooterBar /> */}
+    </main>
   );
 }
 
-const Main = styled.main<Props>`
-  display: grid;
-  grid: 'pageHeader' 'pageBody' 'pageFooter';
-  z-index: 0;
-  pointer-events: ${({ modalIsOpen }) => (modalIsOpen ? 'none' : 'auto')};
-`;
+// const Main = styled.main<Props>`
+//   display: grid;
+//   grid: 'pageHeader' 'pageBody' 'pageFooter';
+//   z-index: 0;
+//   pointer-events: ${({ modalIsOpen }) => (modalIsOpen ? 'none' : 'auto')};
+// `;
 
-const Blur = styled.div<Props>`
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  z-index: ${({ modalIsOpen }) => (modalIsOpen ? '1' : '-1')};
-  > * {
-    filter: ${({ modalIsOpen }) => modalIsOpen && 'blur(20px)'};
-  }
-`;
+// const Blur = styled.div<Props>`
+//   position: absolute;
+//   width: 100vw;
+//   height: 100vh;
+//   z-index: ${({ modalIsOpen }) => (modalIsOpen ? '1' : '-1')};
+//   > * {
+//     filter: ${({ modalIsOpen }) => modalIsOpen && 'blur(20px)'};
+//   }
+// `;

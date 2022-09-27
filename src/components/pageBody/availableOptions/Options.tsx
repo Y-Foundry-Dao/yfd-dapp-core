@@ -1,25 +1,17 @@
 import styled from 'styled-components';
-import OptionCard from 'components/body/availableOptions/optionCard/OptionCard';
+import OptionList from 'components/pageBody/availableOptions/OptionsList';
 
 export default function Options() {
   return (
-    <OptionsList>
-      <OptionCard />
-    </OptionsList>
+    <AvailableOptions>
+      <SectionTitle>Available Options</SectionTitle>
+      <OptionList />
+    </AvailableOptions>
   );
 }
 
-const OptionsList = styled.div`
+const AvailableOptions = styled.div`
   color: ${(props) => `${props.theme.colors.color5}`};
-  margin: 5%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 50px 30px;
-  justify-content: space-evenly;
-  align-content: space-between;
-  align-self: flex-start;
-  filter: blur(0px) !important;
-  text-align: center;
 `;
 
 const SectionTitle = styled.h2`
