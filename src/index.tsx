@@ -13,14 +13,14 @@ const root = createRoot(container!);
 getChainOptions().then((chainOptions) => {
   root.render(
     <WalletProvider {...chainOptions}>
-      <ThemeComponent>
-        <ChakraProvider>
-          <GlobalCss />
-          <RecoilRoot>
-            <App />
-          </RecoilRoot>
-        </ChakraProvider>
-      </ThemeComponent>
+      {/* <ThemeComponent> */}
+      <ChakraProvider>
+        {/* <GlobalCss /> */}
+        <RecoilRoot>
+          <App />
+        </RecoilRoot>
+      </ChakraProvider>
+      {/* </ThemeComponent> */}
     </WalletProvider>
   );
 });
