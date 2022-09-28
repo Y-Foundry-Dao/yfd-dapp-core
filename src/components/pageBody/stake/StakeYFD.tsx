@@ -1,8 +1,5 @@
-// import { Button } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import useHandleClicks from 'hooks/useHandleClicks';
-import CurrencyInput from 'react-currency-input-field';
-import TxHashLink from '../availableOptions/optionCard/depositPanel/txHashLink/TxHashLink';
 import useContract from 'hooks/useContract';
 import BalanceYFD from './BalanceYFD';
 import BalancefYFD from './BalancefYFD';

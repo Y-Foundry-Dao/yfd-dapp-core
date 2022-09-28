@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import CurrencyInput from 'react-currency-input-field';
 
 interface Props {
@@ -41,32 +40,5 @@ function InputCurrency({
     </label>
   );
 }
-
-// const Label = styled.label`
-//   display: flex;
-//   flex-direction: column;
-//   padding-bottom: 2%;
-// `;
-
-// const StyledTitle = styled.h2`
-//   text-shadow: 1px 3px 6px black, 0 0 0 gray, 1px 4px 2px #333;
-//   margin: 15% 0 0 0;
-//   padding-bottom: 0px;
-//   font-size: 1em;
-
-//   display: grid;
-//   grid-template-columns: 1fr max-content 1fr;
-//   grid-template-rows: 21px;
-//   grid-gap: 10px;
-//   align-items: center;
-
-//   :after,
-//   :before {
-//     content: ' ';
-//     display: block;
-
-//     height: 5px;
-//   }
-// `;
 
 export default InputCurrency;

@@ -7,10 +7,18 @@ import {
   DrawerCloseButton,
   useDisclosure,
   IconButton,
-  Image
+  Image,
+  VStack
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import yLogo from 'assets/yfd/logo-orange.svg';
+import NavLink from './NavLink';
+
+const links = [
+  { label: 'Home', link: '/swap' },
+  { label: 'Governance', link: '/vote' },
+  { label: 'Vaults', link: '/vaults' }
+];
 
 export default function BurgerChakra() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -29,9 +37,15 @@ export default function BurgerChakra() {
         <DrawerContent>
           <DrawerCloseButton />
           <DrawerHeader>
-            <Image h={10} src={yLogo} alt="y logo" />
+            <Image h={20} src={yLogo} alt="y logo" />
           </DrawerHeader>
-          <DrawerBody>Nav Links Here</DrawerBody>
+          <DrawerBody>
+            <VStack as={'nav'} spacing={4}>
+              {links.map((link: any) => (
+                <NavLink link={link} />
+              ))}
+            </VStack>
+          </DrawerBody>
         </DrawerContent>
       </Drawer>
     </>
