@@ -41,8 +41,8 @@ export default function BurgerChakra() {
           </DrawerHeader>
           <DrawerBody>
             <VStack as={'nav'} spacing={4}>
-              {links.map((link: any) => (
-                <NavLink link={link} />
+              {links.map((link: any, i) => (
+                <NavLink key={i} link={link} />
               ))}
             </VStack>
           </DrawerBody>

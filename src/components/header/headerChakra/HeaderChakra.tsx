@@ -22,8 +22,8 @@ export default function HeaderChakra() {
               spacing={4}
               display={{ base: 'none', md: 'flex' }}
             >
-              {links.map((link) => (
-                <NavLink link={link} />
+              {links.map((link, i) => (
+                <NavLink key={i} link={link} />
               ))}
             </HStack>
           </HStack>
