@@ -3,14 +3,8 @@ import {
   Menu,
   MenuButton,
   MenuList,
-  MenuItem,
-  MenuDivider,
-  MenuGroup,
-  Image,
-  Link
+  MenuDivider
 } from '@chakra-ui/react';
-
-import { useWallet } from '@terra-money/wallet-provider';
 import AvailableConnectionsList from './AvailableConnectionsList';
 import AvailableInstallationsList from './AvailableInstallationsList';
 
