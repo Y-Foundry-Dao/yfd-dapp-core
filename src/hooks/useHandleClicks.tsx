@@ -19,11 +19,14 @@ import msgEncodedStake from 'utilities/messagesToEncode/msgEncodedStake';
 import msgStakeYFD from 'utilities/messagesExecute/msgStakeYFD';
 import { useState } from 'react';
 import amountDepositYFDAtom from 'recoil/amountDepositYFD/atom';
+import { useToast } from '@chakra-ui/react';
+import FinderLink from 'components/basic/toast/FinderLink';
 
 const useHandleClicks = () => {
   const loopAmount = useRecoilValue(loopAmountAtom);
   const { executeMsg, queryMsg, setTxHashFromExecute } = useContract();
   const [txHashTest, setTxHashTest] = useState('');
+  const toast = useToast();
   const [amountDepositYFD, setAmountDepositYFD] =
     useRecoilState(amountDepositYFDAtom);
 
@@ -72,6 +75,14 @@ const useHandleClicks = () => {
 
     console.log(tx);
     setTxHashTest(tx);
+    tx !== 0 &&
+      toast({
+        title: 'Successfully staked YFD',
+        description: <FinderLink txHash={tx} />,
+        status: 'success',
+        duration: 9000,
+        isClosable: true
+      });
     setAmountDepositYFD(0);
     return;
   };
