@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import yLogo from 'assets/yfd/logo-orange.svg';
-import NavLink from './NavLink';
+import NavLink from './navigation/NavLink';
 
 const links = [
   { label: 'Home', link: '/swap' },

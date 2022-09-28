@@ -1,8 +1,8 @@
-import { Box, Flex, HStack } from '@chakra-ui/react';
+import { Box, Flex, HStack, Image } from '@chakra-ui/react';
 import BurgerChakra from './BurgerChakra';
-import Logo from '../logo/Logo';
+import yLogo from 'assets/yfd/logo-orange.svg';
 import WalletConnect from './walletConnect/WalletConnect';
-import NavLink from './NavLink';
+import NavLink from './navigation/NavLink';
 
 const links = [
   { label: 'Home', link: '/swap' },
@@ -10,13 +10,13 @@ const links = [
   { label: 'Vaults', link: '/vaults' }
 ];
 
-export default function HeaderChakra() {
+export default function Header() {
   return (
     <>
       <Box bg={'gray.900'} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <HStack spacing={8} alignItems={'center'}>
-            <Logo />
+            <Image h={12} src={yLogo} alt="y logo" />
             <HStack
               as={'nav'}
               spacing={4}
