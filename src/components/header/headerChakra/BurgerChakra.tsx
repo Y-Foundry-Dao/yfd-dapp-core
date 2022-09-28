@@ -1,17 +1,16 @@
 import {
-  Button,
   Drawer,
   DrawerBody,
-  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-  Input,
   useDisclosure,
-  IconButton
+  IconButton,
+  Image
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import yLogo from 'assets/yfd/logo-orange.svg';
 
 export default function BurgerChakra() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -19,7 +18,7 @@ export default function BurgerChakra() {
   return (
     <>
       <IconButton
-        size={'md'}
+        size={'sm'}
         icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
         aria-label={'Open Menu'}
         display={{ md: 'none' }}
@@ -29,8 +28,9 @@ export default function BurgerChakra() {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>YFD</DrawerHeader>
-
+          <DrawerHeader>
+            <Image h={10} src={yLogo} alt="y logo" />
+          </DrawerHeader>
           <DrawerBody>Nav Links Here</DrawerBody>
         </DrawerContent>
       </Drawer>

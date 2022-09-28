@@ -25,9 +25,10 @@ import {
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import BurgerChakra from './BurgerChakra';
 import Logo from '../logo/Logo';
-import ConnectWalletMenu from './connectWallet/ConnectWalletMenu';
+import ConnectWalletMenu from './walletConnect/connectWallet/ConnectWalletMenu';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
-import ConnectedWalletMenu from './connectedWallet/ConnectedWalletMenu';
+import ConnectedWalletMenu from './walletConnect/connectedWallet/ConnectedWalletMenu';
+import WalletConnect from './walletConnect/WalletConnect';
 
 const Links = ['Dashboard', 'Projects', 'Team'];
 
@@ -47,7 +48,6 @@ const NavLink = ({ children }: { children: ReactNode }) => (
 );
 
 export default function HeaderChakra() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const connectedWallet = useConnectedWallet();
 
   return (
@@ -66,22 +66,11 @@ export default function HeaderChakra() {
               ))}
             </HStack>
           </HStack>
-          <Flex alignItems={'center'}>
-            {/* Connect wallet here */}
-            {/* <Button>Connect Wallet</Button> */}
-            {connectedWallet ? <ConnectedWalletMenu /> : <ConnectWalletMenu />}
+          <Flex alignItems={'center'} gap={{ base: 4, sm: 8 }}>
+            <WalletConnect />
+            <BurgerChakra />
           </Flex>
-          <BurgerChakra />
         </Flex>
-        {/* {isOpen ? (
-          <Box pb={4} display={{ md: 'none' }}>
-            <VStack as={'nav'} spacing={4}>
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
-            </VStack>
-          </Box>
-        ) : null} */}
       </Box>
     </>
   );
