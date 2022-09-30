@@ -3,9 +3,13 @@ import { YFD_TEST } from 'utilities/variables';
 const msgEncodedProposal = (
   nameProposal: string,
   urlProposal: string,
-  tvlLimit: string,
-  developmentCost: string,
+  tvlLimit: number,
+  developmentCost: number,
   statementOfWork: string,
+  paymentSchedule: number,
+  github: string,
+  quorumPercent: number,
+  selfVouchedInformation: string,
   developer: string
 ) => {
   return `{
@@ -23,12 +27,12 @@ const msgEncodedProposal = (
         "development_cost": "${developmentCost}",
         "funding_denomination": "${YFD_TEST}",
         "statement_of_work": "${statementOfWork}",
-        "payment_schedule": 2,
+        "payment_schedule": ${Number(paymentSchedule)},
         "payment_frequency": 1000,
-        "github": "www.example.com",
+        "github": "${github}",
         "expiration": 43200,
-        "quorum_percent": 25,
-        "self_vouched_information": "www.example.com"
+        "quorum_percent": ${quorumPercent},
+        "self_vouched_information": "${selfVouchedInformation}"
       }
     }
   }
