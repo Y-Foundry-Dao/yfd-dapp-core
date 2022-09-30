@@ -1,24 +1,16 @@
 import {
   Button,
-  Box,
   Flex,
   Input,
   InputGroup,
   InputLeftAddon,
-  NumberInput,
   Heading
 } from '@chakra-ui/react';
-import { useConnectedWallet } from '@terra-money/wallet-provider';
 import useHandleClicks from 'hooks/useHandleClicks';
-import React from 'react';
 import { useRecoilState } from 'recoil';
 import {
-  inputContactList,
   inputDevelopmentCost,
-  inputGitHub,
   inputNameProposal,
-  inputPaymentFrequency,
-  inputPaymentSchedule,
   inputStatementOfWork,
   inputTvlLimit,
   inputUrlProposal
@@ -33,12 +25,6 @@ function ProposalSubmit() {
     useRecoilState(inputDevelopmentCost);
   const [statementOfWork, setStatementOfWork] =
     useRecoilState(inputStatementOfWork);
-  const [paymentSchedule, setPaymentScheudle] =
-    useRecoilState(inputPaymentSchedule);
-  const [paymentFrequency, setPaymentFrequency] = useRecoilState(
-    inputPaymentFrequency
-  );
-  const [github, setGithub] = useRecoilState(inputGitHub);
 
   const handleInputNameProposal = (event: any) =>
     setNameProposal(event.target.value);
@@ -53,9 +39,6 @@ function ProposalSubmit() {
 
   const handleInputStatementOfWork = (event: any) =>
     setStatementOfWork(event.target.value);
-
-  const handleInputpaymentSchedule = (event: any) =>
-    setPaymentScheudle(event.target.value);
 
   return (
     <Flex direction="column" alignItems="center" maxW="md" mt={5}>

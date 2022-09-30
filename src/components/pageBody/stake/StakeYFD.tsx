@@ -14,9 +14,9 @@ function StakeYFD() {
   const { handleClickStakeYFD } = useHandleClicks();
   const { txHashTest } = useHandleClicks();
 
-  useEffect(() => {
-    console.log(txHashTest);
-  }, [txHashTest, amountDepositYFD]);
+  // useEffect(() => {
+  //   console.log(txHashTest);
+  // }, [txHashTest, amountDepositYFD]);
 
   return (
     <Flex alignItems="center" gap={10}>
@@ -32,7 +32,7 @@ function StakeYFD() {
         />
         <Button
           onClick={async () => {
-            console.log(amountDepositYFD);
+            // console.log(amountDepositYFD);
             return await handleClickStakeYFD(amountDepositYFD);
           }}
         >

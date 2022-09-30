@@ -10,7 +10,6 @@ import { useToast } from '@chakra-ui/react';
 import FinderLink from 'components/basic/toast/FinderLink';
 import msgEncodedProposal from 'utilities/messagesToEncode/msgEncodedProposal';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
-import msgCW20Send from 'utilities/messagesExecute/msgCW20Send';
 import msgExecuteSend from 'utilities/messagesExecute/msgExecuteSend';
 import {
   inputDevelopmentCost,
@@ -63,7 +62,7 @@ const useHandleClicks = () => {
   };
 
   const handleClickProposal = async () => {
-    console.log('test');
+    // console.log('test');
     if (connectedWallet) {
       const msgToEncode = msgEncodedProposal(
         nameProposal,
@@ -79,7 +78,6 @@ const useHandleClicks = () => {
         5000,
         encodedMessage
       );
-      console.log(msgCreateProposal);
       const tx = await executeMsg(YFD_TEST, msgCreateProposal);
       console.log(tx);
       setTxHashTest(tx);
