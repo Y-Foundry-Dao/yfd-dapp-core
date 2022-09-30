@@ -22,7 +22,7 @@ const inputUrlProposal = atom({
 
 const inputTvlLimit = atom({
   key: 'inputTvlLimit',
-  default: ''
+  default: 1000000
 });
 
 const inputContactList = atom({
@@ -37,7 +37,7 @@ const inputDeveloperWallet = atom({
 
 const inputDevelopmentCost = atom({
   key: 'inputDevelopmentCost',
-  default: ''
+  default: 5000
 });
 
 const inputFundingDenomination = atom({
@@ -52,7 +52,7 @@ const inputStatementOfWork = atom({
 
 const inputPaymentSchedule = atom({
   key: 'inputPaymentSchedule',
-  default: 2
+  default: '2'
 });
 
 const inputPaymentFrequency = atom({
@@ -72,7 +72,7 @@ const inputExpiration = atom({
 
 const inputQuorumPercent = atom({
   key: 'inputQuorumPercent',
-  default: ''
+  default: 25
 });
 
 const inputSelfVoucedInformation = atom({

@@ -5,7 +5,9 @@ import StakeYFD from './stake/StakeYFD';
 function PageBody() {
   return (
     <Flex direction="column" alignItems="center" gap={5}>
-      <Heading>Foundry</Heading>
+      <Heading as="h1" size="xl">
+        Foundry
+      </Heading>
       <StakeYFD />
       <ProposalSubmit />
     </Flex>

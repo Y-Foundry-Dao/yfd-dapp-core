@@ -13,7 +13,12 @@ import { useConnectedWallet } from '@terra-money/wallet-provider';
 import msgExecuteSend from 'utilities/messagesExecute/msgExecuteSend';
 import {
   inputDevelopmentCost,
+  inputGitHub,
   inputNameProposal,
+  inputPaymentFrequency,
+  inputPaymentSchedule,
+  inputQuorumPercent,
+  inputSelfVoucedInformation,
   inputStatementOfWork,
   inputTvlLimit,
   inputUrlProposal
@@ -30,6 +35,10 @@ const useHandleClicks = () => {
   const tvlLimit = useRecoilValue(inputTvlLimit);
   const developmentCost = useRecoilValue(inputDevelopmentCost);
   const statementOfWork = useRecoilValue(inputStatementOfWork);
+  const paymentSchedule = useRecoilValue(inputPaymentSchedule);
+  const github = useRecoilValue(inputGitHub);
+  const quorumPercent = useRecoilValue(inputQuorumPercent);
+  const selfVouchedInformation = useRecoilValue(inputSelfVoucedInformation);
 
   const handleClickStakeYFD = async (amount: number) => {
     const amountConverted: number = amount * Math.pow(10, 6);
@@ -70,6 +79,10 @@ const useHandleClicks = () => {
         tvlLimit,
         developmentCost,
         statementOfWork,
+        Number(paymentSchedule),
+        github,
+        quorumPercent,
+        selfVouchedInformation,
         connectedWallet?.walletAddress
       );
       const encodedMessage = Base64.btoa(msgToEncode);
