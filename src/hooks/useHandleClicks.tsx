@@ -8,12 +8,17 @@ import { useState } from 'react';
 import amountDepositYFDAtom from 'recoil/amountDepositYFD/atom';
 import { useToast } from '@chakra-ui/react';
 import FinderLink from 'components/basic/toast/FinderLink';
+import msgEncodedProposal from 'utilities/messagesToEncode/msgEncodedProposal';
+import { useConnectedWallet } from '@terra-money/wallet-provider';
+import msgCW20Send from 'utilities/messagesExecute/msgCW20Send';
+import msgExecuteSend from 'utilities/messagesExecute/msgExecuteSend';
 
 const useHandleClicks = () => {
   const { executeMsg } = useContract();
   const [txHashTest, setTxHashTest] = useState('');
   const toast = useToast();
   const setAmountDepositYFD = useSetRecoilState(amountDepositYFDAtom);
+  const connectedWallet = useConnectedWallet();
 
   const handleClickStakeYFD = async (amount: number) => {
     const amountConverted: number = amount * Math.pow(10, 6);
@@ -33,7 +38,7 @@ const useHandleClicks = () => {
 
     console.log(tx);
     setTxHashTest(tx);
-    tx !== 0 &&
+    (tx !== 0 || undefined) &&
       toast({
         title: 'Successfully staked YFD',
         description: <FinderLink txHash={tx} />,
@@ -45,8 +50,34 @@ const useHandleClicks = () => {
     return;
   };
 
+  const handleClickProposal = async () => {
+    console.log('test');
+    if (connectedWallet) {
+      const msgToEncode = msgEncodedProposal(connectedWallet?.walletAddress);
+      const encodedMessage = Base64.btoa(msgToEncode);
+      const msgCreateProposal = msgExecuteSend(
+        FORGE_TEST,
+        5000,
+        encodedMessage
+      );
+      console.log(msgCreateProposal);
+      const tx = await executeMsg(YFD_TEST, msgCreateProposal);
+      console.log(tx);
+      setTxHashTest(tx);
+      (tx !== 0 || undefined) &&
+        toast({
+          title: 'Successfully Created Proposal',
+          description: <FinderLink txHash={tx} />,
+          status: 'success',
+          duration: 9000,
+          isClosable: true
+        });
+    }
+  };
+
   return {
     handleClickStakeYFD,
+    handleClickProposal,
     txHashTest
   };
 };
