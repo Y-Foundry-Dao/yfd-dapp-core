@@ -1,11 +1,14 @@
+import { Flex, Heading } from '@chakra-ui/react';
+import ProposalSubmit from './proposal/ProposalSubmit';
 import StakeYFD from './stake/StakeYFD';
 
 function PageBody() {
   return (
-    <div>
-      <h1>Foundry</h1>
+    <Flex direction="column" alignItems="center" gap={5}>
+      <Heading>Foundry</Heading>
       <StakeYFD />
-    </div>
+      <ProposalSubmit />
+    </Flex>
   );
 }
 
