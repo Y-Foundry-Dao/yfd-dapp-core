@@ -20,7 +20,6 @@ function BalanceYFD() {
   };
   useEffect(() => {
     getBalance().then((res: any) => {
-      console.log(res);
       if (res !== undefined) {
         setBalance(res.balance);
       } else {
