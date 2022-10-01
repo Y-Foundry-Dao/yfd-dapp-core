@@ -15,7 +15,6 @@ function ProposalInfo({ contract }: any) {
     console.log(contract);
     getProposalInfo().then((res: any) => {
       if (res !== undefined) {
-        console.log(res);
         setProposalInfo({ ...res });
       }
     });
