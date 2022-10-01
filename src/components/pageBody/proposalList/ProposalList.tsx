@@ -31,7 +31,7 @@ function ProposalList() {
       <Flex wrap="wrap" gap={5} justifyContent="center">
         {proposals.map((proposal: any) => {
           return (
-            <Box maxW="45%" my={6} p={5} borderRadius="md" bg="blue.900">
+            <Box maxW="45%" my={6} p={5} borderRadius="md" bg="blue.700">
               <FinderContractLink contract={proposal.addr} />
               <Divider my={4} />
               <ProposalInfo contract={proposal.addr} />
