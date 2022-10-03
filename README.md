@@ -1,6 +1,4 @@
-# DGSF dApp Frontend
-
-The Terra dApp Template is a starter template built off the [wallet-provider](https://github.com/terra-money/wallet-provider/tree/main/templates/create-react-app) repo. This template is built with a robust infrastructure. This is intended to help developers build, with ready to configure, production ready tooling.
+# YFD Governance dApp Frontend
 
 ## Installation
 
