@@ -7,7 +7,7 @@ import msgStakeYFD from 'utilities/messagesExecute/msgStakeYFD';
 import { useState } from 'react';
 import amountDepositYFDAtom from 'recoil/amountDepositYFD/atom';
 import { useToast } from '@chakra-ui/react';
-import FinderLink from 'components/basic/toast/FinderLink';
+import FinderTxLink from 'components/basic/finder/FinderTxLink';
 import msgEncodedProposal from 'utilities/messagesToEncode/msgEncodedProposal';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import msgExecuteSend from 'utilities/messagesExecute/msgExecuteSend';
@@ -61,7 +61,7 @@ const useHandleClicks = () => {
     (tx !== 0 || undefined) &&
       toast({
         title: 'Successfully staked YFD',
-        description: <FinderLink txHash={tx} />,
+        description: <FinderTxLink txHash={tx} />,
         status: 'success',
         duration: 9000,
         isClosable: true
@@ -97,7 +97,7 @@ const useHandleClicks = () => {
       (tx !== 0 || undefined) &&
         toast({
           title: 'Successfully Created Proposal',
-          description: <FinderLink txHash={tx} />,
+          description: <FinderTxLink txHash={tx} />,
           status: 'success',
           duration: 9000,
           isClosable: true
