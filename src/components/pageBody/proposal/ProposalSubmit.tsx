@@ -22,8 +22,11 @@ import useHandleClicks from 'hooks/useHandleClicks';
 import { useRecoilState } from 'recoil';
 import {
   inputDevelopmentCost,
+  inputExpiration,
   inputGitHub,
+  inputNameMsg,
   inputNameProposal,
+  inputPaymentFrequency,
   inputPaymentSchedule,
   inputQuorumPercent,
   inputSelfVoucedInformation,
@@ -35,6 +38,7 @@ import {
 function ProposalSubmit() {
   const { handleClickProposal } = useHandleClicks();
   const [nameProposal, setNameProposal] = useRecoilState(inputNameProposal);
+  const [nameMsg, setNameMsg] = useRecoilState(inputNameMsg);
   const [urlProposal, setUrlProposal] = useRecoilState(inputUrlProposal);
   const [tvlLimit, setTvlLimit] = useRecoilState(inputTvlLimit);
   const [developmentCost, setDevelopmentCost] =
@@ -47,6 +51,10 @@ function ProposalSubmit() {
   const [quorumPercent, setQuorumPercent] = useRecoilState(inputQuorumPercent);
   const [selfVouchedInformation, setSelfVouchedInformation] = useRecoilState(
     inputSelfVoucedInformation
+  );
+  const [expiration, setExpiration] = useRecoilState(inputExpiration);
+  const [paymentFrequency, setPaymentFrequency] = useRecoilState(
+    inputPaymentFrequency
   );
 
   const handleInputNameProposal = (event: any) =>
@@ -62,7 +70,8 @@ function ProposalSubmit() {
   const handleInputStatementOfWork = (event: any) =>
     setStatementOfWork(event.target.value);
 
-  const handleInputPaymentSchedule = (value: any) => setPaymentSchedule(value);
+  const handleInputPaymentFrequency = (value: any) =>
+    setPaymentFrequency(value);
 
   const handleInputGithub = (event: any) => setGithub(event.target.value);
 
@@ -70,6 +79,10 @@ function ProposalSubmit() {
 
   const handleInputSelfVouchedInformation = (event: any) =>
     setSelfVouchedInformation(event.target.value);
+
+  const handleInputExpiration = (value: any) => {
+    setExpiration(value);
+  };
 
   return (
     <Flex direction="column" alignItems="center" minWidth="50%" mt={5}>
@@ -136,22 +149,6 @@ function ProposalSubmit() {
         </NumberInput>
       </Flex>
 
-      {/* <Slider
-          flex="1"
-          focusThumbOnChange={false}
-          defaultValue={1000000}
-          step={1000}
-          min={1000000}
-          max={999999999}
-          value={tvlLimit}
-          onChange={handleInputTvlLimit}
-        >
-          <SliderTrack>
-            <SliderFilledTrack />
-          </SliderTrack>
-          <SliderThumb fontSize="sm" boxSize="12px" children={tvlLimit} />
-        </Slider> */}
-
       <Flex alignItems="center" gap={5}>
         <Heading as="h3" size="md">
           Development Cost:
@@ -172,30 +169,32 @@ function ProposalSubmit() {
             <NumberDecrementStepper />
           </NumberInputStepper>
         </NumberInput>
-        {/* <Slider
-          flex="1"
-          focusThumbOnChange={false}
-          defaultValue={5000}
-          step={50}
-          min={5000}
-          max={1000000}
-          value={developmentCost}
-          onChange={handleInputDevelopmentCost}
+      </Flex>
+
+      <Flex alignItems="center" gap={5}>
+        <Heading as="h3" size="md">
+          Expiration in Blocks:
+        </Heading>
+        <NumberInput
+          maxW="140px"
+          mr="2rem"
+          defaultValue={43200}
+          step={1}
+          min={43200}
+          value={expiration}
+          onChange={handleInputExpiration}
         >
-          <SliderTrack>
-            <SliderFilledTrack />
-          </SliderTrack>
-          <SliderThumb
-            fontSize="sm"
-            boxSize="12px"
-            children={developmentCost}
-          />
-        </Slider> */}
+          <NumberInputField />
+          <NumberInputStepper>
+            <NumberIncrementStepper />
+            <NumberDecrementStepper />
+          </NumberInputStepper>
+        </NumberInput>
       </Flex>
 
       <RadioGroup
         as={Flex}
-        mt={5}
+        my={5}
         direction="column"
         alignItems="center"
         onChange={setPaymentSchedule}
@@ -212,6 +211,27 @@ function ProposalSubmit() {
         </Stack>
       </RadioGroup>
 
+      <Flex alignItems="center" gap={5}>
+        <Heading as="h3" size="md">
+          Payment Frequency in Blocks:
+        </Heading>
+        <NumberInput
+          maxW="140px"
+          mr="2rem"
+          defaultValue={1000}
+          step={1}
+          min={1000}
+          value={paymentFrequency}
+          onChange={handleInputPaymentFrequency}
+        >
+          <NumberInputField />
+          <NumberInputStepper>
+            <NumberIncrementStepper />
+            <NumberDecrementStepper />
+          </NumberInputStepper>
+        </NumberInput>
+      </Flex>
+
       <Flex width="100%" alignItems="center" gap={5}>
         <Heading as="h3" size="md">
           Quorum Percentage:
@@ -219,6 +239,7 @@ function ProposalSubmit() {
         <NumberInput
           maxW="140px"
           mr="2rem"
+          my={5}
           defaultValue={25}
           step={1}
           min={5}

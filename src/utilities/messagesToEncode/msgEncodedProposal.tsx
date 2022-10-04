@@ -2,6 +2,7 @@ import { YFD_TEST } from 'utilities/variables';
 
 const msgEncodedProposal = (
   nameProposal: string,
+  nameMsg: string,
   urlProposal: string,
   tvlLimit: number,
   developmentCost: number,
@@ -10,12 +11,14 @@ const msgEncodedProposal = (
   github: string,
   quorumPercent: number,
   selfVouchedInformation: string,
+  expiration: number,
+  paymentFrequency: number,
   developer: string
 ) => {
   return `{
   "create_proposal": {
     "msg": {
-      "name": "Foo_name",
+      "name": "${nameProposal}",
       "proposal_info": {
         "name": "${nameProposal}",
         "proposal_url": "${urlProposal}",
@@ -28,9 +31,9 @@ const msgEncodedProposal = (
         "funding_denomination": "${YFD_TEST}",
         "statement_of_work": "${statementOfWork}",
         "payment_schedule": ${Number(paymentSchedule)},
-        "payment_frequency": 1000,
+        "payment_frequency": ${paymentFrequency},
         "github": "${github}",
-        "expiration": 43200,
+        "expiration": ${expiration},
         "quorum_percent": ${quorumPercent},
         "self_vouched_information": "${selfVouchedInformation}"
       }

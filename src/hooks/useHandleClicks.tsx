@@ -13,7 +13,9 @@ import { useConnectedWallet } from '@terra-money/wallet-provider';
 import msgExecuteSend from 'utilities/messagesExecute/msgExecuteSend';
 import {
   inputDevelopmentCost,
+  inputExpiration,
   inputGitHub,
+  inputNameMsg,
   inputNameProposal,
   inputPaymentFrequency,
   inputPaymentSchedule,
@@ -31,6 +33,7 @@ const useHandleClicks = () => {
   const setAmountDepositYFD = useSetRecoilState(amountDepositYFDAtom);
   const connectedWallet = useConnectedWallet();
   const nameProposal = useRecoilValue(inputNameProposal);
+  const nameMsg = useRecoilValue(inputNameMsg);
   const urlProposal = useRecoilValue(inputUrlProposal);
   const tvlLimit = useRecoilValue(inputTvlLimit);
   const developmentCost = useRecoilValue(inputDevelopmentCost);
@@ -39,6 +42,8 @@ const useHandleClicks = () => {
   const github = useRecoilValue(inputGitHub);
   const quorumPercent = useRecoilValue(inputQuorumPercent);
   const selfVouchedInformation = useRecoilValue(inputSelfVoucedInformation);
+  const expiration = useRecoilValue(inputExpiration);
+  const paymentFrequency = useRecoilValue(inputPaymentFrequency);
 
   const handleClickStakeYFD = async (amount: number) => {
     const amountConverted: number = amount * Math.pow(10, 6);
@@ -75,6 +80,7 @@ const useHandleClicks = () => {
     if (connectedWallet) {
       const msgToEncode = msgEncodedProposal(
         nameProposal,
+        nameMsg,
         urlProposal,
         tvlLimit,
         developmentCost,
@@ -83,6 +89,8 @@ const useHandleClicks = () => {
         github,
         quorumPercent,
         selfVouchedInformation,
+        expiration,
+        paymentFrequency,
         connectedWallet?.walletAddress
       );
       const encodedMessage = Base64.btoa(msgToEncode);
