@@ -17,7 +17,6 @@ function VoteButtons({
   const { executeMsg } = useContract();
   const toast = useToast();
   const handleClickVoteAffirm = async () => {
-    // console.log('test');
     if (connectedWallet) {
       const tx = await executeMsg(
         contract,
@@ -36,7 +35,6 @@ function VoteButtons({
   };
 
   const handleClickVoteDeny = async () => {
-    // console.log('test');
     if (connectedWallet) {
       const tx = await executeMsg(
         contract,
@@ -55,7 +53,6 @@ function VoteButtons({
   };
 
   const handleClickVoteAbstain = async () => {
-    // console.log('test');
     if (connectedWallet) {
       const tx = await executeMsg(
         contract,
@@ -74,7 +71,6 @@ function VoteButtons({
   };
 
   const handleClickVoteDenyWithPenalty = async () => {
-    // console.log('test');
     if (connectedWallet) {
       const tx = await executeMsg(
         contract,

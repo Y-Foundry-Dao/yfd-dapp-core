@@ -54,7 +54,6 @@ function ProposalInfo({ contract }: any) {
       <Text>Developer Github: {proposalInfo.github}</Text>
       <Text>TVL Limit: {proposalInfo.tvl_limit}</Text>
 
-      {/* if no vote tokens, display no vote tokens, else display vote tokens with vote buttons */}
       {voteTokenBalance !== undefined && (
         <Box bg="blue.600" p={4}>
           <InputVoteAmount

@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import {
   Flex,
   Heading,
@@ -20,7 +19,6 @@ function InputVoteAmount({
       <Heading as="h3" size="md">
         Input Vote Token Amount:
       </Heading>
-      <>{console.log(voteTokenBalance)}</>
 
       <NumberInput
         maxW="140px"
