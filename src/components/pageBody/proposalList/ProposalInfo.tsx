@@ -1,18 +1,24 @@
 import useContract from 'hooks/useContract';
 import { useEffect, useState } from 'react';
 import queryProposalInfo from 'utilities/messagesQuery/queryProposalInfo';
-import { Box, Button, Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import queryProposalState from 'utilities/messagesQuery/queryProposalState';
 import queryBalance from 'utilities/messagesQuery/balance';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import VoteTokenBalance from './VoteTokenBalance';
 import VoteButtons from './VoteButtons';
+import InputVoteAmount from './InputVoteAmount';
+import { useRecoilValue } from 'recoil';
+import txHashAtom from 'recoil/txHash/atom';
 
 function ProposalInfo({ contract }: any) {
   const { queryMsg } = useContract();
+  const [inputVoteTokenAmount, setInputVoteTokenAmount] = useState(0);
   const [proposalInfo, setProposalInfo] = useState<any>({});
   const [voteTokenBalance, setVoteTokenBalance] = useState<any>('');
+  const [voteAddress, setVoteAddress] = useState('');
   const connectedWallet = useConnectedWallet();
+  const txHash = useRecoilValue(txHashAtom);
 
   const getProposalInfo = async () => {
     const response = await queryMsg(contract, queryProposalInfo());
@@ -25,12 +31,17 @@ function ProposalInfo({ contract }: any) {
   useEffect(() => {
     getProposalInfo().then((res: any) => {
       if (res !== undefined) {
+        console.log(res);
         setProposalInfo({ ...res });
       }
     });
     getVoteAddress().then(async (res: any) => {
       if (res !== undefined) {
         const voteAddress = res.initial_vote;
+        setVoteAddress(voteAddress);
+        if (!connectedWallet) {
+          return;
+        }
         const newVoteTokenBalance = await queryMsg(
           voteAddress,
           queryBalance(connectedWallet?.walletAddress)
@@ -38,7 +49,7 @@ function ProposalInfo({ contract }: any) {
         setVoteTokenBalance(newVoteTokenBalance);
       }
     });
-  }, [contract, connectedWallet]);
+  }, [contract, connectedWallet, txHash]);
 
   return (
     <Flex direction="column" gap={4}>
@@ -50,11 +61,24 @@ function ProposalInfo({ contract }: any) {
       <Text>Developer Github: {proposalInfo.github}</Text>
       <Text>TVL Limit: {proposalInfo.tvl_limit}</Text>
 
-      {/* if no vote tokens, display no vote tokens, else display vote tokens with vote buttons */}
-      <Box bg="blue.600" p={4}>
-        <VoteTokenBalance voteTokenBalance={voteTokenBalance} />
-        <VoteButtons voteTokenBalance={voteTokenBalance} />
-      </Box>
+      {voteTokenBalance !== undefined && (
+        <Box bg="blue.600" p={4}>
+          <InputVoteAmount
+            voteTokenBalance={voteTokenBalance}
+            inputVoteTokenAmount={inputVoteTokenAmount}
+            setInputVoteTokenAmount={setInputVoteTokenAmount}
+          />
+          <VoteTokenBalance
+            contract={contract}
+            voteTokenBalance={voteTokenBalance}
+          />
+          <VoteButtons
+            contract={voteAddress}
+            voteTokenBalance={voteTokenBalance}
+            inputVoteTokenAmount={inputVoteTokenAmount}
+          />
+        </Box>
+      )}
     </Flex>
   );
 }
