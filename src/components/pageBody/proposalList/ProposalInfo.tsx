@@ -39,6 +39,9 @@ function ProposalInfo({ contract }: any) {
       if (res !== undefined) {
         const voteAddress = res.initial_vote;
         setVoteAddress(voteAddress);
+        if (!connectedWallet) {
+          return;
+        }
         const newVoteTokenBalance = await queryMsg(
           voteAddress,
           queryBalance(connectedWallet?.walletAddress)

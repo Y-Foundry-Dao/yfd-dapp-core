@@ -12,6 +12,9 @@ function BalancefYFD() {
   const connectedWallet = useConnectedWallet();
   const amountDepositYFD = useRecoilValue(amountDepositYFDAtom);
   const getBalance = async () => {
+    if (!connectedWallet) {
+      return;
+    }
     const response = await queryMsg(
       FORGE_TEST,
       queryBalance(connectedWallet?.walletAddress)

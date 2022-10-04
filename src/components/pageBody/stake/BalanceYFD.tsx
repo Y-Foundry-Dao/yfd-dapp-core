@@ -12,6 +12,9 @@ function BalanceYFD() {
   const amountDepositYFD = useRecoilValue(amountDepositYFDAtom);
   const connectedWallet = useConnectedWallet();
   const getBalance = async () => {
+    if (!connectedWallet) {
+      return;
+    }
     const response = await queryMsg(
       YFD_TEST,
       queryBalance(connectedWallet?.walletAddress)

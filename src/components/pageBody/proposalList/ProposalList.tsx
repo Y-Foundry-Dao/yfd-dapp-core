@@ -25,27 +25,34 @@ function ProposalList() {
 
   return (
     <>
-      <Heading as="h2" size="lg">
-        Current Proposals
-      </Heading>
-      <Flex wrap="wrap" gap={5} justifyContent="center">
-        {proposals.map((proposal: any) => {
-          return (
-            <Box
-              key={proposal.addr}
-              maxW="45%"
-              my={6}
-              p={5}
-              borderRadius="md"
-              bg="blue.700"
-            >
-              <FinderContractLink contract={proposal.addr} />
-              <Divider my={4} />
-              <ProposalInfo contract={proposal.addr} />
-            </Box>
-          );
-        })}
-      </Flex>
+      {console.log(proposals.length)}
+      {proposals.length === 0 ? (
+        'no proposals'
+      ) : (
+        <>
+          <Heading as="h2" size="lg">
+            Current Proposals
+          </Heading>
+          <Flex wrap="wrap" gap={5} justifyContent="center">
+            {proposals.map((proposal: any) => {
+              return (
+                <Box
+                  key={proposal.addr}
+                  maxW="45%"
+                  my={6}
+                  p={5}
+                  borderRadius="md"
+                  bg="blue.700"
+                >
+                  <FinderContractLink contract={proposal.addr} />
+                  <Divider my={4} />
+                  <ProposalInfo contract={proposal.addr} />
+                </Box>
+              );
+            })}
+          </Flex>
+        </>
+      )}
     </>
   );
 }
