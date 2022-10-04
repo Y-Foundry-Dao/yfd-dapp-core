@@ -16,12 +16,6 @@ yarn install
 yarn start
 ```
 
-#### storybook design system
-
-```typescript
-yarn storybook
-```
-
 #### unit/integration tests
 
 ```typescript
