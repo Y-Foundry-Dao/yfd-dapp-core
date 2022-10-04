@@ -7,11 +7,14 @@ import queryBalance from 'utilities/messagesQuery/balance';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import VoteTokenBalance from './VoteTokenBalance';
 import VoteButtons from './VoteButtons';
+import InputVoteAmount from './InputVoteAmount';
 
 function ProposalInfo({ contract }: any) {
   const { queryMsg } = useContract();
+  const [inputVoteTokenAmount, setInputVoteTokenAmount] = useState(0);
   const [proposalInfo, setProposalInfo] = useState<any>({});
   const [voteTokenBalance, setVoteTokenBalance] = useState<any>('');
+  const [voteAddress, setVoteAddress] = useState('');
   const connectedWallet = useConnectedWallet();
 
   const getProposalInfo = async () => {
@@ -31,6 +34,7 @@ function ProposalInfo({ contract }: any) {
     getVoteAddress().then(async (res: any) => {
       if (res !== undefined) {
         const voteAddress = res.initial_vote;
+        setVoteAddress(voteAddress);
         const newVoteTokenBalance = await queryMsg(
           voteAddress,
           queryBalance(connectedWallet?.walletAddress)
@@ -51,10 +55,21 @@ function ProposalInfo({ contract }: any) {
       <Text>TVL Limit: {proposalInfo.tvl_limit}</Text>
 
       {/* if no vote tokens, display no vote tokens, else display vote tokens with vote buttons */}
-      <Box bg="blue.600" p={4}>
-        <VoteTokenBalance voteTokenBalance={voteTokenBalance} />
-        <VoteButtons voteTokenBalance={voteTokenBalance} />
-      </Box>
+      {voteTokenBalance !== undefined && (
+        <Box bg="blue.600" p={4}>
+          <InputVoteAmount
+            voteTokenBalance={voteTokenBalance}
+            inputVoteTokenAmount={inputVoteTokenAmount}
+            setInputVoteTokenAmount={setInputVoteTokenAmount}
+          />
+          <VoteTokenBalance voteTokenBalance={voteTokenBalance} />
+          <VoteButtons
+            contract={voteAddress}
+            voteTokenBalance={voteTokenBalance}
+            inputVoteTokenAmount={inputVoteTokenAmount}
+          />
+        </Box>
+      )}
     </Flex>
   );
 }
