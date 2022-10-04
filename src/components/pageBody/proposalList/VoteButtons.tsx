@@ -2,7 +2,8 @@ import { Button, Flex, Text, useToast } from '@chakra-ui/react';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import FinderTxLink from 'components/basic/finder/FinderTxLink';
 import useContract from 'hooks/useContract';
-import msgExecuteSend from 'utilities/messagesExecute/msgExecuteSend';
+import { useSetRecoilState } from 'recoil';
+import txHashAtom from 'recoil/txHash/atom';
 import msgVoteAbstain from 'utilities/messagesExecute/msgVoteAbstain';
 import msgVoteAffirm from 'utilities/messagesExecute/msgVoteAffirm';
 import msgVoteDeny from 'utilities/messagesExecute/msgVoteDeny';
@@ -16,13 +17,14 @@ function VoteButtons({
   const connectedWallet = useConnectedWallet();
   const { executeMsg } = useContract();
   const toast = useToast();
+  const setTxHash = useSetRecoilState(txHashAtom);
   const handleClickVoteAffirm = async () => {
     if (connectedWallet) {
       const tx = await executeMsg(
         contract,
         msgVoteAffirm(inputVoteTokenAmount * Math.pow(10, 6))
       );
-      console.log(tx);
+      setTxHash(tx);
       (tx !== 0 || undefined) &&
         toast({
           title: 'Successfully Voted',
@@ -40,7 +42,7 @@ function VoteButtons({
         contract,
         msgVoteDeny(inputVoteTokenAmount * Math.pow(10, 6))
       );
-      console.log(tx);
+      setTxHash(tx);
       (tx !== 0 || undefined) &&
         toast({
           title: 'Successfully Voted',
@@ -58,7 +60,7 @@ function VoteButtons({
         contract,
         msgVoteAbstain(inputVoteTokenAmount * Math.pow(10, 6))
       );
-      console.log(tx);
+      setTxHash(tx);
       (tx !== 0 || undefined) &&
         toast({
           title: 'Successfully Voted',
@@ -76,7 +78,7 @@ function VoteButtons({
         contract,
         msgVoteDenyWithPenalty(inputVoteTokenAmount * Math.pow(10, 6))
       );
-      console.log(tx);
+      setTxHash(tx);
       (tx !== 0 || undefined) &&
         toast({
           title: 'Successfully Voted',

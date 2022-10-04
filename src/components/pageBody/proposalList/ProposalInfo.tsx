@@ -1,13 +1,15 @@
 import useContract from 'hooks/useContract';
 import { useEffect, useState } from 'react';
 import queryProposalInfo from 'utilities/messagesQuery/queryProposalInfo';
-import { Box, Button, Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import queryProposalState from 'utilities/messagesQuery/queryProposalState';
 import queryBalance from 'utilities/messagesQuery/balance';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import VoteTokenBalance from './VoteTokenBalance';
 import VoteButtons from './VoteButtons';
 import InputVoteAmount from './InputVoteAmount';
+import { useRecoilValue } from 'recoil';
+import txHashAtom from 'recoil/txHash/atom';
 
 function ProposalInfo({ contract }: any) {
   const { queryMsg } = useContract();
@@ -16,6 +18,7 @@ function ProposalInfo({ contract }: any) {
   const [voteTokenBalance, setVoteTokenBalance] = useState<any>('');
   const [voteAddress, setVoteAddress] = useState('');
   const connectedWallet = useConnectedWallet();
+  const txHash = useRecoilValue(txHashAtom);
 
   const getProposalInfo = async () => {
     const response = await queryMsg(contract, queryProposalInfo());
@@ -28,6 +31,7 @@ function ProposalInfo({ contract }: any) {
   useEffect(() => {
     getProposalInfo().then((res: any) => {
       if (res !== undefined) {
+        console.log(res);
         setProposalInfo({ ...res });
       }
     });
@@ -42,7 +46,7 @@ function ProposalInfo({ contract }: any) {
         setVoteTokenBalance(newVoteTokenBalance);
       }
     });
-  }, [contract, connectedWallet]);
+  }, [contract, connectedWallet, txHash]);
 
   return (
     <Flex direction="column" gap={4}>
@@ -61,7 +65,10 @@ function ProposalInfo({ contract }: any) {
             inputVoteTokenAmount={inputVoteTokenAmount}
             setInputVoteTokenAmount={setInputVoteTokenAmount}
           />
-          <VoteTokenBalance voteTokenBalance={voteTokenBalance} />
+          <VoteTokenBalance
+            contract={contract}
+            voteTokenBalance={voteTokenBalance}
+          />
           <VoteButtons
             contract={voteAddress}
             voteTokenBalance={voteTokenBalance}
