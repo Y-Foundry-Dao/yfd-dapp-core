@@ -67,7 +67,7 @@ const inputGitHub = atom({
 
 const inputExpiration = atom({
   key: 'inputExpiration',
-  default: ''
+  default: 43200
 });
 
 const inputQuorumPercent = atom({
