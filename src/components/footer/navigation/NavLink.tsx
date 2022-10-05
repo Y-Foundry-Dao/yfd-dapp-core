@@ -6,10 +6,9 @@ function NavLink({ link }: any) {
       px={2}
       py={1}
       rounded={'md'}
-      color="white"
       _hover={{
         textDecoration: 'none',
-        bg: 'orange.600'
+        bg: 'gray.700'
       }}
       href={link.link}
     >
