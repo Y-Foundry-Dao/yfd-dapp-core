@@ -3,6 +3,7 @@ import BurgerChakra from './BurgerChakra';
 import yLogo from 'assets/yfd/logo-orange.svg';
 import WalletConnect from './walletConnect/WalletConnect';
 import NavLink from './navigation/NavLink';
+import StakeYFD from 'components/pageBody/stake/StakeYFD';
 
 const links = [
   { label: 'Governance', link: '/' },
@@ -27,6 +28,7 @@ export default function Header() {
             </HStack>
           </HStack>
           <Flex alignItems={'center'} gap={{ base: 4, sm: 8 }}>
+            <StakeYFD />
             <WalletConnect />
             <BurgerChakra />
           </Flex>

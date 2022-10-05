@@ -47,10 +47,10 @@ const useHandleClicks = () => {
   const paymentFrequency = useRecoilValue(inputPaymentFrequency);
   const initialFunding = useRecoilValue(inputInitialFunding);
 
-  const handleClickStakeYFD = async (amount: number) => {
+  const handleClickStakeYFD = async (amount: number, duration: number) => {
     const amountConverted: number = amount * Math.pow(10, 6);
     // parameter is stake lock duration and set to maximum time
-    const msgToEncode = msgEncodedStake(10512000);
+    const msgToEncode = msgEncodedStake(duration);
     const encodedMessage = Base64.btoa(msgToEncode);
     const msgStakeYFDToken = msgStakeYFD(
       FORGE_TEST,
