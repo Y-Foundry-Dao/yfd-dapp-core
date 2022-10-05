@@ -78,14 +78,14 @@ const useHandleClicks = () => {
   };
 
   const handleClickProposal = async () => {
-    // console.log('test');
+    const developmentCostConverted = developmentCost * Math.pow(10, 6);
     if (connectedWallet) {
       const msgToEncode = msgEncodedProposal(
         nameProposal,
         nameMsg,
         urlProposal,
         tvlLimit,
-        developmentCost,
+        developmentCostConverted,
         statementOfWork,
         Number(paymentSchedule),
         github,

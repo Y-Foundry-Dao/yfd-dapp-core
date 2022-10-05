@@ -32,7 +32,8 @@ import {
   inputSelfVoucedInformation,
   inputStatementOfWork,
   inputTvlLimit,
-  inputUrlProposal
+  inputUrlProposal,
+  inputInitialFunding
 } from 'recoil/input/atoms';
 
 function ProposalSubmit() {
@@ -56,6 +57,8 @@ function ProposalSubmit() {
   const [paymentFrequency, setPaymentFrequency] = useRecoilState(
     inputPaymentFrequency
   );
+  const [initialFunding, setInitialFunding] =
+    useRecoilState(inputInitialFunding);
 
   const handleInputNameProposal = (event: any) =>
     setNameProposal(event.target.value);
@@ -66,6 +69,8 @@ function ProposalSubmit() {
   const handleInputTvlLimit = (value: any) => setTvlLimit(value);
 
   const handleInputDevelopmentCost = (value: any) => setDevelopmentCost(value);
+
+  const handleInputInitialFunding = (value: any) => setInitialFunding(value);
 
   const handleInputStatementOfWork = (event: any) =>
     setStatementOfWork(event.target.value);
@@ -151,17 +156,38 @@ function ProposalSubmit() {
 
       <Flex alignItems="center" gap={5}>
         <Heading as="h3" size="md">
-          Development Cost:
+          Development Cost in YFD:
         </Heading>
         <NumberInput
           maxW="140px"
           mr="2rem"
           defaultValue={5000}
-          step={50}
-          min={5000}
-          max={1000000}
+          step={1}
+          min={0}
+          // max={1000000}
           value={developmentCost}
           onChange={handleInputDevelopmentCost}
+        >
+          <NumberInputField />
+          <NumberInputStepper>
+            <NumberIncrementStepper />
+            <NumberDecrementStepper />
+          </NumberInputStepper>
+        </NumberInput>
+      </Flex>
+      <Flex alignItems="center" gap={5}>
+        <Heading as="h3" size="md">
+          Initial Funding in YFD:
+        </Heading>
+        <NumberInput
+          maxW="140px"
+          mr="2rem"
+          defaultValue={0}
+          step={1}
+          min={0}
+          max={developmentCost}
+          value={initialFunding}
+          onChange={handleInputInitialFunding}
         >
           <NumberInputField />
           <NumberInputStepper>
