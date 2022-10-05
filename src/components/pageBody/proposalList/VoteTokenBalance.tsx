@@ -1,6 +1,7 @@
 import { Text } from '@chakra-ui/react';
 import useContract from 'hooks/useContract';
 import { useEffect, useState } from 'react';
+import convertFromBase from 'utilities/converters/convertFromBase';
 import queryTokenInfo from 'utilities/messagesQuery/queryTokenInfo';
 
 function VoteTokenBalance({ contract, voteTokenBalance }: any) {
@@ -21,7 +22,7 @@ function VoteTokenBalance({ contract, voteTokenBalance }: any) {
     <Text>
       {tokenSymbol} Tokens:{' '}
       {voteTokenBalance !== undefined
-        ? (voteTokenBalance.balance * Math.pow(10, -6)).toFixed(3)
+        ? convertFromBase(voteTokenBalance.balance).toFixed(3)
         : 'No vote tokens'}
     </Text>
   );

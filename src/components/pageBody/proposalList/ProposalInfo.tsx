@@ -12,6 +12,7 @@ import { useRecoilValue } from 'recoil';
 import txHashAtom from 'recoil/txHash/atom';
 import InputFundingAmount from './InputFundingAmount';
 import FundProposal from './FundProposal';
+import convertFromBase from 'utilities/converters/convertFromBase';
 
 function ProposalInfo({ contract }: any) {
   const { queryMsg } = useContract();
@@ -60,7 +61,7 @@ function ProposalInfo({ contract }: any) {
       <Text>Statement of Work URL: {proposalInfo.statement_of_work}</Text>
       <Text>Developer: {proposalInfo.developer}</Text>
       <Text>
-        Development Cost: {proposalInfo.development_cost * Math.pow(10, -6)} YFD
+        Development Cost: {convertFromBase(proposalInfo.development_cost)} YFD
       </Text>
       <Text>Developer Github: {proposalInfo.github}</Text>
       <Text>TVL Limit: {proposalInfo.tvl_limit}</Text>
