@@ -5,15 +5,14 @@ import WalletConnect from './walletConnect/WalletConnect';
 import NavLink from './navigation/NavLink';
 
 const links = [
-  { label: 'Home', link: '/swap' },
-  { label: 'Governance', link: '/vote' },
-  { label: 'Vaults', link: '/vaults' }
+  { label: 'Governance', link: '/' },
+  { label: 'Vaults', link: '/' }
 ];
 
 export default function Header() {
   return (
     <>
-      <Box bg={'gray.900'} px={4}>
+      <Box bg={'gray.700'} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <HStack spacing={8} alignItems={'center'}>
             <Image h={12} src={yLogo} alt="y logo" />
