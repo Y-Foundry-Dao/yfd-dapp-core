@@ -40,6 +40,18 @@ const base = {
 };
 const primary = {
   ...base,
+  layerStyles: {
+    pageBody: {
+      width: '100%',
+      bgGradient: 'linear(to-b, yellow.50, orange.50, orange.300)',
+      border: '3px solid gray',
+      padding: '10px'
+    },
+    stakeYFD: {
+      color: 'white',
+      padding: '10px'
+    }
+  },
   colors: {
     ...base.colors,
     color5: 'linear-gradient(180deg, #FEC221 0%, #D8552A 100%);',
