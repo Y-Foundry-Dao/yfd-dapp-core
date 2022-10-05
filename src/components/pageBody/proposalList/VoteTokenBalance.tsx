@@ -13,7 +13,6 @@ function VoteTokenBalance({ contract, voteTokenBalance }: any) {
   useEffect(() => {
     getTokenInfo().then((res: any) => {
       if (res !== undefined) {
-        console.log(res);
         setTokenSymbol(res.symbol);
       }
     });

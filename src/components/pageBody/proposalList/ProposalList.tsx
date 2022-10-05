@@ -25,7 +25,6 @@ function ProposalList() {
 
   return (
     <>
-      {console.log(proposals.length)}
       {proposals.length === 0 ? (
         'no proposals'
       ) : (

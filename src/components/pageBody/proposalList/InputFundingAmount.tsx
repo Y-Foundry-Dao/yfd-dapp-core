@@ -8,16 +8,15 @@ import {
   NumberDecrementStepper
 } from '@chakra-ui/react';
 
-function InputVoteAmount({
-  voteTokenBalance,
-  inputVoteTokenAmount,
-  setInputVoteTokenAmount
+function InputFundingAmount({
+  inputFundingAmount,
+  setInputFundingAmount
 }: any) {
-  const handleInputVoteAmount = (value: any) => setInputVoteTokenAmount(value);
+  const handleInputFundingAmount = (value: any) => setInputFundingAmount(value);
   return (
     <Flex alignItems="center" gap={5}>
       <Heading as="h3" size="md">
-        Vote Token Amount:
+        YFD:
       </Heading>
 
       <NumberInput
@@ -25,9 +24,8 @@ function InputVoteAmount({
         mr="2rem"
         defaultValue={0}
         min={0}
-        max={voteTokenBalance.balance * Math.pow(10, -6)}
-        value={inputVoteTokenAmount}
-        onChange={handleInputVoteAmount}
+        value={inputFundingAmount}
+        onChange={handleInputFundingAmount}
       >
         <NumberInputField />
         <NumberInputStepper>
@@ -39,4 +37,4 @@ function InputVoteAmount({
   );
 }
 
-export default InputVoteAmount;
+export default InputFundingAmount;

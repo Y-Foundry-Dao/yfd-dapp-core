@@ -80,6 +80,11 @@ const inputSelfVoucedInformation = atom({
   default: ''
 });
 
+const inputInitialFunding = atom({
+  key: 'inputInitialFunding',
+  default: 0
+});
+
 export {
   inputStakeYFD,
   inputNameMsg,
@@ -96,5 +101,6 @@ export {
   inputGitHub,
   inputExpiration,
   inputQuorumPercent,
-  inputSelfVoucedInformation
+  inputSelfVoucedInformation,
+  inputInitialFunding
 };
