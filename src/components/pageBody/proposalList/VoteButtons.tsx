@@ -4,6 +4,7 @@ import FinderTxLink from 'components/basic/finder/FinderTxLink';
 import useContract from 'hooks/useContract';
 import { useSetRecoilState } from 'recoil';
 import txHashAtom from 'recoil/txHash/atom';
+import convertToBase from 'utilities/converters/convertToBase';
 import msgVoteAbstain from 'utilities/messagesExecute/msgVoteAbstain';
 import msgVoteAffirm from 'utilities/messagesExecute/msgVoteAffirm';
 import msgVoteDeny from 'utilities/messagesExecute/msgVoteDeny';
@@ -22,7 +23,7 @@ function VoteButtons({
     if (connectedWallet) {
       const tx = await executeMsg(
         contract,
-        msgVoteAffirm(inputVoteTokenAmount * Math.pow(10, 6))
+        msgVoteAffirm(convertToBase(inputVoteTokenAmount))
       );
       setTxHash(tx);
       (tx !== 0 || undefined) &&
@@ -40,7 +41,7 @@ function VoteButtons({
     if (connectedWallet) {
       const tx = await executeMsg(
         contract,
-        msgVoteDeny(inputVoteTokenAmount * Math.pow(10, 6))
+        msgVoteDeny(convertToBase(inputVoteTokenAmount))
       );
       setTxHash(tx);
       (tx !== 0 || undefined) &&
@@ -58,7 +59,7 @@ function VoteButtons({
     if (connectedWallet) {
       const tx = await executeMsg(
         contract,
-        msgVoteAbstain(inputVoteTokenAmount * Math.pow(10, 6))
+        msgVoteAbstain(convertToBase(inputVoteTokenAmount))
       );
       setTxHash(tx);
       (tx !== 0 || undefined) &&
@@ -76,7 +77,7 @@ function VoteButtons({
     if (connectedWallet) {
       const tx = await executeMsg(
         contract,
-        msgVoteDenyWithPenalty(inputVoteTokenAmount * Math.pow(10, 6))
+        msgVoteDenyWithPenalty(convertToBase(inputVoteTokenAmount))
       );
       setTxHash(tx);
       (tx !== 0 || undefined) &&

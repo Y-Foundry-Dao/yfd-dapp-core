@@ -3,6 +3,7 @@ import useContract from 'hooks/useContract';
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import amountDepositYFDAtom from 'recoil/amountDepositYFD/atom';
+import convertFromBase from 'utilities/converters/convertFromBase';
 import queryBalance from 'utilities/messagesQuery/balance';
 import { YFD_TEST } from 'utilities/variables';
 
@@ -30,9 +31,7 @@ function BalanceYFD() {
       }
     });
   }, [connectedWallet, amountDepositYFD]);
-  return (
-    <div>Balance YFD: {(Number(balance) * Math.pow(10, -6)).toFixed(5)}</div>
-  );
+  return <div>Balance YFD: {convertFromBase(Number(balance)).toFixed(5)}</div>;
 }
 
 export default BalanceYFD;

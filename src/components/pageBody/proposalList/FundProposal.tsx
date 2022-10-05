@@ -4,6 +4,7 @@ import InputFundingAmount from './InputFundingAmount';
 import msgExecuteSend from 'utilities/messagesExecute/msgExecuteSend';
 import { YFD_TEST } from 'utilities/variables';
 import FinderTxLink from 'components/basic/finder/FinderTxLink';
+import convertToBase from 'utilities/converters/convertToBase';
 
 function FundProposal({
   contract,
@@ -15,7 +16,7 @@ function FundProposal({
   const handleClickFundProposal = async () => {
     const msgFundProposal = msgExecuteSend(
       contract,
-      inputFundingAmount * Math.pow(10, 6),
+      convertToBase(inputFundingAmount),
       'eyJzdGFrZSI6e319'
     );
     const tx = await executeMsg(YFD_TEST, msgFundProposal);

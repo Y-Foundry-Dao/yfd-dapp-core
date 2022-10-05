@@ -7,6 +7,7 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper
 } from '@chakra-ui/react';
+import convertFromBase from 'utilities/converters/convertFromBase';
 
 function InputVoteAmount({
   voteTokenBalance,
@@ -25,7 +26,7 @@ function InputVoteAmount({
         mr="2rem"
         defaultValue={0}
         min={0}
-        max={voteTokenBalance.balance * Math.pow(10, -6)}
+        max={convertFromBase(voteTokenBalance.balance)}
         value={inputVoteTokenAmount}
         onChange={handleInputVoteAmount}
       >

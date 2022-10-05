@@ -26,6 +26,7 @@ import {
   inputTvlLimit,
   inputUrlProposal
 } from 'recoil/input/atoms';
+import convertToBase from 'utilities/converters/convertToBase';
 
 const useHandleClicks = () => {
   const { executeMsg } = useContract();
@@ -48,13 +49,12 @@ const useHandleClicks = () => {
   const initialFunding = useRecoilValue(inputInitialFunding);
 
   const handleClickStakeYFD = async (amount: number, duration: number) => {
-    const amountConverted: number = amount * Math.pow(10, 6);
     // parameter is stake lock duration and set to maximum time
     const msgToEncode = msgEncodedStake(duration);
     const encodedMessage = Base64.btoa(msgToEncode);
     const msgStakeYFDToken = msgStakeYFD(
       FORGE_TEST,
-      amountConverted,
+      convertToBase(amount),
       encodedMessage
     );
     // YFD will always be staked to the YFD contract.
@@ -78,14 +78,13 @@ const useHandleClicks = () => {
   };
 
   const handleClickProposal = async () => {
-    const developmentCostConverted = developmentCost * Math.pow(10, 6);
     if (connectedWallet) {
       const msgToEncode = msgEncodedProposal(
         nameProposal,
         nameMsg,
         urlProposal,
         tvlLimit,
-        developmentCostConverted,
+        convertToBase(developmentCost),
         statementOfWork,
         Number(paymentSchedule),
         github,
@@ -98,7 +97,7 @@ const useHandleClicks = () => {
       const encodedMessage = Base64.btoa(msgToEncode);
       const msgCreateProposal = msgExecuteSend(
         FORGE_TEST,
-        initialFunding * Math.pow(10, 6),
+        convertToBase(initialFunding),
         encodedMessage
       );
       const tx = await executeMsg(YFD_TEST, msgCreateProposal);
