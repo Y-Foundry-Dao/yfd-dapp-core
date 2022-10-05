@@ -15,6 +15,7 @@ import {
   inputDevelopmentCost,
   inputExpiration,
   inputGitHub,
+  inputInitialFunding,
   inputNameMsg,
   inputNameProposal,
   inputPaymentFrequency,
@@ -44,6 +45,7 @@ const useHandleClicks = () => {
   const selfVouchedInformation = useRecoilValue(inputSelfVoucedInformation);
   const expiration = useRecoilValue(inputExpiration);
   const paymentFrequency = useRecoilValue(inputPaymentFrequency);
+  const initialFunding = useRecoilValue(inputInitialFunding);
 
   const handleClickStakeYFD = async (amount: number) => {
     const amountConverted: number = amount * Math.pow(10, 6);
@@ -96,7 +98,7 @@ const useHandleClicks = () => {
       const encodedMessage = Base64.btoa(msgToEncode);
       const msgCreateProposal = msgExecuteSend(
         FORGE_TEST,
-        5000,
+        initialFunding * Math.pow(10, 6),
         encodedMessage
       );
       const tx = await executeMsg(YFD_TEST, msgCreateProposal);
