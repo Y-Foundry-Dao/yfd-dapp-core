@@ -17,7 +17,7 @@ function InputVoteAmount({
   return (
     <Flex alignItems="center" gap={5}>
       <Heading as="h3" size="md">
-        Input Vote Token Amount:
+        Vote Token Amount:
       </Heading>
 
       <NumberInput
