@@ -1,4 +1,4 @@
-const baseTheme = {
+const base = {
   fonts: {
     heading: 'Kodchasan, sans-serif',
     body: 'Roboto Mono, monospace',
@@ -39,9 +39,9 @@ const baseTheme = {
   }
 };
 const primary = {
-  ...baseTheme,
+  ...base,
   colors: {
-    ...baseTheme.colors,
+    ...base.colors,
     color5: 'linear-gradient(180deg, #FEC221 0%, #D8552A 100%);',
     color7: 'linear-gradient(180deg, #885555 0%, #D8552A 80%);'
   }
