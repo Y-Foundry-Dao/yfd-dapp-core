@@ -42,7 +42,13 @@ yarn e2etest
 
 ### Styling
 
-[Styled Components](https://styled-components.com/)
+[Chakra UI](https://chakra-ui.com/)
+[Saas Design](https://saas-ui.dev/)
+
+### Icons
+
+[React Icons](https://react-icons.github.io/react-icons)
+[Chakra Icons(https://chakra-ui.com/docs/components/icon)
 
 ### Testing
 
