@@ -66,21 +66,20 @@ function ProposalInfo({ contract }: any) {
       <Text>Developer Github: {proposalInfo.github}</Text>
       <Text>TVL Limit: {proposalInfo.tvl_limit}</Text>
 
-      {voteTokenBalance !== undefined && (
+      {!connectedWallet ? null : (
         <>
+          {console.log(voteTokenBalance)}
           <Box bg="blue.600" p={4}>
-            <HStack></HStack>
-
+            <VoteTokenBalance
+              contract={contract}
+              voteTokenBalance={voteTokenBalance}
+            />
             <InputVoteAmount
               voteTokenBalance={voteTokenBalance}
               inputVoteTokenAmount={inputVoteTokenAmount}
               setInputVoteTokenAmount={setInputVoteTokenAmount}
             />
 
-            <VoteTokenBalance
-              contract={contract}
-              voteTokenBalance={voteTokenBalance}
-            />
             <VoteButtons
               contract={voteAddress}
               voteTokenBalance={voteTokenBalance}
@@ -88,6 +87,7 @@ function ProposalInfo({ contract }: any) {
             />
           </Box>
           <FundProposal
+            voteTokenBalance={voteTokenBalance}
             contract={contract}
             inputFundingAmount={inputFundingAmount}
             setInputFundingAmount={setInputFundingAmount}

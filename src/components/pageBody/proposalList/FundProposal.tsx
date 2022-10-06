@@ -7,6 +7,7 @@ import FinderTxLink from 'components/basic/finder/FinderTxLink';
 import convertToBase from 'utilities/converters/convertToBase';
 
 function FundProposal({
+  voteTokenBalance,
   contract,
   inputFundingAmount,
   setInputFundingAmount
@@ -31,13 +32,17 @@ function FundProposal({
   };
 
   return (
-    <Box bg="blue.600" p={4}>
-      <InputFundingAmount
-        inputFundingAmount={inputFundingAmount}
-        setInputFundingAmount={setInputFundingAmount}
-      />
-      <Button onClick={handleClickFundProposal}>Fund proposal</Button>
-    </Box>
+    <>
+      {voteTokenBalance.balance > 0 ? (
+        <Box bg="blue.600" p={4}>
+          <InputFundingAmount
+            inputFundingAmount={inputFundingAmount}
+            setInputFundingAmount={setInputFundingAmount}
+          />
+          <Button onClick={handleClickFundProposal}>Fund proposal</Button>
+        </Box>
+      ) : null}
+    </>
   );
 }
 

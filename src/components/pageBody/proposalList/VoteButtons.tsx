@@ -102,9 +102,7 @@ function VoteButtons({
             Vote Deny with Penalty
           </Button>
         </Flex>
-      ) : (
-        <Text>No vote tokens for this proposal</Text>
-      )}
+      ) : null}
     </>
   );
 }

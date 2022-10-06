@@ -21,9 +21,9 @@ function VoteTokenBalance({ contract, voteTokenBalance }: any) {
   return (
     <Text>
       {tokenSymbol} Tokens:{' '}
-      {voteTokenBalance !== undefined
+      {voteTokenBalance.balance > 0
         ? convertFromBase(voteTokenBalance.balance).toFixed(3)
-        : 'No vote tokens'}
+        : '0'}
     </Text>
   );
 }
