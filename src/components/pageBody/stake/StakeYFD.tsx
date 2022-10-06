@@ -5,8 +5,12 @@ import BalanceYFD from './BalanceYFD';
 import BalancefYFD from './BalancefYFD';
 import { useRecoilState } from 'recoil';
 import amountDepositYFDAtom from 'recoil/amountDepositYFD/atom';
+import { format, formatRelative } from 'date-fns';
+import { AiFillCaretRight, AiFillStar } from 'react-icons/ai';
+import { ChevronDownIcon } from '@chakra-ui/icons';
 
 import {
+  Text,
   Button,
   Flex,
   NumberInput,
@@ -23,30 +27,24 @@ import {
   MenuOptionGroup,
   MenuDivider
 } from '@chakra-ui/react';
-import { ChevronDownIcon } from '@chakra-ui/icons';
 import yLogo from 'assets/yfd/logo-orange.svg';
 import {
-  DATE_TWO_WEEK,
   DATE_ONE_MONTH,
-  DATE_TWO_MONTH,
-  DATE_THREE_MONTH,
-  DATE_SIX_MONTH,
-  DATE_NINE_MONTH,
-  DATE_EIGHTEEN_MONTH,
-  DATE_ONE_YEAR,
-  DATE_TWO_YEAR,
   DEFAULT_YFD_LOCK_DURATION,
-  CHAIN_BLOCK_ONE_YEAR,
-  CHAIN_BLOCK_EIGHTEEN_MONTH,
-  CHAIN_BLOCK_TWO_YEAR,
-  CHAIN_BLOCK_TWO_WEEK,
   CHAIN_BLOCK_ONE_MONTH,
-  CHAIN_BLOCK_TWO_MONTH,
-  CHAIN_BLOCK_THREE_MONTH,
-  CHAIN_BLOCK_SIX_MONTH,
-  CHAIN_BLOCK_NINE_MONTH,
   DATE_FYFD_YFD_LOCK_VALUE_PARITY,
-  CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_PARITY
+  CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_PARITY,
+  CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_MINIMUM,
+  DATE_FYFD_YFD_LOCK_VALUE_MINIMUM,
+  CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_QUARTER,
+  DATE_FYFD_YFD_LOCK_VALUE_QUARTER,
+  CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_HALF,
+  DATE_FYFD_YFD_LOCK_VALUE_HALF,
+  CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_THREEQUARTER,
+  DATE_FYFD_YFD_LOCK_VALUE_THREEQUARTER,
+  CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_MAXIMUM,
+  DATE_FYFD_YFD_LOCK_VALUE_MAXIMUM,
+  DEFAULT_YFD_LOCK_DURATION_DATE
 } from 'utilities/variables';
 
 function StakeYFD() {
@@ -56,6 +54,9 @@ function StakeYFD() {
   const { txHashTest } = useHandleClicks();
   const [durationDepositYFD, setDurationDepositYFD] = useState(
     DEFAULT_YFD_LOCK_DURATION
+  );
+  const [durationDepositYFDDate, setDurationDepositYFDDate] = useState(
+    format(DEFAULT_YFD_LOCK_DURATION_DATE, 'dd-MMM-yyyy')
   );
   const handleInputDepositYFD = (value: any) => setAmountDepositYFD(value);
 
@@ -89,93 +90,125 @@ function StakeYFD() {
           </NumberInputStepper>
         </NumberInput>
         <Menu>
-          <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-            {durationDepositYFD}
+          <MenuButton
+            as={Button}
+            colorScheme="gray"
+            m={2}
+            rightIcon={<ChevronDownIcon />}
+          >
+            {durationDepositYFDDate}
           </MenuButton>
           <MenuList>
             <MenuOptionGroup
               defaultValue="{DEFAULT_YFD_LOCK_DURATION}"
-              title="Duration"
+              title="Lock Duration : Power"
             >
               <MenuItem
-                value={CHAIN_BLOCK_TWO_WEEK}
-                onClick={(event) =>
-                  setDurationDepositYFD(Number(event.currentTarget.value))
-                }
+                value={CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_MINIMUM}
+                onClick={(event) => {
+                  setDurationDepositYFD(
+                    Math.round(Number(event.currentTarget.value))
+                  );
+                  setDurationDepositYFDDate(
+                    format(DATE_FYFD_YFD_LOCK_VALUE_MINIMUM, 'dd-MMM-yyyy')
+                  );
+                }}
               >
-                {String(DATE_TWO_WEEK)}
+                {format(DATE_FYFD_YFD_LOCK_VALUE_MINIMUM, 'dd-MMM-yyyy')} :
+                <Text color="red">
+                  &nbsp;Minimum <b>(-95.20%)</b>
+                </Text>
               </MenuItem>
               <MenuItem
                 value={CHAIN_BLOCK_ONE_MONTH}
-                onClick={(event) =>
-                  setDurationDepositYFD(Number(event.currentTarget.value))
-                }
+                onClick={(event) => {
+                  setDurationDepositYFD(
+                    Math.round(Number(event.currentTarget.value))
+                  );
+                  setDurationDepositYFDDate(
+                    format(DATE_ONE_MONTH, 'dd-MMM-yyyy')
+                  );
+                }}
               >
-                {String(DATE_ONE_MONTH)}
+                {format(DATE_ONE_MONTH, 'dd-MMM-yyyy')} : One Month
               </MenuItem>
               <MenuItem
-                value={CHAIN_BLOCK_TWO_MONTH}
-                onClick={(event) =>
-                  setDurationDepositYFD(Number(event.currentTarget.value))
-                }
+                value={CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_QUARTER}
+                onClick={(event) => {
+                  setDurationDepositYFD(
+                    Math.round(Number(event.currentTarget.value))
+                  );
+                  setDurationDepositYFDDate(
+                    format(DATE_FYFD_YFD_LOCK_VALUE_QUARTER, 'dd-MMM-yyyy')
+                  );
+                }}
               >
-                {String(DATE_TWO_MONTH)}
+                {format(DATE_FYFD_YFD_LOCK_VALUE_QUARTER, 'dd-MMM-yyyy')} : 1/4
+                Power (62.5%)
               </MenuItem>
+              <MenuDivider />
               <MenuItem
-                value={CHAIN_BLOCK_THREE_MONTH}
-                onClick={(event) =>
-                  setDurationDepositYFD(Number(event.currentTarget.value))
-                }
-              >
-                {String(DATE_THREE_MONTH)}
-              </MenuItem>
-              <MenuItem
-                value={CHAIN_BLOCK_SIX_MONTH}
-                onClick={(event) =>
-                  setDurationDepositYFD(Number(event.currentTarget.value))
-                }
-              >
-                {String(DATE_SIX_MONTH)}
-              </MenuItem>
-              <MenuItem
-                value={CHAIN_BLOCK_NINE_MONTH}
-                onClick={(event) =>
-                  setDurationDepositYFD(Number(event.currentTarget.value))
-                }
-              >
-                {String(DATE_NINE_MONTH)}
-              </MenuItem>
-              <MenuItem
+                icon={<AiFillCaretRight color="green" />}
                 value={CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_PARITY}
-                onClick={(event) =>
-                  setDurationDepositYFD(Number(event.currentTarget.value))
-                }
+                onClick={(event) => {
+                  setDurationDepositYFD(
+                    Math.round(Number(event.currentTarget.value))
+                  );
+                  setDurationDepositYFDDate(
+                    format(DATE_FYFD_YFD_LOCK_VALUE_PARITY, 'dd-MMM-yyyy')
+                  );
+                }}
               >
-                <b>{String(DATE_FYFD_YFD_LOCK_VALUE_PARITY)}</b>
+                <b>
+                  {format(DATE_FYFD_YFD_LOCK_VALUE_PARITY, 'dd-MMM-yyyy')} :
+                  Value Parity (100%)
+                </b>
               </MenuItem>
               <MenuItem
-                value={CHAIN_BLOCK_ONE_YEAR}
-                onClick={(event) =>
-                  setDurationDepositYFD(Number(event.currentTarget.value))
-                }
+                value={CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_HALF}
+                onClick={(event) => {
+                  setDurationDepositYFD(
+                    Math.round(Number(event.currentTarget.value))
+                  );
+                  setDurationDepositYFDDate(
+                    format(DATE_FYFD_YFD_LOCK_VALUE_HALF, 'dd-MMM-yyyy')
+                  );
+                }}
               >
-                {String(DATE_ONE_YEAR)}
+                {format(DATE_FYFD_YFD_LOCK_VALUE_HALF, 'dd-MMM-yyyy')} : 1/2
+                Power (125%)
               </MenuItem>
               <MenuItem
-                value={CHAIN_BLOCK_EIGHTEEN_MONTH}
-                onClick={(event) =>
-                  setDurationDepositYFD(Number(event.currentTarget.value))
-                }
+                value={CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_THREEQUARTER}
+                onClick={(event) => {
+                  setDurationDepositYFD(
+                    Math.round(Number(event.currentTarget.value))
+                  );
+                  setDurationDepositYFDDate(
+                    format(DATE_FYFD_YFD_LOCK_VALUE_THREEQUARTER, 'dd-MMM-yyyy')
+                  );
+                }}
               >
-                {String(DATE_EIGHTEEN_MONTH)}
+                {format(DATE_FYFD_YFD_LOCK_VALUE_THREEQUARTER, 'dd-MMM-yyyy')} :
+                3/4 Power (187.5%)
               </MenuItem>
+              <MenuDivider />
               <MenuItem
-                value={CHAIN_BLOCK_TWO_YEAR}
-                onClick={(event) =>
-                  setDurationDepositYFD(Number(event.currentTarget.value))
-                }
+                icon={<AiFillStar color="orange" />}
+                value={CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_MAXIMUM}
+                onClick={(event) => {
+                  setDurationDepositYFD(
+                    Math.round(Number(event.currentTarget.value))
+                  );
+                  setDurationDepositYFDDate(
+                    format(DATE_FYFD_YFD_LOCK_VALUE_MAXIMUM, 'dd-MMM-yyyy')
+                  );
+                }}
               >
-                {String(DATE_TWO_YEAR)}
+                <b>
+                  {format(DATE_FYFD_YFD_LOCK_VALUE_MAXIMUM, 'dd-MMM-yyyy')} :
+                  Max Power (250%)
+                </b>
               </MenuItem>
             </MenuOptionGroup>
           </MenuList>

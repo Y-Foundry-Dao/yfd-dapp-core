@@ -31,7 +31,11 @@ function BalancefYFD() {
       }
     });
   }, [connectedWallet, amountDepositYFD]);
-  return <div>Balance fYFD: {convertFromBase(Number(balance)).toFixed(5)}</div>;
+  return (
+    <div>
+      Balance fYFD: {balance} {convertFromBase(Number(balance)).toFixed(5)}
+    </div>
+  );
 }
 
 export default BalancefYFD;
