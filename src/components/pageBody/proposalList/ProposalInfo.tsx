@@ -1,7 +1,7 @@
-import useContract from 'hooks/useContract';
+import useMsg from 'hooks/useMsg';
 import { useEffect, useState } from 'react';
 import queryProposalInfo from 'utilities/messagesQuery/queryProposalInfo';
-import { Box, Flex, HStack, Text, Button } from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import queryProposalState from 'utilities/messagesQuery/queryProposalState';
 import queryBalance from 'utilities/messagesQuery/balance';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
@@ -10,12 +10,15 @@ import VoteButtons from './VoteButtons';
 import InputVoteAmount from './InputVoteAmount';
 import { useRecoilValue } from 'recoil';
 import txHashAtom from 'recoil/txHash/atom';
-import InputFundingAmount from './InputFundingAmount';
 import FundProposal from './FundProposal';
 import convertFromBase from 'utilities/converters/convertFromBase';
+import useContract from 'hooks/useContract';
 
 function ProposalInfo({ contract }: any) {
-  const { queryMsg } = useContract();
+  const { queryMsg } = useMsg();
+  const { getProposalInfo, getVoteAddress, getVoteTokenBalance } = useContract({
+    contract
+  });
   const [inputVoteTokenAmount, setInputVoteTokenAmount] = useState(0);
   const [inputFundingAmount, setInputFundingAmount] = useState(0);
   const [proposalInfo, setProposalInfo] = useState<any>({});
@@ -24,14 +27,6 @@ function ProposalInfo({ contract }: any) {
   const connectedWallet = useConnectedWallet();
   const txHash = useRecoilValue(txHashAtom);
 
-  const getProposalInfo = async () => {
-    const response = await queryMsg(contract, queryProposalInfo());
-    return response;
-  };
-  const getVoteAddress = async () => {
-    const response = await queryMsg(contract, queryProposalState());
-    return response;
-  };
   useEffect(() => {
     getProposalInfo().then((res: any) => {
       if (res !== undefined) {
@@ -49,6 +44,7 @@ function ProposalInfo({ contract }: any) {
           voteAddress,
           queryBalance(connectedWallet?.walletAddress)
         );
+        // const newVoteTokenBalance = await getVoteTokenBalance(voteAddress);
         setVoteTokenBalance(newVoteTokenBalance);
       }
     });
@@ -66,7 +62,7 @@ function ProposalInfo({ contract }: any) {
       <Text>Developer Github: {proposalInfo.github}</Text>
       <Text>TVL Limit: {proposalInfo.tvl_limit}</Text>
 
-      {!connectedWallet ? null : (
+      {!connectedWallet || voteTokenBalance === undefined ? null : (
         <>
           {console.log(voteTokenBalance)}
           <Box bg="blue.600" p={4}>

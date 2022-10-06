@@ -1,12 +1,12 @@
 import { Text } from '@chakra-ui/react';
-import useContract from 'hooks/useContract';
+import useMsg from 'hooks/useMsg';
 import { useEffect, useState } from 'react';
 import convertFromBase from 'utilities/converters/convertFromBase';
 import queryTokenInfo from 'utilities/messagesQuery/queryTokenInfo';
 
 function VoteTokenBalance({ contract, voteTokenBalance }: any) {
   const [tokenSymbol, setTokenSymbol] = useState('Vote');
-  const { queryMsg } = useContract();
+  const { queryMsg } = useMsg();
   const getTokenInfo = async () => {
     const response = await queryMsg(contract, queryTokenInfo());
     return response;

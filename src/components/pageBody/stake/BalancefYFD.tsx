@@ -1,5 +1,5 @@
 import { useConnectedWallet } from '@terra-money/wallet-provider';
-import useContract from 'hooks/useContract';
+import useMsg from 'hooks/useMsg';
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import amountDepositYFDAtom from 'recoil/amountDepositYFD/atom';
@@ -8,7 +8,7 @@ import queryBalance from 'utilities/messagesQuery/balance';
 import { FORGE_TEST } from 'utilities/variables';
 
 function BalancefYFD() {
-  const { queryMsg } = useContract();
+  const { queryMsg } = useMsg();
   const [balance, setBalance] = useState('0');
   const connectedWallet = useConnectedWallet();
   const amountDepositYFD = useRecoilValue(amountDepositYFDAtom);

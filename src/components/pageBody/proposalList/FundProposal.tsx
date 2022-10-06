@@ -1,5 +1,5 @@
 import { Box, Button, useToast } from '@chakra-ui/react';
-import useContract from 'hooks/useContract';
+import useMsg from 'hooks/useMsg';
 import InputFundingAmount from './InputFundingAmount';
 import msgExecuteSend from 'utilities/messagesExecute/msgExecuteSend';
 import { YFD_TEST } from 'utilities/variables';
@@ -13,7 +13,7 @@ function FundProposal({
   setInputFundingAmount
 }: any) {
   const toast = useToast();
-  const { executeMsg } = useContract();
+  const { executeMsg } = useMsg();
   const handleClickFundProposal = async () => {
     const msgFundProposal = msgExecuteSend(
       contract,

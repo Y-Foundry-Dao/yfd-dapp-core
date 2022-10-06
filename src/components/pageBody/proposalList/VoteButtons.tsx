@@ -1,7 +1,7 @@
 import { Button, Flex, Text, useToast } from '@chakra-ui/react';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import FinderTxLink from 'components/basic/finder/FinderTxLink';
-import useContract from 'hooks/useContract';
+import useMsg from 'hooks/useMsg';
 import { useSetRecoilState } from 'recoil';
 import txHashAtom from 'recoil/txHash/atom';
 import convertToBase from 'utilities/converters/convertToBase';
@@ -16,7 +16,7 @@ function VoteButtons({
   inputVoteTokenAmount
 }: any) {
   const connectedWallet = useConnectedWallet();
-  const { executeMsg } = useContract();
+  const { executeMsg } = useMsg();
   const toast = useToast();
   const setTxHash = useSetRecoilState(txHashAtom);
   const handleClickVoteAffirm = async () => {

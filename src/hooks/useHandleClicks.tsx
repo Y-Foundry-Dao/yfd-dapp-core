@@ -1,4 +1,4 @@
-import useContract from './useContract';
+import useMsg from './useMsg';
 import { FORGE_TEST, YFD_TEST } from 'utilities/variables';
 import Base64 from 'utilities/base64';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
@@ -29,7 +29,7 @@ import {
 import convertToBase from 'utilities/converters/convertToBase';
 
 const useHandleClicks = () => {
-  const { executeMsg } = useContract();
+  const { executeMsg } = useMsg();
   const [txHashTest, setTxHashTest] = useState('');
   const toast = useToast();
   const setAmountDepositYFD = useSetRecoilState(amountDepositYFDAtom);
