@@ -48,7 +48,7 @@ yarn e2etest
 ### Icons
 
 [React Icons](https://react-icons.github.io/react-icons)
-[Chakra Icons(https://chakra-ui.com/docs/components/icon)
+[Chakra Icons](https://chakra-ui.com/docs/components/icon)
 
 ### Testing
 
