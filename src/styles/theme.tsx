@@ -52,6 +52,11 @@ const primary = {
       padding: '10px'
     }
   },
+  textStyles: {
+    pageBody: {
+      color: 'black'
+    }
+  },
   colors: {
     ...base.colors,
     color5: 'linear-gradient(180deg, #FEC221 0%, #D8552A 100%);',
