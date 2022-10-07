@@ -2,19 +2,36 @@
 ## contract address
 terra1ss9zz4873vk4dd8dvua0vm83m6s8k7ctwp9efac0arytn6jthfgsy2d4a9
 
-# Forge Contract
-## contract address
-terra168rvweaknfd7dhde02ex66fjsm9e3xppkj4xskvtnuql4vwr0ptsy444dx
 
-## tx
-https://terrascope.info/testnet/tx/70C6B6BF2CF787AACC28A3B2FB1802980A00288C1D3A8859EA99F29587DB0A68
+# Forge Contract
+terra1dhaeatmwflhj86hewd5m5shh8z5rlar3wyc7hpuptkzutvaxa4fs5jf90k
 ## code_id
-4533
+4643
 
 ## Instantiation TX
+106110131B0B05BDCE168B77445711F697F633AF15C5B57FDB3714E2E60288DC
+
+## Upload Hash
+C8BF760313D7C69659F6D59CB06AD800B6D5C81A301BDFC94591A83A81E2CDB6
+
+## Instantiation Code
+`{
+  "max_lock_duration": "10512000",
+  "max_lock_duration_multiplier": "2.5",
+  "cw_20_yfd_addr": "terra1ss9zz4873vk4dd8dvua0vm83m6s8k7ctwp9efac0arytn6jthfgsy2d4a9",
+  "proposal_contract_code_id": 4534,
+  "vote_contract_id": 4535,
+  "nft_contract_code_id": 4536,
+  "vault_liquidate_contract_code_id":  4538,
+  "treasury_addr": "terra1upleyfx24jehpgfy9d79d9scps20ffuf6vy706"
+}`
+
+## -- old forge -- 
+## contract address
+[4533 - old] terra168rvweaknfd7dhde02ex66fjsm9e3xppkj4xskvtnuql4vwr0ptsy444dx
+## tx
+https://terrascope.info/testnet/tx/70C6B6BF2CF787AACC28A3B2FB1802980A00288C1D3A8859EA99F29587DB0A68
 https://terrascope.info/testnet/tx/F7EBF3A59D40144E996E27EEDFA5AB2F288DBADA8E57D4B019ACEB340638B134
-
-
 
 # ==========
 # Proposal Contract Template
