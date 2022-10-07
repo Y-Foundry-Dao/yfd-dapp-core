@@ -20,7 +20,7 @@ function ProposalList() {
               return (
                 <Box
                   key={proposal.addr}
-                  maxW="45%"
+                  maxW={{ base: 'none', sm: '75%', md: '60%', lg: '50%' }}
                   my={6}
                   p={5}
                   borderRadius="md"
