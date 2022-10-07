@@ -18,7 +18,7 @@ const useContractForge = () => {
 
   const setAllProposalContractsToState = async () => {
     const proposalContracts: any = await getAllProposalContracts();
-    console.log(proposalContracts);
+
     setProposals(proposalContracts.proposals);
   };
 
@@ -35,12 +35,10 @@ const useContractForge = () => {
 
   const setTokenBalanceToState = async () => {
     const tokenBalance: any = await getBalance();
-    console.log(tokenBalance);
     if (tokenBalance === undefined) {
       setTokenBalance('0');
       return;
     }
-    console.log(tokenBalance.balance);
     setTokenBalance(tokenBalance.balance);
   };
 

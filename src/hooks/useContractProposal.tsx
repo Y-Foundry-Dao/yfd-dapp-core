@@ -39,8 +39,6 @@ const useContractProposal = ({ proposalContract }: any) => {
 
   const getTokenInfo = async () => {
     const response = await queryMsg(proposalContract, queryTokenInfo());
-    console.log('here here here');
-    console.log(response);
     return response;
   };
 

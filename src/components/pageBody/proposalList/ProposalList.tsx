@@ -12,7 +12,6 @@ function ProposalList() {
         'no proposals'
       ) : (
         <>
-          {console.log(proposals)}
           <Heading as="h2" size="lg">
             Current Proposals
           </Heading>

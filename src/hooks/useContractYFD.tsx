@@ -13,7 +13,6 @@ const useContractYFD = () => {
     if (!connectedWallet) {
       return;
     }
-    console.log(YFD_TEST);
     const response = await queryMsg(
       YFD_TEST,
       queryBalance(connectedWallet?.walletAddress)
@@ -23,12 +22,10 @@ const useContractYFD = () => {
 
   const setTokenBalanceToState = async () => {
     const tokenBalance: any = await getBalance();
-    console.log(tokenBalance);
     if (tokenBalance === undefined) {
       setTokenBalance('0');
       return;
     }
-    console.log(tokenBalance.balance);
     setTokenBalance(tokenBalance.balance);
   };
 
