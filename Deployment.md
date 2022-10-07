@@ -2,6 +2,13 @@
 ## contract address
 terra1ss9zz4873vk4dd8dvua0vm83m6s8k7ctwp9efac0arytn6jthfgsy2d4a9
 
+### queries
+## upload Logo
+`{
+"upload_logo": 
+{  "url": "https://yfoundry.io/logo-512-orange-transparent-square.png"
+}
+}`
 
 # Forge Contract
 terra1dhaeatmwflhj86hewd5m5shh8z5rlar3wyc7hpuptkzutvaxa4fs5jf90k
