@@ -52,6 +52,10 @@ yarn e2etest
 
 [Chakra Icons](https://chakra-ui.com/docs/components/icon)
 
+### Utility
+
+[Date-FNS](https://date-fns.org/)
+
 ### Testing
 
 [Playwright](https://playwright.dev/)
