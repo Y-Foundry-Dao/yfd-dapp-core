@@ -27,6 +27,10 @@ import {
   inputUrlProposal
 } from 'recoil/input/atoms';
 import convertToBase from 'utilities/converters/convertToBase';
+import msgVoteAffirm from 'utilities/messagesExecute/msgVoteAffirm';
+import msgVoteDeny from 'utilities/messagesExecute/msgVoteDeny';
+import msgVoteAbstain from 'utilities/messagesExecute/msgVoteAbstain';
+import msgVoteDenyWithPenalty from 'utilities/messagesExecute/msgVoteDenyWithPenalty';
 
 const useHandleClicks = () => {
   const { executeMsg } = useMsg();
@@ -137,10 +141,98 @@ const useHandleClicks = () => {
       });
   };
 
+  const handleClickVoteAffirm = async (
+    contract: any,
+    inputVoteTokenAmount: any
+  ) => {
+    if (connectedWallet) {
+      const tx = await executeMsg(
+        contract,
+        msgVoteAffirm(convertToBase(inputVoteTokenAmount))
+      );
+      setTxHashTest(tx);
+      (tx !== 0 || undefined) &&
+        toast({
+          title: 'Successfully Voted',
+          description: <FinderTxLink txHash={tx} />,
+          status: 'success',
+          duration: 9000,
+          isClosable: true
+        });
+    }
+  };
+
+  const handleClickVoteDeny = async (
+    contract: any,
+    inputVoteTokenAmount: any
+  ) => {
+    if (connectedWallet) {
+      const tx = await executeMsg(
+        contract,
+        msgVoteDeny(convertToBase(inputVoteTokenAmount))
+      );
+      setTxHashTest(tx);
+      (tx !== 0 || undefined) &&
+        toast({
+          title: 'Successfully Voted',
+          description: <FinderTxLink txHash={tx} />,
+          status: 'success',
+          duration: 9000,
+          isClosable: true
+        });
+    }
+  };
+
+  const handleClickVoteAbstain = async (
+    contract: any,
+    inputVoteTokenAmount: any
+  ) => {
+    if (connectedWallet) {
+      const tx = await executeMsg(
+        contract,
+        msgVoteAbstain(convertToBase(inputVoteTokenAmount))
+      );
+      setTxHashTest(tx);
+      (tx !== 0 || undefined) &&
+        toast({
+          title: 'Successfully Voted',
+          description: <FinderTxLink txHash={tx} />,
+          status: 'success',
+          duration: 9000,
+          isClosable: true
+        });
+    }
+  };
+
+  const handleClickVoteDenyWithPenalty = async (
+    contract: any,
+    inputVoteTokenAmount: any
+  ) => {
+    if (connectedWallet) {
+      const tx = await executeMsg(
+        contract,
+        msgVoteDenyWithPenalty(convertToBase(inputVoteTokenAmount))
+      );
+      setTxHashTest(tx);
+      (tx !== 0 || undefined) &&
+        toast({
+          title: 'Successfully Voted',
+          description: <FinderTxLink txHash={tx} />,
+          status: 'success',
+          duration: 9000,
+          isClosable: true
+        });
+    }
+  };
+
   return {
     handleClickStakeYFD,
     handleClickCreateProposal,
     handleClickFundProposal,
+    handleClickVoteAffirm,
+    handleClickVoteDeny,
+    handleClickVoteAbstain,
+    handleClickVoteDenyWithPenalty,
     txHashTest
   };
 };
