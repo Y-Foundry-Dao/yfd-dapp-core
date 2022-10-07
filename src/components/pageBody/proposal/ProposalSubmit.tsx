@@ -19,7 +19,8 @@ import {
   SliderThumb
 } from '@chakra-ui/react';
 import useHandleClicks from 'hooks/useHandleClicks';
-import { useRecoilState } from 'recoil';
+import useHandleInputs from 'hooks/useHandleInputs';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import {
   inputDevelopmentCost,
   inputExpiration,
@@ -36,56 +37,36 @@ import {
 } from 'recoil/input/atoms';
 
 function ProposalSubmit() {
-  const { handleClickCreateProposal } = useHandleClicks();
-  const [nameProposal, setNameProposal] = useRecoilState(inputNameProposal);
-  const [urlProposal, setUrlProposal] = useRecoilState(inputUrlProposal);
-  const [tvlLimit, setTvlLimit] = useRecoilState(inputTvlLimit);
-  const [developmentCost, setDevelopmentCost] =
-    useRecoilState(inputDevelopmentCost);
-  const [statementOfWork, setStatementOfWork] =
-    useRecoilState(inputStatementOfWork);
   const [paymentSchedule, setPaymentSchedule] =
     useRecoilState(inputPaymentSchedule);
-  const [github, setGithub] = useRecoilState(inputGitHub);
-  const [quorumPercent, setQuorumPercent] = useRecoilState(inputQuorumPercent);
-  const [selfVouchedInformation, setSelfVouchedInformation] = useRecoilState(
-    inputSelfVoucedInformation
-  );
-  const [expiration, setExpiration] = useRecoilState(inputExpiration);
-  const [paymentFrequency, setPaymentFrequency] = useRecoilState(
-    inputPaymentFrequency
-  );
-  const [initialFunding, setInitialFunding] =
-    useRecoilState(inputInitialFunding);
 
-  const handleInputNameProposal = (event: any) =>
-    setNameProposal(event.target.value);
+  const nameProposal = useRecoilValue(inputNameProposal);
+  const urlProposal = useRecoilValue(inputUrlProposal);
+  const tvlLimit = useRecoilValue(inputTvlLimit);
+  const developmentCost = useRecoilValue(inputDevelopmentCost);
+  const statementOfWork = useRecoilValue(inputStatementOfWork);
+  const github = useRecoilValue(inputGitHub);
+  const quorumPercent = useRecoilValue(inputQuorumPercent);
+  const selfVouchedInformation = useRecoilValue(inputSelfVoucedInformation);
+  const expiration = useRecoilValue(inputExpiration);
+  const paymentFrequency = useRecoilValue(inputPaymentFrequency);
+  const initialFunding = useRecoilValue(inputInitialFunding);
 
-  const handleInputUrlProposal = (event: any) =>
-    setUrlProposal(event.target.value);
+  const { handleClickCreateProposal } = useHandleClicks();
 
-  const handleInputTvlLimit = (value: any) => setTvlLimit(value);
-
-  const handleInputDevelopmentCost = (value: any) => setDevelopmentCost(value);
-
-  const handleInputInitialFunding = (value: any) => setInitialFunding(value);
-
-  const handleInputStatementOfWork = (event: any) =>
-    setStatementOfWork(event.target.value);
-
-  const handleInputPaymentFrequency = (value: any) =>
-    setPaymentFrequency(value);
-
-  const handleInputGithub = (event: any) => setGithub(event.target.value);
-
-  const handleInputQuorumPercent = (value: any) => setQuorumPercent(value);
-
-  const handleInputSelfVouchedInformation = (event: any) =>
-    setSelfVouchedInformation(event.target.value);
-
-  const handleInputExpiration = (value: any) => {
-    setExpiration(value);
-  };
+  const {
+    handleInputNameProposal,
+    handleInputUrlProposal,
+    handleInputTvlLimit,
+    handleInputDevelopmentCost,
+    handleInputInitialFunding,
+    handleInputStatementOfWork,
+    handleInputPaymentFrequency,
+    handleInputGithub,
+    handleInputQuorumPercent,
+    handleInputSelfVouchedInformation,
+    handleInputExpiration
+  } = useHandleInputs();
 
   return (
     <Flex direction="column" alignItems="center" minWidth="50%" mt={5}>

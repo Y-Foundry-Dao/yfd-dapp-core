@@ -2,7 +2,7 @@ import { useState } from 'react';
 import useHandleClicks from 'hooks/useHandleClicks';
 import BalanceYFD from './BalanceYFD';
 import BalancefYFD from './BalancefYFD';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { format } from 'date-fns';
 import { AiFillCaretRight, AiFillStar } from 'react-icons/ai';
 import { ChevronDownIcon } from '@chakra-ui/icons';
@@ -43,17 +43,18 @@ import {
   DEFAULT_YFD_LOCK_DURATION_DATE
 } from 'utilities/variables';
 import { inputStakeYFD } from 'recoil/input/atoms';
+import useHandleInputs from 'hooks/useHandleInputs';
 
 function StakeYFD() {
-  const [amountStakeYFD, setAmountStakeYFD] = useRecoilState(inputStakeYFD);
-  const { handleClickStakeYFD } = useHandleClicks();
   const [durationDepositYFD, setDurationDepositYFD] = useState(
     DEFAULT_YFD_LOCK_DURATION
   );
   const [durationDepositYFDDate, setDurationDepositYFDDate] = useState(
     format(DEFAULT_YFD_LOCK_DURATION_DATE, 'dd-MMM-yyyy')
   );
-  const handleInputStakeYFD = (value: any) => setAmountStakeYFD(value);
+  const amountStakeYFD = useRecoilValue(inputStakeYFD);
+  const { handleClickStakeYFD } = useHandleClicks();
+  const { handleInputStakeYFD } = useHandleInputs();
 
   return (
     <Flex alignItems="center" gap={10}>
