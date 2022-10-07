@@ -93,7 +93,7 @@ function VoteButtons({
 
   return (
     <>
-      {voteTokenBalance !== undefined && voteTokenBalance.balance > 0 ? (
+      {voteTokenBalance !== undefined && voteTokenBalance > 0 ? (
         <Flex direction="column" align="stretch" rowGap={4}>
           <Button onClick={handleClickVoteAffirm}>Vote Affirm</Button>
           <Button onClick={handleClickVoteDeny}>Vote Deny</Button>

@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useHandleClicks from 'hooks/useHandleClicks';
-import useContract from 'hooks/useContract';
 import BalanceYFD from './BalanceYFD';
 import BalancefYFD from './BalancefYFD';
 import { useRecoilState } from 'recoil';

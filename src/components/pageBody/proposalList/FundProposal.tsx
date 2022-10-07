@@ -8,7 +8,7 @@ import convertToBase from 'utilities/converters/convertToBase';
 
 function FundProposal({
   voteTokenBalance,
-  contract,
+  proposalContract,
   inputFundingAmount,
   setInputFundingAmount
 }: any) {
@@ -16,7 +16,7 @@ function FundProposal({
   const { executeMsg } = useMsg();
   const handleClickFundProposal = async () => {
     const msgFundProposal = msgExecuteSend(
-      contract,
+      proposalContract,
       convertToBase(inputFundingAmount),
       'eyJzdGFrZSI6e319'
     );
@@ -33,7 +33,7 @@ function FundProposal({
 
   return (
     <>
-      {voteTokenBalance.balance > 0 ? (
+      {voteTokenBalance > 0 ? (
         <Box bg="blue.600" p={4}>
           <InputFundingAmount
             inputFundingAmount={inputFundingAmount}

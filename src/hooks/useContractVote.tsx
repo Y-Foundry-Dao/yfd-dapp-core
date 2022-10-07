@@ -14,12 +14,10 @@ const useContractVote = ({ proposalContract }: any) => {
     if (!connectedWallet) {
       return;
     }
-    console.log(voteContract);
     const voteTokenBalance: any = await queryMsg(
       voteContract,
       queryBalance(connectedWallet?.walletAddress)
     );
-    console.log(voteTokenBalance?.balance);
     return voteTokenBalance;
   };
 
@@ -28,7 +26,6 @@ const useContractVote = ({ proposalContract }: any) => {
     if (tokenBalance === undefined) {
       return;
     }
-    console.log(tokenBalance.balance);
     setVoteTokenBalance(tokenBalance.balance);
   };
 

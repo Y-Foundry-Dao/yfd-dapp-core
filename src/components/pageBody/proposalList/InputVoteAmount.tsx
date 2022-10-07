@@ -17,7 +17,7 @@ function InputVoteAmount({
   const handleInputVoteAmount = (value: any) => setInputVoteTokenAmount(value);
   return (
     <Flex alignItems="center" gap={5}>
-      {voteTokenBalance.balance > 0 ? (
+      {voteTokenBalance > 0 ? (
         <>
           <Heading as="h3" size="md">
             Vote Token Amount:

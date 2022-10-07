@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react';
 import convertFromBase from 'utilities/converters/convertFromBase';
 import queryTokenInfo from 'utilities/messagesQuery/queryTokenInfo';
 
-function VoteTokenBalance({ contract, voteTokenBalance }: any) {
+function VoteTokenBalance({ proposalContract, voteTokenBalance }: any) {
   const [tokenSymbol, setTokenSymbol] = useState('Vote');
   const { queryMsg } = useMsg();
   const getTokenInfo = async () => {
-    const response = await queryMsg(contract, queryTokenInfo());
+    const response = await queryMsg(proposalContract, queryTokenInfo());
     return response;
   };
   useEffect(() => {
@@ -19,12 +19,14 @@ function VoteTokenBalance({ contract, voteTokenBalance }: any) {
     });
   }, []);
   return (
-    <Text>
-      {tokenSymbol} Tokens:{' '}
-      {voteTokenBalance.balance > 0
-        ? convertFromBase(voteTokenBalance.balance).toFixed(3)
-        : '0'}
-    </Text>
+    <>
+      <Text>
+        {tokenSymbol} Tokens:{' '}
+        {voteTokenBalance > 0
+          ? convertFromBase(voteTokenBalance).toFixed(3)
+          : '0'}
+      </Text>
+    </>
   );
 }
 
