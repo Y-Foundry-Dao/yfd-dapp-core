@@ -2,7 +2,7 @@ import { useSetRecoilState } from 'recoil';
 import {
   inputDevelopmentCost,
   inputExpiration,
-  inputGitHub,
+  inputGithub,
   inputInitialFunding,
   inputNameProposal,
   inputPaymentFrequency,
@@ -24,7 +24,7 @@ const useHandleInputs = () => {
   const setTvlLimit = useSetRecoilState(inputTvlLimit);
   const setDevelopmentCost = useSetRecoilState(inputDevelopmentCost);
   const setStatementOfWork = useSetRecoilState(inputStatementOfWork);
-  const setGithub = useSetRecoilState(inputGitHub);
+  const setGithub = useSetRecoilState(inputGithub);
   const setQuorumPercent = useSetRecoilState(inputQuorumPercent);
   const setExpiration = useSetRecoilState(inputExpiration);
   const setPaymentFrequency = useSetRecoilState(inputPaymentFrequency);

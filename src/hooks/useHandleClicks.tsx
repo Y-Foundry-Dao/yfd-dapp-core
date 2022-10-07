@@ -13,7 +13,7 @@ import msgExecuteSend from 'utilities/messagesExecute/msgExecuteSend';
 import {
   inputDevelopmentCost,
   inputExpiration,
-  inputGitHub,
+  inputGithub,
   inputInitialFunding,
   inputNameMsg,
   inputNameProposal,
@@ -47,7 +47,7 @@ const useHandleClicks = () => {
   const developmentCost = useRecoilValue(inputDevelopmentCost);
   const statementOfWork = useRecoilValue(inputStatementOfWork);
   const paymentSchedule = useRecoilValue(inputPaymentSchedule);
-  const github = useRecoilValue(inputGitHub);
+  const github = useRecoilValue(inputGithub);
   const quorumPercent = useRecoilValue(inputQuorumPercent);
   const selfVouchedInformation = useRecoilValue(inputSelfVoucedInformation);
   const expiration = useRecoilValue(inputExpiration);
