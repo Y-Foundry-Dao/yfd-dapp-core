@@ -24,11 +24,11 @@ function InputVoteAmount({
           </Heading>
 
           <NumberInput
-            maxW="140px"
+            maxW="200px"
             mr="2rem"
             defaultValue={0}
             min={0}
-            max={convertFromBase(voteTokenBalance.balance)}
+            max={convertFromBase(voteTokenBalance)}
             value={inputVoteTokenAmount}
             onChange={handleInputVoteAmount}
           >
