@@ -3,8 +3,7 @@ import useHandleClicks from 'hooks/useHandleClicks';
 import BalanceYFD from './BalanceYFD';
 import BalancefYFD from './BalancefYFD';
 import { useRecoilState } from 'recoil';
-import amountDepositYFDAtom from 'recoil/amountDepositYFD/atom';
-import { format, formatRelative } from 'date-fns';
+import { format } from 'date-fns';
 import { AiFillCaretRight, AiFillStar } from 'react-icons/ai';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 
@@ -21,8 +20,6 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
   MenuOptionGroup,
   MenuDivider
 } from '@chakra-ui/react';
@@ -45,10 +42,10 @@ import {
   DATE_FYFD_YFD_LOCK_VALUE_MAXIMUM,
   DEFAULT_YFD_LOCK_DURATION_DATE
 } from 'utilities/variables';
+import { inputStakeYFD } from 'recoil/input/atoms';
 
 function StakeYFD() {
-  const [amountDepositYFD, setAmountDepositYFD] =
-    useRecoilState(amountDepositYFDAtom);
+  const [amountStakeYFD, setAmountStakeYFD] = useRecoilState(inputStakeYFD);
   const { handleClickStakeYFD } = useHandleClicks();
   const [durationDepositYFD, setDurationDepositYFD] = useState(
     DEFAULT_YFD_LOCK_DURATION
@@ -56,7 +53,7 @@ function StakeYFD() {
   const [durationDepositYFDDate, setDurationDepositYFDDate] = useState(
     format(DEFAULT_YFD_LOCK_DURATION_DATE, 'dd-MMM-yyyy')
   );
-  const handleInputDepositYFD = (value: any) => setAmountDepositYFD(value);
+  const handleInputStakeYFD = (value: any) => setAmountStakeYFD(value);
 
   return (
     <Flex alignItems="center" gap={10}>
@@ -74,8 +71,8 @@ function StakeYFD() {
           maxW="150px"
           color="tomato"
           inputMode="decimal"
-          onChange={handleInputDepositYFD}
-          value={amountDepositYFD}
+          onChange={handleInputStakeYFD}
+          value={amountStakeYFD}
         >
           <NumberInputField />
           <NumberInputStepper>
@@ -211,9 +208,8 @@ function StakeYFD() {
           width="100px"
           margin={1}
           onClick={async () => {
-            // console.log(amountDepositYFD);
             return await handleClickStakeYFD(
-              amountDepositYFD,
+              amountStakeYFD,
               Number(durationDepositYFD)
             );
           }}

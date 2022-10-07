@@ -5,7 +5,6 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import msgEncodedStake from 'utilities/messagesToEncode/msgEncodedStake';
 import msgStakeYFD from 'utilities/messagesExecute/msgStakeYFD';
 import { useState } from 'react';
-import amountDepositYFDAtom from 'recoil/amountDepositYFD/atom';
 import { useToast } from '@chakra-ui/react';
 import FinderTxLink from 'components/basic/finder/FinderTxLink';
 import msgEncodedProposal from 'utilities/messagesToEncode/msgEncodedProposal';
@@ -22,6 +21,7 @@ import {
   inputPaymentSchedule,
   inputQuorumPercent,
   inputSelfVoucedInformation,
+  inputStakeYFD,
   inputStatementOfWork,
   inputTvlLimit,
   inputUrlProposal
@@ -36,7 +36,7 @@ const useHandleClicks = () => {
   const { executeMsg } = useMsg();
   const [txHashTest, setTxHashTest] = useState('');
   const toast = useToast();
-  const setAmountDepositYFD = useSetRecoilState(amountDepositYFDAtom);
+  const setAmountStakeYFD = useSetRecoilState(inputStakeYFD);
   const connectedWallet = useConnectedWallet();
 
   // Pulling in Recoil Values
@@ -79,7 +79,7 @@ const useHandleClicks = () => {
         duration: 9000,
         isClosable: true
       });
-    setAmountDepositYFD(0);
+    setAmountStakeYFD(0);
     return;
   };
 
