@@ -4,8 +4,6 @@ import { useConnectedWallet } from '@terra-money/wallet-provider';
 import VoteTokenBalance from './VoteTokenBalance';
 import VoteButtons from './VoteButtons';
 import InputVoteAmount from './InputVoteAmount';
-import { useRecoilValue } from 'recoil';
-import txHashAtom from 'recoil/txHash/atom';
 import FundProposal from './FundProposal';
 import convertFromBase from 'utilities/converters/convertFromBase';
 import useContractProposal from 'hooks/useContractProposal';

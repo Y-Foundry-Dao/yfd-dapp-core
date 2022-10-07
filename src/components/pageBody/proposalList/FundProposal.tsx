@@ -1,10 +1,6 @@
-import { Box, Button, useToast } from '@chakra-ui/react';
-import useMsg from 'hooks/useMsg';
+import { Box, Button } from '@chakra-ui/react';
 import InputFundingAmount from './InputFundingAmount';
-import msgExecuteSend from 'utilities/messagesExecute/msgExecuteSend';
-import { YFD_TEST } from 'utilities/variables';
-import FinderTxLink from 'components/basic/finder/FinderTxLink';
-import convertToBase from 'utilities/converters/convertToBase';
+import useHandleClicks from 'hooks/useHandleClicks';
 
 function FundProposal({
   voteTokenBalance,
@@ -12,24 +8,7 @@ function FundProposal({
   inputFundingAmount,
   setInputFundingAmount
 }: any) {
-  const toast = useToast();
-  const { executeMsg } = useMsg();
-  const handleClickFundProposal = async () => {
-    const msgFundProposal = msgExecuteSend(
-      proposalContract,
-      convertToBase(inputFundingAmount),
-      'eyJzdGFrZSI6e319'
-    );
-    const tx = await executeMsg(YFD_TEST, msgFundProposal);
-    (tx !== 0 || undefined) &&
-      toast({
-        title: 'Successfully staked YFD',
-        description: <FinderTxLink txHash={tx} />,
-        status: 'success',
-        duration: 9000,
-        isClosable: true
-      });
-  };
+  const { handleClickFundProposal } = useHandleClicks();
 
   return (
     <>
@@ -39,7 +18,16 @@ function FundProposal({
             inputFundingAmount={inputFundingAmount}
             setInputFundingAmount={setInputFundingAmount}
           />
-          <Button onClick={handleClickFundProposal}>Fund proposal</Button>
+          <Button
+            onClick={async () =>
+              await handleClickFundProposal(
+                proposalContract,
+                inputFundingAmount
+              )
+            }
+          >
+            Fund proposal
+          </Button>
         </Box>
       ) : null}
     </>

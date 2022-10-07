@@ -50,7 +50,6 @@ function StakeYFD() {
   const [amountDepositYFD, setAmountDepositYFD] =
     useRecoilState(amountDepositYFDAtom);
   const { handleClickStakeYFD } = useHandleClicks();
-  const { txHashTest } = useHandleClicks();
   const [durationDepositYFD, setDurationDepositYFD] = useState(
     DEFAULT_YFD_LOCK_DURATION
   );
@@ -58,10 +57,6 @@ function StakeYFD() {
     format(DEFAULT_YFD_LOCK_DURATION_DATE, 'dd-MMM-yyyy')
   );
   const handleInputDepositYFD = (value: any) => setAmountDepositYFD(value);
-
-  // useEffect(() => {
-  //   console.log(txHashTest);
-  // }, [txHashTest, amountDepositYFD]);
 
   return (
     <Flex alignItems="center" gap={10}>
