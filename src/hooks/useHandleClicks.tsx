@@ -34,6 +34,8 @@ const useHandleClicks = () => {
   const toast = useToast();
   const setAmountDepositYFD = useSetRecoilState(amountDepositYFDAtom);
   const connectedWallet = useConnectedWallet();
+
+  // Pulling in Recoil Values
   const nameProposal = useRecoilValue(inputNameProposal);
   const nameMsg = useRecoilValue(inputNameMsg);
   const urlProposal = useRecoilValue(inputUrlProposal);
