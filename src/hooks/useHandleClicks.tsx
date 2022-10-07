@@ -79,7 +79,7 @@ const useHandleClicks = () => {
     return;
   };
 
-  const handleClickProposal = async () => {
+  const handleClickCreateProposal = async () => {
     if (connectedWallet) {
       const msgToEncode = msgEncodedProposal(
         nameProposal,
@@ -116,9 +116,31 @@ const useHandleClicks = () => {
     }
   };
 
+  const handleClickFundProposal = async (
+    proposalContract: any,
+    inputFundingAmount: any
+  ) => {
+    const msgFundProposal = msgExecuteSend(
+      proposalContract,
+      convertToBase(inputFundingAmount),
+      'eyJzdGFrZSI6e319'
+    );
+    const tx = await executeMsg(YFD_TEST, msgFundProposal);
+    setTxHashTest(tx);
+    (tx !== 0 || undefined) &&
+      toast({
+        title: 'Successfully staked YFD',
+        description: <FinderTxLink txHash={tx} />,
+        status: 'success',
+        duration: 9000,
+        isClosable: true
+      });
+  };
+
   return {
     handleClickStakeYFD,
-    handleClickProposal,
+    handleClickCreateProposal,
+    handleClickFundProposal,
     txHashTest
   };
 };

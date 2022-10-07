@@ -24,7 +24,6 @@ import {
   inputDevelopmentCost,
   inputExpiration,
   inputGitHub,
-  inputNameMsg,
   inputNameProposal,
   inputPaymentFrequency,
   inputPaymentSchedule,
@@ -37,9 +36,8 @@ import {
 } from 'recoil/input/atoms';
 
 function ProposalSubmit() {
-  const { handleClickProposal } = useHandleClicks();
+  const { handleClickCreateProposal } = useHandleClicks();
   const [nameProposal, setNameProposal] = useRecoilState(inputNameProposal);
-  const [nameMsg, setNameMsg] = useRecoilState(inputNameMsg);
   const [urlProposal, setUrlProposal] = useRecoilState(inputUrlProposal);
   const [tvlLimit, setTvlLimit] = useRecoilState(inputTvlLimit);
   const [developmentCost, setDevelopmentCost] =
@@ -299,7 +297,7 @@ function ProposalSubmit() {
       <Button
         my={5}
         onClick={() => {
-          handleClickProposal();
+          handleClickCreateProposal();
         }}
       >
         ProposalSubmit
