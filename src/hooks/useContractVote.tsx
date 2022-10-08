@@ -1,6 +1,6 @@
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import useMsg from './useMsg';
-import queryBalance from 'utilities/messagesQuery/balance';
+import queryBalance from 'utilities/messagesQuery/queryBalance';
 import useContractProposal from './useContractProposal';
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';

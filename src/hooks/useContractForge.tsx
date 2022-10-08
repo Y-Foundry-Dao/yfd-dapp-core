@@ -3,7 +3,7 @@ import queryAllProposalContracts from 'utilities/messagesQuery/queryAllProposalC
 import { FORGE_TEST } from 'utilities/variables';
 import { useEffect, useState } from 'react';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
-import queryBalance from 'utilities/messagesQuery/balance';
+import queryBalance from 'utilities/messagesQuery/queryBalance';
 import { useRecoilValue } from 'recoil';
 import txHashAtom from 'recoil/txHash/atom';
 
