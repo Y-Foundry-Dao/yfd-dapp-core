@@ -54,14 +54,14 @@ Change ```terra1upleyfx24jehpgfy9d79d9scps20ffuf6vy706``` to the appropriate add
     "description": "The Decentralized Strategy Accellerator",
     "project": "Y-Foundry DAO",
     "logo": {
-      "url": "https://yfoundry.io/static/media/logo_orange.29fbf03b70b11c1cc27b8ae95e84c584.svg"
+      "url": "https://raw.githubusercontent.com/Y-Foundry-Dao/brand-assets/main/contract/pisco-1/cw20-yfd.svg"
     }
   }
 }`
 
 ## Logo Update / Upload
 `{ "upload_logo": {
-"url": "https://assets.terra.money/icon/svg/Luna.svg"
+"url": "https://raw.githubusercontent.com/Y-Foundry-Dao/brand-assets/main/contract/pisco-1/cw20-yfd.svg"
 }}`
 
 or embedded:
