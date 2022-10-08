@@ -39,7 +39,8 @@ Change ```terra1upleyfx24jehpgfy9d79d9scps20ffuf6vy706``` to the appropriate add
 [	
 terra1h3ue4uhpgzrq40w7j7p0keam5y7v5uscydkf7ur0yyhlzgu235lsk4xzl5](https://finder.terra.money/testnet/address/terra1h3ue4uhpgzrq40w7j7p0keam5y7v5uscydkf7ur0yyhlzgu235lsk4xzl5)
 
-
+### retired YFD Token Contracts
+`terra13rswlxp59z3d8gv8yvl826u9xqryyl7ksquvs7fl6e4veya6ah9qhald26`
 
 # Forge Contract
 `terra1dhaeatmwflhj86hewd5m5shh8z5rlar3wyc7hpuptkzutvaxa4fs5jf90k`
