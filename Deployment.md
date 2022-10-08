@@ -60,9 +60,12 @@ Change ```terra1upleyfx24jehpgfy9d79d9scps20ffuf6vy706``` to the appropriate add
 }`
 
 ## Logo Update / Upload
-{"upload_logo": {
+`{ "upload_logo": {
 "url": "https://assets.terra.money/icon/svg/Luna.svg"
-}}
+}}`
+
+## Marketing Info Query
+`{"marketing_info": {}}`
 
 ### token marketing/logo test contract
 [terra1h3ue4uhpgzrq40w7j7p0keam5y7v5uscydkf7ur0yyhlzgu235lsk4xzl5](https://finder.terra.money/testnet/address/terra1h3ue4uhpgzrq40w7j7p0keam5y7v5uscydkf7ur0yyhlzgu235lsk4xzl5)
