@@ -60,8 +60,8 @@ const inputPaymentFrequency = atom({
   default: 1000
 });
 
-const inputGitHub = atom({
-  key: 'inputGitHub',
+const inputGithub = atom({
+  key: 'inputGithub',
   default: ''
 });
 
@@ -98,7 +98,7 @@ export {
   inputStatementOfWork,
   inputPaymentSchedule,
   inputPaymentFrequency,
-  inputGitHub,
+  inputGithub,
   inputExpiration,
   inputQuorumPercent,
   inputSelfVoucedInformation,

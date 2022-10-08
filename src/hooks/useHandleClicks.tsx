@@ -1,11 +1,10 @@
-import useContract from './useContract';
+import useMsg from './useMsg';
 import { FORGE_TEST, YFD_TEST } from 'utilities/variables';
 import Base64 from 'utilities/base64';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import msgEncodedStake from 'utilities/messagesToEncode/msgEncodedStake';
 import msgStakeYFD from 'utilities/messagesExecute/msgStakeYFD';
 import { useState } from 'react';
-import amountDepositYFDAtom from 'recoil/amountDepositYFD/atom';
 import { useToast } from '@chakra-ui/react';
 import FinderTxLink from 'components/basic/finder/FinderTxLink';
 import msgEncodedProposal from 'utilities/messagesToEncode/msgEncodedProposal';
@@ -14,7 +13,7 @@ import msgExecuteSend from 'utilities/messagesExecute/msgExecuteSend';
 import {
   inputDevelopmentCost,
   inputExpiration,
-  inputGitHub,
+  inputGithub,
   inputInitialFunding,
   inputNameMsg,
   inputNameProposal,
@@ -22,18 +21,25 @@ import {
   inputPaymentSchedule,
   inputQuorumPercent,
   inputSelfVoucedInformation,
+  inputStakeYFD,
   inputStatementOfWork,
   inputTvlLimit,
   inputUrlProposal
 } from 'recoil/input/atoms';
 import convertToBase from 'utilities/converters/convertToBase';
+import msgVoteAffirm from 'utilities/messagesExecute/msgVoteAffirm';
+import msgVoteDeny from 'utilities/messagesExecute/msgVoteDeny';
+import msgVoteAbstain from 'utilities/messagesExecute/msgVoteAbstain';
+import msgVoteDenyWithPenalty from 'utilities/messagesExecute/msgVoteDenyWithPenalty';
 
 const useHandleClicks = () => {
-  const { executeMsg } = useContract();
+  const { executeMsg } = useMsg();
   const [txHashTest, setTxHashTest] = useState('');
   const toast = useToast();
-  const setAmountDepositYFD = useSetRecoilState(amountDepositYFDAtom);
+  const setAmountStakeYFD = useSetRecoilState(inputStakeYFD);
   const connectedWallet = useConnectedWallet();
+
+  // Pulling in Recoil Values
   const nameProposal = useRecoilValue(inputNameProposal);
   const nameMsg = useRecoilValue(inputNameMsg);
   const urlProposal = useRecoilValue(inputUrlProposal);
@@ -41,7 +47,7 @@ const useHandleClicks = () => {
   const developmentCost = useRecoilValue(inputDevelopmentCost);
   const statementOfWork = useRecoilValue(inputStatementOfWork);
   const paymentSchedule = useRecoilValue(inputPaymentSchedule);
-  const github = useRecoilValue(inputGitHub);
+  const github = useRecoilValue(inputGithub);
   const quorumPercent = useRecoilValue(inputQuorumPercent);
   const selfVouchedInformation = useRecoilValue(inputSelfVoucedInformation);
   const expiration = useRecoilValue(inputExpiration);
@@ -73,11 +79,11 @@ const useHandleClicks = () => {
         duration: 9000,
         isClosable: true
       });
-    setAmountDepositYFD(0);
+    setAmountStakeYFD(0);
     return;
   };
 
-  const handleClickProposal = async () => {
+  const handleClickCreateProposal = async () => {
     if (connectedWallet) {
       const msgToEncode = msgEncodedProposal(
         nameProposal,
@@ -114,9 +120,119 @@ const useHandleClicks = () => {
     }
   };
 
+  const handleClickFundProposal = async (
+    proposalContract: any,
+    inputFundingAmount: any
+  ) => {
+    const msgFundProposal = msgExecuteSend(
+      proposalContract,
+      convertToBase(inputFundingAmount),
+      'eyJzdGFrZSI6e319'
+    );
+    const tx = await executeMsg(YFD_TEST, msgFundProposal);
+    setTxHashTest(tx);
+    (tx !== 0 || undefined) &&
+      toast({
+        title: 'Successfully staked YFD',
+        description: <FinderTxLink txHash={tx} />,
+        status: 'success',
+        duration: 9000,
+        isClosable: true
+      });
+  };
+
+  const handleClickVoteAffirm = async (
+    contract: any,
+    inputVoteTokenAmount: any
+  ) => {
+    if (connectedWallet) {
+      const tx = await executeMsg(
+        contract,
+        msgVoteAffirm(convertToBase(inputVoteTokenAmount))
+      );
+      setTxHashTest(tx);
+      (tx !== 0 || undefined) &&
+        toast({
+          title: 'Successfully Voted',
+          description: <FinderTxLink txHash={tx} />,
+          status: 'success',
+          duration: 9000,
+          isClosable: true
+        });
+    }
+  };
+
+  const handleClickVoteDeny = async (
+    contract: any,
+    inputVoteTokenAmount: any
+  ) => {
+    if (connectedWallet) {
+      const tx = await executeMsg(
+        contract,
+        msgVoteDeny(convertToBase(inputVoteTokenAmount))
+      );
+      setTxHashTest(tx);
+      (tx !== 0 || undefined) &&
+        toast({
+          title: 'Successfully Voted',
+          description: <FinderTxLink txHash={tx} />,
+          status: 'success',
+          duration: 9000,
+          isClosable: true
+        });
+    }
+  };
+
+  const handleClickVoteAbstain = async (
+    contract: any,
+    inputVoteTokenAmount: any
+  ) => {
+    if (connectedWallet) {
+      const tx = await executeMsg(
+        contract,
+        msgVoteAbstain(convertToBase(inputVoteTokenAmount))
+      );
+      setTxHashTest(tx);
+      (tx !== 0 || undefined) &&
+        toast({
+          title: 'Successfully Voted',
+          description: <FinderTxLink txHash={tx} />,
+          status: 'success',
+          duration: 9000,
+          isClosable: true
+        });
+    }
+  };
+
+  const handleClickVoteDenyWithPenalty = async (
+    contract: any,
+    inputVoteTokenAmount: any
+  ) => {
+    if (connectedWallet) {
+      const tx = await executeMsg(
+        contract,
+        msgVoteDenyWithPenalty(convertToBase(inputVoteTokenAmount))
+      );
+      setTxHashTest(tx);
+      (tx !== 0 || undefined) &&
+        toast({
+          title: 'Successfully Voted',
+          description: <FinderTxLink txHash={tx} />,
+          status: 'success',
+          duration: 9000,
+          isClosable: true
+        });
+    }
+  };
+
   return {
     handleClickStakeYFD,
-    handleClickProposal,
+    handleClickCreateProposal,
+    handleClickFundProposal,
+    handleClickVoteAffirm,
+    handleClickVoteDeny,
+    handleClickVoteAbstain,
+    handleClickVoteDenyWithPenalty,
     txHashTest
   };
 };

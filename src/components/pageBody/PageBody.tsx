@@ -4,7 +4,7 @@ import ProposalList from './proposalList/ProposalList';
 
 function PageBody() {
   return (
-    <Box layerStyle={'pageBody'}>
+    <Box layerStyle={'pageBody'} textStyle={'pageBody'}>
       <Flex direction="column" alignItems="center" gap={5}>
         <Heading as="h1" size="xl">
           Foundry

@@ -1,27 +1,10 @@
-import useContract from 'hooks/useContract';
-import { useEffect } from 'react';
-import { FORGE_TEST } from 'utilities/variables';
-import queryAllProposalContracts from 'utilities/messagesQuery/queryAllProposalContracts';
-import { useRecoilState } from 'recoil';
-import proposalsAtom from 'recoil/proposals/atom';
 import ProposalInfo from './ProposalInfo';
 import { Box, Divider, Flex, Heading } from '@chakra-ui/react';
 import FinderContractLink from 'components/basic/finder/FinderContractLink';
+import useContractForge from 'hooks/useContractForge';
 
 function ProposalList() {
-  const { queryMsg } = useContract();
-  const [proposals, setProposals] = useRecoilState(proposalsAtom);
-  const getAllProposalContracts = async () => {
-    const response = await queryMsg(FORGE_TEST, queryAllProposalContracts());
-    return response;
-  };
-  useEffect(() => {
-    getAllProposalContracts().then((res: any) => {
-      if (res !== undefined) {
-        setProposals(res.proposals);
-      }
-    });
-  }, []);
+  const { proposals } = useContractForge();
 
   return (
     <>
@@ -37,7 +20,7 @@ function ProposalList() {
               return (
                 <Box
                   key={proposal.addr}
-                  maxW="45%"
+                  maxW={{ base: 'none', sm: '75%', md: '60%', lg: '50%' }}
                   my={6}
                   p={5}
                   borderRadius="md"
@@ -45,7 +28,7 @@ function ProposalList() {
                 >
                   <FinderContractLink contract={proposal.addr} />
                   <Divider my={4} />
-                  <ProposalInfo contract={proposal.addr} />
+                  <ProposalInfo proposalContract={proposal.addr} />
                 </Box>
               );
             })}

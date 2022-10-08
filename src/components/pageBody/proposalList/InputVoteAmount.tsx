@@ -17,18 +17,18 @@ function InputVoteAmount({
   const handleInputVoteAmount = (value: any) => setInputVoteTokenAmount(value);
   return (
     <Flex alignItems="center" gap={5}>
-      {voteTokenBalance.balance > 0 ? (
+      {voteTokenBalance > 0 ? (
         <>
           <Heading as="h3" size="md">
             Vote Token Amount:
           </Heading>
 
           <NumberInput
-            maxW="140px"
+            maxW="200px"
             mr="2rem"
             defaultValue={0}
             min={0}
-            max={convertFromBase(voteTokenBalance.balance)}
+            max={convertFromBase(voteTokenBalance)}
             value={inputVoteTokenAmount}
             onChange={handleInputVoteAmount}
           >
