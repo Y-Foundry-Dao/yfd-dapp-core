@@ -1,13 +1,34 @@
 # CW20 YFD Token (instanted a long time ago)
 ## contract address
 terra1ss9zz4873vk4dd8dvua0vm83m6s8k7ctwp9efac0arytn6jthfgsy2d4a9
+## code_id
+2077
 
 ### queries
-## upload Logo
+## instantiate cw20
+Change ```terra1upleyfx24jehpgfy9d79d9scps20ffuf6vy706``` to the appropriate address.
+
 `{
-"upload_logo": 
-{  "url": "https://yfoundry.io/logo-512-orange-transparent-square.png"
-}
+  "name": "Y-Foundry DAO",
+  "symbol": "YFD",
+  "decimals": 6,
+  "initial_balances": [
+    {
+      "address": "terra1upleyfx24jehpgfy9d79d9scps20ffuf6vy706",
+      "amount": "12340000"
+    }
+  ],
+  "minter_response": {
+    "minter": "terra1upleyfx24jehpgfy9d79d9scps20ffuf6vy706"
+  },
+  "marketing": {
+    "marketing": "terra1upleyfx24jehpgfy9d79d9scps20ffuf6vy706",
+    "description": "The Decentralized Strategy Accellerator",
+    "project": "Y-Foundry DAO",
+    "logo": {
+      "url": "https://yfoundry.io/static/media/logo_orange.29fbf03b70b11c1cc27b8ae95e84c584.svg"
+    }
+  }
 }`
 
 # Forge Contract
