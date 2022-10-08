@@ -4,12 +4,15 @@ import { FORGE_TEST } from 'utilities/variables';
 import { useEffect, useState } from 'react';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import queryBalance from 'utilities/messagesQuery/balance';
+import { useRecoilValue } from 'recoil';
+import txHashAtom from 'recoil/txHash/atom';
 
 const useContractForge = () => {
   const { queryMsg } = useMsg();
   const [proposals, setProposals] = useState<any>([]);
   const [tokenBalance, setTokenBalance] = useState('0');
   const connectedWallet = useConnectedWallet();
+  const txHashInRecoil = useRecoilValue(txHashAtom);
 
   const getAllProposalContracts = async () => {
     const response = await queryMsg(FORGE_TEST, queryAllProposalContracts());
@@ -48,7 +51,7 @@ const useContractForge = () => {
 
   useEffect(() => {
     setTokenBalanceToState();
-  }, [connectedWallet]);
+  }, [connectedWallet, txHashInRecoil]);
 
   return {
     getAllProposalContracts,

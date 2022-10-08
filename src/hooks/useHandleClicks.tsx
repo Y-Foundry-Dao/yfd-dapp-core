@@ -4,7 +4,6 @@ import Base64 from 'utilities/base64';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import msgEncodedStake from 'utilities/messagesToEncode/msgEncodedStake';
 import msgStakeYFD from 'utilities/messagesExecute/msgStakeYFD';
-import { useState } from 'react';
 import { useToast } from '@chakra-ui/react';
 import FinderTxLink from 'components/basic/finder/FinderTxLink';
 import msgEncodedProposal from 'utilities/messagesToEncode/msgEncodedProposal';
@@ -31,13 +30,14 @@ import msgVoteAffirm from 'utilities/messagesExecute/msgVoteAffirm';
 import msgVoteDeny from 'utilities/messagesExecute/msgVoteDeny';
 import msgVoteAbstain from 'utilities/messagesExecute/msgVoteAbstain';
 import msgVoteDenyWithPenalty from 'utilities/messagesExecute/msgVoteDenyWithPenalty';
+import txHashAtom from 'recoil/txHash/atom';
 
 const useHandleClicks = () => {
   const { executeMsg } = useMsg();
-  const [txHashTest, setTxHashTest] = useState('');
   const toast = useToast();
-  const setAmountStakeYFD = useSetRecoilState(inputStakeYFD);
   const connectedWallet = useConnectedWallet();
+  const setTxHashInRecoil = useSetRecoilState(txHashAtom);
+  const setAmountStakeYFD = useSetRecoilState(inputStakeYFD);
 
   // Pulling in Recoil Values
   const nameProposal = useRecoilValue(inputNameProposal);
@@ -70,7 +70,7 @@ const useHandleClicks = () => {
     const tx = await executeMsg(YFD_TEST, msgStakeYFDToken);
 
     console.log(tx);
-    setTxHashTest(tx);
+    setTxHashInRecoil(tx);
     (tx !== 0 || undefined) &&
       toast({
         title: 'Successfully staked YFD',
@@ -108,7 +108,7 @@ const useHandleClicks = () => {
       );
       const tx = await executeMsg(YFD_TEST, msgCreateProposal);
       console.log(tx);
-      setTxHashTest(tx);
+      setTxHashInRecoil(tx);
       (tx !== 0 || undefined) &&
         toast({
           title: 'Successfully Created Proposal',
@@ -130,7 +130,7 @@ const useHandleClicks = () => {
       'eyJzdGFrZSI6e319'
     );
     const tx = await executeMsg(YFD_TEST, msgFundProposal);
-    setTxHashTest(tx);
+    setTxHashInRecoil(tx);
     (tx !== 0 || undefined) &&
       toast({
         title: 'Successfully staked YFD',
@@ -150,7 +150,7 @@ const useHandleClicks = () => {
         contract,
         msgVoteAffirm(convertToBase(inputVoteTokenAmount))
       );
-      setTxHashTest(tx);
+      setTxHashInRecoil(tx);
       (tx !== 0 || undefined) &&
         toast({
           title: 'Successfully Voted',
@@ -171,7 +171,7 @@ const useHandleClicks = () => {
         contract,
         msgVoteDeny(convertToBase(inputVoteTokenAmount))
       );
-      setTxHashTest(tx);
+      setTxHashInRecoil(tx);
       (tx !== 0 || undefined) &&
         toast({
           title: 'Successfully Voted',
@@ -192,7 +192,7 @@ const useHandleClicks = () => {
         contract,
         msgVoteAbstain(convertToBase(inputVoteTokenAmount))
       );
-      setTxHashTest(tx);
+      setTxHashInRecoil(tx);
       (tx !== 0 || undefined) &&
         toast({
           title: 'Successfully Voted',
@@ -213,7 +213,7 @@ const useHandleClicks = () => {
         contract,
         msgVoteDenyWithPenalty(convertToBase(inputVoteTokenAmount))
       );
-      setTxHashTest(tx);
+      setTxHashInRecoil(tx);
       (tx !== 0 || undefined) &&
         toast({
           title: 'Successfully Voted',
@@ -232,8 +232,7 @@ const useHandleClicks = () => {
     handleClickVoteAffirm,
     handleClickVoteDeny,
     handleClickVoteAbstain,
-    handleClickVoteDenyWithPenalty,
-    txHashTest
+    handleClickVoteDenyWithPenalty
   };
 };
 
