@@ -1,4 +1,4 @@
-# CW20 YFD Token (instantiated a long time ago)
+# CW20 YFD Token
 ### contract address {pisco-1} `terra1ss9zz4873vk4dd8dvua0vm83m6s8k7ctwp9efac0arytn6jthfgsy2d4a9`
 ### code_id `2077`
 
