@@ -1,5 +1,5 @@
 # CW20 YFD Token (instanted a long time ago)
-## contract address
+## contract address - for testing
 `terra1ss9zz4873vk4dd8dvua0vm83m6s8k7ctwp9efac0arytn6jthfgsy2d4a9`
 ## code_id
 `2077`
@@ -15,7 +15,11 @@ Change ```terra1upleyfx24jehpgfy9d79d9scps20ffuf6vy706``` to the appropriate add
   "initial_balances": [
     {
       "address": "terra1upleyfx24jehpgfy9d79d9scps20ffuf6vy706",
-      "amount": "12340000"
+      "amount": "1000000000"
+    },
+    {
+      "address": "",
+      "amount": "300000"
     }
   ],
   "minter_response": {
@@ -30,6 +34,12 @@ Change ```terra1upleyfx24jehpgfy9d79d9scps20ffuf6vy706``` to the appropriate add
     }
   }
 }`
+
+### token marketing/logo test contract
+[	
+terra1h3ue4uhpgzrq40w7j7p0keam5y7v5uscydkf7ur0yyhlzgu235lsk4xzl5](https://finder.terra.money/testnet/address/terra1h3ue4uhpgzrq40w7j7p0keam5y7v5uscydkf7ur0yyhlzgu235lsk4xzl5)
+
+
 
 # Forge Contract
 `terra1dhaeatmwflhj86hewd5m5shh8z5rlar3wyc7hpuptkzutvaxa4fs5jf90k`
