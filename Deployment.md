@@ -15,11 +15,35 @@ Change ```terra1upleyfx24jehpgfy9d79d9scps20ffuf6vy706``` to the appropriate add
   "initial_balances": [
     {
       "address": "terra1upleyfx24jehpgfy9d79d9scps20ffuf6vy706",
-      "amount": "1000000000"
+      "amount": "1000000000000000"
     },
     {
-      "address": "",
-      "amount": "300000"
+      "address": "terra1r5h6fmlgc8h7ke2hlzlkgh3kvcdlxcy55s83rc",
+      "amount": "3000000000000"
+    },
+    {
+      "address": "terra1fq2axrgy7r2hqtxt7x79fm329nd005f2ehddyc",
+      "amount": "3000000000000"
+    },
+    {
+      "address": "terra1q04xu3lcgmzt5ayrx8dxkc6kyu9mpmn35szkgw",
+      "amount": "3000000000000"
+    },
+    {
+      "address": "terra1ska4hpu256nptr77awg35g7fady86mut74dwux",
+      "amount": "3000000000000"
+    },
+    {
+      "address": "terra1ymc59uuuklnudfnkwhezzlnmec6f3cze7tsve9",
+      "amount": "300000000000"
+    },
+    {
+      "address": "terra1z34jtm74a4ngea3rpxusmt4sqq8rlgcuwnt24w",
+      "amount": "300000000000"
+    },
+    {
+      "address": "terra1qje0jdhrhgcnju2ph8jdafcjr252wa2svqj3ly",
+      "amount": "300000000000"
     }
   ],
   "minter_response": {
@@ -35,9 +59,13 @@ Change ```terra1upleyfx24jehpgfy9d79d9scps20ffuf6vy706``` to the appropriate add
   }
 }`
 
+## Logo Update / Upload
+{"upload_logo": {
+"url": "https://assets.terra.money/icon/svg/Luna.svg"
+}}
+
 ### token marketing/logo test contract
-[	
-terra1h3ue4uhpgzrq40w7j7p0keam5y7v5uscydkf7ur0yyhlzgu235lsk4xzl5](https://finder.terra.money/testnet/address/terra1h3ue4uhpgzrq40w7j7p0keam5y7v5uscydkf7ur0yyhlzgu235lsk4xzl5)
+[terra1h3ue4uhpgzrq40w7j7p0keam5y7v5uscydkf7ur0yyhlzgu235lsk4xzl5](https://finder.terra.money/testnet/address/terra1h3ue4uhpgzrq40w7j7p0keam5y7v5uscydkf7ur0yyhlzgu235lsk4xzl5)
 
 ### retired YFD Token Contracts
 `terra13rswlxp59z3d8gv8yvl826u9xqryyl7ksquvs7fl6e4veya6ah9qhald26`
