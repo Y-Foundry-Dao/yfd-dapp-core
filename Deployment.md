@@ -1,8 +1,8 @@
 # CW20 YFD Token (instanted a long time ago)
 ## contract address
-terra1ss9zz4873vk4dd8dvua0vm83m6s8k7ctwp9efac0arytn6jthfgsy2d4a9
+`terra1ss9zz4873vk4dd8dvua0vm83m6s8k7ctwp9efac0arytn6jthfgsy2d4a9`
 ## code_id
-2077
+`2077`
 
 ### queries
 ## instantiate cw20
@@ -32,15 +32,15 @@ Change ```terra1upleyfx24jehpgfy9d79d9scps20ffuf6vy706``` to the appropriate add
 }`
 
 # Forge Contract
-terra1dhaeatmwflhj86hewd5m5shh8z5rlar3wyc7hpuptkzutvaxa4fs5jf90k
+`terra1dhaeatmwflhj86hewd5m5shh8z5rlar3wyc7hpuptkzutvaxa4fs5jf90k`
 ## code_id
 4643
 
 ## Instantiation TX
-106110131B0B05BDCE168B77445711F697F633AF15C5B57FDB3714E2E60288DC
+`106110131B0B05BDCE168B77445711F697F633AF15C5B57FDB3714E2E60288DC`
 
 ## Upload Hash
-C8BF760313D7C69659F6D59CB06AD800B6D5C81A301BDFC94591A83A81E2CDB6
+`C8BF760313D7C69659F6D59CB06AD800B6D5C81A301BDFC94591A83A81E2CDB6`
 
 ## Instantiation Code
 `{
