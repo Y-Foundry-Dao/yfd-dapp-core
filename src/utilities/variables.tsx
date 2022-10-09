@@ -12,7 +12,7 @@ export const YFD_TEST =
 export const FORGE_TEST_BROKEN =
   'terra168rvweaknfd7dhde02ex66fjsm9e3xppkj4xskvtnuql4vwr0ptsy444dx';
 export const FORGE_TEST =
-  'terra1dhaeatmwflhj86hewd5m5shh8z5rlar3wyc7hpuptkzutvaxa4fs5jf90k';
+  'terra1vd662ag5prc89szmdezsr8gythmhqp2tp6d7faeqpq8the349ymsmrwa87';
 
 // cronological data
 //export const CRONO_SECONDS_IN_TWO_YEAR = 31556952 * 2; // 63113904 // actual seconds
