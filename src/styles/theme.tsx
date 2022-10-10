@@ -50,6 +50,9 @@ const primary = {
     stakeYFD: {
       color: 'white',
       padding: '10px'
+    },
+    stakeItemCard: {
+      bg: 'color5'
     }
   },
   textStyles: {
