@@ -52,6 +52,10 @@ yarn e2etest
 
 [Chakra Icons](https://chakra-ui.com/docs/components/icon)
 
+### Charts
+
+[Chart.js](https://www.chartjs.org/)
+
 ### Utility
 
 [Date-FNS](https://date-fns.org/)
