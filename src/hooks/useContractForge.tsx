@@ -66,7 +66,6 @@ const useContractForge = () => {
       console.log('staked YFD is undefined');
       return;
     }
-    console.log('staked YFD is', stakedYFD.stakes);
     setStakedYFD(stakedYFD.stakes);
   };
 
