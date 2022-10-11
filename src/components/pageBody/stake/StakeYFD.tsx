@@ -21,7 +21,10 @@ import {
   MenuList,
   MenuItem,
   MenuOptionGroup,
-  MenuDivider
+  MenuDivider,
+  Badge,
+  Box,
+  Spacer
 } from '@chakra-ui/react';
 import yLogo from 'assets/yfd/logo-orange.svg';
 import {
@@ -95,6 +98,7 @@ function StakeYFD() {
               defaultValue="{DEFAULT_YFD_LOCK_DURATION}"
               title="Lock Duration : Power"
             >
+              <MenuDivider />
               <MenuItem
                 value={CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_MINIMUM}
                 onClick={(event) => {
@@ -106,10 +110,24 @@ function StakeYFD() {
                   );
                 }}
               >
-                {format(DATE_FYFD_YFD_LOCK_VALUE_MINIMUM, 'dd-MMM-yyyy')} :
-                <Text color="red">
-                  &nbsp;Minimum <b>(-95.20%)</b>
-                </Text>
+                <Flex width="full" minWidth="max-content">
+                  <Box>
+                    {format(DATE_FYFD_YFD_LOCK_VALUE_MINIMUM, 'dd-MMM-yyyy')}
+                  </Box>
+                  <Spacer />
+                  <Box>
+                    <Badge
+                      colorScheme="red"
+                      variant="solid"
+                      borderRadius="full"
+                      paddingLeft="10px"
+                      paddingRight="10px"
+                    >
+                      MINIMUM -95.20%
+                    </Badge>
+                  </Box>
+                </Flex>
+                <Text color="red"></Text>
               </MenuItem>
               <MenuItem
                 value={CHAIN_BLOCK_ONE_MONTH}
@@ -122,7 +140,23 @@ function StakeYFD() {
                   );
                 }}
               >
-                {format(DATE_ONE_MONTH, 'dd-MMM-yyyy')} : One Month
+                <Flex width="full" minWidth="max-content">
+                  <Box>
+                    <b>{format(DATE_ONE_MONTH, 'dd-MMM-yyyy')}</b>
+                  </Box>
+                  <Spacer />
+                  <Box>
+                    <Badge
+                      colorScheme="blue"
+                      variant="subtle"
+                      borderRadius="full"
+                      paddingLeft="10px"
+                      paddingRight="10px"
+                    >
+                      ONE MONTH
+                    </Badge>
+                  </Box>
+                </Flex>
               </MenuItem>
               <MenuItem
                 value={CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_QUARTER}
@@ -135,12 +169,28 @@ function StakeYFD() {
                   );
                 }}
               >
-                {format(DATE_FYFD_YFD_LOCK_VALUE_QUARTER, 'dd-MMM-yyyy')} : 1/4
-                Power (62.5%)
+                <Flex width="full" minWidth="max-content">
+                  <Box>
+                    <b>
+                      {format(DATE_FYFD_YFD_LOCK_VALUE_QUARTER, 'dd-MMM-yyyy')}
+                    </b>
+                  </Box>
+                  <Spacer />
+                  <Box>
+                    <Badge
+                      colorScheme="blue"
+                      variant="subtle"
+                      borderRadius="full"
+                      paddingLeft="10px"
+                      paddingRight="10px"
+                    >
+                      62.5%
+                    </Badge>
+                  </Box>
+                </Flex>
               </MenuItem>
               <MenuDivider />
               <MenuItem
-                icon={<AiFillCaretRight color="green" />}
                 value={CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_PARITY}
                 onClick={(event) => {
                   setDurationDepositYFD(
@@ -151,10 +201,26 @@ function StakeYFD() {
                   );
                 }}
               >
-                <b>
-                  {format(DATE_FYFD_YFD_LOCK_VALUE_PARITY, 'dd-MMM-yyyy')} :
-                  Value Parity (100%)
-                </b>
+                <Flex width="full" minWidth="max-content">
+                  <Box>
+                    <b>
+                      {format(DATE_FYFD_YFD_LOCK_VALUE_PARITY, 'dd-MMM-yyyy')}
+                    </b>
+                  </Box>
+                  <Spacer />
+                  <Box>
+                    <Badge
+                      colorScheme="green"
+                      variant="solid"
+                      borderRadius="full"
+                      paddingLeft="10px"
+                      paddingRight="10px"
+                      marginLeft="25px"
+                    >
+                      Value Parity 100%
+                    </Badge>
+                  </Box>
+                </Flex>
               </MenuItem>
               <MenuItem
                 value={CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_HALF}
@@ -167,8 +233,23 @@ function StakeYFD() {
                   );
                 }}
               >
-                {format(DATE_FYFD_YFD_LOCK_VALUE_HALF, 'dd-MMM-yyyy')} : 1/2
-                Power (125%)
+                <Flex width="full" minWidth="max-content">
+                  <Box>
+                    {format(DATE_FYFD_YFD_LOCK_VALUE_HALF, 'dd-MMM-yyyy')}
+                  </Box>
+                  <Spacer />
+                  <Box>
+                    <Badge
+                      colorScheme="blue"
+                      variant="subtle"
+                      borderRadius="full"
+                      paddingLeft="10px"
+                      paddingRight="10px"
+                    >
+                      125%
+                    </Badge>
+                  </Box>
+                </Flex>
               </MenuItem>
               <MenuItem
                 value={CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_THREEQUARTER}
@@ -181,12 +262,29 @@ function StakeYFD() {
                   );
                 }}
               >
-                {format(DATE_FYFD_YFD_LOCK_VALUE_THREEQUARTER, 'dd-MMM-yyyy')} :
-                3/4 Power (187.5%)
+                <Flex width="full" minWidth="max-content">
+                  <Box>
+                    {format(
+                      DATE_FYFD_YFD_LOCK_VALUE_THREEQUARTER,
+                      'dd-MMM-yyyy'
+                    )}{' '}
+                  </Box>
+                  <Spacer />
+                  <Box>
+                    <Badge
+                      colorScheme="blue"
+                      variant="subtle"
+                      borderRadius="full"
+                      paddingLeft="10px"
+                      paddingRight="10px"
+                    >
+                      187.5%
+                    </Badge>
+                  </Box>
+                </Flex>
               </MenuItem>
               <MenuDivider />
               <MenuItem
-                icon={<AiFillStar color="orange" />}
                 value={CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_MAXIMUM}
                 onClick={(event) => {
                   setDurationDepositYFD(
@@ -197,10 +295,23 @@ function StakeYFD() {
                   );
                 }}
               >
-                <b>
-                  {format(DATE_FYFD_YFD_LOCK_VALUE_MAXIMUM, 'dd-MMM-yyyy')} :
-                  Max Power (250%)
-                </b>
+                <Flex width="full" minWidth="max-content">
+                  <Box>
+                    {format(DATE_FYFD_YFD_LOCK_VALUE_MAXIMUM, 'dd-MMM-yyyy')}
+                  </Box>
+                  <Spacer />
+                  <Box>
+                    <Badge
+                      colorScheme="purple"
+                      variant="solid"
+                      borderRadius="full"
+                      paddingLeft="10px"
+                      paddingRight="10px"
+                    >
+                      Max Power 250%
+                    </Badge>
+                  </Box>
+                </Flex>
               </MenuItem>
             </MenuOptionGroup>
           </MenuList>
