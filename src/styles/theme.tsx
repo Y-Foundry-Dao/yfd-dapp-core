@@ -44,7 +44,6 @@ const primary = {
     pageBody: {
       width: '100%',
       bgGradient: 'linear(to-b, yellow.50, orange.50, orange.300)',
-      border: '3px solid gray',
       padding: '10px'
     },
     stakeYFD: {
@@ -62,7 +61,7 @@ const primary = {
   },
   colors: {
     ...base.colors,
-    color5: 'linear-gradient(180deg, #FEC221 0%, #D8552A 100%);',
+    color5: 'linear-gradient(180deg, yellow.300 0%, yellow.100 100%);',
     color7: 'linear-gradient(180deg, #885555 0%, #D8552A 80%);'
   }
 };

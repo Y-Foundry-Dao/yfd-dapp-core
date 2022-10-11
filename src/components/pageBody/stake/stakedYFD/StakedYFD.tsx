@@ -1,25 +1,37 @@
-import { Box } from '@chakra-ui/react';
 import { useRecoilValue } from 'recoil';
 import stakedYFDAtom from 'recoil/stakedYFD/atom';
 import StakeItem from './StakeItem';
-import { Accordion, AccordionPanel, AccordionIcon, AccordionButton, AccordionItem } from '@chakra-ui/react';
+import useStake from 'hooks/useStake';
+import {
+  Accordion,
+  AccordionPanel,
+  AccordionIcon,
+  AccordionButton,
+  AccordionItem,
+  Flex,
+  Box,
+  Spacer
+} from '@chakra-ui/react';
 function StakedYFD() {
   const stakedYFD = useRecoilValue(stakedYFDAtom);
+
   return (
-    <Accordian>
-      <AccordionItem>
-        <AccordionButton>
-          <div>
-          {stakedYFD.map((stake: any) => {
-            return (
-              <Box key={stake.idx}>
-                <StakeItem stake={stake} />
-              </Box>
-            );
-          })}
-      </AccordionItem>
-    </Accordian>
-    </div>
+    <Accordion>
+      <div>
+        {stakedYFD.map((stake: any) => {
+          return (
+            <AccordionItem key={stake.idx} bgColor="yellow.300">
+              <Flex>
+                <Box>Staked YFD {stake.idx}</Box>
+                <Spacer />
+                <Box>Claimable: xxx,xxx</Box>
+              </Flex>
+              <StakeItem stake={stake} />
+            </AccordionItem>
+          );
+        })}
+      </div>
+    </Accordion>
   );
 }
 
