@@ -8,10 +8,12 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import txHashAtom from 'recoil/txHash/atom';
 import queryBalanceDetail from 'utilities/messagesQuery/queryBalanceDetail';
 import stakedYFDAtom from 'recoil/stakedYFD/atom';
+import queryAllEmergencies from 'utilities/messagesQuery/queryAllEmergencies';
 
 const useContractForge = () => {
   const { queryMsg } = useMsg();
   const [proposals, setProposals] = useState<any>([]);
+  const [emergencies, setEmergencies] = useState<any>([]);
   const [tokenBalance, setTokenBalance] = useState('0');
   const connectedWallet = useConnectedWallet();
   const txHashInRecoil = useRecoilValue(txHashAtom);
@@ -26,6 +28,16 @@ const useContractForge = () => {
     const proposalContracts: any = await getAllProposalContracts();
 
     setProposals(proposalContracts.proposals);
+  };
+
+  const getAllEmergencies = async () => {
+    const response = await queryMsg(FORGE_TEST, queryAllEmergencies());
+    return response;
+  };
+
+  const setAllEmergenciesToState = async () => {
+    const response: any = await getAllEmergencies();
+    setEmergencies(response.emergencies);
   };
 
   const getBalance = async () => {
@@ -76,11 +88,13 @@ const useContractForge = () => {
   useEffect(() => {
     setTokenBalanceToState();
     setStakedYFDToState();
+    setAllEmergenciesToState();
   }, [connectedWallet, txHashInRecoil]);
 
   return {
     getAllProposalContracts,
     proposals,
+    emergencies,
     tokenBalance
   };
 };
