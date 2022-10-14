@@ -10,7 +10,6 @@ function FinderContractLink({ contract }: any) {
       isExternal
       href={`https://finder.terra.money/testnet/address/${contract}`}
     >
-      Proposal Contract:{' '}
       <Web3Address
         textDecorationLine="underline"
         address={contract}
