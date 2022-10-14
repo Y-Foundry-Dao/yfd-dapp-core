@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { Box, Flex, Text } from '@chakra-ui/react';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
-import VoteTokenBalance from './VoteTokenBalance';
-import VoteButtons from './VoteButtons';
-import InputVoteAmount from './InputVoteAmount';
-import FundProposal from './FundProposal';
+import VoteTokenBalance from './voting/VoteTokenBalance';
+import VoteButtons from './voting/VoteButtons';
+import InputVoteAmount from './voting/InputVoteAmount';
+import FundProposal from './funding/FundProposal';
 import convertFromBase from 'utilities/converters/convertFromBase';
 import useContractProposal from 'hooks/useContractProposal';
 import useContractVote from 'hooks/useContractVote';
+import EmergencyVote from '../emergencyVote/EmergencyVote';
 
-function ProposalInfo({ proposalContract }: any) {
+function ProposalInfo({ proposalContract, proposalIndex }: any) {
   const { proposalInfo, voteContract } = useContractProposal({
     proposalContract
   });
@@ -42,12 +43,12 @@ function ProposalInfo({ proposalContract }: any) {
               inputVoteTokenAmount={inputVoteTokenAmount}
               setInputVoteTokenAmount={setInputVoteTokenAmount}
             />
-
             <VoteButtons
               contract={voteContract}
               voteTokenBalance={voteTokenBalance}
               inputVoteTokenAmount={inputVoteTokenAmount}
             />
+            <EmergencyVote proposalIndex={proposalIndex} />
           </Box>
           <FundProposal
             voteTokenBalance={voteTokenBalance}

@@ -1,4 +1,4 @@
-import ProposalInfo from './ProposalInfo';
+import ProposalInfo from './proposalInfo/ProposalInfo';
 import { Box, Divider, Flex, Heading } from '@chakra-ui/react';
 import FinderContractLink from 'components/basic/finder/FinderContractLink';
 import useContractForge from 'hooks/useContractForge';
@@ -28,7 +28,10 @@ function ProposalList() {
                 >
                   <FinderContractLink contract={proposal.addr} />
                   <Divider my={4} />
-                  <ProposalInfo proposalContract={proposal.addr} />
+                  <ProposalInfo
+                    proposalContract={proposal.addr}
+                    proposalIndex={proposal.index}
+                  />
                 </Box>
               );
             })}
