@@ -52,6 +52,11 @@ const primary = {
     },
     stakeItemCard: {
       bg: 'color5'
+    },
+    emergencyVote: {
+      border: '1px solid yellow',
+      my: '5',
+      p: '4'
     }
   },
   textStyles: {

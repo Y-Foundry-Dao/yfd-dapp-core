@@ -17,7 +17,13 @@ function ProposalSubmit() {
   const { handleClickCreateProposal } = useHandleClicks();
 
   return (
-    <Flex direction="column" alignItems="center" minWidth="50%" mt={5}>
+    <Flex
+      rowGap={2}
+      direction="column"
+      alignItems="center"
+      minWidth="50%"
+      mt={5}
+    >
       <Heading as="h2" size="lg">
         Submit a Proposal
       </Heading>

@@ -1,5 +1,8 @@
-import { atom } from 'recoil';
+import { atom, atomFamily } from 'recoil';
 
+//~~~~~~~~~~~~~~~~
+// atom only
+//~~~~~~~~~~~~~~~~
 const inputStakeYFD = atom({
   key: 'inputStakeYFD',
   default: 0
@@ -37,7 +40,7 @@ const inputDeveloperWallet = atom({
 
 const inputDevelopmentCost = atom({
   key: 'inputDevelopmentCost',
-  default: 5000
+  default: 1
 });
 
 const inputFundingDenomination = atom({
@@ -82,7 +85,15 @@ const inputSelfVoucedInformation = atom({
 
 const inputInitialFunding = atom({
   key: 'inputInitialFunding',
-  default: 0
+  default: 0.1
+});
+
+//~~~~~~~~~~~~~~~~
+// atomFamily only
+//~~~~~~~~~~~~~~~~
+const inputExpirationEmergency = atomFamily({
+  key: 'inputExpirationEmergency',
+  default: 14400
 });
 
 export {
@@ -102,5 +113,6 @@ export {
   inputExpiration,
   inputQuorumPercent,
   inputSelfVoucedInformation,
-  inputInitialFunding
+  inputInitialFunding,
+  inputExpirationEmergency
 };
