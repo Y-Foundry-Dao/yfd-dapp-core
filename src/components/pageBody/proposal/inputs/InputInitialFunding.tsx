@@ -23,9 +23,9 @@ function InputInitialFunding() {
       <NumberInput
         maxW="140px"
         mr="2rem"
-        defaultValue={0}
-        step={1}
-        min={0}
+        defaultValue={0.1}
+        step={0.1}
+        min={0.1}
         max={developmentCost}
         value={initialFunding}
         onChange={handleInputInitialFunding}

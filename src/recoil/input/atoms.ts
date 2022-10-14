@@ -37,7 +37,7 @@ const inputDeveloperWallet = atom({
 
 const inputDevelopmentCost = atom({
   key: 'inputDevelopmentCost',
-  default: 5000
+  default: 1
 });
 
 const inputFundingDenomination = atom({
@@ -82,7 +82,7 @@ const inputSelfVoucedInformation = atom({
 
 const inputInitialFunding = atom({
   key: 'inputInitialFunding',
-  default: 0
+  default: 0.1
 });
 
 export {

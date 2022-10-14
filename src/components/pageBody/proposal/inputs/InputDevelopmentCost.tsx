@@ -5,7 +5,9 @@ import {
   NumberIncrementStepper,
   NumberInput,
   NumberInputField,
-  NumberInputStepper
+  NumberInputStepper,
+  Text,
+  VStack
 } from '@chakra-ui/react';
 import useHandleInputs from 'hooks/useHandleInputs';
 import { useRecoilValue } from 'recoil';
@@ -22,10 +24,10 @@ function InputDevelopmentCost() {
       <NumberInput
         maxW="140px"
         mr="2rem"
-        defaultValue={5000}
-        step={1}
+        defaultValue={1}
+        step={0.1}
         min={0}
-        // max={1000000}
+        max={1}
         value={developmentCost}
         onChange={handleInputDevelopmentCost}
       >
