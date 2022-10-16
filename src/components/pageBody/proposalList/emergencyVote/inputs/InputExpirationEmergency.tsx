@@ -7,8 +7,7 @@ import {
   NumberInputField,
   NumberInputStepper
 } from '@chakra-ui/react';
-import useHandleInputs from 'hooks/useHandleInputs';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { inputExpirationEmergency } from 'recoil/input/atoms';
 
 function InputExpirationEmergency({ proposalIndex }: any) {

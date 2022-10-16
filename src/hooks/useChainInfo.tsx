@@ -3,10 +3,7 @@ import useMsg from './useMsg';
 import queryBalance from 'utilities/messagesQuery/queryBalance';
 import useContractProposal from './useContractProposal';
 import { useEffect, useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import txHashAtom from 'recoil/txHash/atom';
-import queryEmergency from 'utilities/messagesQuery/queryEmergency';
-import { FORGE_TEST } from 'utilities/variables';
+import { useRecoilState } from 'recoil';
 import { terra } from 'utilities/lcd';
 import { currentBlockHeightAtom } from 'recoil/chainInfo/atoms';
 
@@ -31,7 +28,6 @@ const useChainInfo = () => {
     setCurrentBlockHeightToState();
   }, []);
 
-  // todo: dynamically pull interval time as seconds per block on currently connected chain
   useEffect(() => {
     const interval = setInterval(async () => {
       await setCurrentBlockHeightToState();
