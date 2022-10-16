@@ -3,6 +3,8 @@ import FinderContractLink from 'components/basic/finder/FinderContractLink';
 import useContractEmergency from 'hooks/useContractEmergency';
 import useHandleClicks from 'hooks/useHandleClicks';
 import { useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { currentBlockHeightAtom } from 'recoil/chainInfo/atoms';
 import InputVoteAmount from '../proposalInfo/voting/InputVoteAmount';
 import VoteButtons from '../proposalInfo/voting/VoteButtons';
 import EmergencyVoteBalance from './voting/EmergencyVoteBalance';
@@ -11,6 +13,7 @@ function EmergencyProposal({ emergency }: any) {
   const { emergencyInfo, emergencyVoteBalance, votes } = useContractEmergency({
     emergency
   });
+  const currentBlockHeight = useRecoilValue(currentBlockHeightAtom);
   const { handleClickFinalizeProposal } = useHandleClicks();
   const [inputVoteTokenAmount, setInputVoteTokenAmount] = useState(0);
   return emergencyInfo !== undefined ? (
@@ -35,15 +38,19 @@ function EmergencyProposal({ emergency }: any) {
       />
       <Box layerStyle="emergencyVote">
         <Text>State of Proposal: {Object.keys(emergencyInfo.state)[0]}</Text>
-        {emergencyInfo.state.NotFinalized && (
-          <Button
-            onClick={async () => {
-              await handleClickFinalizeProposal(emergency.index);
-            }}
-          >
-            Finalize Proposal
-          </Button>
-        )}
+        {currentBlockHeight > emergencyInfo.closing_block ? (
+          <>
+            {emergencyInfo.state.NotFinalized && (
+              <Button
+                onClick={async () => {
+                  await handleClickFinalizeProposal(emergency.index);
+                }}
+              >
+                Finalize Proposal
+              </Button>
+            )}
+          </>
+        ) : null}
       </Box>
     </>
   ) : (

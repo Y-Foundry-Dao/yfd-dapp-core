@@ -16,7 +16,6 @@ const useContractEmergency = ({ emergency }: any) => {
   const [emergencyInfo, setEmergencyInfo] = useState<any>(undefined);
   const [emergencyVoteBalance, setEmergencyVoteBalance] = useState<any>('0');
   const [votes, setVotes] = useState<any>({});
-  const [setEmergencyExpiration] = useState<any>(0);
 
   const getEmergencyInfo = async () => {
     const emergencyInfo: any = await queryMsg(
@@ -63,7 +62,6 @@ const useContractEmergency = ({ emergency }: any) => {
       return;
     }
     setVotes(voteResponse);
-    setEmergencyExpiration(voteResponse.expiration);
   };
 
   useEffect(() => {
