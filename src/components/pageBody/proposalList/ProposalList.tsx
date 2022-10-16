@@ -3,9 +3,12 @@ import { Box, Divider, Flex, Heading } from '@chakra-ui/react';
 import FinderContractLink from 'components/basic/finder/FinderContractLink';
 import useContractForge from 'hooks/useContractForge';
 import EmergencyProposal from './emergencyList/EmergencyProposal';
+import { currentBlockHeightAtom } from 'recoil/chainInfo/atoms';
+import { useRecoilValue } from 'recoil';
 
 function ProposalList() {
   const { proposals, emergencies } = useContractForge();
+  const currentBlockHeight = useRecoilValue(currentBlockHeightAtom);
 
   return (
     <>
@@ -51,7 +54,10 @@ function ProposalList() {
                   borderRadius="md"
                   bg="red.700"
                 >
-                  <EmergencyProposal emergency={emergency} />
+                  <EmergencyProposal
+                    currentBlockHeight={currentBlockHeight}
+                    emergency={emergency}
+                  />
                 </Box>
               );
             })}
