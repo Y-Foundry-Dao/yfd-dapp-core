@@ -8,14 +8,14 @@ import {
   NumberInputStepper
 } from '@chakra-ui/react';
 import { useRecoilState } from 'recoil';
-import { inputExpirationEmergency } from 'recoil/input/atoms';
+import { inputEmergencyExpiration } from 'recoil/input/atoms';
 
-function InputExpirationEmergency({ proposalIndex }: any) {
-  const [expirationEmergency, setExpirationEmergency] = useRecoilState(
-    inputExpirationEmergency(proposalIndex)
+function InputEmergencyExpiration({ proposalIndex }: any) {
+  const [emergencyExpiration, setEmergencyExpiration] = useRecoilState(
+    inputEmergencyExpiration(proposalIndex)
   );
-  const handleInputExpirationEmergency = (value: any) => {
-    setExpirationEmergency(value);
+  const handleInputEmergencyExpiration = (value: any) => {
+    setEmergencyExpiration(value);
   };
   return (
     <Flex alignItems="center" gap={5}>
@@ -28,8 +28,8 @@ function InputExpirationEmergency({ proposalIndex }: any) {
         defaultValue={14400}
         step={1}
         min={10}
-        value={expirationEmergency}
-        onChange={handleInputExpirationEmergency}
+        value={emergencyExpiration}
+        onChange={handleInputEmergencyExpiration}
       >
         <NumberInputField />
         <NumberInputStepper>
@@ -41,4 +41,4 @@ function InputExpirationEmergency({ proposalIndex }: any) {
   );
 }
 
-export default InputExpirationEmergency;
+export default InputEmergencyExpiration;
