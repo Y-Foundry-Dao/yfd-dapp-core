@@ -3,7 +3,10 @@ import { FORGE_TEST } from 'utilities/variables';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { useToast } from '@chakra-ui/react';
 import FinderTxLink from 'components/basic/finder/FinderTxLink';
-import { inputExpirationEmergency } from 'recoil/input/atoms';
+import {
+  inputEmergencyExpiration,
+  inputEmergencyJustification
+} from 'recoil/input/atoms';
 import txHashAtom from 'recoil/txHash/atom';
 import msgExecuteEmergencyEndProposal from 'utilities/messagesExecute/msgExecuteEmergencyEndProposal';
 
@@ -15,15 +18,18 @@ const useHandleClicksProposal = ({ proposalIndex }: any) => {
   const setTxHashInRecoil = useSetRecoilState(txHashAtom);
 
   // Pulling in Recoil Values
-  const expirationEmergency = useRecoilValue(
-    inputExpirationEmergency(proposalIndex)
+  const emergencyExpiration = useRecoilValue(
+    inputEmergencyExpiration(proposalIndex)
+  );
+  const emergencyJustification = useRecoilValue(
+    inputEmergencyJustification(proposalIndex)
   );
 
-  const handleClickEmergencyEndProposal = async (justification: string) => {
+  const handleClickEmergencyEndProposal = async () => {
     const msgEmergencyEndProposal = msgExecuteEmergencyEndProposal(
       proposalIndex,
-      expirationEmergency,
-      justification
+      emergencyExpiration,
+      emergencyJustification
     );
     const tx = await executeMsg(FORGE_TEST, msgEmergencyEndProposal);
     console.log(tx);
