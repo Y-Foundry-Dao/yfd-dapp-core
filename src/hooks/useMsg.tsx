@@ -1,19 +1,16 @@
 import { useState } from 'react';
 
-import { useToast } from '@chakra-ui/react';
-import {
-  useWallet,
-  useConnectedWallet,
-  UserDenied,
-  CreateTxFailed
-} from '@terra-money/wallet-provider';
+import { useWallet, useConnectedWallet } from '@terra-money/wallet-provider';
 import { Coins, Msg, MsgExecuteContract } from '@terra-money/terra.js';
 import { terra } from 'utilities/lcd';
-import FinderTxLink from 'components/basic/finder/FinderTxLink';
+import useTx from './useTx';
+import { useSetRecoilState } from 'recoil';
+import txHashAtom from 'recoil/txHash/atom';
 
 const useMsg = () => {
   const { post } = useWallet();
-  const toast = useToast();
+  const { toastError } = useTx();
+  const setTxHashInRecoil = useSetRecoilState(txHashAtom);
   const connectedWallet = useConnectedWallet();
   const [txHashFromExecute, setTxHashFromExecute] = useState('');
 
@@ -63,26 +60,13 @@ const useMsg = () => {
         })
         .then((txresult: any) => {
           // this will be executed when the tx has been included into a block
-          console.log(txresult);
           const txHash = txresult.txhash;
+          setTxHashInRecoil(txHash);
           return txHash;
         });
       return tx;
     } catch (error) {
-      if (error instanceof CreateTxFailed) {
-        toast({
-          title: error.name,
-          description: error.message
-            .replace('failed to execute message; message index: 0: ', '')
-            .replace(': execute wasm contract failed: invalid request', '')
-            .replace('dispatch: submessages: ', '')
-            .replace('Generic error: ', ''),
-          status: 'error',
-          duration: 9000,
-          isClosable: true
-        });
-      }
-      return 'failed';
+      toastError(error);
     }
   };
 

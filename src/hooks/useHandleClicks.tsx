@@ -4,8 +4,6 @@ import Base64 from 'utilities/base64';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import msgEncodedStake from 'utilities/messagesToEncode/msgEncodedStake';
 import msgStakeYFD from 'utilities/messagesExecute/msgStakeYFD';
-import { useToast } from '@chakra-ui/react';
-import FinderTxLink from 'components/basic/finder/FinderTxLink';
 import msgEncodedProposal from 'utilities/messagesToEncode/msgEncodedProposal';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import msgExecuteSend from 'utilities/messagesExecute/msgExecuteSend';
@@ -38,13 +36,15 @@ import {
   SUCCESS_STAKE,
   SUCCESS_VOTE
 } from 'utilities/variables/toastMessages';
+import useTx from './useTx';
 
 const useHandleClicks = () => {
   const { executeMsg } = useMsg();
-  const toast = useToast();
   const connectedWallet = useConnectedWallet();
-  const setTxHashInRecoil = useSetRecoilState(txHashAtom);
+
   const setAmountStakeYFD = useSetRecoilState(inputStakeYFD);
+
+  const { toastSuccessful } = useTx();
 
   // Pulling in Recoil Values
   const nameProposal = useRecoilValue(inputNameProposal);
@@ -62,6 +62,9 @@ const useHandleClicks = () => {
   const initialFunding = useRecoilValue(inputInitialFunding);
 
   const handleClickStakeYFD = async (amount: number, duration: number) => {
+    if (!connectedWallet) {
+      return;
+    }
     // parameter is stake lock duration and set to maximum time
     const msgToEncode = msgEncodedStake(duration);
     const encodedMessage = Base64.btoa(msgToEncode);
@@ -76,16 +79,7 @@ const useHandleClicks = () => {
     // By detecting what network we are from and using the appropriate networks contract from there
     const tx = await executeMsg(YFD_TEST, msgStakeYFDToken);
     console.log(tx);
-    setTxHashInRecoil(tx);
-    tx !== 'failed' &&
-      tx !== undefined &&
-      toast({
-        title: SUCCESS_STAKE,
-        description: <FinderTxLink txHash={tx} />,
-        status: 'success',
-        duration: 9000,
-        isClosable: true
-      });
+    toastSuccessful(tx, SUCCESS_STAKE);
     setAmountStakeYFD(0);
     return;
   };
@@ -114,15 +108,8 @@ const useHandleClicks = () => {
         encodedMessage
       );
       const tx = await executeMsg(YFD_TEST, msgCreateProposal);
-      setTxHashInRecoil(tx);
-      tx !== 'failed' &&
-        toast({
-          title: SUCCESS_CREATE_PROPOSAL,
-          description: <FinderTxLink txHash={tx} />,
-          status: 'success',
-          duration: 9000,
-          isClosable: true
-        });
+      console.log(tx);
+      toastSuccessful(tx, SUCCESS_CREATE_PROPOSAL);
     }
   };
 
@@ -136,15 +123,7 @@ const useHandleClicks = () => {
       'eyJzdGFrZSI6e319'
     );
     const tx = await executeMsg(YFD_TEST, msgFundProposal);
-    setTxHashInRecoil(tx);
-    tx !== 'failed' &&
-      toast({
-        title: SUCCESS_FUND_PROPOSAL,
-        description: <FinderTxLink txHash={tx} />,
-        status: 'success',
-        duration: 9000,
-        isClosable: true
-      });
+    toastSuccessful(tx, SUCCESS_FUND_PROPOSAL);
   };
 
   const handleClickVoteAffirm = async (
@@ -156,15 +135,7 @@ const useHandleClicks = () => {
         contract,
         msgVoteAffirm(convertToBase(inputVoteTokenAmount))
       );
-      setTxHashInRecoil(tx);
-      tx !== 'failed' &&
-        toast({
-          title: SUCCESS_VOTE,
-          description: <FinderTxLink txHash={tx} />,
-          status: 'success',
-          duration: 9000,
-          isClosable: true
-        });
+      toastSuccessful(tx, SUCCESS_VOTE);
     }
   };
 
@@ -177,15 +148,7 @@ const useHandleClicks = () => {
         contract,
         msgVoteDeny(convertToBase(inputVoteTokenAmount))
       );
-      setTxHashInRecoil(tx);
-      tx !== 'failed' &&
-        toast({
-          title: SUCCESS_VOTE,
-          description: <FinderTxLink txHash={tx} />,
-          status: 'success',
-          duration: 9000,
-          isClosable: true
-        });
+      toastSuccessful(tx, SUCCESS_VOTE);
     }
   };
 
@@ -198,15 +161,7 @@ const useHandleClicks = () => {
         contract,
         msgVoteAbstain(convertToBase(inputVoteTokenAmount))
       );
-      setTxHashInRecoil(tx);
-      tx !== 'failed' &&
-        toast({
-          title: SUCCESS_VOTE,
-          description: <FinderTxLink txHash={tx} />,
-          status: 'success',
-          duration: 9000,
-          isClosable: true
-        });
+      toastSuccessful(tx, SUCCESS_VOTE);
     }
   };
 
@@ -219,15 +174,7 @@ const useHandleClicks = () => {
         contract,
         msgVoteDenyWithPenalty(convertToBase(inputVoteTokenAmount))
       );
-      setTxHashInRecoil(tx);
-      tx !== 'failed' &&
-        toast({
-          title: SUCCESS_VOTE,
-          description: <FinderTxLink txHash={tx} />,
-          status: 'success',
-          duration: 9000,
-          isClosable: true
-        });
+      toastSuccessful(tx, SUCCESS_VOTE);
     }
   };
 
@@ -236,15 +183,7 @@ const useHandleClicks = () => {
       const tx = await executeMsg(FORGE_TEST, {
         finalize_emergency: { idx: index }
       });
-      setTxHashInRecoil(tx);
-      tx !== 'failed' &&
-        toast({
-          title: SUCCESS_FINALIZED,
-          description: <FinderTxLink txHash={tx} />,
-          status: 'success',
-          duration: 9000,
-          isClosable: true
-        });
+      toastSuccessful(tx, SUCCESS_FINALIZED);
     }
   };
 
