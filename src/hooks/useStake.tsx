@@ -7,7 +7,7 @@ import {
   intervalToDuration,
   Duration
 } from 'date-fns';
-import { CHAIN_SECONDS_PER_BLOCK } from 'utilities/variables';
+import { CHAIN_SECONDS_PER_BLOCK } from 'utilities/variables/variables';
 import convertFromBase from 'utilities/converters/convertFromBase';
 
 // Takes stake information from the stakeYFD list and produces useful values
