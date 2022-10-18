@@ -1,19 +1,21 @@
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import useMsg from './useMsg';
 import queryBalance from 'utilities/messagesQuery/queryBalance';
-import useContractProposal from './useContractProposal';
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import txHashAtom from 'recoil/txHash/atom';
 import queryEmergency from 'utilities/messagesQuery/queryEmergency';
 import { FORGE_TEST } from 'utilities/variables';
+import useChainInfo from './useChainInfo';
 
 const useContractEmergency = ({ emergency }: any) => {
+  const { currentBlockHeight } = useChainInfo();
   const { queryMsg } = useMsg();
   const connectedWallet = useConnectedWallet();
   const txHashInRecoil = useRecoilValue(txHashAtom);
   const [emergencyInfo, setEmergencyInfo] = useState<any>(undefined);
   const [emergencyVoteBalance, setEmergencyVoteBalance] = useState<any>('0');
+  const [votes, setVotes] = useState<any>({});
 
   const getEmergencyInfo = async () => {
     const emergencyInfo: any = await queryMsg(
@@ -48,14 +50,30 @@ const useContractEmergency = ({ emergency }: any) => {
     setEmergencyVoteBalance(tokenBalance.balance);
   };
 
+  const getVotes = async () => {
+    const voteResponse: any = await queryMsg(emergency.addr, { votes: {} });
+    return voteResponse;
+  };
+
+  const setVotesToState = async () => {
+    const voteResponse: any = await getVotes();
+    if (voteResponse === undefined) {
+      setVotes({});
+      return;
+    }
+    setVotes(voteResponse);
+  };
+
   useEffect(() => {
     setEmergencyToState();
     setBalanceToState();
+    setVotesToState();
   }, [connectedWallet, txHashInRecoil]);
 
   return {
     emergencyInfo,
-    emergencyVoteBalance
+    emergencyVoteBalance,
+    votes
   };
 };
 

@@ -225,6 +225,23 @@ const useHandleClicks = () => {
     }
   };
 
+  const handleClickFinalizeProposal = async (index: any) => {
+    if (connectedWallet) {
+      const tx = await executeMsg(FORGE_TEST, {
+        finalize_emergency: { idx: index }
+      });
+      setTxHashInRecoil(tx);
+      (tx !== 0 || undefined) &&
+        toast({
+          title: 'Successfully Finalized',
+          description: <FinderTxLink txHash={tx} />,
+          status: 'success',
+          duration: 9000,
+          isClosable: true
+        });
+    }
+  };
+
   return {
     handleClickStakeYFD,
     handleClickCreateProposal,
@@ -232,7 +249,8 @@ const useHandleClicks = () => {
     handleClickVoteAffirm,
     handleClickVoteDeny,
     handleClickVoteAbstain,
-    handleClickVoteDenyWithPenalty
+    handleClickVoteDenyWithPenalty,
+    handleClickFinalizeProposal
   };
 };
 

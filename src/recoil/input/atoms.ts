@@ -91,9 +91,14 @@ const inputInitialFunding = atom({
 //~~~~~~~~~~~~~~~~
 // atomFamily only
 //~~~~~~~~~~~~~~~~
-const inputExpirationEmergency = atomFamily({
+const inputEmergencyExpiration = atomFamily({
   key: 'inputExpirationEmergency',
   default: 14400
+});
+
+const inputEmergencyJustification = atomFamily({
+  key: 'inputEmergencyJustification',
+  default: ''
 });
 
 export {
@@ -114,5 +119,6 @@ export {
   inputQuorumPercent,
   inputSelfVoucedInformation,
   inputInitialFunding,
-  inputExpirationEmergency
+  inputEmergencyExpiration,
+  inputEmergencyJustification
 };
