@@ -1,5 +1,5 @@
 import useMsg from './useMsg';
-import { FORGE_TEST } from 'utilities/variables';
+import { FORGE_TEST } from 'utilities/variables/variables';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { useToast } from '@chakra-ui/react';
 import FinderTxLink from 'components/basic/finder/FinderTxLink';
@@ -9,6 +9,7 @@ import {
 } from 'recoil/input/atoms';
 import txHashAtom from 'recoil/txHash/atom';
 import msgExecuteEmergencyEndProposal from 'utilities/messagesExecute/msgExecuteEmergencyEndProposal';
+import { SUCCESS_INITIATE_EMERGENCY } from 'utilities/variables/toastMessages';
 
 // Needed to create a separate hook that takes a proposalIndex
 // did this to use it in the inputExpirationEmergency atomFamily
@@ -34,9 +35,9 @@ const useHandleClicksProposal = ({ proposalIndex }: any) => {
     const tx = await executeMsg(FORGE_TEST, msgEmergencyEndProposal);
     console.log(tx);
     setTxHashInRecoil(tx);
-    (tx !== 0 || undefined) &&
+    tx !== 'failed' &&
       toast({
-        title: 'Successfully Initiate Emergency Votes',
+        title: SUCCESS_INITIATE_EMERGENCY,
         description: <FinderTxLink txHash={tx} />,
         status: 'success',
         duration: 9000,

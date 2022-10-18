@@ -1,11 +1,19 @@
 import { useState } from 'react';
 
-import { useWallet, useConnectedWallet } from '@terra-money/wallet-provider';
+import { useToast } from '@chakra-ui/react';
+import {
+  useWallet,
+  useConnectedWallet,
+  UserDenied,
+  CreateTxFailed
+} from '@terra-money/wallet-provider';
 import { Coins, Msg, MsgExecuteContract } from '@terra-money/terra.js';
 import { terra } from 'utilities/lcd';
+import FinderTxLink from 'components/basic/finder/FinderTxLink';
 
 const useMsg = () => {
   const { post } = useWallet();
+  const toast = useToast();
   const connectedWallet = useConnectedWallet();
   const [txHashFromExecute, setTxHashFromExecute] = useState('');
 
@@ -59,11 +67,22 @@ const useMsg = () => {
           const txHash = txresult.txhash;
           return txHash;
         });
-
-      console.log(tx);
       return tx;
     } catch (error) {
-      console.log(error);
+      if (error instanceof CreateTxFailed) {
+        toast({
+          title: error.name,
+          description: error.message
+            .replace('failed to execute message; message index: 0: ', '')
+            .replace(': execute wasm contract failed: invalid request', '')
+            .replace('dispatch: submessages: ', '')
+            .replace('Generic error: ', ''),
+          status: 'error',
+          duration: 9000,
+          isClosable: true
+        });
+      }
+      return 'failed';
     }
   };
 

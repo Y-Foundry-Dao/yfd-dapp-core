@@ -1,5 +1,5 @@
 import useMsg from './useMsg';
-import { FORGE_TEST, YFD_TEST } from 'utilities/variables';
+import { FORGE_TEST, YFD_TEST } from 'utilities/variables/variables';
 import Base64 from 'utilities/base64';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import msgEncodedStake from 'utilities/messagesToEncode/msgEncodedStake';
@@ -31,6 +31,13 @@ import msgVoteDeny from 'utilities/messagesExecute/msgVoteDeny';
 import msgVoteAbstain from 'utilities/messagesExecute/msgVoteAbstain';
 import msgVoteDenyWithPenalty from 'utilities/messagesExecute/msgVoteDenyWithPenalty';
 import txHashAtom from 'recoil/txHash/atom';
+import {
+  SUCCESS_CREATE_PROPOSAL,
+  SUCCESS_FINALIZED,
+  SUCCESS_FUND_PROPOSAL,
+  SUCCESS_STAKE,
+  SUCCESS_VOTE
+} from 'utilities/variables/toastMessages';
 
 const useHandleClicks = () => {
   const { executeMsg } = useMsg();
@@ -68,12 +75,12 @@ const useHandleClicks = () => {
     // For now the contract is hard coded to testnet but can be made dynamic later
     // By detecting what network we are from and using the appropriate networks contract from there
     const tx = await executeMsg(YFD_TEST, msgStakeYFDToken);
-
     console.log(tx);
     setTxHashInRecoil(tx);
-    (tx !== 0 || undefined) &&
+    tx !== 'failed' &&
+      tx !== undefined &&
       toast({
-        title: 'Successfully staked YFD',
+        title: SUCCESS_STAKE,
         description: <FinderTxLink txHash={tx} />,
         status: 'success',
         duration: 9000,
@@ -107,11 +114,10 @@ const useHandleClicks = () => {
         encodedMessage
       );
       const tx = await executeMsg(YFD_TEST, msgCreateProposal);
-      console.log(tx);
       setTxHashInRecoil(tx);
-      (tx !== 0 || undefined) &&
+      tx !== 'failed' &&
         toast({
-          title: 'Successfully Created Proposal',
+          title: SUCCESS_CREATE_PROPOSAL,
           description: <FinderTxLink txHash={tx} />,
           status: 'success',
           duration: 9000,
@@ -131,9 +137,9 @@ const useHandleClicks = () => {
     );
     const tx = await executeMsg(YFD_TEST, msgFundProposal);
     setTxHashInRecoil(tx);
-    (tx !== 0 || undefined) &&
+    tx !== 'failed' &&
       toast({
-        title: 'Successfully staked YFD',
+        title: SUCCESS_FUND_PROPOSAL,
         description: <FinderTxLink txHash={tx} />,
         status: 'success',
         duration: 9000,
@@ -151,9 +157,9 @@ const useHandleClicks = () => {
         msgVoteAffirm(convertToBase(inputVoteTokenAmount))
       );
       setTxHashInRecoil(tx);
-      (tx !== 0 || undefined) &&
+      tx !== 'failed' &&
         toast({
-          title: 'Successfully Voted',
+          title: SUCCESS_VOTE,
           description: <FinderTxLink txHash={tx} />,
           status: 'success',
           duration: 9000,
@@ -172,9 +178,9 @@ const useHandleClicks = () => {
         msgVoteDeny(convertToBase(inputVoteTokenAmount))
       );
       setTxHashInRecoil(tx);
-      (tx !== 0 || undefined) &&
+      tx !== 'failed' &&
         toast({
-          title: 'Successfully Voted',
+          title: SUCCESS_VOTE,
           description: <FinderTxLink txHash={tx} />,
           status: 'success',
           duration: 9000,
@@ -193,9 +199,9 @@ const useHandleClicks = () => {
         msgVoteAbstain(convertToBase(inputVoteTokenAmount))
       );
       setTxHashInRecoil(tx);
-      (tx !== 0 || undefined) &&
+      tx !== 'failed' &&
         toast({
-          title: 'Successfully Voted',
+          title: SUCCESS_VOTE,
           description: <FinderTxLink txHash={tx} />,
           status: 'success',
           duration: 9000,
@@ -214,9 +220,9 @@ const useHandleClicks = () => {
         msgVoteDenyWithPenalty(convertToBase(inputVoteTokenAmount))
       );
       setTxHashInRecoil(tx);
-      (tx !== 0 || undefined) &&
+      tx !== 'failed' &&
         toast({
-          title: 'Successfully Voted',
+          title: SUCCESS_VOTE,
           description: <FinderTxLink txHash={tx} />,
           status: 'success',
           duration: 9000,
@@ -231,9 +237,9 @@ const useHandleClicks = () => {
         finalize_emergency: { idx: index }
       });
       setTxHashInRecoil(tx);
-      (tx !== 0 || undefined) &&
+      tx !== 'failed' &&
         toast({
-          title: 'Successfully Finalized',
+          title: SUCCESS_FINALIZED,
           description: <FinderTxLink txHash={tx} />,
           status: 'success',
           duration: 9000,
