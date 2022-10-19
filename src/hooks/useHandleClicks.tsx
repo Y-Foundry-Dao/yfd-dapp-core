@@ -178,10 +178,19 @@ const useHandleClicks = () => {
     }
   };
 
-  const handleClickFinalizeProposal = async (index: any) => {
+  const handleClickFinalizeEmergency = async (index: any) => {
     if (connectedWallet) {
       const tx = await executeMsg(FORGE_TEST, {
         finalize_emergency: { idx: index }
+      });
+      toastSuccessful(tx, SUCCESS_FINALIZED);
+    }
+  };
+
+  const handleClickFinalizeProposal = async (index: any) => {
+    if (connectedWallet) {
+      const tx = await executeMsg(FORGE_TEST, {
+        finalize_proposal: { idx: index }
       });
       toastSuccessful(tx, SUCCESS_FINALIZED);
     }
@@ -195,6 +204,7 @@ const useHandleClicks = () => {
     handleClickVoteDeny,
     handleClickVoteAbstain,
     handleClickVoteDenyWithPenalty,
+    handleClickFinalizeEmergency,
     handleClickFinalizeProposal
   };
 };

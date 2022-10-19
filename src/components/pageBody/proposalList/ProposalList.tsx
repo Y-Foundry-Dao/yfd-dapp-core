@@ -3,6 +3,7 @@ import { Box, Divider, Flex, Heading } from '@chakra-ui/react';
 import FinderContractLink from 'components/basic/finder/FinderContractLink';
 import useContractForge from 'hooks/useContractForge';
 import EmergencyProposal from './emergencyList/EmergencyProposal';
+import ProposalStatus from './proposalInfo/status/ProposalStatus';
 
 function ProposalList() {
   const { proposals, emergencies } = useContractForge();
@@ -28,6 +29,11 @@ function ProposalList() {
                   bg="blue.700"
                 >
                   <FinderContractLink contract={proposal.addr} />
+                  <Divider my={4} />
+                  <ProposalStatus
+                    proposalContract={proposal.addr}
+                    proposalIndex={proposal.index}
+                  />
                   <Divider my={4} />
                   <ProposalInfo
                     proposalContract={proposal.addr}

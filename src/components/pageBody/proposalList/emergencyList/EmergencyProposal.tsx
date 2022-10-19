@@ -14,7 +14,7 @@ function EmergencyProposal({ emergency }: any) {
     emergency
   });
   const currentBlockHeight = useRecoilValue(currentBlockHeightAtom);
-  const { handleClickFinalizeProposal } = useHandleClicks();
+  const { handleClickFinalizeEmergency } = useHandleClicks();
   const [inputVoteTokenAmount, setInputVoteTokenAmount] = useState(0);
   return emergencyInfo !== undefined ? (
     <>
@@ -43,7 +43,7 @@ function EmergencyProposal({ emergency }: any) {
             {emergencyInfo.state.NotFinalized && (
               <Button
                 onClick={async () => {
-                  await handleClickFinalizeProposal(emergency.index);
+                  await handleClickFinalizeEmergency(emergency.index);
                 }}
               >
                 Finalize Proposal
