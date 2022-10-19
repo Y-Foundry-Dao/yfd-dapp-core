@@ -12,25 +12,29 @@ function ProposalStatus({ proposalContract, proposalIndex }: any) {
   });
   return (
     <Box layerStyle="emergencyVote">
-      <>{console.log(proposalVoteInfo.vote_state)}</>
-      <>{console.log(proposalVoteInfo.expiration)}</>
-      <>{console.log(currentBlockHeight)}</>
-      <Text>
-        Current Voting Status: {Object.keys(proposalVoteInfo.vote_state)[0]}
-      </Text>
-      {proposalVoteInfo.vote_state.InProgress && (
-        <Text>Voting Still In Progress</Text>
-      )}
+      <>
+        {proposalVoteInfo.vote_state === undefined ? (
+          <Text>Loading...</Text>
+        ) : (
+          <Text>
+            Current Voting Status: {Object.keys(proposalVoteInfo.vote_state)[0]}
+          </Text>
+        )}
+      </>
       {currentBlockHeight > proposalVoteInfo.expiration ? (
         <>
           {proposalVoteInfo.vote_state.NotFinalized && (
-            <Button
-              onClick={async () => {
-                await handleClickFinalizeProposal(proposalIndex);
-              }}
-            >
-              Finalize Proposal
-            </Button>
+            <>
+              {' '}
+              <Text>Finalize Proposal Now?</Text>
+              <Button
+                onClick={async () => {
+                  await handleClickFinalizeProposal(proposalIndex);
+                }}
+              >
+                Finalize Proposal
+              </Button>
+            </>
           )}
         </>
       ) : null}
