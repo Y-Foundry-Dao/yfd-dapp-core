@@ -71,7 +71,8 @@
     "react-scroll": "^1.8.6",
     "recoil": "^0.7.2",
     "require-from-string": "^2.0.2",
-    "yarn-deduplicate": "^6.0.0"
+    "yarn-deduplicate": "^6.0.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@playwright/test": "^1.19.2",
