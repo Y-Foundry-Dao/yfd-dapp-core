@@ -43,7 +43,7 @@ import {
 import txHashAtom from 'recoil/txHash/atom';
 import ProposalSubmittedText from './ProposalSubmittedText';
 
-function ProposalCreationForm() {
+function ProposalCreationForm({ onClose }: any) {
   const { handleClickCreateProposal } = useHandleClicks();
   const onSubmit = () => {
     handleClickCreateProposal();
@@ -161,7 +161,7 @@ function ProposalCreationForm() {
 
           <StepperCompleted>
             {txHash !== '' ? (
-              <ProposalSubmittedText />
+              <ProposalSubmittedText onClose={onClose} />
             ) : (
               <Loader>Submitting proposal, just a moment...</Loader>
             )}

@@ -16,7 +16,7 @@ function ProposalModal({ isOpen, onClose }: any) {
         <ModalHeader>Submit your own proposal</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <ProposalCreationForm />
+          <ProposalCreationForm onClose={onClose} />
         </ModalBody>
       </ModalContent>
     </Modal>
