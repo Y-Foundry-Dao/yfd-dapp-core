@@ -1,22 +1,17 @@
-import React from 'react';
 import {
   ButtonGroup,
-  Field,
   FormLayout,
   FormStep,
   FormStepper,
-  FormValue,
-  List,
   Loader,
   NextButton,
-  NumberInputField,
   PrevButton,
   Property,
   PropertyList,
   StepForm,
   StepperCompleted
 } from '@saas-ui/react';
-import { Divider, Heading, Tag, Text } from '@chakra-ui/react';
+import { Divider, Text } from '@chakra-ui/react';
 import InputProposalName from './inputs/InputProposalName';
 import InputDevelopmentCost from './inputs/InputDevelopmentCost';
 import InputExpiration from './inputs/InputExpiration';
@@ -28,7 +23,6 @@ import InputProposalUrl from './inputs/InputProposalUrl';
 import InputQuorumPercentage from './inputs/InputQuorumPercentage';
 import InputSelfVouchedInformation from './inputs/InputSelfVouchedInformation';
 import InputStatementOfWork from './inputs/InputStatementOfWork';
-import InputTestArray from './inputs/InputTestArray';
 import InputTvlLimit from './inputs/InputTvlLimit';
 import useHandleClicks from 'hooks/useHandleClicks';
 import { useRecoilValue } from 'recoil';
@@ -37,17 +31,17 @@ import {
   inputExpiration,
   inputGithub,
   inputInitialFunding,
-  inputNameMsg,
   inputNameProposal,
   inputPaymentFrequency,
   inputPaymentSchedule,
   inputQuorumPercent,
   inputSelfVoucedInformation,
-  inputStakeYFD,
   inputStatementOfWork,
   inputTvlLimit,
   inputUrlProposal
 } from 'recoil/input/atoms';
+import txHashAtom from 'recoil/txHash/atom';
+import ProposalSubmittedText from './ProposalSubmittedText';
 
 function ProposalCreationForm() {
   const { handleClickCreateProposal } = useHandleClicks();
@@ -68,6 +62,8 @@ function ProposalCreationForm() {
   const expiration = useRecoilValue(inputExpiration);
   const paymentFrequency = useRecoilValue(inputPaymentFrequency);
   const initialFunding = useRecoilValue(inputInitialFunding);
+
+  const txHash = useRecoilValue(txHashAtom);
 
   return (
     <StepForm w="95%" onSubmit={onSubmit}>
@@ -164,7 +160,11 @@ function ProposalCreationForm() {
           </FormStep>
 
           <StepperCompleted>
-            <Loader>We are setting up your project, just a moment...</Loader>
+            {txHash !== '' ? (
+              <ProposalSubmittedText />
+            ) : (
+              <Loader>Submitting proposal, just a moment...</Loader>
+            )}
           </StepperCompleted>
         </FormStepper>
       </FormLayout>
