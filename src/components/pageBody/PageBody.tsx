@@ -1,5 +1,4 @@
 import { Box, Flex, Heading } from '@chakra-ui/react';
-import ProposalSubmit from './proposal/ProposalSubmit';
 import ProposalList from './proposalList/ProposalList';
 import StakedYFD from './stake/stakedYFD/StakedYFD';
 
@@ -11,7 +10,6 @@ function PageBody() {
           Foundry
         </Heading>
         <StakedYFD />
-        <ProposalSubmit />
         <ProposalList />
       </Flex>
     </Box>
