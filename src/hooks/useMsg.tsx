@@ -3,9 +3,14 @@ import { useState } from 'react';
 import { useWallet, useConnectedWallet } from '@terra-money/wallet-provider';
 import { Coins, Msg, MsgExecuteContract } from '@terra-money/terra.js';
 import { terra } from 'utilities/lcd';
+import useTx from './useTx';
+import { useSetRecoilState } from 'recoil';
+import txHashAtom from 'recoil/txHash/atom';
 
 const useMsg = () => {
   const { post } = useWallet();
+  const { toastError } = useTx();
+  const setTxHashInRecoil = useSetRecoilState(txHashAtom);
   const connectedWallet = useConnectedWallet();
   const [txHashFromExecute, setTxHashFromExecute] = useState('');
 
@@ -55,15 +60,13 @@ const useMsg = () => {
         })
         .then((txresult: any) => {
           // this will be executed when the tx has been included into a block
-          console.log(txresult);
           const txHash = txresult.txhash;
+          setTxHashInRecoil(txHash);
           return txHash;
         });
-
-      console.log(tx);
       return tx;
     } catch (error) {
-      console.log(error);
+      toastError(error);
     }
   };
 

@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import txHashAtom from 'recoil/txHash/atom';
 import queryEmergency from 'utilities/messagesQuery/queryEmergency';
-import { FORGE_TEST } from 'utilities/variables';
+import { FORGE_TEST } from 'utilities/variables/variables';
 import useChainInfo from './useChainInfo';
 
 const useContractEmergency = ({ emergency }: any) => {

@@ -1,4 +1,4 @@
-import { YFD_TEST } from 'utilities/variables';
+import { YFD_TEST } from 'utilities/variables/variables';
 
 const msgEncodedProposal = (
   nameProposal: string,

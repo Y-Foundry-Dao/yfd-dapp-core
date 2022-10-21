@@ -4,12 +4,15 @@ import queryProposalState from 'utilities/messagesQuery/queryProposalState';
 import { useEffect, useState } from 'react';
 import queryTokenInfo from 'utilities/messagesQuery/queryTokenInfo';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
+import queryVotes from 'utilities/messagesQuery/queryVotes';
 
 const useContractProposal = ({ proposalContract }: any) => {
   const { queryMsg } = useMsg();
   const [proposalInfo, setProposalInfo] = useState<any>({});
   const [voteContract, setVoteContract] = useState('');
   const [tokenSymbol, setTokenSymbol] = useState('Vote');
+  const [proposalState, setProposalState] = useState<any>({});
+  const [proposalVoteInfo, setProposalVoteInfo] = useState<any>({});
 
   const getProposalInfo = async () => {
     const response = await queryMsg(proposalContract, queryProposalInfo());
@@ -24,17 +27,25 @@ const useContractProposal = ({ proposalContract }: any) => {
     setProposalInfo({ ...proposalInfo });
   };
 
-  const getVoteContractAddress = async () => {
+  const getProposalState = async () => {
     const response = await queryMsg(proposalContract, queryProposalState());
     return response;
   };
 
-  const setVoteContractToState = async () => {
-    const voteInfo: any = await getVoteContractAddress();
-    if (voteInfo === undefined) {
+  const setProposalStateToState = async () => {
+    const proposalState: any = await getProposalState();
+    if (proposalState === undefined) {
       return;
     }
-    setVoteContract(voteInfo.initial_vote);
+    setProposalState(proposalState);
+  };
+
+  const setVoteContractToState = async () => {
+    const proposalState: any = await getProposalState();
+    if (proposalState === undefined) {
+      return;
+    }
+    setVoteContract(proposalState.initial_vote);
   };
 
   const getTokenInfo = async () => {
@@ -50,19 +61,36 @@ const useContractProposal = ({ proposalContract }: any) => {
     setTokenSymbol(tokenInfo.symbol);
   };
 
+  const getVotes = async () => {
+    const response = await queryMsg(proposalContract, queryVotes());
+    return response;
+  };
+
+  const setVotesToState = async () => {
+    const voteInfo = await getVotes();
+    if (voteInfo === undefined) {
+      return;
+    }
+    setProposalVoteInfo(voteInfo);
+  };
+
   useEffect(() => {
     setProposalInfoToState();
     setVoteContractToState();
     setTokenSymbolToState();
+    setProposalStateToState();
+    setVotesToState();
   }, []);
 
   return {
     getProposalInfo,
-    getVoteContractAddress,
+    getProposalState,
     getTokenInfo,
     proposalInfo,
     voteContract,
-    tokenSymbol
+    tokenSymbol,
+    proposalState,
+    proposalVoteInfo
   };
 };
 
