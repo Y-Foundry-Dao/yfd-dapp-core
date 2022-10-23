@@ -14,7 +14,7 @@ export const FORGE_TEST_BROKEN =
 export const FORGE_TEST_OLD =
   'terra1vd662ag5prc89szmdezsr8gythmhqp2tp6d7faeqpq8the349ymsmrwa87';
 export const FORGE_TEST =
-  'terra1rmknjm0y6f023q3y37akztac3ah5lffx89ryqrsdtyhqc8vnr4uqnpwlyw';
+  'terra1ua4nwargz3udh5wlnu0l8knvymr4fsc0mnq426qz442f93zjrw5s63jcst';
 
 // cronological data
 //export const CRONO_SECONDS_IN_TWO_YEAR = 31556952 * 2; // 63113904 // actual seconds
