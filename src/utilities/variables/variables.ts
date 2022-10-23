@@ -13,7 +13,7 @@ export const FORGE_TEST_BROKEN =
   'terra168rvweaknfd7dhde02ex66fjsm9e3xppkj4xskvtnuql4vwr0ptsy444dx';
 export const FORGE_TEST_OLD =
   'terra1vd662ag5prc89szmdezsr8gythmhqp2tp6d7faeqpq8the349ymsmrwa87';
-export const FORGE_TEST = 
+export const FORGE_TEST =
   'terra1rmknjm0y6f023q3y37akztac3ah5lffx89ryqrsdtyhqc8vnr4uqnpwlyw';
 
 // cronological data
