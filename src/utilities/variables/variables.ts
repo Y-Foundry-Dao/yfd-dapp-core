@@ -5,14 +5,16 @@ export const TWITTER = 'https://twitter.com/yieldfoundrydao';
 export const MEDIUM = 'https://medium.com/@yfoundry/';
 
 //contracts
-export const FORGE_TEST_OLD =
+export const FORGE_TEST_VERYOLD =
   'terra1pmayk6e2zt78hlmkwyk6qxfhu390urw6prkd46jc9e7d8k45wq3sldycwz';
 export const YFD_TEST =
   'terra1ss9zz4873vk4dd8dvua0vm83m6s8k7ctwp9efac0arytn6jthfgsy2d4a9';
 export const FORGE_TEST_BROKEN =
   'terra168rvweaknfd7dhde02ex66fjsm9e3xppkj4xskvtnuql4vwr0ptsy444dx';
-export const FORGE_TEST =
+export const FORGE_TEST_OLD =
   'terra1vd662ag5prc89szmdezsr8gythmhqp2tp6d7faeqpq8the349ymsmrwa87';
+export const FORGE_TEST = 
+  'terra1rmknjm0y6f023q3y37akztac3ah5lffx89ryqrsdtyhqc8vnr4uqnpwlyw';
 
 // cronological data
 //export const CRONO_SECONDS_IN_TWO_YEAR = 31556952 * 2; // 63113904 // actual seconds
