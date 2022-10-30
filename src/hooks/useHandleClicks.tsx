@@ -1,4 +1,4 @@
-import useMsg from './useMsg';
+import useMsg from 'hooks/useMsg';
 import { FORGE_TEST, YFD_TEST } from 'utilities/variables/variables';
 import Base64 from 'utilities/base64';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
@@ -21,7 +21,8 @@ import {
   inputStakeYFD,
   inputStatementOfWork,
   inputTvlLimit,
-  inputUrlProposal
+  inputUrlProposal,
+  inputNFTAmount
 } from 'recoil/input/atoms';
 import convertToBase from 'utilities/converters/convertToBase';
 import msgVoteAffirm from 'utilities/messagesExecute/msgVoteAffirm';
@@ -60,6 +61,7 @@ const useHandleClicks = () => {
   const expiration = useRecoilValue(inputExpiration);
   const paymentFrequency = useRecoilValue(inputPaymentFrequency);
   const initialFunding = useRecoilValue(inputInitialFunding);
+  const nftAmount = useRecoilValue(inputNFTAmount);
 
   const handleClickStakeYFD = async (amount: number, duration: number) => {
     if (!connectedWallet) {
@@ -90,14 +92,13 @@ const useHandleClicks = () => {
         nameProposal,
         nameMsg,
         urlProposal,
+        nftAmount,
         tvlLimit,
         convertToBase(developmentCost),
         statementOfWork,
         Number(paymentSchedule),
         github,
-        quorumPercent,
         selfVouchedInformation,
-        expiration,
         paymentFrequency,
         connectedWallet?.walletAddress
       );

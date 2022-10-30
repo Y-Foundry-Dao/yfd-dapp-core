@@ -1,12 +1,14 @@
 import useMsg from './useMsg';
 import queryProposalInfo from 'utilities/messagesQuery/queryProposalInfo';
 import queryProposalState from 'utilities/messagesQuery/queryProposalState';
+import queryProposalByIndex from 'utilities/messagesQuery/queryProposalByIndex';
 import { useEffect, useState } from 'react';
 import queryTokenInfo from 'utilities/messagesQuery/queryTokenInfo';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import queryVotes from 'utilities/messagesQuery/queryVotes';
+import { FORGE_TEST } from 'utilities/variables/variables';
 
-const useContractProposal = ({ proposalContract }: any) => {
+const useContractProposal = ({ proposalContract, proposalIndex }: any) => {
   const { queryMsg } = useMsg();
   const [proposalInfo, setProposalInfo] = useState<any>({});
   const [voteContract, setVoteContract] = useState('');
@@ -19,8 +21,17 @@ const useContractProposal = ({ proposalContract }: any) => {
     return response;
   };
 
+  const getProposal = async () => {
+    const response = await queryMsg(
+      FORGE_TEST,
+      queryProposalByIndex(proposalIndex)
+    );
+    console.log(response);
+    return response;
+  };
+
   const setProposalInfoToState = async () => {
-    const proposalInfo: any = await getProposalInfo();
+    const proposalInfo: any = await getProposal();
     if (proposalInfo === undefined) {
       return;
     }
