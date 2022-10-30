@@ -32,11 +32,15 @@ const useContractForge = () => {
 
   const getAllEmergencies = async () => {
     const response = await queryMsg(FORGE_TEST, queryAllEmergencies());
+    if (response === undefined) {
+      return [];
+    }
     return response;
   };
 
   const setAllEmergenciesToState = async () => {
     const response: any = await getAllEmergencies();
+    console.log(response);
     setEmergencies(response.emergencies);
   };
 
@@ -92,7 +96,6 @@ const useContractForge = () => {
   }, [connectedWallet, txHashInRecoil]);
 
   return {
-    getAllProposalContracts,
     proposals,
     emergencies,
     tokenBalance
