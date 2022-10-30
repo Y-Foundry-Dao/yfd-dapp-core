@@ -1,15 +1,15 @@
-import { Box, Button, Text } from '@chakra-ui/react';
+import { Box, Button, Text, VStack } from '@chakra-ui/react';
 import FinderContractLink from 'components/basic/finder/FinderContractLink';
 import useContractEmergency from 'hooks/useContractEmergency';
 import useHandleClicks from 'hooks/useHandleClicks';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { currentBlockHeightAtom } from 'recoil/chainInfo/atoms';
-import InputVoteAmount from '../proposalInfo/voting/InputVoteAmount';
-import VoteButtons from '../proposalInfo/voting/VoteButtons';
+import InputVoteAmount from '../../proposalList/proposalInfo/voting/InputVoteAmount';
+import VoteButtons from '../../proposalList/proposalInfo/voting/VoteButtons';
 import EmergencyVoteBalance from './voting/EmergencyVoteBalance';
 
-function EmergencyProposal({ emergency }: any) {
+function EmergencyProposalInfo({ emergency }: any) {
   const { emergencyInfo, emergencyVoteBalance, votes } = useContractEmergency({
     emergency
   });
@@ -36,26 +36,29 @@ function EmergencyProposal({ emergency }: any) {
         voteTokenBalance={emergencyVoteBalance}
         inputVoteTokenAmount={inputVoteTokenAmount}
       />
-      <Box layerStyle="emergencyVote">
-        <Text>State of Proposal: {Object.keys(emergencyInfo.state)[0]}</Text>
-        {currentBlockHeight > emergencyInfo.closing_block ? (
-          <>
-            {emergencyInfo.state.NotFinalized && (
-              <Button
-                onClick={async () => {
-                  await handleClickFinalizeEmergency(emergency.index);
-                }}
-              >
-                Finalize Proposal
-              </Button>
-            )}
-          </>
-        ) : null}
-      </Box>
+
+      {currentBlockHeight > emergencyInfo.closing_block
+        ? emergencyInfo.state.NotFinalized && (
+            <Box layerStyle="emergencyVote">
+              <VStack>
+                <Text>
+                  Proposal Ready to finalize. Would you like to do that now?
+                </Text>
+                <Button
+                  onClick={async () => {
+                    await handleClickFinalizeEmergency(emergency.index);
+                  }}
+                >
+                  Finalize Proposal
+                </Button>
+              </VStack>
+            </Box>
+          )
+        : null}
     </>
   ) : (
     <>Loading...</>
   );
 }
 
-export default EmergencyProposal;
+export default EmergencyProposalInfo;

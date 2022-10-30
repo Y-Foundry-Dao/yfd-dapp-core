@@ -12,7 +12,8 @@ import EmergencyVote from '../emergencyVote/EmergencyVote';
 
 function ProposalInfo({ proposalContract, proposalIndex }: any) {
   const { proposalInfo, voteContract } = useContractProposal({
-    proposalContract
+    proposalContract,
+    proposalIndex
   });
   const { voteTokenBalance } = useContractVote({ proposalContract });
   const [inputVoteTokenAmount, setInputVoteTokenAmount] = useState(0);
@@ -21,6 +22,7 @@ function ProposalInfo({ proposalContract, proposalIndex }: any) {
 
   return (
     <Flex direction="column" gap={4}>
+      <>{console.log(proposalInfo)}</>
       <Text>Proposal Name: {proposalInfo.name}</Text>
       <Text>Proposal URL: {proposalInfo.proposal_url}</Text>
       <Text>Statement of Work URL: {proposalInfo.statement_of_work}</Text>
