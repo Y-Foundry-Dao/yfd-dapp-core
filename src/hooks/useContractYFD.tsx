@@ -37,7 +37,6 @@ const useContractYFD = () => {
   }, [connectedWallet, YFD_TEST, txHashInRecoil]);
 
   return {
-    getBalance,
     tokenBalance
   };
 };

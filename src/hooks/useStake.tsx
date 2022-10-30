@@ -54,7 +54,6 @@ const useStake = ({ stake }: any) => {
     stake.stake.asset_deposit_amount
   ).toFixed(4);
   return {
-    timeUntilUnlock,
     depositDateFormatted,
     unlockDateFormatted,
     lockDurationFormatted,

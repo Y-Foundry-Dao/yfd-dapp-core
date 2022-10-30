@@ -12,7 +12,6 @@ const useMsg = () => {
   const { toastError } = useTx();
   const setTxHashInRecoil = useSetRecoilState(txHashAtom);
   const connectedWallet = useConnectedWallet();
-  const [txHashFromExecute, setTxHashFromExecute] = useState('');
 
   // custom executeMsg function
   // Takes 4 parameters
@@ -46,11 +45,11 @@ const useMsg = () => {
             // query txhash
             // Causes errors in console because it hits the catch statement until the transaction has been broadcast
             // console.log(result.result);
-            // setTxHashFromExecute(result.result.txhash);
             const data = await terra.tx
               .txInfo(result.result.txhash)
               .catch((error) => {
-                setTxHashFromExecute('Waiting for TX to Broadcast...');
+                setTxHashInRecoil('Waiting for TX to Broadcast...');
+                console.log('Inside catch', error);
               }); //eslint-disable-line
             // if hash is onchain return data
             if (data) return data;
@@ -86,9 +85,7 @@ const useMsg = () => {
 
   return {
     executeMsg,
-    queryMsg,
-    txHashFromExecute,
-    setTxHashFromExecute
+    queryMsg
   };
 };
 
