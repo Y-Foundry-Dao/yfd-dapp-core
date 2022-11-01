@@ -18,8 +18,6 @@ export const FORGE_TEST_OLD =
 export const FORGE_TEST =
   'terra1utkv5z538t32t0a2dkut2qncc4xs29jldjw2ez5s9tuzjsy59d0sm5p2mz';
 
-
-  
 // cronological data
 //export const CRONO_SECONDS_IN_TWO_YEAR = 31556952 * 2; // 63113904 // actual seconds
 export const CRONO_SECONDS_IN_TWO_WEEK = 60 * 60 * 24 * 7 * 2;
