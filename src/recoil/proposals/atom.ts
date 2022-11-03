@@ -5,4 +5,9 @@ const proposalsAtom = atom({
   default: <any>[]
 });
 
-export default proposalsAtom;
+const vaultProposalsAtom = atom({
+  key: 'vaultProposalsAtom',
+  default: <any>[]
+});
+
+export { proposalsAtom, vaultProposalsAtom };
