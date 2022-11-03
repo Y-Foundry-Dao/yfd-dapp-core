@@ -9,26 +9,25 @@ import {
 } from '@chakra-ui/react';
 import useHandleInputs from 'hooks/useHandleInputs';
 import { useRecoilValue } from 'recoil';
-import { inputDevelopmentCost, inputInitialFunding } from 'recoil/input/atoms';
+import { inputPaymentFrequency } from 'recoil/input/atoms';
 
-function InputInitialFunding() {
-  const developmentCost = useRecoilValue(inputDevelopmentCost);
-  const initialFunding = useRecoilValue(inputInitialFunding);
-  const { handleInputInitialFunding } = useHandleInputs();
+function InputPaymentFrequency() {
+  const paymentFrequency = useRecoilValue(inputPaymentFrequency);
+  const { handleInputPaymentFrequency } = useHandleInputs();
+
   return (
     <Flex alignItems="center" gap={5}>
       <Heading as="h3" size="md">
-        Initial Funding in YFD:
+        Payment Frequency in Blocks:
       </Heading>
       <NumberInput
         maxW="140px"
         mr="2rem"
-        defaultValue={0.1}
-        step={0.1}
-        min={0.1}
-        max={developmentCost}
-        value={initialFunding}
-        onChange={handleInputInitialFunding}
+        defaultValue={1000}
+        step={1}
+        min={10}
+        value={paymentFrequency}
+        onChange={handleInputPaymentFrequency}
       >
         <NumberInputField />
         <NumberInputStepper>
@@ -40,4 +39,4 @@ function InputInitialFunding() {
   );
 }
 
-export default InputInitialFunding;
+export default InputPaymentFrequency;

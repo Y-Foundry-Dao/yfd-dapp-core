@@ -57,11 +57,32 @@ const primary = {
       border: '1px solid yellow',
       my: '5',
       p: '4'
+    },
+    accordionProposalItem: {
+      bgGradient: 'linear(to-br, blue.300, blue.400, blue.500)',
+      border: 'none',
+      borderRadius: 'sm'
+    },
+    accordionProposalPanel: {
+      bgGradient: 'linear(to-br, blue.200, blue.300, teal.300)',
+      borderRadius: 'md'
+    },
+    accordionEmergencyItem: {
+      bgGradient: 'linear(to-br, red.600, red.700, red.800)',
+      border: 'none',
+      borderRadius: 'sm'
+    },
+    accordionEmergencyPanel: {
+      bgGradient: 'linear(to-br, red.500, red.600, orange.600)',
+      borderRadius: 'md'
     }
   },
   textStyles: {
     pageBody: {
       color: 'black'
+    },
+    voteStatus: {
+      color: 'orange.700'
     }
   },
   colors: {

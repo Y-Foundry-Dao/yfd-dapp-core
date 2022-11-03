@@ -5,6 +5,7 @@ import {
   inputGithub,
   inputInitialFunding,
   inputNameProposal,
+  inputNFTAmount,
   inputPaymentFrequency,
   inputQuorumPercent,
   inputSelfVoucedInformation,
@@ -29,6 +30,7 @@ const useHandleInputs = () => {
   const setExpiration = useSetRecoilState(inputExpiration);
   const setPaymentFrequency = useSetRecoilState(inputPaymentFrequency);
   const setInitialFunding = useSetRecoilState(inputInitialFunding);
+  const setNFTAmount = useSetRecoilState(inputNFTAmount);
 
   const handleInputStakeYFD = (value: any) => setAmountStakeYFD(value);
 
@@ -61,6 +63,10 @@ const useHandleInputs = () => {
     setExpiration(value);
   };
 
+  const handleInputNFTAmount = (value: any) => {
+    setNFTAmount(value);
+  };
+
   return {
     handleInputStakeYFD,
     handleInputNameProposal,
@@ -73,7 +79,8 @@ const useHandleInputs = () => {
     handleInputGithub,
     handleInputQuorumPercent,
     handleInputSelfVouchedInformation,
-    handleInputExpiration
+    handleInputExpiration,
+    handleInputNFTAmount
   };
 };
 

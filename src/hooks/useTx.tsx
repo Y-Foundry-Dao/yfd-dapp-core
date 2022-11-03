@@ -6,7 +6,6 @@ const useTx = () => {
   const toast = useToast();
 
   const toastSuccessful = (tx: any, message: any) => {
-    console.log(message);
     tx !== 'failed' &&
       tx !== undefined &&
       toast({

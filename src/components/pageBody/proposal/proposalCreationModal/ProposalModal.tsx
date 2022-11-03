@@ -6,7 +6,7 @@ import {
   ModalBody,
   ModalCloseButton
 } from '@chakra-ui/react';
-import ProposalCreationForm from './ProposalCreationForm';
+import ProposalCreationForm from './proposalCreationForm/ProposalCreationForm';
 
 function ProposalModal({ isOpen, onClose }: any) {
   return (

@@ -5,29 +5,31 @@ import {
   NumberIncrementStepper,
   NumberInput,
   NumberInputField,
-  NumberInputStepper
+  NumberInputStepper,
+  Text,
+  VStack
 } from '@chakra-ui/react';
 import useHandleInputs from 'hooks/useHandleInputs';
 import { useRecoilValue } from 'recoil';
-import { inputPaymentFrequency } from 'recoil/input/atoms';
+import { inputDevelopmentCost } from 'recoil/input/atoms';
 
-function InputPaymentFrequency() {
-  const paymentFrequency = useRecoilValue(inputPaymentFrequency);
-  const { handleInputPaymentFrequency } = useHandleInputs();
-
+function InputDevelopmentCost() {
+  const developmentCost = useRecoilValue(inputDevelopmentCost);
+  const { handleInputDevelopmentCost } = useHandleInputs();
   return (
     <Flex alignItems="center" gap={5}>
       <Heading as="h3" size="md">
-        Payment Frequency in Blocks:
+        Development Cost in YFD:
       </Heading>
       <NumberInput
         maxW="140px"
         mr="2rem"
-        defaultValue={1000}
-        step={1}
-        min={1000}
-        value={paymentFrequency}
-        onChange={handleInputPaymentFrequency}
+        defaultValue={0.067}
+        step={0.001}
+        min={0.067}
+        max={1}
+        value={developmentCost}
+        onChange={handleInputDevelopmentCost}
       >
         <NumberInputField />
         <NumberInputStepper>
@@ -39,4 +41,4 @@ function InputPaymentFrequency() {
   );
 }
 
-export default InputPaymentFrequency;
+export default InputDevelopmentCost;

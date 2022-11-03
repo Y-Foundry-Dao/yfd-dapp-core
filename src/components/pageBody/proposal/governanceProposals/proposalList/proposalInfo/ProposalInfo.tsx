@@ -11,28 +11,40 @@ import useContractVote from 'hooks/useContractVote';
 import EmergencyVote from '../emergencyVote/EmergencyVote';
 
 function ProposalInfo({ proposalContract, proposalIndex }: any) {
-  const { proposalInfo, voteContract } = useContractProposal({
-    proposalContract
+  const { proposalInfo } = useContractProposal({
+    proposalContract,
+    proposalIndex
   });
-  const { voteTokenBalance } = useContractVote({ proposalContract });
-  const [inputVoteTokenAmount, setInputVoteTokenAmount] = useState(0);
-  const [inputFundingAmount, setInputFundingAmount] = useState(0);
-  const connectedWallet = useConnectedWallet();
-
+  // const { voteTokenBalance } = useContractVote({ proposalContract });
+  // const [inputVoteTokenAmount, setInputVoteTokenAmount] = useState(0);
+  // const [inputFundingAmount, setInputFundingAmount] = useState(0);
+  // const connectedWallet = useConnectedWallet();
   return (
     <Flex direction="column" gap={4}>
+      <>{console.log(proposalInfo)}</>
       <Text>Proposal Name: {proposalInfo.name}</Text>
-      <Text>Proposal URL: {proposalInfo.proposal_url}</Text>
+      <Text>Closing block: {proposalInfo.closing_block}</Text>
+      <Text>Quorum block: {proposalInfo.quorum_block}</Text>
+      {/* <>{console.log(proposalInfo.detail.token_whitelist)}</> */}
+      {/* <Text>Type of Proposal?: {Object.keys(proposalInfo.detail)[0]}</Text> */}
+      {/* <>
+        {proposalType === 'token_whitelist' ? (
+          <>{proposalInfo.detail.token_whitelist.token}</>
+        ) : (
+          <>Not a token whitelist proposal. Not sure what type yet</>
+        )}
+      </> */}
+      {/* <Text>Proposal URL: {proposalInfo.proposal_url}</Text>
       <Text>Statement of Work URL: {proposalInfo.statement_of_work}</Text>
       <Text>Developer: {proposalInfo.developer}</Text>
       <Text>
         Development Cost: {convertFromBase(proposalInfo.development_cost)} YFD
       </Text>
       <Text>Developer Github: {proposalInfo.github}</Text>
-      <Text>TVL Limit: {proposalInfo.tvl_limit}</Text>
+      <Text>TVL Limit: {proposalInfo.tvl_limit}</Text> */}
 
-      {!connectedWallet || voteTokenBalance === undefined ? null : (
-        <>
+      {/* {!connectedWallet || voteTokenBalance === undefined ? null : ( */}
+      {/* <>
           <Box bg="blue.600" p={4}>
             <VoteTokenBalance
               proposalContract={proposalContract}
@@ -42,13 +54,13 @@ function ProposalInfo({ proposalContract, proposalIndex }: any) {
               voteTokenBalance={voteTokenBalance}
               inputVoteTokenAmount={inputVoteTokenAmount}
               setInputVoteTokenAmount={setInputVoteTokenAmount}
-            />
-            <VoteButtons
+            /> */}
+      {/* <VoteButtons
               contract={voteContract}
               voteTokenBalance={voteTokenBalance}
               inputVoteTokenAmount={inputVoteTokenAmount}
-            />
-            <EmergencyVote proposalIndex={proposalIndex} />
+            /> */}
+      {/* <EmergencyVote proposalIndex={proposalIndex} />
           </Box>
           <FundProposal
             voteTokenBalance={voteTokenBalance}
@@ -56,8 +68,8 @@ function ProposalInfo({ proposalContract, proposalIndex }: any) {
             inputFundingAmount={inputFundingAmount}
             setInputFundingAmount={setInputFundingAmount}
           />
-        </>
-      )}
+        </> */}
+      {/* )} */}
     </Flex>
   );
 }

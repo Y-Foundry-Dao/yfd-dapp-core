@@ -32,6 +32,7 @@ import {
   inputGithub,
   inputInitialFunding,
   inputNameProposal,
+  inputNFTAmount,
   inputPaymentFrequency,
   inputPaymentSchedule,
   inputQuorumPercent,
@@ -42,6 +43,7 @@ import {
 } from 'recoil/input/atoms';
 import txHashAtom from 'recoil/txHash/atom';
 import ProposalSubmittedText from './ProposalSubmittedText';
+import InputNFTAmount from './inputs/InputNFTAmount';
 
 function ProposalCreationForm({ onClose }: any) {
   const { handleClickCreateProposal } = useHandleClicks();
@@ -62,6 +64,7 @@ function ProposalCreationForm({ onClose }: any) {
   const expiration = useRecoilValue(inputExpiration);
   const paymentFrequency = useRecoilValue(inputPaymentFrequency);
   const initialFunding = useRecoilValue(inputInitialFunding);
+  const nftAmount = useRecoilValue(inputNFTAmount);
 
   const txHash = useRecoilValue(txHashAtom);
 
@@ -100,12 +103,9 @@ function ProposalCreationForm({ onClose }: any) {
           </FormStep>
           <FormStep name="finalizing" title="Finalizing Parameters">
             <FormLayout>
-              <InputExpiration />
-
               <InputPaymentSchedule />
               <InputPaymentFrequency />
-
-              <InputQuorumPercentage />
+              <InputNFTAmount />
               <ButtonGroup>
                 <NextButton />
                 <PrevButton variant="ghost" />
@@ -146,10 +146,9 @@ function ProposalCreationForm({ onClose }: any) {
                   Finalize Parameters
                 </Text>
                 <Divider />
-                <Property label="Expiration in Blocks" value={expiration} />
                 <Property label="Payment Schedule" value={paymentSchedule} />
                 <Property label="Payment Frequency" value={paymentFrequency} />
-                <Property label="Qurorum Percentage" value={quorumPercent} />
+                <Property label="NFT Amount" value={nftAmount} />
                 <Divider />
               </PropertyList>
               <ButtonGroup>

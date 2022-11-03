@@ -1,5 +1,5 @@
 import useMsg from './useMsg';
-import queryAllProposalContracts from 'utilities/messagesQuery/queryAllProposalContracts';
+import queryAllProposalContracts from 'utilities/messagesQuery/forge/queryAllProposalContracts';
 import { FORGE_TEST } from 'utilities/variables/variables';
 import { useEffect, useState } from 'react';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
@@ -9,10 +9,12 @@ import txHashAtom from 'recoil/txHash/atom';
 import queryBalanceDetail from 'utilities/messagesQuery/queryBalanceDetail';
 import stakedYFDAtom from 'recoil/stakedYFD/atom';
 import queryAllEmergencies from 'utilities/messagesQuery/queryAllEmergencies';
+import queryAllVaultProposals from 'utilities/messagesQuery/forge/queryAllVaultProposals';
 
 const useContractForge = () => {
   const { queryMsg } = useMsg();
   const [proposals, setProposals] = useState<any>([]);
+  const [vaultProposals, setVaultProposals] = useState<any>([]);
   const [emergencies, setEmergencies] = useState<any>([]);
   const [tokenBalance, setTokenBalance] = useState('0');
   const connectedWallet = useConnectedWallet();
@@ -24,20 +26,23 @@ const useContractForge = () => {
     return response;
   };
 
-  const setAllProposalContractsToState = async () => {
-    const proposalContracts: any = await getAllProposalContracts();
-
-    setProposals(proposalContracts.proposals);
-  };
-
-  const getAllEmergencies = async () => {
-    const response = await queryMsg(FORGE_TEST, queryAllEmergencies());
+  const getAllVaultProposals = async () => {
+    const response = await queryMsg(FORGE_TEST, queryAllVaultProposals());
     return response;
   };
 
-  const setAllEmergenciesToState = async () => {
-    const response: any = await getAllEmergencies();
-    setEmergencies(response.emergencies);
+  const setAllVaultProposalsToState = async () => {
+    try {
+      const vaultProposals: any = await getAllVaultProposals();
+      setVaultProposals(vaultProposals.proposals);
+    } catch (e) {
+      console.log('error', e);
+    }
+  };
+
+  const setAllGovernanceProposalsToState = async () => {
+    const governanceProposals: any = await getAllProposalContracts();
+    setProposals(governanceProposals.proposals);
   };
 
   const getBalance = async () => {
@@ -82,18 +87,19 @@ const useContractForge = () => {
   };
 
   useEffect(() => {
-    setAllProposalContractsToState();
+    setAllGovernanceProposalsToState();
+    setAllVaultProposalsToState();
   }, []);
 
   useEffect(() => {
     setTokenBalanceToState();
     setStakedYFDToState();
-    setAllEmergenciesToState();
+    // setAllEmergenciesToState();
   }, [connectedWallet, txHashInRecoil]);
 
   return {
-    getAllProposalContracts,
     proposals,
+    vaultProposals,
     emergencies,
     tokenBalance
   };
