@@ -1,16 +1,18 @@
 import useMsg from './useMsg';
 import queryProposalInfo from 'utilities/messagesQuery/queryProposalInfo';
 import queryProposalState from 'utilities/messagesQuery/queryProposalState';
-import queryProposalByIndex from 'utilities/messagesQuery/queryProposalByIndex';
+import queryProposalByIndex from 'utilities/messagesQuery/forge/queryProposalByIndex';
 import { useEffect, useState } from 'react';
 import queryTokenInfo from 'utilities/messagesQuery/queryTokenInfo';
-import { useConnectedWallet } from '@terra-money/wallet-provider';
+// import { useConnectedWallet } from '@terra-money/wallet-provider';
 import queryVotes from 'utilities/messagesQuery/queryVotes';
 import { FORGE_TEST } from 'utilities/variables/variables';
+import queryVaultProposalByIndex from 'utilities/messagesQuery/forge/queryVaultProposalByIndex';
 
 const useContractProposal = ({ proposalContract, proposalIndex }: any) => {
   const { queryMsg } = useMsg();
   const [proposalInfo, setProposalInfo] = useState<any>({});
+  const [vaultProposalInfo, setVaultProposalInfo] = useState<any>({});
   const [voteContract, setVoteContract] = useState('');
   const [tokenSymbol, setTokenSymbol] = useState('Vote');
   const [proposalState, setProposalState] = useState<any>({});
@@ -21,23 +23,37 @@ const useContractProposal = ({ proposalContract, proposalIndex }: any) => {
     return response;
   };
 
-  const getProposal = async () => {
+  const getVaultProposalInfoByIndex = async () => {
+    const response = await queryMsg(
+      FORGE_TEST,
+      queryVaultProposalByIndex(proposalIndex)
+    );
+    return response;
+  };
+
+  const getProposalInfoByIndex = async () => {
     const response = await queryMsg(
       FORGE_TEST,
       queryProposalByIndex(proposalIndex)
     );
-    console.log(response);
     return response;
   };
 
   const setProposalInfoToState = async () => {
-    const proposalInfo: any = await getProposal();
+    const proposalInfo: any = await getProposalInfoByIndex();
     if (proposalInfo === undefined) {
       return;
     }
     setProposalInfo({ ...proposalInfo });
   };
 
+  const setVaultProposalInfoToState = async () => {
+    const proposalInfo: any = await getVaultProposalInfoByIndex();
+    if (proposalInfo === undefined) {
+      return;
+    }
+    setVaultProposalInfo({ ...proposalInfo });
+  };
   const getProposalState = async () => {
     const response = await queryMsg(proposalContract, queryProposalState());
     return response;
@@ -87,9 +103,9 @@ const useContractProposal = ({ proposalContract, proposalIndex }: any) => {
 
   useEffect(() => {
     setProposalInfoToState();
-    setVoteContractToState();
+    // setVoteContractToState();
     setTokenSymbolToState();
-    setProposalStateToState();
+    // setProposalStateToState();
     setVotesToState();
   }, []);
 
@@ -98,7 +114,8 @@ const useContractProposal = ({ proposalContract, proposalIndex }: any) => {
     getProposalState,
     getTokenInfo,
     proposalInfo,
-    voteContract,
+    vaultProposalInfo,
+    // voteContract,
     tokenSymbol,
     proposalState,
     proposalVoteInfo
