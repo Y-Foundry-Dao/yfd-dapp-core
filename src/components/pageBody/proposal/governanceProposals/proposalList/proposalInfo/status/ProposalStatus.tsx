@@ -12,6 +12,7 @@ function ProposalStatus({ proposalContract, proposalIndex }: any) {
   });
   return (
     <>
+      {console.log(proposalVoteInfo)}
       {proposalVoteInfo.vote_state === undefined ? (
         <Text>Loading...</Text>
       ) : (

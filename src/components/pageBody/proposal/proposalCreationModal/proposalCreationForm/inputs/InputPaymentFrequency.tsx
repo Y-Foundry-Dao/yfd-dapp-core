@@ -25,7 +25,7 @@ function InputPaymentFrequency() {
         mr="2rem"
         defaultValue={1000}
         step={1}
-        min={1000}
+        min={10}
         value={paymentFrequency}
         onChange={handleInputPaymentFrequency}
       >

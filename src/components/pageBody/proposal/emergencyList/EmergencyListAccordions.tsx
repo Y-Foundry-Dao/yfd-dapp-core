@@ -7,7 +7,6 @@ function EmergencyListAccordions({ emergencies }: any) {
   return (
     <Accordion w="100%" allowMultiple>
       {emergencies.map((emergency: any) => {
-        console.log(emergency);
         return (
           <EmergencyListAccordionItem
             key={emergency.addr}

@@ -10,32 +10,33 @@ import {
 import FinderContractLink from 'components/basic/finder/FinderContractLink';
 import useContractProposal from 'hooks/useContractProposal';
 import React from 'react';
-import ProposalInfo from './proposalInfo/ProposalInfo';
-import ProposalStatus from './proposalInfo/status/ProposalStatus';
+import VaultProposalInfo from '../proposalInfo/VaultProposalInfo';
 
-function ProposalListAccordionItem({ proposalContract, proposalIndex }: any) {
-  const { proposalInfo, voteContract } = useContractProposal({
+function VaultProposalListAccordionItem({
+  proposalContract,
+  proposalIndex
+}: any) {
+  const { vaultProposalInfo } = useContractProposal({
     proposalContract,
     proposalIndex
   });
   return (
     <AccordionItem layerStyle="accordionProposalItem">
-      <>{console.log(proposalInfo)}</>
       <AccordionButton>
         <Box flex="1" textAlign="left">
-          <Heading size="md">{proposalInfo.name}</Heading>
+          <Heading size="md">{vaultProposalInfo.name}</Heading>
           <Text>
             <FinderContractLink contract={proposalContract} />
           </Text>
-          <ProposalStatus
+          {/* <ProposalStatus
             proposalContract={proposalContract}
             proposalIndex={proposalIndex}
-          />
+          /> */}
         </Box>
         <AccordionIcon />
       </AccordionButton>
       <AccordionPanel layerStyle="accordionProposalPanel" pb="5">
-        <ProposalInfo
+        <VaultProposalInfo
           proposalContract={proposalContract}
           proposalIndex={proposalIndex}
         />
@@ -44,4 +45,4 @@ function ProposalListAccordionItem({ proposalContract, proposalIndex }: any) {
   );
 }
 
-export default ProposalListAccordionItem;
+export default VaultProposalListAccordionItem;

@@ -24,9 +24,10 @@ function InputDevelopmentCost() {
       <NumberInput
         maxW="140px"
         mr="2rem"
-        defaultValue={0.9}
-        step={0.1}
-        min={0}
+        defaultValue={0.067}
+        step={0.001}
+        min={0.067}
+        max={1}
         value={developmentCost}
         onChange={handleInputDevelopmentCost}
       >

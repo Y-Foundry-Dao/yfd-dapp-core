@@ -5,8 +5,8 @@ import useHandleClicks from 'hooks/useHandleClicks';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { currentBlockHeightAtom } from 'recoil/chainInfo/atoms';
-import InputVoteAmount from '../../proposalList/proposalInfo/voting/InputVoteAmount';
-import VoteButtons from '../../proposalList/proposalInfo/voting/VoteButtons';
+import InputVoteAmount from '../../governanceProposals/proposalList/proposalInfo/voting/InputVoteAmount';
+import VoteButtons from '../../governanceProposals/proposalList/proposalInfo/voting/VoteButtons';
 import EmergencyVoteBalance from './voting/EmergencyVoteBalance';
 
 function EmergencyProposalInfo({ emergency }: any) {

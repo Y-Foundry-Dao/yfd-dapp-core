@@ -1,13 +1,13 @@
 import { Accordion } from '@chakra-ui/react';
-import ProposalListAccordionItem from './ProposalListAccordionItem';
+import VaultProposalListAccordionItem from './VaultProposalListAccordionItem';
 
-function ProposalListAccordions({ proposals }: any) {
+function VaultProposalListAccordions({ proposals }: any) {
   return (
     <Accordion w="100%" allowMultiple>
       {proposals.map((proposal: any) => {
-        console.log(proposal);
+        // console.log(proposal);
         return (
-          <ProposalListAccordionItem
+          <VaultProposalListAccordionItem
             key={proposal.addr}
             proposalContract={proposal.addr}
             proposalIndex={proposal.index}
@@ -18,4 +18,4 @@ function ProposalListAccordions({ proposals }: any) {
   );
 }
 
-export default ProposalListAccordions;
+export default VaultProposalListAccordions;
