@@ -1,8 +1,8 @@
-const queryVaultFundingMath = ({ developmentCost, nftQuantity }: any) => {
+const queryVaultFundingMath = (developmentCost: any, nftAmount: any) => {
   return {
     vault_funding_math: {
-      target_funding: `"${developmentCost}"`,
-      nft_quantity: `${nftQuantity}`
+      target_funding: String(developmentCost),
+      nft_quantity: Number(nftAmount)
     }
   };
 };
