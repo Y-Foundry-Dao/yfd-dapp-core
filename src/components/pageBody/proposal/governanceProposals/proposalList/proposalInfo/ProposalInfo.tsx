@@ -19,14 +19,23 @@ function ProposalInfo({ proposalContract, proposalIndex }: any) {
   // const [inputVoteTokenAmount, setInputVoteTokenAmount] = useState(0);
   // const [inputFundingAmount, setInputFundingAmount] = useState(0);
   // const connectedWallet = useConnectedWallet();
+  const objectConverted = Object.keys(proposalInfo);
+  const proposalType =
+    objectConverted.length !== 0 && Object.keys(proposalInfo.detail)[0];
   return (
     <Flex direction="column" gap={4}>
       <>{console.log(proposalInfo)}</>
+      <>{console.log(proposalType)}</>
       <Text>Proposal Name: {proposalInfo.name}</Text>
+      <>Type of Proposal: {proposalType}</>
       <Text>Closing block: {proposalInfo.closing_block}</Text>
-      <Text>Quorum block: {proposalInfo.quorum_block}</Text>
+      <Text>
+        Quorum Block:{' '}
+        {proposalInfo.quorum_block === null
+          ? 'Voting still in progress'
+          : proposalInfo.quorum_block}
+      </Text>
       {/* <>{console.log(proposalInfo.detail.token_whitelist)}</> */}
-      {/* <Text>Type of Proposal?: {Object.keys(proposalInfo.detail)[0]}</Text> */}
       {/* <>
         {proposalType === 'token_whitelist' ? (
           <>{proposalInfo.detail.token_whitelist.token}</>
