@@ -10,6 +10,7 @@ import {
 import FinderContractLink from 'components/basic/finder/FinderContractLink';
 import useContractProposal from 'hooks/useContractProposal';
 import React from 'react';
+import ProposalStatus from '../../governanceProposals/proposalList/proposalInfo/status/ProposalStatus';
 import VaultProposalInfo from '../proposalInfo/VaultProposalInfo';
 
 function VaultProposalListAccordionItem({
@@ -28,10 +29,10 @@ function VaultProposalListAccordionItem({
           <Text>
             <FinderContractLink contract={proposalContract} />
           </Text>
-          {/* <ProposalStatus
+          <ProposalStatus
             proposalContract={proposalContract}
             proposalIndex={proposalIndex}
-          /> */}
+          />
         </Box>
         <AccordionIcon />
       </AccordionButton>
