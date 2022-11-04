@@ -11,7 +11,7 @@ function VaultProposalInfo({ proposalContract, proposalIndex }: any) {
 
   return (
     <Flex direction="column" gap={4}>
-      <>{console.log(vaultProposalInfo)}</>
+      {/* <>{console.log(vaultProposalInfo)}</> */}
       <Text>Proposal Name: {vaultProposalInfo.name}</Text>
       <Text>Closing Block: {vaultProposalInfo.closing_block}</Text>
       <Text>

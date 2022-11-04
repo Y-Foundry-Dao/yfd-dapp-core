@@ -24,8 +24,8 @@ function ProposalInfo({ proposalContract, proposalIndex }: any) {
     objectConverted.length !== 0 && Object.keys(proposalInfo.detail)[0];
   return (
     <Flex direction="column" gap={4}>
-      <>{console.log(proposalInfo)}</>
-      <>{console.log(proposalType)}</>
+      {/* <>{console.log(proposalInfo)}</>
+      <>{console.log(proposalType)}</> */}
       <Text>Proposal Name: {proposalInfo.name}</Text>
       <>Type of Proposal: {proposalType}</>
       <Text>Closing block: {proposalInfo.closing_block}</Text>

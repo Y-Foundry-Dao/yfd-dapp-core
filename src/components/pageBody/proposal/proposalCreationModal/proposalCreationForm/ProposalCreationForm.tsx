@@ -94,6 +94,7 @@ function ProposalCreationForm({ onClose }: any) {
             <FormLayout>
               <InputTvlLimit />
               <InputDevelopmentCost />
+              <InputNFTAmount />
               <InputInitialFunding />
               <ButtonGroup>
                 <NextButton />
@@ -105,7 +106,6 @@ function ProposalCreationForm({ onClose }: any) {
             <FormLayout>
               <InputPaymentSchedule />
               <InputPaymentFrequency />
-              <InputNFTAmount />
               <ButtonGroup>
                 <NextButton />
                 <PrevButton variant="ghost" />
