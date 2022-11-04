@@ -10,15 +10,22 @@ import queryBalanceDetail from 'utilities/messagesQuery/queryBalanceDetail';
 import stakedYFDAtom from 'recoil/stakedYFD/atom';
 import queryAllEmergencies from 'utilities/messagesQuery/queryAllEmergencies';
 import queryAllVaultProposals from 'utilities/messagesQuery/forge/queryAllVaultProposals';
+import queryVaultFundingMath from 'utilities/messagesQuery/forge/queryVaultFundingMath';
+import { inputDevelopmentCost, inputNFTAmount } from 'recoil/input/atoms';
+import convertToBase from 'utilities/converters/convertToBase';
+import convertFromBase from 'utilities/converters/convertFromBase';
 
 const useContractForge = () => {
   const { queryMsg } = useMsg();
   const [proposals, setProposals] = useState<any>([]);
   const [vaultProposals, setVaultProposals] = useState<any>([]);
   const [emergencies, setEmergencies] = useState<any>([]);
+  const [requiredInitialFunding, setRequiredInitialFunding] = useState<any>(0);
   const [tokenBalance, setTokenBalance] = useState('0');
   const connectedWallet = useConnectedWallet();
   const txHashInRecoil = useRecoilValue(txHashAtom);
+  const developmentCost = useRecoilValue(inputDevelopmentCost);
+  const nftAmount = useRecoilValue(inputNFTAmount);
   const setStakedYFD = useSetRecoilState(stakedYFDAtom);
 
   const getAllProposalContracts = async () => {
@@ -86,10 +93,31 @@ const useContractForge = () => {
     setStakedYFD(stakedYFD.stakes);
   };
 
+  const getVaultFundingMath = async () => {
+    const devCostConverted = convertToBase(developmentCost);
+    const response: any = await queryMsg(
+      FORGE_TEST,
+      queryVaultFundingMath(devCostConverted, nftAmount)
+    );
+    return response;
+  };
+
+  const setRequiredInitialFundingToState = async () => {
+    const vaultFundingMath: any = await getVaultFundingMath();
+    const convertedRequiredInitialFunding = convertFromBase(
+      vaultFundingMath.strategist_min
+    );
+    setRequiredInitialFunding(convertedRequiredInitialFunding);
+  };
+
   useEffect(() => {
     setAllGovernanceProposalsToState();
     setAllVaultProposalsToState();
   }, []);
+
+  useEffect(() => {
+    setRequiredInitialFundingToState();
+  }, [developmentCost, nftAmount]);
 
   useEffect(() => {
     setTokenBalanceToState();
@@ -101,7 +129,8 @@ const useContractForge = () => {
     proposals,
     vaultProposals,
     emergencies,
-    tokenBalance
+    tokenBalance,
+    requiredInitialFunding
   };
 };
 
