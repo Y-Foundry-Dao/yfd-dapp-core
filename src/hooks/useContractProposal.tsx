@@ -104,7 +104,7 @@ const useContractProposal = ({ proposalContract, proposalIndex }: any) => {
   useEffect(() => {
     setProposalInfoToState();
     setVaultProposalInfoToState();
-    // setVoteContractToState();
+    setVoteContractToState();
     setTokenSymbolToState();
     // setProposalStateToState();
     setVotesToState();
@@ -116,7 +116,7 @@ const useContractProposal = ({ proposalContract, proposalIndex }: any) => {
     getTokenInfo,
     proposalInfo,
     vaultProposalInfo,
-    // voteContract,
+    voteContract,
     tokenSymbol,
     proposalState,
     proposalVoteInfo
