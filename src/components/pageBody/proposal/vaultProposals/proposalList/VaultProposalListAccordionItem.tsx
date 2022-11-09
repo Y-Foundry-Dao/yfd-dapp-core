@@ -9,18 +9,26 @@ import {
 } from '@chakra-ui/react';
 import FinderContractLink from 'components/basic/finder/FinderContractLink';
 import useContractProposal from 'hooks/useContractProposal';
-import React from 'react';
+import useContractVote from 'hooks/useContractVote';
+import React, { useState } from 'react';
 import ProposalStatus from '../../governanceProposals/proposalList/proposalInfo/status/ProposalStatus';
+import InputVoteAmount from '../../governanceProposals/proposalList/proposalInfo/voting/InputVoteAmount';
+import VoteButtons from '../../governanceProposals/proposalList/proposalInfo/voting/VoteButtons';
+import VoteTokenBalance from '../../governanceProposals/proposalList/proposalInfo/voting/VoteTokenBalance';
 import VaultProposalInfo from '../proposalInfo/VaultProposalInfo';
 
 function VaultProposalListAccordionItem({
   proposalContract,
   proposalIndex
 }: any) {
-  const { vaultProposalInfo } = useContractProposal({
+  const { vaultProposalInfo, voteContract } = useContractProposal({
     proposalContract,
     proposalIndex
   });
+  const { voteTokenBalance } = useContractVote({
+    proposalContract
+  });
+  const [inputVoteTokenAmount, setInputVoteTokenAmount] = useState(0);
   return (
     <AccordionItem layerStyle="accordionProposalItem">
       <AccordionButton>
@@ -40,6 +48,20 @@ function VaultProposalListAccordionItem({
         <VaultProposalInfo
           proposalContract={proposalContract}
           proposalIndex={proposalIndex}
+        />
+        <VoteTokenBalance
+          proposalContract={proposalContract}
+          voteTokenBalance={voteTokenBalance}
+        />
+        <InputVoteAmount
+          voteTokenBalance={voteTokenBalance}
+          inputVoteTokenAmount={inputVoteTokenAmount}
+          setInputVoteTokenAmount={setInputVoteTokenAmount}
+        />
+        <VoteButtons
+          contract={voteContract}
+          voteTokenBalance={voteTokenBalance}
+          inputVoteTokenAmount={inputVoteTokenAmount}
         />
       </AccordionPanel>
     </AccordionItem>
