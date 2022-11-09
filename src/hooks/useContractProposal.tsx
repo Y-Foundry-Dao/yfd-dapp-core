@@ -1,11 +1,11 @@
 import useMsg from './useMsg';
-import queryProposalInfo from 'utilities/messagesQuery/queryProposalInfo';
-import queryProposalState from 'utilities/messagesQuery/queryProposalState';
+import queryProposalInfo from 'utilities/messagesQuery/proposals/vaultProposal/queryProposalInfo';
+import queryProposalState from 'utilities/messagesQuery/proposals/vaultProposal/queryProposalState';
 import queryProposalByIndex from 'utilities/messagesQuery/forge/queryProposalByIndex';
 import { useEffect, useState } from 'react';
-import queryTokenInfo from 'utilities/messagesQuery/queryTokenInfo';
+import queryTokenInfo from 'utilities/messagesQuery/cw20/queryTokenInfo';
 // import { useConnectedWallet } from '@terra-money/wallet-provider';
-import queryVotes from 'utilities/messagesQuery/queryVotes';
+import queryVotes from 'utilities/messagesQuery/proposals/queryVotes';
 import { FORGE_TEST } from 'utilities/variables/variables';
 import queryVaultProposalByIndex from 'utilities/messagesQuery/forge/queryVaultProposalByIndex';
 
