@@ -1,10 +1,9 @@
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import useMsg from './useMsg';
-import queryBalance from 'utilities/messagesQuery/queryBalance';
+import queryBalance from 'utilities/messagesQuery/cw20/queryBalance';
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import txHashAtom from 'recoil/txHash/atom';
-import queryEmergency from 'utilities/messagesQuery/queryEmergency';
 import { FORGE_TEST } from 'utilities/variables/variables';
 import useChainInfo from './useChainInfo';
 
@@ -17,18 +16,19 @@ const useContractEmergency = ({ emergency }: any) => {
   const [emergencyVoteBalance, setEmergencyVoteBalance] = useState<any>('0');
   const [votes, setVotes] = useState<any>({});
 
-  const getEmergencyInfo = async () => {
-    const emergencyInfo: any = await queryMsg(
-      FORGE_TEST,
-      queryEmergency(emergency.index)
-    );
-    return emergencyInfo;
-  };
+  // TODO: figure out new way  emergency is stored on chain
+  // const getEmergencyInfo = async () => {
+  //   const emergencyInfo: any = await queryMsg(
+  //     FORGE_TEST,
+  //     queryEmergency(emergency.index)
+  //   );
+  //   return emergencyInfo;
+  // };
 
-  const setEmergencyToState = async () => {
-    const emergencyInfo = await getEmergencyInfo();
-    setEmergencyInfo(emergencyInfo);
-  };
+  // const setEmergencyToState = async () => {
+  //   const emergencyInfo = await getEmergencyInfo();
+  //   setEmergencyInfo(emergencyInfo);
+  // };
 
   const getBalance = async () => {
     if (!connectedWallet) {
@@ -65,7 +65,7 @@ const useContractEmergency = ({ emergency }: any) => {
   };
 
   useEffect(() => {
-    setEmergencyToState();
+    // setEmergencyToState();
     setBalanceToState();
     setVotesToState();
   }, [connectedWallet, txHashInRecoil]);

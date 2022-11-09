@@ -3,12 +3,11 @@ import queryAllProposalContracts from 'utilities/messagesQuery/forge/queryAllPro
 import { FORGE_TEST } from 'utilities/variables/variables';
 import { useEffect, useState } from 'react';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
-import queryBalance from 'utilities/messagesQuery/queryBalance';
+import queryBalance from 'utilities/messagesQuery/cw20/queryBalance';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import txHashAtom from 'recoil/txHash/atom';
-import queryBalanceDetail from 'utilities/messagesQuery/queryBalanceDetail';
+import queryBalanceDetail from 'utilities/messagesQuery/forge/queryBalanceDetail';
 import stakedYFDAtom from 'recoil/stakedYFD/atom';
-import queryAllEmergencies from 'utilities/messagesQuery/queryAllEmergencies';
 import queryAllVaultProposals from 'utilities/messagesQuery/forge/queryAllVaultProposals';
 import queryVaultFundingMath from 'utilities/messagesQuery/forge/queryVaultFundingMath';
 import { inputDevelopmentCost, inputNFTAmount } from 'recoil/input/atoms';
