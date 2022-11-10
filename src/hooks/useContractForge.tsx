@@ -13,12 +13,17 @@ import queryVaultFundingMath from 'utilities/messagesQuery/forge/queryVaultFundi
 import { inputDevelopmentCost, inputNFTAmount } from 'recoil/input/atoms';
 import convertToBase from 'utilities/converters/convertToBase';
 import convertFromBase from 'utilities/converters/convertFromBase';
+import queryAllGovernanceParameters from 'utilities/messagesQuery/forge/queryAllGovernanceParameters';
+import queryAllTokenWhitelist from 'utilities/messagesQuery/forge/queryAllTokenWhitelist';
+import queryAllAddressWhitelist from 'utilities/messagesQuery/forge/queryAllAddressWhitelist';
+import queryAddressWhitelist from 'utilities/messagesQuery/forge/queryAddressWhitelist';
+import queryProposalByIndex from 'utilities/messagesQuery/forge/queryProposalByIndex';
+import queryTokenWhitelist from 'utilities/messagesQuery/forge/queryTokenWhitelist';
 
 const useContractForge = () => {
   const { queryMsg } = useMsg();
   const [proposals, setProposals] = useState<any>([]);
   const [vaultProposals, setVaultProposals] = useState<any>([]);
-  const [emergencies, setEmergencies] = useState<any>([]);
   const [requiredInitialFunding, setRequiredInitialFunding] = useState<any>(0);
   const [tokenBalance, setTokenBalance] = useState('0');
   const connectedWallet = useConnectedWallet();
@@ -27,15 +32,82 @@ const useContractForge = () => {
   const nftAmount = useRecoilValue(inputNFTAmount);
   const setStakedYFD = useSetRecoilState(stakedYFDAtom);
 
+  const getAllGovernanceParameters = async () => {
+    const response = await queryMsg(FORGE_TEST, queryAllGovernanceParameters())
+    return response
+  }
+
   const getAllProposalContracts = async () => {
     const response = await queryMsg(FORGE_TEST, queryAllProposalContracts());
     return response;
   };
 
+  const getProposalByIndex = async (index: any) => {
+    const response = await queryMsg(FORGE_TEST, queryProposalByIndex(index))
+    return response;
+  }
+
   const getAllVaultProposals = async () => {
     const response = await queryMsg(FORGE_TEST, queryAllVaultProposals());
     return response;
   };
+
+  const getVaultProposalByIndex = async (index: any) => {
+    const response = await queryMsg(FORGE_TEST, queryProposalByIndex(index))
+    return response;
+  }
+
+  const getBalance = async () => {
+    if (!connectedWallet) {
+      return;
+    }
+    const response = await queryMsg(
+      FORGE_TEST,
+      queryBalance(connectedWallet?.walletAddress)
+    );
+    return response;
+  };
+
+  const getBalanceDetail = async () => {
+    if (!connectedWallet) {
+      return;
+    }
+    const response = await queryMsg(
+      FORGE_TEST,
+      queryBalanceDetail(connectedWallet?.walletAddress)
+    );
+    return response;
+  };
+
+  const getVaultFundingMath = async () => {
+    const devCostConverted = convertToBase(developmentCost);
+    const response: any = await queryMsg(
+      FORGE_TEST,
+      queryVaultFundingMath(devCostConverted, nftAmount)
+    );
+    return response;
+  };
+
+  const getAllTokenWhitelist = async () => {
+    const response = await queryMsg(FORGE_TEST, queryAllTokenWhitelist())
+    return response;
+  }
+
+  const getTokenWhitelist = async (address: any) => {
+    const response = await queryMsg(FORGE_TEST, queryTokenWhitelist(address))
+    return response
+  }
+
+
+  const getAllAddressWhitelist = async () => {
+    const response = await queryMsg(FORGE_TEST, queryAllAddressWhitelist())
+    return response;
+  }
+
+  const getAddressWhitelist = async (address: any) => {
+    const response = await queryMsg(FORGE_TEST, queryAddressWhitelist(address))
+    return response
+  }
 
   const setAllVaultProposalsToState = async () => {
     try {
@@ -51,16 +123,7 @@ const useContractForge = () => {
     setProposals(governanceProposals.proposals);
   };
 
-  const getBalance = async () => {
-    if (!connectedWallet) {
-      return;
-    }
-    const response = await queryMsg(
-      FORGE_TEST,
-      queryBalance(connectedWallet?.walletAddress)
-    );
-    return response;
-  };
+
 
   const setTokenBalanceToState = async () => {
     const tokenBalance: any = await getBalance();
@@ -71,34 +134,15 @@ const useContractForge = () => {
     setTokenBalance(tokenBalance.balance);
   };
 
-  const getStakedYFD = async () => {
-    if (!connectedWallet) {
-      return;
-    }
-    const response = await queryMsg(
-      FORGE_TEST,
-      queryBalanceDetail(connectedWallet?.walletAddress)
-    );
-    return response;
-  };
 
   const setStakedYFDToState = async () => {
-    const stakedYFD: any = await getStakedYFD();
+    const stakedYFD: any = await getBalanceDetail();
     if (stakedYFD === undefined) {
       // TODO: handle case where stakedYFD is undefined
       console.log('staked YFD is undefined');
       return;
     }
     setStakedYFD(stakedYFD.stakes);
-  };
-
-  const getVaultFundingMath = async () => {
-    const devCostConverted = convertToBase(developmentCost);
-    const response: any = await queryMsg(
-      FORGE_TEST,
-      queryVaultFundingMath(devCostConverted, nftAmount)
-    );
-    return response;
   };
 
   const setRequiredInitialFundingToState = async () => {
@@ -121,13 +165,11 @@ const useContractForge = () => {
   useEffect(() => {
     setTokenBalanceToState();
     setStakedYFDToState();
-    // setAllEmergenciesToState();
   }, [connectedWallet, txHashInRecoil]);
 
   return {
     proposals,
     vaultProposals,
-    emergencies,
     tokenBalance,
     requiredInitialFunding
   };
