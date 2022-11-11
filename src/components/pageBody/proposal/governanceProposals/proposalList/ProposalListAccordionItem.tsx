@@ -8,12 +8,12 @@ import {
   Text
 } from '@chakra-ui/react';
 import FinderContractLink from 'components/basic/finder/FinderContractLink';
-import useContractProposal from 'hooks/useContractProposal';
+import useContractGovernanceProposal from 'hooks/useContractGovernanceProposal';
 import ProposalInfo from './proposalInfo/ProposalInfo';
 import ProposalStatus from './proposalInfo/status/ProposalStatus';
 
 function ProposalListAccordionItem({ proposalContract, proposalIndex }: any) {
-  const { proposalInfo } = useContractProposal({
+  const { proposalInfo } = useContractGovernanceProposal({
     proposalContract,
     proposalIndex
   });

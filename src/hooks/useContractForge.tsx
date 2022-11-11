@@ -22,20 +22,27 @@ import queryTokenWhitelist from 'utilities/messagesQuery/forge/queryTokenWhiteli
 
 const useContractForge = () => {
   const { queryMsg } = useMsg();
-  const [proposals, setProposals] = useState<any>([]);
+  const connectedWallet = useConnectedWallet();
+
+  const [governanceProposals, setGovernanceProposals] = useState<any>([]);
   const [vaultProposals, setVaultProposals] = useState<any>([]);
   const [requiredInitialFunding, setRequiredInitialFunding] = useState<any>(0);
   const [tokenBalance, setTokenBalance] = useState('0');
-  const connectedWallet = useConnectedWallet();
+  const [addressWhitelist, setAddressWhitelist] = useState([]);
+  const [tokenWhitelist, setTokenWhitelist] = useState([]);
+  const [governanceParameters, setGovernanceParameters] = useState([]);
+  const [balanceDetail, setBalanceDetail] = useState({});
+
+  const setStakedYFD = useSetRecoilState(stakedYFDAtom);
+
   const txHashInRecoil = useRecoilValue(txHashAtom);
   const developmentCost = useRecoilValue(inputDevelopmentCost);
   const nftAmount = useRecoilValue(inputNFTAmount);
-  const setStakedYFD = useSetRecoilState(stakedYFDAtom);
 
   const getAllGovernanceParameters = async () => {
-    const response = await queryMsg(FORGE_TEST, queryAllGovernanceParameters())
-    return response
-  }
+    const response = await queryMsg(FORGE_TEST, queryAllGovernanceParameters());
+    return response;
+  };
 
   const getAllProposalContracts = async () => {
     const response = await queryMsg(FORGE_TEST, queryAllProposalContracts());
@@ -43,9 +50,9 @@ const useContractForge = () => {
   };
 
   const getProposalByIndex = async (index: any) => {
-    const response = await queryMsg(FORGE_TEST, queryProposalByIndex(index))
+    const response = await queryMsg(FORGE_TEST, queryProposalByIndex(index));
     return response;
-  }
+  };
 
   const getAllVaultProposals = async () => {
     const response = await queryMsg(FORGE_TEST, queryAllVaultProposals());
@@ -53,9 +60,44 @@ const useContractForge = () => {
   };
 
   const getVaultProposalByIndex = async (index: any) => {
-    const response = await queryMsg(FORGE_TEST, queryProposalByIndex(index))
+    const response = await queryMsg(FORGE_TEST, queryProposalByIndex(index));
     return response;
-  }
+  };
+
+  const getAllTokenWhitelist = async () => {
+    const response = await queryMsg(FORGE_TEST, queryAllTokenWhitelist());
+    return response;
+  };
+
+  const getTokenInWhitelist = async (address: any) => {
+    const response = await queryMsg(FORGE_TEST, queryTokenWhitelist(address));
+    return response;
+  };
+
+  const getAllAddressWhitelist = async () => {
+    const response = await queryMsg(FORGE_TEST, queryAllAddressWhitelist());
+    return response;
+  };
+
+  const getAddressInWhitelist = async (address: any) => {
+    const response = await queryMsg(FORGE_TEST, queryAddressWhitelist(address));
+    return response;
+  };
+
+  const setAllGovernanceParametersToState = async () => {
+    const governanceParameters: any = await getAllGovernanceParameters();
+    setGovernanceParameters(governanceParameters);
+  };
+
+  const setAllTokenWhitelistToState = async () => {
+    const tokenWhitelist: any = await getAllTokenWhitelist();
+    setTokenWhitelist(tokenWhitelist);
+  };
+
+  const setAllAddressWhitelistToState = async () => {
+    const addressWhitelist: any = await getAllAddressWhitelist();
+    setAddressWhitelist(addressWhitelist);
+  };
 
   const getBalance = async () => {
     if (!connectedWallet) {
@@ -88,27 +130,6 @@ const useContractForge = () => {
     return response;
   };
 
-  const getAllTokenWhitelist = async () => {
-    const response = await queryMsg(FORGE_TEST, queryAllTokenWhitelist())
-    return response;
-  }
-
-  const getTokenWhitelist = async (address: any) => {
-    const response = await queryMsg(FORGE_TEST, queryTokenWhitelist(address))
-    return response
-  }
-
-
-  const getAllAddressWhitelist = async () => {
-    const response = await queryMsg(FORGE_TEST, queryAllAddressWhitelist())
-    return response;
-  }
-
-  const getAddressWhitelist = async (address: any) => {
-    const response = await queryMsg(FORGE_TEST, queryAddressWhitelist(address))
-    return response
-  }
-
   const setAllVaultProposalsToState = async () => {
     try {
       const vaultProposals: any = await getAllVaultProposals();
@@ -120,10 +141,8 @@ const useContractForge = () => {
 
   const setAllGovernanceProposalsToState = async () => {
     const governanceProposals: any = await getAllProposalContracts();
-    setProposals(governanceProposals.proposals);
+    setGovernanceProposals(governanceProposals.proposals);
   };
-
-
 
   const setTokenBalanceToState = async () => {
     const tokenBalance: any = await getBalance();
@@ -134,12 +153,14 @@ const useContractForge = () => {
     setTokenBalance(tokenBalance.balance);
   };
 
-
+  const setBalanceDetailToState = async () => {
+    const balanceDetail: any = await getBalanceDetail();
+    setBalanceDetail(balanceDetail);
+  };
   const setStakedYFDToState = async () => {
     const stakedYFD: any = await getBalanceDetail();
     if (stakedYFD === undefined) {
-      // TODO: handle case where stakedYFD is undefined
-      console.log('staked YFD is undefined');
+      setStakedYFD([]);
       return;
     }
     setStakedYFD(stakedYFD.stakes);
@@ -156,6 +177,7 @@ const useContractForge = () => {
   useEffect(() => {
     setAllGovernanceProposalsToState();
     setAllVaultProposalsToState();
+    setAllGovernanceParametersToState();
   }, []);
 
   useEffect(() => {
@@ -165,13 +187,24 @@ const useContractForge = () => {
   useEffect(() => {
     setTokenBalanceToState();
     setStakedYFDToState();
+    setBalanceDetailToState();
+    setAllTokenWhitelistToState();
+    setAllAddressWhitelistToState();
   }, [connectedWallet, txHashInRecoil]);
 
   return {
-    proposals,
+    governanceProposals,
     vaultProposals,
+    balanceDetail,
     tokenBalance,
-    requiredInitialFunding
+    requiredInitialFunding,
+    governanceParameters,
+    tokenWhitelist,
+    addressWhitelist,
+    getProposalByIndex,
+    getVaultProposalByIndex,
+    getTokenInWhitelist,
+    getAddressInWhitelist
   };
 };
 

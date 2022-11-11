@@ -9,7 +9,10 @@ import queryVotes from 'utilities/messagesQuery/proposals/queryVotes';
 import { FORGE_TEST } from 'utilities/variables/variables';
 import queryVaultProposalByIndex from 'utilities/messagesQuery/forge/queryVaultProposalByIndex';
 
-const useContractProposal = ({ proposalContract, proposalIndex }: any) => {
+const useContractGovernanceProposal = ({
+  proposalContract,
+  proposalIndex
+}: any) => {
   const { queryMsg } = useMsg();
   const [proposalInfo, setProposalInfo] = useState<any>({});
   const [vaultProposalInfo, setVaultProposalInfo] = useState<any>({});
@@ -23,17 +26,17 @@ const useContractProposal = ({ proposalContract, proposalIndex }: any) => {
     return response;
   };
 
+  const getVotes = async () => {
+    const response = await queryMsg(proposalContract, queryVotes());
+    return response;
+  };
+
   const setTokenSymbolToState = async () => {
     const tokenInfo: any = await getTokenInfo();
     if (tokenInfo === undefined) {
       return;
     }
     setTokenSymbol(tokenInfo.symbol);
-  };
-
-  const getVotes = async () => {
-    const response = await queryMsg(proposalContract, queryVotes());
-    return response;
   };
 
   const setVotesToState = async () => {
@@ -54,8 +57,8 @@ const useContractProposal = ({ proposalContract, proposalIndex }: any) => {
     proposalInfo,
     vaultProposalInfo,
     voteContract,
-    tokenSymbol,
+    tokenSymbol
   };
 };
 
-export default useContractProposal;
+export default useContractGovernanceProposal;

@@ -1,43 +1,15 @@
-import { useConnectedWallet } from '@terra-money/wallet-provider';
-import useMsg from './useMsg';
-import queryBalance from 'utilities/messagesQuery/cw20/queryBalance';
-import { useEffect, useState } from 'react';
 import { YFD_TEST } from 'utilities/variables/variables';
-import { useRecoilValue } from 'recoil';
-import txHashAtom from 'recoil/txHash/atom';
+import useContractCW20 from './useContractCW20';
 
 const useContractYFD = () => {
-  const { queryMsg } = useMsg();
-  const connectedWallet = useConnectedWallet();
-  const [tokenBalance, setTokenBalance] = useState('0');
-  const txHashInRecoil = useRecoilValue(txHashAtom);
-
-  const getBalance = async () => {
-    if (!connectedWallet) {
-      return;
-    }
-    const response = await queryMsg(
-      YFD_TEST,
-      queryBalance(connectedWallet?.walletAddress)
-    );
-    return response;
-  };
-
-  const setTokenBalanceToState = async () => {
-    const tokenBalance: any = await getBalance();
-    if (tokenBalance === undefined) {
-      setTokenBalance('0');
-      return;
-    }
-    setTokenBalance(tokenBalance.balance);
-  };
-
-  useEffect(() => {
-    setTokenBalanceToState();
-  }, [connectedWallet, YFD_TEST, txHashInRecoil]);
+  const { tokenBalance, tokenInfo, marketingInfo, allAccounts } =
+    useContractCW20(YFD_TEST);
 
   return {
-    tokenBalance
+    tokenBalance,
+    tokenInfo,
+    marketingInfo,
+    allAccounts
   };
 };
 

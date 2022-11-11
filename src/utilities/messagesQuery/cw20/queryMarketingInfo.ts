@@ -1,5 +1,5 @@
-const queryMarkingInfo = () => {
-  return { marking_info: {} };
+const queryMarketingInfo = () => {
+  return { marketing_info: {} };
 };
 
-export default queryMarkingInfo;
+export default queryMarketingInfo;

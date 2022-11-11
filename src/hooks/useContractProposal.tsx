@@ -102,13 +102,22 @@ const useContractProposal = ({ proposalContract, proposalIndex }: any) => {
   };
 
   useEffect(() => {
-    setProposalInfoToState();
-    setVaultProposalInfoToState();
-    setVoteContractToState();
-    setTokenSymbolToState();
+    // setProposalInfoToState();
+    // setVaultProposalInfoToState();
+    // setVoteContractToState();
+    // setTokenSymbolToState();
     // setProposalStateToState();
-    setVotesToState();
+    // setVotesToState();
   }, []);
+
+  useEffect(() => {
+    // setProposalInfoToState();
+    // setVaultProposalInfoToState();
+    // setVoteContractToState();
+    // setTokenSymbolToState();
+    // setProposalStateToState();
+    // setVotesToState();
+  }, [proposalIndex]);
 
   return {
     getProposalInfo,

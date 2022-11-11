@@ -9,7 +9,7 @@ import queryVotes from 'utilities/messagesQuery/proposals/queryVotes';
 import { FORGE_TEST } from 'utilities/variables/variables';
 import queryVaultProposalByIndex from 'utilities/messagesQuery/forge/queryVaultProposalByIndex';
 
-const useContractProposal = ({ proposalContract, proposalIndex }: any) => {
+const useContractVaultProposal = ({ proposalContract, proposalIndex }: any) => {
   const { queryMsg } = useMsg();
   const [proposalInfo, setProposalInfo] = useState<any>({});
   const [vaultProposalInfo, setVaultProposalInfo] = useState<any>({});
@@ -123,4 +123,4 @@ const useContractProposal = ({ proposalContract, proposalIndex }: any) => {
   };
 };
 
-export default useContractProposal;
+export default useContractVaultProposal;
