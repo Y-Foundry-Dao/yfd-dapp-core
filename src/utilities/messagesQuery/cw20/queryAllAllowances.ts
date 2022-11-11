@@ -1,10 +1,10 @@
-const queryAllowance = (owner: any) => {
-  // TODO: add start_after and limit parameters for pagination
+const queryAllAllowances = (owner: any) => {
+  // TODO: handle Pagination by adding start_after and limit parameters
   return {
-    allowance: {
+    all_allowances: {
       owner: owner
     }
   };
 };
 
-export default queryAllowance;
+export default queryAllAllowances;
