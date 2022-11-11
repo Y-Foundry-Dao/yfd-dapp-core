@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react';
 import FinderContractLink from 'components/basic/finder/FinderContractLink';
 import useContractProposal from 'hooks/useContractProposal';
+import useContractVaultProposal from 'hooks/useContractVaultProposal';
 import useContractVote from 'hooks/useContractVote';
 import React, { useState } from 'react';
 import ProposalStatus from '../../governanceProposals/proposalList/proposalInfo/status/ProposalStatus';
@@ -21,7 +22,7 @@ function VaultProposalListAccordionItem({
   proposalContract,
   proposalIndex
 }: any) {
-  const { vaultProposalInfo, voteContract } = useContractProposal({
+  const { vaultProposalInfo, voteContract } = useContractVaultProposal({
     proposalContract,
     proposalIndex
   });
