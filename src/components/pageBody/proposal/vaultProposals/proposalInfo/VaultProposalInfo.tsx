@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { Box, Flex, Text } from '@chakra-ui/react';
 import convertFromBase from 'utilities/converters/convertFromBase';
 import useContractProposal from 'hooks/useContractProposal';
+import useContractVaultProposal from 'hooks/useContractVaultProposal';
 
 function VaultProposalInfo({ proposalContract, proposalIndex }: any) {
-  const { vaultProposalInfo } = useContractProposal({
+  const { vaultProposalInfo } = useContractVaultProposal({
     proposalContract,
     proposalIndex
   });

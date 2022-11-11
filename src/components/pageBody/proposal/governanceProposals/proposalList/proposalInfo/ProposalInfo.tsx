@@ -9,9 +9,10 @@ import convertFromBase from 'utilities/converters/convertFromBase';
 import useContractProposal from 'hooks/useContractProposal';
 import useContractVote from 'hooks/useContractVote';
 import EmergencyVote from '../emergencyVote/EmergencyVote';
+import useContractGovernanceProposal from 'hooks/useContractGovernanceProposal';
 
 function ProposalInfo({ proposalContract, proposalIndex }: any) {
-  const { proposalInfo } = useContractProposal({
+  const { governanceProposalInfo } = useContractGovernanceProposal({
     proposalContract,
     proposalIndex
   });
@@ -19,21 +20,22 @@ function ProposalInfo({ proposalContract, proposalIndex }: any) {
   // const [inputVoteTokenAmount, setInputVoteTokenAmount] = useState(0);
   // const [inputFundingAmount, setInputFundingAmount] = useState(0);
   // const connectedWallet = useConnectedWallet();
-  const objectConverted = Object.keys(proposalInfo);
+  const objectConverted = Object.keys(governanceProposalInfo);
   const proposalType =
-    objectConverted.length !== 0 && Object.keys(proposalInfo.detail)[0];
+    objectConverted.length !== 0 &&
+    Object.keys(governanceProposalInfo.detail)[0];
   return (
     <Flex direction="column" gap={4}>
       {/* <>{console.log(proposalInfo)}</>
       <>{console.log(proposalType)}</> */}
-      <Text>Proposal Name: {proposalInfo.name}</Text>
+      <Text>Proposal Name: {governanceProposalInfo.name}</Text>
       <>Type of Proposal: {proposalType}</>
-      <Text>Closing block: {proposalInfo.closing_block}</Text>
+      <Text>Closing block: {governanceProposalInfo.closing_block}</Text>
       <Text>
         Quorum Block:{' '}
-        {proposalInfo.quorum_block === null
+        {governanceProposalInfo.quorum_block === null
           ? 'Voting still in progress'
-          : proposalInfo.quorum_block}
+          : governanceProposalInfo.quorum_block}
       </Text>
       {/* <>{console.log(proposalInfo.detail.token_whitelist)}</> */}
       {/* <>

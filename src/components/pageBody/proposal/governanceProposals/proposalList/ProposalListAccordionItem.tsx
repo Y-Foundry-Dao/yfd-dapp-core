@@ -13,7 +13,7 @@ import ProposalInfo from './proposalInfo/ProposalInfo';
 import ProposalStatus from './proposalInfo/status/ProposalStatus';
 
 function ProposalListAccordionItem({ proposalContract, proposalIndex }: any) {
-  const { proposalInfo } = useContractGovernanceProposal({
+  const { governanceProposalInfo } = useContractGovernanceProposal({
     proposalContract,
     proposalIndex
   });
@@ -21,7 +21,7 @@ function ProposalListAccordionItem({ proposalContract, proposalIndex }: any) {
     <AccordionItem layerStyle="accordionProposalItem">
       <AccordionButton>
         <Box flex="1" textAlign="left">
-          <Heading size="md">{proposalInfo.name}</Heading>
+          <Heading size="md">{governanceProposalInfo.name}</Heading>
           <Text>
             <FinderContractLink contract={proposalContract} />
           </Text>

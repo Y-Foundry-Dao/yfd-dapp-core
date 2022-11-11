@@ -11,7 +11,6 @@ import queryVaultProposalByIndex from 'utilities/messagesQuery/forge/queryVaultP
 
 const useContractVaultProposal = ({ proposalContract, proposalIndex }: any) => {
   const { queryMsg } = useMsg();
-  const [proposalInfo, setProposalInfo] = useState<any>({});
   const [vaultProposalInfo, setVaultProposalInfo] = useState<any>({});
   const [voteContract, setVoteContract] = useState('');
   const [tokenSymbol, setTokenSymbol] = useState('Vote');
@@ -31,20 +30,9 @@ const useContractVaultProposal = ({ proposalContract, proposalIndex }: any) => {
     return response;
   };
 
-  const getProposalInfoByIndex = async () => {
-    const response = await queryMsg(
-      FORGE_TEST,
-      queryProposalByIndex(proposalIndex)
-    );
+  const getProposalState = async () => {
+    const response = await queryMsg(proposalContract, queryProposalState());
     return response;
-  };
-
-  const setProposalInfoToState = async () => {
-    const proposalInfo: any = await getProposalInfoByIndex();
-    if (proposalInfo === undefined) {
-      return;
-    }
-    setProposalInfo({ ...proposalInfo });
   };
 
   const setVaultProposalInfoToState = async () => {
@@ -53,10 +41,6 @@ const useContractVaultProposal = ({ proposalContract, proposalIndex }: any) => {
       return;
     }
     setVaultProposalInfo({ ...proposalInfo });
-  };
-  const getProposalState = async () => {
-    const response = await queryMsg(proposalContract, queryProposalState());
-    return response;
   };
 
   const setProposalStateToState = async () => {
@@ -102,11 +86,10 @@ const useContractVaultProposal = ({ proposalContract, proposalIndex }: any) => {
   };
 
   useEffect(() => {
-    setProposalInfoToState();
     setVaultProposalInfoToState();
     setVoteContractToState();
     setTokenSymbolToState();
-    // setProposalStateToState();
+    setProposalStateToState();
     setVotesToState();
   }, []);
 
@@ -114,7 +97,6 @@ const useContractVaultProposal = ({ proposalContract, proposalIndex }: any) => {
     getProposalInfo,
     getProposalState,
     getTokenInfo,
-    proposalInfo,
     vaultProposalInfo,
     voteContract,
     tokenSymbol,

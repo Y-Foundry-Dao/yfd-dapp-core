@@ -1,8 +1,8 @@
 import { Text } from '@chakra-ui/react';
-import useContractGovernanceProposal from 'hooks/useContractGovernanceProposal';
+import useContractVaultProposal from 'hooks/useContractVaultProposal';
 
 function ProposalStatus({ proposalContract, proposalIndex }: any) {
-  const { proposalVoteInfo } = useContractGovernanceProposal({
+  const { proposalVoteInfo } = useContractVaultProposal({
     proposalContract
   });
   return (
