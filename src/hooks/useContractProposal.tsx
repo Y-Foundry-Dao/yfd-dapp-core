@@ -11,43 +11,12 @@ import queryVaultProposalByIndex from 'utilities/messagesQuery/forge/queryVaultP
 
 const useContractProposal = ({ proposalContract, proposalIndex }: any) => {
   const { queryMsg } = useMsg();
-  const [vaultProposalInfo, setVaultProposalInfo] = useState<any>({});
   const [voteContract, setVoteContract] = useState('');
   const [tokenSymbol, setTokenSymbol] = useState('Vote');
-  const [proposalState, setProposalState] = useState<any>({});
-  const [proposalVoteInfo, setProposalVoteInfo] = useState<any>({});
 
-  const getProposalInfo = async () => {
-    const response = await queryMsg(proposalContract, queryProposalInfo());
-    return response;
-  };
-
-  const getVaultProposalInfoByIndex = async () => {
-    const response = await queryMsg(
-      FORGE_TEST,
-      queryVaultProposalByIndex(proposalIndex)
-    );
-    return response;
-  };
-
-  const setVaultProposalInfoToState = async () => {
-    const proposalInfo: any = await getVaultProposalInfoByIndex();
-    if (proposalInfo === undefined) {
-      return;
-    }
-    setVaultProposalInfo({ ...proposalInfo });
-  };
   const getProposalState = async () => {
     const response = await queryMsg(proposalContract, queryProposalState());
     return response;
-  };
-
-  const setProposalStateToState = async () => {
-    const proposalState: any = await getProposalState();
-    if (proposalState === undefined) {
-      return;
-    }
-    setProposalState(proposalState);
   };
 
   const setVoteContractToState = async () => {
@@ -71,19 +40,6 @@ const useContractProposal = ({ proposalContract, proposalIndex }: any) => {
     setTokenSymbol(tokenInfo.symbol);
   };
 
-  const getVotes = async () => {
-    const response = await queryMsg(proposalContract, queryVotes());
-    return response;
-  };
-
-  const setVotesToState = async () => {
-    const voteInfo = await getVotes();
-    if (voteInfo === undefined) {
-      return;
-    }
-    setProposalVoteInfo(voteInfo);
-  };
-
   useEffect(() => {
     // setProposalInfoToState();
     // setVaultProposalInfoToState();
@@ -96,21 +52,15 @@ const useContractProposal = ({ proposalContract, proposalIndex }: any) => {
   useEffect(() => {
     // setProposalInfoToState();
     // setVaultProposalInfoToState();
-    // setVoteContractToState();
-    // setTokenSymbolToState();
+    setVoteContractToState();
+    setTokenSymbolToState();
     // setProposalStateToState();
     // setVotesToState();
   }, [proposalIndex]);
 
   return {
-    getProposalInfo,
-    getProposalState,
-    getTokenInfo,
-    vaultProposalInfo,
     voteContract,
-    tokenSymbol,
-    proposalState,
-    proposalVoteInfo
+    tokenSymbol
   };
 };
 

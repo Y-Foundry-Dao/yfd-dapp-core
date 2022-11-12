@@ -1,5 +1,5 @@
 import { Button } from '@chakra-ui/react';
-import useContractProposal from 'hooks/useContractProposal';
+import useContractGovernanceProposal from 'hooks/useContractGovernanceProposal';
 import useHandleClicks from 'hooks/useHandleClicks';
 import { useRecoilValue } from 'recoil';
 import { currentBlockHeightAtom } from 'recoil/chainInfo/atoms';
@@ -7,26 +7,23 @@ import { currentBlockHeightAtom } from 'recoil/chainInfo/atoms';
 function ProposalFinalizeButton({ proposalContract, proposalIndex }: any) {
   const currentBlockHeight = useRecoilValue(currentBlockHeightAtom);
   const { handleClickFinalizeProposal } = useHandleClicks();
-  const { proposalVoteInfo } = useContractProposal({
+  const { proposalVoteInfo } = useContractGovernanceProposal({
     proposalContract
   });
-  return (
-    <>
-      {currentBlockHeight > proposalVoteInfo.expiration ? (
-        <>
-          {proposalVoteInfo.vote_state.NotFinalized && (
-            <Button
-              onClick={async () => {
-                await handleClickFinalizeProposal(proposalIndex);
-              }}
-            >
-              Finalize Proposal
-            </Button>
-          )}
-        </>
-      ) : null}
-    </>
-  );
+  const voteNotFinalized = proposalVoteInfo.vote_state?.NotFinalized;
+  if (voteNotFinalized) {
+    return (
+      <Button
+        onClick={async () => {
+          await handleClickFinalizeProposal(proposalIndex);
+        }}
+      >
+        Finalize Proposal
+      </Button>
+    );
+  } else {
+    return null;
+  }
 }
 
 export default ProposalFinalizeButton;
