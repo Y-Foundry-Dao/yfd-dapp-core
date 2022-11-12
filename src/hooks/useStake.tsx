@@ -9,9 +9,12 @@ import {
 } from 'date-fns';
 import { CHAIN_SECONDS_PER_BLOCK } from 'utilities/variables/variables';
 import convertFromBase from 'utilities/converters/convertFromBase';
+import useChainInfo from './useChainInfo';
 
 // Takes stake information from the stakeYFD list and produces useful values
 const useStake = ({ stake }: any) => {
+  // TODO: add checks against current block height to ensure accuracy
+  const { currentBlockHeight } = useChainInfo();
   const [timeUntilUnlock, setTimeUntilUnlock] = useState<Duration>({});
 
   const depositTimestampInNanoSeconds = Number(stake.stake.deposit_timestamp);
