@@ -1,5 +1,6 @@
 import { Button } from '@chakra-ui/react';
 import useContractProposal from 'hooks/useContractProposal';
+import useContractVaultProposal from 'hooks/useContractVaultProposal';
 import useHandleClicks from 'hooks/useHandleClicks';
 import { useRecoilValue } from 'recoil';
 import { currentBlockHeightAtom } from 'recoil/chainInfo/atoms';
@@ -7,7 +8,7 @@ import { currentBlockHeightAtom } from 'recoil/chainInfo/atoms';
 function ProposalFinalizeButton({ proposalContract, proposalIndex }: any) {
   const currentBlockHeight = useRecoilValue(currentBlockHeightAtom);
   const { handleClickFinalizeProposal } = useHandleClicks();
-  const { proposalVoteInfo } = useContractProposal({
+  const { proposalVoteInfo } = useContractVaultProposal({
     proposalContract
   });
   return (

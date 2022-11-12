@@ -1,14 +1,5 @@
 import { useState } from 'react';
 import { Box, Flex, Text } from '@chakra-ui/react';
-import { useConnectedWallet } from '@terra-money/wallet-provider';
-import VoteTokenBalance from './voting/VoteTokenBalance';
-import VoteButtons from './voting/VoteButtons';
-import InputVoteAmount from './voting/InputVoteAmount';
-import FundProposal from './funding/FundProposal';
-import convertFromBase from 'utilities/converters/convertFromBase';
-import useContractProposal from 'hooks/useContractProposal';
-import useContractVote from 'hooks/useContractVote';
-import EmergencyVote from '../emergencyVote/EmergencyVote';
 import useContractGovernanceProposal from 'hooks/useContractGovernanceProposal';
 
 function ProposalInfo({ proposalContract, proposalIndex }: any) {
