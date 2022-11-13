@@ -197,6 +197,15 @@ const useHandleClicks = () => {
     }
   };
 
+  const handleClickFinalizeVaultProposal = async (index: any) => {
+    if (connectedWallet) {
+      const tx = await executeMsg(FORGE_TEST, {
+        finalize_vault_proposal: { idx: index }
+      });
+      toastSuccessful(tx, SUCCESS_FINALIZED);
+    }
+  };
+
   return {
     handleClickStakeYFD,
     handleClickCreateProposal,
@@ -206,7 +215,8 @@ const useHandleClicks = () => {
     handleClickVoteAbstain,
     handleClickVoteDenyWithPenalty,
     handleClickFinalizeEmergency,
-    handleClickFinalizeProposal
+    handleClickFinalizeProposal,
+    handleClickFinalizeVaultProposal
   };
 };
 

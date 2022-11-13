@@ -11,6 +11,7 @@ function ProposalFinalizeButton({ proposalContract, proposalIndex }: any) {
     proposalContract
   });
   const voteNotFinalized = proposalVoteInfo.vote_state?.NotFinalized;
+  const quorumBlock = proposalVoteInfo.quorum_block;
   if (voteNotFinalized) {
     return (
       <Button
