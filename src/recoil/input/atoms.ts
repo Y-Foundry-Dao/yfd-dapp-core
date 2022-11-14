@@ -93,6 +93,11 @@ const inputNFTAmount = atom({
   default: 100
 });
 
+const inputProposalType = atom({
+  key: 'inputProposalType',
+  default: 'vault'
+});
+
 //~~~~~~~~~~~~~~~~
 // atomFamily only
 //~~~~~~~~~~~~~~~~
@@ -126,5 +131,6 @@ export {
   inputInitialFunding,
   inputNFTAmount,
   inputEmergencyExpiration,
-  inputEmergencyJustification
+  inputEmergencyJustification,
+  inputProposalType
 };

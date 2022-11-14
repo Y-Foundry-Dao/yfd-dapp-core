@@ -6,7 +6,8 @@ import {
   ModalBody,
   ModalCloseButton
 } from '@chakra-ui/react';
-import ProposalCreationForm from './proposalCreationForm/ProposalCreationForm';
+import ProposalCreationForm from './proposalCreationForm/VaultProposalCreationForm';
+import ProposalTypeSelector from './proposalTypeSelector/ProposalTypeSelector';
 
 function ProposalModal({ isOpen, onClose }: any) {
   return (
@@ -14,6 +15,7 @@ function ProposalModal({ isOpen, onClose }: any) {
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Submit your own proposal</ModalHeader>
+        <ProposalTypeSelector />
         <ModalCloseButton />
         <ModalBody>
           <ProposalCreationForm onClose={onClose} />
