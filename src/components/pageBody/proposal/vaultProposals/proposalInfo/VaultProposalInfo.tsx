@@ -1,5 +1,6 @@
-import { Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import useContractVaultProposal from 'hooks/useContractVaultProposal';
+import FundingInfo from './funding/FundingInfo';
 
 function VaultProposalInfo({ proposalContract, proposalIndex }: any) {
   const { vaultProposalInfo } = useContractVaultProposal({

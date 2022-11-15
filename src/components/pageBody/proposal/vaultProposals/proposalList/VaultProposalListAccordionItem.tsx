@@ -4,22 +4,25 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
+  Flex,
   Heading,
   HStack,
-  Text
+  Text,
+  VStack
 } from '@chakra-ui/react';
 import FinderContractLink from 'components/basic/finder/FinderContractLink';
 import useContractProposal from 'hooks/useContractProposal';
 import useContractVaultProposal from 'hooks/useContractVaultProposal';
 import useContractVote from 'hooks/useContractVote';
 import React, { useState } from 'react';
-import ProposalFinalizeButton from '../../governanceProposals/proposalList/proposalInfo/status/ProposalFinalizeButton';
-import ProposalStatus from '../../governanceProposals/proposalList/proposalInfo/status/ProposalStatus';
-import InputVoteAmount from '../../governanceProposals/proposalList/proposalInfo/voting/InputVoteAmount';
-import VoteButtons from '../../governanceProposals/proposalList/proposalInfo/voting/VoteButtons';
-import VoteTokenBalance from '../../governanceProposals/proposalList/proposalInfo/voting/VoteTokenBalance';
-import VaultProposalInfo from '../proposalInfo/VaultProposalInfo';
-import CurrentVotes from '../proposalInfo/voting/CurrentVotes';
+import ProposalFinalizeButton from 'components/pageBody/proposal/vaultProposals/proposalInfo/status/ProposalFinalizeButton';
+import ProposalStatus from 'components/pageBody/proposal/vaultProposals/proposalInfo/status/ProposalStatus';
+import InputVoteAmount from 'components/pageBody/proposal/vaultProposals/proposalInfo/voting/InputVoteAmount';
+import VoteButtons from 'components/pageBody/proposal/vaultProposals/proposalInfo/voting/VoteButtons';
+import VoteTokenBalance from 'components/pageBody/proposal/vaultProposals/proposalInfo/voting/VoteTokenBalance';
+import FundingInfo from 'components/pageBody/proposal/vaultProposals/proposalInfo/funding/FundingInfo';
+import VaultProposalInfo from 'components/pageBody/proposal/vaultProposals/proposalInfo/VaultProposalInfo';
+import CurrentVotes from 'components/pageBody/proposal/vaultProposals/proposalInfo/voting/CurrentVotes';
 
 function VaultProposalListAccordionItem({
   proposalContract,
@@ -49,35 +52,60 @@ function VaultProposalListAccordionItem({
         <AccordionIcon />
       </AccordionButton>
       <AccordionPanel layerStyle="accordionProposalPanel" pb="5">
-        <HStack>
+        <Flex
+          border="1px solid black"
+          borderRadius="md"
+          align="center"
+          justify="space-around"
+          py="4"
+        >
           <VaultProposalInfo
             proposalContract={proposalContract}
             proposalIndex={proposalIndex}
           />
-          <CurrentVotes
+          <FundingInfo
             proposalContract={proposalContract}
             proposalIndex={proposalIndex}
           />
-        </HStack>
-
-        <ProposalFinalizeButton
-          proposalContract={proposalContract}
-          proposalIndex={proposalIndex}
-        />
-        <VoteTokenBalance
-          proposalContract={proposalContract}
-          voteTokenBalance={voteTokenBalance}
-        />
-        <InputVoteAmount
-          voteTokenBalance={voteTokenBalance}
-          inputVoteTokenAmount={inputVoteTokenAmount}
-          setInputVoteTokenAmount={setInputVoteTokenAmount}
-        />
-        <VoteButtons
-          contract={voteContract}
-          voteTokenBalance={voteTokenBalance}
-          inputVoteTokenAmount={inputVoteTokenAmount}
-        />
+          <ProposalFinalizeButton
+            proposalContract={proposalContract}
+            proposalIndex={proposalIndex}
+          />
+        </Flex>
+        <Flex
+          align="center"
+          direction="column"
+          borderRadius="md"
+          border="1px solid black"
+          py="4"
+        >
+          <VoteTokenBalance
+            proposalContract={proposalContract}
+            voteTokenBalance={voteTokenBalance}
+          />
+          <InputVoteAmount
+            voteTokenBalance={voteTokenBalance}
+            inputVoteTokenAmount={inputVoteTokenAmount}
+            setInputVoteTokenAmount={setInputVoteTokenAmount}
+          />
+          <Flex
+            align="center"
+            justify="space-around"
+            borderRadius="md"
+            w="100%"
+            py="4"
+          >
+            <VoteButtons
+              contract={voteContract}
+              voteTokenBalance={voteTokenBalance}
+              inputVoteTokenAmount={inputVoteTokenAmount}
+            />
+            <CurrentVotes
+              proposalContract={proposalContract}
+              proposalIndex={proposalIndex}
+            />
+          </Flex>
+        </Flex>
       </AccordionPanel>
     </AccordionItem>
   );
