@@ -8,6 +8,7 @@ import queryTokenInfo from 'utilities/messagesQuery/cw20/queryTokenInfo';
 import queryVotes from 'utilities/messagesQuery/proposals/queryVotes';
 import { FORGE_TEST } from 'utilities/variables/variables';
 import queryVaultProposalByIndex from 'utilities/messagesQuery/forge/queryVaultProposalByIndex';
+import queryFunds from 'utilities/messagesQuery/proposals/vaultProposal/queryFunds';
 
 const useContractVaultProposal = ({ proposalContract, proposalIndex }: any) => {
   const { queryMsg } = useMsg();
@@ -16,6 +17,7 @@ const useContractVaultProposal = ({ proposalContract, proposalIndex }: any) => {
   const [tokenSymbol, setTokenSymbol] = useState('Vote');
   const [proposalState, setProposalState] = useState<any>({});
   const [proposalVoteInfo, setProposalVoteInfo] = useState<any>({});
+  const [fundingInfo, setFundingInfo] = useState<any>({});
 
   const getProposalInfo = async () => {
     const response = await queryMsg(proposalContract, queryProposalInfo());
@@ -32,6 +34,21 @@ const useContractVaultProposal = ({ proposalContract, proposalIndex }: any) => {
 
   const getProposalState = async () => {
     const response = await queryMsg(proposalContract, queryProposalState());
+    return response;
+  };
+
+  const getTokenInfo = async () => {
+    const response = await queryMsg(proposalContract, queryTokenInfo());
+    return response;
+  };
+
+  const getVotes = async () => {
+    const response = await queryMsg(proposalContract, queryVotes());
+    return response;
+  };
+
+  const getFunds = async () => {
+    const response = await queryMsg(proposalContract, queryFunds());
     return response;
   };
 
@@ -59,22 +76,12 @@ const useContractVaultProposal = ({ proposalContract, proposalIndex }: any) => {
     setVoteContract(proposalState.initial_vote);
   };
 
-  const getTokenInfo = async () => {
-    const response = await queryMsg(proposalContract, queryTokenInfo());
-    return response;
-  };
-
   const setTokenSymbolToState = async () => {
     const tokenInfo: any = await getTokenInfo();
     if (tokenInfo === undefined) {
       return;
     }
     setTokenSymbol(tokenInfo.symbol);
-  };
-
-  const getVotes = async () => {
-    const response = await queryMsg(proposalContract, queryVotes());
-    return response;
   };
 
   const setVotesToState = async () => {
@@ -85,12 +92,21 @@ const useContractVaultProposal = ({ proposalContract, proposalIndex }: any) => {
     setProposalVoteInfo(voteInfo);
   };
 
+  const setFundsToState = async () => {
+    const funds = await getFunds();
+    if (funds === undefined) {
+      return;
+    }
+    setFundingInfo(funds);
+  };
+
   useEffect(() => {
     setVaultProposalInfoToState();
     setVoteContractToState();
     setTokenSymbolToState();
     setProposalStateToState();
     setVotesToState();
+    setFundsToState();
   }, []);
 
   return {
@@ -101,7 +117,8 @@ const useContractVaultProposal = ({ proposalContract, proposalIndex }: any) => {
     voteContract,
     tokenSymbol,
     proposalState,
-    proposalVoteInfo
+    proposalVoteInfo,
+    fundingInfo
   };
 };
 

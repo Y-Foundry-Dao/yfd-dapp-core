@@ -75,6 +75,11 @@ const primary = {
     accordionEmergencyPanel: {
       bgGradient: 'linear(to-br, red.500, red.600, orange.600)',
       borderRadius: 'md'
+    },
+    fundingInfo: {
+      bgGradient: 'linear(to-br, teal.500, blue.300, cyan.400)',
+      borderRadius: 'md',
+      p: '4'
     }
   },
   textStyles: {
