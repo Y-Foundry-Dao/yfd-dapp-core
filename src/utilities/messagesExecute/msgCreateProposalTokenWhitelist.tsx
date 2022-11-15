@@ -7,23 +7,25 @@ const msgCreateProposalTokenWhitelist = (
   isEmergency: boolean,
   justificationLink: string
 ) => {
-  return { create_proposal: {
-                proposal_type: {
-                    token_whitelist: {
-                        token: tokenAddress,
-                        change: {
-                            new: {
-                                name: tokenName,
-                                asset_type: assetType,
-                                stable: isStable,
-                                oracle_address: oracleAddress,
-                            }
-                        }
-                    }
-                },
-                emergency: isEmergency,
-                justification_link: justificationLink
-            } };
+  return {
+    create_proposal: {
+      proposal_type: {
+        token_whitelist: {
+          token: tokenAddress,
+          change: {
+            new: {
+              name: tokenName,
+              asset_type: assetType,
+              stable: isStable,
+              oracle_address: oracleAddress
+            }
+          }
+        }
+      },
+      emergency: isEmergency,
+      justification_link: justificationLink
+    }
+  };
 };
 
 export default msgCreateProposalTokenWhitelist;
