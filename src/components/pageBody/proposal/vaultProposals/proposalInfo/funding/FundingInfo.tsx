@@ -15,11 +15,10 @@ function FundingInfo({ proposalContract, proposalIndex }: any) {
       FundingInfo
       <Text>
         Required Funding:{' '}
-        {convertFromBase(fundingInfo.development_cost).toFixed(2)}
+        {convertFromBase(fundingInfo.development_cost).toFixed(3)}
       </Text>
       <Text>
-        Currently Funded: {convertFromBase(fundingInfo.balance).toFixed(2)}
-        <>{console.log(vaultProposalInfo)}</>
+        Currently Funded: {convertFromBase(fundingInfo.balance).toFixed(3)}
       </Text>
       {fundingInfo.balance < fundingInfo.development_cost
         ? vaultProposalInfo.quorum_block == null && (

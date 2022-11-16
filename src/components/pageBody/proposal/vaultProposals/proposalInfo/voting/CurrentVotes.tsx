@@ -1,9 +1,10 @@
 import { Box, Heading, Text } from '@chakra-ui/react';
 import useContractVaultProposal from 'hooks/useContractVaultProposal';
+import useContractVote from 'hooks/useContractVote';
 import React from 'react';
 
 function CurrentVotes({ proposalContract, proposalIndex }: any) {
-  const { proposalVoteInfo } = useContractVaultProposal({
+  const { proposalVoteInfo, voteContract } = useContractVaultProposal({
     proposalContract,
     proposalIndex
   });
