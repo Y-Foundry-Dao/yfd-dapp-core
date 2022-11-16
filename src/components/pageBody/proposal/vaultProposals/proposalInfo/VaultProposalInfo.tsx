@@ -1,6 +1,7 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 import useContractVaultProposal from 'hooks/useContractVaultProposal';
 import FundingInfo from './funding/FundingInfo';
+import VaultProposalTimer from './VaultProposalTimer';
 
 function VaultProposalInfo({ proposalContract, proposalIndex }: any) {
   const { vaultProposalInfo } = useContractVaultProposal({
@@ -18,6 +19,7 @@ function VaultProposalInfo({ proposalContract, proposalIndex }: any) {
           ? 'Voting still in progress'
           : vaultProposalInfo.quorum_block}
       </Text>
+      <VaultProposalTimer vaultProposalInfo={vaultProposalInfo} />
     </Flex>
   );
 }

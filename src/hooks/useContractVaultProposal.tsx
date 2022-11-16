@@ -25,6 +25,9 @@ const useContractVaultProposal = ({ proposalContract, proposalIndex }: any) => {
   };
 
   const getVaultProposalInfoByIndex = async () => {
+    if (!proposalIndex) {
+      return 'loading';
+    }
     const response = await queryMsg(
       FORGE_TEST,
       queryVaultProposalByIndex(proposalIndex)
@@ -101,13 +104,16 @@ const useContractVaultProposal = ({ proposalContract, proposalIndex }: any) => {
   };
 
   useEffect(() => {
-    setVaultProposalInfoToState();
     setVoteContractToState();
     setTokenSymbolToState();
     setProposalStateToState();
-    setVotesToState();
     setFundsToState();
   }, []);
+
+  useEffect(() => {
+    setVaultProposalInfoToState();
+    setVotesToState();
+  }, [proposalContract, proposalIndex]);
 
   return {
     getProposalInfo,
