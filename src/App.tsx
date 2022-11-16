@@ -3,7 +3,6 @@ import PageBody from 'components/pageBody/PageBody';
 import Footer from 'components/footer/Footer';
 import BackgroundVideo from 'components/basic/BackgroundVideo';
 import ThemeToggle from 'components/basic/ThemeToggle';
-
 import styles from 'styles/app.module.scss';
 
 export default function App() {

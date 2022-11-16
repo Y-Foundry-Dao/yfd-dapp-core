@@ -48,9 +48,28 @@ yarn e2etest
 
 ### Icons
 
+[Font Awesome](https://fontawesome.com/search?o=r&m=free)
+```
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  solid,
+  regular,
+  brands,
+  icon
+} from '@fortawesome/fontawesome-svg-core/import.macro';
+
+export default function Icon() {
+  return (
+      <FontAwesomeIcon icon={solid('bell')} />
+    );
+}
+```
+
 [React Icons](https://react-icons.github.io/react-icons)
+* remove this package
 
 [Chakra Icons](https://chakra-ui.com/docs/components/icon)
+* remove this package
 
 ### Charts
 
