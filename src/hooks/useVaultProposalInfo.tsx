@@ -36,7 +36,6 @@ const useVaultProposalInfo = ({ vaultProposalInfo }: any) => {
     const timeUntilVoteClosedFormatted = formatDuration(
       durationUntilVoteClosed
     );
-    console.log(timeUntilVoteClosedFormatted);
 
     return timeUntilVoteClosedFormatted;
   };
@@ -48,7 +47,6 @@ const useVaultProposalInfo = ({ vaultProposalInfo }: any) => {
 
   const setTimeUntilVoteClosedToState = () => {
     const time = getEstimatedTimeUntilVoteClose();
-    console.log('time in set', time);
     setTimeUntilVoteClosed(time);
   };
 
