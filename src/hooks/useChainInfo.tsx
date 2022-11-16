@@ -30,8 +30,8 @@ const useChainInfo = () => {
 
   useEffect(() => {
     const interval = setInterval(async () => {
-      await setCurrentBlockHeightToState();
-    }, 30000);
+      return setCurrentBlockHeight(await getCurrentBlockHeight());
+    }, 6000);
     return () => clearInterval(interval);
   }, []);
 

@@ -6,12 +6,14 @@ import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import txHashAtom from 'recoil/txHash/atom';
 import useContractProposal from './useContractProposal';
+import queryVotes from 'utilities/messagesQuery/proposals/queryVotes';
 
 const useContractVote = ({ proposalContract }: any) => {
   const { queryMsg } = useMsg();
   const connectedWallet = useConnectedWallet();
   const { voteContract } = useContractProposal({ proposalContract });
   const [voteTokenBalance, setVoteTokenBalance] = useState(0);
+  const [voteCount, setVoteCount] = useState({});
   const txHashInRecoil = useRecoilValue(txHashAtom);
 
   const getVoteTokenBalance = async () => {
@@ -25,6 +27,11 @@ const useContractVote = ({ proposalContract }: any) => {
     return voteTokenBalance;
   };
 
+  const getVotes = async () => {
+    const response: any = await queryMsg(voteContract, queryVotes());
+    return response;
+  };
+
   const setVoteTokenBalanceToState = async () => {
     const tokenBalance = await getVoteTokenBalance();
     if (tokenBalance === undefined) {
@@ -33,13 +40,23 @@ const useContractVote = ({ proposalContract }: any) => {
     setVoteTokenBalance(tokenBalance.balance);
   };
 
+  const setVotesToState = async () => {
+    const votes = await getVotes();
+    if (votes === undefined) {
+      return;
+    }
+    setVoteCount({ ...votes });
+  };
+
   useEffect(() => {
     setVoteTokenBalanceToState();
-  }, [connectedWallet, txHashInRecoil]);
+    setVotesToState();
+  }, [connectedWallet, txHashInRecoil, voteContract]);
 
   return {
     // getVoteTokenBalance,
-    voteTokenBalance
+    voteTokenBalance,
+    voteCount
   };
 };
 
