@@ -11,16 +11,12 @@ const links = [
 export default function NavTop() {
   return (
     <>
-    <HStack
-      as={'nav'}
-      spacing={4}
-      display={{ base: 'none', md: 'flex' }}
-    >
-      {links.map((link, i) => (
-        <NavLink key={i} link={link} />
-      ))}
-    </HStack>
-    <BurgerChakra />
+      <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
+        {links.map((link, i) => (
+          <NavLink key={i} link={link} />
+        ))}
+      </HStack>
+      <BurgerChakra />
     </>
   );
 }

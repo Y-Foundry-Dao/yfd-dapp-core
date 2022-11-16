@@ -42,8 +42,6 @@ yarn e2etest
 
 ### Styling
 
-[Chakra UI](https://chakra-ui.com/)
-
 [Saas Design](https://saas-ui.dev/)
 
 ### Icons

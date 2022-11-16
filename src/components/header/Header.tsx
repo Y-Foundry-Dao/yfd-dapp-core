@@ -7,19 +7,13 @@ import NotifyBell from 'components/basic/NotifyBell';
 
 import styles from 'styles/app.module.scss';
 
-const links = [
-  { label: 'Dashboard', link: '/' },
-  { label: 'Vaults', link: '/' },
-  { label: 'Governance', link: '/' }
-];
-
 export default function Header() {
   return (
     <>
       <Box px={4} className={styles['header-menu']}>
         <Flex>
           <HStack spacing={8} alignItems={'center'}>
-            <Image h={12} src={yLogo} alt="y logo" />
+            <Image h={10} src={yLogo} alt="y logo" />
           </HStack>
           <Flex alignItems={'center'} gap={{ base: 4, sm: 8 }}>
             <NotifyBell />
