@@ -1,8 +1,8 @@
 import { Box, Text } from '@chakra-ui/react';
 import useContractVaultProposal from 'hooks/useContractVaultProposal';
-import React from 'react';
+import { useRecoilValue } from 'recoil';
+import { currentBlockHeightAtom } from 'recoil/chainInfo/atoms';
 import convertFromBase from 'utilities/converters/convertFromBase';
-import convertToBase from 'utilities/converters/convertToBase';
 import FundProposal from './FundProposal';
 
 function FundingInfo({ proposalContract, proposalIndex }: any) {
@@ -10,6 +10,26 @@ function FundingInfo({ proposalContract, proposalIndex }: any) {
     proposalContract,
     proposalIndex
   });
+  const currentBlockHeight = useRecoilValue(currentBlockHeightAtom);
+  const isCurrentBlockBeforeClosingBlock = () => {
+    return currentBlockHeight < vaultProposalInfo.closing_block;
+  };
+  const isCurrentFundingLessThanRequiredAmount = () => {
+    return Number(fundingInfo.balance) < Number(fundingInfo.development_cost);
+  };
+  const isNotAtQuorum = () => {
+    return (
+      vaultProposalInfo.quorum_block == null ||
+      currentBlockHeight < vaultProposalInfo.quorum_block
+    );
+  };
+  const isFundable = () => {
+    return (
+      isCurrentBlockBeforeClosingBlock() &&
+      isCurrentFundingLessThanRequiredAmount() &&
+      isNotAtQuorum()
+    );
+  };
   return (
     <Box layerStyle="fundingInfo">
       FundingInfo
@@ -20,11 +40,7 @@ function FundingInfo({ proposalContract, proposalIndex }: any) {
       <Text>
         Currently Funded: {convertFromBase(fundingInfo.balance).toFixed(3)}
       </Text>
-      {fundingInfo.balance < fundingInfo.development_cost
-        ? vaultProposalInfo.quorum_block == null && (
-            <FundProposal proposalContract={proposalContract} />
-          )
-        : null}
+      {isFundable() && <FundProposal proposalContract={proposalContract} />}
     </Box>
   );
 }

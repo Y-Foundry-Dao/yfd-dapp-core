@@ -8,10 +8,11 @@ import {
 import msgExecuteEmergencyEndProposal from 'utilities/messagesExecute/msgExecuteEmergencyEndProposal';
 import { SUCCESS_INITIATE_EMERGENCY } from 'utilities/variables/toastMessages';
 import useTx from './useTx';
+import msgMintNFT from 'utilities/messagesExecute/msgMintNFT';
 
 // Needed to create a separate hook that takes a proposalIndex
 // did this to use it in the inputExpirationEmergency atomFamily
-const useHandleClicksProposal = ({ proposalIndex }: any) => {
+const useHandleClicksProposal = ({ proposalContract, proposalIndex }: any) => {
   const { executeMsg } = useMsg();
   const { toastSuccessful } = useTx();
 
@@ -22,6 +23,11 @@ const useHandleClicksProposal = ({ proposalIndex }: any) => {
   const emergencyJustification = useRecoilValue(
     inputEmergencyJustification(proposalIndex)
   );
+
+  const handleClickMintNFT = async () => {
+    const tx = await executeMsg(proposalContract, msgMintNFT());
+    toastSuccessful(tx, SUCCESS_INITIATE_EMERGENCY);
+  };
 
   const handleClickEmergencyEndProposal = async () => {
     const msgEmergencyEndProposal = msgExecuteEmergencyEndProposal(
@@ -34,7 +40,8 @@ const useHandleClicksProposal = ({ proposalIndex }: any) => {
   };
 
   return {
-    handleClickEmergencyEndProposal
+    handleClickEmergencyEndProposal,
+    handleClickMintNFT
   };
 };
 
