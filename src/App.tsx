@@ -315,7 +315,12 @@ export default function App() {
                         Vault: Larry's Governance Block
                       </div>
                       <span className={styles.status}>
-                        <span className={styles['status-circle green']}></span>
+                        <span
+                          className={[
+                            styles['status-circle'],
+                            styles.green
+                          ].join(' ')}
+                        ></span>
                         Updated
                       </span>
                       <div className={styles['button-wrapper']}>
