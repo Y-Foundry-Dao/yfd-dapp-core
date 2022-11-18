@@ -1,6 +1,5 @@
 import Header from 'components/header/Header';
 import PageBody from 'components/pageBody/PageBody';
-import Footer from 'components/footer/Footer';
 import BackgroundVideo from 'components/basic/BackgroundVideo';
 import ThemeToggle from 'components/basic/ThemeToggle';
 import styles from 'styles/app.module.scss';
@@ -9,6 +8,7 @@ export default function App() {
   return (
     <main>
       <BackgroundVideo />
+      <ThemeToggle />
       <div className={styles.app}>
         <div className={styles.header}>
           <Header />
@@ -176,6 +176,12 @@ export default function App() {
                   src="https://assets.codepen.io/3364143/glass.png"
                   alt=""
                 />
+              </div>
+              <div className={styles['content-section']}>
+                <div className={styles['content-section-title']}>
+                  Vaults Available
+                </div>
+                <PageBody />
               </div>
               <div className={styles['content-section']}>
                 <div className={styles['content-section-title']}>
