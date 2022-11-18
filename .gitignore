@@ -4,3 +4,4 @@ build/
 
 .vscodeyarn-error.log
 .yarnclean
+.vscode

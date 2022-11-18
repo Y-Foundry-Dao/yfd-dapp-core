@@ -7,11 +7,16 @@ import {
   icon
 } from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
 
-export default function ProposalsFeatured() {
+import VaultProposals from './proposal/vaultProposals/VaultProposals';
+
+export default function ProposalsList() {
   return (
     <>
       <div className={styles['content-section']}>
-        <div className={styles['content-section-title']}>Latest Proposals</div>
+        <div className={styles['content-section-title']}>
+          Latest Vault Proposals
+        </div>
+        <VaultProposals />
         <ul>
           <li className={styles['adobe-product']}>
             <div className={styles.products}>

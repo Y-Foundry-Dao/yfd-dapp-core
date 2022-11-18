@@ -11,7 +11,13 @@ import ProposalTypeSelector from './proposalTypeSelector/ProposalTypeSelector';
 
 function ProposalModal({ isOpen, onClose }: any) {
   return (
-    <Modal size={['lg', '2xl', '3xl', '4xl']} isOpen={isOpen} onClose={onClose}>
+    <Modal
+      size={['lg', '2xl', '3xl', '4xl']}
+      isOpen={isOpen}
+      onClose={onClose}
+      isCentered
+      useInert={false}
+    >
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Submit your own proposal</ModalHeader>

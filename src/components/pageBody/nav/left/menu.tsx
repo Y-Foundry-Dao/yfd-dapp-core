@@ -6,8 +6,13 @@ import {
   brands,
   icon
 } from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
+import { useDisclosure } from '@chakra-ui/react';
+import ProposalModal from 'components/pageBody/proposal/proposalCreationModal/ProposalModal';
+import ProposalModalButton from 'components/pageBody/proposal/proposalCreationModal/ProposalModalButton';
 
-export default function MenuLeft() {
+function MenuLeft() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <>
       <div className={styles['side-wrapper']}>
@@ -76,11 +81,11 @@ export default function MenuLeft() {
       <div className={styles['side-wrapper']}>
         <div className={styles['side-title']}>Governance</div>
         <div className={styles['side-menu']}>
+          <ProposalModalButton onOpen={onOpen} />
+          <ProposalModal isOpen={isOpen} onClose={onClose} />
           <a href="#">
-            <svg viewBox="0 0 332 332" fill="currentColor">
-              <path d="M282.341 8.283C275.765 2.705 266.211 0 253.103 0c-18.951 0-36.359 5.634-51.756 16.743-14.972 10.794-29.274 28.637-42.482 53.028-4.358 7.993-7.428 11.041-8.973 12.179h-26.255c-10.84 0-19.626 8.786-19.626 19.626 0 8.989 6.077 16.486 14.323 18.809l-.05.165h.589c1.531.385 3.109.651 4.757.651h18.833l-32.688 128.001c-7.208 27.848-10.323 37.782-11.666 41.24-1.445 3.711-3.266 7.062-5.542 10.135-.42-5.39-2.637-10.143-6.508-13.854-4.264-4.079-10.109-6.136-17.364-6.136-8.227 0-15.08 2.433-20.37 7.229-5.416 4.93-8.283 11.193-8.283 18.134 0 5.157 1.701 12.712 9.828 19.348 6.139 4.97 14.845 7.382 26.621 7.382 17.096 0 32.541-4.568 45.891-13.577 13.112-8.845 24.612-22.489 34.166-40.522 9.391-17.678 18.696-45.124 28.427-83.9l18.598-73.479h30.016c10.841 0 19.625-8.785 19.625-19.625s-8.784-19.626-19.625-19.626h-19.628c6.34-21.62 14.175-37.948 23.443-48.578 2.284-2.695 5.246-5.692 8.412-7.678-1.543 3.392-2.325 6.767-2.325 10.055 0 6.164 2.409 11.714 6.909 16.03 4.484 4.336 10.167 6.54 16.888 6.54 7.085 0 13.373-2.667 18.17-7.716 4.76-5.005 7.185-11.633 7.185-19.703.017-9.079-3.554-16.899-10.302-22.618z" />
-            </svg>
-            fYFD Deposit
+            <FontAwesomeIcon fill="currentColor" icon={solid('coins')} />
+            Deposit fYFD
           </a>
           <a href="#">
             <svg viewBox="0 0 512 512" fill="currentColor">
@@ -152,3 +157,5 @@ export default function MenuLeft() {
     </>
   );
 }
+
+export default MenuLeft;
