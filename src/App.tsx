@@ -206,7 +206,10 @@ export default function App() {
                     </div>
                     <div className={styles['app-card-buttons']}>
                       <button
-                        className={styles['content-button status-button']}
+                        className={[
+                          styles['content-button'],
+                          styles['status-button']
+                        ].join(' ')}
                       >
                         Learn More
                       </button>
@@ -234,7 +237,10 @@ export default function App() {
                     </div>
                     <div className={styles['app-card-buttons']}>
                       <button
-                        className={styles['content-button status-button']}
+                        className={[
+                          styles['content-button'],
+                          styles['status-button']
+                        ].join(' ')}
                       >
                         Learn More
                       </button>
@@ -262,7 +268,10 @@ export default function App() {
                     </div>
                     <div className={styles['app-card-buttons']}>
                       <button
-                        className={styles['content-button status-button']}
+                        className={[
+                          styles['content-button'],
+                          styles['status-button']
+                        ].join(' ')}
                       >
                         Deposit
                       </button>
@@ -311,9 +320,11 @@ export default function App() {
                       </span>
                       <div className={styles['button-wrapper']}>
                         <button
-                          className={
-                            styles['content-button status-button open']
-                          }
+                          className={[
+                            styles['content-button'],
+                            styles['status-button'],
+                            styles['open']
+                          ].join(' ')}
                         >
                           Open
                         </button>
@@ -359,7 +370,10 @@ export default function App() {
                       </span>
                       <div className={styles['button-wrapper']}>
                         <button
-                          className={styles['content-button status-button']}
+                          className={[
+                            styles['content-button'],
+                            styles['status-button']
+                          ].join(' ')}
                         >
                           Vote on Proposal
                         </button>
@@ -374,9 +388,11 @@ export default function App() {
                               stroke-width="2"
                               stroke-linecap="round"
                               stroke-linejoin="round"
-                              className={
-                                styles['close feather feather-x-circle']
-                              }
+                              className={[
+                                styles['close'],
+                                styles.feather,
+                                styles['feather-x-circle']
+                              ].join(' ')}
                             >
                               <circle cx="12" cy="12" r="10" />
                               <path d="M15 9l-6 6M9 9l6 6" />
@@ -407,16 +423,20 @@ export default function App() {
                           </div>
                           <div className={styles['content-button-wrapper']}>
                             <button
-                              className={
-                                styles[
-                                  'content-button status-button open close'
-                                ]
-                              }
+                              className={[
+                                styles['content-button'],
+                                styles['status-button'],
+                                styles.open,
+                                styles.close
+                              ].join(' ')}
                             >
                               Cancel
                             </button>
                             <button
-                              className={styles['content-button status-button']}
+                              className={[
+                                styles['content-button'],
+                                styles['status-button']
+                              ].join(' ')}
                             >
                               Continue
                             </button>
@@ -458,14 +478,21 @@ export default function App() {
                         Emergency: Stop Vault
                       </div>
                       <span className={styles.status}>
-                        <span className={styles['status-circle green']}></span>
+                        <span
+                          className={[
+                            styles['status-circle'],
+                            styles['green']
+                          ].join(' ')}
+                        ></span>
                         Updated
                       </span>
                       <div className={styles['button-wrapper']}>
                         <button
-                          className={
-                            styles['content-button status-button open']
-                          }
+                          className={[
+                            styles['content-button'],
+                            styles['status-button'],
+                            styles.open
+                          ].join(' ')}
                         >
                           Open
                         </button>
