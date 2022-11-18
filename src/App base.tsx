@@ -11,7 +11,36 @@ export default function App() {
       <BackgroundVideo />
       <div className={styles.app}>
         <div className={styles.header}>
-          <Header />
+          <div className={styles.logo}>
+            <img
+              src="https://brand.yfoundry.io/static/media/horizontal_logo_orange&white.e1bc7eb8ecebbb4680bc345a298b994c.svg"
+              height="30"
+            />
+          </div>
+          <div className={styles['header-menu']}></div>
+          <div className={styles['header-profile']}>
+            <div className={styles.notification}>
+              <span className={styles['notification-number']}>3</span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                className={styles['feather feather-bell']}
+              >
+                <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" />
+              </svg>
+            </div>
+            <div>
+              <input
+                type="button"
+                className={styles['content-button']}
+                value="Connect Wallet"
+              />
+            </div>
+          </div>
         </div>
         <div className={styles.wrapper}>
           <div className={styles['left-side']}>
