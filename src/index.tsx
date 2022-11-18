@@ -3,6 +3,7 @@ import { RecoilRoot } from 'recoil';
 import { getChainOptions, WalletProvider } from '@terra-money/wallet-provider';
 
 // theme styling of UI
+import '@csstools/normalize.css';
 import { extendTheme } from '@chakra-ui/react';
 import { baseTheme, SaasProvider } from '@saas-ui/react';
 
