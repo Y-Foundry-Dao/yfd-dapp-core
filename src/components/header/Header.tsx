@@ -2,8 +2,9 @@ import { Box, Flex, HStack, Image } from '@chakra-ui/react';
 import yLogo from 'assets/yfd/logo-horizontal-orange-white.svg';
 import WalletConnect from './walletConnect/WalletConnect';
 import TopNav from './navigation/NavTop';
-import StakeYFD from 'components/pageBody/stake/StakeYFD';
 import NotifyBell from 'components/basic/NotifyBell';
+import StakedYFD from 'components/basic/stake/stakedYFD/StakedYFD';
+import FYFD from 'components/basic/StakeYFD';
 
 import styles from 'styles/app.module.scss';
 
@@ -15,6 +16,7 @@ export default function Header() {
       </div>
       <div className={styles['header-menu']}></div>
       <div className={styles['header-profile']}>
+        <FYFD />
         <WalletConnect />
       </div>
     </>

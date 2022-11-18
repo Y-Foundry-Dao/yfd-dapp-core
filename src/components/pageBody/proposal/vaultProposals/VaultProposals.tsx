@@ -11,9 +11,6 @@ function VaultProposals() {
         'no proposals'
       ) : (
         <>
-          <Heading as="h2" size="lg">
-            Current Vault Proposals
-          </Heading>
           <VaultProposalListAccordions proposals={vaultProposals} />
         </>
       )}

@@ -10,9 +10,6 @@ function GovernanceProposals() {
         'no proposals'
       ) : (
         <>
-          <Heading as="h2" size="lg">
-            Current Governance Proposals
-          </Heading>
           <ProposalListAccordions proposals={governanceProposals} />
         </>
       )}

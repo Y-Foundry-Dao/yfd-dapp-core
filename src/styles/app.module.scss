@@ -157,6 +157,23 @@ body.light-mode .video-bg:before {
  font-weight: 500;
 }
 
+.portal {
+    background-color: var(--theme-bg-color);
+    display: flex;
+    flex-direction: column;
+    overflow: show;
+    position: relative;
+    border-width: 3px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgb(255 255 255 / 45%) 100%
+       );
+   }
+
 .header {
  display: flex;
  align-items: center;
