@@ -71,6 +71,7 @@
     "framer-motion": "^7.4.0",
     "loader-utils": "^3.2.1",
     "react": "^18.2.0",
+    "react-app-rewired": "^2.2.1",
     "react-currency-input-field": "^3.6.5",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
