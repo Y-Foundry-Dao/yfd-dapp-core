@@ -1,5 +1,6 @@
 import Header from 'components/header/Header';
 import PageBody from 'components/pageBody/PageBody';
+import Footer from 'components/footer/Footer';
 import BackgroundVideo from 'components/basic/BackgroundVideo';
 import ThemeToggle from 'components/basic/ThemeToggle';
 import styles from 'styles/app.module.scss';
@@ -8,10 +9,38 @@ export default function App() {
   return (
     <main>
       <BackgroundVideo />
-      <ThemeToggle />
       <div className={styles.app}>
         <div className={styles.header}>
-          <Header />
+          <div className={styles.logo}>
+            <img
+              src="https://brand.yfoundry.io/static/media/horizontal_logo_orange&white.e1bc7eb8ecebbb4680bc345a298b994c.svg"
+              height="30"
+            />
+          </div>
+          <div className={styles['header-menu']}></div>
+          <div className={styles['header-profile']}>
+            <div className={styles.notification}>
+              <span className={styles['notification-number']}>3</span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                className={styles['feather feather-bell']}
+              >
+                <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" />
+              </svg>
+            </div>
+            <div>
+              <input
+                type="button"
+                className={styles['content-button']}
+                value="Connect Wallet"
+              />
+            </div>
+          </div>
         </div>
         <div className={styles.wrapper}>
           <div className={styles['left-side']}>
@@ -46,12 +75,7 @@ export default function App() {
                     <path d="M243.158 61.361v-57.6c0-3.2 4-4.9 6.7-2.9l118.4 87c2 1.5 2 4.4 0 5.9l-118.4 87c-2.7 2-6.7.2-6.7-2.9v-57.5c-87.8 1.4-158.1 76-152.1 165.4 5.1 76.8 67.7 139.1 144.5 144 81.4 5.2 150.6-53 163-129.9 2.3-14.3 14.7-24.7 29.2-24.7 17.9 0 31.8 15.9 29 33.5-17.4 109.7-118.5 192-235.7 178.9-98-11-176.7-89.4-187.8-187.4-14.7-128.2 84.9-237.4 209.9-238.8z" />
                   </svg>
                   Updates
-                  <span
-                    className={[
-                      styles['notification-number'],
-                      styles.updates
-                    ].join(' ')}
-                  >
+                  <span className={styles['notification-number updates']}>
                     3
                   </span>
                 </a>
@@ -186,12 +210,6 @@ export default function App() {
                 <div className={styles['content-section-title']}>
                   Vaults Available
                 </div>
-                <PageBody />
-              </div>
-              <div className={styles['content-section']}>
-                <div className={styles['content-section-title']}>
-                  Vaults Available
-                </div>
                 <div className={styles['apps-card']}>
                   <div className={styles['app-card']}>
                     <span>
@@ -206,10 +224,7 @@ export default function App() {
                     </div>
                     <div className={styles['app-card-buttons']}>
                       <button
-                        className={[
-                          styles['content-button'],
-                          styles['status-button']
-                        ].join(' ')}
+                        className={styles['content-button status-button']}
                       >
                         Learn More
                       </button>
@@ -237,10 +252,7 @@ export default function App() {
                     </div>
                     <div className={styles['app-card-buttons']}>
                       <button
-                        className={[
-                          styles['content-button'],
-                          styles['status-button']
-                        ].join(' ')}
+                        className={styles['content-button status-button']}
                       >
                         Learn More
                       </button>
@@ -268,10 +280,7 @@ export default function App() {
                     </div>
                     <div className={styles['app-card-buttons']}>
                       <button
-                        className={[
-                          styles['content-button'],
-                          styles['status-button']
-                        ].join(' ')}
+                        className={styles['content-button status-button']}
                       >
                         Deposit
                       </button>
@@ -315,21 +324,14 @@ export default function App() {
                         Vault: Larry's Governance Block
                       </div>
                       <span className={styles.status}>
-                        <span
-                          className={[
-                            styles['status-circle'],
-                            styles.green
-                          ].join(' ')}
-                        ></span>
+                        <span className={styles['status-circle green']}></span>
                         Updated
                       </span>
                       <div className={styles['button-wrapper']}>
                         <button
-                          className={[
-                            styles['content-button'],
-                            styles['status-button'],
-                            styles['open']
-                          ].join(' ')}
+                          className={
+                            styles['content-button status-button open']
+                          }
                         >
                           Open
                         </button>
@@ -375,10 +377,7 @@ export default function App() {
                       </span>
                       <div className={styles['button-wrapper']}>
                         <button
-                          className={[
-                            styles['content-button'],
-                            styles['status-button']
-                          ].join(' ')}
+                          className={styles['content-button status-button']}
                         >
                           Vote on Proposal
                         </button>
@@ -393,11 +392,9 @@ export default function App() {
                               stroke-width="2"
                               stroke-linecap="round"
                               stroke-linejoin="round"
-                              className={[
-                                styles['close'],
-                                styles.feather,
-                                styles['feather-x-circle']
-                              ].join(' ')}
+                              className={
+                                styles['close feather feather-x-circle']
+                              }
                             >
                               <circle cx="12" cy="12" r="10" />
                               <path d="M15 9l-6 6M9 9l6 6" />
@@ -428,20 +425,16 @@ export default function App() {
                           </div>
                           <div className={styles['content-button-wrapper']}>
                             <button
-                              className={[
-                                styles['content-button'],
-                                styles['status-button'],
-                                styles.open,
-                                styles.close
-                              ].join(' ')}
+                              className={
+                                styles[
+                                  'content-button status-button open close'
+                                ]
+                              }
                             >
                               Cancel
                             </button>
                             <button
-                              className={[
-                                styles['content-button'],
-                                styles['status-button']
-                              ].join(' ')}
+                              className={styles['content-button status-button']}
                             >
                               Continue
                             </button>
@@ -483,21 +476,14 @@ export default function App() {
                         Emergency: Stop Vault
                       </div>
                       <span className={styles.status}>
-                        <span
-                          className={[
-                            styles['status-circle'],
-                            styles['green']
-                          ].join(' ')}
-                        ></span>
+                        <span className={styles['status-circle green']}></span>
                         Updated
                       </span>
                       <div className={styles['button-wrapper']}>
                         <button
-                          className={[
-                            styles['content-button'],
-                            styles['status-button'],
-                            styles.open
-                          ].join(' ')}
+                          className={
+                            styles['content-button status-button open']
+                          }
                         >
                           Open
                         </button>
