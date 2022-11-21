@@ -9,15 +9,40 @@ import queryVotes from 'utilities/messagesQuery/proposals/queryVotes';
 import { FORGE_TEST } from 'utilities/variables/variables';
 import queryVaultProposalByIndex from 'utilities/messagesQuery/forge/queryVaultProposalByIndex';
 import queryFunds from 'utilities/messagesQuery/proposals/vaultProposal/queryFunds';
+import queryNftInfo from 'utilities/messagesQuery/proposals/vaultProposal/queryNftInfo';
+import { isTxError } from '@terra-money/terra.js';
+import { terra } from 'utilities/lcd';
 
 const useContractVaultProposal = ({ proposalContract, proposalIndex }: any) => {
-  const { queryMsg } = useMsg();
+  const { queryMsg, queryContractInfo } = useMsg();
   const [vaultProposalInfo, setVaultProposalInfo] = useState<any>({});
   const [voteContract, setVoteContract] = useState('');
   const [tokenSymbol, setTokenSymbol] = useState('Vote');
   const [proposalState, setProposalState] = useState<any>({});
   const [proposalVoteInfo, setProposalVoteInfo] = useState<any>({});
   const [fundingInfo, setFundingInfo] = useState<any>({});
+  const [nftContractInfo, setNftContractInfo] = useState<any>({});
+
+  const isFundingMet = () => {
+    return fundingInfo.balance === fundingInfo.development_cost;
+  };
+
+  const isProposalAffirmed = () => {
+    if (Object.keys(proposalVoteInfo).length > 0) {
+      if (proposalVoteInfo.vote_state?.Affirm) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  };
+
+  const getContractInfoProposal = async () => {
+    const response = await queryContractInfo(proposalContract);
+    return response;
+  };
 
   const getProposalInfo = async () => {
     const response = await queryMsg(proposalContract, queryProposalInfo());
@@ -53,6 +78,19 @@ const useContractVaultProposal = ({ proposalContract, proposalIndex }: any) => {
   const getFunds = async () => {
     const response = await queryMsg(proposalContract, queryFunds());
     return response;
+  };
+
+  const getNftInfo = async () => {
+    if (isFundingMet() && isProposalAffirmed()) {
+      try {
+        const response: any = await queryMsg(proposalContract, queryNftInfo());
+        return response;
+      } catch (e) {
+        console.error('inside error:', e);
+      }
+    } else {
+      return {};
+    }
   };
 
   const setVaultProposalInfoToState = async () => {
@@ -98,9 +136,19 @@ const useContractVaultProposal = ({ proposalContract, proposalIndex }: any) => {
   const setFundsToState = async () => {
     const funds = await getFunds();
     if (funds === undefined) {
+      setFundingInfo({});
       return;
     }
     setFundingInfo(funds);
+  };
+
+  const setNftInfoToState = async () => {
+    const nftInfo = await getNftInfo();
+    if (nftInfo === undefined) {
+      setNftContractInfo({});
+      return;
+    }
+    setNftContractInfo(nftInfo);
   };
 
   useEffect(() => {
@@ -115,6 +163,10 @@ const useContractVaultProposal = ({ proposalContract, proposalIndex }: any) => {
     setVotesToState();
   }, [proposalContract, proposalIndex]);
 
+  useEffect(() => {
+    setNftInfoToState();
+  }, [fundingInfo, proposalVoteInfo]);
+
   return {
     getProposalInfo,
     getProposalState,
@@ -124,7 +176,8 @@ const useContractVaultProposal = ({ proposalContract, proposalIndex }: any) => {
     tokenSymbol,
     proposalState,
     proposalVoteInfo,
-    fundingInfo
+    fundingInfo,
+    nftContractInfo
   };
 };
 

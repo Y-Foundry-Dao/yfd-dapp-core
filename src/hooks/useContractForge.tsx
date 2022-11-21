@@ -133,6 +133,10 @@ const useContractForge = () => {
   const setAllVaultProposalsToState = async () => {
     try {
       const vaultProposals: any = await getAllVaultProposals();
+      if (vaultProposals === undefined) {
+        setVaultProposals([]);
+        return;
+      }
       setVaultProposals(vaultProposals.proposals);
     } catch (e) {
       console.log('error', e);
@@ -141,6 +145,10 @@ const useContractForge = () => {
 
   const setAllGovernanceProposalsToState = async () => {
     const governanceProposals: any = await getAllProposalContracts();
+    if (governanceProposals === undefined) {
+      setGovernanceProposals([]);
+      return;
+    }
     setGovernanceProposals(governanceProposals.proposals);
   };
 
@@ -168,6 +176,10 @@ const useContractForge = () => {
 
   const setRequiredInitialFundingToState = async () => {
     const vaultFundingMath: any = await getVaultFundingMath();
+    if (vaultFundingMath === undefined) {
+      setRequiredInitialFunding('0');
+      return;
+    }
     const convertedRequiredInitialFunding = convertFromBase(
       vaultFundingMath.strategist_min
     );
