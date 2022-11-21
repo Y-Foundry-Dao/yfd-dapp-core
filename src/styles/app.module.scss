@@ -442,21 +442,22 @@ body.light-mode .video-bg:before {
   align-items: center;
   width: 100%;
   justify-content: space-between;
-  background-image: url("https://c4.wallpaperflare.com/wallpaper/624/781/96/blacksmith-embers-mallet-tools-wallpaper-preview.jpg"),
+  filter: drop-shadow( 3px 3px 5px #000 );
+  background-image: 
    linear-gradient(
     to right top,
-    #cf4af3,
-    #e73bd7,
-    #f631bc,
-    #fd31a2,
-    #ff3a8b,
-    #ff4b78,
-    #ff5e68,
-    #ff705c,
-    #ff8c51,
-    #ffaa49,
-    #ffc848,
-    #ffe652
+    #000000,
+    #131313,
+    #202020,
+    #242424,
+    #3f3f3f,
+    #4c4c4c,
+    #5a5a5a,
+    #6c6c6c,
+    #787878,
+    #989898,
+    #b5b5b5,
+    #adadad
    );
   border-radius: 14px;
   padding: 20px 40px;
@@ -591,7 +592,7 @@ body.light-mode .video-bg:before {
  }
 }
 
-.products {
+.proposals {
  display: flex;
  align-items: center;
  width: 150px;
@@ -652,7 +653,7 @@ body.light-mode .video-bg:before {
 }
 
 @media screen and (max-width: 415px) {
- .adobe-product .menu {
+ .proposal-list .menu {
   display: none;
  }
 }
@@ -701,7 +702,6 @@ body.light-mode .video-bg:before {
  display: flex;
  align-items: center;
  justify-content: flex-end;
- width: 187px;
  margin-left: auto;
  @media screen and (max-width: 480px) {
   width: auto;
@@ -750,6 +750,19 @@ body.light-mode .video-bg:before {
    color: var(--theme-color);
   }
  }
+}
+
+
+.getting-started-img {
+    width: 70px;
+    object-fit: cover;
+    margin-top: -5px;
+    margin-right: 10px;
+    object-position: center;
+    filter: drop-shadow( 5px 5px 10px #000 );
+    @media screen and (max-width: 570px) {
+     width: 50px;
+    }
 }
 
 .content-button-wrapper .content-button.status-button.open.close {

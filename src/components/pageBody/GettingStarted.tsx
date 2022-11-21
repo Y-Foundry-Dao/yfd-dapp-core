@@ -6,6 +6,8 @@ import {
   brands,
   icon
 } from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
+import yLogo from 'assets/yfd/logo-orange.svg';
+import { Image } from '@chakra-ui/react';
 
 export default function GettingStarted() {
   return (
@@ -18,9 +20,9 @@ export default function GettingStarted() {
         <button className={styles['content-button']}>Get Started</button>
       </div>
       <img
-        className={styles['content-wrapper-img']}
-        src="https://assets.codepen.io/3364143/glass.png"
-        alt=""
+        className={styles['getting-started-img']}
+        src={yLogo}
+        alt="Y-Foundry Logo"
       />
     </div>
   );

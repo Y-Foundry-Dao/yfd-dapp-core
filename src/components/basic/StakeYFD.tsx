@@ -80,7 +80,7 @@ function StakeYFD() {
   return (
     <Popover>
       <PopoverTrigger>
-        <Button margin={1}>
+        <Button className={styles['button-wrapper']} margin={1}>
           <Text as="sup" marginRight={1}>
             fYFD
           </Text>
