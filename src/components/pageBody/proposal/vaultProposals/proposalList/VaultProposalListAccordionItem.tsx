@@ -5,6 +5,7 @@ import {
   AccordionPanel,
   Box,
   Flex,
+  Spacer,
   Heading,
   HStack,
   Text,
@@ -23,6 +24,13 @@ import VoteTokenBalance from 'components/pageBody/proposal/vaultProposals/propos
 import FundingInfo from 'components/pageBody/proposal/vaultProposals/proposalInfo/funding/FundingInfo';
 import VaultProposalInfo from 'components/pageBody/proposal/vaultProposals/proposalInfo/VaultProposalInfo';
 import CurrentVotes from 'components/pageBody/proposal/vaultProposals/proposalInfo/voting/CurrentVotes';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  solid,
+  regular,
+  brands,
+  icon
+} from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
 
 function VaultProposalListAccordionItem({
   proposalContract,
@@ -38,22 +46,32 @@ function VaultProposalListAccordionItem({
   const [inputVoteTokenAmount, setInputVoteTokenAmount] = useState(0);
   return (
     <AccordionItem layerStyle="accordionProposalItem">
-      <AccordionButton>
-        <Box flex="1" textAlign="left">
-          <Heading size="md">{vaultProposalInfo.name}</Heading>
-          <Text>
-            <FinderContractLink contract={proposalContract} />
-          </Text>
-          <ProposalStatus
-            proposalContract={proposalContract}
-            proposalIndex={proposalIndex}
-          />
-        </Box>
-        <AccordionIcon />
+      <AccordionButton layerStyle="accordionHeader">
+        <Flex width="100%">
+          <Box>
+            <br />
+            <FontAwesomeIcon icon={solid('vault')} />
+          </Box>
+          <Box p="4" textAlign="left">
+            <Text>{vaultProposalInfo.name}</Text> (
+            <FinderContractLink contract={proposalContract} /> )
+          </Box>
+          <Spacer />
+          <Box textAlign="right">
+            <br />
+            <ProposalStatus
+              proposalContract={proposalContract}
+              proposalIndex={proposalIndex}
+            />
+          </Box>
+          <Box p="4">
+            <AccordionIcon />
+          </Box>
+        </Flex>
       </AccordionButton>
       <AccordionPanel layerStyle="accordionProposalPanel" pb="5">
         <Flex
-          border="1px solid black"
+          backgroundColor={'gray.7044'}
           borderRadius="md"
           align="center"
           justify="space-around"
@@ -76,7 +94,7 @@ function VaultProposalListAccordionItem({
           align="center"
           direction="column"
           borderRadius="md"
-          border="1px solid black"
+          backgroundColor={'gray.700'}
           py="4"
         >
           <VoteTokenBalance

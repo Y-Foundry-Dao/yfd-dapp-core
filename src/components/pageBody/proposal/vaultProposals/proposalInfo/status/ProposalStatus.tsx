@@ -11,7 +11,7 @@ function ProposalStatus({ proposalContract, proposalIndex }: any) {
         <Text>Loading...</Text>
       ) : (
         <Text textStyle="voteStatus">
-          Current Voting Status: {Object.keys(proposalVoteInfo.vote_state)[0]}
+          Status: {Object.keys(proposalVoteInfo.vote_state)[0]}
         </Text>
       )}
     </>

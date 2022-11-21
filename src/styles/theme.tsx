@@ -58,26 +58,23 @@ const primary = {
       my: '5',
       p: '4'
     },
+    accordionWrapper: {
+      bg: 'color5'
+    },
     accordionProposalItem: {
-      bgGradient: 'linear(to-br, blue.300, blue.400, blue.500)',
-      border: 'none',
       borderRadius: 'sm'
     },
     accordionProposalPanel: {
-      bgGradient: 'linear(to-br, blue.200, blue.300, teal.300)',
       borderRadius: 'md'
     },
     accordionEmergencyItem: {
-      bgGradient: 'linear(to-br, red.600, red.700, red.800)',
       border: 'none',
       borderRadius: 'sm'
     },
     accordionEmergencyPanel: {
-      bgGradient: 'linear(to-br, red.500, red.600, orange.600)',
       borderRadius: 'md'
     },
     fundingInfo: {
-      bgGradient: 'linear(to-br, teal.500, blue.300, cyan.400)',
       borderRadius: 'md',
       p: '4'
     }
@@ -87,7 +84,7 @@ const primary = {
       color: 'black'
     },
     voteStatus: {
-      color: 'orange.700'
+      color: 'gray.400'
     }
   },
   colors: {
