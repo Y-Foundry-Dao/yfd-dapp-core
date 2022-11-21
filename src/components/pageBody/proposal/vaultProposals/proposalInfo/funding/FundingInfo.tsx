@@ -30,6 +30,10 @@ function FundingInfo({ proposalContract, proposalIndex }: any) {
       isNotAtQuorum()
     );
   };
+
+  const isNotDistributable = () => {
+    return fundingInfo.distributable == null && false;
+  };
   return (
     <Box layerStyle="fundingInfo">
       FundingInfo
@@ -39,6 +43,12 @@ function FundingInfo({ proposalContract, proposalIndex }: any) {
       </Text>
       <Text>
         Currently Funded: {convertFromBase(fundingInfo.balance).toFixed(3)}
+      </Text>
+      <Text>
+        Distributable Funds:{' '}
+        {isNotDistributable()
+          ? '0'
+          : convertFromBase(fundingInfo.distributable).toFixed(3)}
       </Text>
       {isFundable() && <FundProposal proposalContract={proposalContract} />}
     </Box>

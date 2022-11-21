@@ -6,6 +6,7 @@ import { terra } from 'utilities/lcd';
 import useTx from './useTx';
 import { useSetRecoilState } from 'recoil';
 import txHashAtom from 'recoil/txHash/atom';
+import queryNftInfo from 'utilities/messagesQuery/proposals/vaultProposal/queryNftInfo';
 
 const useMsg = () => {
   const { post } = useWallet();
@@ -76,16 +77,43 @@ const useMsg = () => {
   const queryMsg = async (contractAddress: string, msgQuery: object) => {
     try {
       if (contractAddress) {
-        return await terra.wasm.contractQuery(contractAddress, msgQuery);
+        const queryResponse = await terra.wasm.contractQuery(
+          contractAddress,
+          msgQuery
+        );
+        return queryResponse;
       }
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      if (
+        error.response.data.message ===
+        'cosmwasm_std::addresses::Addr not found: query wasm contract failed: invalid request'
+      ) {
+        // console.log({ addr: 'Contract Address Not Found' });
+        return { addr: 'Contract Address Not Found' };
+      }
+    }
+  };
+
+  const queryContractInfo = async (contractAddress: string) => {
+    try {
+      if (contractAddress) {
+        const queryResponse = await terra.wasm.contractInfo(contractAddress);
+        return queryResponse;
+      }
+    } catch (error: any) {
+      if (
+        error.response.data.message ===
+        'cosmwasm_std::addresses::Addr not found: query wasm contract failed: invalid request'
+      ) {
+        return { addr: 'Contract Address Not Found' };
+      }
     }
   };
 
   return {
     executeMsg,
-    queryMsg
+    queryMsg,
+    queryContractInfo
   };
 };
 

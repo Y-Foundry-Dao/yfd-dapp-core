@@ -31,15 +31,17 @@ import {
   brands,
   icon
 } from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
+import NFTInfo from '../proposalInfo/nfts/NFTInfo';
 
 function VaultProposalListAccordionItem({
   proposalContract,
   proposalIndex
 }: any) {
-  const { vaultProposalInfo, voteContract } = useContractVaultProposal({
-    proposalContract,
-    proposalIndex
-  });
+  const { vaultProposalInfo, voteContract, nftContractInfo } =
+    useContractVaultProposal({
+      proposalContract,
+      proposalIndex
+    });
   const { voteTokenBalance } = useContractVote({
     proposalContract
   });
@@ -124,6 +126,18 @@ function VaultProposalListAccordionItem({
             />
           </Flex>
         </Flex>
+
+        {Object.keys(nftContractInfo).length > 0 ? (
+          <Flex
+            align="center"
+            direction="column"
+            borderRadius="md"
+            border="1px solid black"
+            py="4"
+          >
+            <NFTInfo nftContractInfo={nftContractInfo} />
+          </Flex>
+        ) : null}
       </AccordionPanel>
     </AccordionItem>
   );

@@ -11,12 +11,18 @@ function ProposalFinalizeButton({ proposalContract, proposalIndex }: any) {
     proposalContract,
     proposalIndex
   });
-  const voteNotFinalized = proposalVoteInfo.vote_state?.NotFinalized;
+  const isVoteNotFinalized = () => {
+    if (proposalVoteInfo.vote_state?.NotFinalized) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   const isCurrentBlockAfterClosingBlock = () => {
     return currentBlockHeight > vaultProposalInfo.closing_block;
   };
   const isProposalAbleToFinalize = () => {
-    return isCurrentBlockAfterClosingBlock() && voteNotFinalized;
+    return isCurrentBlockAfterClosingBlock() && isVoteNotFinalized();
   };
   if (isProposalAbleToFinalize()) {
     return (
