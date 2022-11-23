@@ -1,5 +1,6 @@
 import { useSetRecoilState } from 'recoil';
 import {
+  inputDeveloperWallet,
   inputDevelopmentCost,
   inputExpiration,
   inputGithub,
@@ -31,6 +32,7 @@ const useHandleInputs = () => {
   const setPaymentFrequency = useSetRecoilState(inputPaymentFrequency);
   const setInitialFunding = useSetRecoilState(inputInitialFunding);
   const setNFTAmount = useSetRecoilState(inputNFTAmount);
+  const setDeveloper = useSetRecoilState(inputDeveloperWallet);
 
   const handleInputStakeYFD = (value: any) => setAmountStakeYFD(value);
 
@@ -67,6 +69,8 @@ const useHandleInputs = () => {
     setNFTAmount(value);
   };
 
+  const handleInputDeveloper = (event: any) => setDeveloper(event.target.value);
+
   return {
     handleInputStakeYFD,
     handleInputNameProposal,
@@ -80,7 +84,8 @@ const useHandleInputs = () => {
     handleInputQuorumPercent,
     handleInputSelfVouchedInformation,
     handleInputExpiration,
-    handleInputNFTAmount
+    handleInputNFTAmount,
+    handleInputDeveloper
   };
 };
 

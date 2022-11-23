@@ -22,7 +22,8 @@ import {
   inputStatementOfWork,
   inputTvlLimit,
   inputUrlProposal,
-  inputNFTAmount
+  inputNFTAmount,
+  inputDeveloperWallet
 } from 'recoil/input/atoms';
 import convertToBase from 'utilities/converters/convertToBase';
 import msgVoteAffirm from 'utilities/messagesExecute/msgVoteAffirm';
@@ -62,6 +63,7 @@ const useHandleClicks = () => {
   const paymentFrequency = useRecoilValue(inputPaymentFrequency);
   const initialFunding = useRecoilValue(inputInitialFunding);
   const nftAmount = useRecoilValue(inputNFTAmount);
+  const developer = useRecoilValue(inputDeveloperWallet);
 
   const handleClickStakeYFD = async (amount: number, duration: number) => {
     if (!connectedWallet) {
@@ -100,7 +102,7 @@ const useHandleClicks = () => {
         github,
         selfVouchedInformation,
         paymentFrequency,
-        connectedWallet?.walletAddress
+        developer
       );
       const encodedMessage = Base64.btoa(msgToEncode);
       const msgCreateProposal = msgExecuteSend(
