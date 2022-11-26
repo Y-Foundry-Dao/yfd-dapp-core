@@ -6,7 +6,7 @@ import msgEncodedStake from 'utilities/messagesToEncode/msgEncodedStake';
 import msgStakeYFD from 'utilities/messagesExecute/msgStakeYFD';
 import msgEncodedProposal from 'utilities/messagesToEncode/msgEncodedProposal';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
-import msgExecuteSend from 'utilities/messagesExecute/msgExecuteSend';
+import msgExecuteSend from 'utilities/messagesExecute/yfd/msgExecuteSend';
 import {
   inputDevelopmentCost,
   inputExpiration,
@@ -26,10 +26,10 @@ import {
   inputDeveloperWallet
 } from 'recoil/input/atoms';
 import convertToBase from 'utilities/converters/convertToBase';
-import msgVoteAffirm from 'utilities/messagesExecute/msgVoteAffirm';
-import msgVoteDeny from 'utilities/messagesExecute/msgVoteDeny';
-import msgVoteAbstain from 'utilities/messagesExecute/msgVoteAbstain';
-import msgVoteDenyWithPenalty from 'utilities/messagesExecute/msgVoteDenyWithPenalty';
+import msgVoteAffirm from 'utilities/messagesExecute/vote/msgVoteAffirm';
+import msgVoteDeny from 'utilities/messagesExecute/vote/msgVoteDeny';
+import msgVoteAbstain from 'utilities/messagesExecute/vote/msgVoteAbstain';
+import msgVoteDenyWithPenalty from 'utilities/messagesExecute/vote/msgVoteDenyWithPenalty';
 import txHashAtom from 'recoil/txHash/atom';
 import {
   SUCCESS_CREATE_PROPOSAL,
