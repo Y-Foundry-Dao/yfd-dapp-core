@@ -4,9 +4,6 @@ import InputEmergencyExpiration from './inputs/InputEmergencyExpiration';
 import InputEmergencyJustification from './inputs/InputEmergencyJustification';
 
 function EmergencyVote({ proposalIndex }: any) {
-  const { handleClickEmergencyEndProposal } = useHandleClicksProposal({
-    proposalIndex
-  });
   return (
     <Flex
       layerStyle="emergencyVote"
@@ -19,9 +16,9 @@ function EmergencyVote({ proposalIndex }: any) {
       </Heading>
       <InputEmergencyExpiration proposalIndex={proposalIndex} />
       <InputEmergencyJustification proposalIndex={proposalIndex} />
-      <Button onClick={async () => await handleClickEmergencyEndProposal()}>
+      {/* <Button onClick={async () => await handleClickEmergencyEndProposal()}>
         Initiate Emergency Vote
-      </Button>
+      </Button> */}
     </Flex>
   );
 }
