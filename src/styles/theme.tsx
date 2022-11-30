@@ -61,6 +61,9 @@ const primary = {
     accordionWrapper: {
       bg: 'color5'
     },
+    accordionHeader: {
+      borderRadius: 'md'
+    },
     accordionProposalItem: {
       borderRadius: 'sm'
     },

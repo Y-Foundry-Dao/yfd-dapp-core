@@ -12,7 +12,7 @@ export default function Header() {
   return (
     <>
       <div className={styles.logo}>
-        <Image h={10} src={yLogo} alt="y logo" />
+        <Image h={10} src={yLogo} alt="y logo" className={styles.logo} />
       </div>
       <div className={styles['header-menu']}></div>
       <div className={styles['header-profile']}>

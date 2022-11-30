@@ -33,6 +33,9 @@ import {
 } from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
 import NFTInfo from '../proposalInfo/nfts/NFTInfo';
 
+import styleList from 'styles/proplist.module.scss';
+import styleBar from 'styles/progressbar.module.scss';
+
 function VaultProposalListAccordionItem({
   proposalContract,
   proposalIndex
@@ -47,7 +50,10 @@ function VaultProposalListAccordionItem({
   });
   const [inputVoteTokenAmount, setInputVoteTokenAmount] = useState(0);
   return (
-    <AccordionItem layerStyle="accordionProposalItem">
+    <AccordionItem
+      layerStyle="accordionProposalItem"
+      className={styleList['content-section']}
+    >
       <AccordionButton layerStyle="accordionHeader">
         <Flex width="100%">
           <Box>
@@ -60,7 +66,90 @@ function VaultProposalListAccordionItem({
           </Box>
           <Spacer />
           <Box textAlign="right">
-            <br />
+            <div
+              className={[styleBar.chart, styleBar.grid, styleBar.join].join(
+                ' '
+              )}
+            >
+              <div
+                className={[
+                  styleBar['bar'],
+                  styleBar['bar-70'],
+                  styleBar['lime']
+                ].join(' ')}
+              >
+                <div className={[styleBar.face, styleBar.top].join(' ')}>
+                  <div className={styleBar['growing-bar']}></div>
+                </div>
+                <div className={[styleBar.face, styleBar['side-0']].join(' ')}>
+                  <div className={styleBar['growing-bar']}></div>
+                </div>
+                <div className={[styleBar.face, styleBar.floor].join(' ')}>
+                  <div className={styleBar['growing-bar']}></div>
+                </div>
+                <div
+                  className={[styleBar.face, styleBar['side-a']].join(' ')}
+                ></div>
+                <div
+                  className={[styleBar.face, styleBar['side-b']].join(' ')}
+                ></div>
+                <div className={[styleBar.face, styleBar['side-1']].join(' ')}>
+                  <div className={styleBar['growing-bar']}></div>
+                </div>
+              </div>
+              <div
+                className={[
+                  styleBar['bar'],
+                  styleBar['bar-25'],
+                  styleBar['red']
+                ].join(' ')}
+              >
+                <div className={[styleBar.face, styleBar.top].join(' ')}>
+                  <div className={styleBar['growing-bar']}></div>
+                </div>
+                <div className={[styleBar.face, styleBar['side-0']].join(' ')}>
+                  <div className={styleBar['growing-bar']}></div>
+                </div>
+                <div className={[styleBar.face, styleBar.floor].join(' ')}>
+                  <div className={styleBar['growing-bar']}></div>
+                </div>
+                <div
+                  className={[styleBar.face, styleBar['side-a']].join(' ')}
+                ></div>
+                <div
+                  className={[styleBar.face, styleBar['side-b']].join(' ')}
+                ></div>
+                <div className={[styleBar.face, styleBar['side-1']].join(' ')}>
+                  <div className={styleBar['growing-bar']}></div>
+                </div>
+              </div>
+              <div
+                className={[
+                  styleBar['bar'],
+                  styleBar['bar-5'],
+                  styleBar['pink']
+                ].join(' ')}
+              >
+                <div className={[styleBar.face, styleBar.top].join(' ')}>
+                  <div className={styleBar['growing-bar']}></div>
+                </div>
+                <div className={[styleBar.face, styleBar['side-0']].join(' ')}>
+                  <div className={styleBar['growing-bar']}></div>
+                </div>
+                <div className={[styleBar.face, styleBar.floor].join(' ')}>
+                  <div className={styleBar['growing-bar']}></div>
+                </div>
+                <div
+                  className={[styleBar.face, styleBar['side-a']].join(' ')}
+                ></div>
+                <div
+                  className={[styleBar.face, styleBar['side-b']].join(' ')}
+                ></div>
+                <div className={[styleBar.face, styleBar['side-1']].join(' ')}>
+                  <div className={styleBar['growing-bar']}></div>
+                </div>
+              </div>
+            </div>
             <ProposalStatus
               proposalContract={proposalContract}
               proposalIndex={proposalIndex}

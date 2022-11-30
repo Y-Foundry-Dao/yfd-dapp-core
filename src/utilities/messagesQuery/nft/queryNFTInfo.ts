@@ -3,7 +3,7 @@ const queryNFTInfo = (tokenId: string) => {
     nft_info: {
       token_id: tokenId
     }
-  }
+  };
 };
 
 export default queryNFTInfo;

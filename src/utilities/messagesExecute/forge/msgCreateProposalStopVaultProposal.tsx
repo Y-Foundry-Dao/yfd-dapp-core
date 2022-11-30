@@ -3,7 +3,7 @@ const msgCreateProposalStopVaultProposal = (
   isEmergency: boolean,
   justification: string
 ) => {
-  return { 
+  return {
     create_proposal: {
       proposal_type: {
         vault_proposal_stop: {
@@ -12,7 +12,7 @@ const msgCreateProposalStopVaultProposal = (
       },
       emergency: isEmergency,
       justification_link: justification
-    } 
+    }
   };
 };
 
