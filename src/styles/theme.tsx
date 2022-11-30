@@ -1,4 +1,7 @@
 const base = {
+  body: {
+    bg: 'rgba(36, 39, 59, 0.8)'
+  },
   fonts: {
     heading: 'Kodchasan, sans-serif',
     body: 'Roboto Mono, monospace',
@@ -41,10 +44,6 @@ const base = {
 const primary = {
   ...base,
   layerStyles: {
-    pageBody: {
-      width: '100%',
-      padding: '10px'
-    },
     stakeYFD: {
       color: 'white',
       padding: '10px'
@@ -64,7 +63,9 @@ const primary = {
     accordionProposalItem: {
       borderStyle: 'none',
       borderRadius: 'lg',
-      boxShadow: 'dark-lg'
+      boxShadow: 'dark-lg',
+      marginTop: '3',
+      padding: '0'
     },
     accordionProposalPanel: {},
     accordionEmergencyItem: {},

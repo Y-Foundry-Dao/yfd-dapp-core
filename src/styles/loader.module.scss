@@ -1,0 +1,38 @@
+.loader {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+  
+ .loader div {
+    width: 20px;
+    height: 20px;
+    margin: 7.5px;
+    border-radius: 50%;
+    background: black;
+    animation: 1.75s dotAnim infinite;
+    position: relative;
+  }
+  
+.loader div:nth-child(1) {
+    background: #353434;
+    animation-delay: 1s;
+  }
+.loader div:nth-child(2) {
+    background: #515457;
+    animation-delay: 1.2s;
+  }
+.loader div:nth-child(3) {
+    background: #28282e;
+    animation-delay: 1.4s;
+  }
+  
+  @keyframes dotAnim {
+    0% {top: 0;}
+    25% {top: -20px;}
+    50% {top: 0};
+    100% {top: 0};
+  }
