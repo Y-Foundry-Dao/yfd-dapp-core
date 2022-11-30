@@ -60,7 +60,7 @@ function VaultProposalListAccordionItem({
             <br />
             <FontAwesomeIcon icon={solid('vault')} />
           </Box>
-          <Box p="4" textAlign="left">
+          <Box textAlign="left">
             <Text>{vaultProposalInfo.name}</Text> (
             <FinderContractLink contract={proposalContract} /> )
           </Box>
@@ -75,7 +75,7 @@ function VaultProposalListAccordionItem({
                 className={[
                   styleBar['bar'],
                   styleBar['bar-70'],
-                  styleBar['lime']
+                  styleBar['green']
                 ].join(' ')}
               >
                 <div className={[styleBar.face, styleBar.top].join(' ')}>

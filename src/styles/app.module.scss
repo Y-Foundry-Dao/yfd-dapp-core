@@ -52,6 +52,11 @@ html {
 }
 
 .logo {
+ img {
+    align: left;
+    padding: 0px;
+    margin: 0px;
+ }
 }
 
 body {
@@ -445,22 +450,13 @@ body.light-mode .video-bg:before {
   align-items: center;
   width: 100%;
   justify-content: space-between;
-  filter: drop-shadow( 3px 3px 5px #000 );
+  filter: drop-shadow( 10px 20px 15px #000 );
   background-image: 
    linear-gradient(
     to right top,
-    #000000,
-    #131313,
-    #202020,
-    #242424,
-    #3f3f3f,
-    #4c4c4c,
-    #5a5a5a,
-    #6c6c6c,
-    #787878,
-    #989898,
-    #b5b5b5,
-    #adadad
+    rgba(13,13,13,0.5),
+    rgba(44,44,44,0.5),
+    rgba(200,200,200,0.5)
    );
   border-radius: 14px;
   padding: 20px 40px;
@@ -547,9 +543,8 @@ body.light-mode .video-bg:before {
  margin-top: 30px;
  display: flex;
  flex-direction: column;
- &-title {
+  &-title {
   color: var(--content-title-color);
-  margin-bottom: 14px;
  }
  ul {
   display: flex;

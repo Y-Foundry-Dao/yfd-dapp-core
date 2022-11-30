@@ -1,5 +1,6 @@
 $yellow: #f1c40f;
 $lime: #76c900;
+$green: #438a1a;
 $navy: #0a4069;
 $cyan: #57caf4;
 $red: #a22;
@@ -21,13 +22,16 @@ $transition: all $transitionDuration ease-in-out;
 
 $faceColor: rgba($gray, .3);
 $growColor: rgba($white, .6);
-$widthBar: 15em;
+
+$barWidth: 35em;
+$barHeight: 10em;
+$barFaceHeight: 2em;
 
 .bar
 {
     position: relative;
 
-    height: 10em;
+    height: $barHeight;
 
     transition: $transition;
     transform: rotateX(60deg) rotateY(0deg);
@@ -40,15 +44,15 @@ $widthBar: 15em;
 
         position: relative;
 
-        width: $widthBar;
-        height: 2em;
+        width: $barWidth;
+        height: $barFaceHeight;
 
         background-color: $faceColor;
 
         &.side-a,
         &.side-b
         {
-            width: 2em;
+            width: $barFaceHeight;
         }
     }
     .side-a
@@ -84,7 +88,7 @@ $widthBar: 15em;
     transition: $transition;
     background-color: $growColor;
     width: 100%;
-    height: 2em;
+    height: $barFaceHeight;
 }
 
 @mixin drawSkin($color, $name)
@@ -122,13 +126,15 @@ $widthBar: 15em;
 @include drawSkin($cyan, 'cyan');
 @include drawSkin(rgba($navy, .8), 'navy');
 @include drawSkin($lime, 'lime');
+@include drawSkin($green, 'green');
 @include drawSkin($white, 'white');
 @include drawSkin($gray, 'gray');
 
 @include drawFaces(rgba($yellow, .6), 'yellow-face');
 @include drawFaces($lime, 'lime-face');
+@include drawFaces($green, 'green-face');
 @include drawFaces(rgba($red, .6), 'red-face');
-@include drawFaces(rgba($pink, .8), 'pink-face');
+@include drawFaces(rgba($pink, .8), 'pink');
 @include drawFaces(rgba($navy, .6), 'navy-face');
 @include drawFaces($cyan, 'cyan-face');
 @include drawFaces($gray, 'gray-face');
@@ -138,10 +144,32 @@ $widthBar: 15em;
 {
     .bar-#{$i}
     {
-        $growPercent: ($i/100);
         .growing-bar
         {
-            width: percentage($growPercent);
+            width: percentage($i/100);
+        }
+    }
+}
+
+.chart.grid.join
+{
+    @for $i from 0 to 101
+    {
+        .bar-#{$i}
+        {
+            .growing-bar
+            {
+                width: 100%;
+            }
+            .face
+            {
+                width: $barWidth * ($i/100);
+                &.side-a,
+                &.side-b
+                {
+                    width: $barFaceHeight;
+                }
+            }
         }
     }
 }
@@ -151,30 +179,11 @@ END // CHART'S RULES
 *
 *
 */
-.chart.grid.join
-{
-    @for $i from 0 to 101
-    {
-        .bar-#{$i}
-        {
-            $growPercent: ($i/100);
-            .growing-bar
-            {
-                width: 100%;
-            }
-            .face
-            {
-                width: $widthBar*$growPercent;
-            }
-        }
-    }
-}
 
 .chart.grid
 {
     display: flex;
     flex-direction: row;
-    
     .exercise 
     {
 
