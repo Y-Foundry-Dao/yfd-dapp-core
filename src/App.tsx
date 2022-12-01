@@ -9,8 +9,6 @@ import LeftSide from 'components/pageBody/LeftSide';
 export default function App() {
   return (
     <main>
-      <BackgroundVideo />
-      <ThemeToggle />
       <div className={styles.app}>
         <div className={styles.header}>
           <Header />

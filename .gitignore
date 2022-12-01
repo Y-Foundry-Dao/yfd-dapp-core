@@ -2,6 +2,7 @@ build/
 
 **/node_modules
 
-.vscodeyarn-error.log
+.vscode
+yarn-error.log
 .yarnclean
 .vscode

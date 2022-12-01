@@ -1,5 +1,6 @@
 import { Text } from '@chakra-ui/react';
 import useContractVaultProposal from 'hooks/useContractVaultProposal';
+import styleLoader from 'styles/loader.module.scss';
 
 function ProposalStatus({ proposalContract, proposalIndex }: any) {
   const { proposalVoteInfo } = useContractVaultProposal({
@@ -8,10 +9,10 @@ function ProposalStatus({ proposalContract, proposalIndex }: any) {
   return (
     <>
       {proposalVoteInfo.vote_state === undefined ? (
-        <Text>Loading...</Text>
+        <div className={styleLoader.loader}>loading...</div>
       ) : (
         <Text textStyle="voteStatus">
-          Status: {Object.keys(proposalVoteInfo.vote_state)[0]}
+          {Object.keys(proposalVoteInfo.vote_state)[0]}
         </Text>
       )}
     </>

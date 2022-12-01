@@ -1,4 +1,7 @@
 const base = {
+  body: {
+    bg: 'rgba(36, 39, 59, 0.8)'
+  },
   fonts: {
     heading: 'Kodchasan, sans-serif',
     body: 'Roboto Mono, monospace',
@@ -41,11 +44,6 @@ const base = {
 const primary = {
   ...base,
   layerStyles: {
-    pageBody: {
-      width: '100%',
-      bgGradient: 'linear(to-b, yellow.50, orange.50, orange.300)',
-      padding: '10px'
-    },
     stakeYFD: {
       color: 'white',
       padding: '10px'
@@ -53,31 +51,26 @@ const primary = {
     stakeItemCard: {
       bg: 'color5'
     },
-    emergencyVote: {
-      border: '1px solid yellow',
-      my: '5',
-      p: '4'
+    emergencyVote: {},
+    accordionWrapper: {},
+    accordionButton: {
+      borderWidth: '0'
     },
-    accordionWrapper: {
-      bg: 'color5'
+    accordionHeader: {
+      borderRadius: 'lg',
+      bgGradient: 'linear(to-t, rgba(22, 25, 37, 0.7), rgba(42, 46, 60, 0.5))'
     },
     accordionProposalItem: {
-      borderRadius: 'sm'
+      borderStyle: 'none',
+      borderRadius: 'lg',
+      boxShadow: 'dark-lg',
+      marginTop: '3',
+      padding: '0'
     },
-    accordionProposalPanel: {
-      borderRadius: 'md'
-    },
-    accordionEmergencyItem: {
-      border: 'none',
-      borderRadius: 'sm'
-    },
-    accordionEmergencyPanel: {
-      borderRadius: 'md'
-    },
-    fundingInfo: {
-      borderRadius: 'md',
-      p: '4'
-    }
+    accordionProposalPanel: {},
+    accordionEmergencyItem: {},
+    accordionEmergencyPanel: {},
+    fundingInfo: {}
   },
   textStyles: {
     pageBody: {
@@ -91,6 +84,11 @@ const primary = {
     ...base.colors,
     color5: 'linear-gradient(180deg, yellow.300 0%, yellow.100 100%);',
     color7: 'linear-gradient(180deg, #885555 0%, #D8552A 80%);'
+  },
+  background: {
+    ...base.background,
+    listBackground1:
+      'linear-gradient(180deg, gray.50 0%, gray.150 50%, gray.300 100%);'
   }
 };
 
