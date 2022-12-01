@@ -13,14 +13,24 @@ import {
   inputStakeYFD,
   inputStatementOfWork,
   inputTvlLimit,
-  inputUrlProposal
+  inputUrlProposal,
+  inputWhitelistWalletAddress,
+  inputWhitelistWalletAddressGithub,
+  inputWhitelistWalletAddressImageLink,
+  inputWhitelistWalletAddressKeybase,
+  inputWhitelistWalletAddressName,
+  inputWhitelistWalletAddressTelegram,
+  inputWhitelistWalletAddressTwitter,
+  inputWhitelistWalletAddressUrl
 } from 'recoil/input/atoms';
 
 const useHandleInputs = () => {
   const setSelfVouchedInformation = useSetRecoilState(
     inputSelfVoucedInformation
   );
+
   const setAmountStakeYFD = useSetRecoilState(inputStakeYFD);
+  // Recoil Values for vault proposal
   const setNameProposal = useSetRecoilState(inputNameProposal);
   const setUrlProposal = useSetRecoilState(inputUrlProposal);
   const setTvlLimit = useSetRecoilState(inputTvlLimit);
@@ -33,6 +43,31 @@ const useHandleInputs = () => {
   const setInitialFunding = useSetRecoilState(inputInitialFunding);
   const setNFTAmount = useSetRecoilState(inputNFTAmount);
   const setDeveloper = useSetRecoilState(inputDeveloperWallet);
+  // Recoil values for address whitelist
+  const setWhitelistWalletAddress = useSetRecoilState(
+    inputWhitelistWalletAddress
+  );
+  const setWhitelistWalletAddressName = useSetRecoilState(
+    inputWhitelistWalletAddressName
+  );
+  const setWhitelistWalletAddressImageLink = useSetRecoilState(
+    inputWhitelistWalletAddressImageLink
+  );
+  const setWhitelistWalletAddressGithub = useSetRecoilState(
+    inputWhitelistWalletAddressGithub
+  );
+  const setWhitelistWalletAddressKeybase = useSetRecoilState(
+    inputWhitelistWalletAddressKeybase
+  );
+  const setWhitelistWalletAddressTelegram = useSetRecoilState(
+    inputWhitelistWalletAddressTelegram
+  );
+  const setWhitelistWalletAddressTwitter = useSetRecoilState(
+    inputWhitelistWalletAddressTwitter
+  );
+  const setWhitelistWalletAddressUrl = useSetRecoilState(
+    inputWhitelistWalletAddressUrl
+  );
 
   const handleInputStakeYFD = (value: any) => setAmountStakeYFD(value);
 
@@ -71,6 +106,33 @@ const useHandleInputs = () => {
 
   const handleInputDeveloper = (event: any) => setDeveloper(event.target.value);
 
+  const handleInputWhitelistWalletAddress = (event: any) =>
+    setWhitelistWalletAddress(event.target.value);
+
+  const handleInputWhitelistWalletAddressName = (event: any) =>
+    setWhitelistWalletAddressName(event.target.value);
+
+  const handleInputWhitelistWalletAddressImageLink = (event: any) =>
+    setWhitelistWalletAddressImageLink(event.target.value);
+
+  // TODO: Figure out role checkbox selection
+  // const handleInputWhitelistWalletAddressRoles = (event: any) => setWhitelistWalletAddress(event.target.value);
+
+  const handleInputWhitelistWalletAddressGithub = (event: any) =>
+    setWhitelistWalletAddressGithub(event.target.value);
+
+  const handleInputWhitelistWalletAddressKeybase = (event: any) =>
+    setWhitelistWalletAddressKeybase(event.target.value);
+
+  const handleInputWhitelistWalletAddressTelegram = (event: any) =>
+    setWhitelistWalletAddressTelegram(event.target.value);
+
+  const handleInputWhitelistWalletAddressTwitter = (event: any) =>
+    setWhitelistWalletAddressTwitter(event.target.value);
+
+  const handleInputWhitelistWalletAddressUrl = (event: any) =>
+    setWhitelistWalletAddressUrl(event.target.value);
+
   return {
     handleInputStakeYFD,
     handleInputNameProposal,
@@ -85,7 +147,15 @@ const useHandleInputs = () => {
     handleInputSelfVouchedInformation,
     handleInputExpiration,
     handleInputNFTAmount,
-    handleInputDeveloper
+    handleInputDeveloper,
+    handleInputWhitelistWalletAddress,
+    handleInputWhitelistWalletAddressName,
+    handleInputWhitelistWalletAddressImageLink,
+    handleInputWhitelistWalletAddressGithub,
+    handleInputWhitelistWalletAddressKeybase,
+    handleInputWhitelistWalletAddressTelegram,
+    handleInputWhitelistWalletAddressTwitter,
+    handleInputWhitelistWalletAddressUrl
   };
 };
 

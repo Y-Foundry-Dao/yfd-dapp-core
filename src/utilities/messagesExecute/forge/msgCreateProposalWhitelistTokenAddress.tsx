@@ -4,6 +4,7 @@ const msgCreateProposalTokenWhitelist = (
   assetType: string,
   isStable: boolean,
   oracleAddress: string,
+  tokenToUsd: string,
   isEmergency: boolean,
   justificationLink: string
 ) => {
@@ -17,7 +18,8 @@ const msgCreateProposalTokenWhitelist = (
               name: tokenName,
               asset_type: assetType,
               stable: isStable,
-              oracle_address: oracleAddress
+              oracle_address: oracleAddress,
+              token_to_usd: tokenToUsd
             }
           }
         }

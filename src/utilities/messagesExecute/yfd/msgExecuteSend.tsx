@@ -1,7 +1,7 @@
 const msgExecuteSend = (
   contract: string,
-  amount: number,
-  encodedMessage: string
+  encodedMessage: string,
+  amount?: number
 ) => {
   return {
     send: {
