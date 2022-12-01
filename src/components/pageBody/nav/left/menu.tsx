@@ -9,6 +9,7 @@ import {
 import { useDisclosure } from '@chakra-ui/react';
 import ProposalModal from 'components/pageBody/proposal/proposalCreationModal/ProposalModal';
 import ProposalModalButton from 'components/pageBody/proposal/proposalCreationModal/ProposalModalButton';
+import { DISCORD, GITHUB, TWITTER, DOCS } from 'utilities/variables/links';
 
 function MenuLeft() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -70,19 +71,19 @@ function MenuLeft() {
             <FontAwesomeIcon icon={solid('rocket')} />
             Getting Started
           </a>
-          <a href="#">
+          <a href={DOCS} target="_blank">
             <FontAwesomeIcon icon={solid('graduation-cap')} />
             Documentation
           </a>
-          <a href="#">
+          <a href={DISCORD} target="_blank">
             <FontAwesomeIcon icon={brands('discord')} />
             Discord
           </a>
-          <a href="#">
+          <a href={TWITTER} target="_blank">
             <FontAwesomeIcon icon={brands('twitter')} />
             Twitter
           </a>
-          <a href="#">
+          <a href={GITHUB} target="_blank">
             <FontAwesomeIcon icon={solid('code')} />
             Source Code
           </a>
