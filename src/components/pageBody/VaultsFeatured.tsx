@@ -15,10 +15,7 @@ export default function VaultsFeatured() {
         <div className={styles['apps-card']}>
           <div className={styles['app-card']}>
             <span>
-              <img
-                src="https://miro.medium.com/fit/c/176/176/1*7Qy05sarfVy_AZcVWAwxpQ.jpeg"
-                width="40px"
-              />
+              <img src="https://miro.medium.com/fit/c/176/176/1*7Qy05sarfVy_AZcVWAwxpQ.jpeg" />
               Auto-Compounder
             </span>
             <div className={styles['app-card__subtext']}>
@@ -46,10 +43,7 @@ export default function VaultsFeatured() {
           </div>
           <div className={styles['app-card']}>
             <span>
-              <img
-                src="https://assets.website-files.com/611153e7af981472d8da199c/62d8de88b18a3b4713e24eac_01_Luna_icon.svg"
-                width="40px"
-              />
+              <img src="https://assets.website-files.com/611153e7af981472d8da199c/62d8de88b18a3b4713e24eac_01_Luna_icon.svg" />
               Stake and Vote
             </span>
             <div className={styles['app-card__subtext']}>
@@ -77,10 +71,7 @@ export default function VaultsFeatured() {
           </div>
           <div className={styles['app-card']}>
             <span>
-              <img
-                src="https://pbs.twimg.com/profile_images/1450772842749042705/au7iSAw7_400x400.jpg"
-                width="40px"
-              />
+              <img src="https://pbs.twimg.com/profile_images/1450772842749042705/au7iSAw7_400x400.jpg" />
               TerraBots
             </span>
             <div className={styles['app-card__subtext']}>
@@ -93,7 +84,7 @@ export default function VaultsFeatured() {
                   styles['status-button']
                 ].join(' ')}
               >
-                Deposit
+                Learn More
               </button>
               <div className={styles.menu}></div>
             </div>

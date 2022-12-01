@@ -10,7 +10,7 @@ import { baseTheme, SaasProvider } from '@saas-ui/react';
 import App from 'App';
 import primaryTheme from 'styles/theme';
 
-const theme = extendTheme({
+const cleanTheme = extendTheme({
   styles: {
     global: () => ({
       body: {
@@ -19,6 +19,8 @@ const theme = extendTheme({
     })
   }
 });
+
+const theme = extendTheme({}, primaryTheme, cleanTheme, baseTheme);
 
 const container = document.getElementById('root');
 const root = createRoot(container!);

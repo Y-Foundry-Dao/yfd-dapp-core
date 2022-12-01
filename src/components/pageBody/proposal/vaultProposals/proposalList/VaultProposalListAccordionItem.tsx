@@ -24,6 +24,7 @@ import VoteTokenBalance from 'components/pageBody/proposal/vaultProposals/propos
 import FundingInfo from 'components/pageBody/proposal/vaultProposals/proposalInfo/funding/FundingInfo';
 import VaultProposalInfo from 'components/pageBody/proposal/vaultProposals/proposalInfo/VaultProposalInfo';
 import CurrentVotes from 'components/pageBody/proposal/vaultProposals/proposalInfo/voting/CurrentVotes';
+import CurrentVotesBar from 'components/pageBody/proposal/vaultProposals/proposalInfo/voting/CurrentVotesBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   solid,
@@ -34,7 +35,6 @@ import {
 import NFTInfo from '../proposalInfo/nfts/NFTInfo';
 
 import styleList from 'styles/proplist.module.scss';
-import styleBar from 'styles/progressbar.module.scss';
 
 function VaultProposalListAccordionItem({
   proposalContract,
@@ -56,100 +56,16 @@ function VaultProposalListAccordionItem({
     >
       <AccordionButton layerStyle="accordionHeader">
         <Flex width="100%">
-          <Box>
-            <br />
-            <FontAwesomeIcon icon={solid('vault')} />
-          </Box>
           <Box textAlign="left">
             <Text>{vaultProposalInfo.name}</Text> (
             <FinderContractLink contract={proposalContract} /> )
           </Box>
           <Spacer />
           <Box textAlign="right">
-            <div
-              className={[styleBar.chart, styleBar.grid, styleBar.join].join(
-                ' '
-              )}
-            >
-              <div
-                className={[
-                  styleBar['bar'],
-                  styleBar['bar-70'],
-                  styleBar['green']
-                ].join(' ')}
-              >
-                <div className={[styleBar.face, styleBar.top].join(' ')}>
-                  <div className={styleBar['growing-bar']}></div>
-                </div>
-                <div className={[styleBar.face, styleBar['side-0']].join(' ')}>
-                  <div className={styleBar['growing-bar']}></div>
-                </div>
-                <div className={[styleBar.face, styleBar.floor].join(' ')}>
-                  <div className={styleBar['growing-bar']}></div>
-                </div>
-                <div
-                  className={[styleBar.face, styleBar['side-a']].join(' ')}
-                ></div>
-                <div
-                  className={[styleBar.face, styleBar['side-b']].join(' ')}
-                ></div>
-                <div className={[styleBar.face, styleBar['side-1']].join(' ')}>
-                  <div className={styleBar['growing-bar']}></div>
-                </div>
-              </div>
-              <div
-                className={[
-                  styleBar['bar'],
-                  styleBar['bar-25'],
-                  styleBar['red']
-                ].join(' ')}
-              >
-                <div className={[styleBar.face, styleBar.top].join(' ')}>
-                  <div className={styleBar['growing-bar']}></div>
-                </div>
-                <div className={[styleBar.face, styleBar['side-0']].join(' ')}>
-                  <div className={styleBar['growing-bar']}></div>
-                </div>
-                <div className={[styleBar.face, styleBar.floor].join(' ')}>
-                  <div className={styleBar['growing-bar']}></div>
-                </div>
-                <div
-                  className={[styleBar.face, styleBar['side-a']].join(' ')}
-                ></div>
-                <div
-                  className={[styleBar.face, styleBar['side-b']].join(' ')}
-                ></div>
-                <div className={[styleBar.face, styleBar['side-1']].join(' ')}>
-                  <div className={styleBar['growing-bar']}></div>
-                </div>
-              </div>
-              <div
-                className={[
-                  styleBar['bar'],
-                  styleBar['bar-5'],
-                  styleBar['pink']
-                ].join(' ')}
-              >
-                <div className={[styleBar.face, styleBar.top].join(' ')}>
-                  <div className={styleBar['growing-bar']}></div>
-                </div>
-                <div className={[styleBar.face, styleBar['side-0']].join(' ')}>
-                  <div className={styleBar['growing-bar']}></div>
-                </div>
-                <div className={[styleBar.face, styleBar.floor].join(' ')}>
-                  <div className={styleBar['growing-bar']}></div>
-                </div>
-                <div
-                  className={[styleBar.face, styleBar['side-a']].join(' ')}
-                ></div>
-                <div
-                  className={[styleBar.face, styleBar['side-b']].join(' ')}
-                ></div>
-                <div className={[styleBar.face, styleBar['side-1']].join(' ')}>
-                  <div className={styleBar['growing-bar']}></div>
-                </div>
-              </div>
-            </div>
+            <CurrentVotesBar
+              proposalContract={proposalContract}
+              proposalIndex={proposalIndex}
+            />
             <ProposalStatus
               proposalContract={proposalContract}
               proposalIndex={proposalIndex}

@@ -905,6 +905,12 @@ body.light-mode .video-bg:before {
   margin-right: 12px;
   flex-shrink: 0;
  }
+ img {
+    width: 2.9em;
+    border-radius: 6px;
+    margin-right: 12px;
+    flex-shrink: 0;
+ }
  & + .app-card {
   margin-left: 20px;
  }

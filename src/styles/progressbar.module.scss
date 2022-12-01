@@ -23,7 +23,7 @@ $transition: all $transitionDuration ease-in-out;
 $faceColor: rgba($gray, .3);
 $growColor: rgba($white, .6);
 
-$barWidth: 35em;
+$barWidth: 29em;
 $barHeight: 10em;
 $barFaceHeight: 2em;
 
@@ -268,54 +268,23 @@ input[id='lime']:checked ~ .actions label[for='lime']
     background-color: $navy;
 }
 
-input[id='exercise-2']:checked ~ .chart.grid
+.chart.grid
 {
-    .exercise  .bar
+    $value: ".bar-30";
+    .bar
     {
         &:nth-child(1)
         {
-            flex: 1 0 0%;
-            @extend .bar-20;
+            flex: 35%;
+            @extend #{$value};
         }
         &:nth-child(2)
         {
-            flex: 1;
-            @extend .bar-50;
+            @extend .bar-30;
         }
         &:nth-child(3)
         {
-            flex: 1 0 30%;
-            @extend .bar-80;
-        }
-    }
-}
-input[id='exercise-3']:checked ~ .chart.grid
-{
-    .exercise  .bar
-    {
-        &:nth-child(1),
-        &:nth-child(2),
-        &:nth-child(3)
-        {
-            flex: 1;
-            @extend .bar-70;
-        }
-    }
-}
-input[id='exercise-4']:checked ~ .chart.grid
-{
-    .exercise  .bar
-    {
-        &:nth-child(1),
-        &:nth-child(2)
-        {
-            flex: 1 0 30%;
-            @extend .bar-50;
-        }
-        &:nth-child(3)
-        {
-            flex: 1;
-            @extend .bar-100;
+            @extend .bar-10;
         }
     }
 }

@@ -35,23 +35,25 @@ function FundingInfo({ proposalContract, proposalIndex }: any) {
     return fundingInfo.distributable == null && false;
   };
   return (
-    <Box layerStyle="fundingInfo">
-      FundingInfo
-      <Text>
-        Required Funding:{' '}
-        {convertFromBase(fundingInfo.development_cost).toFixed(3)}
-      </Text>
-      <Text>
-        Currently Funded: {convertFromBase(fundingInfo.balance).toFixed(3)}
-      </Text>
-      <Text>
-        Distributable Funds:{' '}
-        {isNotDistributable()
-          ? '0'
-          : convertFromBase(fundingInfo.distributable).toFixed(3)}
-      </Text>
-      {isFundable() && <FundProposal proposalContract={proposalContract} />}
-    </Box>
+    <>
+      <Box layerStyle="fundingInfo">
+        FundingInfo
+        <Text>
+          Required Funding:{' '}
+          {convertFromBase(fundingInfo.development_cost).toFixed(3)}
+        </Text>
+        <Text>
+          Currently Funded: {convertFromBase(fundingInfo.balance).toFixed(3)}
+        </Text>
+        <Text>
+          Distributable Funds:{' '}
+          {isNotDistributable()
+            ? '0'
+            : convertFromBase(fundingInfo.distributable).toFixed(3)}
+        </Text>
+        {isFundable() && <FundProposal proposalContract={proposalContract} />}
+      </Box>
+    </>
   );
 }
 
