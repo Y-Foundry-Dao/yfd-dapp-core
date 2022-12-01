@@ -3,7 +3,7 @@ const msgCreateProposalText = (
   isEmergency: boolean,
   justification: string
 ) => {
-  return { 
+  return {
     create_proposal: {
       proposal_type: {
         text: {
@@ -12,7 +12,7 @@ const msgCreateProposalText = (
       },
       emergency: isEmergency,
       justification_link: justification
-    } 
+    }
   };
 };
 

@@ -1,6 +1,4 @@
-const msgClaimYFD = (
-  stakeIndex: string,
-) => {
+const msgClaimYFD = (stakeIndex: string) => {
   return {
     claim: {
       stake_idx: stakeIndex

@@ -1,6 +1,6 @@
 const msgFinalizeVote = () => {
   return {
-    finalize_vote: {} 
+    finalize_vote: {}
   };
 };
 

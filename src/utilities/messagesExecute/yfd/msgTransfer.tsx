@@ -1,11 +1,8 @@
-const msgTransfer = (
-  recipientAddress: string,
-  amountConverted: number
-) => {
+const msgTransfer = (recipientAddress: string, amountConverted: number) => {
   return {
     transfer: {
       recipient: recipientAddress,
-      amount: String(amountConverted),
+      amount: String(amountConverted)
     }
   };
 };

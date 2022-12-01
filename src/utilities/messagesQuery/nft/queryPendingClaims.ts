@@ -8,7 +8,7 @@ const queryPendingClaims = (claimContract: string, nftOwner: string) => {
         }
       }
     }
-  }
+  };
 };
 
 export default queryPendingClaims;

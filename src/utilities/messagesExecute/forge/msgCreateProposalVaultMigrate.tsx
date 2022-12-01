@@ -4,17 +4,17 @@ const msgCreateProposalVaultMigrate = (
   isEmergency: boolean,
   justification: string
 ) => {
-  return { 
+  return {
     create_proposal: {
       proposal_type: {
         vault_migrate: {
           vault_index: vaultProposalIndex,
-          new_code_id: newCodeId,
-        },
+          new_code_id: newCodeId
+        }
       },
       emergency: isEmergency,
       justification_link: justification
-    } 
+    }
   };
 };
 

@@ -4,21 +4,21 @@ const msgCreateProposalParameter = (
   isEmergency: boolean,
   justification: string
 ) => {
-  return { 
+  return {
     create_proposal: {
       proposal_type: {
-      parameter: {
-          name: parameter, 
+        parameter: {
+          name: parameter,
           change: {
             change: {
-                value: value,
+              value: value
             }
           }
         }
       },
       emergency: isEmergency,
       justification_link: justification
-    } 
+    }
   };
 };
 

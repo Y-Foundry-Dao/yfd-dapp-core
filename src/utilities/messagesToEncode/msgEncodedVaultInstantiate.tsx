@@ -2,7 +2,7 @@ import { YFD_TEST } from 'utilities/variables/variables';
 
 const msgVaultInstantiate = (
   claimContract: string,
-  vaultProposalIndex: string,
+  vaultProposalIndex: string
 ) => {
   return `{
     claim_contract: "${claimContract}",
