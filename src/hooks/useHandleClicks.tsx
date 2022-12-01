@@ -23,7 +23,24 @@ import {
   inputTvlLimit,
   inputUrlProposal,
   inputNFTAmount,
-  inputDeveloperWallet
+  inputDeveloperWallet,
+  inputWhitelistWalletAddress,
+  inputWhitelistWalletAddressName,
+  inputWhitelistWalletAddressUrl,
+  inputWhitelistWalletAddressTwitter,
+  inputWhitelistWalletAddressKeybase,
+  inputWhitelistWalletAddressTelegram,
+  inputWhitelistWalletAddressGithub,
+  inputWhitelistWalletAddressImageLink,
+  inputWhitelistWalletAddressRoles,
+  inputIsEmergency,
+  inputJustificationLink,
+  inputWhitelistTokenAddress,
+  inputWhitelistTokenName,
+  inputWhitelistTokenAssetType,
+  inputWhitelistTokenisStable,
+  inputWhitelistTokenOracleAddress,
+  inputWhitelistTokenToUsd
 } from 'recoil/input/atoms';
 import convertToBase from 'utilities/converters/convertToBase';
 import msgVoteAffirm from 'utilities/messagesExecute/vote/msgVoteAffirm';
@@ -39,6 +56,14 @@ import {
   SUCCESS_VOTE
 } from 'utilities/variables/toastMessages';
 import useTx from './useTx';
+import msgCreateProposalWhitelistWalletAddress from 'utilities/messagesExecute/forge/msgCreateProposalWhitelistWalletAddress';
+import msgCreateProposalWhitelistTokenAddress from 'utilities/messagesExecute/forge/msgCreateProposalWhitelistTokenAddress';
+import msgCreateProposalParameter from 'utilities/messagesExecute/forge/msgCreateProposalParameter';
+import msgCreateProposalText from 'utilities/messagesExecute/forge/msgCreateProposalText';
+import msgCreateProposalMessage from 'utilities/messagesExecute/forge/msgCreateProposalMessage';
+import msgCreateProposalLiquidateVault from 'utilities/messagesExecute/forge/msgCreateProposalLiquidateVault';
+import msgCreateProposalStopVaultProposal from 'utilities/messagesExecute/forge/msgCreateProposalStopVaultProposal';
+import msgCreateProposalVaultMigrate from 'utilities/messagesExecute/forge/msgCreateProposalVaultMigrate';
 
 const useHandleClicks = () => {
   const { executeMsg } = useMsg();
@@ -48,7 +73,10 @@ const useHandleClicks = () => {
 
   const { toastSuccessful } = useTx();
 
-  // Pulling in Recoil Values
+  const isEmergency = useRecoilValue(inputIsEmergency);
+  const justificationLink = useRecoilValue(inputJustificationLink);
+
+  // Pulling in Recoil Values for VaultProposals
   const nameProposal = useRecoilValue(inputNameProposal);
   const nameMsg = useRecoilValue(inputNameMsg);
   const urlProposal = useRecoilValue(inputUrlProposal);
@@ -64,6 +92,43 @@ const useHandleClicks = () => {
   const initialFunding = useRecoilValue(inputInitialFunding);
   const nftAmount = useRecoilValue(inputNFTAmount);
   const developer = useRecoilValue(inputDeveloperWallet);
+
+  // Pulling in Recoil Values for Address Whitelist
+  const whitelistWalletAddress = useRecoilValue(inputWhitelistWalletAddress);
+  const whitelistWalletAddressName = useRecoilValue(
+    inputWhitelistWalletAddressName
+  );
+  const whitelistWalletAddressUrl = useRecoilValue(
+    inputWhitelistWalletAddressUrl
+  );
+  const whitelistWalletAddressTwitter = useRecoilValue(
+    inputWhitelistWalletAddressTwitter
+  );
+  const whitelistWalletAddressKeybase = useRecoilValue(
+    inputWhitelistWalletAddressKeybase
+  );
+  const whitelistWalletAddressTelegram = useRecoilValue(
+    inputWhitelistWalletAddressTelegram
+  );
+  const whitelistWalletAddressGithub = useRecoilValue(
+    inputWhitelistWalletAddressGithub
+  );
+  const whitelistWalletAddressImageLink = useRecoilValue(
+    inputWhitelistWalletAddressImageLink
+  );
+  const whitelistWalletAddressRoles = useRecoilValue(
+    inputWhitelistWalletAddressRoles
+  );
+
+  // Pulling in Recoil Values for Token Whitelist
+  const whitelistTokenAddress = useRecoilValue(inputWhitelistTokenAddress);
+  const whitelistTokenName = useRecoilValue(inputWhitelistTokenName);
+  const whitelistTokenAssetType = useRecoilValue(inputWhitelistTokenAssetType);
+  const whitelistTokenisStable = useRecoilValue(inputWhitelistTokenisStable);
+  const whitelistTokenOracleAddress = useRecoilValue(
+    inputWhitelistTokenOracleAddress
+  );
+  const whitelistTokenToUsd = useRecoilValue(inputWhitelistTokenToUsd);
 
   const handleClickStakeYFD = async (amount: number, duration: number) => {
     if (!connectedWallet) {
@@ -88,7 +153,7 @@ const useHandleClicks = () => {
     return;
   };
 
-  const handleClickCreateProposal = async () => {
+  const handleClickCreateVaultProposal = async () => {
     if (connectedWallet) {
       const msgToEncode = msgEncodedProposal(
         nameProposal,
@@ -107,13 +172,54 @@ const useHandleClicks = () => {
       const encodedMessage = Base64.btoa(msgToEncode);
       const msgCreateProposal = msgExecuteSend(
         FORGE_TEST,
-        convertToBase(initialFunding),
-        encodedMessage
+        encodedMessage,
+        convertToBase(initialFunding)
       );
       const tx = await executeMsg(YFD_TEST, msgCreateProposal);
       console.log(tx);
       toastSuccessful(tx, SUCCESS_CREATE_PROPOSAL);
     }
+  };
+
+  const handleClickCreateProposalWhitelistWalletAddress = async () => {
+    const tx = await executeMsg(
+      FORGE_TEST,
+      msgCreateProposalWhitelistWalletAddress(
+        whitelistWalletAddress,
+        whitelistWalletAddressName,
+        whitelistWalletAddressImageLink,
+        whitelistWalletAddressRoles,
+        whitelistWalletAddressGithub,
+        whitelistWalletAddressKeybase,
+        whitelistWalletAddressTelegram,
+        whitelistWalletAddressTwitter,
+        whitelistWalletAddressUrl,
+        isEmergency,
+        justificationLink
+      )
+    );
+
+    console.log(tx);
+    // toastSuccessful(tx, SUCCESS_CREATE_PROPOSAL);
+  };
+
+  const handleClickCreateProposalWhitelistTokenAddress = async () => {
+    const tx = await executeMsg(
+      FORGE_TEST,
+      msgCreateProposalWhitelistTokenAddress(
+        whitelistTokenAddress,
+        whitelistTokenName,
+        whitelistTokenAssetType,
+        whitelistTokenisStable,
+        whitelistTokenOracleAddress,
+        whitelistTokenToUsd,
+        isEmergency,
+        justificationLink
+      )
+    );
+
+    console.log(tx);
+    // toastSuccessful(tx, SUCCESS_CREATE_PROPOSAL);
   };
 
   const handleClickFundProposal = async (
@@ -122,8 +228,8 @@ const useHandleClicks = () => {
   ) => {
     const msgFundProposal = msgExecuteSend(
       proposalContract,
-      convertToBase(inputFundingAmount),
-      'eyJzdGFrZSI6e319'
+      'eyJzdGFrZSI6e319',
+      convertToBase(inputFundingAmount)
     );
     const tx = await executeMsg(YFD_TEST, msgFundProposal);
     toastSuccessful(tx, SUCCESS_FUND_PROPOSAL);
@@ -210,7 +316,7 @@ const useHandleClicks = () => {
 
   return {
     handleClickStakeYFD,
-    handleClickCreateProposal,
+    handleClickCreateVaultProposal,
     handleClickFundProposal,
     handleClickVoteAffirm,
     handleClickVoteDeny,
@@ -218,7 +324,9 @@ const useHandleClicks = () => {
     handleClickVoteDenyWithPenalty,
     handleClickFinalizeEmergency,
     handleClickFinalizeProposal,
-    handleClickFinalizeVaultProposal
+    handleClickFinalizeVaultProposal,
+    handleClickCreateProposalWhitelistWalletAddress,
+    handleClickCreateProposalWhitelistTokenAddress
   };
 };
 

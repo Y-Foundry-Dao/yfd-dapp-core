@@ -43,14 +43,14 @@ import {
   inputUrlProposal
 } from 'recoil/input/atoms';
 import txHashAtom from 'recoil/txHash/atom';
-import ProposalSubmittedText from './ProposalSubmittedText';
+import ProposalSubmittedText from '../ProposalSubmittedText';
 import InputNFTAmount from './inputs/InputNFTAmount';
 import InputDeveloper from './inputs/InputDeveloper';
 
 function ProposalCreationForm({ onClose }: any) {
-  const { handleClickCreateProposal } = useHandleClicks();
+  const { handleClickCreateVaultProposal } = useHandleClicks();
   const onSubmit = () => {
-    handleClickCreateProposal();
+    handleClickCreateVaultProposal();
   };
 
   const nameProposal = useRecoilValue(inputNameProposal);

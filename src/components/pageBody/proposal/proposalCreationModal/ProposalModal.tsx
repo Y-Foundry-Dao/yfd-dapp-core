@@ -6,10 +6,18 @@ import {
   ModalBody,
   ModalCloseButton
 } from '@chakra-ui/react';
-import ProposalCreationForm from './proposalCreationForm/VaultProposalCreationForm';
+import ProposalCreationForm from './vaultProposalCreationForm/VaultProposalCreationForm';
 import ProposalTypeSelector from './proposalTypeSelector/ProposalTypeSelector';
+import CreationFormWhitelistWalletAddress from './governanceProposalCreationForm/CreationFormWhitelistWalletAddress';
+import { inputProposalType } from 'recoil/input/atoms';
+import { useRecoilValue } from 'recoil';
+import CreationFormWhitelistTokenAddress from './governanceProposalCreationForm/CreationFormWhitelistTokenAddress';
+import CreationFormParameter from './governanceProposalCreationForm/CreationFormParameter';
+import CreationFormText from './governanceProposalCreationForm/CreationFormText';
+import CreationFormSpend from './governanceProposalCreationForm/CreationFormSpend';
 
 function ProposalModal({ isOpen, onClose }: any) {
+  const proposalTypeSelected = useRecoilValue(inputProposalType);
   return (
     <Modal
       size={['lg', '2xl', '3xl', '4xl']}
@@ -24,7 +32,21 @@ function ProposalModal({ isOpen, onClose }: any) {
         <ProposalTypeSelector />
         <ModalCloseButton />
         <ModalBody>
-          <ProposalCreationForm onClose={onClose} />
+          {/* <ProposalCreationForm onClose={onClose} /> */}
+          {proposalTypeSelected === 'vault' && (
+            <ProposalCreationForm onClose={onClose} />
+          )}
+          {proposalTypeSelected === 'governanceWhitelistWalletAddress' && (
+            <CreationFormWhitelistWalletAddress onClose={onClose} />
+          )}
+          {proposalTypeSelected === 'governanceWhitelistTokenAddress' && (
+            <CreationFormWhitelistTokenAddress onClose={onClose} />
+          )}
+          {proposalTypeSelected === 'governanceParameter' && (
+            <CreationFormParameter />
+          )}
+          {proposalTypeSelected === 'governanceText' && <CreationFormText />}
+          {proposalTypeSelected === 'governanceSpend' && <CreationFormSpend />}
         </ModalBody>
       </ModalContent>
     </Modal>
