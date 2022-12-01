@@ -3,7 +3,7 @@ const msgCreateProposalLiquidateVault = (
   isEmergency: boolean,
   justification: string
 ) => {
-  return { 
+  return {
     create_proposal: {
       proposal_type: {
         vault_liquidate: {
@@ -12,7 +12,7 @@ const msgCreateProposalLiquidateVault = (
       },
       emergency: isEmergency,
       justification_link: justification
-    } 
+    }
   };
 };
 

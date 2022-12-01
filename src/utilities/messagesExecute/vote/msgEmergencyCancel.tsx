@@ -1,6 +1,6 @@
 const msgEmergencyCancel = () => {
   return {
-    emergency_cancel: {} 
+    emergency_cancel: {}
   };
 };
 

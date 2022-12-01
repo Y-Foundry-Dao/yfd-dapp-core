@@ -24,6 +24,7 @@ import VoteTokenBalance from 'components/pageBody/proposal/vaultProposals/propos
 import FundingInfo from 'components/pageBody/proposal/vaultProposals/proposalInfo/funding/FundingInfo';
 import VaultProposalInfo from 'components/pageBody/proposal/vaultProposals/proposalInfo/VaultProposalInfo';
 import CurrentVotes from 'components/pageBody/proposal/vaultProposals/proposalInfo/voting/CurrentVotes';
+import CurrentVotesBar from 'components/pageBody/proposal/vaultProposals/proposalInfo/voting/CurrentVotesBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   solid,
@@ -32,6 +33,8 @@ import {
   icon
 } from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
 import NFTInfo from '../proposalInfo/nfts/NFTInfo';
+
+import styleList from 'styles/proplist.module.scss';
 
 function VaultProposalListAccordionItem({
   proposalContract,
@@ -47,20 +50,22 @@ function VaultProposalListAccordionItem({
   });
   const [inputVoteTokenAmount, setInputVoteTokenAmount] = useState(0);
   return (
-    <AccordionItem layerStyle="accordionProposalItem">
+    <AccordionItem
+      layerStyle="accordionProposalItem"
+      className={styleList['content-section']}
+    >
       <AccordionButton layerStyle="accordionHeader">
         <Flex width="100%">
-          <Box>
-            <br />
-            <FontAwesomeIcon icon={solid('vault')} />
-          </Box>
-          <Box p="4" textAlign="left">
+          <Box textAlign="left">
             <Text>{vaultProposalInfo.name}</Text> (
             <FinderContractLink contract={proposalContract} /> )
           </Box>
           <Spacer />
           <Box textAlign="right">
-            <br />
+            <CurrentVotesBar
+              proposalContract={proposalContract}
+              proposalIndex={proposalIndex}
+            />
             <ProposalStatus
               proposalContract={proposalContract}
               proposalIndex={proposalIndex}

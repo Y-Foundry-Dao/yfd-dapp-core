@@ -1,6 +1,4 @@
-const msgBurn = (
-  amountConverted: number
-) => {
+const msgBurn = (amountConverted: number) => {
   return {
     burn: {
       amount: String(amountConverted)

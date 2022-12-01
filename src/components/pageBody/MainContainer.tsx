@@ -12,6 +12,7 @@ import GettingStarted from 'components/pageBody/GettingStarted';
 import ProposalsVaultsFeatured from 'components/pageBody/ProposalsVaultsFeatured';
 import ProposalsGoveranceFeatured from 'components/pageBody/ProposalsGovernanceFeatured';
 import VaultsFeatured from 'components/pageBody/VaultsFeatured';
+import FundingFeatured from 'components/pageBody/FundingFeatured';
 
 export default function MainContainer() {
   return (
@@ -19,8 +20,7 @@ export default function MainContainer() {
       <NavMain />
       <div className={styles['content-wrapper']}>
         <GettingStarted />
-        <ProposalsVaultsFeatured />
-        <ProposalsGoveranceFeatured />
+        <FundingFeatured />
         <VaultsFeatured />
       </div>
     </div>

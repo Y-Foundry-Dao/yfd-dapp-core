@@ -104,8 +104,8 @@ function StakeYFD() {
               <NumberInput
                 id="stake-yfd-input"
                 name="stake-yfd-input"
-                precision={6}
-                min={0}
+                precision={0}
+                min={1000}
                 step={1000}
                 maxW="140px"
                 inputMode="decimal"

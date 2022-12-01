@@ -1,6 +1,4 @@
-const msgFinalizeProposal = (
-  proposalIndex: string,
-) => {
+const msgFinalizeProposal = (proposalIndex: string) => {
   return {
     finalize_proposal: {
       idx: proposalIndex

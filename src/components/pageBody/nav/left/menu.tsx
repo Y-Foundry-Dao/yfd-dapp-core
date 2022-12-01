@@ -55,7 +55,7 @@ function MenuLeft() {
         <div className={styles['side-menu']}>
           <a href="#">
             <FontAwesomeIcon fill="currentColor" icon={solid('coins')} />
-            Deposit fYFD
+            Deposit $YFD
           </a>
           <a href="#">
             <FontAwesomeIcon icon={solid('handshake')} />
