@@ -7,16 +7,14 @@ import {
   icon
 } from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
 import { Heading } from '@chakra-ui/react';
-import VaultProposals from './proposal/vaultProposals/VaultProposals';
 
-export default function ProposalsList() {
+export default function DepositYfd() {
   return (
     <>
       <div className={styles['content-section']}>
         <div className={styles['content-section-title']}>
-          <Heading size="md">Latest Vault Proposals</Heading>
+          <Heading size="md">Deposit $YFD</Heading>
         </div>
-        <VaultProposals />
       </div>
     </>
   );

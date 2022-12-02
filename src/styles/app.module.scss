@@ -407,6 +407,7 @@ body.light-mode .video-bg:before {
  align-items: center;
  border-bottom: 1px solid var(--border-color);
  height: 58px;
+ width: 100%;
  flex-shrink: 0;
  .header-menu {
   margin-left: 150px;
@@ -976,4 +977,8 @@ SVG Icons - svgicons.sparkk.fr
 .svg-icon circle {
  stroke: #4691f6;
  stroke-width: 1;
+}
+
+.gettingStarted {
+    width: 100%;
 }

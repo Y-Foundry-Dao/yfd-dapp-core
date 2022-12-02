@@ -1,15 +1,8 @@
 import styles from 'styles/app.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  solid,
-  regular,
-  brands,
-  icon
-} from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
 import { Flex, Box, Spacer } from '@chakra-ui/react';
 import styleBar from 'styles/progressbar.module.scss';
 
-export default function VaultsFeatured() {
+export default function InitiativesFeatured() {
   return (
     <Box>
       <div className={styles['content-section']}>

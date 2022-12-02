@@ -7,16 +7,15 @@ import {
   icon
 } from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
 import { Heading } from '@chakra-ui/react';
-import GovernanceProposals from './proposal/governanceProposals/GovernanceProposals';
 
-export default function ListGovernanceProposalsLatest() {
+export default function InitativeProposalsList() {
   return (
     <>
       <div className={styles['content-section']}>
         <div className={styles['content-section-title']}>
-          <Heading size="md">Latest Governance Proposals</Heading>
+          <Heading size="md">Latest Initiative Proposals</Heading>
         </div>
-        <GovernanceProposals />
+        None Available
       </div>
     </>
   );
