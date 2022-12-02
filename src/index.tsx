@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { RecoilRoot } from 'recoil';
 import { getChainOptions, WalletProvider } from '@terra-money/wallet-provider';
+import { BrowserRouter } from 'react-router-dom';
 
 // theme styling of UI
 import '@csstools/normalize.css';
@@ -30,7 +31,9 @@ getChainOptions().then((chainOptions) => {
     <WalletProvider {...chainOptions}>
       <SaasProvider theme={theme}>
         <RecoilRoot>
-          <App />
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
         </RecoilRoot>
       </SaasProvider>
     </WalletProvider>

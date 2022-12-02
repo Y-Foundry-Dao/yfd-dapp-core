@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from 'styles/app.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -12,9 +13,18 @@ export default function MainMenu() {
     <div className={styles['main-header']}>
       <a className={styles['menu-link-main']}>Sections</a>
       <div className={styles['header-menu']}>
-        <a className={styles['main-header-link']}>Dashboard</a>
-        <a className={styles['main-header-link']}>Vaults</a>
-        <a className={styles['main-header-link']}>Governance</a>
+        <Link to="/" className={styles['main-header-link']}>
+          Dashboard
+        </Link>
+        <Link to="/vaults" className={styles['main-header-link']}>
+          Vaults
+        </Link>
+        <Link to="/initiatives" className={styles['main-header-link']}>
+          Initiatives
+        </Link>
+        <Link to="/proposals-governance" className={styles['main-header-link']}>
+          Governance
+        </Link>
       </div>
     </div>
   );

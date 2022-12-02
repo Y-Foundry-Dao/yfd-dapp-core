@@ -1,27 +1,40 @@
+import { Route, Routes } from 'react-router-dom';
+
 import styles from 'styles/app.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  solid,
-  regular,
-  brands,
-  icon
-} from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
 
 import NavMain from 'components/pageBody/nav/main/menu';
+
+import LandingPage from 'components/pageBody/LandingPage';
 import GettingStarted from 'components/pageBody/GettingStarted';
-import ProposalsVaultsFeatured from 'components/pageBody/ProposalsVaultsFeatured';
-import ProposalsGoveranceFeatured from 'components/pageBody/ProposalsGovernanceFeatured';
+import VaultProposals from 'components/pageBody/ProposalsVaults';
+import GovernanceProposals from 'components/pageBody/ProposalsGovernance';
+import InitiativeProposals from 'components/pageBody/ProposalsInitiatives';
+import DepositYfd from 'components/pageBody/DepositYfd';
+
 import VaultsFeatured from 'components/pageBody/VaultsFeatured';
-import FundingFeatured from 'components/pageBody/FundingFeatured';
+import InitiativesFeatured from 'components/pageBody/InitiativesFeatured';
 
 export default function MainContainer() {
   return (
     <div className={styles['main-container']}>
       <NavMain />
       <div className={styles['content-wrapper']}>
-        <GettingStarted />
-        <FundingFeatured />
-        <VaultsFeatured />
+        <Routes>
+          <Route path="/" element={<LandingPage />}></Route>
+          <Route path="/getting-started" element={<GettingStarted />}></Route>
+          <Route path="/proposals-vaults" element={<VaultProposals />}></Route>
+          <Route path="/deposit-yfd" element={<DepositYfd />}></Route>
+          <Route path="/vaults" element={<VaultsFeatured />}></Route>
+          <Route path="/initiatives" element={<InitiativesFeatured />}></Route>
+          <Route
+            path="/proposals-governance"
+            element={<GovernanceProposals />}
+          ></Route>
+          <Route
+            path="/proposals-initiatives"
+            element={<InitiativeProposals />}
+          ></Route>
+        </Routes>
       </div>
     </div>
   );

@@ -1,10 +1,11 @@
-import styles from 'styles/app.module.scss';
+import React from 'react';
 
+import styles from 'styles/app.module.scss';
 import Header from 'components/header/Header';
-import MainContainer from 'components/pageBody/MainContainer';
-import BackgroundVideo from 'components/basic/BackgroundVideo';
-import ThemeToggle from 'components/basic/ThemeToggle';
+//import BackgroundVideo from 'components/basic/BackgroundVideo';
+//import ThemeToggle from 'components/basic/ThemeToggle';
 import LeftSide from 'components/pageBody/LeftSide';
+import MainContainer from 'components/pageBody/MainContainer';
 
 export default function App() {
   return (

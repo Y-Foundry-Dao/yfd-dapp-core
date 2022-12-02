@@ -1,11 +1,7 @@
+import { Link } from 'react-router-dom';
 import styles from 'styles/app.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  solid,
-  regular,
-  brands,
-  icon
-} from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
+import { solid, brands } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { useDisclosure } from '@chakra-ui/react';
 import ProposalModal from 'components/pageBody/proposal/proposalCreationModal/ProposalModal';
 import ProposalModalButton from 'components/pageBody/proposal/proposalCreationModal/ProposalModalButton';
@@ -19,10 +15,10 @@ function MenuLeft() {
       <div className={styles['side-wrapper']}>
         <div className={styles['side-title']}>Personal</div>
         <div className={styles['side-menu']}>
-          <a href="#">
+          <Link to="/">
             <FontAwesomeIcon icon={solid('cubes')} />
             My Dashboard
-          </a>
+          </Link>
           <a href="#">
             <FontAwesomeIcon icon={solid('rotate-left')} />
             Updates
@@ -41,36 +37,36 @@ function MenuLeft() {
         <div className={styles['side-menu']}>
           <ProposalModalButton onOpen={onOpen} />
           <ProposalModal isOpen={isOpen} onClose={onClose} />
-          <a href="#">
+          <Link to="/proposals-vaults">
             <FontAwesomeIcon icon={solid('vault')} />
             Vaults
-          </a>
-          <a href="#">
+          </Link>
+          <Link to="/proposals-initiatives">
             <FontAwesomeIcon icon={solid('hands-holding-circle')} />
             Funding
-          </a>
+          </Link>
         </div>
       </div>
       <div className={styles['side-wrapper']}>
         <div className={styles['side-title']}>Governance</div>
         <div className={styles['side-menu']}>
-          <a href="#">
+          <Link to="/deposit-yfd">
             <FontAwesomeIcon fill="currentColor" icon={solid('coins')} />
             Deposit $YFD
-          </a>
-          <a href="#">
+          </Link>
+          <Link to="/proposals-governance">
             <FontAwesomeIcon icon={solid('handshake')} />
             DAO Proposals
-          </a>
+          </Link>
         </div>
       </div>
       <div className={styles['side-wrapper']}>
         <div className={styles['side-title']}>About Y-Foundry DAO</div>
         <div className={styles['side-menu']}>
-          <a href="#">
+          <Link to="/getting-started">
             <FontAwesomeIcon icon={solid('rocket')} />
             Getting Started
-          </a>
+          </Link>
           <a href={DOCS} target="_blank">
             <FontAwesomeIcon icon={solid('graduation-cap')} />
             Documentation
