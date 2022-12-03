@@ -52,9 +52,11 @@ export default function FeedbackForm({ onClose }: any) {
       headers: {
         'Content-Type': 'application/json'
       }
+    }).then((res: any) => {
+      console.log('Feedback Sent to Discord');
+      toastSuccessful('', SUCCESS_FEEDBACK_DISCORD);
+      onClose();
     });
-    console.log('Feedback Sent to Discord');
-    toastSuccessful('', SUCCESS_FEEDBACK_DISCORD);
   };
 
   return (
