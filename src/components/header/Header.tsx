@@ -1,9 +1,6 @@
-import { Box, Flex, HStack, Image } from '@chakra-ui/react';
+import { Image } from '@chakra-ui/react';
 import yLogo from 'assets/yfd/logo-horizontal-orange-white.svg';
 import WalletConnect from './walletConnect/WalletConnect';
-import TopNav from './navigation/NavTop';
-import NotifyBell from 'components/basic/NotifyBell';
-import StakedYFD from 'components/basic/stake/stakedYFD/StakedYFD';
 import FYFD from 'components/basic/StakeYFD';
 
 import styles from 'styles/app.module.scss';

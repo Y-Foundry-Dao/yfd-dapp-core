@@ -1,12 +1,5 @@
 import { Link } from 'react-router-dom';
 import styles from 'styles/app.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  solid,
-  regular,
-  brands,
-  icon
-} from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
 
 export default function MainMenu() {
   return (
