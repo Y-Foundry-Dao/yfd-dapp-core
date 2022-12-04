@@ -4,6 +4,8 @@ export const SUCCESS_CREATE_PROPOSAL = 'Successfully Created Proposal';
 
 export const SUCCESS_FUND_PROPOSAL = 'Successfully Funded Proposal';
 
+export const SUCCESS_FEEDBACK_DISCORD = 'Successfully Received Feedback';
+
 export const SUCCESS_VOTE = 'Successfully Voted';
 
 export const SUCCESS_FINALIZED = 'Successfully Finalized';

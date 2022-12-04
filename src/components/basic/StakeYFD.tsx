@@ -1,16 +1,9 @@
 import { useState } from 'react';
+import { useRecoilValue } from 'recoil';
 import useHandleClicks from 'hooks/useHandleClicks';
 import BalanceYFD from './stake/BalanceYFD';
 import BalancefYFD from './stake/BalancefYFD';
-import { useRecoilState, useRecoilValue } from 'recoil';
 import { format } from 'date-fns';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  solid,
-  regular,
-  brands,
-  icon
-} from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
 
 import {
   Popover,
@@ -21,7 +14,6 @@ import {
   PopoverFooter,
   PopoverArrow,
   PopoverCloseButton,
-  PopoverAnchor,
   Portal,
   Text,
   Button,
@@ -43,7 +35,6 @@ import {
 } from '@chakra-ui/react';
 
 import styles from 'styles/app.module.scss';
-import yLogo from 'assets/yfd/logo-orange.svg';
 
 import {
   DATE_ONE_MONTH,
