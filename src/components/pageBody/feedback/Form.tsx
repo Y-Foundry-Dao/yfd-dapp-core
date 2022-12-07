@@ -1,5 +1,5 @@
 import { Form, FormLayout, Field, SubmitButton } from '@saas-ui/react';
-import { Select } from '@chakra-ui/react';
+import { Box, Flex, Spacer, Select } from '@chakra-ui/react';
 import { useRecoilValue } from 'recoil';
 import { format } from 'date-fns';
 import {
@@ -64,39 +64,48 @@ export default function FeedbackForm({ onClose }: any) {
       <FormLayout>
         <Field
           name="feedbackName"
+          help="Name"
           value={feedbackName}
           onChange={handleInputFeedbackName}
           type="text"
           rules={{ required: false }}
         />
-        <Field
-          name="feedbackHandle"
-          onChange={handleInputFeedbackHandle}
-          value={feedbackHandle}
-          type="text"
-          rules={{ required: false }}
-        />
-        <Select
-          value={feedbackMethod}
-          onChange={handleInputFeedbackMethod}
-          placeholder="Type of Account"
-        >
-          <option value="Twitter">Twitter</option>
-          <option value="Telegram">Telegram</option>
-          <option value="Email">Email</option>
-          <option value="Discord">Discord</option>
-          <option value="Keybase">Keybase</option>
-        </Select>
+        <Flex>
+          <Box>
+            <Field
+              name="feedbackHandle"
+              help="Username"
+              onChange={handleInputFeedbackHandle}
+              value={feedbackHandle}
+              type="text"
+              rules={{ required: false }}
+            />
+          </Box>
+          <Box>
+            <Select
+              value={feedbackMethod}
+              onChange={handleInputFeedbackMethod}
+              placeholder="Account Platform"
+            >
+              <option value="Twitter">Twitter</option>
+              <option value="Telegram">Telegram</option>
+              <option value="Email">Email</option>
+              <option value="Discord">Discord</option>
+              <option value="Keybase">Keybase</option>
+            </Select>
+          </Box>
+        </Flex>
         <Field
           name="feedbackDesc"
           onChange={handleInputFeedbackDesc}
           value={feedbackDesc}
           type="textarea"
-          label="Description"
           placeholder="Provide your feedback here"
         />
 
-        <SubmitButton disableIfUntouched>Submit Feedback</SubmitButton>
+        <SubmitButton className="button" disableIfUntouched>
+          Submit Feedback
+        </SubmitButton>
       </FormLayout>
     </Form>
   );
