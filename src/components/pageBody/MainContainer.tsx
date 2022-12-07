@@ -13,6 +13,7 @@ import DepositYfd from 'components/pageBody/DepositYfd';
 
 import VaultsFeatured from 'components/pageBody/VaultsFeatured';
 import InitiativesFeatured from 'components/pageBody/InitiativesFeatured';
+import GovernanceParameters from 'components/governance/parameters/list/Layout';
 
 export default function MainContainer() {
   return (
@@ -27,8 +28,12 @@ export default function MainContainer() {
           <Route path="/vaults" element={<VaultsFeatured />}></Route>
           <Route path="/initiatives" element={<InitiativesFeatured />}></Route>
           <Route
-            path="/proposals-governance"
+            path="/governance-proposals"
             element={<GovernanceProposals />}
+          ></Route>
+          <Route
+            path="/governance-parameters"
+            element={<GovernanceParameters />}
           ></Route>
           <Route
             path="/proposals-initiatives"
