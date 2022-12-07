@@ -16,7 +16,7 @@ const useGovernanceParameter = (governanceParameter: string) => {
   const setGovernanceParameterDetailsToState = async () => {
     const governanceParameterDetailsResponse =
       await getGovernanceParameterDetails(governanceParameter);
-    console.log(governanceParameterDetailsResponse);
+    //console.log(governanceParameterDetailsResponse);
     setGovernanceParameterDetails(governanceParameterDetailsResponse);
   };
 
