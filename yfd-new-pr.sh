@@ -4,7 +4,7 @@
 
 branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
 
-git branch -u=origin/main $branch
+git branch -u origin/main $branch
 git commit -a -m "$2"
 
 git push
