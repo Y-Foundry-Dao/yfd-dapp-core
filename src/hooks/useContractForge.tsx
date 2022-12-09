@@ -14,6 +14,7 @@ import { inputDevelopmentCost, inputNFTAmount } from 'recoil/input/atoms';
 import convertToBase from 'utilities/converters/convertToBase';
 import convertFromBase from 'utilities/converters/convertFromBase';
 import queryAllGovernanceParameters from 'utilities/messagesQuery/forge/queryAllGovernanceParameters';
+import queryGovernanceParameter from 'utilities/messagesQuery/forge/queryGovernanceParameter';
 import queryAllTokenWhitelist from 'utilities/messagesQuery/forge/queryAllTokenWhitelist';
 import queryAllAddressWhitelist from 'utilities/messagesQuery/forge/queryAllAddressWhitelist';
 import queryAddressWhitelist from 'utilities/messagesQuery/forge/queryAddressWhitelist';
@@ -24,14 +25,16 @@ const useContractForge = () => {
   const { queryMsg } = useMsg();
   const connectedWallet = useConnectedWallet();
 
-  const [governanceProposals, setGovernanceProposals] = useState<any>([]);
-  const [vaultProposals, setVaultProposals] = useState<any>([]);
-  const [requiredInitialFunding, setRequiredInitialFunding] = useState<any>(0);
   const [tokenBalance, setTokenBalance] = useState('0');
+  const [balanceDetail, setBalanceDetail] = useState({});
+
+  const [governanceProposals, setGovernanceProposals] = useState<any>([]);
+  const [governanceParameters, setGovernanceParameters] = useState([]);
   const [addressWhitelist, setAddressWhitelist] = useState([]);
   const [tokenWhitelist, setTokenWhitelist] = useState([]);
-  const [governanceParameters, setGovernanceParameters] = useState([]);
-  const [balanceDetail, setBalanceDetail] = useState({});
+
+  const [vaultProposals, setVaultProposals] = useState<any>([]);
+  const [requiredInitialFunding, setRequiredInitialFunding] = useState<any>(0);
 
   const setStakedYFD = useSetRecoilState(stakedYFDAtom);
 
@@ -41,6 +44,11 @@ const useContractForge = () => {
 
   const getAllGovernanceParameters = async () => {
     const response = await queryMsg(FORGE_TEST, queryAllGovernanceParameters());
+    return response;
+  };
+
+  const getGovernanceParameter = async (name: string) => {
+    const response = await queryMsg(FORGE_TEST, queryGovernanceParameter(name));
     return response;
   };
 
@@ -213,6 +221,7 @@ const useContractForge = () => {
     governanceParameters,
     tokenWhitelist,
     addressWhitelist,
+    getGovernanceParameter,
     getProposalByIndex,
     getVaultProposalByIndex,
     getTokenInWhitelist,
