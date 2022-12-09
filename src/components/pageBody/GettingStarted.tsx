@@ -1,7 +1,7 @@
 import styles from 'styles/app.module.scss';
-import imgBot1 from 'assets/bots/bot1.png';
-import imgBot2 from 'assets/bots/bot2.png';
-import imgBot3 from 'assets/bots/bot3.png';
+import imgBot1 from '@images/bots/bot1.png';
+import imgBot2 from '@images/bots/bot2.png';
+import imgBot3 from '@images/bots/bot3.png';
 
 export default function GettingStarted() {
   return (

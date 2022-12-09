@@ -1,14 +1,13 @@
 import React from 'react';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
-import { ChakraProvider } from '@chakra-ui/react';
 
-import styles from 'styles/app.module.scss';
-import Header from 'components/header/Header';
-//import BackgroundVideo from 'components/basic/BackgroundVideo';
+import styles from '@styles/app.module.scss';
+import Header from '@components/header/Header';
+import BackgroundVideo from 'components/basic/BackgroundVideo';
 //import ThemeToggle from 'components/basic/ThemeToggle';
-import LeftSide from 'components/pageBody/LeftSide';
-import MainContainer from 'components/pageBody/MainContainer';
+import LeftSide from '@components/pageBody/LeftSide';
+import MainContainer from '@components/pageBody/MainContainer';
 
 const emotionCache = createCache({
   key: 'emotion-css-cache',
