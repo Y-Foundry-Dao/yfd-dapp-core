@@ -37,9 +37,13 @@ function MenuLeft() {
             <FontAwesomeIcon fill="currentColor" icon={solid('coins')} />
             Deposit $YFD
           </Link>
-          <Link to="/proposals-governance">
+          <Link to="/governance-proposals">
             <FontAwesomeIcon icon={solid('handshake')} />
             DAO Proposals
+          </Link>
+          <Link to="/governance-parameters">
+            <FontAwesomeIcon icon={solid('gear')} />
+            Governance Parameters
           </Link>
         </div>
       </div>

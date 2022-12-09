@@ -1,4 +1,4 @@
-const queryBalanceDetail = (governanceParameter: any) => {
+const queryGovernanceParameter = (governanceParameter: string) => {
   return {
     governance_parameter: {
       name: `${governanceParameter}`
@@ -6,4 +6,4 @@ const queryBalanceDetail = (governanceParameter: any) => {
   };
 };
 
-export default queryBalanceDetail;
+export default queryGovernanceParameter;
