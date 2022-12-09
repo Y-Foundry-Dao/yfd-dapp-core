@@ -42,7 +42,6 @@ function ListItem({ itemName }: any) {
               <InputGroup>
                 <InputLeftAddon
                   className={chakra.inputAddon}
-                  bgColor="gray"
                   children={itemData.min}
                 />
                 {governanceParameterDetails.active ? (

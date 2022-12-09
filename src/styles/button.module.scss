@@ -1,0 +1,28 @@
+.standard {
+    background-color: #2b6cb0;
+    border: none;
+    padding: 8px 26px;
+    color: #fff;
+    border-radius: 20px;
+    margin-top: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    white-space: nowrap;
+   }
+
+.disable {
+    background-color: gray;
+    border: none;
+    padding: 8px 26px;
+    color: #fff;
+    border-radius: 20px;
+    margin-top: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    white-space: nowrap;
+   }
+
+.create {
+    color: #f4bf62;
+    padding-right: 0.5em;
+}

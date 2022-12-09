@@ -1,10 +1,30 @@
-import { Heading, Accordion } from '@chakra-ui/react';
+import {
+  Heading,
+  Accordion,
+  Flex,
+  Box,
+  useDisclosure,
+  Spacer
+} from '@chakra-ui/react';
 import ListItem from './Item';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ProposalModal from 'components/pageBody/proposal/proposalCreationModal/ProposalModal';
+import CreateGov from './ButtonCreate';
 
 function List({ items }: any) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Heading size="md">Governance Parameters</Heading>
+      <Flex w="100%">
+        <Box>
+          <Heading size="md">Governance Parameters</Heading>
+        </Box>
+        <Spacer />
+        <Box>
+          <CreateGov onOpen={onOpen} />
+          <ProposalModal isOpen={isOpen} onClose={onClose} />
+        </Box>
+      </Flex>
       <Accordion w="100%">
         {items.map((item: string) => {
           return <ListItem itemName={item}>{item}</ListItem>;

@@ -1,4 +1,7 @@
 import React from 'react';
+import createCache from '@emotion/cache';
+import { CacheProvider } from '@emotion/react';
+import { ChakraProvider } from '@chakra-ui/react';
 
 import styles from 'styles/app.module.scss';
 import Header from 'components/header/Header';
@@ -7,19 +10,26 @@ import Header from 'components/header/Header';
 import LeftSide from 'components/pageBody/LeftSide';
 import MainContainer from 'components/pageBody/MainContainer';
 
+const emotionCache = createCache({
+  key: 'emotion-css-cache',
+  prepend: true // ensures styles are prepended to the <head>, instead of appended
+});
+
 export default function App() {
   return (
-    <main>
-      <div className={styles.app}>
-        <div className={styles.header}>
-          <Header />
+    <CacheProvider value={emotionCache}>
+      <main>
+        <div className={styles.app}>
+          <div className={styles.header}>
+            <Header />
+          </div>
+          <div className={styles.wrapper}>
+            <LeftSide />
+            <MainContainer />
+          </div>
+          <div className={styles['overlay-app']}></div>
         </div>
-        <div className={styles.wrapper}>
-          <LeftSide />
-          <MainContainer />
-        </div>
-        <div className={styles['overlay-app']}></div>
-      </div>
-    </main>
+      </main>
+    </CacheProvider>
   );
 }
