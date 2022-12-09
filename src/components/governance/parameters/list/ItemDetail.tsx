@@ -4,7 +4,7 @@ import chakra from 'styles/chakra.module.scss';
 function ItemDetail() {
   return (
     <Stack>
-      <button className={chakra['buttonStandard']}>Propose Change</button>
+      <button className={chakra['buttonStandard']}>Change</button>
       <button className={chakra['buttonDisable']}>Deprecate</button>
     </Stack>
   );
