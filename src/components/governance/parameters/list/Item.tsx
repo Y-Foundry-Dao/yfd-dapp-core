@@ -3,6 +3,11 @@ import {
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
+  Stack,
+  InputGroup,
+  InputLeftAddon,
+  InputRightAddon,
+  Input,
   Box,
   Flex,
   Spacer,
@@ -10,65 +15,81 @@ import {
   Text
 } from '@chakra-ui/react';
 import useGovernanceParameter from 'hooks/useGovernanceParameter';
+import ItemDetail from './ItemDetail';
+import chakra from 'styles/chakra.module.scss';
 
 function ListItem({ itemName }: any) {
   const { governanceParameterDetails } = useGovernanceParameter(itemName);
-  const paramType = Object.keys(governanceParameterDetails.parameter_type)[0];
-  let paramTypeName = paramType.replace('_', ' ');
-  paramTypeName = paramTypeName.toUpperCase();
-  const paramDetails = Object.values(
-    governanceParameterDetails.parameter_type
-  )[0];
-  console.log(paramDetails);
 
-  return (
-    <AccordionItem layerStyle="accordionProposalItem">
-      <AccordionButton>
-        <Flex w="100%">
-          <Box textAlign="left" pt="2">
-            <Heading size="sm">{governanceParameterDetails.name}</Heading>
-            <Text p="4">{governanceParameterDetails.description}</Text>
-          </Box>
-          <Spacer />
-          {governanceParameterDetails.active ? (
-            <Box
-              as="button"
-              borderRadius="md"
-              bg="green"
-              color="white"
-              px={4}
-              h={8}
-            >
+  if (Object.keys(governanceParameterDetails).length > 0) {
+    const paramType = Object.keys(governanceParameterDetails.parameter_type)[0];
+    let paramTypeName = paramType.replace('_', ' ');
+    paramTypeName = paramTypeName.toUpperCase();
+    const itemData: any = Object.values(
+      governanceParameterDetails.parameter_type
+    )[0];
+    return (
+      <AccordionItem layerStyle="accordionProposalItem">
+        <AccordionButton>
+          <Flex w="100%">
+            <Box textAlign="left" pt="2" w="75%">
+              <Heading size="sm">{governanceParameterDetails.name}</Heading>
+            </Box>
+            <Spacer />
+            <Box w="25%">
               {paramTypeName}
+              <br />
+              <InputGroup>
+                <InputLeftAddon
+                  className={chakra.inputAddon}
+                  bgColor="gray"
+                  children={itemData.min}
+                />
+                {governanceParameterDetails.active ? (
+                  <Input
+                    className={chakra.inputGovActive}
+                    placeholder={itemData.value}
+                    _placeholder={{
+                      opacity: 1,
+                      fontWeight: 500,
+                      color: '#fff'
+                    }}
+                  />
+                ) : (
+                  <Input
+                    disabled
+                    className={chakra.inputGovDisable}
+                    placeholder={itemData.value}
+                  />
+                )}
+                <InputRightAddon
+                  className={chakra.inputAddon}
+                  bgColor="gray"
+                  children={itemData.max}
+                />
+              </InputGroup>
             </Box>
-          ) : (
-            <Box
-              as="button"
-              borderRadius="md"
-              bg="gray"
-              color="white"
-              px={4}
-              h={8}
-            >
-              Disabled
+            <Spacer />
+            <Box alignContent="right">
+              <AccordionIcon />
             </Box>
-          )}
-          <Box alignContent="right">
-            <AccordionIcon />
-          </Box>
-        </Flex>
-      </AccordionButton>
-      <AccordionPanel layerStyle="accordionProposalPanel" pb="5">
-        <Text>
-          "name": "Governance Proposal Voting Period Length", "description":
-          "Amount of blocks that a governance proposal is considered active for
-          voting, after which it no longer accepts votes.", "parameter_type":
-          "block_height": "value": "201600", "min": "600", "max": "438000"
-          "active": true
-        </Text>
-      </AccordionPanel>
-    </AccordionItem>
-  );
+          </Flex>
+        </AccordionButton>
+        <AccordionPanel layerStyle="accordionProposalPanel" pb="5">
+          <Flex>
+            <Box w="70%" className={chakra.description}>
+              <Text px="2">{governanceParameterDetails.description}</Text>
+            </Box>
+            <Spacer />
+            <Box w="30%">
+              <ItemDetail />
+            </Box>
+          </Flex>
+        </AccordionPanel>
+      </AccordionItem>
+    );
+  }
+  return <Text>Loading...</Text>;
 }
 
 export default ListItem;
