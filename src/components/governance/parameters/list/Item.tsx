@@ -33,7 +33,7 @@ function ListItem({ itemName }: any) {
         <AccordionButton>
           <Flex w="100%">
             <Box textAlign="left" pt="2" w="75%">
-              <Heading size="sm">{governanceParameterDetails.name}</Heading>
+              <Text>{governanceParameterDetails.name}</Text>
             </Box>
             <Spacer />
             <Box w="25%">
@@ -42,17 +42,17 @@ function ListItem({ itemName }: any) {
               <InputGroup>
                 <InputLeftAddon
                   className={chakra.inputAddon}
-                  bgColor="gray"
                   children={itemData.min}
                 />
                 {governanceParameterDetails.active ? (
                   <Input
                     className={chakra.inputGovActive}
+                    w="100px"
                     placeholder={itemData.value}
                     _placeholder={{
                       opacity: 1,
                       fontWeight: 500,
-                      color: '#fff'
+                      color: '#eee'
                     }}
                   />
                 ) : (

@@ -43,7 +43,7 @@ function MenuLeft() {
           </Link>
           <Link to="/governance-parameters">
             <FontAwesomeIcon icon={solid('gear')} />
-            Governance Parameters
+            Parameters
           </Link>
         </div>
       </div>

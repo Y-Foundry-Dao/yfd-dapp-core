@@ -1,11 +1,11 @@
 import { Stack } from '@chakra-ui/react';
-import chakra from 'styles/chakra.module.scss';
+import buttonStyle from 'styles/button.module.scss';
 
 function ItemDetail() {
   return (
     <Stack>
-      <button className={chakra['buttonStandard']}>Propose Change</button>
-      <button className={chakra['buttonDisable']}>Deprecate</button>
+      <button className={buttonStyle.standard}>Change</button>
+      <button className={buttonStyle.disable}>Deprecate</button>
     </Stack>
   );
 }
