@@ -812,15 +812,21 @@ body.light-mode .video-bg:before {
 
 
 .getting-started-img {
-    width: 70px;
+    width: 130px;
     object-fit: cover;
     margin-top: -5px;
     margin-right: 10px;
     object-position: center;
-    filter: drop-shadow( 5px 5px 10px #000 );
+    border-radius: 2em;
+    filter: drop-shadow( 5px 5px 10px #88664a );
     @media screen and (max-width: 570px) {
      width: 50px;
     }
+}
+
+.text-enhanced {
+    color: #f37402;
+    filter: drop-shadow( 1em 1em 2em #fff);
 }
 
 .content-button-wrapper .content-button.status-button.open.close {
