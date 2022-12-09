@@ -48,6 +48,7 @@ function ListItem({ itemName }: any) {
                 {governanceParameterDetails.active ? (
                   <Input
                     className={chakra.inputGovActive}
+                    w="100px"
                     placeholder={itemData.value}
                     _placeholder={{
                       opacity: 1,

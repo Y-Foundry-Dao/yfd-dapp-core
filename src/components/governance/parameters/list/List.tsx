@@ -5,7 +5,7 @@ function List({ items }: any) {
   return (
     <>
       <Heading size="md">Governance Parameters</Heading>
-      <Accordion w="100%" allowMultiple>
+      <Accordion w="100%">
         {items.map((item: string) => {
           return <ListItem itemName={item}>{item}</ListItem>;
         })}
