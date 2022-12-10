@@ -408,8 +408,7 @@ body.light-mode .video-bg:before {
  width: 100%;
  flex-shrink: 0;
  .header-menu {
-  margin-left: 150px;
-  @media screen and (max-width: 1055px) {
+  @media screen  {
    margin: auto;
   }
   a {
