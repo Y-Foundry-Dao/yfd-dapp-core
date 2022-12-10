@@ -3,7 +3,7 @@ import yLogo from 'assets/yfd/logo-horizontal-orange-white.svg';
 import WalletConnect from '@features/walletConnect/WalletConnect';
 import FYFD from '@components/basic/StakeYFD';
 
-import styles from '@styles/app.module.scss';
+import styles from '@scss/header.module.scss';
 
 export default function Header() {
   return (

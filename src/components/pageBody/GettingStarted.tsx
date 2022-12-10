@@ -1,4 +1,4 @@
-import styles from 'styles/app.module.scss';
+import styles from '@scss/app.module.scss';
 import imgBot1 from '@images/bots/bot1.png';
 import imgBot2 from '@images/bots/bot2.png';
 import imgBot3 from '@images/bots/bot3.png';

@@ -5,7 +5,8 @@ import { BrowserRouter } from 'react-router-dom';
 
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
-import SiteWrapper from '@layouts/SiteWrapper';
+
+import AppLayout from '@layouts/App';
 
 const emotionCache = createCache({
   key: 'emotion-css-cache',
@@ -41,7 +42,7 @@ getChainOptions().then((chainOptions) => {
           <BrowserRouter>
             <CacheProvider value={emotionCache}>
               <main>
-                <SiteWrapper />
+                <AppLayout />
               </main>
             </CacheProvider>
           </BrowserRouter>
