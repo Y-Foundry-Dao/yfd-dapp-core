@@ -18,7 +18,7 @@
  --theme-color: #f9fafb;
  --inactive-color: rgb(113 119 144 / 78%);
  --body-font: "Poppins", sans-serif;
- --hover-menu-bg: rgba(12 15 25 / 30%);
+ --hover-menu-bg: rgba(205, 243, 183, 0.3);
  --content-title-color: #999ba5;
  --content-bg: rgb(146 151 179 / 13%);
  --button-inactive: rgb(249 250 251 / 55%);
@@ -437,6 +437,7 @@ body.light-mode .video-bg:before {
  color: var(--theme-color);
  padding: 20px 40px;
  height: 100%;
+ overflow: auto;
  background-color: var(--theme-bg-color);
  @media screen and (max-width: 510px) {
   padding: 20px;

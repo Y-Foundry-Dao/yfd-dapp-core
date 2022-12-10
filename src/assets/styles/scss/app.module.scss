@@ -20,7 +20,7 @@
  --theme-color: #f9fafb;
  --inactive-color: rgb(113 119 144 / 78%);
  --body-font: "Poppins", sans-serif;
- --hover-menu-bg: rgba(12 15 25 / 30%);
+ --hover-menu-bg: rgba(144, 167, 241, 0.3);
  --content-title-color: #999ba5;
  --content-bg: rgb(146 151 179 / 13%);
  --button-inactive: rgb(249 250 251 / 55%);
@@ -368,6 +368,7 @@ body.light-mode .video-bg:before {
    margin: auto;
   }
   a {
+    color: rgba(208, 199, 130, 0.78);
    padding: 20px 24px;
   }
  }
@@ -404,7 +405,7 @@ body.light-mode .video-bg:before {
   align-items: center;
   width: 100%;
   justify-content: space-between;
-  filter: drop-shadow( 10px 20px 15px rgb(138, 4, 4) );
+  filter: drop-shadow( 10px 20px 15px #000 );
   background-image: 
    linear-gradient(
     to right top,

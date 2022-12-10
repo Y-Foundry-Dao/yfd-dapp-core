@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import Home from '@pages/Home';
 import GettingStarted from '@features/GettingStarted';
-import VaultProposals from '@features/ProposalsVaults';
+import VaultProposals from '@pages/ProposalsVaults';
 import GovernanceProposals from '@features/ProposalsGovernance';
 import InitiativeProposals from '@features/ProposalsInitiatives';
 import DepositYfd from '@features/DepositYfd';
