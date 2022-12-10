@@ -3,13 +3,20 @@ import { RecoilRoot } from 'recoil';
 import { getChainOptions, WalletProvider } from '@terra-money/wallet-provider';
 import { BrowserRouter } from 'react-router-dom';
 
+import createCache from '@emotion/cache';
+import { CacheProvider } from '@emotion/react';
+import SiteWrapper from '@layouts/SiteWrapper';
+
+const emotionCache = createCache({
+  key: 'emotion-css-cache',
+  prepend: true // ensures styles are prepended to the <head>, instead of appended
+});
+
 // theme styling of UI
-import '@csstools/normalize.css';
+import primaryTheme from '@themes/theme';
 import { extendTheme } from '@chakra-ui/react';
 import { baseTheme, SaasProvider } from '@saas-ui/react';
-
-import App from 'App';
-import primaryTheme from 'styles/theme';
+import '@csstools/normalize.css';
 
 const cleanTheme = extendTheme({
   styles: {
@@ -32,7 +39,11 @@ getChainOptions().then((chainOptions) => {
       <SaasProvider theme={theme}>
         <RecoilRoot>
           <BrowserRouter>
-            <App />
+            <CacheProvider value={emotionCache}>
+              <main>
+                <SiteWrapper />
+              </main>
+            </CacheProvider>
           </BrowserRouter>
         </RecoilRoot>
       </SaasProvider>

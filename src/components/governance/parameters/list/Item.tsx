@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react';
 import useGovernanceParameter from 'hooks/useGovernanceParameter';
 import ItemDetail from './ItemDetail';
-import chakra from 'styles/chakra.module.scss';
+import chakra from '@scss/chakra.module.scss';
 
 function ListItem({ itemName }: any) {
   const { governanceParameterDetails } = useGovernanceParameter(itemName);

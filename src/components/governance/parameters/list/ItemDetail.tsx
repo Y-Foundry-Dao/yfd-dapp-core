@@ -1,5 +1,5 @@
 import { Stack } from '@chakra-ui/react';
-import buttonStyle from 'styles/button.module.scss';
+import buttonStyle from '@scss/button.module.scss';
 
 function ItemDetail() {
   return (

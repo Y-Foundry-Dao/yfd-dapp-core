@@ -6,7 +6,13 @@
         "./assets/*"
       ],
       "@styles/*":[
-        "./styles/*"
+        "./assets/styles/*"
+      ],
+      "@scss/*":[
+        "./assets/styles/scss/*"
+      ],
+      "@themes/*":[
+        "./assets/styles/themes/*"
       ],
       "@images/*":[
         "./assets/images/*"

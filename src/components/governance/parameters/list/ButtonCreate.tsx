@@ -6,7 +6,7 @@ import {
   brands,
   icon
 } from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
-import buttonStyle from 'styles/button.module.scss';
+import buttonStyle from '@scss/button.module.scss';
 
 function ProposalModalButton({ onOpen }: any) {
   return (

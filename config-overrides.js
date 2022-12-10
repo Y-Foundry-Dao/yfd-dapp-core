@@ -14,7 +14,9 @@ module.exports = function override(config) {
   const fallback = config.resolve.fallback || {};
   alias({
     '@assets': 'src/assets',
-    '@styles': 'src/styles',
+    '@styles': 'src/assets/styles',
+    '@scss': 'src/assets/styles/scss',
+    '@themes': 'src/assets/styles/themes',
     '@images': 'src/assets/images',
     '@yfd': 'src/assets/images/yfd',
     '@components': 'src/components',

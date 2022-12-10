@@ -81,7 +81,8 @@
     "react-inspector": "^6.0.1",
     "react-router-dom": "^6.4.4",
     "recoil": "^0.7.2",
-    "sort-by": "^1.2.0"
+    "sort-by": "^1.2.0",
+    "yarn-deduplicate": "^6.0.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.19.2",
