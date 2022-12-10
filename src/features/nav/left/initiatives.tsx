@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import styles from 'styles/app.module.scss';
+import styles from '@scss/app.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { useDisclosure } from '@chakra-ui/react';
-import ProposalModal from 'components/pageBody/proposal/proposalCreationModal/ProposalModal';
-import ProposalModalButton from 'components/pageBody/proposal/proposalCreationModal/ProposalModalButton';
+import ProposalModal from '@features/proposal/proposalCreationModal/ProposalModal';
+import ProposalModalButton from '@features/proposal/proposalCreationModal/ProposalModalButton';
 
 function MenuLeftInitiatives() {
   const { isOpen, onOpen, onClose } = useDisclosure();

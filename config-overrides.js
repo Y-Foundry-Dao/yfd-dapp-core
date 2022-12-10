@@ -23,7 +23,6 @@ module.exports = function override(config) {
     '@features': 'src/features',
     '@pages': 'src/pages',
     '@layouts': 'src/layouts',
-    '@app': 'src/app',
     '@routes': 'src/routes',
     '@var': 'src/utilities/variables',
     '@hooks': 'src/hooks',

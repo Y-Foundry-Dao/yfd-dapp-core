@@ -32,9 +32,6 @@
       "@layouts/*":[
         "./layouts/*"
       ],
-      "@app/*":[
-        "./App/*"
-      ],
       "@routes/*":[
         "./routes/*"
       ],

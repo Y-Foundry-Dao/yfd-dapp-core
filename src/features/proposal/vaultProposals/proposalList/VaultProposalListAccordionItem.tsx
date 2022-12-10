@@ -11,20 +11,20 @@ import {
   Text,
   VStack
 } from '@chakra-ui/react';
-import FinderContractLink from 'components/basic/finder/FinderContractLink';
-import useContractProposal from 'hooks/useContractProposal';
-import useContractVaultProposal from 'hooks/useContractVaultProposal';
-import useContractVote from 'hooks/useContractVote';
+import FinderContractLink from '@components/basic/finder/FinderContractLink';
+import useContractProposal from '@hooks/useContractProposal';
+import useContractVaultProposal from '@hooks/useContractVaultProposal';
+import useContractVote from '@hooks/useContractVote';
 import React, { useState } from 'react';
-import ProposalFinalizeButton from 'components/pageBody/proposal/vaultProposals/proposalInfo/status/ProposalFinalizeButton';
-import ProposalStatus from 'components/pageBody/proposal/vaultProposals/proposalInfo/status/ProposalStatus';
-import InputVoteAmount from 'components/pageBody/proposal/vaultProposals/proposalInfo/voting/InputVoteAmount';
-import VoteButtons from 'components/pageBody/proposal/vaultProposals/proposalInfo/voting/VoteButtons';
-import VoteTokenBalance from 'components/pageBody/proposal/vaultProposals/proposalInfo/voting/VoteTokenBalance';
-import FundingInfo from 'components/pageBody/proposal/vaultProposals/proposalInfo/funding/FundingInfo';
-import VaultProposalInfo from 'components/pageBody/proposal/vaultProposals/proposalInfo/VaultProposalInfo';
-import CurrentVotes from 'components/pageBody/proposal/vaultProposals/proposalInfo/voting/CurrentVotes';
-import CurrentVotesBar from 'components/pageBody/proposal/vaultProposals/proposalInfo/voting/CurrentVotesBar';
+import ProposalFinalizeButton from '@features/proposal/vaultProposals/proposalInfo/status/ProposalFinalizeButton';
+import ProposalStatus from '@features/proposal/vaultProposals/proposalInfo/status/ProposalStatus';
+import InputVoteAmount from '@features/proposal/vaultProposals/proposalInfo/voting/InputVoteAmount';
+import VoteButtons from '@features/proposal/vaultProposals/proposalInfo/voting/VoteButtons';
+import VoteTokenBalance from '@features/proposal/vaultProposals/proposalInfo/voting/VoteTokenBalance';
+import FundingInfo from '@features/proposal/vaultProposals/proposalInfo/funding/FundingInfo';
+import VaultProposalInfo from '@features/proposal/vaultProposals/proposalInfo/VaultProposalInfo';
+import CurrentVotes from '@features/proposal/vaultProposals/proposalInfo/voting/CurrentVotes';
+import CurrentVotesBar from '@features/proposal/vaultProposals/proposalInfo/voting/CurrentVotesBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   solid,

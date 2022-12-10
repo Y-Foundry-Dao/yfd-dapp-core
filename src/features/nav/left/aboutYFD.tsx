@@ -1,17 +1,12 @@
 import { Link } from 'react-router-dom';
-import styles from 'styles/app.module.scss';
+import styles from '@scss/app.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, brands } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { useDisclosure } from '@chakra-ui/react';
 
-import FeedbackModal from 'components/pageBody/feedback/Modal';
-import FeedbackModalButton from 'components/pageBody/feedback/FeedbackModalButton';
-import {
-  URL_DISCORD,
-  URL_GITHUB,
-  URL_TWITTER,
-  URL_DOCS
-} from 'utilities/variables/links';
+import FeedbackModal from '@features/forms/feedback/Modal';
+import FeedbackModalButton from '@features/forms/feedback/FeedbackModalButton';
+import { URL_DISCORD, URL_GITHUB, URL_TWITTER, URL_DOCS } from '@var/links';
 
 function MenuLeft() {
   const { isOpen, onOpen, onClose } = useDisclosure();

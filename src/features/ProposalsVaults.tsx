@@ -1,6 +1,6 @@
 import styles from 'styles/app.module.scss';
 import { Heading } from '@chakra-ui/react';
-import VaultProposals from './proposal/vaultProposals/VaultProposals';
+import VaultProposals from '@features/proposal/vaultProposals/VaultProposals';
 
 export default function VaultProposalsList() {
   return (

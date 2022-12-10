@@ -1,9 +1,7 @@
 import styles from '@scss/app.module.scss';
-import Header from '@components/header/Header';
-import BackgroundVideo from 'components/basic/BackgroundVideo';
-//import ThemeToggle from 'components/basic/ThemeToggle';
-import LeftSide from '@components/pageBody/LeftSide';
-import MainContainer from '@components/pageBody/MainContainer';
+import Header from '@layouts/Header';
+import LayoutLeft from '@layouts/Left';
+import MainContainer from '@layouts/Main';
 
 export default function App() {
   return (
@@ -12,7 +10,7 @@ export default function App() {
         <Header />
       </div>
       <div className={styles.wrapper}>
-        <LeftSide />
+        <LayoutLeft />
         <MainContainer />
       </div>
       <div className={styles['overlay-app']}></div>

@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react';
 import ListItem from './Item';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ProposalModal from 'components/pageBody/proposal/proposalCreationModal/ProposalModal';
+import ProposalModal from '@features/proposal/proposalCreationModal/ProposalModal';
 import CreateGov from './ButtonCreate';
 
 function List({ items }: any) {

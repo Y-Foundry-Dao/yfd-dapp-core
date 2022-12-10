@@ -1,6 +1,7 @@
+import React from 'react';
 import styles from 'styles/app.module.scss';
 import { Heading } from '@chakra-ui/react';
-import GovernanceProposals from './proposal/governanceProposals/GovernanceProposals';
+import GovernanceProposals from '@features/proposal/governanceProposals/GovernanceProposals';
 
 export default function GovernanceProposalsList() {
   return (

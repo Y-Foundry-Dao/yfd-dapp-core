@@ -3,7 +3,6 @@ import {
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
-  Stack,
   InputGroup,
   InputLeftAddon,
   InputRightAddon,
@@ -11,7 +10,6 @@ import {
   Box,
   Flex,
   Spacer,
-  Heading,
   Text
 } from '@chakra-ui/react';
 import useGovernanceParameter from 'hooks/useGovernanceParameter';
