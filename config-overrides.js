@@ -2,14 +2,32 @@ const { ProvidePlugin } = require('webpack');
 const path = require('path');
 const webpack = require('webpack');
 const { aliasWebpack, aliasJest } = require('react-app-alias')
+const { alias } = require('react-app-rewire-alias');
 
 const options = {}; // default is empty for most cases
 
 module.exports.jest = aliasJest(options)
+
 module.exports = aliasWebpack(options)
 
 module.exports = function override(config) {
   const fallback = config.resolve.fallback || {};
+  alias({
+    '@assets': 'src/assets',
+    '@styles': 'src/styles',
+    '@images': 'src/assets/images',
+    '@yfd': 'src/assets/images/yfd',
+    '@components': 'src/components',
+    '@features': 'src/features',
+    '@pages': 'src/pages',
+    '@layouts': 'src/layouts',
+    '@app': 'src/app',
+    '@routes': 'src/routes',
+    '@var': 'src/utilities/variables',
+    '@hooks': 'src/hooks',
+    '@recoil': 'src/recoil',
+    'Variables': 'src/utilities/variables/variables.ts'
+  })(config);
   Object.assign(fallback, {
     crypto: require.resolve("crypto-browserify"),
     stream: require.resolve("stream-browserify"),

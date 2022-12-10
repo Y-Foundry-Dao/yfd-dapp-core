@@ -2,12 +2,13 @@ import React from 'react';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 
-import styles from '@styles/app.module.scss';
+import styles from '@styleApp/app.module.scss';
 import Header from '@components/header/Header';
 import BackgroundVideo from 'components/basic/BackgroundVideo';
 //import ThemeToggle from 'components/basic/ThemeToggle';
 import LeftSide from '@components/pageBody/LeftSide';
 import MainContainer from '@components/pageBody/MainContainer';
+import { CHAIN_BLOCK_EIGHTEEN_MONTH } from '@var/chrono';
 
 const emotionCache = createCache({
   key: 'emotion-css-cache',
@@ -15,6 +16,7 @@ const emotionCache = createCache({
 });
 
 export default function App() {
+  alert(CHAIN_BLOCK_EIGHTEEN_MONTH);
   return (
     <CacheProvider value={emotionCache}>
       <main>

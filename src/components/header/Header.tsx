@@ -1,9 +1,9 @@
 import { Image } from '@chakra-ui/react';
 import yLogo from 'assets/yfd/logo-horizontal-orange-white.svg';
-import WalletConnect from './walletConnect/WalletConnect';
-import FYFD from 'components/basic/StakeYFD';
+import WalletConnect from '@features/walletConnect/WalletConnect';
+import FYFD from '@components/basic/StakeYFD';
 
-import styles from 'styles/app.module.scss';
+import styles from '@styles/app.module.scss';
 
 export default function Header() {
   return (

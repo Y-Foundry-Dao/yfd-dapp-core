@@ -2,11 +2,11 @@
   "compilerOptions":{
     "baseUrl":"./src",
     "paths":{
-      "@root":[
-        "./"
+      "@assets/*":[
+        "./assets/*"
       ],
-      "@root/*":[
-        "./*"
+      "@styles/*":[
+        "./styles/*"
       ],
       "@images/*":[
         "./assets/images/*"
@@ -14,14 +14,8 @@
       "@yfd/*":[
         "./assets/yfd/*"
       ],
-      "@assets/*":[
-        "./assets/*"
-      ],
       "@components/*":[
         "./components/*"
-      ],
-      "@layouts/*":[
-        "./layouts/*"
       ],
       "@features/*":[
         "./features/*"
@@ -29,11 +23,20 @@
       "@pages/*":[
         "./pages/*"
       ],
+      "@layouts/*":[
+        "./layouts/*"
+      ],
+      "@app/*":[
+        "./App/*"
+      ],
       "@routes/*":[
         "./routes/*"
       ],
-      "@styles/*":[
-        "./styles/*"
+      "@utilities/*":[
+        "./utilities/*"
+      ],
+      "@var/*":[
+        "./utilities/variables/*"
       ],
       "@hooks/*":[
         "./hooks/*"
@@ -41,8 +44,8 @@
       "@recoil/*":[
         "./recoil/*"
       ],
-      "@utilities/*":[
-        "./utilities/*"
+      "Variables":[
+        "./utilities/variables/variables.ts"
       ]
     }
   }
