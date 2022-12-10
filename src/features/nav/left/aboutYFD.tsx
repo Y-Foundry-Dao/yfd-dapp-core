@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import styles from '@scss/app.module.scss';
+import styles from '@scss/side.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, brands } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { useDisclosure } from '@chakra-ui/react';
