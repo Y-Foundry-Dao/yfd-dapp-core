@@ -8,6 +8,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;500;600;700&display=swap");
 
 @import "_image.module.scss";
+@import "_root.module.scss";
+@import "wrapper.module.scss";
 @import "header.module.scss";
 
 * {
@@ -52,14 +54,6 @@
 html {
  box-sizing: border-box;
  -webkit-font-smoothing: antialiased;
-}
-
-.logo {
- img {
-    float: left;
-    padding: 0;
-    margin: 0;
- }
 }
 
 body {
@@ -256,76 +250,6 @@ body.light-mode .video-bg:before {
  display: flex;
  flex-grow: 1;
  overflow: hidden;
-}
-
-.main-header {
- display: flex;
- align-items: center;
- border-bottom: 0.063rem solid var(--border-color);
- height: 3.625rem;
- width: 100%;
- flex-shrink: 0;
- .header-menu {
-  @media screen  {
-   margin: auto;
-  }
-  a {
-    color: rgba(208, 199, 130, 0.78);
-   padding: 1.25rem 1.50rem;
-  }
- }
-}
-
-.main-container {
- display: flex;
- flex-direction: column;
- flex-grow: 1;
-}
-
-.menu-link-main {
- text-decoration: none;
- color: var(--theme-color);
- padding: 0 1.9rem;
- @media screen and (max-width: 65.938rem) {
-  display: none;
- }
-}
-
-.content-wrapper {
- display: flex;
- flex-direction: column;
- color: var(--theme-color);
- padding: 1.25rem 2.5rem;
- height: 100%;
- overflow: auto;
- background-color: var(--theme-bg-color);
- @media screen and (max-width: 31.875rem) {
-  padding: 1.25rem;
- }
- &-header {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: space-between;
-  filter: drop-shadow( 0.625rem 1.25rem 0.938rem #000 );
-  background-image: 
-   linear-gradient(
-    to right top,
-    rgba(13,13,13,0.5),
-    rgba(44,44,44,0.5),
-    rgba(200,200,200,0.5)
-   );
-  border-radius: 0.875rem;
-  padding: 1.25rem 2.5rem;
-  @media screen and (max-width: 25.938rem) {
-   padding: 1.25rem;
-  }
- }
- &.overlay {
-  pointer-events: none;
-  transition: 0.3s;
-  background-color: var(--overlay-bg);
- }
 }
 
 .overlay-app {
