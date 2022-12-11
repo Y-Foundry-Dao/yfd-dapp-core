@@ -1,26 +1,4 @@
-.buttonStandard {
-    background-color: #2b6cb0;
-    border: none;
-    padding: 8px 26px;
-    color: #fff;
-    border-radius: 20px;
-    margin-top: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-    white-space: nowrap;
-   }
-
-.buttonDisable {
-    background-color: gray;
-    border: none;
-    padding: 8px 26px;
-    color: #fff;
-    border-radius: 20px;
-    margin-top: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-    white-space: nowrap;
-   }
+@import "button.module.scss";
 
 .inputAddon {
     background-color: rgba(66,66,66,0.5);

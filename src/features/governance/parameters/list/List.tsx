@@ -4,10 +4,10 @@ import {
   Flex,
   Box,
   useDisclosure,
-  Spacer
+  Spacer,
+  theme
 } from '@chakra-ui/react';
 import ListItem from './Item';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ProposalModal from '@features/proposal/proposalCreationModal/ProposalModal';
 import CreateGov from './ButtonCreate';
 

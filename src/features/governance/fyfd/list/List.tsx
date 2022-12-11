@@ -6,22 +6,23 @@ import {
   useDisclosure,
   Spacer
 } from '@chakra-ui/react';
-import ListItem from './Item';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import useContractForge from '@hooks/useContractForge';
 import ProposalModal from '@features/proposal/proposalCreationModal/ProposalModal';
-import CreateGov from './ButtonCreate';
+import ListItem from './Item';
+import EmptyList from './Empty';
+import ButtonDeposit from './ButtonDeposit';
+import ButtonClaim from './ButtonClaim';
 
-function List({ items }: any) {
+export default function List({ items }: any) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
       <Flex w="100%">
         <Box>
-          <Heading size="md">Your fYFD Deposit History</Heading>
+          <Heading size="md">Governance Parameters</Heading>
         </Box>
         <Spacer />
         <Box>
-          <CreateGov onOpen={onOpen} />
           <ProposalModal isOpen={isOpen} onClose={onClose} />
         </Box>
       </Flex>
@@ -33,5 +34,3 @@ function List({ items }: any) {
     </>
   );
 }
-
-export default List;

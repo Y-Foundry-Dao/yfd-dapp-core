@@ -6,7 +6,7 @@ export default function DepositYfd() {
     <>
       <div className={styles['content-section']}>
         <div className={styles['content-section-title']}>
-          <Heading size="md">Deposit $YFD</Heading>
+          <Heading size="md"></Heading>
         </div>
         <ListFyfdBalance />
       </div>

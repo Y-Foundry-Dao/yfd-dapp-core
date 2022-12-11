@@ -1,28 +1,60 @@
 .standard {
-    background-color: #2b6cb0;
-    border: none;
-    padding: 8px 26px;
+    width: 100%;
     color: #fff;
-    border-radius: 20px;
-    margin-top: 16px;
+    background-color: #387af2;
+    border: none;
+    padding: 0.5rem 1.6rem;
+    border-radius: 1.25rem;
+    margin-top: 0rem;
+    margin-bottom: 0.5rem;
     cursor: pointer;
     transition: 0.3s;
     white-space: nowrap;
-   }
-
-.disable {
-    background-color: gray;
-    border: none;
-    padding: 8px 26px;
-    color: #fff;
-    border-radius: 20px;
-    margin-top: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-    white-space: nowrap;
-   }
-
-.create {
-    color: #f4bf62;
-    padding-right: 0.5em;
+    svg {
+        color: #f4bf62;
+        margin-right: 1em;
+    }
+    &-disable {
+        background-color: gray;
+        @extend .standard;
+    }
+    &-create {
+        @extend .standard;
+        background-color: #cc8400;
+        svg {
+            color: #fff;
+            margin-right: 1em;
+        }
+    }
 }
+
+.simple {
+    color: #fff;
+    border: #f4bf62 solid 0.35rem;
+    padding: 0.5rem 1.6rem;
+    border-radius: 1.25rem;
+    margin-top: 0rem;
+    margin-bottom: 0.5rem;
+    svg {
+        color: #f4bf62;
+        margin-right: 1em;
+    }
+    &-disable {
+        border: gray solid 0.35rem;
+        @extend .simple;
+    }
+    &-standard{
+        border: #387af2 solid 0.35rem;
+        @extend .simple;
+    }
+}
+/*
+.chakra-accordion__button {
+    border-style: solid;
+    border-radius: 10rem;
+    box-shadow: 0.438rem 0 0 0 var(--button-inactive), 0.875rem 0 0 0 var(--button-inactive);
+    margin-top: 3rem;
+    padding: 0px;
+    overflow: 'hidden';
+}
+*/

@@ -28,12 +28,6 @@ function MenuLeft() {
               3
             </span>
           </Link>
-        </div>
-      </div>
-      <Initiatives />
-      <div className={styles['side-wrapper']}>
-        <div className={styles['side-title']}>Governance</div>
-        <div className={styles['side-menu']}>
           <Link to="/deposit-yfd">
             <FontAwesomeIcon fill="currentColor" icon={solid('coins')} />
             $YFD
@@ -44,6 +38,12 @@ function MenuLeft() {
             />
             fYFD
           </Link>
+        </div>
+      </div>
+      <Initiatives />
+      <div className={styles['side-wrapper']}>
+        <div className={styles['side-title']}>Governance</div>
+        <div className={styles['side-menu']}>
           <Link to="/governance-proposals">
             <FontAwesomeIcon icon={solid('handshake')} />
             DAO Proposals

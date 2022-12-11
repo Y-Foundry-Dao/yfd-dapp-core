@@ -11,13 +11,10 @@ import buttonStyle from '@scss/button.module.scss';
 function ProposalModalButton({ onOpen }: any) {
   return (
     <Text>
-      <a href="#" onClick={onOpen}>
-        <FontAwesomeIcon
-          className={buttonStyle.create}
-          icon={solid('square-plus')}
-        />
+      <button className={buttonStyle['simple']} onClick={onOpen}>
+        <FontAwesomeIcon icon={solid('square-plus')} />
         Propose
-      </a>
+      </button>
     </Text>
   );
 }
