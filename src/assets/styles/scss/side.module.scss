@@ -1,3 +1,5 @@
+@import "notification.module.scss";
+
 .left-side {
     flex-basis: 15rem;
     border-right: 0.15rem solid var(--border-color);
@@ -9,16 +11,16 @@
     }
    }
    
-   .side-wrapper + .side-wrapper {
+.side-wrapper + .side-wrapper {
     margin-top: 1em;
-   }
+}
    
-   .side-title {
+.side-title {
     color: var(--inactive-color);
     margin-bottom: 1em;
-   }
-   
-   .side-menu {
+}
+
+.side-menu {
     display: flex;
     flex-direction: column;
     white-space: nowrap;
@@ -40,4 +42,4 @@
      width: 1.5em;
      margin-right: 1em;
     }
-   }
+}

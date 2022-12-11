@@ -1,5 +1,5 @@
 function EmptyList() {
-  return <>No Parameters</>;
+  return <>No Deposits</>;
 }
 
 export default EmptyList;

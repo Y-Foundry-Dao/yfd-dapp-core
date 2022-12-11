@@ -1,6 +1,6 @@
 import styles from 'styles/app.module.scss';
 import { Heading } from '@chakra-ui/react';
-
+import ListFyfdBalance from '@features/governance/fyfd/list/Layout';
 export default function DepositYfd() {
   return (
     <>
@@ -8,6 +8,7 @@ export default function DepositYfd() {
         <div className={styles['content-section-title']}>
           <Heading size="md">Deposit $YFD</Heading>
         </div>
+        <ListFyfdBalance />
       </div>
     </>
   );

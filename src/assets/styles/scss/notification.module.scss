@@ -1,0 +1,51 @@
+.notification {
+    position: relative;
+    &-number {
+     position: absolute;
+     background-color: #2b6cb0;
+     width: 1em;
+     height: 1em;
+     border-radius: 50%;
+     font-size: 1em;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     color: #fff;
+     right: -0.5em;
+     top: -0.5em;
+    }
+    & + svg {
+     margin-left: 1.5em;
+     @media screen and (max-width: 945px) {
+      display: none;
+     }
+    }
+}
+
+.updates {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-left: auto;
+    width: 1.2rem;
+    height: 1.2rem;
+    font-size: 0.7em;
+   }
+
+
+.notify {
+    position: relative;
+    &:before {
+     content: "";
+     position: absolute;
+     background-color: #3a6df0;
+     width: 0.375rem;
+     height: 0.375rem;
+     border-radius: 50%;
+     right: 1.25rem;
+     top: 1rem;
+    }
+    @media screen and (max-width: 1055px) {
+     display: none;
+    }
+}
