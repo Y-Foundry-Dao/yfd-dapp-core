@@ -1,5 +1,5 @@
-import styles from '@scss/app.module.scss';
-import NavMain from '@features/nav/main/menu';
+import styles from '@scss/wrapper.module.scss';
+import NavMain from '@features/nav/Main';
 import MainRoutes from '@routes/Main';
 
 export default function layoutMain() {

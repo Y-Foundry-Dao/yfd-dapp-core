@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import styles from 'styles/app.module.scss';
+
+import styles from '@scss/side.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
@@ -16,9 +17,9 @@ function MenuLeft() {
             <FontAwesomeIcon icon={solid('cubes')} />
             My Dashboard
           </Link>
-          <a href="#">
-            <FontAwesomeIcon icon={solid('rotate-left')} />
-            Updates
+          <Link to="/favorites">
+            <FontAwesomeIcon icon={solid('star')} />
+            Favorites
             <span
               className={[styles['notification-number'], styles.updates].join(
                 ' '
@@ -26,17 +27,23 @@ function MenuLeft() {
             >
               3
             </span>
-          </a>
+          </Link>
+          <Link to="/deposit-yfd">
+            <FontAwesomeIcon fill="currentColor" icon={solid('coins')} />
+            $YFD
+            <FontAwesomeIcon
+              fill="currentColor"
+              style={{ margin: '0px 0.3em' }}
+              icon={solid('arrow-right-arrow-left')}
+            />
+            fYFD
+          </Link>
         </div>
       </div>
       <Initiatives />
       <div className={styles['side-wrapper']}>
         <div className={styles['side-title']}>Governance</div>
         <div className={styles['side-menu']}>
-          <Link to="/deposit-yfd">
-            <FontAwesomeIcon fill="currentColor" icon={solid('coins')} />
-            Deposit $YFD
-          </Link>
           <Link to="/governance-proposals">
             <FontAwesomeIcon icon={solid('handshake')} />
             DAO Proposals

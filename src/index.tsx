@@ -14,22 +14,13 @@ const emotionCache = createCache({
 });
 
 // theme styling of UI
-import primaryTheme from '@themes/theme';
 import { extendTheme } from '@chakra-ui/react';
 import { baseTheme, SaasProvider } from '@saas-ui/react';
 import '@csstools/normalize.css';
+import yfdTheme from '@themes/yfd';
+import resetTheme from '@themes/reset';
 
-const cleanTheme = extendTheme({
-  styles: {
-    global: () => ({
-      body: {
-        bg: ''
-      }
-    })
-  }
-});
-
-const theme = extendTheme({}, primaryTheme, cleanTheme, baseTheme);
+const theme = extendTheme(yfdTheme, resetTheme, baseTheme);
 
 const container = document.getElementById('root');
 const root = createRoot(container!);

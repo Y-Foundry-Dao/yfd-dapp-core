@@ -11,7 +11,7 @@ import ListItem from './Item';
 import ProposalModal from '@features/proposal/proposalCreationModal/ProposalModal';
 import CreateGov from './ButtonCreate';
 
-export default function List({ items }: any) {
+function List({ items }: any) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -33,3 +33,5 @@ export default function List({ items }: any) {
     </>
   );
 }
+
+export default List;

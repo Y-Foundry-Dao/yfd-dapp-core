@@ -1,6 +1,6 @@
 import { Box, Flex, Spacer, Text } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import styles from '@scss/app.module.scss';
+import styles from '@scss/nav/main.module.scss';
 
 export default function MainMenu() {
   return (

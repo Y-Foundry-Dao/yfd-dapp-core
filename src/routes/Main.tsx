@@ -2,13 +2,15 @@ import { Route, Routes } from 'react-router-dom';
 
 import Home from '@pages/Home';
 import GettingStarted from '@features/GettingStarted';
-import VaultProposals from '@features/ProposalsVaults';
+import VaultProposals from '@pages/ProposalsVaults';
 import GovernanceProposals from '@features/ProposalsGovernance';
 import InitiativeProposals from '@features/ProposalsInitiatives';
-import DepositYfd from '@features/DepositYfd';
+import DepositYfd from '@pages/DepositYfd';
 import VaultsFeatured from '@features/VaultsFeatured';
 import InitiativesFeatured from '@features/InitiativesFeatured';
 import GovernanceParameters from '@features/governance/parameters/list/Layout';
+import Favorites from '@features/profile/Favorites';
+import NoMatch from '@pages/404';
 
 export default function MainContainer() {
   return (
@@ -19,6 +21,7 @@ export default function MainContainer() {
       <Route path="/deposit-yfd" element={<DepositYfd />}></Route>
       <Route path="/vaults" element={<VaultsFeatured />}></Route>
       <Route path="/initiatives" element={<InitiativesFeatured />}></Route>
+      <Route path="/favorites" element={<Favorites />}></Route>
       <Route
         path="/governance-proposals"
         element={<GovernanceProposals />}
@@ -31,6 +34,7 @@ export default function MainContainer() {
         path="/proposals-initiatives"
         element={<InitiativeProposals />}
       ></Route>
+      <Route path="*" element={<NoMatch />} />
     </Routes>
   );
 }

@@ -27,12 +27,12 @@ export default function GettingStarted() {
             alt="Beep"
           />
           <img
-            className={styles['getting-started-img']}
+            className={styles['getting-started-img-two']}
             src={imgBot2}
             alt="Beep"
           />
           <img
-            className={styles['getting-started-img']}
+            className={styles['getting-started-img-three']}
             src={imgBot1}
             alt="Boop"
           />

@@ -22,7 +22,7 @@ img {
     margin-top: -25px;
     object-position: center;
     @media screen and (max-width: 570px) {
-     width: 110px;
+        width: 110px;
     }
    }
 
@@ -35,7 +35,19 @@ img {
     object-position: center;
     border-radius: 2em;
     filter: drop-shadow( 5px 5px 10px #88664a );
-    @media screen and (max-width: 570px) {
+    @media screen and (max-width: 700px) {
      width: 50px;
+    }
+    &-two {
+        @extend .getting-started-img;
+        @media screen and (max-width: 1080px) {
+            display: none;
+        }
+    }
+    &-three {
+        @extend .getting-started-img;
+        @media screen and (max-width: 1218px) {
+            display: none;
+        }
     }
 }

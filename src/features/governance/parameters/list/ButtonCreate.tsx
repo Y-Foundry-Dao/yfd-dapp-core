@@ -1,25 +1,15 @@
 import { Text } from '@chakra-ui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  solid,
-  regular,
-  brands,
-  icon
-} from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import buttonStyle from '@scss/button.module.scss';
 
-function ProposalModalButton({ onOpen }: any) {
+export default function ParameterModalButton({ onOpen }: any) {
   return (
     <Text>
-      <a href="#" onClick={onOpen}>
-        <FontAwesomeIcon
-          className={buttonStyle.create}
-          icon={solid('square-plus')}
-        />
+      <button className={buttonStyle['simple']} onClick={onOpen}>
+        <FontAwesomeIcon icon={solid('square-plus')} />
         Propose
-      </a>
+      </button>
     </Text>
   );
 }
-
-export default ProposalModalButton;
