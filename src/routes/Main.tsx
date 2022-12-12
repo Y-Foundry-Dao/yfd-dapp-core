@@ -10,6 +10,7 @@ import VaultsFeatured from '@features/VaultsFeatured';
 import InitiativesFeatured from '@features/InitiativesFeatured';
 import GovernanceParameters from '@features/governance/parameters/list/Layout';
 import Favorites from '@features/profile/Favorites';
+import NoMatch from '@pages/404';
 
 export default function MainContainer() {
   return (
@@ -33,6 +34,7 @@ export default function MainContainer() {
         path="/proposals-initiatives"
         element={<InitiativeProposals />}
       ></Route>
+      <Route path="*" element={<NoMatch />} />
     </Routes>
   );
 }
