@@ -6,16 +6,16 @@ import EmptyList from './Empty';
 import Balances from './Balances';
 import Locked from './Locked';
 import Deposited from './Deposited';
-export default function layoutFyfd(): JSX.Element {
+
+export default function layoutFyfd() {
   const { balanceDetail }: any = useContractForge();
+
   if (Object.keys(balanceDetail).length > 0) {
     const balanceKeys = Object.keys(balanceDetail);
-
-    console.log(balanceKeys); // 0 balance // 1 stakes // 2 locks
-
+    console.log(balanceKeys);
     return (
       <>
-        <Flex w="100%">
+        <Flex width="100%">
           <Box></Box>
           <Spacer />
           <Box>
@@ -29,7 +29,6 @@ export default function layoutFyfd(): JSX.Element {
             <Heading size="md">Your Locked Fyfd</Heading>
           </Box>
           <Spacer />
-          <Locked />
         </Flex>
         <hr />
         <br />
@@ -38,9 +37,6 @@ export default function layoutFyfd(): JSX.Element {
             <Heading size="md">YFD Deposit History</Heading>
           </Box>
           <Spacer />
-          <Box>
-            <Deposited />
-          </Box>
         </Flex>
       </>
     );
