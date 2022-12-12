@@ -1,0 +1,72 @@
+
+.apps-card {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: calc(100% + 1.25em);
+   }
+   
+   .app-card {
+    display: flex;
+    flex-direction: column;
+    width: calc(33.3% - 1.25rem);
+    font-size: 0.9em;
+    background-color: var(--content-bg);
+    border-radius: 0.875em;
+    border: 0.063em solid var(--theme-bg-color);
+    padding: 1.25em;
+    cursor: pointer;
+    transition: 0.3s ease;
+    &:hover {
+     transform: scale(1.02);
+     background-color: var(--theme-bg-color);
+    }
+    svg {
+     width: 20.5rem;
+     border-radius: 0.375em;
+     margin-right: 0.75em;
+     flex-shrink: 0;
+    }
+    img {
+       width: 2.9em;
+       border-radius: 0.375em;
+       margin-right: 0.75em;
+       flex-shrink: 0;
+    }
+    & + .app-card {
+     margin-left: 1.25em;
+    }
+    span {
+     display: flex;
+     align-items: center;
+    }
+    &__subtext {
+     font-size: 0.875em;
+     font-weight: 400;
+     line-height: 1.6em;
+     margin-top: 1.25em;
+     border-bottom: 0.063em solid var(--border-color);
+     padding-bottom: 1.25em;
+    }
+    &-buttons {
+     display: flex;
+     align-items: center;
+     margin-left: auto;
+     margin-top: rem;
+    }
+    @media screen and (max-width: 69.375rem) {
+     width: calc(50% - 1.25em);
+     &:last-child {
+      margin-top: 1.25em;
+      margin-left: 0;
+     }
+    }
+    @media screen and (max-width: 35.313rem) {
+     width: calc(100% - 1.25em);
+     margin-top: 1.25em;
+     & + .app-card {
+      margin-left: 0;
+     }
+    }
+   }
+   

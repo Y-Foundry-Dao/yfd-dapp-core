@@ -1,7 +1,7 @@
-import styles from 'styles/app.module.scss';
+import styles from '@scss/app.module.scss';
 import { Heading } from '@chakra-ui/react';
 import ListFyfdBalance from '@features/governance/fyfd/list/Layout';
-export default function DepositYfd() {
+export default function FyfdBalance() {
   return (
     <>
       <div className={styles['content-section']}>

@@ -1,14 +1,9 @@
 import { Text } from '@chakra-ui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  solid,
-  regular,
-  brands,
-  icon
-} from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import buttonStyle from '@scss/button.module.scss';
 
-function ProposalModalButton({ onOpen }: any) {
+export default function ParameterModalButton({ onOpen }: any) {
   return (
     <Text>
       <button className={buttonStyle['simple']} onClick={onOpen}>
@@ -18,5 +13,3 @@ function ProposalModalButton({ onOpen }: any) {
     </Text>
   );
 }
-
-export default ProposalModalButton;
