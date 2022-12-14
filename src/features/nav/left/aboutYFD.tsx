@@ -2,11 +2,18 @@ import { Link } from 'react-router-dom';
 import styles from '@scss/side.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, brands } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { useDisclosure } from '@chakra-ui/react';
+import { useDisclosure, Icon, Image } from '@chakra-ui/react';
 
 import FeedbackModal from '@features/forms/feedback/Modal';
 import FeedbackModalButton from '@features/forms/feedback/FeedbackModalButton';
-import { URL_DISCORD, URL_GITHUB, URL_TWITTER, URL_DOCS } from '@var/links';
+import {
+  URL_DISCORD,
+  URL_GITHUB,
+  URL_TWITTER,
+  URL_DOCS,
+  URL_DEWORK
+} from '@var/links';
+import imgImport from '@images/external/dework.svg';
 
 function MenuLeft() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -23,6 +30,10 @@ function MenuLeft() {
           <a href={URL_DOCS} target="_blank">
             <FontAwesomeIcon icon={solid('graduation-cap')} />
             Documentation
+          </a>
+          <a href={URL_DEWORK} target="_blank">
+            <Image src={imgImport} h={5} pr={4} />
+            Dework
           </a>
           <a href={URL_DISCORD} target="_blank">
             <FontAwesomeIcon icon={brands('discord')} />
