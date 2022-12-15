@@ -20,12 +20,7 @@ export default function GSDescription() {
           Y-Foundry provides a platform for creators to trustlessly propose,
           fund, and build ideas.
         </p>
-        <Wrap
-          className={styles['gsContent-wrap']}
-          justify="center"
-          align="center"
-          spacing="2rem"
-        >
+        <Wrap className={styles['gsContent-wrap']} align="center">
           <WrapItem className={styles['gsContent-feature']}>
             <SimpleGrid>
               <GridItem>
@@ -35,44 +30,29 @@ export default function GSDescription() {
             </SimpleGrid>
           </WrapItem>
           <WrapItem className={styles['gsContent-feature']}>
-            <SimpleGrid>
-              <GridItem>
-                <i className="material-symbols-outlined">{Icons.nft}</i>
-              </GridItem>
-              <GridItem>NFT Collections</GridItem>
-            </SimpleGrid>
+            <i className="material-symbols-outlined">{Icons.nft}</i>
+            <br />
+            NFT Collections
           </WrapItem>
           <WrapItem className={styles['gsContent-feature']}>
-            <SimpleGrid>
-              <GridItem>
-                <i className="material-symbols-outlined">{Icons.softwaredev}</i>
-              </GridItem>
-              <GridItem>Software Development</GridItem>
-            </SimpleGrid>
+            <i className="material-symbols-outlined">{Icons.softwaredev}</i>
+            <br />
+            Software Development
           </WrapItem>
           <WrapItem className={styles['gsContent-feature']}>
-            <SimpleGrid>
-              <GridItem>
-                <i className="material-symbols-outlined">{Icons.charity}</i>
-              </GridItem>
-              <GridItem>Charitable Causes</GridItem>
-            </SimpleGrid>
+            <i className="material-symbols-outlined">{Icons.charity}</i>
+            <br />
+            Charitable Causes
           </WrapItem>
           <WrapItem className={styles['gsContent-feature']}>
-            <SimpleGrid>
-              <GridItem>
-                <i className="material-symbols-outlined">{Icons.escrow}</i>
-              </GridItem>
-              <GridItem>Community Escrow</GridItem>
-            </SimpleGrid>
+            <i className="material-symbols-outlined">{Icons.escrow}</i>
+            <br />
+            Community Escrow
           </WrapItem>
           <WrapItem className={styles['gsContent-feature']}>
-            <SimpleGrid>
-              <GridItem>
-                <i className="material-symbols-outlined">{Icons.business}</i>
-              </GridItem>
-              <GridItem> Off-chain Business</GridItem>
-            </SimpleGrid>
+            <i className="material-symbols-outlined">{Icons.business}</i>
+            <br />
+            Off-chain Business
           </WrapItem>
         </Wrap>
       </div>

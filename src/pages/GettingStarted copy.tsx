@@ -13,15 +13,13 @@ export default function PageGettingStarted() {
     <div className={[styles['content-section'], styles['wide']].join(' ')}>
       <Grid
         className={styles.gsGrid}
-        templateAreas={`
-                  "description"
-                  "features"
-                  "why"
-                  "decentralize"
-                  "tokenomics"
+        templateAreas={`"description features features"
+                  "why features features"
+                  "decentralize decentralize decentralize"
+                  "tokenomics tokenomics tokenomics"
                   `}
-        gridTemplateRows={'1fr 2fr 1fr 2fr 1fr'}
-        gridTemplateColumns={'1fr'}
+        gridTemplateRows={'1fr 1fr 1fr 1fr'}
+        gridTemplateColumns={'4fr 1fr 2fr '}
         gap="2em"
       >
         <GridItem
