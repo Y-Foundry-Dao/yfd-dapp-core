@@ -20,15 +20,11 @@ export default function PageGettingStarted() {
                   "decentralize"
                   "tokenomics"
                   `}
-        gridTemplateRows={'1fr 2fr 1fr 2fr 1fr'}
+        gridTemplateRows={'1.5fr 2fr 1fr 2fr 1.5fr'}
         gridTemplateColumns={'1fr'}
         gap="2em"
       >
-        <GridItem
-          className={styles.gsGridItem}
-          width="100%"
-          area={'description'}
-        >
+        <GridItem className={styles.gsGridItem} area={'description'}>
           <GSDescription />
         </GridItem>
         <GridItem className={styles.gsGridItem} area={'features'}>

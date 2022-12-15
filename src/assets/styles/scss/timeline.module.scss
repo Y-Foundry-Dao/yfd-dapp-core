@@ -1,4 +1,4 @@
-$content-width: 33rem;
+$content-width: auto;
 $margin: 1rem;
 $spacing: 1rem;
 $bdrs: 1rem;
@@ -21,7 +21,7 @@ $color-content: rgba(8, 6, 11, 0.8);
 
 .timeline {
   flex-direction: column;
-  margin: $margin auto;
+  margin: $margin;
   position: relative;
 
   &__event {
@@ -31,7 +31,6 @@ $color-content: rgba(8, 6, 11, 0.8);
     margin: $spacing 0;
     border-radius: $bdrs;
     align-self: center;
-    width: 50vw;
 
     &:nth-child(2n + 1) { 
         flex-direction: row-reverse;
@@ -97,38 +96,6 @@ $color-content: rgba(8, 6, 11, 0.8);
 
       i {
         font-size: $icon-size;
-      }
-
-      &:before {
-        content: "";
-        width: $line-width;
-        height: 100%;
-        background: linear-gradient( 
-          $color3,
-          $color-content 87%
-         );        
-        position: absolute;
-        top: 0%;
-        z-index: -1;
-        left: 50%;
-        transform: translateX(-50%);
-        animation: fillTop 2s forwards 4s ease-in-out;
-      }
-      &:after {
-        content: "";
-        width: $line-length;
-        height: 0.5rem;
-        background-image: linear-gradient( 
-          180deg,
-          $color3,
-          $color-content 130%
-         );
-        position: absolute;
-        left: 0%;
-        z-index: -1;
-        top: 50%;
-        transform: translateY(-50%);
-        animation: fillLeftOdd 2s forwards 4s ease-in-out;
       }
     }
     &__description {
@@ -245,11 +212,6 @@ $color-content: rgba(8, 6, 11, 0.8);
       width: 100%;
       margin: 0;
       box-shadow: none;
-      background-image: linear-gradient( 
-        180deg,
-        $color3,
-        $color-content 130%
-       );
       &:before,
       &:after {
         display: none;
