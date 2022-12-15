@@ -1,0 +1,46 @@
+.gsGrid {
+    width: 100%;
+}
+
+.gsGridItem {
+
+    .text-title { 
+        font-weight: 800;
+        font-size: 2rem;
+    }
+
+    img {
+        padding: 1rem;
+    }
+}
+
+.gsBorder {
+    padding: 1rem;
+    margin: 1.5rem;
+    border-radius: var(--theme-border-radius);
+    border: var(--theme-border-color) var(--theme-border-width) var(--theme-border-style);
+    
+    p {
+        margin-top: 0.15rem;
+        padding-bottom: 1rem;
+    }
+
+    .gsHeading {
+        color: var(--theme-special-color);
+    }
+
+    ul {
+        padding-top: 1em;
+        padding-left: 1em;
+
+        li {
+            padding-bottom: 1em;
+        }
+    }
+
+}
+
+.gsContent {
+    text-align: justify;
+
+}

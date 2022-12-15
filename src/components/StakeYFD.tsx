@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import useHandleClicks from 'hooks/useHandleClicks';
-import BalanceYFD from './stake/BalanceYFD';
-import BalancefYFD from './stake/BalancefYFD';
+import BalanceYFD from './BalanceYFD';
+import BalancefYFD from './BalancefYFD';
 import { format } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, brands } from '@fortawesome/fontawesome-svg-core/import.macro';

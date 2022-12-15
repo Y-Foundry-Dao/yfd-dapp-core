@@ -11,7 +11,7 @@ import {
   Text,
   VStack
 } from '@chakra-ui/react';
-import FinderContractLink from '@components/basic/finder/FinderContractLink';
+import FinderContractLink from '@components/finder/FinderContractLink';
 import useContractProposal from '@hooks/useContractProposal';
 import useContractVaultProposal from '@hooks/useContractVaultProposal';
 import useContractVote from '@hooks/useContractVote';

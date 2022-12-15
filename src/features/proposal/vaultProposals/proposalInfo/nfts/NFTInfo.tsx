@@ -1,5 +1,5 @@
 import { Flex, Text } from '@chakra-ui/react';
-import FinderContractLink from 'components/basic/finder/FinderContractLink';
+import FinderContractLink from '@components/finder/FinderContractLink';
 
 function NFTInfo({ nftContractInfo }: any) {
   const nftContractAddress: string = nftContractInfo.addr;

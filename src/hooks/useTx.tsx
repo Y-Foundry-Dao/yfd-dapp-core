@@ -1,6 +1,6 @@
 import { useToast } from '@chakra-ui/react';
 import { CreateTxFailed } from '@terra-money/wallet-provider';
-import FinderTxLink from 'components/basic/finder/FinderTxLink';
+import FinderTxLink from '@components/finder/FinderTxLink';
 
 const useTx = () => {
   const toast = useToast();

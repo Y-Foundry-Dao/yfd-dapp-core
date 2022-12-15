@@ -41,5 +41,10 @@
     --text-menu-title-color: var(--text-enhanced-color);
     --text-menu-link-color: var(--theme-link-color);
 
+    --theme-border-radius: 1rem;
+    --theme-border-color: var(--inactive-color);
+    --theme-border-width: 0.2rem;
+    --theme-border-style: solid;
+
     --border-radius: 1em; // not used yet
 }

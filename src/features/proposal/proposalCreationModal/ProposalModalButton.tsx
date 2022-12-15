@@ -1,16 +1,13 @@
-import { Text } from '@chakra-ui/react';
-import '@scss/icon.module.scss';
+import styles from '@scss/color.module.scss';
 
 function ProposalModalButton({ onOpen }: any) {
   return (
-    <Text>
-      <a href="#" onClick={onOpen}>
-        <i id="test" className="material-symbols-outlined">
-          add_box
-        </i>
-        Propose
-      </a>
-    </Text>
+    <a href="#" onClick={onOpen}>
+      <span className={styles['icon-create'] + ' material-symbols-outlined'}>
+        add_box
+      </span>
+      Propose
+    </a>
   );
 }
 

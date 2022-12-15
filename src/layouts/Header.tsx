@@ -2,7 +2,7 @@ import { Image } from '@chakra-ui/react';
 
 import yLogo from '@yfd/logo-horizontal-orange-white.svg';
 import WalletConnect from '@features/walletConnect/WalletConnect';
-import FYFD from '@components/basic/StakeYFD';
+import FYFD from '@components/StakeYFD';
 
 import styles from '@scss/header.module.scss';
 
