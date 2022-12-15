@@ -1,9 +1,9 @@
 import { Box, Heading, Text } from '@chakra-ui/react';
-import useContractVaultProposal from 'hooks/useContractVaultProposal';
-import useContractVote from 'hooks/useContractVote';
+import useContractVaultProposal from '@hooks/useContractVaultProposal';
+import useContractVote from '@hooks/useContractVote';
 import React from 'react';
 
-import styleBar from 'styles/progressbar.module.scss';
+import styleBar from '@scss/progressbar.module.scss';
 
 function CurrentVotes({ proposalContract, proposalIndex }: any) {
   const { proposalVoteInfo, voteContract } = useContractVaultProposal({

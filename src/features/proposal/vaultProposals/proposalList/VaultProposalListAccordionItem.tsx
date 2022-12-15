@@ -34,7 +34,7 @@ import {
 } from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
 import NFTInfo from '../proposalInfo/nfts/NFTInfo';
 
-import styleList from 'styles/proplist.module.scss';
+import styleList from '@scss/app.module.scss';
 
 function VaultProposalListAccordionItem({
   proposalContract,

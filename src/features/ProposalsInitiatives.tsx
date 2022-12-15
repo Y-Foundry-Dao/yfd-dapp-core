@@ -1,4 +1,4 @@
-import styles from 'styles/app.module.scss';
+import styles from '@scss/app.module.scss';
 import { Heading } from '@chakra-ui/react';
 
 export default function InitativeProposalsList() {

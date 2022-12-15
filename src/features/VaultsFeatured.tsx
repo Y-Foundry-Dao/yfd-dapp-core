@@ -1,4 +1,4 @@
-import styles from 'styles/app.module.scss';
+import styles from '@scss/app.module.scss';
 
 export default function VaultsFeatured() {
   return (

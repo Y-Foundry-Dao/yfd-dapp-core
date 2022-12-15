@@ -1,6 +1,6 @@
 import { Accordion, list } from '@chakra-ui/react';
 import VaultProposalListAccordionItem from './VaultProposalListAccordionItem';
-import styles from 'styles/app.module.scss';
+import styles from '@scss/app.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   solid,

@@ -1,6 +1,6 @@
-import styles from 'styles/app.module.scss';
+import styles from '@scss/app.module.scss';
 import { Flex, Box, Spacer } from '@chakra-ui/react';
-import styleBar from 'styles/progressbar.module.scss';
+import styleBar from '@scss/progressbar.module.scss';
 
 export default function InitiativesFeatured() {
   return (
