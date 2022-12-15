@@ -139,8 +139,6 @@ $color-content: rgba(8, 6, 11, 0.8);
       .timeline__event__title {
         color: $color4;
       }
-      .timeline__event__title {
-      }
     }
 
     &--type3 {
@@ -181,8 +179,7 @@ $color-content: rgba(8, 6, 11, 0.8);
       .timeline__event__title {
         color: $color5;
       }
-      .timeline__event__title {
-      }
+
     }
     &:last-child {
       .timeline__event__icon {

@@ -1,6 +1,10 @@
 :root {
-    --theme-bg-color: rgba(8 6 11 / 40%);
-    --border-color: rgba(113 119 144 / 25%);
+    --theme-bg-color: rgba(8, 6, 11, 0.5);
+    --theme-bg-content: rgba(8, 6, 11, 0.2);
+    --theme-bg-header: rgba(8, 6, 11, 0.2);
+    --theme-bg-footer: rgba(8, 6, 11, 0.2);
+
+    --border-color: #71779040;
     --theme-color: var(--theme-text);
     --theme-brand-color: #d8552a;
     --theme-enhanced-color: #f37402;
@@ -24,9 +28,9 @@
     --theme-gray-ligher: #c5c6c7;
 
     --theme-bg-gradient: linear-gradient(
-        180deg,
-        rgba(7 15 28 1),
-        rgba(8 6 11 1)
+        135deg,
+        #5f7999 10%,
+        #1f1152 100%
        );
     
     

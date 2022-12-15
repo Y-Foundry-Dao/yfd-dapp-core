@@ -1,13 +1,6 @@
-import { Accordion, list } from '@chakra-ui/react';
+import { Accordion } from '@chakra-ui/react';
 import VaultProposalListAccordionItem from './VaultProposalListAccordionItem';
 import styles from '@scss/app.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  solid,
-  regular,
-  brands,
-  icon
-} from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
 
 function VaultProposalListAccordions({ proposals }: any) {
   return (

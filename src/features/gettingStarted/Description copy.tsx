@@ -1,10 +1,5 @@
 import styles from '@scss/app.module.scss';
-import {
-  SimpleGrid,
-  GridItem,
-  Wrap,
-  WrapItem
-} from '@chakra-ui/react';
+import { SimpleGrid, GridItem, Wrap, WrapItem } from '@chakra-ui/react';
 import { Icons } from '@var/icons';
 
 export default function GSDescription() {

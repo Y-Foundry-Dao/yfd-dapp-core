@@ -1,16 +1,30 @@
 .left-side {
-    flex-basis: 15rem;
+//    flex-basis: 15rem;
     border-right: 0.15rem solid var(--border-color);
-    padding: 2em;
     overflow: auto;
     flex-shrink: 0;
     @media screen and (max-width: 945px) {
      display: none;
     }
    }
-   
-.side-wrapper + .side-wrapper {
-    margin-top: 1em;
+
+.side-wrapper {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    &-menu {
+        margin-top: 1rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        border-bottom-width: 0rem 3rem;
+    }
+    &-menu::after {
+        content: "";
+        display: block;
+        margin: 0 auto;
+        width: 1rem;
+        padding-top: 1rem;
+//        border-bottom:rgba(254, 254, 255, 0.3) 0.1rem solid;
+    }
 }
    
 .side-title {

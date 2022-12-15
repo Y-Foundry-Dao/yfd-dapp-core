@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   AccordionButton,
   AccordionIcon,
@@ -6,16 +7,11 @@ import {
   Box,
   Flex,
   Spacer,
-  Heading,
-  HStack,
-  Text,
-  VStack
+  Text
 } from '@chakra-ui/react';
 import FinderContractLink from '@components/finder/FinderContractLink';
-import useContractProposal from '@hooks/useContractProposal';
 import useContractVaultProposal from '@hooks/useContractVaultProposal';
 import useContractVote from '@hooks/useContractVote';
-import React, { useState } from 'react';
 import ProposalFinalizeButton from '@features/proposal/vaultProposals/proposalInfo/status/ProposalFinalizeButton';
 import ProposalStatus from '@features/proposal/vaultProposals/proposalInfo/status/ProposalStatus';
 import InputVoteAmount from '@features/proposal/vaultProposals/proposalInfo/voting/InputVoteAmount';
@@ -25,13 +21,6 @@ import FundingInfo from '@features/proposal/vaultProposals/proposalInfo/funding/
 import VaultProposalInfo from '@features/proposal/vaultProposals/proposalInfo/VaultProposalInfo';
 import CurrentVotes from '@features/proposal/vaultProposals/proposalInfo/voting/CurrentVotes';
 import CurrentVotesBar from '@features/proposal/vaultProposals/proposalInfo/voting/CurrentVotesBar';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  solid,
-  regular,
-  brands,
-  icon
-} from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
 import NFTInfo from '../proposalInfo/nfts/NFTInfo';
 
 import styleList from '@scss/app.module.scss';
