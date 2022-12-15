@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styles from '@scss/side.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, brands } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { useDisclosure, Icon, Image } from '@chakra-ui/react';
+import { useDisclosure, Image } from '@chakra-ui/react';
 
 import FeedbackModal from '@features/forms/feedback/Modal';
 import FeedbackModalButton from '@features/forms/feedback/FeedbackModalButton';
@@ -13,7 +13,7 @@ import {
   URL_DOCS,
   URL_DEWORK
 } from '@var/links';
-import imgImport from '@images/external/dework.svg';
+import imgDework from '@images/external/dework.svg';
 
 function MenuLeft() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -24,15 +24,15 @@ function MenuLeft() {
         <div className={styles['side-title']}>About Y-Foundry DAO</div>
         <div className={styles['side-menu']}>
           <Link to="/getting-started">
-            <FontAwesomeIcon icon={solid('rocket')} />
+            <i className="material-symbols-outlined">rocket_launch</i>
             Getting Started
           </Link>
           <a href={URL_DOCS} target="_blank">
-            <FontAwesomeIcon icon={solid('graduation-cap')} />
+            <i className="material-symbols-outlined">local_library</i>
             Documentation
           </a>
           <a href={URL_DEWORK} target="_blank">
-            <Image src={imgImport} h={5} pr={4} />
+            <Image className={styles.image} src={imgDework} />
             Dework
           </a>
           <a href={URL_DISCORD} target="_blank">
@@ -44,7 +44,7 @@ function MenuLeft() {
             Twitter
           </a>
           <a href={URL_GITHUB} target="_blank">
-            <FontAwesomeIcon icon={solid('code')} />
+            <i className="material-symbols-outlined">code</i>
             Source Code
           </a>
           <FeedbackModalButton onOpen={onOpen} />

@@ -2,16 +2,44 @@
     --theme-bg-color: rgba(16 18 27 / 40%);
     --border-color: rgba(113 119 144 / 25%);
     --theme-color: #f9fafb;
+    --theme-enhanced-color: #f37402;
+    --theme-special-color: #f4bf62;
+    --theme-create-color: #cc8400;
+    --theme-link-color: rgba(208, 199, 130, 0.78);
     --inactive-color: rgb(113 119 144 / 78%);
-    --body-font: "Poppins", sans-serif;
-    --hover-menu-bg: rgba(144, 167, 241, 0.3);
+
+    --body-font: "Poppins", sans-serif;  // overridden by Chakra themes/yfd.tsx
+    --hover-menu-bg: rgba(255, 255, 255, 0.3);
+
     --content-title-color: #999ba5;
+    --content-text: #ebecec;
     --content-bg: rgb(146 151 179 / 13%);
+
+    --icon-color: var(--theme-color);
+    --icon-special-color: var(--theme-special-color);
+    --button-standard-color: #fff;
+    --button-standard-bg: #3a6df0;
+    --button-standard-not-open-bg: #1e59f1;
+    --button-disable-bg: var(--inactive-color);
+    --button-special-bg: var(--theme-special-color);
+    --button-create-color: var(--button-standard-color);
+    --button-create-bg: var(--theme-create-color);
     --button-inactive: rgb(249 250 251 / 55%);
+
     --dropdown-bg: #21242d;
     --dropdown-hover: rgb(42 46 60);
     --popup-bg: rgb(22 25 37);
     --search-bg: #14162b;
     --overlay-bg: rgba(36, 39, 59, 0.3);
     --scrollbar-bg: rgb(1 2 3 / 40%);
+    --notification-bg: var(--button-standard-bg);
+    --proposal-list-item-color: red;
+
+    --text-enhanced-color: var(--theme-enhanced-color);
+    --text-enhanced-filter-color: #fff;
+
+    --text-menu-title-color: var(--text-enhanced-color);
+    --text-menu-link-color: var(--theme-link-color);
+
+    --border-radius: 1em; // not used yet
 }

@@ -1,7 +1,9 @@
+@import "_root.module.scss";
+
 .standard {
     width: 100%;
-    color: #fff;
-    background-color: #387af2;
+    color: var(--button-standard-color);
+    background-color: var(--button-standard-bg);
     border: none;
     padding: 0.5rem 1.6rem;
     border-radius: 1.25rem;
@@ -11,53 +13,53 @@
     transition: 0.3s;
     white-space: nowrap;
     svg {
-        color: #f4bf62;
+        color: var(--button-special-color);
         margin-right: 1em;
     }
     &-disable {
-        background-color: gray;
+        background-color: var(--icon-disable);
         @extend .standard;
     }
     &-create {
         @extend .standard;
-        background-color: #cc8400;
+        background-color: var(--button-create-bg);
         svg {
-            color: #fff;
+            color: var(--button-create-color);
             margin-right: 1em;
         }
     }
 }
 
 .outline {
-    color: #fff;
-    border: #f4bf62 solid 0.35rem;
+    color: var(--button-standard-color);
+    border: var(--button-special-bg) solid 0.35rem;
     padding: 0.5rem 1.6rem;
     border-radius: 1.25rem;
     margin-top: 0rem;
     margin-bottom: 0.5rem;
     svg {
-        color: #f4bf62;
+        color: var(--button-special-bg);
         margin-right: 1em;
     }
     &-disable {
-        border: gray solid 0.35rem;
+        border: var(--button-disable-bg) solid 0.35rem;
         @extend .outline;
     }
     &-standard{
-        border: #387af2 solid 0.35rem;
+        border: var(--button-standard-bg) solid 0.35rem;
         @extend .outline;
     }
 }
 
 .simple {
-    color: #fff;
+    color: var(--button-standard-color);
     border: none;
     padding: 0.5rem 1.6rem;
     border-radius: 1.25rem;
     margin-top: 0rem;
     margin-bottom: 0.5rem;
     svg {
-        color: #f4bf62;
+        color: var(--button-special-bg);
         margin-right: 1em;
     }
     &-disable {
@@ -67,6 +69,33 @@
     &-standard{
         border: none;
         @extend .outline;
+    }
+}
+
+.clear {
+    display: flex;
+    flex-direction: column;
+    color: var(--theme-color);
+    padding: 1.25rem 2.5rem;
+    height: 100%;
+    overflow: auto;
+    justify-content: space-between;
+    filter: drop-shadow( 0.625rem 1.25rem 0.938rem #000 );
+    background-image: 
+    linear-gradient(
+        to right top,
+        rgba(13,13,13,0.2),
+        rgba(44,44,44,0.2),
+        rgba(200,200,200,0.2)
+        );
+    border-radius: 0.875rem;
+    padding: 1.25rem 2.5rem;
+    @media screen and (max-width: 25.938rem) {
+        padding: 1.25rem;
+    }
+    svg {
+        padding-right: 0.4rem;
+        padding-left: 0.4rem;
     }
 }
 

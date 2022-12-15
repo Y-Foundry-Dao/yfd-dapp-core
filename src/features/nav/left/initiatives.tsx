@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom';
 import styles from '@scss/side.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { useDisclosure } from '@chakra-ui/react';
 import ProposalModal from '@features/proposal/proposalCreationModal/ProposalModal';
 import ProposalModalButton from '@features/proposal/proposalCreationModal/ProposalModalButton';
@@ -17,11 +15,11 @@ function MenuLeftInitiatives() {
           <ProposalModalButton onOpen={onOpen} />
           <ProposalModal isOpen={isOpen} onClose={onClose} />
           <Link to="/proposals-vaults">
-            <FontAwesomeIcon icon={solid('vault')} />
+            <i className="material-symbols-outlined">account_balance</i>
             Vaults
           </Link>
           <Link to="/proposals-initiatives">
-            <FontAwesomeIcon icon={solid('hands-holding-circle')} />
+            <i className="material-symbols-outlined">tenancy</i>
             Funding
           </Link>
         </div>

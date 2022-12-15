@@ -4,7 +4,8 @@ import useHandleClicks from 'hooks/useHandleClicks';
 import BalanceYFD from './stake/BalanceYFD';
 import BalancefYFD from './stake/BalancefYFD';
 import { format } from 'date-fns';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid, brands } from '@fortawesome/fontawesome-svg-core/import.macro';
 import {
   Popover,
   PopoverTrigger,
@@ -33,9 +34,6 @@ import {
   Box,
   Spacer
 } from '@chakra-ui/react';
-
-import styles from 'styles/app.module.scss';
-
 import {
   DATE_ONE_MONTH,
   DEFAULT_YFD_LOCK_DURATION,
@@ -56,6 +54,8 @@ import {
 } from 'utilities/variables/variables';
 import { inputStakeYFD } from 'recoil/input/atoms';
 import useHandleInputs from 'hooks/useHandleInputs';
+import styles from '@scss/app.module.scss';
+import styleButton from '@scss/button.module.scss';
 
 function StakeYFD() {
   const [durationDepositYFD, setDurationDepositYFD] = useState(
@@ -71,17 +71,28 @@ function StakeYFD() {
   return (
     <Popover>
       <PopoverTrigger>
-        <Button className={styles['button-wrapper']} margin={1}>
-          <Text as="sup" marginRight={1}>
-            fYFD
-          </Text>
-          <BalancefYFD />
+        <Button className={styleButton['clear']} margin={1}>
+          <Flex width="100%">
+            <Box>
+              <FontAwesomeIcon icon={solid('vote-yea')} />
+            </Box>
+            <Box>
+              <FontAwesomeIcon icon={solid('bullhorn')} />
+            </Box>
+            <Box>
+              <FontAwesomeIcon icon={solid('shield-halved')} />
+            </Box>
+          </Flex>
         </Button>
       </PopoverTrigger>
       <Portal>
         <PopoverContent className={styles.portal}>
           <PopoverArrow />
           <PopoverHeader>
+            <Text as="sup" marginRight={1}>
+              fYFD
+            </Text>
+            <BalancefYFD />
             <Text as="sup" marginBottom={0} width="100%">
               YFD:
               <b>

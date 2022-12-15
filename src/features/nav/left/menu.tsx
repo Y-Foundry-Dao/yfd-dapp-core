@@ -7,6 +7,8 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import Initiatives from './initiatives';
 import AboutYFD from './aboutYFD';
 
+import 'material-symbols';
+
 function MenuLeft() {
   return (
     <>
@@ -14,11 +16,11 @@ function MenuLeft() {
         <div className={styles['side-title']}>Personal</div>
         <div className={styles['side-menu']}>
           <Link to="/">
-            <FontAwesomeIcon icon={solid('cubes')} />
+            <i className="material-symbols-outlined">grid_view</i>
             My Dashboard
           </Link>
           <Link to="/favorites">
-            <FontAwesomeIcon icon={solid('star')} />
+            <i className="material-symbols-outlined">favorite</i>
             Favorites
             <span
               className={[styles['notification-number'], styles.updates].join(
@@ -29,13 +31,10 @@ function MenuLeft() {
             </span>
           </Link>
           <Link to="/deposit-yfd">
-            <FontAwesomeIcon fill="currentColor" icon={solid('coins')} />
+            <i className="material-symbols-sharp">swap_horizontal_circle</i>
             $YFD
-            <FontAwesomeIcon
-              fill="currentColor"
-              style={{ margin: '0px 0.3em' }}
-              icon={solid('arrow-right-arrow-left')}
-            />
+            <i></i>
+            <i className="material-symbols-outlined ml">swap_horiz</i>
             fYFD
           </Link>
         </div>
@@ -45,11 +44,11 @@ function MenuLeft() {
         <div className={styles['side-title']}>Governance</div>
         <div className={styles['side-menu']}>
           <Link to="/governance-proposals">
-            <FontAwesomeIcon icon={solid('handshake')} />
+            <i className="material-symbols-outlined">handshake</i>
             DAO Proposals
           </Link>
           <Link to="/governance-parameters">
-            <FontAwesomeIcon icon={solid('gear')} />
+            <i className="material-symbols-outlined">settings</i>
             Parameters
           </Link>
         </div>
