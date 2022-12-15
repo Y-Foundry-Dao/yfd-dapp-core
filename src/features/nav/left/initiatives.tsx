@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
-import styles from '@scss/side.module.scss';
 import { useDisclosure } from '@chakra-ui/react';
-import ProposalModal from '@features/proposal/proposalCreationModal/ProposalModal';
-import ProposalModalButton from '@features/proposal/proposalCreationModal/ProposalModalButton';
+
+import styles from '@scss/side.module.scss';
 import { Icons } from '@var/icons';
 
-function MenuLeftInitiatives() {
+import ProposalModal from '@features/proposal/proposalCreationModal/ProposalModal';
+import ProposalModalButton from '@features/proposal/proposalCreationModal/ProposalModalButton';
+
+export default function MenuLeftInitiatives() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -28,5 +30,3 @@ function MenuLeftInitiatives() {
     </>
   );
 }
-
-export default MenuLeftInitiatives;
