@@ -3,6 +3,7 @@
     border-right: 0.15rem solid var(--border-color);
     overflow: auto;
     flex-shrink: 0;
+    margin-bottom: 3rem;
     @media screen and (max-width: 945px) {
      display: none;
     }
@@ -10,7 +11,7 @@
 
 .side-wrapper {
     margin-top: 1.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
     &-menu {
         margin-top: 1rem;
         padding-left: 2rem;
@@ -30,7 +31,6 @@
     color: var(--text-menu-title-color);
     margin-bottom: 0.3em;
     font-size: 0.9em;
-    text-transform: uppercase;
 }
 
 .side-menu {
