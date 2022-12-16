@@ -1,16 +1,9 @@
 ---
-name: User Experience Report - Bug / Issue
-about: For reporting testing outcomes on Y-Foundry's UI / UX
-title: "[ ISSUE - UI / UX ] "
-labels: to review, UI-UX
-assignees: ''
-
----
-
 name: Y-Foundry User Experience Report
 description: Submit an issue you had with the user experience on Y-Foundry
-title: "[Bug]: "
-labels: ["bug", "UI-UX", "to review"]
+title: "[ISSUE]: "
+labels: ["bug", "UI-UX", "Needs Triage"]
+---
 body:
   - type: markdown
     attributes:
