@@ -1,7 +1,7 @@
-name: 🐞 Bug
-description: File a bug/issue
-title: "[BUG] <title>"
-labels: [Bug, Needs Triage]
+name: 🐞 Issue Report
+description: Report an Issue
+title: "[ISSUE] <title>"
+labels: [Issue, Needs Triage]
 body:
 - type: checkboxes
   attributes:
@@ -38,14 +38,36 @@ body:
     label: Environment
     description: |
       examples:
-        - **OS**: Ubuntu 20.04
-        - **Node**: 13.14.0
-        - **npm**: 7.6.3
+        - **OS**: MacOS X 15
+        - **Node**: 18
+        - **npm**: 8.5.3
     value: |
         - OS:
-        - Node:
-        - npm:
+        - Browser:
+        - Wallet:
     render: markdown
+  validations:
+    required: false
+- type: dropdown
+  id: wallet
+  attributes:
+    label: Wallet used to Connect to Site / Contracts? 
+    options:
+      - Station
+      - xDefi
+      - Keplr
+      - Kujira
+      - CosmoStation
+      - Leap
+      - Loop / Obi
+      - Other
+  validations:
+    required: false
+- type: input
+  id: wallet_other
+  attributes:
+    label: Other Wallet
+    placeholder: "list other wallet here"
   validations:
     required: false
 - type: textarea
