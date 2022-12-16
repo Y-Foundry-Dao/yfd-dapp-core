@@ -3,9 +3,10 @@ const base = {
     bg: 'rgba(36, 39, 59, 0.8)'
   },
   fonts: {
-    heading: 'Overpass, sans-serif',
-    body: 'Poppins, sans-serif',
-    mono: 'Roboto Mono, monospace'
+    heading:
+      '-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif',
+    body: 'Poppins,-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif',
+    mono: 'monospace'
   },
   colors: {
     color1: '#040307',

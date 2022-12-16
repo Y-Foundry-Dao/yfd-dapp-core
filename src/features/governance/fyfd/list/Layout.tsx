@@ -1,3 +1,4 @@
+import styles from '@scss/app.module.scss';
 import { Heading, Spacer, Flex, Box } from '@chakra-ui/react';
 
 import useContractForge from '@hooks/useContractForge';
@@ -15,7 +16,7 @@ export default function layoutFyfd() {
     console.log(balanceKeys);
     return (
       <>
-        <Flex width="100%">
+        <Flex>
           <Box></Box>
           <Spacer />
           <Box>

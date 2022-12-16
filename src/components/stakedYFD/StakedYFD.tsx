@@ -1,7 +1,7 @@
 import { useRecoilValue } from 'recoil';
-import stakedYFDAtom from 'recoil/stakedYFD/atom';
+import stakedYFDAtom from '@recoil/stakedYFD/atom';
 import StakeItem from './StakeItem';
-import useStake from 'hooks/useStake';
+import useStake from '@hooks/useStake';
 import {
   Accordion,
   AccordionPanel,

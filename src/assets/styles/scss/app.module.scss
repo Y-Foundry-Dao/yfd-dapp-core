@@ -16,11 +16,14 @@
 @import "footer.module.scss";
 @import "content.module.scss";
 @import "list.module.scss";
-@import "appcard.module.scss";
-@import "button.module.scss";
 @import "chakra.module.scss";
 @import "side.module.scss";
 @import "feedback.module.scss";
+
+//components
+@import "component/appcard.module.scss";
+@import "component/button.module.scss";
+@import "component/card.module.scss";
 
 @import '@scss/page/gettingstarted.module.scss';
 // @import "paper.module.scss";
