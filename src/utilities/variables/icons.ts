@@ -19,5 +19,8 @@ export const Icons: { [key: string]: string } = {
   code: 'code',
   charity: 'volunteer_activism',
   escrow: 'savings',
-  business: 'storefront'
+  business: 'storefront',
+  error: 'bug_report',
+  praise: 'celebration',
+  feedback: 'chat'
 };
