@@ -1,9 +1,7 @@
----
 name: Y-Foundry User Experience Report
 description: Submit an issue you had with the user experience on Y-Foundry
 title: "[ISSUE]: "
 labels: ["bug", "UI-UX", "Needs Triage"]
----
 body:
   - type: markdown
     attributes:
