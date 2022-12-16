@@ -1,5 +1,5 @@
 body {
-    filter: drop-shadow(0 0 10px black);
+    filter: drop-shadow(0 0 1rem black);
   }
   
   @function random_range($min, $max) {
@@ -12,11 +12,10 @@ body {
     $total: 200;
     position: absolute;
     margin-top: -15%;
-    width: 0.5em;
-    height: 0.5em;
+    width: 0.6em;
+    height: 0.6em;
     background: white;
     border-radius: 50%;
-    z-index: -100;
   
     @for $i from 1 through $total {
       $random-x: random(1000000) * 0.0001vw;

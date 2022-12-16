@@ -1,4 +1,4 @@
-import styles from '@scss/component/snow.module.scss';
+import styles from '@scss/function/snow.module.scss';
 
 export default function MakeSnow() {
   return (
