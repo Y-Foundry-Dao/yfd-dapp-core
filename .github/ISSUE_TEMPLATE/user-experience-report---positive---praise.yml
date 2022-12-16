@@ -1,5 +1,5 @@
 name: User Experience Report - Positive / Praise
-about: 'Report to Praise something about the UI / UX '
+description: 'Report to Praise something about the UI / UX '
 title: "[PRAISE]: "
 labels: ["PRAISE", "UI-UX", "Needs Triage"]
 body:
