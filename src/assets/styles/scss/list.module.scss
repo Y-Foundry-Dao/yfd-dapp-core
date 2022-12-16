@@ -1,0 +1,41 @@
+.listFrame {
+    ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        background-color: var(--content-bg);
+        padding-left: 0;
+        margin: 0;
+        border-radius: 0.875rem;
+        border: 0.063rem solid var(--theme-bg-color);
+        cursor: pointer;
+
+        li {
+            list-style: none;
+            padding: 0.625rem;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            overflow: hidden;
+            white-space: nowrap;
+            transition: 0.3s;
+        
+            &:hover {
+                background-color: var(--theme-bg-color);
+        
+                &:first-child {
+                    border-radius: 0.875rem 0.875rem 0 0;
+                }
+        
+                &:last-child {
+                    border-radius: 0 0 0.875rem 0.875rem;
+                }
+            }
+
+            & + li {
+                border-top: 0.063rem solid var(--border-color);
+            }
+        }
+
+}
+}

@@ -1,27 +1,28 @@
 import { Link } from 'react-router-dom';
-import styles from '@scss/side.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { useDisclosure } from '@chakra-ui/react';
+
+import styles from '@scss/side.module.scss';
+import { Icons } from '@var/icons';
+
 import ProposalModal from '@features/proposal/proposalCreationModal/ProposalModal';
 import ProposalModalButton from '@features/proposal/proposalCreationModal/ProposalModalButton';
 
-function MenuLeftInitiatives() {
+export default function MenuLeftInitiatives() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
-      <div className={styles['side-wrapper']}>
+      <div className={styles['side-wrapper-menu']}>
         <div className={styles['side-title']}>Initatives</div>
         <div className={styles['side-menu']}>
           <ProposalModalButton onOpen={onOpen} />
           <ProposalModal isOpen={isOpen} onClose={onClose} />
           <Link to="/proposals-vaults">
-            <FontAwesomeIcon icon={solid('vault')} />
+            <i className="material-symbols-outlined">{Icons.vault}</i>
             Vaults
           </Link>
           <Link to="/proposals-initiatives">
-            <FontAwesomeIcon icon={solid('hands-holding-circle')} />
+            <i className="material-symbols-outlined">{Icons.initiative}</i>
             Funding
           </Link>
         </div>
@@ -29,5 +30,3 @@ function MenuLeftInitiatives() {
     </>
   );
 }
-
-export default MenuLeftInitiatives;

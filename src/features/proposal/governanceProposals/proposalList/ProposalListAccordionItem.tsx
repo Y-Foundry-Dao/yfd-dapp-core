@@ -7,7 +7,7 @@ import {
   Heading,
   Text
 } from '@chakra-ui/react';
-import FinderContractLink from 'components/basic/finder/FinderContractLink';
+import FinderContractLink from '@components/finder/FinderContractLink';
 import useContractGovernanceProposal from 'hooks/useContractGovernanceProposal';
 import useContractVote from 'hooks/useContractVote';
 import ProposalInfo from './proposalInfo/ProposalInfo';

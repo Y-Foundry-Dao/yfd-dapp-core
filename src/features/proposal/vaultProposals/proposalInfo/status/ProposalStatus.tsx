@@ -1,6 +1,6 @@
 import { Text } from '@chakra-ui/react';
 import useContractVaultProposal from 'hooks/useContractVaultProposal';
-import styleLoader from 'styles/loader.module.scss';
+import styleLoader from '@scss/loader.module.scss';
 
 function ProposalStatus({ proposalContract, proposalIndex }: any) {
   const { proposalVoteInfo } = useContractVaultProposal({

@@ -1,10 +1,6 @@
 :root {
-    --theme-bg-color: rgba(8, 6, 11, 0.5);
-    --theme-bg-content: rgba(8, 6, 11, 0.2);
-    --theme-bg-header: rgba(8, 6, 11, 0.2);
-    --theme-bg-footer: rgb(39, 45, 64, 0.2);
-
-    --border-color: #71779040;
+    --theme-bg-color: rgba(8 6 11 / 40%);
+    --border-color: rgba(113 119 144 / 25%);
     --theme-color: var(--theme-text);
     --theme-brand-color: #d8552a;
     --theme-enhanced-color: #f37402;
@@ -14,12 +10,12 @@
     --inactive-color: rgb(113 119 144 / 78%);
 
     --theme-color-darkest: #000000;
-    --theme-color-darker: #5f7999;
-    --theme-color-dark: #83aee1;
-    --theme-color-base: #f37402;
-    --theme-color-light: #f4bf62;
-    --theme-color-lighter: #EDD892;
-    --theme-color-lightest: #f9fafb;
+    --theme-color-darker: #1e044e;
+    --theme-color-dark: rgb(122, 60, 144);
+    --theme-color-base: #898cde;
+    --theme-color-light: #bea6e2;
+    --theme-color-lighter: #df6fb7;
+    --theme-color-lightest: #fff;
 
     --theme-gray-darker: #3f3f40;
     --theme-gray-dark: #6d7989;
@@ -28,9 +24,9 @@
     --theme-gray-ligher: #c5c6c7;
 
     --theme-bg-gradient: linear-gradient(
-        135deg,
-        #5f7999 10%,
-        #1f1152 100%
+        180deg,
+        rgba(7 15 28 1),
+        rgba(8 6 11 1)
        );
     
     

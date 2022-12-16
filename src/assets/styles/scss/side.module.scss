@@ -1,23 +1,35 @@
-@import "notification.module.scss";
-
 .left-side {
-    flex-basis: 15rem;
+//    flex-basis: 15rem;
     border-right: 0.15rem solid var(--border-color);
-    padding: 2em;
     overflow: auto;
     flex-shrink: 0;
     @media screen and (max-width: 945px) {
      display: none;
     }
    }
-   
-.side-wrapper + .side-wrapper {
-    margin-top: 1em;
+
+.side-wrapper {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    &-menu {
+        margin-top: 1rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        border-bottom-width: 0rem 3rem;
+    }
+    &-menu::after {
+        content: "";
+        display: block;
+        margin: 0 auto;
+        width: 1rem;
+        padding-top: 1rem;
+    }
 }
    
 .side-title {
-    color: var(--inactive-color);
-    margin-bottom: 1em;
+    color: var(--text-menu-title-color);
+    margin-bottom: 0.3em;
+    font-size: 0.9em;
 }
 
 .side-menu {
@@ -35,11 +47,22 @@
      border-radius: 0.5em;
      transition: 0.2s;
      &:hover {
-      background-color: var(--hover-menu-bg);
+      background-color: rgba(254, 254, 255, 0.3);
      }
     }
+    i {
+     margin-right: 0.5rem;
+     font-variation-settings: 'FILL' 1;
+     color: var(--icon-color);
+     font-size: 1.3rem;
+    }
     svg {
-     width: 1.5em;
-     margin-right: 1em;
+        @extend i;
+        width: 1.3rem;
+    }
+
+    .image {
+        @extend i;
+        height: 1em;
     }
 }

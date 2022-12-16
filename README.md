@@ -46,7 +46,15 @@ yarn e2etest
 
 ### Icons
 
+[Google Material Symbols](https://fonts.google.com/icons)
+```
+<span class="material-symbols-outlined">face</span> <!-- Outlined -->
+<span class="material-symbols-rounded">face</span>  <!-- Rounded -->
+<span class="material-symbols-sharp">face</span>    <!-- Sharp -->
+```
+
 [Font Awesome](https://fontawesome.com/search?o=r&m=free)
+* Remove this package
 ```
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
