@@ -29,7 +29,9 @@ function FeedbackModal({ isOpen, onClose }: any) {
     >
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Submit your Feedback</ModalHeader>
+        <ModalHeader className={styles.feedbackHeader}>
+          Submit your Feedback
+        </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <div id="feedbackSelect" className={styles.feedbackSelect}>

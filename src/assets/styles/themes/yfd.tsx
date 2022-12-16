@@ -3,7 +3,7 @@ const base = {
     bg: 'rgba(36, 39, 59, 0.8)'
   },
   fonts: {
-    heading: 'Kodchasan, sans-serif',
+    heading: 'Overpass, sans-serif',
     body: 'Poppins, sans-serif',
     mono: 'Roboto Mono, monospace'
   },

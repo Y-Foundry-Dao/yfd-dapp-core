@@ -14,6 +14,9 @@ import useTx from 'hooks/useTx';
 import { FEEDBACK_WEBHOOK } from 'utilities/variables/discord';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 
+import styles from '@scss/app.module.scss';
+import { URL_DISCORD } from '@var/links';
+
 export default function FeedbackForm({ onClose }: any) {
   const feedbackName: string = useRecoilValue(inputFeedbackName);
   const feedbackHandle: string = useRecoilValue(inputFeedbackHandle);
@@ -60,28 +63,33 @@ export default function FeedbackForm({ onClose }: any) {
   };
 
   return (
-    <Form onSubmit={onSubmit}>
+    <Form onSubmit={onSubmit} className={styles.feedbackSelect}>
       <FormLayout>
+        <Box>
+          Information provided is sent to a private support channel on the{' '}
+          <a href={URL_DISCORD}>Y-Foundry Discord Server.</a>
+        </Box>
         <Field
           name="feedbackName"
-          help="Name"
+          placeholder="Name"
           value={feedbackName}
           onChange={handleInputFeedbackName}
           type="text"
           rules={{ required: false }}
         />
         <Flex>
-          <Box>
+          <Box width="100%">
             <Field
+              width="90%"
               name="feedbackHandle"
-              help="Username"
+              placeholder="Account"
               onChange={handleInputFeedbackHandle}
               value={feedbackHandle}
               type="text"
               rules={{ required: false }}
             />
           </Box>
-          <Box>
+          <Box width="80%">
             <Select
               value={feedbackMethod}
               onChange={handleInputFeedbackMethod}
@@ -103,7 +111,7 @@ export default function FeedbackForm({ onClose }: any) {
           placeholder="Provide your feedback here"
         />
 
-        <SubmitButton className="button" disableIfUntouched>
+        <SubmitButton className={styles.standard} disableIfUntouched>
           Submit Feedback
         </SubmitButton>
       </FormLayout>

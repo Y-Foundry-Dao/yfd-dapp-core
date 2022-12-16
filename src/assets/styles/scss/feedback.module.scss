@@ -1,3 +1,33 @@
+.feedbackHeader {
+   height: 4rem;
+   width: 100%;
+   background: var(--theme-bg-header);
+   border-bottom: 0.063rem solid var(--border-color);
+   padding: 1rem;
+   white-space: nowrap;
+   &-menu {
+    display: flex;
+    align-items: center;
+    a {
+     padding: 1.25rem 1.875rem;
+     text-decoration: none;
+     color: var(--inactive-color);
+     border-bottom: 0.125rem solid transparent;
+     transition: 0.3s;
+     @media screen and (max-width: 38.125em) {
+      &:not(.main-header-link) {
+       display: none;
+      }
+     }
+     &.is-active,
+     &:hover {
+      color: var(--theme-color);
+      border-bottom: 0.125rem solid var(--theme-color);
+     }
+    }
+   }
+}
+
 .feedbackSelect {
    padding: 1rem;
    margin: 1.5rem;
