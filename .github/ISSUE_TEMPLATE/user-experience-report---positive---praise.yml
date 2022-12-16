@@ -1,16 +1,7 @@
----
 name: User Experience Report - Positive / Praise
 about: 'Report to Praise something about the UI / UX '
-title: "[ PRAISE ]"
-labels: praise
-assignees: ''
-
----
-
-name: Y-Foundry User Experience Report
-description: Submit a positive experience you had interacting with Y-Foundry
 title: "[PRAISE]: "
-labels: ["PRAISE", "UI-UX", "to review"]
+labels: ["PRAISE", "UI-UX", "Needs Triage"]
 body:
   - type: markdown
     attributes:
