@@ -7,7 +7,6 @@
     .text-title { 
         font-weight: 800;
         font-size: 2rem;
-        font-family: Kodchasan, sans-serif;
         letter-spacing: 0.15em;
     }
 
@@ -70,5 +69,8 @@
             color: var(--theme-gray-light);
             font-size: 3rem;
         }
+    }
+    p {
+        text-align: justify;
     }
 }

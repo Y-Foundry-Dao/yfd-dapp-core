@@ -33,11 +33,17 @@
         #1f1152 100%
        );
     
+    --theme-heading-bg-gradient: linear-gradient(
+        135deg,
+        #5f7999 10%,
+        #1f1152 100%
+       );
     
     --theme-text: #f9fafb;
     --theme-text2: #29dec6;
     --theme-text3: #ff2c45;
 
+    --theme-heading-text: var(--theme-text);
     --theme-button-bg: #144378;
 
 

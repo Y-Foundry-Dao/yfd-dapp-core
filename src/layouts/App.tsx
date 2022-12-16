@@ -5,15 +5,17 @@ import MainContainer from '@layouts/Main';
 
 export default function App() {
   return (
-    <div className={styles.app}>
-      <div className={styles.header}>
-        <Header />
+    <>
+      <div className={styles.app}>
+        <div className={styles.header}>
+          <Header />
+        </div>
+        <div className={styles.wrapper}>
+          <LayoutLeft />
+          <MainContainer />
+        </div>
+        <div className={styles['overlay-app']}></div>
       </div>
-      <div className={styles.wrapper}>
-        <LayoutLeft />
-        <MainContainer />
-      </div>
-      <div className={styles['overlay-app']}></div>
-    </div>
+    </>
   );
 }

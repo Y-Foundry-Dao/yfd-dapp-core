@@ -9,9 +9,7 @@ import { Flex, Box, Heading, Spacer } from '@chakra-ui/react';
 export default function GSFeatures() {
   return (
     <div className={styles['content-feature-frame']}>
-      <div className={styles['content-wrapper-header']}>
-        <span className={styles['text-title']}> Key Features </span>
-      </div>
+      <div className={styles['heading']}>Key Features</div>
       <div className={styleTL.timeline}>
         <div
           className={[
