@@ -8,7 +8,7 @@ body:
     label: Is there an existing feature request for this?
     description: Please search to see if an existing feature request similar to what you would like to request.
     options:
-    - label: I have searched the existing issues
+    - label: I have searched the existing feature and enhancement requests
       required: true
 - type: textarea
   attributes:
