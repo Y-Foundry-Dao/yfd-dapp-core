@@ -19,9 +19,32 @@ body:
     id: what-happened
     attributes:
       label: What happened?
-      description: Also tell us, what did you expect to happen?
-      placeholder: Tell us what you see!
-      value: "A bug happened!"
+      description: Tell us what you see!
+      placeholder: On url 
+    validations:
+      required: true
+  - type: input
+    id: error_url
+    attributes:
+      label: Web Address where issue occurred
+      description: What was the web address you were on when the issue occurred?
+      placeholder: ex. https://dapp-test.yfoundry.io/dashboard
+    validations:
+      required: false
+  - type: textarea
+    id: what-expected
+    attributes:
+      label: What did you EXPECT to happen?
+      description: Describe how your expectations were not met.
+      placeholder: I was expecting that... 
+    validations:
+      required: true
+  - type: textarea
+    id: what-to-fix
+    attributes:
+      label: How would you fix it?
+      description: Also tell us what you think would be the way to fix the issue.
+      placeholder: If it were me, I would...
     validations:
       required: true
   - type: dropdown
