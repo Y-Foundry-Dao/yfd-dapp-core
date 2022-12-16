@@ -1,0 +1,81 @@
+---
+name: User Experience Report - Positive / Praise
+about: 'Report to Praise something about the UI / UX '
+title: "[ PRAISE ]"
+labels: praise
+assignees: ''
+
+---
+
+name: Y-Foundry User Experience Report
+description: Submit a positive experience you had interacting with Y-Foundry
+title: "[PRAISE]: "
+labels: ["PRAISE", "UI-UX", "to review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out a user experience report!
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: How can we get in touch with you if we need more info?
+      placeholder: ex. email@example.com
+    validations:
+      required: false
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What was your experience?
+      description: Explain what gave you joy when using the Y-Foundry dApp?
+      placeholder: Tell us what impressed you!
+      value: "Something wonderful happened!"
+    validations:
+      required: true
+  - type: dropdown
+    id: deployment
+    attributes:
+      label: Deployment
+      description:  Where did you experience the pleasantry?
+      options:
+        - pisco-1 Terra Testnet (Default)
+    validations:
+      required: true
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: What browsers were you using?
+      multiple: true
+      options:
+        - Firefox
+        - Chrome
+        - Safari
+        - Microsoft Edge
+        - Brave
+        - Other
+  - type: dropdown
+    id: wallets
+    attributes:
+      label: What wallets were you using?
+      multiple: true
+      options:
+        - Terra Station
+        - xDefi
+        - Kujira
+        - Keplr
+        - CosmoStation
+        - Leap
+        - Other (describe)
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshots 
+      description: Please copy and paste any relevant screenshots or output. 
+  - type: checkboxes
+    id: reproduce
+    attributes:
+      label: One time experience? 
+      description: Is this a reoccurring positive experience? 
+      options:
+        - label: I was able to reproduce this experience more than once.
