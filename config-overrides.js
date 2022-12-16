@@ -24,9 +24,10 @@ module.exports = function override(config) {
     '@pages': 'src/pages',
     '@layouts': 'src/layouts',
     '@routes': 'src/routes',
-    '@var': 'src/utilities/variables',
     '@hooks': 'src/hooks',
     '@recoil': 'src/recoil',
+    '@utilities': 'src/utilities',
+    '@var': 'src/utilities/variables',
     'Variables': 'src/utilities/variables/variables.ts'
   })(config);
   Object.assign(fallback, {
