@@ -1,5 +1,5 @@
 ---
-name: User Experience Report
+name: User Experience Report - Bug / Issue
 about: For reporting testing outcomes on Y-Foundry's UI / UX
 title: "[ ISSUE - UI / UX ] "
 labels: to review, UI-UX
