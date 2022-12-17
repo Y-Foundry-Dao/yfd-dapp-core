@@ -11,6 +11,7 @@
     height: 3.625rem;
     width: 100%;
     background: var(--theme-bg-header);
+    backgroun-image: var(--theme-bg-image-header);
     border-bottom: 0.063rem solid var(--border-color);
     padding: 0 1.9rem;
     white-space: nowrap;
@@ -23,7 +24,7 @@
      a {
       padding: 1.25rem 1.875rem;
       text-decoration: none;
-      color: var(--inactive-color);
+      color: var(--theme-inactive-color);
       border-bottom: 0.125rem solid transparent;
       transition: 0.3s;
       @media screen and (max-width: 38.125em) {
