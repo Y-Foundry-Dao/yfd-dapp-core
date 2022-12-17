@@ -1,4 +1,4 @@
-import { Image } from '@chakra-ui/react';
+import { Image, Flex, Box, Spacer } from '@chakra-ui/react';
 
 import yLogo from '@yfd/logo-horizontal-orange-white.svg';
 import WalletConnect from '@features/walletConnect/WalletConnect';
@@ -9,14 +9,16 @@ import styles from '@scss/app.module.scss';
 export default function Header() {
   return (
     <>
-      <div className={styles.logo}>
-        <Image h={10} src={yLogo} alt="Y-Foundry Logo" />
-      </div>
-      <div className={styles['header-menu']}></div>
-      <div className={styles['header-profile']}>
-        <FYFD />
-        <WalletConnect />
-      </div>
+      <Flex w={'100%'}>
+        <Box className={styles.logo}>
+          <Image src={yLogo} alt="Y-Foundry Logo" />
+        </Box>
+        <Box className={styles['header-menu']}></Box>
+        <Box className={styles['header-profile']}>
+          <FYFD />
+          <WalletConnect />
+        </Box>
+      </Flex>
     </>
   );
 }

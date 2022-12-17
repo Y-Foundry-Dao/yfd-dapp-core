@@ -8,19 +8,17 @@ export default function GSWhy() {
     <div className={styles['content-feature-frame']}>
       <div className={styles['heading']}> Why Y-Foundry? </div>
       <Flex className={[styles['gsBorder'], styles['gsContent']].join(' ')}>
-        <Box className={styles.listFrame}>
+        <Box className={[styles['listFrame'], styles['wide']].join(' ')}>
           <ul>
+            <li>Open-source: Transparent and auditable</li>
+            <li>Create free market funded grants and initiatives.</li>
             <li>
-              Open-source and independently developed grants distribution for
-              the Cosmos ecosystem.
+              Connect talent and ideas to accelerate ecosystem expansion across
+              the Cosmos.
             </li>
             <li>
-              Rapid ecosystem expansion, connecting talents and ideas with the
-              ingredients for growth.
-            </li>
-            <li>
-              Transparent and auditable, extensive safety considerations, and
-              designed to evolve with the community
+              Extensive safety considerations and designed to evolve with the
+              community.
             </li>
           </ul>
         </Box>
