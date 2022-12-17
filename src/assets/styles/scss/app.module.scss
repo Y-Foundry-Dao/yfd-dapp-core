@@ -24,10 +24,12 @@
 @import "component/appcard.module.scss";
 @import "component/button.module.scss";
 @import "component/card.module.scss";
+@import "component/heading.module.scss";
 
+// functions
+
+//pages 
 @import '@scss/page/gettingstarted.module.scss';
-// @import "paper.module.scss";
-// @import "notification.module.scss";
 
 * {
  outline: none;

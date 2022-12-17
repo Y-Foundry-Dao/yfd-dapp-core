@@ -1,0 +1,23 @@
+.heading {
+  display: block;
+  justify-content: space-between;
+  height: 3rem;
+    
+    padding-left: 1em;
+    margin-bottom: 3rem;
+    
+    font-weight: 800;
+    font-size: 2rem;
+    letter-spacing: 0.15em;
+    color: var(--theme-heading-text);
+    filter: drop-shadow(0.625rem 1.25rem 0.938rem #000);
+    background-image: var(--theme-heading-bg-gradient);
+
+    border-radius: var(--theme-border-radius);
+    
+    &-right {
+      flex-direction: row-reverse;
+
+    }
+  }
+  

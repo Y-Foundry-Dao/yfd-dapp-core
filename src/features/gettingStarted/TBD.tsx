@@ -6,9 +6,7 @@ import { Flex, Box, Spacer } from '@chakra-ui/react';
 export default function GSTokenomics() {
   return (
     <div className={styles['content-feature-frame']}>
-      <div className={styles['content-wrapper-header']}>
-        <span className={styles['text-title']}> TBD </span>
-      </div>
+      <div className={styles['heading']}> TBD </div>
       <Flex className={styles.gsBorder}>
         <Box>
           <img src={imgBot3} alt="Beep" />

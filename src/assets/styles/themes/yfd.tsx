@@ -4,7 +4,7 @@ const base = {
   },
   fonts: {
     heading:
-      '-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif',
+      'Poppins,-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif',
     body: 'Poppins,-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif',
     mono: 'monospace'
   },

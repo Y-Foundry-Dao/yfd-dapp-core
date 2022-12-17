@@ -6,11 +6,9 @@ import { Flex, Box, Spacer } from '@chakra-ui/react';
 export default function GSWhy() {
   return (
     <div className={styles['content-feature-frame']}>
-      <div className={styles['content-wrapper-header']}>
-        <span className={styles['text-title']}> Why Y-Foundry? </span>
-      </div>
-      <Flex className={styles.gsBorder}>
-        <Box>
+      <div className={styles['heading']}> Why Y-Foundry? </div>
+      <Flex className={[styles['gsBorder'], styles['gsContent']].join(' ')}>
+        <Box className={styles.listFrame}>
           <ul>
             <li>
               Open-source and independently developed grants distribution for
