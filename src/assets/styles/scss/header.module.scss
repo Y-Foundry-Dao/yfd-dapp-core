@@ -1,14 +1,11 @@
-.logo {
-    float: left;
-    padding: 0rem;
-    margin: 0rem;
-}
+$headerHeight: 3.625rem;
+$maxWidth: 650px;
 
 .header {
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    height: 3.625rem;
+    height: $headerHeight;
     width: 100%;
     background: var(--theme-bg-header);
     backgroun-image: var(--theme-bg-image-header);
@@ -39,17 +36,40 @@
       }
      }
     }
+    .logo {
+        display: inline;
+        margin-right: auto;
+        vertical-align: bottom;
+        max-height: ($headerHeight);
+        margin-top: auto;
+        margin-bottom: auto;
+        height: 100%;
+        img {
+            width: 100%;
+            max-height: ($headerHeight *.92);
+            margin-top: 1vh;
+        }
+        @media screen and (max-width: $maxWidth) {
+            image {
+                width: 100%;
+            }
+        }
+    }
 }
 
 .header-profile {
     display: flex;
     align-items: center;
     padding: 0 1rem 0 2.5rem;
-    margin-left: auto;
+    padding-left: 1rem;
     flex-shrink: 0;
     svg {
      width: 1.375rem;
      color: #f9fafb;
      flex-shrink: 0;
+    }
+    @media screen and (max-width: $maxWidth) {
+        margin-left: 0.25rem;
+        padding-left: 0rem;
     }
 }
