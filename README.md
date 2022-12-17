@@ -85,6 +85,9 @@ export default function Icon() {
 
 [Date-FNS](https://date-fns.org/)
 
+### Development
+`typescript-plugin-css-modules`
+
 ### Testing
 
 [Playwright](https://playwright.dev/)

@@ -184,10 +184,7 @@ body {
 }
 
 .wide {
-    .header-menu,
-    .header-profile {
-        display: none;
-    }
+    width: 100%;
     .search-bar {
         max-width: 37.50rem;
         margin: auto;
