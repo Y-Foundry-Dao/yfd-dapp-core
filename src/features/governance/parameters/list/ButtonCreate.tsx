@@ -1,7 +1,7 @@
 import { Text } from '@chakra-ui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-import buttonStyle from '@scss/button.module.scss';
+import buttonStyle from '@scss/component/button.module.scss';
 
 export default function ParameterModalButton({ onOpen }: any) {
   return (

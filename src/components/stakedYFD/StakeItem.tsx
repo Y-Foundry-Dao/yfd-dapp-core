@@ -1,5 +1,5 @@
 import { AccordionButton, AccordionPanel, Box, Text } from '@chakra-ui/react';
-import useStake from 'hooks/useStake';
+import useStake from '@hooks/useStake';
 
 function StakeItem({ stake }: any) {
   const {

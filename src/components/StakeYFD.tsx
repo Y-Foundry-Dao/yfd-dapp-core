@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import useHandleClicks from 'hooks/useHandleClicks';
+import useHandleClicks from '@hooks/useHandleClicks';
 import BalanceYFD from './BalanceYFD';
 import BalancefYFD from './BalancefYFD';
 import { format } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid, brands } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import {
   Popover,
   PopoverTrigger,
@@ -53,9 +53,9 @@ import {
   DEFAULT_YFD_LOCK_DURATION_DATE
 } from 'utilities/variables/variables';
 import { inputStakeYFD } from 'recoil/input/atoms';
-import useHandleInputs from 'hooks/useHandleInputs';
+import useHandleInputs from '@hooks/useHandleInputs';
 import styles from '@scss/app.module.scss';
-import styleButton from '@scss/button.module.scss';
+import styleButton from '@scss/component/button.module.scss';
 
 function StakeYFD() {
   const [durationDepositYFD, setDurationDepositYFD] = useState(

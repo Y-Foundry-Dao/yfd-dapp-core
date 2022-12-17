@@ -1,17 +1,24 @@
+import React, { useState } from 'react';
+import styles from '@scss/app.module.scss';
 import {
   Modal,
   ModalOverlay,
   ModalContent,
   ModalHeader,
   ModalBody,
-  ModalCloseButton
+  ModalCloseButton,
+  SimpleGrid,
+  GridItem,
+  Wrap,
+  WrapItem
 } from '@chakra-ui/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { useRecoilValue } from 'recoil';
 import FeedbackForm from './Form';
+import { URL_BUGREPORT, URL_PRAISEREPORT } from '@var/links';
+import { Icons } from '@var/icons';
 
 function FeedbackModal({ isOpen, onClose }: any) {
+  const [feedbackHidden, setFeedbackHidden] = useState(true);
+
   return (
     <Modal
       size={['lg', '2xl', '3xl', '4xl']}
@@ -22,10 +29,67 @@ function FeedbackModal({ isOpen, onClose }: any) {
     >
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Submit your Feedback</ModalHeader>
+        <ModalHeader className={styles.feedbackHeader}>
+          Submit your Feedback
+        </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <FeedbackForm onClose={onClose} />
+          <div id="feedbackSelect" className={styles.feedbackSelect}>
+            <Wrap
+              className={styles['gsContent-wrap']}
+              justify="center"
+              align="center"
+              spacing="2rem"
+            >
+              <WrapItem className={styles['gsContent-feature']}>
+                <SimpleGrid>
+                  <GridItem>
+                    <a href={URL_BUGREPORT} target="_blank" onClick={onClose}>
+                      <i className="material-symbols-outlined">{Icons.error}</i>
+                      Report a Bug
+                    </a>
+                  </GridItem>
+                </SimpleGrid>
+              </WrapItem>
+              <WrapItem className={styles['gsContent-feature']}>
+                <SimpleGrid>
+                  <GridItem>
+                    <a
+                      href={URL_PRAISEREPORT}
+                      target="_blank"
+                      onClick={onClose}
+                    >
+                      <i className="material-symbols-outlined">
+                        {Icons.praise}
+                      </i>
+                      Praise a Feature
+                    </a>
+                  </GridItem>
+                </SimpleGrid>
+              </WrapItem>
+              <WrapItem className={styles['gsContent-feature']}>
+                <SimpleGrid>
+                  <GridItem>
+                    <p>OR</p>
+                  </GridItem>
+                </SimpleGrid>
+              </WrapItem>
+              <WrapItem className={styles['gsContent-feature']}>
+                <SimpleGrid>
+                  <GridItem>
+                    <i
+                      className="material-symbols-outlined"
+                      onClick={() => setFeedbackHidden((s) => !s)}
+                    >
+                      {Icons.feedback}
+                    </i>
+                    Submit Quick Feedback
+                  </GridItem>
+                </SimpleGrid>
+              </WrapItem>
+            </Wrap>
+          </div>
+          {!feedbackHidden ? <FeedbackForm onClose={onClose} /> : null}
         </ModalBody>
       </ModalContent>
     </Modal>

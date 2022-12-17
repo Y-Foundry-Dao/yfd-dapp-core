@@ -19,17 +19,6 @@ export default function MenuLeft() {
               <i className="material-symbols-outlined">{Icons.dashboard}</i>
               My Dashboard
             </Link>
-            <Link to="/favorites">
-              <i className="material-symbols-outlined">{Icons.favorite}</i>
-              Favorites
-              <span
-                className={[styles['notification-number'], styles.updates].join(
-                  ' '
-                )}
-              >
-                3
-              </span>
-            </Link>
             <Link to="/deposit-yfd">
               <i className="material-symbols-sharp">{Icons.yfdswap}</i>
               $YFD
