@@ -37,20 +37,18 @@ $maxWidth: 40.625rem;
      }
     }
     .logo {
-        display: inline;
-        margin-right: auto;
-        vertical-align: bottom;
-        max-height: ($headerHeight);
-        margin-top: auto;
-        margin-bottom: auto;
+        content:"";
         height: 100%;
-        img {
-            width: 100%;
-            max-height: ($headerHeight *.92);
-            margin-top: 0.7vh;
-        }
+        width: 10rem;
+        max-height: 3.5rem;
+        margin-top: auto;
+        vertical-align: bottom;
+        margin-bottom: auto;
+        margin-right: auto;
+        padding-top: 0.5em;
+
         @media screen and (max-width: $maxWidth) {
-            image {
+            img {
                 width: 100%;
             }
         }
@@ -60,7 +58,6 @@ $maxWidth: 40.625rem;
 .header-profile {
     display: flex;
     align-items: center;
-    padding: 0 1rem 0 2.5rem;
     padding-left: 1rem;
     flex-shrink: 0;
     svg {
@@ -68,8 +65,5 @@ $maxWidth: 40.625rem;
      color: #f9fafb;
      flex-shrink: 0;
     }
-    @media screen and (max-width: $maxWidth) {
-        margin-left: 0.25rem;
-        padding-left: 0rem;
-    }
+
 }
