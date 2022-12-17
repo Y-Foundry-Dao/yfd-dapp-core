@@ -47,7 +47,7 @@ $maxWidth: 650px;
         img {
             width: 100%;
             max-height: ($headerHeight *.92);
-            margin-top: 1vh;
+            margin-top: 0.7vh;
         }
         @media screen and (max-width: $maxWidth) {
             image {
