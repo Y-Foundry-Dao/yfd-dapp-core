@@ -1,0 +1,95 @@
+name: 🐞 User Experience *ISSUE* Report
+description: Submit an issue you had with the user experience on Y-Foundry
+title: "[ISSUE]: "
+labels: ["bug", "UI-UX", "Needs Triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out a user experience report!
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: How can we get in touch with you if we need more info?
+      placeholder: ex. email@example.com
+    validations:
+      required: false
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Tell us what you see!
+      placeholder: On url 
+    validations:
+      required: true
+  - type: input
+    id: error_url
+    attributes:
+      label: Web Address where issue occurred
+      description: What was the web address you were on when the issue occurred?
+      placeholder: ex. https://dapp-test.yfoundry.io/dashboard
+    validations:
+      required: false
+  - type: textarea
+    id: what-expected
+    attributes:
+      label: What did you EXPECT to happen?
+      description: Describe how your expectations were not met.
+      placeholder: I was expecting that... 
+    validations:
+      required: true
+  - type: textarea
+    id: what-to-fix
+    attributes:
+      label: How would you fix it?
+      description: Also tell us what you think would be the way to fix the issue.
+      placeholder: If it were me, I would...
+    validations:
+      required: true
+  - type: dropdown
+    id: deployment
+    attributes:
+      label: Deployment
+      description:  Where did you experience the issue?
+      options:
+        - pisco-1 Terra Testnet (Default)
+    validations:
+      required: true
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: What browsers are you seeing the problem on?
+      multiple: true
+      options:
+        - Firefox
+        - Chrome
+        - Safari
+        - Microsoft Edge
+        - Brave
+        - Other
+  - type: dropdown
+    id: wallets
+    attributes:
+      label: What wallets were you using?
+      multiple: true
+      options:
+        - Terra Station
+        - xDefi
+        - Kujira
+        - Keplr
+        - CosmoStation
+        - Leap
+        - Other (describe)
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshots 
+      description: Please copy and paste any relevant screenshots or output. 
+  - type: checkboxes
+    id: reproduce
+    attributes:
+      label: Reproduceable? 
+      description: Could you reproduce the issue after disconnecting your wallet, closing and re-opening and reconnecting to the site? 
+      options:
+        - label: I was able to reproduce this issue more than once.
