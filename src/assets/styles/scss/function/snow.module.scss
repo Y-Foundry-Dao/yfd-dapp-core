@@ -1,5 +1,8 @@
 body {
-    filter: drop-shadow(0 0 1rem black);
+  height: 100vh;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  overflow: hidden;
+  filter: drop-shadow(0 0 10px var(--theme-gray-dark));
   }
   
   @function random_range($min, $max) {
