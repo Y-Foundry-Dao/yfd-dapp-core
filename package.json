@@ -83,6 +83,7 @@
     "react-router-dom": "^6.4.4",
     "recoil": "^0.7.2",
     "sort-by": "^1.2.0",
+    "typescript-plugin-css-modules": "^4.1.1",
     "yarn-deduplicate": "^6.0.0"
   },
   "devDependencies": {

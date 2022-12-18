@@ -33,8 +33,8 @@ function FeedbackModal({ isOpen, onClose }: any) {
           Submit your Feedback
         </ModalHeader>
         <ModalCloseButton />
-        <ModalBody>
-          <div id="feedbackSelect" className={styles.feedbackSelect}>
+        <ModalBody className={styles.feedbackSelect}>
+          <div id="feedbackSelect">
             <Wrap
               className={styles['gsContent-wrap']}
               justify="center"

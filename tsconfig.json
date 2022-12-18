@@ -18,7 +18,8 @@
     "noEmit": true,
     "watch": true,
     "jsx": "react-jsx",
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
   "include": ["src", "tsconfig.json", "config-overrides.js"]
 }

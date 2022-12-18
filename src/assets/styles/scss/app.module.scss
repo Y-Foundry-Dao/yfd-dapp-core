@@ -34,13 +34,12 @@
 @import '@scss/page/gettingstarted.module.scss';
 
 * {
- outline: none;
- box-sizing: border-box;
+    outline: none;
+    box-sizing: border-box;
 }
 
 html {
- box-sizing: border-box;
- -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
 }
 
 body {
@@ -76,40 +75,19 @@ body {
  }
 }
 
-.dark-light {
- position: fixed;
- bottom: 3.125rem;
- right: 1.875rem;
- background-color: var(--dropdown-bg);
- box-shadow: -0.063rem 0.188rem 0.5rem -0.063rem rgba(0, 0, 0, 0.2);
- padding: 0.5rem;
- border-radius: 50%;
- z-index: 3;
- cursor: pointer;
- svg {
-  width: 1.5rem;
-  flex-shrink: 0;
-  fill: #ffce45;
-  stroke: #ffce45;
-  transition: 0.5s;
- }
-}
-
 .app {
- background-color: var(--theme-bg-color);
- max-width: 78.125rem;
- max-height: 53.750rem;
- height: 90vh;
- display: flex;
- flex-direction: column;
- overflow: hidden;
- position: relative;
- width: 100%;
- border-radius: 0.875rem;
- backdrop-filter: blur(1.25rem);
- -webkit-backdrop-filter: blur(1.25rem);
- font-size: 1rem; // this is the font size that controls responsiveness
- font-weight: 500;
+    font-size: 16px; // this is the font size that controls responsiveness
+    font-weight: 500;
+    background-color: var(--theme-bg-color);
+    max-width: 78.125rem;
+    max-height: 53.750rem;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    border-radius: 0.875rem;
 }
 
 .portal {
@@ -120,8 +98,6 @@ body {
     position: relative;
     border-width: 0.188rem;
     border-radius: 0.938rem;
-    backdrop-filter: blur(0.313rem);
-    -webkit-backdrop-filter: blur(0.313rem);
     background: linear-gradient(
         180deg,
         rgba(255, 255, 255, 0.4) 0%,
@@ -184,10 +160,7 @@ body {
 }
 
 .wide {
-    .header-menu,
-    .header-profile {
-        display: none;
-    }
+    width: 100%;
     .search-bar {
         max-width: 37.50rem;
         margin: auto;
