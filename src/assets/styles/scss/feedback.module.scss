@@ -11,7 +11,7 @@
     a {
      padding: 1.25rem 1.875rem;
      text-decoration: none;
-     color: var(--inactive-color);
+     color: var(--theme-inactive-color);
      border-bottom: 0.125rem solid transparent;
      transition: 0.3s;
      @media screen and (max-width: 38.125em) {
@@ -33,7 +33,6 @@
    margin: 1.5rem;
    border-radius: var(--theme-border-radius);
    border: var(--theme-border-color) var(--theme-border-width) var(--theme-border-style);
-
    p {
       font-size: 2rem;
       font-weight: 800;

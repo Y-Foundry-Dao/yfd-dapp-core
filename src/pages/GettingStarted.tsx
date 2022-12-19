@@ -20,7 +20,7 @@ export default function PageGettingStarted() {
                   "decentralize"
                   "tokenomics"
                   `}
-        gridTemplateRows={'2.1fr 3.4fr 1.5fr 3fr 1.5fr'}
+        gridTemplateRows={'1.3fr 1.82fr 1.3fr 2fr 1.3fr'}
         gridTemplateColumns={'1fr'}
         gap="2em"
       >

@@ -1,19 +1,41 @@
 :root {
+    --display-menu-main: 945px;
+    --display-menu-left: 945px;
+
     --theme-bg-color: rgba(8, 6, 11, 0.5);
     --theme-bg-content: rgba(8, 6, 11, 0.2);
-    --theme-bg-header: rgba(8, 6, 11, 0.2);
-    --theme-bg-footer: rgb(39, 45, 64, 0.2);
+    --theme-bg-header: rgb(39, 45, 64, 0.2);
+    --theme-bg-footer: --theme-bg-header;
 
-    --border-color: #71779040;
+    --theme-bg-image: radial-gradient(ellipse at bottom, var(--theme-color-darkest) 0%, var(--theme-color-black) 100%);
+    --theme-bg-filter: drop-shadow(0 0 10px var(--theme-gray-dark));
+
+    //    --theme-bg-image: url(https://c4.wallpaperflare.com/wallpaper/624/781/96/blacksmith-embers-mallet-tools-wallpaper-preview.jpg);
+    /*
+        --theme-bg-image: linear-gradient(
+            135deg,
+            #5f7999 10%,
+            #1f1152 100%
+           );
+    */
+
     --theme-color: var(--theme-text);
+    --theme-inactive-color: rgb(113 119 144 / 78%);
     --theme-brand-color: #d8552a;
     --theme-enhanced-color: #f37402;
     --theme-special-color: #f4bf62;
     --theme-create-color: #deb629;
-    --theme-link-color: rgba(208, 199, 130, 0.78);
-    --inactive-color: rgb(113 119 144 / 78%);
 
-    --theme-color-darkest: #000000;
+    --theme-link-color: rgba(208, 199, 130, 0.78);
+    --theme-button-bg: #144378;
+
+    --theme-border-radius: 1rem;
+    --theme-border-color: var(--theme-inactive-color);
+    --theme-border-width: 0.2rem;
+    --theme-border-style: solid;
+
+    --theme-color-black: #090a0f;
+    --theme-color-darkest: #1b2735;
     --theme-color-darker: #5f7999;
     --theme-color-dark: #83aee1;
     --theme-color-base: #f37402;
@@ -27,25 +49,16 @@
     --theme-gray-light: #a9aea9;
     --theme-gray-ligher: #c5c6c7;
 
-    --theme-bg-gradient: linear-gradient(
-        135deg,
-        #5f7999 10%,
-        #1f1152 100%
-       );
-    
-    --theme-heading-bg-gradient: linear-gradient(
-        135deg,
-        #5f7999 10%,
-        #1f1152 100%
-       );
-    
     --theme-text: #f9fafb;
     --theme-text2: #29dec6;
     --theme-text3: #ff2c45;
 
     --theme-heading-text: var(--theme-text);
-    --theme-button-bg: #144378;
-
+    --theme-heading-bg-gradient: linear-gradient(
+        135deg,
+        #5f7999 10%,
+        #1f1152 100%
+       );
 
     --theme-brand-shade1: #b7380f;
     --theme-brand-shade2: #961800;
@@ -71,10 +84,11 @@
 
     --icon-color: var(--theme-color);
     --icon-special-color: var(--theme-special-color);
+
     --button-standard-color: #fff;
-    --button-standard-bg: #3a6df0;
+    --button-standard-bg: var(--theme-button-bg); // #3a6df0
     --button-standard-not-open-bg: #1e59f1;
-    --button-disable-bg: var(--inactive-color);
+    --button-disable-bg: var(--theme-inactive-color);
     --button-special-bg: var(--theme-special-color);
     --button-create-color: var(--button-standard-color);
     --button-create-bg: var(--theme-create-color);
@@ -94,11 +108,4 @@
 
     --text-menu-title-color: var(--text-enhanced-color);
     --text-menu-link-color: var(--theme-link-color);
-
-    --theme-border-radius: 1rem;
-    --theme-border-color: var(--inactive-color);
-    --theme-border-width: 0.2rem;
-    --theme-border-style: solid;
-
-    --border-radius: 1em; // not used yet
 }
