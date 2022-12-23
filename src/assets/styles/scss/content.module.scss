@@ -10,6 +10,37 @@
 .content-wrapper-context {
     max-width: 21.875rem;
 }
+
+.content-text {
+    font-weight: 400;
+    font-size: 0.875rem;
+    
+    margin-top: 1rem;
+    line-height: 1.7rem;
+    color: var(--content-text);
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+   }
+   
+   .content-wrapper-context {
+    max-width: 21.875rem;
+    
+   }
+   
+.content-button {
+    background-color: var(--button-standard-bg);
+    border: none;
+    padding: 0.5rem 1.625rem;
+    color: var(--button-standard-color);
+    border-radius: 1.25rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    white-space: nowrap;
+}
    
 .content-section {
     margin-top: 1.875rem;

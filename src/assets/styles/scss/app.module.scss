@@ -44,9 +44,9 @@ html {
 
 body {
  font-family: var(--body-font);
- background: var(--theme-bg-color);
- background-image: var(--theme-bg-image);
- filter: var(--theme-bg-filter);
+// background-image: url(https://c4.wallpaperflare.com/wallpaper/624/781/96/blacksmith-embers-mallet-tools-wallpaper-preview.jpg);
+ 
+ background-image: var(--theme-bg-gradient);
  background-size: cover;
  background-position: center;
  display: flex;
@@ -103,6 +103,7 @@ body {
         rgba(255, 255, 255, 0.4) 0%,
         rgb(255 255 255 / 45%) 100%
        );
+      
    }
 
 .menu-circle {
@@ -248,34 +249,32 @@ body {
 }
 
 .dropdown {
-    position: relative;
-    height: 50.188rem;
-    width: 2.5rem;
-    top: -1.5rem;
-    display: flex;
-    left: -0.313rem;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-
-    ul {
-        position: absolute;
-        background: var(--dropdown-bg);
-        height: 6.875rem;
-        width: 11.25rem;
-        right: 0;
-        top: 1.25rem;
-        pointer-events: none;
-        opacity: 0;
-        transform: translatey(0.625rem);
-        transition: all 0.4s ease;
-
-        li a {
-            text-decoration: none;
-            color: var(--theme-color);
-            font-size: 0.75rem;
-        }
-    }
+ position: relative;
+ height: 6.88rem;
+ width: 2.5rem;
+ top: -1.5rem;
+ display: flex;
+ left: -0.313rem;
+ background: transparent;
+ border: none;
+ cursor: pointer;
+ ul {
+  position: absolute;
+  background: var(--dropdown-bg);
+  height: 6.875rem;
+  width: 11.25rem;
+  right: 0;
+  top: 1.25rem;
+  pointer-events: none;
+  opacity: 0;
+  transform: translatey(0.625rem);
+  transition: all 0.4s ease;
+  li a {
+   text-decoration: none;
+   color: var(--theme-color);
+   font-size: 0.75rem;
+  }
+ }
 }
 
 .dropdown.is-active {
@@ -335,11 +334,13 @@ body {
 
 .text-enhanced {
     color: var(--text-enhanced-color);
+
     filter: drop-shadow( 1rem 1rem 2rem var(--text-enhanced-filter-color));
 }
 
 .content-button-wrapper .content-button.status-button.open.close {
  width: auto;
+
 }
 
 ::-webkit-scrollbar {
