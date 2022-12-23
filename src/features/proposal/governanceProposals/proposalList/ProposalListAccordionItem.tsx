@@ -8,6 +8,7 @@ import {
   Text
 } from '@chakra-ui/react';
 import FinderContractLink from '@components/finder/FinderContractLink';
+import useContractProposal from '@hooks/useContractProposal';
 import useContractGovernanceProposal from 'hooks/useContractGovernanceProposal';
 import useContractVote from 'hooks/useContractVote';
 import ProposalInfo from './proposalInfo/ProposalInfo';
@@ -16,10 +17,11 @@ import ProposalStatus from './proposalInfo/status/ProposalStatus';
 import VoteTokenBalance from './proposalInfo/voting/VoteTokenBalance';
 
 function ProposalListAccordionItem({ proposalContract, proposalIndex }: any) {
-  const { governanceProposalInfo } = useContractGovernanceProposal({
-    proposalContract,
-    proposalIndex
-  });
+  const { governanceProposalInfo, voteTokenBalance } =
+    useContractGovernanceProposal({
+      proposalContract,
+      proposalIndex
+    });
   return (
     <AccordionItem layerStyle="accordionProposalItem">
       <AccordionButton>
@@ -44,10 +46,10 @@ function ProposalListAccordionItem({ proposalContract, proposalIndex }: any) {
           proposalContract={proposalContract}
           proposalIndex={proposalIndex}
         />
-        {/* <VoteTokenBalance
+        <VoteTokenBalance
           proposalContract={proposalContract}
           voteTokenBalance={voteTokenBalance}
-        /> */}
+        />
         {/* <InputVoteAmount
           voteTokenBalance={voteTokenBalance}
           inputVoteTokenAmount={inputVoteTokenAmount}
