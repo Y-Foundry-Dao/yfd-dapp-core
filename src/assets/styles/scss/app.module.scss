@@ -90,21 +90,6 @@ body {
     border-radius: 0.875rem;
 }
 
-.portal {
-    background-color: var(--theme-bg-color);
-    display: flex;
-    flex-direction: column;
-    overflow: show;
-    position: relative;
-    border-width: 0.188rem;
-    border-radius: 0.938rem;
-    background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.4) 0%,
-        rgb(255 255 255 / 45%) 100%
-       );
-   }
-
 .menu-circle {
     width: 1rem;
     height: 1rem;
@@ -249,7 +234,7 @@ body {
 
 .dropdown {
     position: relative;
-    height: 50.188rem;
+    height: 6.875rem;
     width: 2.5rem;
     top: -1.5rem;
     display: flex;

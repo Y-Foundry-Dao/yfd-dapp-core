@@ -2,6 +2,7 @@
     --display-menu-main: 945px;
     --display-menu-left: 945px;
 
+    --theme-blur: 0.5rem;
     --theme-bg-color: rgba(8, 6, 11, 0.5);
     --theme-bg-content: rgba(8, 6, 11, 0.2);
     --theme-bg-header: rgb(39, 45, 64, 0.2);
@@ -96,12 +97,13 @@
 
     --dropdown-bg: #21242d;
     --dropdown-hover: rgb(42 46 60);
-    --popup-bg: rgb(22 25 37);
     --search-bg: #14162b;
     --overlay-bg: rgba(36, 39, 59, 0.3);
     --scrollbar-bg: rgb(1 2 3 / 40%);
     --notification-bg: var(--button-standard-bg);
     --proposal-list-item-color: red;
+
+    --popup-bg: rgb(146 151 179 / 40%);
 
     --text-enhanced-color: var(--theme-enhanced-color);
     --text-enhanced-filter-color: #fff;

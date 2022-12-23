@@ -67,3 +67,28 @@ $maxWidth: 40.625rem;
     }
 
 }
+
+.portal {
+    display: flex;
+    flex-direction: column;
+    overflow: show;
+    position: relative;
+    border-width: 0.188rem;
+    border-radius: 0.938rem;
+    background-color: var(--popup-bg);
+    -filter: drop-shadow(0 0.125rem 0.25rem rgba(0, 0, 0, 0.1));
+    -moz-backdrop-filter: blur(--theme-blur);
+    backdrop-filter: blur(--theme-blur);
+}
+
+
+.popupProfile {
+    background: rgba(255, 255, 255, 0.8);
+    background-color: var(--popup-bg);
+    display: flex;
+    flex-direction: column;
+    overflow: show;
+    position: relative;
+    border-width: 0.188rem;
+    border-radius: 0.938rem;
+}
