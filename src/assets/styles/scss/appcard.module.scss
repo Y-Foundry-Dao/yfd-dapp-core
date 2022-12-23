@@ -32,6 +32,7 @@
        border-radius: 0.375em;
        margin-right: 0.75em;
        flex-shrink: 0;
+       
     }
     & + .app-card {
      margin-left: 1.25em;
@@ -39,6 +40,7 @@
     span {
      display: flex;
      align-items: center;
+     
     }
     &__subtext {
      font-size: 0.875em;
@@ -51,8 +53,7 @@
     &-buttons {
      display: flex;
      align-items: center;
-     margin-left: auto;
-     margin-top: rem;
+     margin-top: 0rem;
     }
     @media screen and (max-width: 69.375rem) {
      width: calc(50% - 1.25em);
