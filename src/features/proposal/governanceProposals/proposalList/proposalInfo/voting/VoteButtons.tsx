@@ -16,7 +16,7 @@ function VoteButtons({
   return (
     <>
       {voteTokenBalance !== undefined && voteTokenBalance > 0 ? (
-        <Flex direction="column" align="stretch" rowGap={4}>
+        <Flex color="black" direction="column" align="stretch" rowGap={4}>
           <Button
             onClick={async () =>
               await handleClickVoteAffirm(contract, inputVoteTokenAmount)

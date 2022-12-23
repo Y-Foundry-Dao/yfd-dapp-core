@@ -8,18 +8,24 @@ import {
   Text
 } from '@chakra-ui/react';
 import FinderContractLink from '@components/finder/FinderContractLink';
+import useContractProposal from '@hooks/useContractProposal';
 import useContractGovernanceProposal from 'hooks/useContractGovernanceProposal';
 import useContractVote from 'hooks/useContractVote';
+import { useState } from 'react';
 import ProposalInfo from './proposalInfo/ProposalInfo';
 import ProposalFinalizeButton from './proposalInfo/status/ProposalFinalizeButton';
 import ProposalStatus from './proposalInfo/status/ProposalStatus';
+import InputVoteAmount from './proposalInfo/voting/InputVoteAmount';
+import VoteButtons from './proposalInfo/voting/VoteButtons';
 import VoteTokenBalance from './proposalInfo/voting/VoteTokenBalance';
 
 function ProposalListAccordionItem({ proposalContract, proposalIndex }: any) {
-  const { governanceProposalInfo } = useContractGovernanceProposal({
-    proposalContract,
-    proposalIndex
-  });
+  const { governanceProposalInfo, voteTokenBalance } =
+    useContractGovernanceProposal({
+      proposalContract,
+      proposalIndex
+    });
+  const [inputVoteTokenAmount, setInputVoteTokenAmount] = useState(0);
   return (
     <AccordionItem layerStyle="accordionProposalItem">
       <AccordionButton>
@@ -44,20 +50,20 @@ function ProposalListAccordionItem({ proposalContract, proposalIndex }: any) {
           proposalContract={proposalContract}
           proposalIndex={proposalIndex}
         />
-        {/* <VoteTokenBalance
+        <VoteTokenBalance
           proposalContract={proposalContract}
           voteTokenBalance={voteTokenBalance}
-        /> */}
-        {/* <InputVoteAmount
+        />
+        <InputVoteAmount
           voteTokenBalance={voteTokenBalance}
           inputVoteTokenAmount={inputVoteTokenAmount}
           setInputVoteTokenAmount={setInputVoteTokenAmount}
-        /> */}
-        {/* <VoteButtons
-          contract={voteContract}
+        />
+        <VoteButtons
+          contract={proposalContract}
           voteTokenBalance={voteTokenBalance}
           inputVoteTokenAmount={inputVoteTokenAmount}
-        /> */}
+        />
       </AccordionPanel>
     </AccordionItem>
   );
