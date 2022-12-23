@@ -4,15 +4,23 @@ import { useEffect, useState } from 'react';
 import queryTokenInfo from 'utilities/messagesQuery/cw20/queryTokenInfo';
 import queryVotes from 'utilities/messagesQuery/proposals/queryVotes';
 import { FORGE_TEST } from 'utilities/variables/variables';
+import queryBalance from '@utilities/messagesQuery/cw20/queryBalance';
+import { useConnectedWallet } from '@terra-money/wallet-provider';
+
+type BalanceObject = {
+  balance: string;
+};
 
 const useContractGovernanceProposal = ({
   proposalContract,
   proposalIndex
 }: any) => {
   const { queryMsg } = useMsg();
+  const connectedWallet = useConnectedWallet();
   const [governanceProposalInfo, setGovernanceProposalInfo] = useState<any>({});
   const [tokenSymbol, setTokenSymbol] = useState('Vote');
   const [proposalVoteInfo, setProposalVoteInfo] = useState<any>({});
+  const [voteTokenBalance, setVoteTokenBalance] = useState('0');
 
   const getProposalInfoByIndex = async () => {
     if (proposalIndex) {
@@ -24,6 +32,16 @@ const useContractGovernanceProposal = ({
     }
   };
 
+  const getVoteTokenBalance = async () => {
+    if (connectedWallet) {
+      const response: BalanceObject = await queryMsg(
+        proposalContract,
+        queryBalance(connectedWallet.walletAddress)
+      );
+      return response.balance;
+    }
+  };
+
   const getTokenInfo = async () => {
     const response = await queryMsg(proposalContract, queryTokenInfo());
     return response;
@@ -32,6 +50,14 @@ const useContractGovernanceProposal = ({
   const getVotes = async () => {
     const response = await queryMsg(proposalContract, queryVotes());
     return response;
+  };
+
+  const setVoteTokenBalanceToState = async () => {
+    const voteBalance: string | undefined = await getVoteTokenBalance();
+    if (voteBalance === undefined) {
+      return;
+    }
+    setVoteTokenBalance(voteBalance);
   };
 
   const setProposalInfoToState = async () => {
@@ -64,6 +90,10 @@ const useContractGovernanceProposal = ({
   }, []);
 
   useEffect(() => {
+    setVoteTokenBalanceToState();
+  }, [proposalContract, connectedWallet]);
+
+  useEffect(() => {
     setProposalInfoToState();
   }, [proposalIndex]);
 
@@ -71,7 +101,8 @@ const useContractGovernanceProposal = ({
     getTokenInfo,
     governanceProposalInfo,
     proposalVoteInfo,
-    tokenSymbol
+    tokenSymbol,
+    voteTokenBalance
   };
 };
 

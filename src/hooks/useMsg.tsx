@@ -77,7 +77,7 @@ const useMsg = () => {
   const queryMsg = async (contractAddress: string, msgQuery: object) => {
     try {
       if (contractAddress) {
-        const queryResponse = await terra.wasm.contractQuery(
+        const queryResponse: any = await terra.wasm.contractQuery(
           contractAddress,
           msgQuery
         );
