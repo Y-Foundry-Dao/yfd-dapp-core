@@ -1,6 +1,9 @@
-.icon-create {
+.icon {
+    &-create {
+        @extend .icon;
+        color: var(--theme-create-color);
+    }
     font-variation-settings: 'FILL' 1;
-    color: var(--theme-create-color);
     margin-right: 0.5rem;    
 }
 
