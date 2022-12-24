@@ -8,7 +8,7 @@ export const Icons: { [key: string]: string } = {
   nft: 'filter_frames',
   initiative: 'diversity_1',
   gettingstarted: 'rocket_launch',
-  propose: 'add_box',
+  propose: 'lightbulb_circle',
   docs: 'local_library',
   build: 'handyman',
   dao: 'handshake',
@@ -22,5 +22,8 @@ export const Icons: { [key: string]: string } = {
   business: 'storefront',
   error: 'bug_report',
   praise: 'celebration',
-  feedback: 'chat'
+  feedback: 'chat',
+  vote: 'how_to_vote',
+  proposal: 'lightbulb_circle',
+  guardian: 'local_police'
 };

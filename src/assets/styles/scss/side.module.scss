@@ -1,6 +1,8 @@
 .left-side {
 //    flex-basis: 15rem;
+    padding-top: 0.5rem;
     border-right: 0.15rem solid var(--border-color);
+    background-color: var(--theme-bg-menu);
     overflow: auto;
     flex-shrink: 0;
     margin-bottom: 3rem;
@@ -10,13 +12,11 @@
    }
 
 .side-wrapper {
-    margin-top: 1.5rem;
-    margin-bottom: 3rem;
+    padding-top: 0.5rem;
     &-menu {
         margin-top: 1rem;
         padding-left: 2rem;
         padding-right: 2rem;
-        border-bottom-width: 0rem 3rem;
     }
     &-menu::after {
         content: "";

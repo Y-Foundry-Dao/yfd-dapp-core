@@ -56,6 +56,7 @@ import { inputStakeYFD } from 'recoil/input/atoms';
 import useHandleInputs from '@hooks/useHandleInputs';
 import styles from '@scss/app.module.scss';
 import styleButton from '@scss/component/button.module.scss';
+import { Icons } from '@utilities/variables/icons';
 
 function StakeYFD() {
   const [durationDepositYFD, setDurationDepositYFD] = useState(
@@ -71,16 +72,20 @@ function StakeYFD() {
   return (
     <Popover>
       <PopoverTrigger>
-        <Button className={styleButton['clear']} margin={1}>
-          <Flex width="100%">
-            <Box>
-              <FontAwesomeIcon icon={solid('vote-yea')} />
+        <Button className={styles.stakeYfd}>
+          <Flex className={styles.stakeYfdIcons}>
+            <Box className={styles.stakeYfdIcon}>
+              <span className="material-symbols-outlined">{Icons.vote}</span>
             </Box>
-            <Box>
-              <FontAwesomeIcon icon={solid('bullhorn')} />
+            <Box className={styles.stakeYfdIcon}>
+              <span className="material-symbols-outlined">
+                {Icons.proposal}
+              </span>
             </Box>
-            <Box>
-              <FontAwesomeIcon icon={solid('shield-halved')} />
+            <Box className={styles.stakeYfdIcon}>
+              <span className="material-symbols-outlined">
+                {Icons.guardian}
+              </span>
             </Box>
           </Flex>
         </Button>
