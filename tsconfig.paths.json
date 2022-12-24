@@ -11,6 +11,9 @@
       "@scss/*":[
         "./assets/styles/scss/*"
       ],
+      "@chakra/*":[
+        "./assets/styles/chakra/*"
+      ],
       "@themes/*":[
         "./assets/styles/themes/*"
       ],
