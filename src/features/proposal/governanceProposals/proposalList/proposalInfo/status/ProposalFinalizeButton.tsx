@@ -10,11 +10,13 @@ function ProposalFinalizeButton({ proposalContract, proposalIndex }: any) {
   const { proposalVoteInfo } = useContractGovernanceProposal({
     proposalContract
   });
-  const voteNotFinalized = proposalVoteInfo.vote_state?.NotFinalized;
+  const voteNotFinalized = proposalVoteInfo.vote_state?.InProgress;
   const quorumBlock = proposalVoteInfo.quorum_block;
-  if (voteNotFinalized) {
+  const expireBlock = proposalVoteInfo.expiration;
+  if ((voteNotFinalized && quorumBlock) || currentBlockHeight > expireBlock) {
     return (
       <Button
+        color="black"
         onClick={async () => {
           await handleClickFinalizeProposal(proposalIndex);
         }}
