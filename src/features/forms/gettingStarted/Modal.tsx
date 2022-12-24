@@ -14,10 +14,10 @@ import {
   WrapItem
 } from '@chakra-ui/react';
 import { Icons } from '@var/icons';
-import Voter from '@images/bots/voter/voter-bot-128.png';
-import Proposer from '@images/bots/proposer/proposer-bot-128.png';
-import Supporter from '@images/bots/supporter/supporter-bot-128.png';
-import Builder from '@images/bots/builder/builder-bot-128.png';
+import Voter from '@images/bots/voter/voter-bot-256.png';
+import Proposer from '@images/bots/proposer/proposer-bot-256.png';
+import Supporter from '@images/bots/supporter/supporter-bot-256.png';
+import Builder from '@images/bots/builder/builder-bot-256.png';
 
 export default function tutorialModal({ isOpen, onClose }: any) {
   const [tutorialHidden, setTutorialHidden] = useState(true);
