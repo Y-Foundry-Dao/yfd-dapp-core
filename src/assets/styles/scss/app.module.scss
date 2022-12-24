@@ -38,7 +38,7 @@ html {
 body {
  font-family: var(--body-font);
 // background-image: url(https://c4.wallpaperflare.com/wallpaper/624/781/96/blacksmith-embers-mallet-tools-wallpaper-preview.jpg);
- 
+ background: var(--theme-bg-color);
  background-image: var(--theme-bg-gradient);
  background-size: cover;
  background-position: center;
