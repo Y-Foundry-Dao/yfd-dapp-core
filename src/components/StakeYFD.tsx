@@ -49,7 +49,7 @@ import {
   CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_MAXIMUM,
   DATE_FYFD_YFD_LOCK_VALUE_MAXIMUM,
   DEFAULT_YFD_LOCK_DURATION_DATE
-} from 'utilities/variables/variables';
+} from '@utilities/variables';
 import { inputStakeYFD } from 'recoil/input/atoms';
 import useHandleInputs from '@hooks/useHandleInputs';
 import styles from '@scss/app.module.scss';

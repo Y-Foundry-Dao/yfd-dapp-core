@@ -1,6 +1,6 @@
 import useMsg from './useMsg';
 import queryAllProposalContracts from 'utilities/messagesQuery/forge/queryAllProposalContracts';
-import { FORGE_TEST } from 'utilities/variables/variables';
+import { FORGE_TEST } from '@utilities/variables';
 import { useEffect, useState } from 'react';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import queryBalance from 'utilities/messagesQuery/cw20/queryBalance';

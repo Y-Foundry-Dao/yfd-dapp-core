@@ -48,7 +48,7 @@
         "./recoil/*"
       ],
       "Variables":[
-        "./utilities/variables/variables.ts"
+        "./utilities/variables.ts"
       ]
     }
   }

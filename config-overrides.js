@@ -28,7 +28,7 @@ module.exports = function override(config) {
     '@recoil': 'src/recoil',
     '@utilities': 'src/utilities',
     '@var': 'src/utilities/variables',
-    'Variables': 'src/utilities/variables/variables.ts'
+    'Variables': 'src/utilities/variables.ts'
   })(config);
   Object.assign(fallback, {
     crypto: require.resolve("crypto-browserify"),
