@@ -1,5 +1,5 @@
 import useMsg from './useMsg';
-import { FORGE_TEST } from 'utilities/variables/variables';
+import { FORGE_TEST } from '@utilities/variables';
 import { useRecoilValue } from 'recoil';
 import {
   inputEmergencyExpiration,

@@ -1,4 +1,4 @@
-import { YFD_TEST } from 'utilities/variables/variables';
+import { YFD_TEST } from '@utilities/variables';
 import useContractCW20 from './useContractCW20';
 
 const useContractYFD = () => {

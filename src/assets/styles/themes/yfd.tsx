@@ -1,3 +1,8 @@
+import Button from '@chakra/button';
+import Menu from '@chakra/menu';
+import Card from '@chakra/card';
+import Popover from '@chakra/popover';
+
 const base = {
   body: {
     bg: 'rgba(36, 39, 59, 0.8)'
@@ -15,7 +20,13 @@ const base = {
     color4: '#FCFEFF',
     color5: '#1F43BF',
     color6: 'rgba(255, 255, 255, 0.8)',
-    color7: '#1F43BF'
+    color7: '#1F43BF',
+    button: 'rgb(19, 95, 93)',
+    brand: '#f37402',
+    brand2: '#f4bf62',
+    brand3: '#83aee1',
+    brand4: '#5f7999',
+    brand5: '#1b2735'
   },
   background: {
     color1: 'rgba(206,188,155,1)',
@@ -45,14 +56,13 @@ const base = {
 
 const extended = {
   ...base,
+  components: {
+    Button,
+    Card,
+    Menu,
+    Popover
+  },
   layerStyles: {
-    stakeYFD: {
-      color: 'white',
-      padding: '10px'
-    },
-    stakeItemCard: {
-      bg: 'color5'
-    },
     emergencyVote: {},
     accordionWrapper: {},
     accordionButton: {

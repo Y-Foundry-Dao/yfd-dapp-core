@@ -1,26 +1,20 @@
 :root {
+
+    /* properties */
     --display-menu-main: 945px;
     --display-menu-left: 945px;
-
     --theme-blur: 0.3rem;
+
+    /* backgrounds */
     --theme-bg: radial-gradient(ellipse at bottom, var(--theme-color-darkest) 0%, var(--theme-color-black) 100%);
     --theme-bg-color: rgba(8, 6, 11, 0.5);
     --theme-bg-content: rgba(38, 38, 54, 0.37);
-    --theme-bg-header: rgb(39, 45, 64, 0.9);
+    --theme-bg-header: rgba(39, 45, 64, 0.9);
     --theme-bg-footer: var(--theme-bg-header);
-    --theme-bg-menu: rgb(39, 45, 64, 0.5);
-
+    --theme-bg-menu: rgba(32, 36, 46, 0.8);
     --theme-bg-filter: drop-shadow(0 0 10px var(--theme-gray-dark));
 
-    //    --theme-bg-image: url(https://c4.wallpaperflare.com/wallpaper/624/781/96/blacksmith-embers-mallet-tools-wallpaper-preview.jpg);
-    /*
-        --theme-bg-image: linear-gradient(
-            135deg,
-            #5f7999 10%,
-            #1f1152 100%
-           );
-    */
-
+    /* colors */
     --theme-color: var(--theme-text);
     --theme-inactive-color: rgb(113 119 144 / 78%);
     --theme-brand-color: #d8552a;
@@ -29,7 +23,6 @@
     --theme-create-color: #deb629;
 
     --theme-link-color: rgba(208, 199, 130, 0.78);
-    --theme-button-bg: #144378;
 
     --theme-border-radius: 1rem;
     --theme-border-color: var(--theme-inactive-color);
@@ -88,8 +81,11 @@
     --icon-special-color: var(--theme-special-color);
 
     --button-standard-color: #fff;
+    --theme-button-bg: rgb(19, 95, 93);
+    --theme-button-bg-alt: #144378;
     --button-standard-bg: var(--theme-button-bg); // #3a6df0
-    --button-standard-not-open-bg: #1e59f1;
+    --button-standard-not-open-bg: rgb(0, 172, 169);
+    --button-standard-not-open-bg-alt: #1e59f1;
     --button-disable-bg: var(--theme-inactive-color);
     --button-special-bg: var(--theme-special-color);
     --button-create-color: var(--button-standard-color);
@@ -104,7 +100,7 @@
     --notification-bg: var(--button-standard-bg);
     --proposal-list-item-color: red;
 
-    --popup-bg: rgba(190, 193, 211, 0.6);
+    --theme-popup-bg: rgba(39, 45, 64, 0.8);
 
     --text-enhanced-color: var(--theme-enhanced-color);
     --text-enhanced-filter-color: #fff;

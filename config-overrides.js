@@ -16,6 +16,7 @@ module.exports = function override(config) {
     '@assets': 'src/assets',
     '@styles': 'src/assets/styles',
     '@scss': 'src/assets/styles/scss',
+    '@chakra': 'src/assets/styles/chakra',
     '@themes': 'src/assets/styles/themes',
     '@images': 'src/assets/images',
     '@yfd': 'src/assets/images/yfd',
@@ -28,7 +29,7 @@ module.exports = function override(config) {
     '@recoil': 'src/recoil',
     '@utilities': 'src/utilities',
     '@var': 'src/utilities/variables',
-    'Variables': 'src/utilities/variables/variables.ts'
+    'Variables': 'src/utilities/variables.ts'
   })(config);
   Object.assign(fallback, {
     crypto: require.resolve("crypto-browserify"),

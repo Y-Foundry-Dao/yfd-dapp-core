@@ -7,7 +7,7 @@ import {
   intervalToDuration,
   Duration
 } from 'date-fns';
-import { CHAIN_SECONDS_PER_BLOCK } from 'utilities/variables/variables';
+import { CHAIN_SECONDS_PER_BLOCK } from '@utilities/variables';
 import convertFromBase from 'utilities/converters/convertFromBase';
 import useChainInfo from './useChainInfo';
 

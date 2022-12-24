@@ -3,7 +3,7 @@ import queryProposalByIndex from 'utilities/messagesQuery/forge/queryProposalByI
 import { useEffect, useState } from 'react';
 import queryTokenInfo from 'utilities/messagesQuery/cw20/queryTokenInfo';
 import queryVotes from 'utilities/messagesQuery/proposals/queryVotes';
-import { FORGE_TEST } from 'utilities/variables/variables';
+import { FORGE_TEST } from '@utilities/variables';
 import queryBalance from '@utilities/messagesQuery/cw20/queryBalance';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 

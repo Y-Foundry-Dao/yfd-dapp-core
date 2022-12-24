@@ -11,6 +11,9 @@
       "@scss/*":[
         "./assets/styles/scss/*"
       ],
+      "@chakra/*":[
+        "./assets/styles/chakra/*"
+      ],
       "@themes/*":[
         "./assets/styles/themes/*"
       ],
@@ -48,7 +51,7 @@
         "./recoil/*"
       ],
       "Variables":[
-        "./utilities/variables/variables.ts"
+        "./utilities/variables.ts"
       ]
     }
   }

@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import queryTokenInfo from 'utilities/messagesQuery/cw20/queryTokenInfo';
 // import { useConnectedWallet } from '@terra-money/wallet-provider';
 import queryVotes from 'utilities/messagesQuery/proposals/queryVotes';
-import { FORGE_TEST } from 'utilities/variables/variables';
+import { FORGE_TEST } from '@utilities/variables';
 import queryVaultProposalByIndex from 'utilities/messagesQuery/forge/queryVaultProposalByIndex';
 import queryFunds from 'utilities/messagesQuery/proposals/vaultProposal/queryFunds';
 import queryNftInfo from 'utilities/messagesQuery/proposals/vaultProposal/queryNftInfo';

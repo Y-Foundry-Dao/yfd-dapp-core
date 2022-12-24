@@ -1,5 +1,5 @@
 import useMsg from 'hooks/useMsg';
-import { FORGE_TEST, YFD_TEST } from 'utilities/variables/variables';
+import { FORGE_TEST, YFD_TEST } from '@utilities/variables';
 import Base64 from 'utilities/base64';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import msgEncodedStake from 'utilities/messagesToEncode/msgEncodedStake';
