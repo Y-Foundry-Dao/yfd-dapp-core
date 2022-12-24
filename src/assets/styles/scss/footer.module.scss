@@ -16,7 +16,6 @@
         @extend .footer;
      display: relative;  
      align-items: center;
-     position: fixed;
      a {
       padding: 1.25rem 1.875rem;
       margin: 0;
@@ -38,10 +37,4 @@
       }
      }
     }
-}
-
-.footer-menu{
-    z-index: 9;
-    overflow: hidden;
-    
 }
