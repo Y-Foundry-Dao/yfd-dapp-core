@@ -6,7 +6,9 @@ const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys);
 
 const baseStyle = definePartsStyle({
-  header: {},
+  header: {
+    borderRadius: '0.5rem'
+  },
   overlay: {
     bg: 'rgba(16, 18, 23, 0.8)',
     backdropFilter: 'auto',
