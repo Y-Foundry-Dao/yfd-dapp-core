@@ -2,13 +2,14 @@
     --display-menu-main: 945px;
     --display-menu-left: 945px;
 
-    --theme-blur: 0.5rem;
+    --theme-blur: 0.3rem;
+    --theme-bg: radial-gradient(ellipse at bottom, var(--theme-color-darkest) 0%, var(--theme-color-black) 100%);
     --theme-bg-color: rgba(8, 6, 11, 0.5);
-    --theme-bg-content: rgba(8, 6, 11, 0.2);
-    --theme-bg-header: rgb(39, 45, 64, 0.2);
-    --theme-bg-footer: --theme-bg-header;
+    --theme-bg-content: rgba(38, 38, 54, 0.37);
+    --theme-bg-header: rgb(39, 45, 64, 0.9);
+    --theme-bg-footer: var(--theme-bg-header);
+    --theme-bg-menu: rgb(39, 45, 64, 0.5);
 
-    --theme-bg-image: radial-gradient(ellipse at bottom, var(--theme-color-darkest) 0%, var(--theme-color-black) 100%);
     --theme-bg-filter: drop-shadow(0 0 10px var(--theme-gray-dark));
 
     //    --theme-bg-image: url(https://c4.wallpaperflare.com/wallpaper/624/781/96/blacksmith-embers-mallet-tools-wallpaper-preview.jpg);
@@ -103,7 +104,7 @@
     --notification-bg: var(--button-standard-bg);
     --proposal-list-item-color: red;
 
-    --popup-bg: rgb(146 151 179 / 40%);
+    --popup-bg: rgba(190, 193, 211, 0.6);
 
     --text-enhanced-color: var(--theme-enhanced-color);
     --text-enhanced-filter-color: #fff;

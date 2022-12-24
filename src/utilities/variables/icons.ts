@@ -22,5 +22,8 @@ export const Icons: { [key: string]: string } = {
   business: 'storefront',
   error: 'bug_report',
   praise: 'celebration',
-  feedback: 'chat'
+  feedback: 'chat',
+  vote: 'how_to_vote',
+  proposal: 'lightbulb_circle',
+  guardian: 'local_police'
 };

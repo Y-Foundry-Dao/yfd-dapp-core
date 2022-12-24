@@ -44,9 +44,7 @@ html {
 
 body {
  font-family: var(--body-font);
- background: var(--theme-bg-color);
- background-image: var(--theme-bg-image);
- filter: var(--theme-bg-filter);
+ background: var(--theme-bg);
  background-size: cover;
  background-position: center;
  display: flex;
