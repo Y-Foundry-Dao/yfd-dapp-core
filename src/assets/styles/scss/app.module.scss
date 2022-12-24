@@ -98,7 +98,6 @@ body {
  position: relative;
  width: 100%;
  border-radius: 0.875rem;
- 
  backdrop-filter: blur(1.25rem);
  -webkit-backdrop-filter: blur(1.25rem);
  font-size: 1rem; // this is the font size that controls responsiveness
@@ -120,7 +119,6 @@ body {
         rgba(255, 255, 255, 0.4) 0%,
         rgb(255 255 255 / 45%) 100%
        );
-      
    }
 
 .menu-circle {
@@ -429,20 +427,16 @@ body {
 
 .text-enhanced {
     color: var(--text-enhanced-color);
-
     filter: drop-shadow( 1rem 1rem 2rem var(--text-enhanced-filter-color));
 }
 
 .content-button-wrapper .content-button.status-button.open.close {
  width: auto;
-
 }
 
 .content-section .close {
  margin-right: 0;
  width: 1.5rem;
- 
- 
 }
 
 .checkbox-wrapper {
