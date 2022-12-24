@@ -1,6 +1,5 @@
 import { defineStyleConfig } from '@chakra-ui/react';
 import type { StyleFunctionProps } from '@chakra-ui/styled-system';
-import { bg } from 'date-fns/locale';
 
 export default defineStyleConfig({
   // The styles all button have in common

@@ -1,8 +1,7 @@
-import { extendTheme } from '@chakra-ui/react';
-import Button from '@styles/chakra/button';
-import Menu from '@styles/chakra/menu';
-import Card from '@styles/chakra/card';
-import Popover from '../chakra/popover';
+import Button from '@chakra/button';
+import Menu from '@chakra/menu';
+import Card from '@chakra/card';
+import Popover from '@chakra/popover';
 
 const base = {
   body: {
