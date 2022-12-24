@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from '@scss/app.module.scss';
 import imgBot1 from '@images/bots/bot1.png';
 import imgBot2 from '@images/bots/bot2.png';
@@ -19,7 +20,9 @@ export default function GettingStarted() {
               <span className={styles['text-enhanced']}> FoundryBots </span>
               are here to help.
             </div>
-            <button className={styles['content-button']}>Get Started</button>
+            <Link to="/getting-started">
+              <button className={styles['content-button']}>Get Started</button>
+            </Link>
           </div>
           <img
             className={styles['getting-started-img']}

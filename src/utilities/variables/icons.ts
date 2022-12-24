@@ -8,7 +8,7 @@ export const Icons: { [key: string]: string } = {
   nft: 'filter_frames',
   initiative: 'diversity_1',
   gettingstarted: 'rocket_launch',
-  propose: 'add_box',
+  propose: 'lightbulb_circle',
   docs: 'local_library',
   build: 'handyman',
   dao: 'handshake',
