@@ -74,9 +74,10 @@ $maxWidth: 40.625rem;
     position: relative;
     border-width: 0.188rem;
     border-radius: 0.938rem;
-    background: var(--popup-bg);
+    background: var(--theme-bg-menu);
+    color: var(--theme-color);
     backdrop-filter: blur(var(--theme-blur));
-    box-shadow: 0.7rem 0.8rem 1.25rem 0.5rem;
+    box-shadow: 0.1rem 0.3rem 0.7rem 0.1rem var(--theme-inactive-color);
 }
 
 .stakeYfd {

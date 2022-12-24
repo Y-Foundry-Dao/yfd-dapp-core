@@ -4,8 +4,6 @@ import useHandleClicks from '@hooks/useHandleClicks';
 import BalanceYFD from './BalanceYFD';
 import BalancefYFD from './BalancefYFD';
 import { format } from 'date-fns';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import {
   Popover,
   PopoverTrigger,
@@ -55,7 +53,6 @@ import {
 import { inputStakeYFD } from 'recoil/input/atoms';
 import useHandleInputs from '@hooks/useHandleInputs';
 import styles from '@scss/app.module.scss';
-import styleButton from '@scss/component/button.module.scss';
 import { Icons } from '@utilities/variables/icons';
 
 function StakeYFD() {
@@ -91,19 +88,15 @@ function StakeYFD() {
         </Button>
       </PopoverTrigger>
       <Portal>
-        <PopoverContent className={styles.portal}>
+        <PopoverContent>
           <PopoverArrow />
           <PopoverHeader>
-            <Text as="sup" marginRight={1}>
-              fYFD
-            </Text>
-            <BalancefYFD />
-            <Text as="sup" marginBottom={0} width="100%">
-              YFD:
-              <b>
-                <BalanceYFD />
-              </b>
-            </Text>
+            fYFD <BalancefYFD />
+            <br />
+            YFD:
+            <b>
+              <BalanceYFD />
+            </b>
           </PopoverHeader>
           <PopoverCloseButton />
           <PopoverBody>
@@ -126,7 +119,7 @@ function StakeYFD() {
                 </NumberInputStepper>
               </NumberInput>
               <Menu>
-                <MenuButton as={Button} variant="outline" marginLeft={3}>
+                <MenuButton as={Button} marginLeft={3}>
                   {durationDepositYFDDate}
                 </MenuButton>
                 <MenuList>
@@ -379,9 +372,8 @@ function StakeYFD() {
             </Flex>
           </PopoverBody>
           <PopoverFooter>
-            <Button
-              colorScheme="blue"
-              margin={1}
+            <button
+              className={styles['content-button-wide']}
               onClick={async () => {
                 return await handleClickStakeYFD(
                   amountStakeYFD,
@@ -389,8 +381,8 @@ function StakeYFD() {
                 );
               }}
             >
-              <Text>Deposit</Text>
-            </Button>
+              Deposit
+            </button>
           </PopoverFooter>
         </PopoverContent>
       </Portal>
