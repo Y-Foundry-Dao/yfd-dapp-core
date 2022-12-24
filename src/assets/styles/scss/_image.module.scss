@@ -26,6 +26,13 @@ img {
     }
    }
 
+   .tutorial-intro {
+    object-fit: cover;
+    margin-right: 0.5rem;
+    object-position: center;
+    border-radius: 2rem;
+    filter: drop-shadow( 5px 5px 10px black );
+   }
 
    .getting-started-img {
     width: 130px;
@@ -33,7 +40,7 @@ img {
     margin-top: -5px;
     margin-right: 10px;
     object-position: center;
-    border-radius: 2em;
+    border-radius: 2rem;
     filter: drop-shadow( 5px 5px 10px #88664a );
     @media screen and (max-width: 700px) {
      width: 50px;

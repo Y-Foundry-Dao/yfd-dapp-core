@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { useDisclosure, Image } from '@chakra-ui/react';
 
 import styles from '@scss/side.module.scss';
@@ -7,9 +6,16 @@ import { URL_DOCS, URL_DEWORK } from '@var/links';
 import { Icons } from '@var/icons';
 
 import FeedbackModal from '@features/forms/feedback/Modal';
-import FeedbackModalButton from '@features/forms/feedback/FeedbackModalButton';
+import FeedbackModalButton from '@features/forms/feedback/ModalButton';
+import TutorialModal from '@features/forms/gettingStarted/Modal';
+import TutorialModalButton from '@features/forms/gettingStarted/ModalButton';
 
 export default function MenuLeftAbout() {
+  const {
+    isOpen: tutorialIsOpen,
+    onOpen: tutorialOnOpen,
+    onClose: tutorialOnClose
+  } = useDisclosure();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -17,10 +23,8 @@ export default function MenuLeftAbout() {
       <div className={styles['side-wrapper-menu']}>
         <div className={styles['side-title']}>About Y-Foundry DAO</div>
         <div className={styles['side-menu']}>
-          <Link to="/getting-started">
-            <i className="material-symbols-outlined">{Icons.gettingstarted}</i>
-            Getting Started
-          </Link>
+          <TutorialModalButton onOpen={tutorialOnOpen} />
+          <TutorialModal isOpen={tutorialIsOpen} onClose={tutorialOnClose} />
           <a href={URL_DOCS} target="_blank">
             <i className="material-symbols-outlined">{Icons.docs}</i>
             Documentation

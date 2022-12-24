@@ -2,6 +2,8 @@ import Button from '@chakra/button';
 import Menu from '@chakra/menu';
 import Card from '@chakra/card';
 import Popover from '@chakra/popover';
+import Modal from '@chakra/modal';
+import Select from '@chakra/select';
 
 const base = {
   body: {
@@ -60,7 +62,9 @@ const extended = {
     Button,
     Card,
     Menu,
-    Popover
+    Popover,
+    Modal,
+    Select
   },
   layerStyles: {
     emergencyVote: {},
