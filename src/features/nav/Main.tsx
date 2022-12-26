@@ -19,7 +19,7 @@ export default function MainMenu() {
               Initiatives
             </Link>
             <Link
-              to="/proposals-governance"
+              to="/governance-proposals"
               className={styles['main-header-link']}
             >
               Governance

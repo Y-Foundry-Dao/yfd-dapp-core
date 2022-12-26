@@ -47,7 +47,7 @@ export default function tutorialModal({ isOpen, onClose }: any) {
               <WrapItem className={styles['gsContent-feature']}>
                 <SimpleGrid>
                   <GridItem>
-                    <Link to="/getting-started" onClick={onClose}>
+                    <Link to="/getting-started/voter" onClick={onClose}>
                       <img
                         src={Voter}
                         className={styles['tutorial-intro']}
@@ -61,7 +61,7 @@ export default function tutorialModal({ isOpen, onClose }: any) {
               <WrapItem className={styles['gsContent-feature']}>
                 <SimpleGrid>
                   <GridItem>
-                    <Link to="/getting-started" onClick={onClose}>
+                    <Link to="/getting-started/proposer" onClick={onClose}>
                       <img
                         src={Proposer}
                         className={styles['tutorial-intro']}
@@ -75,7 +75,7 @@ export default function tutorialModal({ isOpen, onClose }: any) {
               <WrapItem className={styles['gsContent-feature']}>
                 <SimpleGrid>
                   <GridItem>
-                    <Link to="/getting-started" onClick={onClose}>
+                    <Link to="/getting-started/supporter" onClick={onClose}>
                       <img
                         src={Supporter}
                         className={styles['tutorial-intro']}
@@ -89,7 +89,7 @@ export default function tutorialModal({ isOpen, onClose }: any) {
               <WrapItem className={styles['gsContent-feature']}>
                 <SimpleGrid>
                   <GridItem>
-                    <Link to="/getting-started" onClick={onClose}>
+                    <Link to="/getting-started/builder" onClick={onClose}>
                       <img
                         src={Builder}
                         className={styles['tutorial-intro']}

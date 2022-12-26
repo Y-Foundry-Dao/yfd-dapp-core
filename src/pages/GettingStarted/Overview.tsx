@@ -11,6 +11,7 @@ import GSCrucibles from '@features/gettingStarted/Decentralize';
 export default function PageGettingStarted() {
   return (
     <div className={[styles['content-section'], styles['wide']].join(' ')}>
+      <h1>Overview</h1>
       <Grid
         className={styles.gsGrid}
         templateAreas={`
