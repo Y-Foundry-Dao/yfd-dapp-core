@@ -50,7 +50,7 @@ export default function GSDescription() {
                   <GridItem>
                     <i className="material-symbols-outlined">{Icons.escrow}</i>
                   </GridItem>
-                  <GridItem>Supporting Proposals</GridItem>
+                  <GridItem>Support Proposals</GridItem>
                 </SimpleGrid>
               </WrapItem>
               <WrapItem className={styles['gsContent-feature']}>
@@ -58,7 +58,7 @@ export default function GSDescription() {
                   <GridItem>
                     <i className="material-symbols-outlined">{Icons.judge}</i>
                   </GridItem>
-                  <GridItem>Governing Proposals</GridItem>
+                  <GridItem>Govern Proposals</GridItem>
                 </SimpleGrid>
               </WrapItem>
               <WrapItem className={styles['gsContent-feature']}>
@@ -68,7 +68,7 @@ export default function GSDescription() {
                       {Icons.disbursement_approval}
                     </i>
                   </GridItem>
-                  <GridItem>Disbursing Funds</GridItem>
+                  <GridItem>Disburse Builder Funds</GridItem>
                 </SimpleGrid>
               </WrapItem>
             </Wrap>
@@ -85,7 +85,7 @@ export default function GSDescription() {
                   <GridItem>
                     <i className="material-symbols-outlined">{Icons.nft}</i>
                   </GridItem>
-                  <GridItem>Acquire NFTs</GridItem>
+                  <GridItem>Acquire Proposal NFTs</GridItem>
                 </SimpleGrid>
               </WrapItem>
               <WrapItem className={styles['gsContent-feature']}>
@@ -95,7 +95,7 @@ export default function GSDescription() {
                       {Icons.profit_share}
                     </i>
                   </GridItem>
-                  <GridItem>Profit Sharing</GridItem>
+                  <GridItem>Share in Profits</GridItem>
                 </SimpleGrid>
               </WrapItem>
             </Wrap>

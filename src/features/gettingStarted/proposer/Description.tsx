@@ -58,7 +58,7 @@ export default function GSDescription() {
                       {Icons.management}
                     </i>
                   </GridItem>
-                  <GridItem>Manage Progress</GridItem>
+                  <GridItem>Manage Builder Progress</GridItem>
                 </SimpleGrid>
               </WrapItem>
               <WrapItem className={styles['gsContent-feature']}>
@@ -85,7 +85,7 @@ export default function GSDescription() {
                   <GridItem>
                     <i className="material-symbols-outlined">{Icons.nft}</i>
                   </GridItem>
-                  <GridItem>Acquire NFTs</GridItem>
+                  <GridItem>Acquire Proposal NFTs</GridItem>
                 </SimpleGrid>
               </WrapItem>
               <WrapItem className={styles['gsContent-feature']}>
@@ -95,7 +95,7 @@ export default function GSDescription() {
                       {Icons.profit_share}
                     </i>
                   </GridItem>
-                  <GridItem>Profit Sharing</GridItem>
+                  <GridItem>Share in Profits</GridItem>
                 </SimpleGrid>
               </WrapItem>
               <WrapItem className={styles['gsContent-feature']}>

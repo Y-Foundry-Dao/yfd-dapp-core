@@ -52,7 +52,7 @@ export default function GSDescription() {
                       {Icons.task_complete}
                     </i>
                   </GridItem>
-                  <GridItem>Completing Tasks</GridItem>
+                  <GridItem>Accomplish Tasks</GridItem>
                 </SimpleGrid>
               </WrapItem>
               <WrapItem className={styles['gsContent-feature']}>
@@ -60,7 +60,7 @@ export default function GSDescription() {
                   <GridItem>
                     <i className="material-symbols-outlined">{Icons.bid}</i>
                   </GridItem>
-                  <GridItem>Bidding on Jobs</GridItem>
+                  <GridItem>Bid on Proposals</GridItem>
                 </SimpleGrid>
               </WrapItem>
               <WrapItem className={styles['gsContent-feature']}>
@@ -70,7 +70,7 @@ export default function GSDescription() {
                       {Icons.deliverable_complete}
                     </i>
                   </GridItem>
-                  <GridItem>Completing Vault Deliverables</GridItem>
+                  <GridItem>Complete Deliverables</GridItem>
                 </SimpleGrid>
               </WrapItem>
             </Wrap>
@@ -89,7 +89,7 @@ export default function GSDescription() {
                       {Icons.compensation}
                     </i>
                   </GridItem>
-                  <GridItem>Compensation</GridItem>
+                  <GridItem>Receive Compensation</GridItem>
                 </SimpleGrid>
               </WrapItem>
               <WrapItem className={styles['gsContent-feature']}>

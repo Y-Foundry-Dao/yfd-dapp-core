@@ -39,5 +39,6 @@ export const Icons: { [key: string]: string } = {
   disbursement_approval: 'price_check',
   profit_share: 'share',
   research: 'biotech',
-  team: 'groups'
+  team: 'groups',
+  discuss: 'diversity_3'
 };
