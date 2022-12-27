@@ -14,7 +14,7 @@ export default function GSDescription() {
           fund, and build ideas.
         </p>
         <Wrap
-          className={styles['gsContent-wrap']}
+          className={styles['gsContent']}
           justify="center"
           align="center"
           spacing="2rem"

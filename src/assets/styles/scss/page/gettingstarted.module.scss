@@ -26,11 +26,20 @@
         margin-top: 0.15rem;
         padding-bottom: 1rem;
     }
-
+}
     .gsHeading {
         color: var(--theme-special-color);
+        width: auto;
+        font-size: 1.5rem;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
         letter-spacing: 0.05em;
         border-bottom: var(--theme-create-color) 0.15em solid;
+
+        &-left {
+            @extend .gsHeading;
+            text-align: left;
+        }
 
         span {
             font-size: 4rem;
@@ -41,7 +50,6 @@
             text-align: right;
             display: unset;
         }
-    }
 
     ul {
         padding-top: 1em;
@@ -55,7 +63,6 @@
 }
 
 .gsContent {
-    text-align: center;
     &-flex {
         @extend .gsContent;
         padding: 1rem;
@@ -71,4 +78,50 @@
     p {
         text-align: justify;
     }
+}
+
+.gsDescImage {
+    width: 33%;
+    
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+//        border-radius: 0rem;
+        @media screen {
+            @media (max-width: 100%) {
+                height: auto;
+                object-fit: scale-down;
+            }
+        }
+    }
+}
+
+.gsDescText {
+    width: 70%;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+//    border-radius: var(--theme-border-radius);
+//    border: var(--theme-border-color) var(--theme-border-width) var(--theme-border-style);
+
+    a {
+        color: var(--theme-color-lighter);
+        text-align: center;
+        font-weight: 600;
+        font-size: 1.2rem;
+        margin-left: 20%;
+        margin-right: auto;
+        padding-left: 5%;
+        padding-right: 5%;
+        border-top: var(--theme-border-color) 1px solid;
+        border-bottom: var(--theme-border-color) 1px solid;
+        
+
+    }
+
+    a:hover {
+        color: var(--theme-brand-color);
+    }
+
 }

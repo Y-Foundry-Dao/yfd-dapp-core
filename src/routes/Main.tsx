@@ -1,7 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 
 import Home from '@pages/Home';
-import PageGettingStarted from '@pages/GettingStarted';
+import PageGettingStarted from '@pages/GettingStarted/Overview';
+import PageVoter from '@pages/GettingStarted/Voter';
+import PageProposer from '@pages/GettingStarted/Proposer';
+import PageSupporter from '@pages/GettingStarted/Supporter';
+import PageBuilder from '@pages/GettingStarted/Builder';
 import VaultProposals from '@pages/ProposalsVaults';
 import GovernanceProposals from '@features/ProposalsGovernance';
 import InitiativeProposals from '@features/ProposalsInitiatives';
@@ -16,7 +20,13 @@ export default function MainContainer() {
   return (
     <Routes>
       <Route path="/" element={<Home />}></Route>
-      <Route path="/getting-started" element={<PageGettingStarted />}></Route>
+      <Route path="/getting-started/*">
+        <Route index element={<PageGettingStarted />} />
+        <Route path="voter" element={<PageVoter />} />
+        <Route path="proposer" element={<PageProposer />} />
+        <Route path="supporter" element={<PageSupporter />} />
+        <Route path="builder" element={<PageBuilder />} />
+      </Route>
       <Route path="/proposals-vaults" element={<VaultProposals />}></Route>
       <Route path="/deposit-yfd" element={<DepositYfd />}></Route>
       <Route path="/vaults" element={<VaultsFeatured />}></Route>

@@ -11,6 +11,7 @@ export const Icons: { [key: string]: string } = {
   propose: 'lightbulb_circle',
   docs: 'local_library',
   build: 'handyman',
+  management: 'engineering',
   dao: 'handshake',
   govparam: 'settings',
   yfdswap: 'swap_horizontal_circle',
@@ -25,5 +26,19 @@ export const Icons: { [key: string]: string } = {
   feedback: 'chat',
   vote: 'how_to_vote',
   proposal: 'lightbulb_circle',
-  guardian: 'local_police'
+  guardian: 'local_police',
+  bid: 'waving_hand',
+  task_complete: 'task_alt',
+  deliverable_complete: 'assignment_turned_in',
+  reputation: 'military_tech',
+  compensation: 'savings',
+  learn: 'psychology_alt',
+  direction: 'explore',
+  approve: 'recommend',
+  judge: 'gavel',
+  disbursement_approval: 'price_check',
+  profit_share: 'share',
+  research: 'biotech',
+  team: 'groups',
+  discuss: 'diversity_3'
 };

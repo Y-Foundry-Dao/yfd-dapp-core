@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from '@scss/app.module.scss';
 import {
@@ -13,15 +12,12 @@ import {
   Wrap,
   WrapItem
 } from '@chakra-ui/react';
-import { Icons } from '@var/icons';
-import Voter from '@images/bots/voter/voter-bot-128.png';
-import Proposer from '@images/bots/proposer/proposer-bot-128.png';
-import Supporter from '@images/bots/supporter/supporter-bot-128.png';
-import Builder from '@images/bots/builder/builder-bot-128.png';
+import Voter from '@images/bots/voter/voter-bot-256.png';
+import Proposer from '@images/bots/proposer/proposer-bot-256.png';
+import Supporter from '@images/bots/supporter/supporter-bot-256.png';
+import Builder from '@images/bots/builder/builder-bot-256.png';
 
 export default function tutorialModal({ isOpen, onClose }: any) {
-  const [tutorialHidden, setTutorialHidden] = useState(true);
-
   return (
     <Modal
       size={['lg', '2xl', '3xl', '4xl']}
@@ -47,7 +43,7 @@ export default function tutorialModal({ isOpen, onClose }: any) {
               <WrapItem className={styles['gsContent-feature']}>
                 <SimpleGrid>
                   <GridItem>
-                    <Link to="/getting-started" onClick={onClose}>
+                    <Link to="/getting-started/voter" onClick={onClose}>
                       <img
                         src={Voter}
                         className={styles['tutorial-intro']}
@@ -61,7 +57,7 @@ export default function tutorialModal({ isOpen, onClose }: any) {
               <WrapItem className={styles['gsContent-feature']}>
                 <SimpleGrid>
                   <GridItem>
-                    <Link to="/getting-started" onClick={onClose}>
+                    <Link to="/getting-started/proposer" onClick={onClose}>
                       <img
                         src={Proposer}
                         className={styles['tutorial-intro']}
@@ -75,7 +71,7 @@ export default function tutorialModal({ isOpen, onClose }: any) {
               <WrapItem className={styles['gsContent-feature']}>
                 <SimpleGrid>
                   <GridItem>
-                    <Link to="/getting-started" onClick={onClose}>
+                    <Link to="/getting-started/supporter" onClick={onClose}>
                       <img
                         src={Supporter}
                         className={styles['tutorial-intro']}
@@ -89,7 +85,7 @@ export default function tutorialModal({ isOpen, onClose }: any) {
               <WrapItem className={styles['gsContent-feature']}>
                 <SimpleGrid>
                   <GridItem>
-                    <Link to="/getting-started" onClick={onClose}>
+                    <Link to="/getting-started/builder" onClick={onClose}>
                       <img
                         src={Builder}
                         className={styles['tutorial-intro']}

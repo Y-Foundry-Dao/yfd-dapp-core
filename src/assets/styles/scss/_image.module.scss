@@ -32,6 +32,10 @@ img {
     object-position: center;
     border-radius: 2rem;
     filter: drop-shadow( 5px 5px 10px black );
+    &-middle {
+        @extend .tutorial-intro;
+        vertical-align: middle;
+    }
    }
 
    .getting-started-img {
