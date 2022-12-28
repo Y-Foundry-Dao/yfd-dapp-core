@@ -1,5 +1,5 @@
 import styles from '@scss/app.module.scss';
-import imgBot from '@images/bots/proposer/proposer-bot-512.png';
+import imgBot from '@images/bots/proposer/proposer-vertical-512.png';
 import {
   Box,
   SimpleGrid,
