@@ -9,16 +9,15 @@ import { useConnectedWallet } from '@terra-money/wallet-provider';
 import msgExecuteSend from 'utilities/messagesExecute/yfd/msgExecuteSend';
 import {
   inputDevelopmentCost,
-  inputExpiration,
   inputGithub,
   inputInitialFunding,
-  inputNameMsg,
   inputNameProposal,
+  inputTicker,
   inputPaymentFrequency,
-  inputPaymentSchedule,
-  inputQuorumPercent,
+  inputNumberOfPayments,
   inputSelfVoucedInformation,
   inputStakeYFD,
+  inputFundingOnly,
   inputStatementOfWork,
   inputTvlLimit,
   inputUrlProposal,
@@ -78,16 +77,15 @@ const useHandleClicks = () => {
 
   // Pulling in Recoil Values for VaultProposals
   const nameProposal = useRecoilValue(inputNameProposal);
-  const nameMsg = useRecoilValue(inputNameMsg);
+  const ticker = useRecoilValue(inputTicker);
   const urlProposal = useRecoilValue(inputUrlProposal);
   const tvlLimit = useRecoilValue(inputTvlLimit);
   const developmentCost = useRecoilValue(inputDevelopmentCost);
+  const fundingOnly = useRecoilValue(inputFundingOnly);
   const statementOfWork = useRecoilValue(inputStatementOfWork);
-  const paymentSchedule = useRecoilValue(inputPaymentSchedule);
+  const numberOfPayments = useRecoilValue(inputNumberOfPayments);
   const github = useRecoilValue(inputGithub);
-  const quorumPercent = useRecoilValue(inputQuorumPercent);
   const selfVouchedInformation = useRecoilValue(inputSelfVoucedInformation);
-  const expiration = useRecoilValue(inputExpiration);
   const paymentFrequency = useRecoilValue(inputPaymentFrequency);
   const initialFunding = useRecoilValue(inputInitialFunding);
   const nftAmount = useRecoilValue(inputNFTAmount);
@@ -157,17 +155,18 @@ const useHandleClicks = () => {
     if (connectedWallet) {
       const msgToEncode = msgEncodedProposal(
         nameProposal,
-        nameMsg,
+        ticker,
         urlProposal,
-        nftAmount,
         tvlLimit,
+        developer,
         convertToBase(developmentCost),
+        fundingOnly,
+        nftAmount,
         statementOfWork,
-        Number(paymentSchedule),
-        github,
-        selfVouchedInformation,
+        numberOfPayments,
         paymentFrequency,
-        developer
+        github,
+        selfVouchedInformation
       );
       const encodedMessage = Base64.btoa(msgToEncode);
       const msgCreateProposal = msgExecuteSend(
