@@ -20,14 +20,19 @@ const inputStakeYFD = atom({
 });
 
 // Input below is for new Vault Proposals
-const inputNameMsg = atom({
-  key: 'inputNameMsg',
-  default: ''
-});
-
 const inputNameProposal = atom({
   key: 'inputNameProposal',
   default: ''
+});
+
+const inputTicker = atom({
+  key: 'inputTicker',
+  default: ''
+});
+
+const inputFundingOnly = atom({
+  key: 'inputFundingOnly',
+  default: false
 });
 
 const inputUrlProposal = atom({
@@ -65,9 +70,9 @@ const inputStatementOfWork = atom({
   default: ''
 });
 
-const inputPaymentSchedule = atom({
-  key: 'inputPaymentSchedule',
-  default: '2'
+const inputNumberOfPayments = atom({
+  key: 'inputNumberOfPayments',
+  default: 2
 });
 
 const inputPaymentFrequency = atom({
@@ -78,16 +83,6 @@ const inputPaymentFrequency = atom({
 const inputGithub = atom({
   key: 'inputGithub',
   default: ''
-});
-
-const inputExpiration = atom({
-  key: 'inputExpiration',
-  default: 43200
-});
-
-const inputQuorumPercent = atom({
-  key: 'inputQuorumPercent',
-  default: 25
 });
 
 const inputSelfVoucedInformation = atom({
@@ -193,20 +188,19 @@ export {
   inputIsEmergency,
   inputJustificationLink,
   inputStakeYFD,
-  inputNameMsg,
   inputNameProposal,
+  inputTicker,
   inputUrlProposal,
   inputTvlLimit,
   inputContactList,
   inputDeveloperWallet,
   inputDevelopmentCost,
+  inputFundingOnly,
   inputFundingDenomination,
   inputStatementOfWork,
-  inputPaymentSchedule,
+  inputNumberOfPayments,
   inputPaymentFrequency,
   inputGithub,
-  inputExpiration,
-  inputQuorumPercent,
   inputSelfVoucedInformation,
   inputInitialFunding,
   inputNFTAmount,

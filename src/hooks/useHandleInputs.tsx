@@ -2,16 +2,16 @@ import { useSetRecoilState } from 'recoil';
 import {
   inputDeveloperWallet,
   inputDevelopmentCost,
-  inputExpiration,
   inputGithub,
   inputInitialFunding,
   inputNameProposal,
   inputNFTAmount,
+  inputNumberOfPayments,
   inputPaymentFrequency,
-  inputQuorumPercent,
   inputSelfVoucedInformation,
   inputStakeYFD,
   inputStatementOfWork,
+  inputTicker,
   inputTvlLimit,
   inputUrlProposal,
   inputWhitelistWalletAddress,
@@ -33,12 +33,12 @@ const useHandleInputs = () => {
   // Recoil Values for vault proposal
   const setNameProposal = useSetRecoilState(inputNameProposal);
   const setUrlProposal = useSetRecoilState(inputUrlProposal);
+  const setTicker = useSetRecoilState(inputTicker);
   const setTvlLimit = useSetRecoilState(inputTvlLimit);
   const setDevelopmentCost = useSetRecoilState(inputDevelopmentCost);
   const setStatementOfWork = useSetRecoilState(inputStatementOfWork);
   const setGithub = useSetRecoilState(inputGithub);
-  const setQuorumPercent = useSetRecoilState(inputQuorumPercent);
-  const setExpiration = useSetRecoilState(inputExpiration);
+  const setNumberOfPayments = useSetRecoilState(inputNumberOfPayments);
   const setPaymentFrequency = useSetRecoilState(inputPaymentFrequency);
   const setInitialFunding = useSetRecoilState(inputInitialFunding);
   const setNFTAmount = useSetRecoilState(inputNFTAmount);
@@ -74,6 +74,8 @@ const useHandleInputs = () => {
   const handleInputNameProposal = (event: any) =>
     setNameProposal(event.target.value);
 
+  const handleInputTicker = (event: any) => setTicker(event.target.value);
+
   const handleInputUrlProposal = (event: any) =>
     setUrlProposal(event.target.value);
 
@@ -86,19 +88,16 @@ const useHandleInputs = () => {
   const handleInputStatementOfWork = (event: any) =>
     setStatementOfWork(event.target.value);
 
+  const handleInputNumberOfPayments = (value: any) =>
+    setNumberOfPayments(value);
+
   const handleInputPaymentFrequency = (value: any) =>
     setPaymentFrequency(value);
 
   const handleInputGithub = (event: any) => setGithub(event.target.value);
 
-  const handleInputQuorumPercent = (value: any) => setQuorumPercent(value);
-
   const handleInputSelfVouchedInformation = (event: any) =>
     setSelfVouchedInformation(event.target.value);
-
-  const handleInputExpiration = (value: any) => {
-    setExpiration(value);
-  };
 
   const handleInputNFTAmount = (value: any) => {
     setNFTAmount(value);
@@ -136,16 +135,16 @@ const useHandleInputs = () => {
   return {
     handleInputStakeYFD,
     handleInputNameProposal,
+    handleInputTicker,
     handleInputUrlProposal,
     handleInputTvlLimit,
     handleInputDevelopmentCost,
     handleInputInitialFunding,
     handleInputStatementOfWork,
+    handleInputNumberOfPayments,
     handleInputPaymentFrequency,
     handleInputGithub,
-    handleInputQuorumPercent,
     handleInputSelfVouchedInformation,
-    handleInputExpiration,
     handleInputNFTAmount,
     handleInputDeveloper,
     handleInputWhitelistWalletAddress,

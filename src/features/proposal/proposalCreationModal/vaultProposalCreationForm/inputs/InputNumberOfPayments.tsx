@@ -9,24 +9,28 @@ import {
 } from '@chakra-ui/react';
 import useHandleInputs from 'hooks/useHandleInputs';
 import { useRecoilValue } from 'recoil';
-import { inputExpiration } from 'recoil/input/atoms';
+import {
+  inputNumberOfPayments,
+  inputPaymentFrequency
+} from 'recoil/input/atoms';
 
-function InputExpiration() {
-  const expiration = useRecoilValue(inputExpiration);
-  const { handleInputExpiration } = useHandleInputs();
+function InputNumberOfPayments() {
+  const numberOfPayments = useRecoilValue(inputNumberOfPayments);
+  const { handleInputNumberOfPayments } = useHandleInputs();
+
   return (
     <Flex alignItems="center" gap={5}>
       <Heading as="h3" size="md">
-        Expiration in Blocks:
+        Number of payments:
       </Heading>
       <NumberInput
         maxW="140px"
         mr="2rem"
-        defaultValue={43200}
+        defaultValue={2}
         step={1}
-        min={43200}
-        value={expiration}
-        onChange={handleInputExpiration}
+        min={1}
+        value={numberOfPayments}
+        onChange={handleInputNumberOfPayments}
       >
         <NumberInputField />
         <NumberInputStepper>
@@ -38,4 +42,4 @@ function InputExpiration() {
   );
 }
 
-export default InputExpiration;
+export default InputNumberOfPayments;
