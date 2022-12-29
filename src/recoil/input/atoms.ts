@@ -90,8 +90,8 @@ const inputQuorumPercent = atom({
   default: 25
 });
 
-const inputSelfVoucedInformation = atom({
-  key: 'inputSelfVoucedInformation',
+const inputSelfVouchedInformation = atom({
+  key: 'inputSelfVouchedInformation',
   default: ''
 });
 
@@ -207,7 +207,7 @@ export {
   inputGithub,
   inputExpiration,
   inputQuorumPercent,
-  inputSelfVoucedInformation,
+  inputSelfVouchedInformation,
   inputInitialFunding,
   inputNFTAmount,
   inputEmergencyExpiration,

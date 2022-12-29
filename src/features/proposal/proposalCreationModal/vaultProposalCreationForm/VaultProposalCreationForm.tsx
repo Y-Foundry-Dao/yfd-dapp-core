@@ -37,7 +37,7 @@ import {
   inputPaymentFrequency,
   inputPaymentSchedule,
   inputQuorumPercent,
-  inputSelfVoucedInformation,
+  inputSelfVouchedInformation,
   inputStatementOfWork,
   inputTvlLimit,
   inputUrlProposal
@@ -62,7 +62,7 @@ function ProposalCreationForm({ onClose }: any) {
   const paymentSchedule = useRecoilValue(inputPaymentSchedule);
   const github = useRecoilValue(inputGithub);
   const quorumPercent = useRecoilValue(inputQuorumPercent);
-  const selfVouchedInformation = useRecoilValue(inputSelfVoucedInformation);
+  const selfVouchedInformation = useRecoilValue(inputSelfVouchedInformation);
   const expiration = useRecoilValue(inputExpiration);
   const paymentFrequency = useRecoilValue(inputPaymentFrequency);
   const initialFunding = useRecoilValue(inputInitialFunding);

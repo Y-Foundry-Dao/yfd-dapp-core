@@ -17,7 +17,7 @@ import {
   inputPaymentFrequency,
   inputPaymentSchedule,
   inputQuorumPercent,
-  inputSelfVoucedInformation,
+  inputSelfVouchedInformation,
   inputStakeYFD,
   inputStatementOfWork,
   inputTvlLimit,
@@ -86,7 +86,7 @@ const useHandleClicks = () => {
   const paymentSchedule = useRecoilValue(inputPaymentSchedule);
   const github = useRecoilValue(inputGithub);
   const quorumPercent = useRecoilValue(inputQuorumPercent);
-  const selfVouchedInformation = useRecoilValue(inputSelfVoucedInformation);
+  const selfVouchedInformation = useRecoilValue(inputSelfVouchedInformation);
   const expiration = useRecoilValue(inputExpiration);
   const paymentFrequency = useRecoilValue(inputPaymentFrequency);
   const initialFunding = useRecoilValue(inputInitialFunding);
