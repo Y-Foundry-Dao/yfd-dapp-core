@@ -2,24 +2,25 @@ import { YFD_TEST } from '@utilities/variables';
 
 const msgEncodedProposal = (
   nameProposal: string,
-  nameMsg: string,
+  ticker: string,
   urlProposal: string,
-  nftAmount: number,
   tvlLimit: number,
+  developer: string,
   developmentCost: number,
+  fundingOnly: boolean,
+  nftAmount: number,
   statementOfWork: string,
-  paymentSchedule: number,
-  github: string,
-  selfVouchedInformation: string,
+  numberOfPayments: number,
   paymentFrequency: number,
-  developer: string
+  github: string,
+  selfVouchedInformation: string
 ) => {
   return `{
   "create_vault_proposal": {
     "msg": {
-      "name": "${nameProposal}",
       "proposal_info": {
         "name": "${nameProposal}",
+        "ticker": "${ticker}",
         "proposal_url": "${urlProposal}",
         "tvl_limit": "${tvlLimit}",
         "contact": [
@@ -27,10 +28,11 @@ const msgEncodedProposal = (
         ],
         "developer": "${developer}",
         "development_cost": "${developmentCost}",
+        "funding_only": ${fundingOnly},
         "funding_denomination": "${YFD_TEST}",
         "nft_quantity": ${nftAmount},
         "statement_of_work": "${statementOfWork}",
-        "payment_schedule": ${Number(paymentSchedule)},
+        "num_payments": ${numberOfPayments},
         "payment_frequency": ${paymentFrequency},
         "github": "${github}",
         "self_vouched_information": "${selfVouchedInformation}"
