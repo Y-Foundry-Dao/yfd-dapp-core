@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import styles from '@scss/app.module.scss';
 import {
   Modal,
@@ -17,8 +16,6 @@ import { URL_BUGREPORT, URL_PRAISEREPORT } from '@var/links';
 import { Icons } from '@var/icons';
 
 function FeedbackModal({ isOpen, onClose }: any) {
-  const [feedbackHidden, setFeedbackHidden] = useState(false);
-
   return (
     <Modal
       size={['lg', '2xl', '3xl', '4xl']}
@@ -44,12 +41,9 @@ function FeedbackModal({ isOpen, onClose }: any) {
               <WrapItem className={styles['gsContent-feature']}>
                 <SimpleGrid>
                   <GridItem>
-                    <i
-                      className="material-symbols-outlined"
-                      onClick={() => setFeedbackHidden((s) => !s)}
-                    >
+                    <span className="material-symbols-outlined">
                       {Icons.feedback}
-                    </i>
+                    </span>
                     Submit Feedback Below
                   </GridItem>
                 </SimpleGrid>
@@ -89,7 +83,7 @@ function FeedbackModal({ isOpen, onClose }: any) {
               </WrapItem>
             </Wrap>
           </div>
-          {!feedbackHidden ? <FeedbackForm onClose={onClose} /> : null}
+          <FeedbackForm onClose={onClose} />
         </ModalBody>
       </ModalContent>
     </Modal>

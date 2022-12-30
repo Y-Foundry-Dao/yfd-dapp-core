@@ -1,6 +1,6 @@
 import styles from '@scss/app.module.scss';
 import { Heading } from '@chakra-ui/react';
-import ListFyfdBalance from '@features/governance/fyfd/list/Layout';
+import ListFyfdBalance from '@features/fyfd/list/Layout';
 export default function FyfdBalance() {
   return (
     <>

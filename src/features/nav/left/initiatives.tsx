@@ -4,7 +4,7 @@ import { useDisclosure } from '@chakra-ui/react';
 import styles from '@scss/side.module.scss';
 import { Icons } from '@var/icons';
 
-import ProposalModal from '@features/proposal/proposalCreationModal/ProposalModal';
+import ProposalModal from '@features/proposals/modal';
 import ProposalModalButton from '@features/proposal/proposalCreationModal/ProposalModalButton';
 
 export default function MenuLeftInitiatives() {

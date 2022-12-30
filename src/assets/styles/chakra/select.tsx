@@ -5,12 +5,15 @@ const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(selectAnatomy.keys);
 
 const baseStyle = definePartsStyle({
-  // define the part you're going to style
   field: {
-    background: 'brand2',
-    color: 'gray.600'
+    color: 'gray.700',
+    background: 'teal.300',
+    fontWeight: 'bold',
+    bg: 'gray.100'
   },
-  icon: {}
+  icon: {
+    color: 'gray.600'
+  }
 });
 
 export default defineMultiStyleConfig({ baseStyle });

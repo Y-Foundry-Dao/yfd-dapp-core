@@ -4,6 +4,7 @@ import Card from '@chakra/card';
 import Popover from '@chakra/popover';
 import Modal from '@chakra/modal';
 import Select from '@chakra/select';
+import Input from '@chakra/input';
 
 const base = {
   body: {
@@ -28,7 +29,8 @@ const base = {
     brand2: '#f4bf62',
     brand3: '#83aee1',
     brand4: '#5f7999',
-    brand5: '#1b2735'
+    brand5: '#1b2735',
+    brand6: '#135f5d'
   },
   background: {
     color1: 'rgba(206,188,155,1)',
@@ -64,7 +66,8 @@ const extended = {
     Menu,
     Popover,
     Modal,
-    Select
+    Select,
+    Input
   },
   layerStyles: {
     emergencyVote: {},
