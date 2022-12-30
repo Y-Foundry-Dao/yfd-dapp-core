@@ -14,13 +14,10 @@ import {
 import { Divider, Text } from '@chakra-ui/react';
 import InputProposalName from './inputs/InputProposalName';
 import InputDevelopmentCost from './inputs/InputDevelopmentCost';
-import InputExpiration from './inputs/InputExpiration';
 import InputGithub from './inputs/InputGithub';
 import InputInitialFunding from './inputs/InputInitialFunding';
 import InputPaymentFrequency from './inputs/InputPaymentFrequency';
-import InputPaymentSchedule from './inputs/InputPaymentSchedule';
 import InputProposalUrl from './inputs/InputProposalUrl';
-import InputQuorumPercentage from './inputs/InputQuorumPercentage';
 import InputSelfVouchedInformation from './inputs/InputSelfVouchedInformation';
 import InputStatementOfWork from './inputs/InputStatementOfWork';
 import InputTvlLimit from './inputs/InputTvlLimit';
@@ -29,16 +26,15 @@ import { useRecoilValue } from 'recoil';
 import {
   inputDeveloperWallet,
   inputDevelopmentCost,
-  inputExpiration,
   inputGithub,
   inputInitialFunding,
   inputNameProposal,
   inputNFTAmount,
+  inputNumberOfPayments,
   inputPaymentFrequency,
-  inputPaymentSchedule,
-  inputQuorumPercent,
   inputSelfVouchedInformation,
   inputStatementOfWork,
+  inputTicker,
   inputTvlLimit,
   inputUrlProposal
 } from 'recoil/input/atoms';
@@ -46,6 +42,8 @@ import txHashAtom from 'recoil/txHash/atom';
 import ProposalSubmittedText from '../ProposalSubmittedText';
 import InputNFTAmount from './inputs/InputNFTAmount';
 import InputDeveloper from './inputs/InputDeveloper';
+import InputTicker from './inputs/InputTicker';
+import InputNumberOfPayments from './inputs/InputNumberOfPayments';
 
 function ProposalCreationForm({ onClose }: any) {
   const { handleClickCreateVaultProposal } = useHandleClicks();
@@ -54,16 +52,14 @@ function ProposalCreationForm({ onClose }: any) {
   };
 
   const nameProposal = useRecoilValue(inputNameProposal);
-
+  const ticker = useRecoilValue(inputTicker);
   const urlProposal = useRecoilValue(inputUrlProposal);
   const tvlLimit = useRecoilValue(inputTvlLimit);
   const developmentCost = useRecoilValue(inputDevelopmentCost);
   const statementOfWork = useRecoilValue(inputStatementOfWork);
-  const paymentSchedule = useRecoilValue(inputPaymentSchedule);
+  const numberOfPayments = useRecoilValue(inputNumberOfPayments);
   const github = useRecoilValue(inputGithub);
-  const quorumPercent = useRecoilValue(inputQuorumPercent);
   const selfVouchedInformation = useRecoilValue(inputSelfVouchedInformation);
-  const expiration = useRecoilValue(inputExpiration);
   const paymentFrequency = useRecoilValue(inputPaymentFrequency);
   const initialFunding = useRecoilValue(inputInitialFunding);
   const nftAmount = useRecoilValue(inputNFTAmount);
@@ -78,6 +74,7 @@ function ProposalCreationForm({ onClose }: any) {
           <FormStep name="proposal" title="Proposal Details">
             <FormLayout>
               <InputProposalName />
+              <InputTicker />
               <InputProposalUrl />
               <InputStatementOfWork />
               <NextButton />
@@ -108,7 +105,7 @@ function ProposalCreationForm({ onClose }: any) {
           <FormStep name="finalizing" title="Finalizing Parameters">
             <FormLayout>
               <InputDeveloper />
-              <InputPaymentSchedule />
+              <InputNumberOfPayments />
               <InputPaymentFrequency />
               <ButtonGroup>
                 <NextButton />
@@ -125,6 +122,7 @@ function ProposalCreationForm({ onClose }: any) {
                 </Text>
                 <Divider />
                 <Property label="Name" value={nameProposal} />
+                <Property label="Ticker" value={ticker} />
                 <Property label="Proposal URL" value={urlProposal} />
                 <Property
                   label="Statement of Work URL"
@@ -151,7 +149,7 @@ function ProposalCreationForm({ onClose }: any) {
                 </Text>
                 <Divider />
                 <Property label="Developer" value={developer} />
-                <Property label="Payment Schedule" value={paymentSchedule} />
+                <Property label="Payment Schedule" value={numberOfPayments} />
                 <Property label="Payment Frequency" value={paymentFrequency} />
                 <Property label="NFT Amount" value={nftAmount} />
                 <Divider />
