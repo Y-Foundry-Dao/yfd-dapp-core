@@ -1,4 +1,4 @@
-import { Box, Flex, Spacer, Text } from '@chakra-ui/react';
+import { Box, Flex, Spacer } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import styles from '@scss/nav/main.module.scss';
 

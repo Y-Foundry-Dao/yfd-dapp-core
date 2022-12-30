@@ -8,7 +8,7 @@ import {
   inputNFTAmount,
   inputNumberOfPayments,
   inputPaymentFrequency,
-  inputSelfVoucedInformation,
+  inputSelfVouchedInformation,
   inputStakeYFD,
   inputStatementOfWork,
   inputTicker,
@@ -26,7 +26,7 @@ import {
 
 const useHandleInputs = () => {
   const setSelfVouchedInformation = useSetRecoilState(
-    inputSelfVoucedInformation
+    inputSelfVouchedInformation
   );
 
   const setAmountStakeYFD = useSetRecoilState(inputStakeYFD);

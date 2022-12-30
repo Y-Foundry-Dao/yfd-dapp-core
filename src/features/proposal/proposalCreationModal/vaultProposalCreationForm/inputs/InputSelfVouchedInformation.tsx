@@ -1,10 +1,10 @@
 import { Input, InputGroup, InputLeftAddon } from '@chakra-ui/react';
 import useHandleInputs from 'hooks/useHandleInputs';
 import { useRecoilValue } from 'recoil';
-import { inputSelfVoucedInformation } from 'recoil/input/atoms';
+import { inputSelfVouchedInformation } from 'recoil/input/atoms';
 
 function InputSelfVouchedInformation() {
-  const selfVouchedInformation = useRecoilValue(inputSelfVoucedInformation);
+  const selfVouchedInformation = useRecoilValue(inputSelfVouchedInformation);
   const { handleInputSelfVouchedInformation } = useHandleInputs();
   return (
     <InputGroup>

@@ -21,6 +21,7 @@ module.exports = function override(config) {
     '@images': 'src/assets/images',
     '@yfd': 'src/assets/images/yfd',
     '@components': 'src/components',
+    '@inputs': 'src/components/inputs',
     '@features': 'src/features',
     '@pages': 'src/pages',
     '@layouts': 'src/layouts',

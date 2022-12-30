@@ -1,7 +1,4 @@
 import styles from '@scss/app.module.scss';
-import imgBot1 from '@images/bots/bot1.png';
-import imgBot2 from '@images/bots/bot2.png';
-import imgBot3 from '@images/bots/bot3.png';
 import { SimpleGrid, GridItem, Wrap, WrapItem } from '@chakra-ui/react';
 import { Icons } from '@var/icons';
 

@@ -15,6 +15,8 @@ import CreationFormWhitelistTokenAddress from './governanceProposalCreationForm/
 import CreationFormParameter from './governanceProposalCreationForm/CreationFormParameter';
 import CreationFormText from './governanceProposalCreationForm/CreationFormText';
 import CreationFormSpend from './governanceProposalCreationForm/CreationFormSpend';
+import styles from '@scss/app.module.scss';
+import { Icons } from '@var/icons';
 
 function ProposalModal({ isOpen, onClose }: any) {
   const proposalTypeSelected = useRecoilValue(inputProposalType);
@@ -28,7 +30,14 @@ function ProposalModal({ isOpen, onClose }: any) {
     >
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Submit your own proposal</ModalHeader>
+        <ModalHeader>
+          <span
+            className={styles['icon-create'] + ' material-symbols-outlined'}
+          >
+            {Icons.propose}
+          </span>
+          Create A Proposal
+        </ModalHeader>
         <ProposalTypeSelector />
         <ModalCloseButton />
         <ModalBody>

@@ -85,8 +85,8 @@ const inputGithub = atom({
   default: ''
 });
 
-const inputSelfVoucedInformation = atom({
-  key: 'inputSelfVoucedInformation',
+const inputSelfVouchedInformation = atom({
+  key: 'inputSelfVouchedInformation',
   default: ''
 });
 
@@ -201,7 +201,7 @@ export {
   inputNumberOfPayments,
   inputPaymentFrequency,
   inputGithub,
-  inputSelfVoucedInformation,
+  inputSelfVouchedInformation,
   inputInitialFunding,
   inputNFTAmount,
   inputEmergencyExpiration,

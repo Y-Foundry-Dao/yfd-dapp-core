@@ -13,15 +13,13 @@ function ProposalTypeSelector() {
   return (
     <Select w="60%" value={proposalTypeSelected} onChange={handleChange}>
       <option value="vault">Vault Proposal</option>
-      <option value="governanceSpend">Spend Proposal</option>
-      <option value="governanceText">Text Proposal</option>
       <option value="governanceParameter">Governance Parameter</option>
-      <option value="governanceWhitelistWalletAddress">
-        Address Whitelist
-      </option>
+      <option value="governanceWhitelistWalletAddress">Role Whitelist</option>
       <option value="governanceWhitelistTokenAddress">Token Whitelist</option>
     </Select>
   );
 }
+// <option value="governanceSpend">Spend Proposal</option>
+// <option value="governanceText">Text Proposal</option>
 
 export default ProposalTypeSelector;

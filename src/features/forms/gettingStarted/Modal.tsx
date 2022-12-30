@@ -12,10 +12,10 @@ import {
   Wrap,
   WrapItem
 } from '@chakra-ui/react';
-import Voter from '@images/bots/voter/voter-bot-256.png';
-import Proposer from '@images/bots/proposer/proposer-bot-256.png';
-import Supporter from '@images/bots/supporter/supporter-bot-256.png';
-import Builder from '@images/bots/builder/builder-bot-256.png';
+import Voter from '@images/bots/voter/voter-square-256.png';
+import Proposer from '@images/bots/proposer/proposer-square-256.png';
+import Supporter from '@images/bots/supporter/supporter-square-256.png';
+import Builder from '@images/bots/builder/builder-square-256.png';
 
 export default function tutorialModal({ isOpen, onClose }: any) {
   return (

@@ -32,7 +32,7 @@ import {
   inputNFTAmount,
   inputNumberOfPayments,
   inputPaymentFrequency,
-  inputSelfVoucedInformation,
+  inputSelfVouchedInformation,
   inputStatementOfWork,
   inputTicker,
   inputTvlLimit,
@@ -59,7 +59,7 @@ function ProposalCreationForm({ onClose }: any) {
   const statementOfWork = useRecoilValue(inputStatementOfWork);
   const numberOfPayments = useRecoilValue(inputNumberOfPayments);
   const github = useRecoilValue(inputGithub);
-  const selfVouchedInformation = useRecoilValue(inputSelfVoucedInformation);
+  const selfVouchedInformation = useRecoilValue(inputSelfVouchedInformation);
   const paymentFrequency = useRecoilValue(inputPaymentFrequency);
   const initialFunding = useRecoilValue(inputInitialFunding);
   const nftAmount = useRecoilValue(inputNFTAmount);
