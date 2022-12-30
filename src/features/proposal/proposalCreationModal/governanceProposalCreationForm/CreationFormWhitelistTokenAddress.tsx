@@ -25,7 +25,7 @@ import {
 import txHashAtom from 'recoil/txHash/atom';
 import ProposalSubmittedText from '../ProposalSubmittedText';
 import InputGithub from '../vaultProposalCreationForm/inputs/InputGithub';
-import InputWhitelistWalletAddress from './inputs/InputWhitelistWalletAddress';
+import InputWhitelistWalletAddress from '@inputs/whitelist/role/address';
 
 function CreationFormWhitelistTokenAddress({ onClose }: any) {
   const { handleClickCreateProposalWhitelistTokenAddress } = useHandleClicks();

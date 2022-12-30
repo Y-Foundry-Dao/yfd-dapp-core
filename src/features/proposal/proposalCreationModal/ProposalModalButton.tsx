@@ -1,4 +1,4 @@
-import styles from '@scss/color.module.scss';
+import styles from '@scss/app.module.scss';
 import { Icons } from '@var/icons';
 
 function ProposalModalButton({ onOpen }: any) {

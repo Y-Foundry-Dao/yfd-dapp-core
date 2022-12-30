@@ -26,6 +26,9 @@
       "@components/*":[
         "./components/*"
       ],
+      "@inputs/*":[
+        "./components/inputs/*"
+      ],
       "@features/*":[
         "./features/*"
       ],
