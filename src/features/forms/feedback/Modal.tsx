@@ -17,7 +17,7 @@ import { URL_BUGREPORT, URL_PRAISEREPORT } from '@var/links';
 import { Icons } from '@var/icons';
 
 function FeedbackModal({ isOpen, onClose }: any) {
-  const [feedbackHidden, setFeedbackHidden] = useState(true);
+  const [feedbackHidden, setFeedbackHidden] = useState(false);
 
   return (
     <Modal
@@ -44,6 +44,26 @@ function FeedbackModal({ isOpen, onClose }: any) {
               <WrapItem className={styles['gsContent-feature']}>
                 <SimpleGrid>
                   <GridItem>
+                    <i
+                      className="material-symbols-outlined"
+                      onClick={() => setFeedbackHidden((s) => !s)}
+                    >
+                      {Icons.feedback}
+                    </i>
+                    Submit Feedback Below
+                  </GridItem>
+                </SimpleGrid>
+              </WrapItem>
+              <WrapItem className={styles['gsContent-feature']}>
+                <SimpleGrid>
+                  <GridItem>
+                    <p>OR</p>
+                  </GridItem>
+                </SimpleGrid>
+              </WrapItem>
+              <WrapItem className={styles['gsContent-feature']}>
+                <SimpleGrid>
+                  <GridItem>
                     <a href={URL_BUGREPORT} target="_blank" onClick={onClose}>
                       <i className="material-symbols-outlined">{Icons.error}</i>
                       Report a Bug
@@ -64,26 +84,6 @@ function FeedbackModal({ isOpen, onClose }: any) {
                       </i>
                       Praise a Feature
                     </a>
-                  </GridItem>
-                </SimpleGrid>
-              </WrapItem>
-              <WrapItem className={styles['gsContent-feature']}>
-                <SimpleGrid>
-                  <GridItem>
-                    <p>OR</p>
-                  </GridItem>
-                </SimpleGrid>
-              </WrapItem>
-              <WrapItem className={styles['gsContent-feature']}>
-                <SimpleGrid>
-                  <GridItem>
-                    <i
-                      className="material-symbols-outlined"
-                      onClick={() => setFeedbackHidden((s) => !s)}
-                    >
-                      {Icons.feedback}
-                    </i>
-                    Submit Quick Feedback
                   </GridItem>
                 </SimpleGrid>
               </WrapItem>
