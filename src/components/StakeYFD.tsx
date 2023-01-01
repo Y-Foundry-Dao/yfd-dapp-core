@@ -54,6 +54,8 @@ import { inputStakeYFD } from 'recoil/input/atoms';
 import useHandleInputs from '@hooks/useHandleInputs';
 import styles from '@scss/app.module.scss';
 import { Icons } from '@utilities/variables/icons';
+import useContractForge from 'hooks/useContractForge';
+import convertFromBase from 'utilities/converters/convertFromBase';
 
 function StakeYFD() {
   const [durationDepositYFD, setDurationDepositYFD] = useState(
