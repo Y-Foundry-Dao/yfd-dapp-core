@@ -8,7 +8,7 @@ import {
   theme
 } from '@chakra-ui/react';
 import ListItem from './Item';
-import ProposalModal from '@features/proposal/proposalCreationModal/ProposalModal';
+import ProposalModal from '@features/proposals/modal';
 import CreateGov from './ButtonCreate';
 
 function List({ items }: any) {

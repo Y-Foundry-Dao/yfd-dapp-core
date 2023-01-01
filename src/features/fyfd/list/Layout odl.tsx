@@ -7,7 +7,7 @@ import {
   Spacer
 } from '@chakra-ui/react';
 import useContractForge from '@hooks/useContractForge';
-import ProposalModal from '@features/proposal/proposalCreationModal/ProposalModal';
+import ProposalModal from '@features/proposals/modal';
 import List from './List';
 import EmptyList from './Empty';
 import ButtonDeposit from './ButtonDeposit';

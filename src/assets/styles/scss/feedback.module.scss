@@ -41,6 +41,13 @@
    
    i {
       width: 100%;
+      color: var(--theme-inactive-color);
+   }
+
+   span {
+      color: var(--theme-inactive-color);
+      width: 100%;
+      font-size: 3rem;
    }
 
    i:hover {

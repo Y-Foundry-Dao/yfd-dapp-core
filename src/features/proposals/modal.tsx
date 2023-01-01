@@ -6,15 +6,15 @@ import {
   ModalBody,
   ModalCloseButton
 } from '@chakra-ui/react';
-import ProposalCreationForm from './vaultProposalCreationForm/VaultProposalCreationForm';
-import ProposalTypeSelector from './proposalTypeSelector/ProposalTypeSelector';
-import CreationFormWhitelistWalletAddress from './governanceProposalCreationForm/CreationFormWhitelistWalletAddress';
+import ProposalCreationForm from '../proposal/proposalCreationModal/vaultProposalCreationForm/VaultProposalCreationForm';
+import ProposalTypeSelector from '../proposal/proposalCreationModal/proposalTypeSelector/ProposalTypeSelector';
+import CreationFormWhitelistWalletAddress from '../proposal/proposalCreationModal/governanceProposalCreationForm/CreationFormWhitelistWalletAddress';
 import { inputProposalType } from 'recoil/input/atoms';
 import { useRecoilValue } from 'recoil';
-import CreationFormWhitelistTokenAddress from './governanceProposalCreationForm/CreationFormWhitelistTokenAddress';
-import CreationFormParameter from './governanceProposalCreationForm/CreationFormParameter';
-import CreationFormText from './governanceProposalCreationForm/CreationFormText';
-import CreationFormSpend from './governanceProposalCreationForm/CreationFormSpend';
+import CreationFormWhitelistTokenAddress from '../proposal/proposalCreationModal/governanceProposalCreationForm/CreationFormWhitelistTokenAddress';
+import CreationFormParameter from '../proposal/proposalCreationModal/governanceProposalCreationForm/CreationFormParameter';
+import CreationFormText from '../proposal/proposalCreationModal/governanceProposalCreationForm/CreationFormText';
+import CreationFormSpend from '../proposal/proposalCreationModal/governanceProposalCreationForm/CreationFormSpend';
 import styles from '@scss/app.module.scss';
 import { Icons } from '@var/icons';
 

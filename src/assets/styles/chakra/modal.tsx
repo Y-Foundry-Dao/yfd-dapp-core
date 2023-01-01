@@ -23,11 +23,11 @@ const baseStyle = definePartsStyle({
   },
   body: {},
   closeButton: {
-    bg: 'orange.500',
-    color: 'yellow.500',
+    bg: 'brand4',
+    color: 'brand3',
     _hover: {
-      color: 'black',
-      bg: 'purple.500'
+      color: 'brand1',
+      bg: 'brand6'
     }
   },
   footer: {},

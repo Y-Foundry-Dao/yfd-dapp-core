@@ -12,7 +12,7 @@ import InitiativeProposals from '@features/ProposalsInitiatives';
 import DepositYfd from '@pages/DepositYfd';
 import VaultsFeatured from '@features/VaultsFeatured';
 import InitiativesFeatured from '@features/InitiativesFeatured';
-import GovernanceParameters from '@features/governance/parameters/list/Layout';
+import GovernanceParameters from '@features/proposals/parameter/list/Layout';
 import Favorites from '@features/profile/Favorites';
 import NoMatch from '@pages/404';
 

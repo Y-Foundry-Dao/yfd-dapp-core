@@ -5,6 +5,7 @@ import styles from '@scss/app.module.scss';
 import yLogo from '@yfd/logo-horizontal-orange-white.svg';
 
 import FYFD from '@components/StakeYFD';
+import Profile from '@components/Profile';
 
 export default function Header() {
   return (
@@ -17,6 +18,9 @@ export default function Header() {
         <Box className={styles['header-profile']}>
           <FYFD />
           <WalletConnect />
+        </Box>
+        <Box className={styles['header-profile']}>
+          <Profile />
         </Box>
       </Flex>
     </>
