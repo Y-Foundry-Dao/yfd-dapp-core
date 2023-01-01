@@ -7,7 +7,7 @@ import {
   PATH_PROFILE_PFP,
   PATH_PROFILE_PFP_SUFFIX,
   PATH_PROFILE_SUFFIX
-} from 'utilities/variables';
+} from '@var/profiles';
 
 export default function useProfile(address: any) {
   const [profile, setProfile] = useRecoilState(profileState);
