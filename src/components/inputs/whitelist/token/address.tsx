@@ -1,10 +1,7 @@
 import { Input } from '@chakra-ui/react';
 import useHandleInputs from 'hooks/useHandleInputs';
 import { useRecoilValue } from 'recoil';
-import {
-  inputDeveloperWallet,
-  inputWhitelistWalletAddress
-} from 'recoil/input/atoms';
+import { inputWhitelistWalletAddress } from 'recoil/input/atoms';
 
 function InputWhitelistWalletAddress() {
   const whitelistWalletAddress = useRecoilValue(inputWhitelistWalletAddress);
