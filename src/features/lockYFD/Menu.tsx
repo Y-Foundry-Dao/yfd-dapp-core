@@ -3,6 +3,7 @@ import { Icons } from '@var/icons';
 import styles from '@scss/app.module.scss';
 import useContractForge from 'hooks/useContractForge';
 import convertFromBase from 'utilities/converters/convertFromBase';
+import FyfdPopoverEmpty from './PopoverEmpty';
 
 export default function LockYFDMenu() {
   const { tokenBalance } = useContractForge();
@@ -20,6 +21,7 @@ export default function LockYFDMenu() {
         <PopoverTrigger>
           <Button className={styles.menuButton}>Lock $YFD</Button>
         </PopoverTrigger>
+        <FyfdPopoverEmpty />
       </Popover>
     );
   } else {

@@ -28,7 +28,7 @@ import styles from '@scss/app.module.scss';
 import { Icons } from '@utilities/variables/icons';
 import LockYfdForm from './Form';
 
-export default function MenuFyfdBalance() {
+export default function FyfdPopoverEmpty() {
   const [durationDepositYFD, setDurationDepositYFD] = useState(
     DEFAULT_YFD_LOCK_DURATION
   );
@@ -40,26 +40,6 @@ export default function MenuFyfdBalance() {
   const { handleInputStakeYFD } = useHandleInputs();
 
   return (
-    <Popover>
-      <PopoverTrigger>
-        <Button className={styles.stakeYfd}>
-          <Flex className={styles.stakeYfdIcons}>
-            <Box className={styles.stakeYfdIcon}>
-              <span className="material-symbols-outlined">{Icons.vote}</span>
-            </Box>
-            <Box className={styles.stakeYfdIcon}>
-              <span className="material-symbols-outlined">
-                {Icons.proposal}
-              </span>
-            </Box>
-            <Box className={styles.stakeYfdIcon}>
-              <span className="material-symbols-outlined">
-                {Icons.guardian}
-              </span>
-            </Box>
-          </Flex>
-        </Button>
-      </PopoverTrigger>
       <Portal>
         <PopoverContent>
           <PopoverArrow />
@@ -90,6 +70,5 @@ export default function MenuFyfdBalance() {
           </PopoverFooter>
         </PopoverContent>
       </Portal>
-    </Popover>
   );
 }
