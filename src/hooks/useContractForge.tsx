@@ -10,7 +10,6 @@ import queryBalanceDetail from 'utilities/messagesQuery/forge/queryBalanceDetail
 import stakedYFDAtom from 'recoil/stakedYFD/atom';
 import queryAllVaultProposals from 'utilities/messagesQuery/forge/queryAllVaultProposals';
 import queryVaultFundingMath from 'utilities/messagesQuery/forge/queryVaultFundingMath';
-import { inputDevelopmentCost, inputNFTAmount } from 'recoil/input/atoms';
 import convertToBase from 'utilities/converters/convertToBase';
 import convertFromBase from 'utilities/converters/convertFromBase';
 import queryAllGovernanceParameters from 'utilities/messagesQuery/forge/queryAllGovernanceParameters';
@@ -21,7 +20,7 @@ import queryAddressWhitelist from 'utilities/messagesQuery/forge/queryAddressWhi
 import queryProposalByIndex from 'utilities/messagesQuery/forge/queryProposalByIndex';
 import queryTokenWhitelist from 'utilities/messagesQuery/forge/queryTokenWhitelist';
 
-const useContractForge = () => {
+const useContractForge = (developmentCost?: any, nftQuantity?: any) => {
   const { queryMsg } = useMsg();
   const connectedWallet = useConnectedWallet();
 
@@ -39,8 +38,6 @@ const useContractForge = () => {
   const setStakedYFD = useSetRecoilState(stakedYFDAtom);
 
   const txHashInRecoil = useRecoilValue(txHashAtom);
-  const developmentCost = useRecoilValue(inputDevelopmentCost);
-  const nftAmount = useRecoilValue(inputNFTAmount);
 
   const getAllGovernanceParameters = async () => {
     const response = await queryMsg(FORGE_TEST, queryAllGovernanceParameters());
@@ -129,11 +126,14 @@ const useContractForge = () => {
     return response;
   };
 
-  const getVaultFundingMath = async () => {
+  const getVaultFundingMath = async (
+    developmentCost: number,
+    nftQuantity: number
+  ) => {
     const devCostConverted = convertToBase(developmentCost);
     const response: any = await queryMsg(
       FORGE_TEST,
-      queryVaultFundingMath(devCostConverted, nftAmount)
+      queryVaultFundingMath(devCostConverted, nftQuantity)
     );
     return response;
   };
@@ -183,7 +183,10 @@ const useContractForge = () => {
   };
 
   const setRequiredInitialFundingToState = async () => {
-    const vaultFundingMath: any = await getVaultFundingMath();
+    const vaultFundingMath: any = await getVaultFundingMath(
+      developmentCost,
+      nftQuantity
+    );
     if (vaultFundingMath === undefined) {
       setRequiredInitialFunding('0');
       return;
@@ -202,7 +205,7 @@ const useContractForge = () => {
 
   useEffect(() => {
     setRequiredInitialFundingToState();
-  }, [developmentCost, nftAmount]);
+  }, [developmentCost, nftQuantity]);
 
   useEffect(() => {
     setTokenBalanceToState();

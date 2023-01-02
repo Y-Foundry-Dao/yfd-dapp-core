@@ -1,14 +1,14 @@
-import { YFD_TEST } from '@utilities/variables';
-
 const msgEncodedProposal = (
-  nameProposal: string,
+  name: string,
   ticker: string,
-  urlProposal: string,
+  proposalUrl: string,
   tvlLimit: number,
+  contact: string[],
   developer: string,
   developmentCost: number,
   fundingOnly: boolean,
-  nftAmount: number,
+  fundingDenomination: string,
+  nftQuantity: number,
   statementOfWork: string,
   numberOfPayments: number,
   paymentFrequency: number,
@@ -19,18 +19,16 @@ const msgEncodedProposal = (
   "create_vault_proposal": {
     "msg": {
       "proposal_info": {
-        "name": "${nameProposal}",
+        "name": "${name}",
         "ticker": "${ticker}",
-        "proposal_url": "${urlProposal}",
+        "proposal_url": "${proposalUrl}",
         "tvl_limit": "${tvlLimit}",
-        "contact": [
-          "nobody@www.exmaple.com"
-        ],
+        "contact": ["${contact}"],
         "developer": "${developer}",
         "development_cost": "${developmentCost}",
         "funding_only": ${fundingOnly},
-        "funding_denomination": "${YFD_TEST}",
-        "nft_quantity": ${nftAmount},
+        "funding_denomination": "${fundingDenomination}",
+        "nft_quantity": ${nftQuantity},
         "statement_of_work": "${statementOfWork}",
         "num_payments": ${numberOfPayments},
         "payment_frequency": ${paymentFrequency},
