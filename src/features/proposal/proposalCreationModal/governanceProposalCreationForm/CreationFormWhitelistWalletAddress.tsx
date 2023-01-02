@@ -27,7 +27,6 @@ import {
 } from 'recoil/input/atoms';
 import txHashAtom from 'recoil/txHash/atom';
 import ProposalSubmittedText from '../ProposalSubmittedText';
-import InputGithub from '../vaultProposalCreationForm/inputs/InputGithub';
 import InputWhitelistWalletAddress from '@inputs/whitelist/role/address';
 
 function CreationFormWhitelistWalletAddress({ onClose }: any) {

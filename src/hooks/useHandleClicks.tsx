@@ -4,25 +4,10 @@ import Base64 from 'utilities/base64';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import msgEncodedStake from 'utilities/messagesToEncode/msgEncodedStake';
 import msgStakeYFD from 'utilities/messagesExecute/msgStakeYFD';
-import msgEncodedProposal from 'utilities/messagesToEncode/msgEncodedProposal';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import msgExecuteSend from 'utilities/messagesExecute/yfd/msgExecuteSend';
 import {
-  inputDevelopmentCost,
-  inputGithub,
-  inputInitialFunding,
-  inputNameProposal,
-  inputTicker,
-  inputPaymentFrequency,
-  inputNumberOfPayments,
-  inputSelfVouchedInformation,
   inputStakeYFD,
-  inputFundingOnly,
-  inputStatementOfWork,
-  inputTvlLimit,
-  inputUrlProposal,
-  inputNFTAmount,
-  inputDeveloperWallet,
   inputWhitelistWalletAddress,
   inputWhitelistWalletAddressName,
   inputWhitelistWalletAddressUrl,
@@ -48,7 +33,6 @@ import msgVoteAbstain from 'utilities/messagesExecute/vote/msgVoteAbstain';
 import msgVoteDenyWithPenalty from 'utilities/messagesExecute/vote/msgVoteDenyWithPenalty';
 import txHashAtom from 'recoil/txHash/atom';
 import {
-  SUCCESS_CREATE_PROPOSAL,
   SUCCESS_FINALIZED,
   SUCCESS_FUND_PROPOSAL,
   SUCCESS_STAKE,
@@ -74,22 +58,6 @@ const useHandleClicks = () => {
 
   const isEmergency = useRecoilValue(inputIsEmergency);
   const justificationLink = useRecoilValue(inputJustificationLink);
-
-  // Pulling in Recoil Values for VaultProposals
-  const nameProposal = useRecoilValue(inputNameProposal);
-  const ticker = useRecoilValue(inputTicker);
-  const urlProposal = useRecoilValue(inputUrlProposal);
-  const tvlLimit = useRecoilValue(inputTvlLimit);
-  const developmentCost = useRecoilValue(inputDevelopmentCost);
-  const fundingOnly = useRecoilValue(inputFundingOnly);
-  const statementOfWork = useRecoilValue(inputStatementOfWork);
-  const numberOfPayments = useRecoilValue(inputNumberOfPayments);
-  const github = useRecoilValue(inputGithub);
-  const selfVouchedInformation = useRecoilValue(inputSelfVouchedInformation);
-  const paymentFrequency = useRecoilValue(inputPaymentFrequency);
-  const initialFunding = useRecoilValue(inputInitialFunding);
-  const nftAmount = useRecoilValue(inputNFTAmount);
-  const developer = useRecoilValue(inputDeveloperWallet);
 
   // Pulling in Recoil Values for Address Whitelist
   const whitelistWalletAddress = useRecoilValue(inputWhitelistWalletAddress);
@@ -149,35 +117,6 @@ const useHandleClicks = () => {
     toastSuccessful(tx, SUCCESS_STAKE);
     setAmountStakeYFD(0);
     return;
-  };
-
-  const handleClickCreateVaultProposal = async () => {
-    if (connectedWallet) {
-      const msgToEncode = msgEncodedProposal(
-        nameProposal,
-        ticker,
-        urlProposal,
-        tvlLimit,
-        developer,
-        convertToBase(developmentCost),
-        fundingOnly,
-        nftAmount,
-        statementOfWork,
-        numberOfPayments,
-        paymentFrequency,
-        github,
-        selfVouchedInformation
-      );
-      const encodedMessage = Base64.btoa(msgToEncode);
-      const msgCreateProposal = msgExecuteSend(
-        FORGE_TEST,
-        encodedMessage,
-        convertToBase(initialFunding)
-      );
-      const tx = await executeMsg(YFD_TEST, msgCreateProposal);
-      console.log(tx);
-      toastSuccessful(tx, SUCCESS_CREATE_PROPOSAL);
-    }
   };
 
   const handleClickCreateProposalWhitelistWalletAddress = async () => {
@@ -315,7 +254,7 @@ const useHandleClicks = () => {
 
   return {
     handleClickStakeYFD,
-    handleClickCreateVaultProposal,
+    // handleClickCreateVaultProposal,
     handleClickFundProposal,
     handleClickVoteAffirm,
     handleClickVoteDeny,
