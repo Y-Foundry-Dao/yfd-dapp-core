@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import useHandleClicks from '@hooks/useHandleClicks';
-import { useConnectedWallet } from '@terra-money/wallet-provider';
-import { useWallet as disconnectWallet } from '@terra-money/wallet-provider';
+import { useConnectedWallet, useWallet } from '@terra-money/wallet-provider';
 import BalanceYFD from './BalanceYFD';
 import BalancefYFD from './BalancefYFD';
 import { format } from 'date-fns';
@@ -20,21 +19,7 @@ import {
   Text,
   Button,
   Flex,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuGroup,
-  MenuItem,
-  MenuOptionGroup,
-  MenuDivider,
-  Badge,
   Box,
-  Spacer,
   useClipboard
 } from '@chakra-ui/react';
 
@@ -51,15 +36,17 @@ import {
   PATH_PROFILE_PFP_DEFAULT
 } from 'utilities/variables';
 
-import useWallet from '@hooks/useWallet';
+import useWalletAddress from '@hooks/useWalletAddress';
 import useProfile from '@hooks/useProfile';
 import { Web3Address } from '@saas-ui/web3';
 
 export default function ProfileHeader() {
-  const walletAddress = useWallet() as any;
-  console.log('walletAddress: ' + walletAddress);
-  const { disconnect } = disconnectWallet();
-  const { hasCopied, onCopy } = useClipboard(useWallet() as string);
+  const { status } = useWallet();
+  const { disconnect } = useWallet();
+  const walletAddress = useWalletAddress() as string;
+
+  console.log('status: ' + status);
+  const { hasCopied, onCopy } = useClipboard(useWalletAddress() as string);
   const profile = useProfile(walletAddress) as any;
   console.log('loaded profile: ' + JSON.stringify(profile));
 

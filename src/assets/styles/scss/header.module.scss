@@ -80,6 +80,9 @@ $maxWidth: 40.625rem;
     box-shadow: 0.1rem 0.3rem 0.7rem 0.1rem var(--theme-inactive-color);
 }
 
+.menuButton { 
+    margin-right: 1rem;
+}
 .stakeYfd {
     height: ($headerHeight * 0.75);
     margin-right: 1rem;
