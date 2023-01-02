@@ -1,6 +1,8 @@
 import { Image, Flex, Box } from '@chakra-ui/react';
 import WalletConnect from '@features/walletConnect/WalletConnect';
 
+import useWallet from '@hooks/useWallet';
+
 import styles from '@scss/app.module.scss';
 import yLogo from '@yfd/logo-horizontal-orange-white.svg';
 
@@ -8,6 +10,20 @@ import FYFD from '@components/StakeYFD';
 import Profile from '@components/Profile';
 
 export default function Header() {
+  const address = useWallet();
+
+  const renderProfile = () => {
+    if (address) {
+      return (
+        <>
+          <Box className={styles['header-profile']}>
+            <Profile />
+          </Box>
+        </>
+      );
+    }
+  };
+
   return (
     <>
       <Flex className={styles.wide}>
@@ -19,9 +35,7 @@ export default function Header() {
           <FYFD />
           <WalletConnect />
         </Box>
-        <Box className={styles['header-profile']}>
-          <Profile />
-        </Box>
+        {renderProfile()}
       </Flex>
     </>
   );
