@@ -19,6 +19,12 @@
     @media screen and (min-width: 945px) {
         display: none;
     }
+    @media screen and (max-width: 535px) {
+        font-size: 0.9rem;
+    }
+    @media screen and (max-width: 515px) {
+        font-size: 0.85rem;
+    }
 }
  
 .menu-link-main {

@@ -1,17 +1,11 @@
 import { Image, Flex, Box } from '@chakra-ui/react';
-import WalletConnect from '@features/walletConnect/WalletConnect';
-
-import useWallet from '@hooks/useWallet';
-
 import styles from '@scss/app.module.scss';
 import yLogo from '@yfd/logo-horizontal-orange-white.svg';
 
+import WalletConnect from '@features/walletConnect/WalletConnect';
 import FYFD from '@components/StakeYFD';
-import Profile from '@components/Profile';
 
 export default function Header() {
-  const address = useWallet();
-
   return (
     <>
       <Flex className={styles.wide}>
