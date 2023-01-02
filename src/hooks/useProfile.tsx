@@ -1,22 +1,13 @@
 import axios from 'axios';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { useEffect } from 'react';
 import { profileState } from '@recoil/profile/atoms';
-import {
-  PATH_PROFILE,
-  PATH_PROFILE_PFP,
-  PATH_PROFILE_PFP_SUFFIX,
-  PATH_PROFILE_SUFFIX
-} from '@var/profiles';
+import { PATH_PROFILE, PATH_PROFILE_SUFFIX } from '@var/profiles';
 
 export default function useProfile(address: any) {
   const [profile, setProfile] = useRecoilState(profileState);
-  console.log('connected wallet address: ' + address);
 
   const profileUrl = PATH_PROFILE + address + PATH_PROFILE_SUFFIX;
-  const profilePfpUrl = PATH_PROFILE_PFP + address + PATH_PROFILE_PFP_SUFFIX;
-  console.log('profileUrl: ' + profileUrl);
-  console.log('profilePfpUrl: ' + profilePfpUrl);
 
   useEffect(() => {
     async function fetchData() {
@@ -41,8 +32,6 @@ export default function useProfile(address: any) {
               platformAddress: platformAddress
             }));
           }
-        } else {
-          console.error('profile data missing');
         }
       } catch (error) {
         console.error(error);
@@ -50,6 +39,6 @@ export default function useProfile(address: any) {
     }
     fetchData();
   }, [profileUrl]);
-  console.log('useProfile Loaded:', profile);
+
   return profile;
 }

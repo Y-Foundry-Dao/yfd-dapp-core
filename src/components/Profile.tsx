@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import useHandleClicks from '@hooks/useHandleClicks';
+import { useConnectedWallet } from '@terra-money/wallet-provider';
+import { useWallet as disconnectWallet } from '@terra-money/wallet-provider';
 import BalanceYFD from './BalanceYFD';
 import BalancefYFD from './BalancefYFD';
 import { format } from 'date-fns';
@@ -26,12 +28,14 @@ import {
   Menu,
   MenuButton,
   MenuList,
+  MenuGroup,
   MenuItem,
   MenuOptionGroup,
   MenuDivider,
   Badge,
   Box,
-  Spacer
+  Spacer,
+  useClipboard
 } from '@chakra-ui/react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -46,16 +50,22 @@ import {
   PATH_PROFILE_SUFFIX,
   PATH_PROFILE_PFP_DEFAULT
 } from 'utilities/variables';
+
 import useWallet from '@hooks/useWallet';
 import useProfile from '@hooks/useProfile';
+import { Web3Address } from '@saas-ui/web3';
 
 export default function ProfileHeader() {
-  const address = useWallet();
-  const profile = useProfile(address) as any;
+  const walletAddress = useWallet() as any;
+  console.log('walletAddress: ' + walletAddress);
+  const { disconnect } = disconnectWallet();
+  const { hasCopied, onCopy } = useClipboard(useWallet() as string);
+  const profile = useProfile(walletAddress) as any;
   console.log('loaded profile: ' + JSON.stringify(profile));
 
-  const profileUrl = PATH_PROFILE + address + PATH_PROFILE_SUFFIX;
-  const profilePfpUrl = PATH_PROFILE_PFP + address + PATH_PROFILE_PFP_SUFFIX;
+  const profileUrl = PATH_PROFILE + walletAddress + PATH_PROFILE_SUFFIX;
+  const profilePfpUrl =
+    PATH_PROFILE_PFP + walletAddress + PATH_PROFILE_PFP_SUFFIX;
   const instagramUrl =
     'https://www.instagram.com/' + profile.platforms.instagram;
   const twitterUrl = 'https://www.twitter.com/' + profile.platforms.twitter;
@@ -78,7 +88,9 @@ export default function ProfileHeader() {
       <Portal>
         <PopoverContent>
           <PopoverArrow />
-          <PopoverHeader>{profile.name}</PopoverHeader>
+          <PopoverHeader className={styles.profileMenuName}>
+            {profile.name}
+          </PopoverHeader>
           <PopoverCloseButton />
           <PopoverBody>
             <Flex>
@@ -108,6 +120,31 @@ export default function ProfileHeader() {
               </Box>
             </Flex>
           </PopoverBody>
+          <PopoverFooter className={styles.profileMenuWallet}>
+            <Box>
+              <Button onClick={onCopy} className={styles.profileMenuAddress}>
+                {hasCopied ? (
+                  'Copied!'
+                ) : (
+                  <Web3Address
+                    address={walletAddress}
+                    startLength={8}
+                    endLength={12}
+                  />
+                )}
+              </Button>
+              <Button
+                as={Button}
+                width="100%"
+                onClick={() => {
+                  disconnect();
+                }}
+                className={styles.profileMenuDisconnect}
+              >
+                Disconnect
+              </Button>
+            </Box>
+          </PopoverFooter>
           <PopoverFooter className={styles.profileMenuFooter}>
             <Box className={styles.profileMenuFooterPlatforms}>
               <a href={instagramUrl} target="_blank">
