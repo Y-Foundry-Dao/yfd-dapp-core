@@ -136,6 +136,11 @@ $maxWidth: 40.625rem;
     }
 }
 
+.profileMenuName {
+    font-weight: 600;
+    color: var(--theme-special-color);
+}
+
 .profileMenuIcon {
     width: 100%;
     font-size: 1.5rem;
@@ -150,14 +155,31 @@ $maxWidth: 40.625rem;
 }
 
 .profileMenuText {
-    padding: 0;
+    padding: 0.75rem;
     width: 93%;
     position: absolute;
     background: var(--theme-color-darkest);
+    border-radius: var(--theme-border-radius);
     filter: brightness(2);
-    padding: 0.75rem;
 }
 
+.profileMenuWallet {
+    width: 100%;
+    text-align: center;
+    background: var(--theme-color-darker);
+}
+
+.profileMenuAddress {
+    font-size: 0.75rem;
+    width: 85%;
+    background-color: var(--theme-color-darkest);
+}
+
+.profileMenuDisconnect {
+    width: 85%;
+    margin-left: auto;
+    background: var(--theme-color-darker);
+}
 .profileMenuFooter {
     justify-content: space-between;
     background-color: var(--theme-color-darkest);

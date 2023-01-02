@@ -12,18 +12,6 @@ import Profile from '@components/Profile';
 export default function Header() {
   const address = useWallet();
 
-  const renderProfile = () => {
-    if (address) {
-      return (
-        <>
-          <Box className={styles['header-profile']}>
-            <Profile />
-          </Box>
-        </>
-      );
-    }
-  };
-
   return (
     <>
       <Flex className={styles.wide}>
@@ -35,7 +23,6 @@ export default function Header() {
           <FYFD />
           <WalletConnect />
         </Box>
-        {renderProfile()}
       </Flex>
     </>
   );
