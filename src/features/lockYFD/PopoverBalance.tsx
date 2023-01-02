@@ -40,56 +40,35 @@ export default function MenuFyfdBalance() {
   const { handleInputStakeYFD } = useHandleInputs();
 
   return (
-    <Popover>
-      <PopoverTrigger>
-        <Button className={styles.stakeYfd}>
-          <Flex className={styles.stakeYfdIcons}>
-            <Box className={styles.stakeYfdIcon}>
-              <span className="material-symbols-outlined">{Icons.vote}</span>
-            </Box>
-            <Box className={styles.stakeYfdIcon}>
-              <span className="material-symbols-outlined">
-                {Icons.proposal}
-              </span>
-            </Box>
-            <Box className={styles.stakeYfdIcon}>
-              <span className="material-symbols-outlined">
-                {Icons.guardian}
-              </span>
-            </Box>
-          </Flex>
-        </Button>
-      </PopoverTrigger>
-      <Portal>
-        <PopoverContent>
-          <PopoverArrow />
-          <PopoverHeader>
-            fYFD <BalancefYFD />
-            <br />
-            YFD:
-            <b>
-              <BalanceYFD />
-            </b>
-          </PopoverHeader>
-          <PopoverCloseButton />
-          <PopoverBody>
-            <LockYfdForm />
-          </PopoverBody>
-          <PopoverFooter>
-            <Button
-              className={styles['wide']}
-              onClick={async () => {
-                return await handleClickStakeYFD(
-                  amountStakeYFD,
-                  Number(durationDepositYFD)
-                );
-              }}
-            >
-              Deposit
-            </Button>
-          </PopoverFooter>
-        </PopoverContent>
-      </Portal>
-    </Popover>
+    <Portal>
+      <PopoverContent>
+        <PopoverArrow />
+        <PopoverHeader>
+          fYFD <BalancefYFD />
+          <br />
+          YFD:
+          <b>
+            <BalanceYFD />
+          </b>
+        </PopoverHeader>
+        <PopoverCloseButton />
+        <PopoverBody>
+          <LockYfdForm />
+        </PopoverBody>
+        <PopoverFooter>
+          <Button
+            className={styles['wide']}
+            onClick={async () => {
+              return await handleClickStakeYFD(
+                amountStakeYFD,
+                Number(durationDepositYFD)
+              );
+            }}
+          >
+            Deposit
+          </Button>
+        </PopoverFooter>
+      </PopoverContent>
+    </Portal>
   );
 }
