@@ -5,6 +5,7 @@ import Popover from '@chakra/popover';
 import Modal from '@chakra/modal';
 import Select from '@chakra/select';
 import Input from '@chakra/input';
+import NumberInput from '@chakra/number-input';
 
 const base = {
   body: {
@@ -67,7 +68,8 @@ const extended = {
     Popover,
     Modal,
     Select,
-    Input
+    Input,
+    NumberInput
   },
   layerStyles: {
     emergencyVote: {},

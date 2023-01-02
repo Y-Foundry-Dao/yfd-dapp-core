@@ -65,6 +65,7 @@ export default function LockYfdForm() {
         inputMode="decimal"
         onChange={handleInputStakeYFD}
         value={amountStakeYFD}
+        variant="primary"
       >
         <NumberInputField />
         <NumberInputStepper>
@@ -72,15 +73,12 @@ export default function LockYfdForm() {
           <NumberDecrementStepper />
         </NumberInputStepper>
       </NumberInput>
-      <Menu>
+      <Menu placement="bottom-end">
         <MenuButton as={Button} marginLeft={3}>
           {durationDepositYFDDate}
         </MenuButton>
         <MenuList>
-          <MenuOptionGroup
-            defaultValue="{DEFAULT_YFD_LOCK_DURATION}"
-            title="Lock Duration : Power"
-          >
+          <MenuOptionGroup defaultValue="{DEFAULT_YFD_LOCK_DURATION}">
             <MenuDivider />
             <MenuItem
               value={CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_MINIMUM}

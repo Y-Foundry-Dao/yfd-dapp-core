@@ -17,7 +17,7 @@ export default function LockYFDMenu() {
   let message;
   if (1 > balancefYFD) {
     return (
-      <Popover>
+      <Popover placement="bottom-end">
         <PopoverTrigger>
           <Button className={styles.menuButton}>Lock $YFD</Button>
         </PopoverTrigger>
