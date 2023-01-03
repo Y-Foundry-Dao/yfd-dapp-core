@@ -1,4 +1,3 @@
-import { useConnectedWallet } from '@terra-money/wallet-provider';
 import useMsg from './useMsg';
 import queryBalance from 'utilities/messagesQuery/cw20/queryBalance';
 import { useEffect, useState } from 'react';
@@ -9,25 +8,18 @@ import queryDownloadLogo from 'utilities/messagesQuery/cw20/queryDownloadLogo';
 import queryMarketingInfo from 'utilities/messagesQuery/cw20/queryMarketingInfo';
 import queryAllAccounts from 'utilities/messagesQuery/cw20/queryAllAccounts';
 
-const useContractCW20 = (contract: string) => {
+const useContractCW20 = (contract: string, address: string) => {
   const { queryMsg } = useMsg();
-  const connectedWallet = useConnectedWallet();
 
-  const [tokenBalance, setTokenBalance] = useState('0');
+  const [tokenBalance, setTokenBalance] = useState(0);
   const [tokenInfo, setTokenInfo] = useState({});
   const [marketingInfo, setMarketingInfo] = useState({});
   const [allAccounts, setAllAccounts] = useState([]);
 
   const txHashInRecoil = useRecoilValue(txHashAtom);
 
-  const getBalance = async () => {
-    if (!connectedWallet) {
-      return;
-    }
-    const response = await queryMsg(
-      contract,
-      queryBalance(connectedWallet?.walletAddress)
-    );
+  const getBalance = async (address: string) => {
+    const response = await queryMsg(contract, queryBalance(address));
     return response;
   };
 
@@ -55,12 +47,13 @@ const useContractCW20 = (contract: string) => {
   // * Ultimately Allowances aren't used in v1 but just available through the CW20 token standard
 
   const setTokenBalanceToState = async () => {
-    const tokenBalance: any = await getBalance();
+    const tokenBalance: any = await getBalance(address);
     if (tokenBalance === undefined) {
-      setTokenBalance('0');
+      setTokenBalance(0);
       return;
     }
-    setTokenBalance(tokenBalance.balance);
+    console.log(tokenBalance);
+    setTokenBalance(Number(tokenBalance.balance));
   };
 
   const setTokenInfoToState = async () => {
@@ -80,7 +73,7 @@ const useContractCW20 = (contract: string) => {
 
   useEffect(() => {
     setTokenBalanceToState();
-  }, [connectedWallet, contract, txHashInRecoil]);
+  }, [contract, txHashInRecoil]);
 
   useEffect(() => {
     setTokenInfoToState();

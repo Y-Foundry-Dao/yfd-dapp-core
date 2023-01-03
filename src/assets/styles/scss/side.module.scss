@@ -48,7 +48,7 @@
      border-radius: 0.5em;
      transition: 0.2s;
      &:hover {
-      background-color: rgba(254, 254, 255, 0.3);
+      background-color: var(--theme-bg-menu-hover);
      }
     }
     i {
@@ -65,5 +65,9 @@
     .image {
         @extend i;
         height: 1em;
+    }
+
+    span {
+        margin-right: 0.5rem;
     }
 }

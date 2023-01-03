@@ -80,6 +80,34 @@ $maxWidth: 40.625rem;
     box-shadow: 0.1rem 0.3rem 0.7rem 0.1rem var(--theme-inactive-color);
 }
 
+.menuButton { 
+    margin-right: 1rem;
+}
+
+.menuFyfdBalance {
+    font-size: 1.5rem;
+    font-weight: 600;
+    transition: 1s ease-in-out;
+}
+
+.menuFyfdBalance:hover {
+    color: var(--theme-create-color);
+    cursor: pointer;
+    transition: 1s ease-in-out;
+}
+
+.menuYfdBalance {
+    font-size: 1.25rem;
+    font-weight: 600;
+    transition: 1s ease-in-out;
+}
+
+.menuYfdBalance:hover {
+    color: var(--theme-brand-color);
+    cursor: pointer;
+    transition: 1s ease-in-out;
+}
+
 .stakeYfd {
     height: ($headerHeight * 0.75);
     margin-right: 1rem;
@@ -101,6 +129,15 @@ $maxWidth: 40.625rem;
     vertical-align: middle;
     padding-top: 0.5rem;
     color: var(--theme-inactive-color);
+}
+
+.lockAction {
+    text-align: center;
+    margin: 1em;
+    color: var(--theme-gray-light);
+    i {
+        font-size: 3rem;
+    }
 }
 
 .stakeYfdIcon {

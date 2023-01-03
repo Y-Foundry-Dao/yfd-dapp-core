@@ -3,7 +3,7 @@ import { useSetRecoilState } from 'recoil';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import { walletAddress } from '@recoil/wallet/atoms';
 
-export default function useWallet() {
+export default function useAddressConnected(): string {
   const setWalletAddress = useSetRecoilState(walletAddress);
   const connectedWallet = useConnectedWallet();
 
@@ -12,5 +12,5 @@ export default function useWallet() {
       setWalletAddress(connectedWallet?.walletAddress);
     }
   }, [connectedWallet, setWalletAddress]);
-  return connectedWallet?.walletAddress;
+  return connectedWallet?.walletAddress as string;
 }

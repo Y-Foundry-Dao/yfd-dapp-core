@@ -1,10 +1,25 @@
 .icon {
+    font-variation-settings: 'FILL' 1;
+
     &-create {
         @extend .icon;
         color: var(--theme-create-color);
+
     }
-    font-variation-settings: 'FILL' 1;
-    margin-right: 0.5rem;    
+
+    &-menu {
+        margin-right: 0.5rem;
+    }
+
+    &-action { 
+        @extend .icon;
+        color: var(--theme-create-color);
+    }
+    &-action:hover {
+        cursor: pointer;
+        filter: drop-shadow(0.1rem 0.1rem 0.5rem var(--theme-bg-icon-hover));
+
+    }
 }
 
 /*

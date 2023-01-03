@@ -6,15 +6,15 @@ import {
   ModalBody,
   ModalCloseButton
 } from '@chakra-ui/react';
-import ProposalCreationForm from '../proposal/proposalCreationModal/vaultProposalCreationForm/VaultProposalCreationForm';
-import ProposalTypeSelector from '../proposal/proposalCreationModal/proposalTypeSelector/ProposalTypeSelector';
-import CreationFormWhitelistWalletAddress from '../proposal/proposalCreationModal/governanceProposalCreationForm/CreationFormWhitelistWalletAddress';
+import ProposalCreationForm from '../proposal/create/vaultProposalCreationForm/VaultProposalCreationForm';
+import ProposalTypeSelector from '../proposal/create/proposalTypeSelector/ProposalTypeSelector';
+import CreationFormWhitelistWalletAddress from '../proposal/create/governanceProposalCreationForm/CreationFormWhitelistWalletAddress';
 import { inputProposalType } from 'recoil/input/atoms';
 import { useRecoilValue } from 'recoil';
-import CreationFormWhitelistTokenAddress from '../proposal/proposalCreationModal/governanceProposalCreationForm/CreationFormWhitelistTokenAddress';
-import CreationFormParameter from '../proposal/proposalCreationModal/governanceProposalCreationForm/CreationFormParameter';
-import CreationFormText from '../proposal/proposalCreationModal/governanceProposalCreationForm/CreationFormText';
-import CreationFormSpend from '../proposal/proposalCreationModal/governanceProposalCreationForm/CreationFormSpend';
+import CreationFormWhitelistTokenAddress from '../proposal/create/governanceProposalCreationForm/CreationFormWhitelistTokenAddress';
+import CreationFormParameter from '../proposal/create/governanceProposalCreationForm/CreationFormParameter';
+import CreationFormText from '../proposal/create/governanceProposalCreationForm/CreationFormText';
+import CreationFormSpend from '../proposal/create/governanceProposalCreationForm/CreationFormSpend';
 import styles from '@scss/app.module.scss';
 import { Icons } from '@var/icons';
 
@@ -32,7 +32,12 @@ function ProposalModal({ isOpen, onClose }: any) {
       <ModalContent>
         <ModalHeader>
           <span
-            className={styles['icon-create'] + ' material-symbols-outlined'}
+            className={
+              styles['icon-create'] +
+              ' ' +
+              styles['icon-menu'] +
+              ' material-symbols-outlined'
+            }
           >
             {Icons.propose}
           </span>

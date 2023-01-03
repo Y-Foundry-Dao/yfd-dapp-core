@@ -1,5 +1,5 @@
 import { Text } from '@chakra-ui/react';
-import styles from '@scss/color.module.scss';
+import styles from '@scss/icon.module.scss';
 import { Icons } from '@var/icons';
 
 export default function TutorialModalButton({ onOpen }: any) {
