@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
+import { useWallet } from '@terra-money/wallet-provider';
+import convertFromBase from 'utilities/converters/convertFromBase';
+import { format } from 'date-fns';
+
 import {
+  useDisclosure,
   Wrap,
   WrapItem,
   Popover,
@@ -20,34 +25,35 @@ import {
   GridItem,
   Text
 } from '@chakra-ui/react';
-import convertFromBase from 'utilities/converters/convertFromBase';
-import { format } from 'date-fns';
+
+import {
+  balancefYFDQuery,
+  balanceYFDQuery
+} from '@recoil/balanceConnected/selectors';
+import { inputStakeYFD } from 'recoil/input/atoms';
 
 import useHandleClicks from '@hooks/useHandleClicks';
 import useHandleInputs from '@hooks/useHandleInputs';
 import useContractForge from '@hooks/useContractForge';
 
 import styles from '@scss/app.module.scss';
+import { Icons } from '@var/icons';
 
 import {
   DEFAULT_YFD_LOCK_DURATION,
   DEFAULT_YFD_LOCK_DURATION_DATE
-} from '@utilities/variables';
-import { Icons } from '@var/icons';
-import { inputStakeYFD } from 'recoil/input/atoms';
+} from 'Variables';
 
+import ProposalModal from '@features/proposals/modal';
+import ProposalModalButton from '@features/proposal/create/ProposalModalButton';
 import LockYfdForm from './Form';
-import { useWallet } from '@terra-money/wallet-provider';
-import {
-  balancefYFDQuery,
-  balanceYFDQuery
-} from '@recoil/balanceConnected/selectors';
 
 let styleVote = 'material-symbols-outlined';
-let styleProposal = 'material-symbols-outlined';
 let styleGuardian = 'material-symbols-outlined';
 
 export default function MenuFyfdBalance() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   const [durationDepositYFD, setDurationDepositYFD] = useState(
     DEFAULT_YFD_LOCK_DURATION
   );
@@ -69,12 +75,21 @@ export default function MenuFyfdBalance() {
     styleVote = styleVote + ' ' + styles['icon-create'];
   }
 
-  if (25000 < balancefYFD) {
-    styleProposal = styleProposal + ' ' + styles['icon-create'];
-  }
-
   if (100000 < balancefYFD) {
     styleGuardian = styleGuardian + ' ' + styles['icon-create'];
+  }
+
+  function actionPropose() {
+    if (25000 < balancefYFD) {
+      return (
+        <>
+          <ProposalModalButton onOpen={onOpen} />
+          <ProposalModal isOpen={isOpen} onClose={onClose} />
+        </>
+      );
+    } else {
+      return <i className="material-symbols-outlined">{Icons.propose}</i>;
+    }
   }
 
   return (
@@ -88,7 +103,7 @@ export default function MenuFyfdBalance() {
             align="center"
             spacing="2rem"
           >
-            <WrapItem className={styles['gsContent-feature']}>
+            <WrapItem className={styles['lockAction']}>
               <SimpleGrid>
                 <GridItem>
                   <i className={styleVote}>{Icons.vote}</i>
@@ -100,11 +115,9 @@ export default function MenuFyfdBalance() {
                 </GridItem>
               </SimpleGrid>
             </WrapItem>
-            <WrapItem className={styles['gsContent-feature']}>
+            <WrapItem className={styles['lockAction']}>
               <SimpleGrid>
-                <GridItem>
-                  <i className={styleProposal}>{Icons.propose}</i>
-                </GridItem>
+                <GridItem>{actionPropose()}</GridItem>
                 <GridItem>
                   Propose
                   <br />
@@ -112,7 +125,7 @@ export default function MenuFyfdBalance() {
                 </GridItem>
               </SimpleGrid>
             </WrapItem>
-            <WrapItem className={styles['gsContent-feature']}>
+            <WrapItem className={styles['lockAction']}>
               <SimpleGrid>
                 <GridItem>
                   <i className={styleGuardian}>{Icons.guardian}</i>

@@ -3,11 +3,10 @@ import { Icons } from '@var/icons';
 
 function ProposalModalButton({ onOpen }: any) {
   return (
-    <a href="#" onClick={onOpen}>
-      <span className={styles['icon-create'] + ' material-symbols-outlined'}>
+    <a href="#" title="Propose" onClick={onOpen}>
+      <i className={styles['icon-action'] + ' ' + ' material-symbols-outlined'}>
         {Icons.propose}
-      </span>
-      Propose
+      </i>
     </a>
   );
 }

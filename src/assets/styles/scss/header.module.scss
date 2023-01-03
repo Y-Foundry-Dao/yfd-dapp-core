@@ -131,6 +131,15 @@ $maxWidth: 40.625rem;
     color: var(--theme-inactive-color);
 }
 
+.lockAction {
+    text-align: center;
+    margin: 1em;
+    color: var(--theme-gray-light);
+    i {
+        font-size: 3rem;
+    }
+}
+
 .stakeYfdIcon {
     vertical-align: baseline;
     margin: 0 0.5rem;
