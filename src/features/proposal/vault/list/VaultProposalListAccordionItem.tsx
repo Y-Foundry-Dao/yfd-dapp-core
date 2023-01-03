@@ -12,16 +12,16 @@ import {
 import FinderContractLink from '@components/finder/FinderContractLink';
 import useContractVaultProposal from '@hooks/useContractVaultProposal';
 import useContractVote from '@hooks/useContractVote';
-import ProposalFinalizeButton from '@features/proposal/vaultProposals/proposalInfo/status/ProposalFinalizeButton';
-import ProposalStatus from '@features/proposal/vaultProposals/proposalInfo/status/ProposalStatus';
-import InputVoteAmount from '@features/proposal/vaultProposals/proposalInfo/voting/InputVoteAmount';
-import VoteButtons from '@features/proposal/vaultProposals/proposalInfo/voting/VoteButtons';
-import VoteTokenBalance from '@features/proposal/vaultProposals/proposalInfo/voting/VoteTokenBalance';
-import FundingInfo from '@features/proposal/vaultProposals/proposalInfo/funding/FundingInfo';
-import VaultProposalInfo from '@features/proposal/vaultProposals/proposalInfo/VaultProposalInfo';
-import CurrentVotes from '@features/proposal/vaultProposals/proposalInfo/voting/CurrentVotes';
-import CurrentVotesBar from '@features/proposal/vaultProposals/proposalInfo/voting/CurrentVotesBar';
-import NFTInfo from '../proposalInfo/nfts/NFTInfo';
+import ProposalFinalizeButton from '@features/proposal/vault/info/status/ProposalFinalizeButton';
+import ProposalStatus from '@features/proposal/vault/info/status/ProposalStatus';
+import InputVoteAmount from '@features/proposal/vault/info/voting/InputVoteAmount';
+import VoteButtons from '@features/proposal/vault/info/voting/VoteButtons';
+import VoteTokenBalance from '@features/proposal/vault/info/voting/VoteTokenBalance';
+import FundingInfo from '@features/proposal/vault/info/funding/FundingInfo';
+import VaultProposalInfo from '@features/proposal/vault/info/VaultProposalInfo';
+import CurrentVotes from '@features/proposal/vault/info/voting/CurrentVotes';
+import CurrentVotesBar from '@features/proposal/vault/info/voting/CurrentVotesBar';
+import NFTInfo from '../info/nfts/NFTInfo';
 
 import styleList from '@scss/app.module.scss';
 

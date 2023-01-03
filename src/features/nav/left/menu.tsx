@@ -19,13 +19,6 @@ export default function MenuLeft() {
               <i className="material-symbols-outlined">{Icons.dashboard}</i>
               My Dashboard
             </Link>
-            <Link to="/deposit-yfd">
-              <i className="material-symbols-sharp">{Icons.yfdswap}</i>
-              $YFD
-              <i></i>
-              <i className="material-symbols-outlined">{Icons.swap}</i>
-              fYFD
-            </Link>
           </div>
         </div>
         <Initiatives />

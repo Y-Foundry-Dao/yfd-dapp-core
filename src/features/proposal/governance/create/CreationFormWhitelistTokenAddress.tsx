@@ -15,51 +15,31 @@ import { Divider, Text } from '@chakra-ui/react';
 import useHandleClicks from 'hooks/useHandleClicks';
 import { useRecoilValue } from 'recoil';
 import {
-  inputWhitelistWalletAddress,
-  inputWhitelistWalletAddressName,
-  inputWhitelistWalletAddressUrl,
-  inputWhitelistWalletAddressTwitter,
-  inputWhitelistWalletAddressKeybase,
-  inputWhitelistWalletAddressTelegram,
-  inputWhitelistWalletAddressGithub,
-  inputWhitelistWalletAddressImageLink,
-  inputWhitelistWalletAddressRoles
+  inputWhitelistTokenAddress,
+  inputWhitelistTokenName,
+  inputWhitelistTokenAssetType,
+  inputWhitelistTokenisStable,
+  inputWhitelistTokenOracleAddress,
+  inputWhitelistTokenToUsd
 } from 'recoil/input/atoms';
 import txHashAtom from 'recoil/txHash/atom';
-import ProposalSubmittedText from '../ProposalSubmittedText';
+import ProposalSubmittedText from '../../create/SubmittedText';
 import InputWhitelistWalletAddress from '@inputs/whitelist/role/address';
 
-function CreationFormWhitelistWalletAddress({ onClose }: any) {
-  const { handleClickCreateProposalWhitelistWalletAddress } = useHandleClicks();
+function CreationFormWhitelistTokenAddress({ onClose }: any) {
+  const { handleClickCreateProposalWhitelistTokenAddress } = useHandleClicks();
   const onSubmit = () => {
-    handleClickCreateProposalWhitelistWalletAddress();
+    handleClickCreateProposalWhitelistTokenAddress();
   };
 
-  const whitelistWalletAddress = useRecoilValue(inputWhitelistWalletAddress);
-  const whitelistWalletAddressName = useRecoilValue(
-    inputWhitelistWalletAddressName
+  const whitelistTokenAddress = useRecoilValue(inputWhitelistTokenAddress);
+  const whitelistTokenName = useRecoilValue(inputWhitelistTokenName);
+  const whitelistTokenAssetType = useRecoilValue(inputWhitelistTokenAssetType);
+  const whitelistTokenisStable = useRecoilValue(inputWhitelistTokenisStable);
+  const whitelistTokenOracleAddress = useRecoilValue(
+    inputWhitelistTokenOracleAddress
   );
-  const whitelistWalletAddressUrl = useRecoilValue(
-    inputWhitelistWalletAddressUrl
-  );
-  const whitelistWalletAddressTwitter = useRecoilValue(
-    inputWhitelistWalletAddressTwitter
-  );
-  const whitelistWalletAddressKeybase = useRecoilValue(
-    inputWhitelistWalletAddressKeybase
-  );
-  const whitelistWalletAddressTelegram = useRecoilValue(
-    inputWhitelistWalletAddressTelegram
-  );
-  const whitelistWalletAddressGithub = useRecoilValue(
-    inputWhitelistWalletAddressGithub
-  );
-  const whitelistWalletAddressImageLink = useRecoilValue(
-    inputWhitelistWalletAddressImageLink
-  );
-  const whitelistWalletAddressRoles = useRecoilValue(
-    inputWhitelistWalletAddressRoles
-  );
+  const whitelistTokenToUsd = useRecoilValue(inputWhitelistTokenToUsd);
 
   const txHash = useRecoilValue(txHashAtom);
 
@@ -67,9 +47,9 @@ function CreationFormWhitelistWalletAddress({ onClose }: any) {
     <StepForm w="95%" onSubmit={onSubmit}>
       <FormLayout>
         <FormStepper orientation="vertical">
-          <FormStep name="address" title="Address Whitelist Info">
+          <FormStep name="address" title="Token Whitelist Info">
             <FormLayout>
-              <InputWhitelistWalletAddress />
+              {/* <InputWhitelistTokenAddress /> */}
               {/* <InputAddressWhitelistName />
               <InputAddressWhitelistImageLink /> */}
               <NextButton />
@@ -97,6 +77,19 @@ function CreationFormWhitelistWalletAddress({ onClose }: any) {
               </ButtonGroup>
             </FormLayout>
           </FormStep>
+          <FormStep name="emergency" title="Emergency Info">
+            <FormLayout>
+              {/* <InputGithub />
+              <InputKeybase />
+              <InputTelegram />
+              <InputTwitter />
+              <InputUrl /> */}
+              <ButtonGroup>
+                <NextButton />
+                <PrevButton variant="ghost" />
+              </ButtonGroup>
+            </FormLayout>
+          </FormStep>
           <FormStep name="confirm" title="Confirm">
             <FormLayout>
               <Text>Please confirm that your information is correct.</Text>
@@ -105,25 +98,12 @@ function CreationFormWhitelistWalletAddress({ onClose }: any) {
                   Proposal Info
                 </Text>
                 <Divider />
-                <Property label="Address" value={whitelistWalletAddress} />
-                <Property label="Name" value={whitelistWalletAddressName} />
-                <Property
-                  label="Image"
-                  value={whitelistWalletAddressImageLink}
-                />
-                <Property label="Github" value={whitelistWalletAddressGithub} />
-                <Property
-                  label="Keybase"
-                  value={whitelistWalletAddressKeybase}
-                />
-                <Property
-                  label="Telegram"
-                  value={whitelistWalletAddressTelegram}
-                />
-                <Property
-                  label="Twitter"
-                  value={whitelistWalletAddressTwitter}
-                />
+                <Property label="Address" value={whitelistTokenAddress} />
+                <Property label="Name" value={whitelistTokenName} />
+                <Property label="Image" value={whitelistTokenAssetType} />
+                <Property label="Github" value={whitelistTokenisStable} />
+                <Property label="Keybase" value={whitelistTokenOracleAddress} />
+                <Property label="Telegram" value={whitelistTokenToUsd} />
                 <Divider />
               </PropertyList>
               <ButtonGroup>
@@ -145,4 +125,4 @@ function CreationFormWhitelistWalletAddress({ onClose }: any) {
   );
 }
 
-export default CreationFormWhitelistWalletAddress;
+export default CreationFormWhitelistTokenAddress;

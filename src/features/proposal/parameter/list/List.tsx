@@ -4,14 +4,12 @@ import {
   Flex,
   Box,
   useDisclosure,
-  Spacer
+  Spacer,
+  theme
 } from '@chakra-ui/react';
-import useContractForge from '@hooks/useContractForge';
-import ProposalModal from '@features/proposals/modal';
 import ListItem from './Item';
-import EmptyList from './Empty';
-import ButtonDeposit from './ButtonDeposit';
-import ButtonClaim from './ButtonClaim';
+import ProposalModal from '@features/proposal/modal';
+import CreateGov from './ButtonCreate';
 
 export default function List({ items }: any) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -23,6 +21,7 @@ export default function List({ items }: any) {
         </Box>
         <Spacer />
         <Box>
+          <CreateGov onOpen={onOpen} />
           <ProposalModal isOpen={isOpen} onClose={onClose} />
         </Box>
       </Flex>

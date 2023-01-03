@@ -44,8 +44,8 @@ import {
   DEFAULT_YFD_LOCK_DURATION_DATE
 } from 'Variables';
 
-import ProposalModal from '@features/proposals/modal';
-import ProposalModalButton from '@features/proposal/create/ProposalModalButton';
+import ProposalModal from '@features/proposal/modal';
+import ProposalModalButton from '@features/proposal/create/ButtonModelOpen';
 import LockYfdForm from './Form';
 
 let styleVote = 'material-symbols-outlined';

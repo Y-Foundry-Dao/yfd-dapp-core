@@ -6,13 +6,13 @@ import PageVoter from '@pages/GettingStarted/Voter';
 import PageProposer from '@pages/GettingStarted/Proposer';
 import PageSupporter from '@pages/GettingStarted/Supporter';
 import PageBuilder from '@pages/GettingStarted/Builder';
-import VaultProposals from '@pages/ProposalsVaults';
-import GovernanceProposals from '@features/ProposalsGovernance';
-import InitiativeProposals from '@features/ProposalsInitiatives';
+import VaultProposals from '@pages/proposals/Vaults';
+import GovernanceProposals from '@pages/proposals/Governance';
+import InitiativeProposals from '@pages/proposals/Initiatives';
 import DepositYfd from '@pages/DepositYfd';
 import VaultsFeatured from '@features/VaultsFeatured';
 import InitiativesFeatured from '@features/InitiativesFeatured';
-import GovernanceParameters from '@features/proposals/parameter/list/Layout';
+import GovernanceParameters from '@features/proposal/parameter/list/Layout';
 import Favorites from '@features/profile/Favorites';
 import NoMatch from '@pages/404';
 

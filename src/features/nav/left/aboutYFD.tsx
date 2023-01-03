@@ -5,8 +5,8 @@ import imgDework from '@images/external/dework.svg';
 import { URL_DOCS, URL_DEWORK } from '@var/links';
 import { Icons } from '@var/icons';
 
-import FeedbackModal from '@features/forms/feedback/Modal';
-import FeedbackModalButton from '@features/forms/feedback/ModalButton';
+import FeedbackModal from '@features/feedback/Modal';
+import FeedbackModalButton from '@features/feedback/ModalButton';
 import TutorialModal from '@features/gettingStarted/modal/tutorial';
 import TutorialModalButton from '@features/gettingStarted/modal/tutorialButton';
 
