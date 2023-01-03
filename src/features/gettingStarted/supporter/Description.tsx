@@ -33,7 +33,12 @@ export default function GSDescription() {
               proposal objectives.
             </p>
             <br />
-            <a href={URL_GUIDE_SUPPORTER} className={styles['wide']} target="_blank" rel="noreferrer">
+            <a
+              href={URL_GUIDE_SUPPORTER}
+              className={styles['wide']}
+              target="_blank"
+              rel="noreferrer"
+            >
               Read more in the Supporter Guide
             </a>
             <br />
