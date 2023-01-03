@@ -1,11 +1,15 @@
 import { Text } from '@chakra-ui/react';
-import useContractForge from 'hooks/useContractForge';
-import convertFromBase from 'utilities/converters/convertFromBase';
+import { balancefYFDQuery } from '@recoil/balanceConnected/selectors';
+import { useRecoilValueLoadable } from 'recoil';
 
-function BalancefYFD() {
-  const { tokenBalance } = useContractForge();
-
-  return <Text>{convertFromBase(tokenBalance).toFixed(5)}</Text>;
+export default function BalancefYFD() {
+  const balancefYFDLoadable = useRecoilValueLoadable(balancefYFDQuery);
+  switch (balancefYFDLoadable.state) {
+    case 'hasValue':
+      return <Text>fYFD Balance: {balancefYFDLoadable.contents}</Text>;
+    case 'loading':
+      return <div>Loading...</div>;
+    case 'hasError':
+      throw balancefYFDLoadable.contents;
+  }
 }
-
-export default BalancefYFD;
