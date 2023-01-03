@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 import {
   Wrap,
   WrapItem,
@@ -38,6 +38,10 @@ import { inputStakeYFD } from 'recoil/input/atoms';
 
 import LockYfdForm from './Form';
 import { useWallet } from '@terra-money/wallet-provider';
+import {
+  balancefYFDQuery,
+  balanceYFDQuery
+} from '@recoil/balanceConnected/selectors';
 
 let styleVote = 'material-symbols-outlined';
 let styleProposal = 'material-symbols-outlined';
@@ -54,14 +58,13 @@ export default function MenuFyfdBalance() {
   const { handleClickStakeYFD } = useHandleClicks();
   const { handleInputStakeYFD } = useHandleInputs();
 
-  const { tokenBalance } = useContractForge();
-  const { hasCW20Tokens } = useWallet();
+  const balancefYFDLoadable = useRecoilValueLoadable(balancefYFDQuery);
+  const balanceYFDLoadable = useRecoilValueLoadable(balanceYFDQuery);
 
   //console.log('tokenBalance', tokenBalance);
-  const balancefYFD = parseInt(
-    convertFromBase(Number(tokenBalance)).toFixed(5),
-    10
-  );
+  const balancefYFD = convertFromBase(balancefYFDLoadable.contents);
+  const balanceYFD = convertFromBase(balanceYFDLoadable.contents);
+
   if (1000 < balancefYFD) {
     styleVote = styleVote + ' ' + styles['icon-create'];
   }
@@ -129,13 +132,13 @@ export default function MenuFyfdBalance() {
             fYFD
             <>
               <Text className={styles.menuFyfdBalance}>
-                {convertFromBase(Number(balancefYFD)).toFixed(5)}
+                {balancefYFD.toFixed(5)}
               </Text>
             </>
             YFD:
             <>
               <Text className={styles.menuYfdBalance}>
-                {convertFromBase(Number(tokenBalance)).toFixed(5)}
+                {balanceYFD.toFixed(5)}
               </Text>
             </>
             <br />

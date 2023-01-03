@@ -6,21 +6,28 @@ import tokenBalance from '@hooks/useContractYFD';
 import convertFromBase from 'utilities/converters/convertFromBase';
 import FyfdPopoverEmpty from './PopoverEmpty';
 import FyfdPopoverBalance from './PopoverBalance';
+import { useRecoilValueLoadable } from 'recoil';
+import {
+  balancefYFDQuery,
+  balanceYFDQuery
+} from '@recoil/balanceConnected/selectors';
 
 let styleVote = 'material-symbols-outlined';
 let styleProposal = 'material-symbols-outlined';
 let styleGuardian = 'material-symbols-outlined';
 
 export default function LockYFDMenu() {
-  const balanceYfd = tokenBalance();
-  const balanceFyfd = queryBalance();
+  // const balanceYfd = tokenBalance();
+  // const balanceFyfd = queryBalance();
+  const balanceYFDLoadable = useRecoilValueLoadable(balanceYFDQuery);
+  const balancefYFDLoadable = useRecoilValueLoadable(balancefYFDQuery);
 
-  console.log('YFD Balance: ', balanceYfd);
-  console.log('fYFD Balance: ', balanceFyfd);
+  console.log('YFD Balance: ', balanceYFDLoadable.contents);
+  console.log('fYFD Balance: ', balancefYFDLoadable.contents);
   console.log('Query Balance: ', queryBalance);
 
   const balancefYFD = parseInt(
-    convertFromBase(Number(balanceFyfd)).toFixed(5),
+    convertFromBase(balancefYFDLoadable.contents).toFixed(5),
     10
   );
   if (1000 < balancefYFD) {
