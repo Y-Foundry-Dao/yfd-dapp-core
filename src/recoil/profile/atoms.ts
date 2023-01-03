@@ -16,6 +16,11 @@ type Profile = {
   }>;
 };
 
+export const snowState = atom({
+  key: 'snowState',
+  default: false
+});
+
 export const profileState = atom<Profile>({
   key: 'profileState',
   default: {

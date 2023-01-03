@@ -6,6 +6,7 @@ import Modal from '@chakra/modal';
 import Select from '@chakra/select';
 import Input from '@chakra/input';
 import NumberInput from '@chakra/number-input';
+import Switch from '@chakra/switch';
 
 const base = {
   body: {
@@ -69,7 +70,8 @@ const extended = {
     Modal,
     Select,
     Input,
-    NumberInput
+    NumberInput,
+    Switch
   },
   layerStyles: {
     emergencyVote: {},

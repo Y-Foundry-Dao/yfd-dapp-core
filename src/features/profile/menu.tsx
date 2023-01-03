@@ -1,8 +1,6 @@
-import { useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import useHandleClicks from '@hooks/useHandleClicks';
 import { useConnectedWallet, useWallet } from '@terra-money/wallet-provider';
-import { format } from 'date-fns';
 import {
   Image,
   Popover,
@@ -18,7 +16,10 @@ import {
   Button,
   Flex,
   Box,
-  useClipboard
+  useClipboard,
+  FormControl,
+  Switch,
+  useControllableState
 } from '@chakra-ui/react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -37,14 +38,16 @@ import {
 import useAddressConnected from '@hooks/useAddressConnected';
 import useProfile from '@hooks/useProfile';
 import { Web3Address } from '@saas-ui/web3';
+import { snowState } from '@recoil/profile/atoms';
+import { FormDialog } from '@saas-ui/modals';
 
 export default function ProfileHeader() {
+  const [snow, setSnow] = useRecoilState(snowState);
+
   const walletAddress = useAddressConnected();
-  console.log('walletAddress: ' + walletAddress);
   const { disconnect } = useWallet();
   const { hasCopied, onCopy } = useClipboard(useAddressConnected());
   const profile = useProfile(walletAddress) as any;
-  console.log('loaded profile: ' + JSON.stringify(profile));
 
   const profileUrl = PATH_PROFILE + walletAddress + PATH_PROFILE_SUFFIX;
   const profilePfpUrl =
@@ -55,6 +58,10 @@ export default function ProfileHeader() {
   const githubUrl = 'https://www.github.com/' + profile.platforms.github;
 
   const { handleClickStakeYFD } = useHandleClicks();
+
+  const toggleSnow = () => {
+    setSnow((prevSnow) => !prevSnow);
+  };
 
   return (
     <Popover placement="bottom-end">
@@ -103,6 +110,12 @@ export default function ProfileHeader() {
               </Box>
             </Flex>
           </PopoverBody>
+          <PopoverFooter>
+            <FormControl display="flex" alignItems="center">
+              Snow?
+              <Switch id="snowSwitch" size="lg" onChange={toggleSnow} />
+            </FormControl>
+          </PopoverFooter>
           <PopoverFooter className={styles.profileMenuWallet}>
             <Box>
               <Button onClick={onCopy} className={styles.profileMenuAddress}>
