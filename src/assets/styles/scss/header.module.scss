@@ -84,6 +84,18 @@ $maxWidth: 40.625rem;
     margin-right: 1rem;
 }
 
+.menuFyfdBalance {
+    font-size: 1.5rem;
+    font-weight: 600;
+    transition: 1s ease-in-out;
+}
+
+.menuFyfdBalance:hover {
+    color: var(--theme-create-color);
+    cursor: pointer;
+    transition: 1s ease-in-out;
+}
+
 .menuYfdBalance {
     font-size: 1.25rem;
     font-weight: 600;

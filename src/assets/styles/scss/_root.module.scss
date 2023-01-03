@@ -13,7 +13,8 @@
     --theme-bg-footer: var(--theme-bg-header);
     --theme-bg-menu: rgba(32, 36, 46, 0.8);
     --theme-bg-filter: drop-shadow(0 0 10px var(--theme-gray-dark));
-
+    --theme-bg-menu-hover: rgba(254, 254, 255, 0.3);
+    
     /* colors */
     --theme-color: var(--theme-text);
     --theme-inactive-color: rgb(113 119 144 / 78%);
@@ -71,7 +72,6 @@
     --theme-pallete-a1: #d8552a;
 
     --body-font: "Poppins", sans-serif;  // overridden by Chakra themes/yfd.tsx
-    --hover-menu-bg: rgba(255, 255, 255, 0.3);
 
     --content-title-color: #999ba5;
     --content-text: #ebecec;

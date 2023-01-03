@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import useHandleClicks from '@hooks/useHandleClicks';
-import BalanceYFD from '@components/BalanceYFD';
-import BalancefYFD from '@components/BalancefYFD';
+import convertFromBase from '@utilities/converters/convertFromBase';
 import {
+  Text,
   PopoverContent,
   PopoverHeader,
   PopoverBody,
@@ -15,12 +14,20 @@ import {
 } from '@chakra-ui/react';
 import { DEFAULT_YFD_LOCK_DURATION } from '@utilities/variables';
 import { inputStakeYFD } from 'recoil/input/atoms';
+import useContractForge from '@hooks/useContractForge';
+import useHandleClicks from '@hooks/useHandleClicks';
 import useHandleInputs from '@hooks/useHandleInputs';
 import styles from '@scss/app.module.scss';
 
 import LockYfdForm from './Form';
 
 export default function FyfdPopoverEmpty() {
+  const { tokenBalance } = useContractForge();
+  //  console.log('tokenBalance', tokenBalance);
+  const balancefYFD = parseInt(
+    convertFromBase(Number(tokenBalance)).toFixed(5),
+    10
+  );
   const [durationDepositYFD, setDurationDepositYFD] = useState(
     DEFAULT_YFD_LOCK_DURATION
   );
@@ -34,9 +41,11 @@ export default function FyfdPopoverEmpty() {
         <PopoverArrow />
         <PopoverHeader>
           YFD Balance:
-          <b>
-            <BalanceYFD />
-          </b>
+          <>
+            <Text className={styles.menuYfdBalance}>
+              {convertFromBase(Number(tokenBalance)).toFixed(5)}
+            </Text>
+          </>
         </PopoverHeader>
         <PopoverCloseButton />
         <PopoverBody>

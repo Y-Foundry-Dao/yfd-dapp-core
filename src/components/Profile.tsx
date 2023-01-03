@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import useHandleClicks from '@hooks/useHandleClicks';
 import { useConnectedWallet, useWallet } from '@terra-money/wallet-provider';
-import BalanceYFD from './BalanceYFD';
-import BalancefYFD from './BalancefYFD';
 import { format } from 'date-fns';
 import {
   Image,
