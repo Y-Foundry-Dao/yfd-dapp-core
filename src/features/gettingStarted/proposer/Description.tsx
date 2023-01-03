@@ -31,7 +31,7 @@ export default function GSDescription() {
               an idea as a proposal to be voted on by the community.
             </p>
             <br />
-            <a href={URL_GUIDE_PROPOSER} className={styles['wide']}>
+            <a href={URL_GUIDE_PROPOSER} className={styles['wide']} target="_blank" rel="noreferrer">
               Read more in the Proposer Guide
             </a>
             <br />

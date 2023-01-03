@@ -32,7 +32,7 @@ export default function GSDescription() {
               governance and initiative proposals.
             </p>
             <br />
-            <a href={URL_GUIDE_VOTER} className={styles['wide']}>
+            <a href={URL_GUIDE_VOTER} className={styles['wide']} target="_blank" rel="noreferrer">
               Read more in the Voter Guide
             </a>
             <br />

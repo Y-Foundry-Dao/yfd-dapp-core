@@ -33,7 +33,7 @@ export default function GSDescription() {
               well as any development needed for proposed vaults.
             </p>
             <br />
-            <a href={URL_GUIDE_BUILDER} className={styles['wide']}>
+            <a href={URL_GUIDE_BUILDER} className={styles['wide']} target="_blank" rel="noreferrer">
               Read more in the Builder Guide
             </a>
             <br />
