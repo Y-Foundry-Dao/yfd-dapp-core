@@ -28,7 +28,7 @@ import {
 } from '@chakra-ui/react';
 import { useRecoilValue } from 'recoil';
 import txHashAtom from 'recoil/txHash/atom';
-import ProposalSubmittedText from '../ProposalSubmittedText';
+import ProposalSubmittedText from '../create/SubmittedText';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import msgEncodedProposal from '@utilities/messagesToEncode/msgEncodedProposal';
 import msgExecuteSend from '@utilities/messagesExecute/yfd/msgExecuteSend';

@@ -1,7 +1,5 @@
-import { Heading } from '@chakra-ui/react';
 import useContractForge from 'hooks/useContractForge';
-import React from 'react';
-import VaultProposalListAccordions from './proposalList/VaultProposalListAccordions';
+import VaultProposalListAccordions from './list/list';
 
 function VaultProposals() {
   const { vaultProposals } = useContractForge();

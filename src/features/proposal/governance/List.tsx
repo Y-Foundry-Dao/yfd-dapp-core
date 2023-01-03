@@ -1,13 +1,13 @@
 import { Heading } from '@chakra-ui/react';
 import useContractForge from 'hooks/useContractForge';
-import ProposalListAccordions from './proposalList/ProposalListAccordions';
+import ProposalListAccordions from './info/ProposalListAccordions';
 
 function GovernanceProposals() {
   const { governanceProposals } = useContractForge();
   return (
     <>
       {governanceProposals.length === 0 ? (
-        'no proposals'
+        'No Proposals'
       ) : (
         <>
           <ProposalListAccordions proposals={governanceProposals} />

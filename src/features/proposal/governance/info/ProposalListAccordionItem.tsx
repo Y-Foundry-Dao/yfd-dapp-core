@@ -12,12 +12,12 @@ import useContractProposal from '@hooks/useContractProposal';
 import useContractGovernanceProposal from 'hooks/useContractGovernanceProposal';
 import useContractVote from 'hooks/useContractVote';
 import { useState } from 'react';
-import ProposalInfo from './proposalInfo/ProposalInfo';
-import ProposalFinalizeButton from './proposalInfo/status/ProposalFinalizeButton';
-import ProposalStatus from './proposalInfo/status/ProposalStatus';
-import InputVoteAmount from './proposalInfo/voting/InputVoteAmount';
-import VoteButtons from './proposalInfo/voting/VoteButtons';
-import VoteTokenBalance from './proposalInfo/voting/VoteTokenBalance';
+import ProposalInfo from './ProposalInfo';
+import ProposalFinalizeButton from './status/ProposalFinalizeButton';
+import ProposalStatus from './status/ProposalStatus';
+import InputVoteAmount from './voting/InputVoteAmount';
+import VoteButtons from './voting/VoteButtons';
+import VoteTokenBalance from './voting/VoteTokenBalance';
 
 function ProposalListAccordionItem({ proposalContract, proposalIndex }: any) {
   const { governanceProposalInfo, voteTokenBalance } =
