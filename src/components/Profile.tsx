@@ -51,15 +51,15 @@ import {
   PATH_PROFILE_PFP_DEFAULT
 } from 'utilities/variables';
 
-import useWallet from '@hooks/useWallet';
+import useAddressConnected from '@hooks/useAddressConnected';
 import useProfile from '@hooks/useProfile';
 import { Web3Address } from '@saas-ui/web3';
 
 export default function ProfileHeader() {
-  const walletAddress = useWallet() as any;
+  const walletAddress = useAddressConnected();
   console.log('walletAddress: ' + walletAddress);
   const { disconnect } = disconnectWallet();
-  const { hasCopied, onCopy } = useClipboard(useWallet() as string);
+  const { hasCopied, onCopy } = useClipboard(useAddressConnected());
   const profile = useProfile(walletAddress) as any;
   console.log('loaded profile: ' + JSON.stringify(profile));
 

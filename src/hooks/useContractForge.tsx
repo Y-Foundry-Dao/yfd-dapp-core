@@ -19,12 +19,14 @@ import queryAllAddressWhitelist from 'utilities/messagesQuery/forge/queryAllAddr
 import queryAddressWhitelist from 'utilities/messagesQuery/forge/queryAddressWhitelist';
 import queryProposalByIndex from 'utilities/messagesQuery/forge/queryProposalByIndex';
 import queryTokenWhitelist from 'utilities/messagesQuery/forge/queryTokenWhitelist';
+import useContractCW20Connected from './useContractCW20Connected';
 
 const useContractForge = (developmentCost?: any, nftQuantity?: any) => {
   const { queryMsg } = useMsg();
   const connectedWallet = useConnectedWallet();
+  const { tokenBalance, tokenInfo, marketingInfo, allAccounts } =
+    useContractCW20Connected(FORGE_TEST);
 
-  const [tokenBalance, setTokenBalance] = useState('0');
   const [balanceDetail, setBalanceDetail] = useState({});
 
   const [governanceProposals, setGovernanceProposals] = useState<any>([]);
@@ -104,17 +106,6 @@ const useContractForge = (developmentCost?: any, nftQuantity?: any) => {
     setAddressWhitelist(addressWhitelist);
   };
 
-  const getBalance = async () => {
-    if (!connectedWallet) {
-      return;
-    }
-    const response = await queryMsg(
-      FORGE_TEST,
-      queryBalance(connectedWallet?.walletAddress)
-    );
-    return response;
-  };
-
   const getBalanceDetail = async () => {
     if (!connectedWallet) {
       return;
@@ -160,15 +151,6 @@ const useContractForge = (developmentCost?: any, nftQuantity?: any) => {
     setGovernanceProposals(governanceProposals.proposals);
   };
 
-  const setTokenBalanceToState = async () => {
-    const tokenBalance: any = await getBalance();
-    if (tokenBalance === undefined) {
-      setTokenBalance('0');
-      return;
-    }
-    setTokenBalance(tokenBalance.balance);
-  };
-
   const setBalanceDetailToState = async () => {
     const balanceDetail: any = await getBalanceDetail();
     setBalanceDetail(balanceDetail);
@@ -208,7 +190,6 @@ const useContractForge = (developmentCost?: any, nftQuantity?: any) => {
   }, [developmentCost, nftQuantity]);
 
   useEffect(() => {
-    setTokenBalanceToState();
     setStakedYFDToState();
     setBalanceDetailToState();
     setAllTokenWhitelistToState();
@@ -220,6 +201,9 @@ const useContractForge = (developmentCost?: any, nftQuantity?: any) => {
     vaultProposals,
     balanceDetail,
     tokenBalance,
+    tokenInfo,
+    marketingInfo,
+    allAccounts,
     requiredInitialFunding,
     governanceParameters,
     tokenWhitelist,

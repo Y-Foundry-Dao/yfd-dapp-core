@@ -5,7 +5,7 @@ import convertFromBase from 'utilities/converters/convertFromBase';
 function BalanceYFD() {
   const { tokenBalance } = useContractYFD();
 
-  return <Text>{convertFromBase(Number(tokenBalance)).toFixed(5)}</Text>;
+  return <Text>{convertFromBase(tokenBalance).toFixed(5)}</Text>;
 }
 
 export default BalanceYFD;

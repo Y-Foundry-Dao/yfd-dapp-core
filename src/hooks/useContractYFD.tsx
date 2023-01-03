@@ -1,9 +1,9 @@
-import { YFD_TEST } from '@utilities/variables';
-import useContractCW20 from './useContractCW20';
+import { YFD_TEST } from 'Variables';
+import useContractCW20Connected from '@hooks/useContractCW20Connected';
 
 const useContractYFD = () => {
   const { tokenBalance, tokenInfo, marketingInfo, allAccounts } =
-    useContractCW20(YFD_TEST);
+    useContractCW20Connected(YFD_TEST);
 
   return {
     tokenBalance,
