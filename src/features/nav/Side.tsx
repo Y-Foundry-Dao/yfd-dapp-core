@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import 'material-symbols';
 
-import Initiatives from './initiatives';
-import AboutYFD from './aboutYFD';
-import Footer from './footer';
+import Initiatives from './side/initiatives';
+import AboutYFD from './side/aboutYFD';
+import Footer from './side/footer';
 
 import styles from '@scss/app.module.scss';
 import { Icons } from '@var/icons';
