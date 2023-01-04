@@ -11,7 +11,7 @@ import {
 import useHandleInputsFeedback from 'hooks/handleInput/useFeedback';
 import { SUCCESS_FEEDBACK_DISCORD } from 'utilities/variables/toastMessages';
 import useTx from 'hooks/useTx';
-import { FEEDBACK_WEBHOOK } from 'utilities/variables/discord';
+import { WEBHOOK_FEEDBACK } from 'utilities/variables/discord';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 
 import styles from '@scss/app.module.scss';
@@ -49,7 +49,7 @@ export default function FeedbackForm({ onClose }: any) {
       ]
     };
 
-    fetch(FEEDBACK_WEBHOOK, {
+    fetch(WEBHOOK_FEEDBACK, {
       method: 'POST',
       body: JSON.stringify(message),
       headers: {
