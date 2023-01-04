@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import styles from '@scss/app.module.scss';
 import Header from '@layouts/Header';
 import LayoutLeft from '@layouts/Side';
