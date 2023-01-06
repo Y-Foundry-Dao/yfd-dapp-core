@@ -3,7 +3,6 @@ const path = require('path');
 const webpack = require('webpack');
 const { aliasWebpack, aliasJest } = require('react-app-alias')
 const { alias } = require('react-app-rewire-alias');
-
 const options = {}; // default is empty for most cases
 
 module.exports.jest = aliasJest(options)
