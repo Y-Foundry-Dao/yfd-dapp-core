@@ -16,8 +16,10 @@ import { useConnectedWallet } from '@terra-money/wallet-provider';
 
 import styles from '@scss/app.module.scss';
 import { URL_DISCORD } from '@var/links';
+import { env } from 'process';
 
 export default function FeedbackForm({ onClose }: any) {
+  const webhookUrl: any = WEBHOOK_FEEDBACK;
   const feedbackName: string = useRecoilValue(inputFeedbackName);
   const feedbackHandle: string = useRecoilValue(inputFeedbackHandle);
   const feedbackMethod: string = useRecoilValue(inputFeedbackMethod);
@@ -49,7 +51,7 @@ export default function FeedbackForm({ onClose }: any) {
       ]
     };
 
-    fetch(WEBHOOK_FEEDBACK, {
+    fetch(webhookUrl, {
       method: 'POST',
       body: JSON.stringify(message),
       headers: {

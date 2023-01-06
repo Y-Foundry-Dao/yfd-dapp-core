@@ -37,9 +37,9 @@ function ProposalInfo({ proposalContract, proposalIndex }: any) {
     Object.keys(governanceProposalInfo.detail)[0];
 
   const sendToDiscord = () => {
+    const webhookUrl: any = WEBHOOK_PROPOSALS_ALL;
     const blockClosing = governanceProposalInfo.closing_block;
     const blockQuorum = governanceProposalInfo.quorum_block;
-    const webhookUrl = WEBHOOK_PROPOSALS_ALL;
     const messageSuccess = SUCCESS_PROPOSAL_DISCORD;
     console.log('proposal Data: ' + JSON.stringify(governanceProposalInfo));
     const dateCurrent = format(Date.now(), 'dd-MMM-yyyy hh:mm aaa');

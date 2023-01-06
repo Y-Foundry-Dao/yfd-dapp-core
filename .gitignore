@@ -6,3 +6,4 @@ build/
 yarn-error.log
 .yarnclean
 .vscode
+.env
