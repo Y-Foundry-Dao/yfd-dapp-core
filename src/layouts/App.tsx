@@ -5,6 +5,7 @@ import LayoutLeft from '@layouts/Side';
 import MainContainer from '@layouts/Main';
 import MakeSnow from '@components/Snow';
 import { snowState } from '@recoil/profile/atoms';
+import CurrentBlockHeight from '@components/current/BlockHeight';
 
 export default function App() {
   const snow = useRecoilValue(snowState);
@@ -21,6 +22,7 @@ export default function App() {
         </div>
         <div className={styles['overlay-app']}></div>
       </div>
+      <CurrentBlockHeight />
     </>
   );
 }

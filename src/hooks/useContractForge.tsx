@@ -1,6 +1,5 @@
 import useMsg from './useMsg';
 import queryAllProposalContracts from 'utilities/messagesQuery/forge/queryAllProposalContracts';
-import { FORGE_TEST } from '@utilities/variables';
 import { useEffect, useState } from 'react';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
 import queryBalance from 'utilities/messagesQuery/cw20/queryBalance';
@@ -20,12 +19,24 @@ import queryAddressWhitelist from 'utilities/messagesQuery/forge/queryAddressWhi
 import queryProposalByIndex from 'utilities/messagesQuery/forge/queryProposalByIndex';
 import queryTokenWhitelist from 'utilities/messagesQuery/forge/queryTokenWhitelist';
 import useContractCW20Connected from './useContractCW20Connected';
+import getChainDeploy from '@utilities/getValue';
+import { currentChainIDAtom } from 'recoil/chainInfo/atoms';
+import { currentContractForgeAtom } from 'recoil/chainInfo/atoms';
 
 const useContractForge = (developmentCost?: any, nftQuantity?: any) => {
+  const recoilChain = useRecoilValue(currentChainIDAtom);
+  const chainID = 'pisco-1';
+  console.log(
+    'useContractForge - chainID',
+    chainID + ' - RECOIL: ' + recoilChain
+  );
+  const contractForge = getChainDeploy(chainID, 'forge');
+  console.log('useContractForge - contractForge', contractForge);
+
   const { queryMsg } = useMsg();
   const connectedWallet = useConnectedWallet();
   const { tokenBalance, tokenInfo, marketingInfo, allAccounts } =
-    useContractCW20Connected(FORGE_TEST);
+    useContractCW20Connected(contractForge);
 
   const [balanceDetail, setBalanceDetail] = useState({});
 
@@ -42,52 +53,64 @@ const useContractForge = (developmentCost?: any, nftQuantity?: any) => {
   const txHashInRecoil = useRecoilValue(txHashAtom);
 
   const getAllGovernanceParameters = async () => {
-    const response = await queryMsg(FORGE_TEST, queryAllGovernanceParameters());
+    const response = await queryMsg(
+      contractForge,
+      queryAllGovernanceParameters()
+    );
     return response;
   };
 
   const getGovernanceParameter = async (name: string) => {
-    const response = await queryMsg(FORGE_TEST, queryGovernanceParameter(name));
+    const response = await queryMsg(
+      contractForge,
+      queryGovernanceParameter(name)
+    );
     return response;
   };
 
   const getAllProposalContracts = async () => {
-    const response = await queryMsg(FORGE_TEST, queryAllProposalContracts());
+    const response = await queryMsg(contractForge, queryAllProposalContracts());
     return response;
   };
 
   const getProposalByIndex = async (index: any) => {
-    const response = await queryMsg(FORGE_TEST, queryProposalByIndex(index));
+    const response = await queryMsg(contractForge, queryProposalByIndex(index));
     return response;
   };
 
   const getAllVaultProposals = async () => {
-    const response = await queryMsg(FORGE_TEST, queryAllVaultProposals());
+    const response = await queryMsg(contractForge, queryAllVaultProposals());
     return response;
   };
 
   const getVaultProposalByIndex = async (index: any) => {
-    const response = await queryMsg(FORGE_TEST, queryProposalByIndex(index));
+    const response = await queryMsg(contractForge, queryProposalByIndex(index));
     return response;
   };
 
   const getAllTokenWhitelist = async () => {
-    const response = await queryMsg(FORGE_TEST, queryAllTokenWhitelist());
+    const response = await queryMsg(contractForge, queryAllTokenWhitelist());
     return response;
   };
 
   const getTokenInWhitelist = async (address: any) => {
-    const response = await queryMsg(FORGE_TEST, queryTokenWhitelist(address));
+    const response = await queryMsg(
+      contractForge,
+      queryTokenWhitelist(address)
+    );
     return response;
   };
 
   const getAllAddressWhitelist = async () => {
-    const response = await queryMsg(FORGE_TEST, queryAllAddressWhitelist());
+    const response = await queryMsg(contractForge, queryAllAddressWhitelist());
     return response;
   };
 
   const getAddressInWhitelist = async (address: any) => {
-    const response = await queryMsg(FORGE_TEST, queryAddressWhitelist(address));
+    const response = await queryMsg(
+      contractForge,
+      queryAddressWhitelist(address)
+    );
     return response;
   };
 
@@ -111,7 +134,7 @@ const useContractForge = (developmentCost?: any, nftQuantity?: any) => {
       return;
     }
     const response = await queryMsg(
-      FORGE_TEST,
+      contractForge,
       queryBalanceDetail(connectedWallet?.walletAddress)
     );
     return response;
@@ -123,7 +146,7 @@ const useContractForge = (developmentCost?: any, nftQuantity?: any) => {
   ) => {
     const devCostConverted = convertToBase(developmentCost);
     const response: any = await queryMsg(
-      FORGE_TEST,
+      contractForge,
       queryVaultFundingMath(devCostConverted, nftQuantity)
     );
     return response;

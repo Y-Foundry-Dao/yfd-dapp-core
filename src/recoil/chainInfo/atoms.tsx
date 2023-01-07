@@ -10,4 +10,9 @@ const currentChainIDAtom = atom({
   default: ''
 });
 
-export { currentBlockHeightAtom, currentChainIDAtom };
+const currentContractForgeAtom = atom({
+  key: 'currentContractForgeAtom',
+  default: ''
+});
+
+export { currentBlockHeightAtom, currentChainIDAtom, currentContractForgeAtom };

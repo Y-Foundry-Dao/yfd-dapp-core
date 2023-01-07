@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { terra } from 'utilities/lcd';
 import { currentBlockHeightAtom } from 'recoil/chainInfo/atoms';
 import { currentChainIDAtom } from 'recoil/chainInfo/atoms';
+import { currentContractForgeAtom } from 'recoil/chainInfo/atoms';
 import { useWallet } from '@terra-money/wallet-provider';
+import getChainDeploy from '@utilities/getValue';
 
 const useChainInfo = () => {
   const connection = useWallet();
@@ -15,14 +17,29 @@ const useChainInfo = () => {
   const [currentChainID, setCurrentChainID] =
     useRecoilState<string>(currentChainIDAtom);
 
+  const [currentContractForge, setCurrentContractForge] =
+    useRecoilState<string>(currentContractForgeAtom);
+
   const getCurrentChainID = async () => {
     const chainID: string = connection.network.chainID;
+    console.log('useChainInfo - chainID: ', chainID);
     return chainID;
   };
 
-  const setCurrrntChainIDToState = async () => {
+  const setCurrentChainIDToState = async () => {
     const chainID = await getCurrentChainID();
     setCurrentChainID(chainID);
+  };
+
+  const getCurrentContractForge = async () => {
+    const contractForge = getChainDeploy(currentChainID, 'forge');
+    console.log('useChainInfo - contractForge: ', contractForge);
+    return contractForge;
+  };
+
+  const setCurrentContractForgeToState = async () => {
+    const contractForge = await getCurrentContractForge();
+    setCurrentContractForge(contractForge);
   };
 
   const getCurrentBlockHeight = async () => {
@@ -39,7 +56,8 @@ const useChainInfo = () => {
 
   useEffect(() => {
     setCurrentBlockHeightToState();
-    setCurrrntChainIDToState();
+    setCurrentChainIDToState();
+    setCurrentContractForgeToState();
   }, []);
 
   useEffect(() => {
@@ -51,7 +69,8 @@ const useChainInfo = () => {
 
   return {
     currentBlockHeight,
-    currentChainID
+    currentChainID,
+    currentContractForge
   };
 };
 
