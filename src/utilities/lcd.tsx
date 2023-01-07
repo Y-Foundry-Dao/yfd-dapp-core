@@ -1,8 +1,16 @@
 import { LCDClient } from '@terra-money/terra.js';
-import { URL_LCD, CHAIN_ID } from 'utilities/variables/blockchain';
+import { chainConnect } from '@var/blockchain';
 
+const ChainID = 'pisco-1';
+
+const data = chainConnect.find((data) => data.chainID === ChainID);
+const value: any =
+  chainConnect
+    .find((data) => data.chainID === ChainID)
+    ?.config.map((config) => config.lcd) || [];
+console.log('chainConnect->data: ', data);
+console.log('value: ', value);
 export const terra = new LCDClient({
-  //  URL: `https://lcd.pisco.terra.setten.io/${settenProject}?key=${settenKey}`,
-  URL: URL_LCD,
-  chainID: CHAIN_ID
+  URL: value[0],
+  chainID: 'pisco-1'
 });
