@@ -1,11 +1,15 @@
-import { chainConnect } from './variables/blockchain';
+import { chainDeploy } from './variables/blockchain';
 
-const getChainLcd = (chain: string) => {
-  const chainConfig = chainConnect.find((item) => item.chainID === chain);
-  if (chainConfig) {
-    return chainConfig.config[0].lcd;
+const getChainDeploy = (
+  chain: string,
+  field: 'lcd' | 'name' | 'forge' | 'token'
+) => {
+  const chainConfig = chainDeploy.find((item) => item.chainID === chain);
+  if (chainConfig && chainConfig.config && chainConfig.config[0]) {
+    const result: string = chainConfig.config[0][field];
+    return result || '';
   }
   return '';
 };
 
-export default getChainLcd;
+export default getChainDeploy;

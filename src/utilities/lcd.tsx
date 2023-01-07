@@ -1,9 +1,9 @@
 import { LCDClient } from '@terra-money/terra.js';
-import getChainLcd from '@utilities/getValue';
+import getChainDeploy from '@utilities/getValue';
 
 const ChainID = 'pisco-1';
 
 export const terra = new LCDClient({
-  URL: getChainLcd(ChainID),
+  URL: getChainDeploy(ChainID, 'lcd'),
   chainID: ChainID
 });

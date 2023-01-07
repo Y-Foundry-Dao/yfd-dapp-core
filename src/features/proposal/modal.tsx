@@ -13,7 +13,7 @@ import { inputProposalType } from 'recoil/input/atoms';
 import { useRecoilValue } from 'recoil';
 import CreationFormWhitelistTokenAddress from './governance/create/CreationFormWhitelistTokenAddress';
 import CreationFormParameter from './governance/create/CreationFormParameter';
-import CreationFormText from './governance/create/CreationFormText';
+import CreationFormText from './text/Create';
 import CreationFormSpend from './governance/create/CreationFormSpend';
 import styles from '@scss/app.module.scss';
 import { Icons } from '@var/icons';

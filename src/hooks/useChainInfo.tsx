@@ -1,16 +1,29 @@
-import { useConnectedWallet } from '@terra-money/wallet-provider';
-import useMsg from './useMsg';
-import queryBalance from 'utilities/messagesQuery/cw20/queryBalance';
-import useContractProposal from './useContractProposal';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { terra } from 'utilities/lcd';
 import { currentBlockHeightAtom } from 'recoil/chainInfo/atoms';
+import { currentChainIDAtom } from 'recoil/chainInfo/atoms';
+import { useWallet } from '@terra-money/wallet-provider';
 
 const useChainInfo = () => {
+  const connection = useWallet();
+
   const [currentBlockHeight, setCurrentBlockHeight] = useRecoilState<any>(
     currentBlockHeightAtom
   );
+
+  const [currentChainID, setCurrentChainID] =
+    useRecoilState<string>(currentChainIDAtom);
+
+  const getCurrentChainID = async () => {
+    const chainID: string = connection.network.chainID;
+    return chainID;
+  };
+
+  const setCurrrntChainIDToState = async () => {
+    const chainID = await getCurrentChainID();
+    setCurrentChainID(chainID);
+  };
 
   const getCurrentBlockHeight = async () => {
     const newBlockHeight = Number.parseInt(
@@ -26,6 +39,7 @@ const useChainInfo = () => {
 
   useEffect(() => {
     setCurrentBlockHeightToState();
+    setCurrrntChainIDToState();
   }, []);
 
   useEffect(() => {
@@ -36,7 +50,8 @@ const useChainInfo = () => {
   }, []);
 
   return {
-    currentBlockHeight
+    currentBlockHeight,
+    currentChainID
   };
 };
 

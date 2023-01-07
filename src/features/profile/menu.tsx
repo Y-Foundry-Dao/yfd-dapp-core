@@ -1,6 +1,6 @@
 import { useRecoilState, useRecoilValue } from 'recoil';
 import useHandleClicks from '@hooks/useHandleClicks';
-import { useConnectedWallet, useWallet } from '@terra-money/wallet-provider';
+import { useWallet } from '@terra-money/wallet-provider';
 import {
   Image,
   Popover,

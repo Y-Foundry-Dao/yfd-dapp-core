@@ -5,4 +5,9 @@ const currentBlockHeightAtom = atom({
   default: 0
 });
 
-export { currentBlockHeightAtom };
+const currentChainIDAtom = atom({
+  key: 'currentChainIDAtom',
+  default: ''
+});
+
+export { currentBlockHeightAtom, currentChainIDAtom };
