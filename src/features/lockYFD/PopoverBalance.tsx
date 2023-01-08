@@ -26,10 +26,8 @@ import {
   Text
 } from '@chakra-ui/react';
 
-import {
-  balancefYFDQuery,
-  balanceYFDQuery
-} from '@recoil/balanceConnected/selectors';
+//import selectFyfd from '@recoil/connected/balance/selectors';
+//import selectYFD from '@recoil/connected/balance/selectors';
 import { inputStakeYFD } from 'recoil/input/atoms';
 
 import useHandleClicks from '@hooks/useHandleClicks';
@@ -64,13 +62,18 @@ export default function MenuFyfdBalance() {
   const { handleClickStakeYFD } = useHandleClicks();
   const { handleInputStakeYFD } = useHandleInputs();
 
-  const balancefYFDLoadable = useRecoilValueLoadable(balancefYFDQuery);
-  const balanceYFDLoadable = useRecoilValueLoadable(balanceYFDQuery);
+  //console.log('selectYFD - PopoverBalance.tsx', selectYFD);
+  //const balance = useRecoilValue(selectYFD);
+  //console.log('balance - PopoverBalance.tsx', balance);
+  const balancefYFD = 2500000;
+  const balanceYFD = 1000000;
+  /*const balancefYFDLoadable = useRecoilValueLoadable(selectFyfd);
+  const balanceYFDLoadable = useRecoilValueLoadable(selectYFD);
 
   //console.log('tokenBalance', tokenBalance);
   const balancefYFD = convertFromBase(balancefYFDLoadable.contents);
   const balanceYFD = convertFromBase(balanceYFDLoadable.contents);
-
+*/
   if (1000 < balancefYFD) {
     styleVote = styleVote + ' ' + styles['icon-create'];
   }

@@ -1,14 +1,13 @@
-import { balanceYFDQuery } from '@recoil/balanceConnected/selectors';
 import { useRecoilValueLoadable } from 'recoil';
-
+//import { selectYFD } from '@recoil/connected/balance/selectors';
+const selectYFD = '1000';
 export default function BalanceYFD() {
-  const balanceYFDLoadable = useRecoilValueLoadable(balanceYFDQuery);
-  switch (balanceYFDLoadable.state) {
-    case 'hasValue':
-      return <div>YFD Balance: {balanceYFDLoadable.contents}</div>;
-    case 'loading':
-      return <div>Loading...</div>;
-    case 'hasError':
-      throw balanceYFDLoadable.contents;
-  }
+  return (
+    <>
+      <div>
+      { /* YFD Balance: <>{useRecoilValueLoadable(selectYFD)}</> */ }
+      YFD Balance: <>{selectYFD}</>
+      </div>
+    </>
+  );
 }

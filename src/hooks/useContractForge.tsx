@@ -1,12 +1,12 @@
 import useMsg from './useMsg';
 import queryAllProposalContracts from 'utilities/messagesQuery/forge/queryAllProposalContracts';
 import { useEffect, useState } from 'react';
-import { useConnectedWallet } from '@terra-money/wallet-provider';
-import queryBalance from 'utilities/messagesQuery/cw20/queryBalance';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
+import queryBalance from 'utilities/messagesQuery/cw20/queryBalance';
 import txHashAtom from 'recoil/txHash/atom';
 import queryBalanceDetail from 'utilities/messagesQuery/forge/queryBalanceDetail';
 import stakedYFDAtom from 'recoil/stakedYFD/atom';
+import { addressConnectedAtom } from '@recoil/connected/address/atoms';
 import queryAllVaultProposals from 'utilities/messagesQuery/forge/queryAllVaultProposals';
 import queryVaultFundingMath from 'utilities/messagesQuery/forge/queryVaultFundingMath';
 import convertToBase from 'utilities/converters/convertToBase';
@@ -19,22 +19,20 @@ import queryAddressWhitelist from 'utilities/messagesQuery/forge/queryAddressWhi
 import queryProposalByIndex from 'utilities/messagesQuery/forge/queryProposalByIndex';
 import queryTokenWhitelist from 'utilities/messagesQuery/forge/queryTokenWhitelist';
 import useContractCW20Connected from './useContractCW20Connected';
-import getChainDeploy from '@utilities/getValue';
-import { currentChainIDAtom } from 'recoil/chainInfo/atoms';
-import { currentContractForgeAtom } from 'recoil/chainInfo/atoms';
+import getChainDeploy from '@utilities/getValues';
+
+import {
+  currentChainIDAtom,
+  currentContractForgeAtom
+} from 'recoil/chainInfo/atoms';
 
 const useContractForge = (developmentCost?: any, nftQuantity?: any) => {
-  const recoilChain = useRecoilValue(currentChainIDAtom);
-  const chainID = 'pisco-1';
-  console.log(
-    'useContractForge - chainID',
-    chainID + ' - RECOIL: ' + recoilChain
-  );
+  const addressConnected = useRecoilValue(addressConnectedAtom);
+  const chainID = useRecoilValue(currentChainIDAtom);
   const contractForge = getChainDeploy(chainID, 'forge');
-  console.log('useContractForge - contractForge', contractForge);
+  const contractYFD = getChainDeploy(chainID, 'token');
 
   const { queryMsg } = useMsg();
-  const connectedWallet = useConnectedWallet();
   const { tokenBalance, tokenInfo, marketingInfo, allAccounts } =
     useContractCW20Connected(contractForge);
 
@@ -130,14 +128,13 @@ const useContractForge = (developmentCost?: any, nftQuantity?: any) => {
   };
 
   const getBalanceDetail = async () => {
-    if (!connectedWallet) {
-      return;
+    if (addressConnected) {
+      const response = await queryMsg(
+        contractForge,
+        queryBalanceDetail(addressConnected)
+      );
+      return response;
     }
-    const response = await queryMsg(
-      contractForge,
-      queryBalanceDetail(connectedWallet?.walletAddress)
-    );
-    return response;
   };
 
   const getVaultFundingMath = async (
@@ -217,7 +214,7 @@ const useContractForge = (developmentCost?: any, nftQuantity?: any) => {
     setBalanceDetailToState();
     setAllTokenWhitelistToState();
     setAllAddressWhitelistToState();
-  }, [connectedWallet, txHashInRecoil]);
+  }, [addressConnected, txHashInRecoil]);
 
   return {
     governanceProposals,

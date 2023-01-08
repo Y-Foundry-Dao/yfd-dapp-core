@@ -35,7 +35,7 @@ import msgExecuteSend from '@utilities/messagesExecute/yfd/msgExecuteSend';
 import useTx from '@hooks/useTx';
 import { SUCCESS_CREATE_PROPOSAL } from '@utilities/variables/toastMessages';
 import convertToBase from '@utilities/converters/convertToBase';
-import getChainDeploy from '@utilities/getValue';
+import getChainDeploy from '@utilities/getValues';
 import Base64 from '@utilities/base64';
 import useMsg from '@hooks/useMsg';
 import { useState } from 'react';

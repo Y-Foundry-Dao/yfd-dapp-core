@@ -5,10 +5,11 @@ import { currentBlockHeightAtom } from 'recoil/chainInfo/atoms';
 import { currentChainIDAtom } from 'recoil/chainInfo/atoms';
 import { currentContractForgeAtom } from 'recoil/chainInfo/atoms';
 import { useWallet } from '@terra-money/wallet-provider';
-import getChainDeploy from '@utilities/getValue';
+import getChainDeploy from '@utilities/getValues';
 
 const useChainInfo = () => {
   const connection = useWallet();
+  //console.log('useChainInfo: ', connection);
 
   const [currentBlockHeight, setCurrentBlockHeight] = useRecoilState<any>(
     currentBlockHeightAtom
@@ -22,7 +23,6 @@ const useChainInfo = () => {
 
   const getCurrentChainID = async () => {
     const chainID: string = connection.network.chainID;
-    console.log('useChainInfo - chainID: ', chainID);
     return chainID;
   };
 
@@ -33,7 +33,6 @@ const useChainInfo = () => {
 
   const getCurrentContractForge = async () => {
     const contractForge = getChainDeploy(currentChainID, 'forge');
-    console.log('useChainInfo - contractForge: ', contractForge);
     return contractForge;
   };
 
