@@ -7,6 +7,7 @@ import {
   currentContractForgeAtom,
   currentContractGovTokenAtom
 } from '@recoil/chainInfo/atoms';
+import convertFromBase from '@utilities/converters/convertFromBase';
 
 export const selectYFDConnected = selector({
   key: 'selectYFDConnected',
@@ -23,21 +24,34 @@ export const selectYFDConnected = selector({
   }
 });
 
+export const selectHumanReadableYFDConnected = selector({
+  key: 'selectHumanReadableYFDConnected',
+  get: async ({ get }) => {
+    const humanReadableBalance = convertFromBase(get(selectYFDConnected));
+    console.log('{SELECTOR} YFD Balance TWO: ', humanReadableBalance);
+    return humanReadableBalance;
+  }
+});
+
 export const selectFYFDConnected = selector({
   key: 'selectFYFDConnected',
   get: async ({ get }) => {
     if (get(addressConnectedAtom) == '') {
       return 0;
     }
-    try {
-      const response = await queryMsg(
-        get(currentContractForgeAtom),
-        queryBalance(get(addressConnectedAtom))
-      );
-      return parseFloat(response.balance);
-    } catch (e) {
-      console.error(e);
-    }
+    const response = await queryMsg(
+      get(currentContractForgeAtom),
+      queryBalance(get(addressConnectedAtom))
+    );
+    return parseFloat(response.balance);
+  }
+});
+
+export const selectHumanReadableFYFDConnected = selector({
+  key: 'selectHumanReadableFYFDConnected',
+  get: async ({ get }) => {
+    const humanReadableBalance = convertFromBase(get(selectFYFDConnected));
+    return humanReadableBalance;
   }
 });
 

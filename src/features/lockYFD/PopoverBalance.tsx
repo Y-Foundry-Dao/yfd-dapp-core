@@ -45,8 +45,8 @@ import {
 import ProposalModal from '@features/proposal/modal';
 import ProposalModalButton from '@features/proposal/create/ButtonModelOpen';
 import LockYfdForm from './Form';
-import { myFYFD, myYFD } from '@utilities/myValues';
-
+// import { myFYFD, myYFD } from '@utilities/myValues';
+import useValues from '@hooks/useValues';
 let styleVote = 'material-symbols-outlined';
 let styleGuardian = 'material-symbols-outlined';
 
@@ -62,19 +62,20 @@ export default function MenuFyfdBalance() {
   const amountStakeYFD = useRecoilValue(inputStakeYFD);
   const { handleClickStakeYFD } = useHandleClicks();
   const { handleInputStakeYFD } = useHandleInputs();
-  const balancefYFD = myFYFD();
-  const balanceYFD = myYFD();
+  const { myYFD, myFYFD } = useValues();
+  // const balancefYFD = myFYFD();
+  // const balanceYFD = myYFD();
 
-  if (1000 < +balancefYFD) {
+  if (1000 < +myFYFD()) {
     styleVote = styleVote + ' ' + styles['icon-create'];
   }
 
-  if (100000 < +balancefYFD) {
+  if (100000 < +myFYFD()) {
     styleGuardian = styleGuardian + ' ' + styles['icon-create'];
   }
 
   function actionPropose() {
-    if (25000 < +balancefYFD) {
+    if (25000 < +myFYFD()) {
       return (
         <>
           <ProposalModalButton onOpen={onOpen} />
@@ -138,11 +139,11 @@ export default function MenuFyfdBalance() {
           <Box>
             fYFD
             <>
-              <Text className={styles.menuFyfdBalance}>{balancefYFD}</Text>
+              <Text className={styles.menuFyfdBalance}>{myFYFD()}</Text>
             </>
             YFD:
             <>
-              <Text className={styles.menuYfdBalance}>{balanceYFD}</Text>
+              <Text className={styles.menuYfdBalance}>{myYFD()}</Text>
             </>
             <br />
           </Box>
