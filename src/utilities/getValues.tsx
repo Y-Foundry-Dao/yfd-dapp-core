@@ -14,14 +14,4 @@ const getChainDeploy = (
   return '';
 };
 
-const getGovParamfYFDVaultPropMinimum = () => {
-  const chainID = useChainInfo().currentChainID;
-  const forge = getChainDeploy(chainID, 'forge');
-
-  if (forge) {
-    const value = useContractForge('paramfYFDVaultPropMinimum');
-  }
-  return '';
-};
-
 export default getChainDeploy;

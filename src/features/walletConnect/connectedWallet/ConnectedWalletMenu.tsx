@@ -1,5 +1,5 @@
-import { useConnectedWallet, useWallet } from '@terra-money/wallet-provider';
-import { useEffect, useState } from 'react';
+import { useWallet } from '@terra-money/wallet-provider';
+import { useEffect } from 'react';
 import { Web3Address } from '@saas-ui/web3';
 import {
   Button,
@@ -11,16 +11,13 @@ import {
   MenuGroup,
   useClipboard
 } from '@chakra-ui/react';
+import { useRecoilValue } from 'recoil';
+import { addressConnectedAtom } from '@recoil/connected/address/atoms';
+
 function ConnectedWalletMenu() {
-  const [walletAddress, setWalletAddress] = useState('');
+  const walletAddress = useRecoilValue(addressConnectedAtom);
   const { disconnect } = useWallet();
-  const connectedWallet = useConnectedWallet();
   const { hasCopied, onCopy } = useClipboard(walletAddress);
-  useEffect(() => {
-    if (connectedWallet !== undefined) {
-      setWalletAddress(connectedWallet?.walletAddress);
-    }
-  }, [connectedWallet]);
   return (
     <Menu>
       <MenuButton minWidth={120} as={Button} colorScheme="blue">

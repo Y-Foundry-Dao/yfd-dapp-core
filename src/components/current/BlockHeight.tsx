@@ -8,9 +8,6 @@ export default function currentBlockHeight() {
   const currentBlockHeight = useRecoilValue(currentBlockHeightAtom);
   if (currentBlockHeight) {
     console.log('currentBlockHeight: ', currentBlockHeight);
-    currentBlockHeightAtom
-      ? console.log('currentBlockHeight: ', currentBlockHeight)
-      : null;
     return (
       <>
         <div className={styles.blockHeight}>
@@ -27,6 +24,6 @@ export default function currentBlockHeight() {
       </>
     );
   } else {
-    return <Loading />;
+    return <Loading title="Block Height Loading..." />;
   }
 }

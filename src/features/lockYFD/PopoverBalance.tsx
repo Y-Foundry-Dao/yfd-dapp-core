@@ -45,6 +45,7 @@ import {
 import ProposalModal from '@features/proposal/modal';
 import ProposalModalButton from '@features/proposal/create/ButtonModelOpen';
 import LockYfdForm from './Form';
+import { myFYFD, myYFD } from '@utilities/myValues';
 
 let styleVote = 'material-symbols-outlined';
 let styleGuardian = 'material-symbols-outlined';
@@ -61,29 +62,19 @@ export default function MenuFyfdBalance() {
   const amountStakeYFD = useRecoilValue(inputStakeYFD);
   const { handleClickStakeYFD } = useHandleClicks();
   const { handleInputStakeYFD } = useHandleInputs();
+  const balancefYFD = myFYFD();
+  const balanceYFD = myYFD();
 
-  //console.log('selectYFD - PopoverBalance.tsx', selectYFD);
-  //const balance = useRecoilValue(selectYFD);
-  //console.log('balance - PopoverBalance.tsx', balance);
-  const balancefYFD = 2500000;
-  const balanceYFD = 1000000;
-  /*const balancefYFDLoadable = useRecoilValueLoadable(selectFyfd);
-  const balanceYFDLoadable = useRecoilValueLoadable(selectYFD);
-
-  //console.log('tokenBalance', tokenBalance);
-  const balancefYFD = convertFromBase(balancefYFDLoadable.contents);
-  const balanceYFD = convertFromBase(balanceYFDLoadable.contents);
-*/
-  if (1000 < balancefYFD) {
+  if (1000 < +balancefYFD) {
     styleVote = styleVote + ' ' + styles['icon-create'];
   }
 
-  if (100000 < balancefYFD) {
+  if (100000 < +balancefYFD) {
     styleGuardian = styleGuardian + ' ' + styles['icon-create'];
   }
 
   function actionPropose() {
-    if (25000 < balancefYFD) {
+    if (25000 < +balancefYFD) {
       return (
         <>
           <ProposalModalButton onOpen={onOpen} />
@@ -147,15 +138,11 @@ export default function MenuFyfdBalance() {
           <Box>
             fYFD
             <>
-              <Text className={styles.menuFyfdBalance}>
-                {balancefYFD.toFixed(5)}
-              </Text>
+              <Text className={styles.menuFyfdBalance}>{balancefYFD}</Text>
             </>
             YFD:
             <>
-              <Text className={styles.menuYfdBalance}>
-                {balanceYFD.toFixed(5)}
-              </Text>
+              <Text className={styles.menuYfdBalance}>{balanceYFD}</Text>
             </>
             <br />
           </Box>

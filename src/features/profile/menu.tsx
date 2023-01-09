@@ -35,7 +35,8 @@ import {
   PATH_PROFILE_PFP_DEFAULT
 } from 'utilities/variables';
 
-import useAddressConnected from '@hooks/useAddressConnected';
+import { addressConnectedAtom } from '@recoil/connected/address/atoms';
+
 import useProfile from '@hooks/useProfile';
 import { Web3Address } from '@saas-ui/web3';
 import { snowState } from '@recoil/profile/atoms';
@@ -43,10 +44,9 @@ import { FormDialog } from '@saas-ui/modals';
 
 export default function ProfileHeader() {
   const [snow, setSnow] = useRecoilState(snowState);
-
-  const walletAddress = useAddressConnected();
+  const walletAddress = useRecoilValue(addressConnectedAtom);
   const { disconnect } = useWallet();
-  const { hasCopied, onCopy } = useClipboard(useAddressConnected());
+  const { hasCopied, onCopy } = useClipboard(walletAddress);
   const profile = useProfile(walletAddress) as any;
 
   const profileUrl = PATH_PROFILE + walletAddress + PATH_PROFILE_SUFFIX;

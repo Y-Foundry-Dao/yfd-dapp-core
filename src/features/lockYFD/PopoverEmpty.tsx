@@ -22,12 +22,9 @@ import styles from '@scss/app.module.scss';
 import LockYfdForm from './Form';
 
 export default function FyfdPopoverEmpty() {
-  const { tokenBalance } = useContractForge();
   //  console.log('tokenBalance', tokenBalance);
-  const balancefYFD = parseInt(
-    convertFromBase(Number(tokenBalance)).toFixed(5),
-    10
-  );
+  // console fyfd
+
   const [durationDepositYFD, setDurationDepositYFD] = useState(
     DEFAULT_YFD_LOCK_DURATION
   );
@@ -43,7 +40,8 @@ export default function FyfdPopoverEmpty() {
           YFD Balance:
           <>
             <Text className={styles.menuYfdBalance}>
-              {convertFromBase(Number(tokenBalance)).toFixed(5)}
+              YFD BALANCE HERE
+              <br />
             </Text>
           </>
         </PopoverHeader>
