@@ -19,18 +19,15 @@ import queryAddressWhitelist from 'utilities/messagesQuery/forge/queryAddressWhi
 import queryProposalByIndex from 'utilities/messagesQuery/forge/queryProposalByIndex';
 import queryTokenWhitelist from 'utilities/messagesQuery/forge/queryTokenWhitelist';
 import useContractCW20Connected from './useContractCW20Connected';
-import getChainDeploy from '@utilities/getValues';
-
 import {
-  currentChainIDAtom,
-  currentContractForgeAtom
+  currentContractForgeAtom,
+  currentContractGovTokenAtom
 } from 'recoil/chainInfo/atoms';
 
 const useContractForge = (developmentCost?: any, nftQuantity?: any) => {
   const addressConnected = useRecoilValue(addressConnectedAtom);
-  const chainID = useRecoilValue(currentChainIDAtom);
-  const contractForge = getChainDeploy(chainID, 'forge');
-  const contractYFD = getChainDeploy(chainID, 'token');
+  const contractForge = useRecoilValue(currentContractForgeAtom);
+  const contractYFD = useRecoilValue(currentContractGovTokenAtom);
 
   const { queryMsg } = useMsg();
   const { tokenBalance, tokenInfo, marketingInfo, allAccounts } =

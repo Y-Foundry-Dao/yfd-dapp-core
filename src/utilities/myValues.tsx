@@ -21,7 +21,7 @@ export const myChain = () => {
 export const myYFD = () => {
   const response = useRecoilValueLoadable(selectYFDConnected);
   //console.log('{RECOIL} [MY] YFD Balance: ', response);
-  const balance = parseInt(convertFromBase(response.contents).toFixed(5), 10);
+  const balance = parseFloat(convertFromBase(response.contents).toFixed(5));
   //console.log('{MY} hasValue YFD Balance: ', balance);
   return balance.toString();
 };
@@ -29,7 +29,7 @@ export const myYFD = () => {
 export const myFYFD = () => {
   const response = useRecoilValueLoadable(selectFYFDConnected);
   //console.log('{RECOIL} [MY] --FYFD-- Balance: ', response);
-  const balance = parseInt(convertFromBase(response.contents).toFixed(5), 10);
+  const balance = parseFloat(convertFromBase(response.contents).toFixed(5));
   //console.log('{MY} --FYFD-- Balance: ', balance);
   return balance.toString();
 };
