@@ -26,15 +26,15 @@ import { chainDeploy } from '@var/blockchain';
 import useValues from '@hooks/useValues';
 
 function WalletConnect() {
-  const { myYFD, myFYFD } = useValues();
   // grab connected network and wallet data
+  const { myYFD, myFYFD } = useValues();
   const connectedWallet = useConnectedWallet();
   const walletAddress: string = connectedWallet?.walletAddress as string;
 
   // set the wallet data to Recoil State
-  // const [addressConnected, setAddressConnected] =
-  //   useRecoilState(addressConnectedAtom);
-  // setAddressConnected(walletAddress);
+  const [addressConnected, setAddressConnected] =
+    useRecoilState(addressConnectedAtom);
+  setAddressConnected(walletAddress);
 
   if (connectedWallet === undefined) {
     console.log('connectedWallet is undefined - show CONNECT WALLET button');
@@ -44,7 +44,7 @@ function WalletConnect() {
   const chainID = connectedWallet?.network.chainID || 'pisco-1'; /// chain ID needs to be preloaded or assumed.
   const [currentChainID, setCurrentChainID] =
     useRecoilState(currentChainIDAtom);
-  // setCurrentChainID(chainID);
+  setCurrentChainID(chainID);
 
   // set block height state
   const blockHeight = useChainInfo().currentBlockHeight;
