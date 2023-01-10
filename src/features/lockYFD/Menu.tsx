@@ -35,14 +35,13 @@ export default function LockYFDMenu() {
   );
 
   if (
-    minFYFDVaultProp === undefined ||
-    minFYFDGovProp === undefined ||
-    minFYFDEmergencyProp === undefined
+    minFYFDVaultProp.state === 'hasValue' &&
+    typeof minFYFDVaultProp.contents !== 'undefined' &&
+    minFYFDGovProp.state === 'hasValue' &&
+    minFYFDGovProp.contents !== 'undefined' &&
+    minFYFDEmergencyProp.state === 'hasValue' &&
+    minFYFDEmergencyProp.contents !== 'undefined'
   ) {
-    console.warn('Governance parameters are not yet loaded');
-    console.error('minFYFDVaultProp.state is undefined');
-    return <></>;
-  } else {
     const vKey = Object.keys(minFYFDVaultProp.contents.parameter_type)[0];
     const minVaultValue =
       minFYFDVaultProp.contents.parameter_type[vKey].value.toString();
@@ -138,5 +137,9 @@ export default function LockYFDMenu() {
         </Popover>
       );
     }
+  } else {
+    console.warn('Governance parameters are not yet loaded');
+    console.error('minFYFDVaultProp.state is undefined');
+    return <></>;
   }
 }
