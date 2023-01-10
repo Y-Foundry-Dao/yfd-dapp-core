@@ -1,7 +1,7 @@
 import { useConnectedWallet, useWallet } from '@terra-money/wallet-provider';
 //import ConnectedWalletMenu from './connectedWallet/ConnectedWalletMenu';
 import ConnectWalletMenu from './connectWallet/ConnectWalletMenu';
-import AvailableChainsList from './connectWallet/AvailableChainsList';
+import ChainUnsupportedMenu from './connectWallet/ChainUnsupportedMenu';
 import {
   useSetRecoilState,
   SetRecoilState,
@@ -82,7 +82,7 @@ function WalletConnect() {
     console.log('CHAIN NOT SUPPORTED - show AVAILABLE CHAINS button');
     return (
       <>
-        <ConnectWalletMenu />
+        <ChainUnsupportedMenu />
       </>
     );
   }
