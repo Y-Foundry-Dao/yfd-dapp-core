@@ -1,8 +1,15 @@
+import { useState } from 'react';
 import useChainInfo from '@hooks/useChainInfo';
 import useContractForge from '@hooks/useContractForge';
 import { chainDeploy } from './variables/blockchain';
+import {
+  selectMinFYFDEmergencyProp,
+  selectMinFYFDGovProp,
+  selectMinFYFDVaultProp
+} from '@recoil/governance/parameters/selectors';
+import { useRecoilValueLoadable } from 'recoil';
 
-const getChainDeploy = (
+export const getChainDeploy = (
   chain: string,
   field: 'lcd' | 'name' | 'forge' | 'token'
 ) => {
