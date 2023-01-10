@@ -35,25 +35,21 @@ export default function LockYFDMenu() {
   );
 
   const vKey = Object.keys(minFYFDVaultProp.contents.parameter_type)[0];
-  const vParameter = minFYFDVaultProp.contents.parameter_type[vKey];
-  const minVaultValue = vParameter.value.toString() || '0';
-  const minVaultName =
-    minFYFDVaultProp.contents.name || 'Minimum Vault Proposal FYFD';
+  const minVaultValue =
+    minFYFDVaultProp.contents.parameter_type[vKey].value.toString();
+  const minVaultName = minFYFDVaultProp.contents.name;
   console.log(minVaultName + ': ' + minVaultName);
 
   const gKey = Object.keys(minFYFDGovProp.contents.parameter_type)[0];
-  const gParameter = minFYFDGovProp.contents.parameter_type[gKey];
-  const minGovValue = gParameter.value.toString() || '0';
   const minGovName =
-    minFYFDGovProp.contents.name || 'Minimum Governance Proposal FYFD';
+    minFYFDGovProp.contents.parameter_type[vKey].value.toString();
+  const minGovValue = minFYFDGovProp.contents.name;
   console.log(minGovName + ': ' + minGovValue);
 
-  const parameterType = minFYFDEmergencyProp.contents.parameter_type;
-  const key = Object.keys(parameterType)[0];
-  const parameter = parameterType[key];
-  const minEmergencyValue = parameter.value.toString() || '0';
+  const eKey = Object.keys(minFYFDEmergencyProp.contents.parameter_type)[0];
   const minEmergencyName =
-    minFYFDEmergencyProp.contents.name || 'Minimum Emergency Proposal FYFD';
+    minFYFDEmergencyProp.contents.parameter_type[eKey].value.toString();
+  const minEmergencyValue = minFYFDEmergencyProp.contents.name;
   console.log(minEmergencyName + ': ' + minEmergencyValue);
 
   /*
