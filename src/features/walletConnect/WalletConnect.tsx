@@ -26,33 +26,35 @@ import { chainDeploy } from '@var/blockchain';
 import { myYFD, myFYFD } from '@utilities/myValues';
 
 function WalletConnect() {
-  const [currentChainID, setCurrentChainID] =
-    useRecoilState(currentChainIDAtom);
   const [addressConnected, setAddressConnected] =
     useRecoilState(addressConnectedAtom);
+  const [currentContractForge, setCurrentContractForge] = useRecoilState(
+    currentContractForgeAtom
+  );
+  const [currentContractGovToken, setCurrentContractGovToken] = useRecoilState(
+    currentContractGovTokenAtom
+  );
+  const [currentChainID, setCurrentChainID] =
+    useRecoilState(currentChainIDAtom);
 
-  const chainID = useWallet().network.chainID;
-  setCurrentChainID(chainID);
+  //const chainID = setCurrentChainID(chainID);
   console.log('{ RECOIL } CHAIN ID: ', useRecoilValue(currentChainIDAtom));
 
+  const wallet = useConnectedWallet();
+  const walletAddress: string = wallet?.walletAddress as string;
+  console.log('{ RECOIL } WALLET: ', wallet);
+
   // check to see if the chain is supported
-  const chainConfig = chainDeploy.find((item) => item.chainID === chainID);
-  console.log('{LOCAL} CHAIN CONFIG: ', chainConfig);
+  const chainConfig = chainDeploy.find(
+    (item) => item.chainID === useWallet().network.chainID
+  );
   if (chainConfig && chainConfig.config && chainConfig.config[0]) {
-    // set block height state
-
-    const blockHeight = useChainInfo().currentBlockHeight;
-
-    console.log('CHAIN CONFIG: ', chainID);
+    console.log('{LOCAL} CHAIN CONFIG: ', chainConfig);
+    console.log('CHAIN CONFIG: ', chainConfig);
 
     const chainInfo = chainConfig.config[0];
     const contractForge = chainInfo['forge'];
     const contractYFD = chainInfo['token'];
-    const [currentContractForge, setCurrentContractForge] = useRecoilState(
-      currentContractForgeAtom
-    );
-    const [currentContractGovToken, setCurrentContractGovToken] =
-      useRecoilState(currentContractGovTokenAtom);
     setCurrentContractForge(chainInfo['forge']);
     setCurrentContractGovToken(chainInfo['token']);
 
@@ -63,18 +65,18 @@ function WalletConnect() {
     setAddressConnected(walletAddress);
 
     // if the wallet isn't connected, show the connect wallet button
-    if (connectedWallet === undefined) {
-      console.log('connectedWallet is undefined - show CONNECT WALLET button');
-      return (
-        <>
-          <ConnectWalletMenu />
-        </>
-      );
-    } else {
+    if (typeof connectedWallet !== undefined) {
       console.log('WALLET CONNECTED - show PROFILE button');
       return (
         <>
           <Profile />
+        </>
+      );
+    } else {
+      console.log('connectedWallet is undefined - show CONNECT WALLET button');
+      return (
+        <>
+          <ConnectWalletMenu />
         </>
       );
     }

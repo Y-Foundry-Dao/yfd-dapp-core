@@ -16,16 +16,5 @@ export const chainDeploy: ChainDeploy[] = [
           'terra1293l9rgqk5vxndaeqmengssg3pdch57qpepgslh7p2sg3lqd87rss8du4s'
       }
     ]
-  },
-  {
-    chainID: 'phoenix-1',
-    config: [
-      {
-        name: 'Terra Mainnet',
-        lcd: 'https://phoenix-lcd.terra.dev',
-        forge: '',
-        token: ''
-      }
-    ]
   }
 ];

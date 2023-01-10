@@ -15,7 +15,6 @@ function ChainUnsupportedMenu() {
       </MenuButton>
       <MenuList>
         <AvailableChainsList />
-        <MenuDivider />
       </MenuList>
     </Menu>
   );
