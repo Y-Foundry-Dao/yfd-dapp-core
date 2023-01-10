@@ -1,5 +1,5 @@
-import { useConnectedWallet, useWallet } from '@terra-money/wallet-provider';
-import { MenuItem, Image, Link, MenuGroup } from '@chakra-ui/react';
+import React from 'react';
+import { MenuItem, MenuGroup } from '@chakra-ui/react';
 import { chainDeploy } from '@var/blockchain';
 
 function AvailableChainsList() {
@@ -27,11 +27,13 @@ function AvailableChainsList() {
         return chain.config
           .map((c) => {
             return (
-              <MenuItem>
-                <p>
-                  {c.name} ( {chain.chainID} )
-                </p>
-              </MenuItem>
+              <React.Fragment key={chain.chainID}>
+                <MenuItem cursor={'default'}>
+                  <p>
+                    {c.name} ( {chain.chainID} )
+                  </p>
+                </MenuItem>
+              </React.Fragment>
             );
           })
           .flat();
