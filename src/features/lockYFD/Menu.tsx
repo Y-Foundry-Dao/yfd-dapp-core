@@ -35,19 +35,19 @@ export default function LockYFDMenu() {
   );
 
   if (
-    minFYFDVaultProp.contents === undefined ||
-    minFYFDGovProp.contents === undefined ||
-    minFYFDEmergencyProp.contents === undefined
+    minFYFDVaultProp === undefined ||
+    minFYFDGovProp === undefined ||
+    minFYFDEmergencyProp === undefined
   ) {
     console.warn('Governance parameters are not yet loaded');
     console.error('minFYFDVaultProp.state is undefined');
-    return '';
+    return <></>;
   } else {
     const vKey = Object.keys(minFYFDVaultProp.contents.parameter_type)[0];
     const minVaultValue =
       minFYFDVaultProp.contents.parameter_type[vKey].value.toString();
-    const minVaultName = minFYFDVaultProp.contents.name;
-    console.log(minVaultName + ': ' + minVaultName);
+    const minVaultName = minFYFDVaultProp.contents.name || undefined;
+    console.log(minVaultName + ': ' + minVaultValue);
 
     const gKey = Object.keys(minFYFDGovProp.contents.parameter_type)[0];
     const minGovValue =
@@ -58,7 +58,7 @@ export default function LockYFDMenu() {
     const eKey = Object.keys(minFYFDEmergencyProp.contents.parameter_type)[0];
     const minEmergencyValue =
       minFYFDEmergencyProp.contents.parameter_type[eKey].value.toString();
-    const minEmergency = minFYFDEmergencyProp.contents.name;
+    const minEmergencyName = minFYFDEmergencyProp.contents.name || undefined;
     console.log(minEmergencyName + ': ' + minEmergencyValue);
 
     /*
