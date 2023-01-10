@@ -3,20 +3,39 @@ import { MenuItem, Image, Link, MenuGroup } from '@chakra-ui/react';
 import { chainDeploy } from '@var/blockchain';
 
 function AvailableChainsList() {
-  const connectedWallet = useConnectedWallet();
-  const chainID = connectedWallet?.network.chainID;
-  const availableChains = Object.keys(chainDeploy);
+  const availableChains = [];
+  chainDeploy.forEach((chain) => {
+    chain.config.forEach((c) => {
+      availableChains.push(
+        <MenuItem>
+          <p>
+            {chain.chainID} - {c.name}
+          </p>
+        </MenuItem>
+      );
+    });
+  });
   return (
     <MenuGroup
       title={
         availableChains.length !== 0
-          ? 'Ready to Connect'
+          ? 'Change to an Available Chain:'
           : 'No Available Chains'
       }
     >
-      {availableChains.map((key) => (
-        <MenuItem>{key}</MenuItem>
-      ))}
+      {chainDeploy.map((chain) => {
+        return chain.config
+          .map((c) => {
+            return (
+              <MenuItem>
+                <p>
+                  {c.name} ( {chain.chainID} )
+                </p>
+              </MenuItem>
+            );
+          })
+          .flat();
+      })}
     </MenuGroup>
   );
 }
