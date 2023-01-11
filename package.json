@@ -80,6 +80,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "react-inspector": "^6.0.1",
+    "react-query": "^3.39.2",
     "react-router-dom": "^6.4.4",
     "recoil": "^0.7.2",
     "sort-by": "^1.2.0",

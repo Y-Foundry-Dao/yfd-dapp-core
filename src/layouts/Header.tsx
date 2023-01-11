@@ -8,8 +8,7 @@ import yLogo from '@yfd/logo-horizontal-orange-white.svg';
 import LockFYFDMenu from '@features/lockYFD/Menu';
 
 // display the lockYFD menu if the wallet is connected
-function lockYFDMenuDisplay() {
-  const { status } = useWallet();
+function lockYFDMenuDisplay(status: string) {
   if (status === 'WALLET_CONNECTED') {
     return (
       <>
@@ -32,7 +31,7 @@ export default function Header() {
         </Box>
         <Box className={styles['header-menu']}></Box>
         <Box className={styles['header-profile']}>
-          {lockYFDMenuDisplay()}
+          {lockYFDMenuDisplay(status)}
           <WalletConnect />
         </Box>
       </Flex>
