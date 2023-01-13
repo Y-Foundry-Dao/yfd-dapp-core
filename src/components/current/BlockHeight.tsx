@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil';
 import Loading from '@components/NoticeLoading';
 import styles from '@scss/app.module.scss';
 
-export default function currentBlockHeight() {
+export default function CurrentBlockHeight() {
   const currentBlockHeight = useRecoilValue(currentBlockHeightAtom);
   if (currentBlockHeight) {
     console.log('currentBlockHeight: ', currentBlockHeight);

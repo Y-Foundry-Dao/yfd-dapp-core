@@ -7,7 +7,7 @@ import {
   Tooltip
 } from '@chakra-ui/react';
 import { useRecoilValueLoadable } from 'recoil';
-import { myYFD, myFYFD } from '@utilities/myValues';
+// import { myYFD, myFYFD } from '@utilities/myValues';
 
 import {
   selectMinFYFDVaultProp,
@@ -20,14 +20,15 @@ import styles from '@scss/app.module.scss';
 
 import FyfdPopoverEmpty from './PopoverEmpty';
 import FyfdPopoverBalance from './PopoverBalance';
+import { selectMyFYFD, selectMyYFD } from '@recoil/connected/balance/selectors';
 
 let styleVote = 'material-symbols-outlined';
 let styleProposal = 'material-symbols-outlined';
 let styleGuardian = 'material-symbols-outlined';
 
 export default function LockYFDMenu() {
-  const balanceYFD = myYFD();
-  const balancefYFD = myFYFD();
+  const balanceYFD = useRecoilValueLoadable(selectMyYFD);
+  const balancefYFD = useRecoilValueLoadable(selectMyFYFD);
   const minFYFDVaultProp = useRecoilValueLoadable(selectMinFYFDVaultProp);
   const minFYFDGovProp = useRecoilValueLoadable(selectMinFYFDGovProp);
   const minFYFDEmergencyProp = useRecoilValueLoadable(

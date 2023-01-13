@@ -1,14 +1,11 @@
-import styles from '@scss/app.module.scss';
 import { Heading, Spacer, Flex, Box } from '@chakra-ui/react';
 
 import useContractForge from '@hooks/useContractForge';
 
 import EmptyList from './Empty';
 import Balances from './Balances';
-import Locked from './Locked';
-import Deposited from './Deposited';
 
-export default function layoutFyfd() {
+export default function LayoutFyfd() {
   const { balanceDetail }: any = useContractForge();
 
   if (Object.keys(balanceDetail).length > 0) {
