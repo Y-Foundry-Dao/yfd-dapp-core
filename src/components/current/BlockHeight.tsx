@@ -1,24 +1,25 @@
 import { Text, Tooltip } from '@chakra-ui/react';
-import { currentBlockHeightAtom } from '@recoil/chainInfo/atoms';
-import { useRecoilValue } from 'recoil';
 import Loading from '@components/NoticeLoading';
 import styles from '@scss/app.module.scss';
+import useChainInfo from '@hooks/useChainInfo';
+import { ConnectLCDClient } from '@utilities/MyValues';
 
-export default function currentBlockHeight() {
-  const currentBlockHeight = useRecoilValue(currentBlockHeightAtom);
+export default function CurrentBlockHeight() {
+  const lcd = ConnectLCDClient();
+  const { currentBlockHeight, currentChainID } = useChainInfo();
   if (currentBlockHeight) {
-    console.log('currentBlockHeight: ', currentBlockHeight);
+    console.log(
+      'currentBlockHeight [ ' + currentChainID + ' ]: ',
+      currentBlockHeight
+    );
+    const label = 'Current Block Height - ' + currentChainID;
     return (
       <>
         <div className={styles.blockHeight}>
-          <Tooltip
-            label="Current Block Height"
-            aria-label="Current Block Height"
-            placement="bottom-start"
-          >
-            <span className={styles['blockHeight-text']}>
+          <Tooltip label={label} aria-label={label} placement="bottom-start">
+            <Text className={styles['blockHeight-text']}>
               {currentBlockHeight}
-            </span>
+            </Text>
           </Tooltip>
         </div>
       </>

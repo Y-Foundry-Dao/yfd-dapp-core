@@ -1,6 +1,5 @@
 import { useRecoilState, useRecoilValue, useRecoilValueLoadable } from 'recoil';
-import { useConnectedWallet } from '@terra-money/wallet-provider';
-
+import { useConnectedWallet, useLCDClient } from '@terra-money/wallet-provider';
 import useChainInfo from '@hooks/useChainInfo';
 
 import convertFromBase from 'utilities/converters/convertFromBase';
@@ -11,14 +10,18 @@ import {
   selectYFDConnected
 } from '@recoil/connected/balance/selectors';
 
-export const myChain = () => {
+export function ConnectLCDClient() {
+  return useLCDClient();
+}
+
+export const MyChain = () => {
   const chainInfo = useChainInfo();
   console.log('chain DATA: ', chainInfo);
 
   return chainInfo.currentChainID;
 };
 
-export const myYFD = () => {
+export const MyYFD = () => {
   const response = useRecoilValueLoadable(selectYFDConnected);
   //console.log('{RECOIL} [MY] YFD Balance: ', response);
   const balance = parseFloat(convertFromBase(response.contents).toFixed(5));
@@ -26,7 +29,7 @@ export const myYFD = () => {
   return balance.toString();
 };
 
-export const myFYFD = () => {
+export const MyFYFD = () => {
   const response = useRecoilValueLoadable(selectFYFDConnected);
   //console.log('{RECOIL} [MY] --FYFD-- Balance: ', response);
   const balance = parseFloat(convertFromBase(response.contents).toFixed(5));
@@ -34,4 +37,4 @@ export const myFYFD = () => {
   return balance.toString();
 };
 
-export default myChain;
+export default MyChain;

@@ -1,9 +1,14 @@
-import { terra } from '@utilities/lcd';
+import { useLCDClient } from '@terra-money/wallet-provider';
+
+function ConnectLCDClient() {
+  return useLCDClient();
+}
 
 const queryMsg = async (contractAddress: string, msgQuery: object) => {
+  const lcd = ConnectLCDClient();
   try {
     if (contractAddress) {
-      const queryResponse: any = await terra.wasm.contractQuery(
+      const queryResponse: any = await lcd.wasm.contractQuery(
         contractAddress,
         msgQuery
       );

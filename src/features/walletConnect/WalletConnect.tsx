@@ -65,11 +65,12 @@ function SetContractTokenToState() {
 function UnsupportedChain() {
   const chainID = useWallet().network.chainID;
   console.warn('CHAIN ' + chainID + 'NOT SUPPORTED');
-  return (
+  /*return (
     <>
       <ChainUnsupportedMenu />
     </>
   );
+  */
 }
 
 function SetAddressConnectedToState() {
@@ -114,7 +115,7 @@ export default function WalletConnect() {
     console.log(
       '{ CHAIN CONFIG MISSING } Chain: ' + chainID + ' chainConfig is undefined'
     );
-    return UnsupportedChain();
+    //return UnsupportedChain();
   }
 
   const walletAddress: string = connectedWallet?.walletAddress as string;

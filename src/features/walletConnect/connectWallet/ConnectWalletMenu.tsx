@@ -11,7 +11,7 @@ import AvailableInstallationsList from './AvailableInstallationsList';
 function ConnectWalletMenu() {
   return (
     <Menu>
-      <MenuButton minW={120} as={Button} colorScheme="blue">
+      <MenuButton minW={120} as={Button}>
         Connect Wallet
       </MenuButton>
       <MenuList>

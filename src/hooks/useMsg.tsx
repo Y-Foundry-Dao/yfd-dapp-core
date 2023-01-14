@@ -2,13 +2,15 @@ import { useState } from 'react';
 
 import { useWallet, useConnectedWallet } from '@terra-money/wallet-provider';
 import { Coins, Msg, MsgExecuteContract } from '@terra-money/terra.js';
-import { terra } from 'utilities/lcd';
+import { ConnectLCDClient } from '@utilities/MyValues';
 import useTx from './useTx';
 import { useSetRecoilState } from 'recoil';
 import txHashAtom from 'recoil/txHash/atom';
 import queryNftInfo from 'utilities/messagesQuery/proposals/vaultProposal/queryNftInfo';
 
 const useMsg = () => {
+  const lcd = ConnectLCDClient();
+  const chainID = useWallet().network.chainID;
   const { post } = useWallet();
   const { toastError } = useTx();
   const setTxHashInRecoil = useSetRecoilState(txHashAtom);
@@ -46,7 +48,7 @@ const useMsg = () => {
             // query txhash
             // Causes errors in console because it hits the catch statement until the transaction has been broadcast
             // console.log(result.result);
-            const data = await terra.tx
+            const data = await lcd.tx
               .txInfo(result.result.txhash)
               .catch((error) => {
                 setTxHashInRecoil('Waiting for TX to Broadcast...');
@@ -77,7 +79,7 @@ const useMsg = () => {
   const queryMsg = async (contractAddress: string, msgQuery: object) => {
     try {
       if (contractAddress) {
-        const queryResponse: any = await terra.wasm.contractQuery(
+        const queryResponse: any = await lcd.wasm.contractQuery(
           contractAddress,
           msgQuery
         );
@@ -97,7 +99,7 @@ const useMsg = () => {
   const queryContractInfo = async (contractAddress: string) => {
     try {
       if (contractAddress) {
-        const queryResponse = await terra.wasm.contractInfo(contractAddress);
+        const queryResponse = await lcd.wasm.contractInfo(contractAddress);
         return queryResponse;
       }
     } catch (error: any) {

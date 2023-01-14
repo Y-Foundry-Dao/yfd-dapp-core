@@ -11,7 +11,7 @@ import queryVaultProposalByIndex from 'utilities/messagesQuery/forge/queryVaultP
 import queryFunds from 'utilities/messagesQuery/proposals/vaultProposal/queryFunds';
 import queryNftInfo from 'utilities/messagesQuery/proposals/vaultProposal/queryNftInfo';
 import { isTxError } from '@terra-money/terra.js';
-import { terra } from 'utilities/lcd';
+import { lcd } from 'utilities/lcd';
 
 const useContractVaultProposal = ({ proposalContract, proposalIndex }: any) => {
   const { queryMsg, queryContractInfo } = useMsg();

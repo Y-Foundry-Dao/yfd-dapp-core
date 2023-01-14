@@ -8,7 +8,7 @@ import Balances from './Balances';
 import Locked from './Locked';
 import Deposited from './Deposited';
 
-export default function layoutFyfd() {
+export default function LayoutFyfd() {
   const { balanceDetail }: any = useContractForge();
 
   if (Object.keys(balanceDetail).length > 0) {

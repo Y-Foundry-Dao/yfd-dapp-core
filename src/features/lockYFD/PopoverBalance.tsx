@@ -45,7 +45,7 @@ import {
 import ProposalModal from '@features/proposal/modal';
 import ProposalModalButton from '@features/proposal/create/ButtonModelOpen';
 import LockYfdForm from './Form';
-import { myFYFD, myYFD } from '@utilities/myValues';
+import { MyFYFD, MyYFD } from '@utilities/MyValues';
 
 let styleVote = 'material-symbols-outlined';
 let styleGuardian = 'material-symbols-outlined';
@@ -62,8 +62,8 @@ export default function MenuFyfdBalance() {
   const amountStakeYFD = useRecoilValue(inputStakeYFD);
   const { handleClickStakeYFD } = useHandleClicks();
   const { handleInputStakeYFD } = useHandleInputs();
-  const balancefYFD = myFYFD();
-  const balanceYFD = myYFD();
+  const balancefYFD = MyFYFD();
+  const balanceYFD = MyYFD();
 
   if (1000 < +balancefYFD) {
     styleVote = styleVote + ' ' + styles['icon-create'];

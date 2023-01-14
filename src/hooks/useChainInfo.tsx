@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { terra } from 'utilities/lcd';
 import { currentBlockHeightAtom } from 'recoil/chainInfo/atoms';
 import { currentChainIDAtom } from 'recoil/chainInfo/atoms';
 import { currentContractForgeAtom } from 'recoil/chainInfo/atoms';
 import { useWallet } from '@terra-money/wallet-provider';
+import { ConnectLCDClient } from '@utilities/MyValues';
 import getChainDeploy from '@utilities/getValues';
 
 const useChainInfo = () => {
+  const lcd = ConnectLCDClient();
   const connection = useWallet();
-  //console.log('useChainInfo: ', connection);
+  const chainID = useWallet().network.chainID;
+  console.log('useChainInfo: ', connection);
 
   const [currentBlockHeight, setCurrentBlockHeight] = useRecoilState<any>(
     currentBlockHeightAtom
@@ -43,7 +45,7 @@ const useChainInfo = () => {
 
   const getCurrentBlockHeight = async () => {
     const newBlockHeight = Number.parseInt(
-      (await terra.tendermint.blockInfo()).block.header.height
+      (await lcd.tendermint.blockInfo()).block.header.height
     );
     return newBlockHeight;
   };
