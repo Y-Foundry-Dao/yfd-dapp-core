@@ -39,19 +39,14 @@ export default function MenuNotConnected() {
           <ul className={styles.menuList}>
             {availableConnections.map(
               ({ type, name, icon, identifier = '' }) => (
-                <li>
-                  <a
-                    href="#"
-                    key={'connection-' + type + identifier}
-                    onClick={() => connect(type, identifier)}
-                  >
+                <li key={'connection-' + type + identifier}>
+                  <a href="#" onClick={() => connect(type, identifier)}>
                     <img
                       src={icon}
                       alt={name}
                       style={{ width: '1em', height: '1em' }}
                     />
                     {name}
-                    {identifier && <div>[{identifier}]</div>}
                   </a>
                 </li>
               )

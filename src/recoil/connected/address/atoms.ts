@@ -1,5 +1,10 @@
 import { atom } from 'recoil';
 
+export const addressStatusAtom = atom({
+  key: 'addressStatusAtom',
+  default: 'INITIALIZING'
+});
+
 export const addressConnectedAtom = atom({
   key: 'addressConnectedAtom',
   default: ''
