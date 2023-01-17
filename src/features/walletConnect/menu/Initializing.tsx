@@ -1,38 +1,22 @@
-import { useWallet, WalletStatus } from '@terra-money/use-wallet';
-import {
-  Button,
-  Menu,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuItemOption,
-  MenuButton,
-  MenuList,
-  MenuDivider,
-  Link
-} from '@chakra-ui/react';
+import { useWallet } from '@terra-money/use-wallet';
+import { Button, MenuGroup, MenuButton, MenuList } from '@chakra-ui/react';
 import styles from '@scss/app.module.scss';
 import NoticeLoading from '@components/NoticeLoading';
+import { Icons } from '@utilities/variables/icons';
 
 export default function MenuInitializing() {
-  const {
-    status,
-    network,
-    wallets,
-    availableConnectTypes,
-    availableInstallTypes,
-    availableConnections,
-    supportFeatures,
-    connect,
-    availableInstallations,
-    disconnect
-  } = useWallet();
-
   return (
     <>
-      <MenuButton minW={120} as={Button}>
+      <MenuButton
+        minW={120}
+        as={Button}
+        rightIcon={
+          <span className="material-symbols-outlined">{Icons.expand_down}</span>
+        }
+      >
         <NoticeLoading title="Initializing" />
       </MenuButton>
-      <MenuList className={styles['menu-wrapper']}>
+      <MenuList className={styles.menuWrapper}>
         <MenuGroup title="Options">
           <Button key={'siteMenuReload'} onClick={() => location.reload()}>
             {<div>Reload dApp</div>}

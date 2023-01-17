@@ -31,7 +31,7 @@ export default function WalletConnect() {
   } = useWallet();
 
   return (
-    <Menu>
+    <Menu placement="bottom-end">
       {status === WalletStatus.INITIALIZING && <MenuInitializing />}
       {status === WalletStatus.WALLET_NOT_CONNECTED && <MenuNotConnected />}
       {status === WalletStatus.WALLET_CONNECTED && <MenuConnected />}

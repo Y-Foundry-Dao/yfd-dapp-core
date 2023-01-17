@@ -2,11 +2,15 @@
 // https://fonts.google.com/icons?selected=Material+Icons&icon.set=Material+Symbols
 
 export const Icons: { [key: string]: string } = {
-  dashboard: 'grid_view',
-  favorite: 'favorite',
   vault: 'account_balance',
   nft: 'filter_frames',
   initiative: 'diversity_1',
+  yfdswap: 'swap_horizontal_circle',
+  vote: 'how_to_vote',
+  proposal: 'lightbulb_circle',
+  guardian: 'local_police',
+  dashboard: 'grid_view',
+  favorite: 'favorite',
   gettingstarted: 'rocket_launch',
   propose: 'lightbulb_circle',
   docs: 'local_library',
@@ -14,7 +18,6 @@ export const Icons: { [key: string]: string } = {
   management: 'engineering',
   dao: 'handshake',
   govparam: 'settings',
-  yfdswap: 'swap_horizontal_circle',
   swap: 'swap_horiz',
   softwaredev: 'computer',
   code: 'code',
@@ -24,9 +27,6 @@ export const Icons: { [key: string]: string } = {
   error: 'bug_report',
   praise: 'celebration',
   feedback: 'chat',
-  vote: 'how_to_vote',
-  proposal: 'lightbulb_circle',
-  guardian: 'local_police',
   bid: 'waving_hand',
   task_complete: 'task_alt',
   deliverable_complete: 'assignment_turned_in',
@@ -40,5 +40,6 @@ export const Icons: { [key: string]: string } = {
   profit_share: 'share',
   research: 'biotech',
   team: 'groups',
-  discuss: 'diversity_3'
+  discuss: 'diversity_3',
+  expand_down: 'expand_more'
 };
