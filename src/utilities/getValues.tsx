@@ -9,10 +9,7 @@ import {
 } from '@recoil/governance/parameters/selectors';
 import { useRecoilValueLoadable } from 'recoil';
 
-export const getChainDeploy = (
-  chain: string,
-  field: 'lcd' | 'name' | 'forge' | 'token'
-) => {
+export const getChainDeploy = (chain: string, field: 'forge' | 'token') => {
   const chainConfig = chainDeploy.find((item) => item.chainID === chain);
   if (chainConfig && chainConfig.config && chainConfig.config[0]) {
     const result: string = chainConfig.config[0][field];

@@ -2,7 +2,7 @@ import { useRecoilState, useRecoilValue, useRecoilValueLoadable } from 'recoil';
 import { useConnectedWallet, useLCDClient } from '@terra-money/wallet-provider';
 import useChainInfo from '@hooks/useChainInfo';
 
-import convertFromBase from 'utilities/converters/convertFromBase';
+import convertFromBase from '@utilities/converters/convertFromBase';
 
 import { addressConnectedAtom } from '@recoil/connected/address/atoms';
 import {

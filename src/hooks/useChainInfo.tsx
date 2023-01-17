@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { currentBlockHeightAtom } from 'recoil/chainInfo/atoms';
-import { currentChainIDAtom } from 'recoil/chainInfo/atoms';
-import { currentContractForgeAtom } from 'recoil/chainInfo/atoms';
+import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import { currentBlockHeightAtom } from '@recoil/chainInfo/atoms';
+import { currentChainIDAtom } from '@recoil/chainInfo/atoms';
+import { currentContractForgeAtom } from '@recoil/chainInfo/atoms';
 import { useWallet } from '@terra-money/wallet-provider';
 import { ConnectLCDClient } from '@utilities/MyValues';
 import getChainDeploy from '@utilities/getValues';

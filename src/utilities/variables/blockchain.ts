@@ -1,15 +1,13 @@
 type ChainDeploy = {
   chainID: string;
-  config: { name: string; lcd: string; forge: string; token: string }[];
+  config: { forge: string; token: string }[];
 };
 
-export const chainDeploy: ChainDeploy[] = [
+const pisco: ChainDeploy[] = [
   {
     chainID: 'pisco-1',
     config: [
       {
-        name: 'Terra TestNet',
-        lcd: 'https://pisco-lcd.terra.dev',
         forge:
           'terra1s5hg4kusnnp5q8r8l0das4tftd50xcve4e2l95eqjy3fgducekfsw6yder',
         token:
@@ -18,3 +16,17 @@ export const chainDeploy: ChainDeploy[] = [
     ]
   }
 ];
+
+const testnet: ChainDeploy[] = [
+  {
+    chainID: 'testnet',
+    config: [
+      {
+        forge: pisco[0].config[0].forge,
+        token: pisco[0].config[0].token
+      }
+    ]
+  }
+];
+
+export const chainDeploy = [...pisco, ...testnet];

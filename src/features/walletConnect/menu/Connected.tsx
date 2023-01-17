@@ -11,12 +11,8 @@ import {
   Link
 } from '@chakra-ui/react';
 import styles from '@scss/app.module.scss';
-import NoticeLoading from '@components/NoticeLoading';
-import MenuNotConnected from './menu/NotConnected';
-import MenuInitializing from './menu/Initializing';
-import MenuConnected from './menu/Connected';
 
-export default function WalletConnect() {
+export default function MenuConnected() {
   const {
     status,
     network,
@@ -31,10 +27,15 @@ export default function WalletConnect() {
   } = useWallet();
 
   return (
-    <Menu>
-      {status === WalletStatus.INITIALIZING && <MenuInitializing />}
-      {status === WalletStatus.WALLET_NOT_CONNECTED && <MenuNotConnected />}
-      {status === WalletStatus.WALLET_CONNECTED && <MenuConnected />}
-    </Menu>
+    <>
+      <MenuButton minW={120} as={Button}>
+        Connected
+      </MenuButton>
+      <MenuList className={styles['menu-wrapper']}>
+        <MenuGroup title="Options">
+          <Button onClick={() => disconnect()}>Disconnect</Button>
+        </MenuGroup>
+      </MenuList>
+    </>
   );
 }

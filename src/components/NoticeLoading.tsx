@@ -2,7 +2,7 @@ import styles from '@scss/app.module.scss';
 interface LoadingProps {
   title?: string;
 }
-export default function Loading({ title = 'Loading...' }: LoadingProps) {
+export default function NoticeLoading({ title = 'Loading...' }: LoadingProps) {
   return (
     <>
       <span className={styles['notice-loading']}>
