@@ -7,7 +7,7 @@ import {
   Tooltip
 } from '@chakra-ui/react';
 import { useRecoilValueLoadable } from 'recoil';
-import { MyYFD, MyFYFD } from '@utilities/MyValues';
+// import { myYFD, myFYFD } from '@utilities/myValues';
 
 import {
   selectMinFYFDVaultProp,
@@ -20,32 +20,28 @@ import styles from '@scss/app.module.scss';
 
 import FyfdPopoverEmpty from './PopoverEmpty';
 import FyfdPopoverBalance from './PopoverBalance';
+import { selectMyFYFD, selectMyYFD } from '@recoil/connected/balance/selectors';
 
 let styleVote = 'material-symbols-outlined';
 let styleProposal = 'material-symbols-outlined';
 let styleGuardian = 'material-symbols-outlined';
 
 export default function LockYFDMenu() {
-  const balanceYFD = MyYFD();
-  const balancefYFD = MyFYFD();
-  /*
+  const balanceYFD = useRecoilValueLoadable(selectMyYFD);
+  const balancefYFD = useRecoilValueLoadable(selectMyFYFD);
   const minFYFDVaultProp = useRecoilValueLoadable(selectMinFYFDVaultProp);
   const minFYFDGovProp = useRecoilValueLoadable(selectMinFYFDGovProp);
   const minFYFDEmergencyProp = useRecoilValueLoadable(
     selectMinFYFDEmergencyProp
   );
-  */
-  const minFYFDVaultProp = 0;
-  const minFYFDGovProp = 0;
-  const minFYFDEmergencyProp = 0;
 
   if (
-    minFYFDVaultProp.state &&
-    typeof minFYFDVaultProp.contents &&
-    minFYFDGovProp.state &&
-    minFYFDGovProp.contents &&
-    minFYFDEmergencyProp.state &&
-    minFYFDEmergencyProp.contents
+    minFYFDVaultProp.state === 'hasValue' &&
+    typeof minFYFDVaultProp.contents !== 'undefined' &&
+    minFYFDGovProp.state === 'hasValue' &&
+    minFYFDGovProp.contents !== 'undefined' &&
+    minFYFDEmergencyProp.state === 'hasValue' &&
+    minFYFDEmergencyProp.contents !== 'undefined'
   ) {
     const vKey = Object.keys(minFYFDVaultProp.contents.parameter_type)[0];
     const minVaultValue =
