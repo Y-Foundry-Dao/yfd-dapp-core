@@ -7,6 +7,7 @@ import {
   currentContractForgeAtom,
   currentContractGovTokenAtom
 } from '@recoil/chainInfo/atoms';
+import convertFromBase from '@utilities/converters/convertFromBase';
 
 export const selectYFDConnected = selector({
   key: 'selectYFDConnected',
@@ -23,22 +24,42 @@ export const selectYFDConnected = selector({
   }
 });
 
+export const selectMyYFD = selector({
+  key: 'selectMyYFD',
+  get: async ({ get }) => {
+    if (get(addressConnectedAtom) == '') {
+      return 0;
+    }
+    const YFDConnected = get(selectYFDConnected);
+    const balance = parseFloat(convertFromBase(YFDConnected).toFixed(5));
+    return balance.toString();
+  }
+});
+
 export const selectFYFDConnected = selector({
   key: 'selectFYFDConnected',
   get: async ({ get }) => {
     if (get(addressConnectedAtom) == '') {
       return 0;
     }
-    try {
-      const response = await queryMsg(
-        get(currentContractForgeAtom),
-        queryBalance(get(addressConnectedAtom))
-      );
-      return parseFloat(response.balance);
-    } catch (e) {
-      console.error(e);
-    }
+    const response = await queryMsg(
+      get(currentContractForgeAtom),
+      queryBalance(get(addressConnectedAtom))
+    );
+    return parseFloat(response.balance);
   }
 });
 
-export default { selectYFDConnected, selectFYFDConnected };
+export const selectMyFYFD = selector({
+  key: 'selectMyYFFD',
+  get: async ({ get }) => {
+    if (get(addressConnectedAtom) == '') {
+      return 0;
+    }
+    const FYFDConnected = get(selectFYFDConnected);
+    const balance = parseFloat(convertFromBase(FYFDConnected).toFixed(5));
+    return balance.toString();
+  }
+});
+
+// export default { selectYFDConnected, selectFYFDConnected };
