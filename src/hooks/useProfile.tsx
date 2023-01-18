@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { profileState } from '@recoil/profile/atoms';
 import { PATH_PROFILE, PATH_PROFILE_SUFFIX } from '@var/profiles';
 
-export default function useProfile(address: any) {
+export default function useProfile(address: string) {
   const [profile, setProfile] = useRecoilState(profileState);
 
   const profileUrl = PATH_PROFILE + address + PATH_PROFILE_SUFFIX;
@@ -38,7 +38,7 @@ export default function useProfile(address: any) {
       }
     }
     fetchData();
-  }, [profileUrl]);
+  }, [profileUrl, setProfile]);
 
   return profile;
 }

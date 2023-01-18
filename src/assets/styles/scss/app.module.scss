@@ -7,9 +7,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;500;600;700&display=swap");
 
+// core components
 @import "_root.module.scss";
 @import "_image.module.scss";
 @import "icon.module.scss";
+
+// layout components
 @import "nav/main.module.scss";
 @import "wrapper.module.scss";
 @import "header.module.scss";
@@ -18,7 +21,9 @@
 @import "menu.module.scss";
 @import "list.module.scss";
 @import "chakra.module.scss";
-@import "side.module.scss";
+
+// features / elements
+@import "profile.module.scss";
 @import "feedback.module.scss";
 @import "proposal.module.scss";
 
@@ -143,15 +148,6 @@ body {
  }
 }
 
-.profile-img {
- width: 2rem;
- height: 2rem;
- border-radius: 50%;
- object-fit: cover;
- border: 0.125rem solid var(--theme-color);
- margin-left: 1.375rem;
-}
-
 .wide {
     width: 100%;
     .search-bar {
@@ -169,7 +165,7 @@ body {
     }
 }
 
-.overlay-app {
+.appOverlay {
  width: 100%;
  height: 100%;
  position: fixed;
@@ -229,15 +225,6 @@ body {
    border-color: #fff;
   }
  }
-}
-
-.menu {
-    width: 0.313rem;
-    height: 0.313rem;
-    background-color: var(--button-inactive);
-    border-radius: 50%;
-    box-shadow: 0.438rem 0 0 0 var(--button-inactive), 0.875rem 0 0 0 var(--button-inactive);
-    margin: 0 0.75rem;
 }
 
 .dropdown {

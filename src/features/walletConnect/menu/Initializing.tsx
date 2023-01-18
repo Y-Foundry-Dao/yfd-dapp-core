@@ -1,4 +1,3 @@
-import { useWallet } from '@terra-money/use-wallet';
 import { Button, MenuGroup, MenuButton, MenuList } from '@chakra-ui/react';
 import styles from '@scss/app.module.scss';
 import NoticeLoading from '@components/NoticeLoading';

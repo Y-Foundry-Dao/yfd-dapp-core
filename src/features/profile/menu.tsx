@@ -1,5 +1,4 @@
-import { useRecoilState, useRecoilValue } from 'recoil';
-import useHandleClicks from '@hooks/useHandleClicks';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { useWallet } from '@terra-money/wallet-provider';
 import {
   Image,
@@ -9,7 +8,6 @@ import {
   PopoverHeader,
   PopoverBody,
   PopoverFooter,
-  PopoverArrow,
   PopoverCloseButton,
   Portal,
   Text,
@@ -18,55 +16,43 @@ import {
   Box,
   useClipboard,
   FormControl,
-  Switch,
-  useControllableState
+  Switch
 } from '@chakra-ui/react';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { brands } from '@fortawesome/fontawesome-svg-core/import.macro';
-
+import { Web3Address } from '@saas-ui/web3';
 import styles from '@scss/app.module.scss';
-import { Icons } from '@utilities/variables/icons';
+
 import {
-  PATH_PROFILE,
   PATH_PROFILE_PFP,
   PATH_PROFILE_PFP_SUFFIX,
-  PATH_PROFILE_SUFFIX,
   PATH_PROFILE_PFP_DEFAULT
 } from 'utilities/variables';
 
-import { addressConnectedAtom } from '@recoil/connected/address/atoms';
-
 import useProfile from '@hooks/useProfile';
-import { Web3Address } from '@saas-ui/web3';
-import { snowState } from '@recoil/profile/atoms';
-import { FormDialog } from '@saas-ui/modals';
+import { addressConnectedAtom } from '@recoil/connected/address/atoms';
+import { snowState, sparkState } from '@recoil/profile/atoms';
 
-export default function ProfileHeader() {
-  const [snow, setSnow] = useRecoilState(snowState);
-  const walletAddress = useRecoilValue(addressConnectedAtom);
+export default function MenuProfile() {
   const { disconnect } = useWallet();
+  const setSnow = useSetRecoilState(snowState);
+  const setSpark = useSetRecoilState(sparkState);
+  const walletAddress = useRecoilValue(addressConnectedAtom);
   const { hasCopied, onCopy } = useClipboard(walletAddress);
-  const profile = useProfile(walletAddress) as any;
 
-  const profileUrl = PATH_PROFILE + walletAddress + PATH_PROFILE_SUFFIX;
+  const profile = useProfile(walletAddress);
   const profilePfpUrl =
     PATH_PROFILE_PFP + walletAddress + PATH_PROFILE_PFP_SUFFIX;
-  const instagramUrl =
-    'https://www.instagram.com/' + profile.platforms.instagram;
-  const twitterUrl = 'https://www.twitter.com/' + profile.platforms.twitter;
-  const githubUrl = 'https://www.github.com/' + profile.platforms.github;
-
-  const { handleClickStakeYFD } = useHandleClicks();
 
   const toggleSnow = () => {
     setSnow((prevSnow) => !prevSnow);
   };
+  const toggleSpark = () => {
+    setSpark((prevSpark) => !prevSpark);
+  };
 
   return (
-    <Popover placement="bottom-end">
+    <Popover placement="bottom-end" isLazy={true}>
       <PopoverTrigger>
-        <Button className={styles.profileMenu}>
+        <Button className={styles.buttonProfileMenu}>
           <Image
             src={profilePfpUrl}
             className={styles.profileMenuIcon}
@@ -76,12 +62,11 @@ export default function ProfileHeader() {
         </Button>
       </PopoverTrigger>
       <Portal>
-        <PopoverContent>
-          <PopoverArrow />
+        <PopoverContent className={styles.profileMenuLayout}>
           <PopoverHeader className={styles.profileMenuName}>
             {profile.name}
           </PopoverHeader>
-          <PopoverCloseButton />
+          <PopoverCloseButton className={styles.arrowProfileMenu} />
           <PopoverBody>
             <Flex>
               <Box>
@@ -112,8 +97,12 @@ export default function ProfileHeader() {
           </PopoverBody>
           <PopoverFooter>
             <FormControl display="flex" alignItems="center">
-              Snow?
+              Open Flue?
               <Switch id="snowSwitch" size="lg" onChange={toggleSnow} />
+            </FormControl>
+            <FormControl display="flex" alignItems="center">
+              Stoke Forge?
+              <Switch id="sparkSwitch" size="lg" onChange={toggleSpark} />
             </FormControl>
           </PopoverFooter>
           <PopoverFooter className={styles.profileMenuWallet}>
@@ -139,28 +128,6 @@ export default function ProfileHeader() {
               >
                 Disconnect
               </Button>
-            </Box>
-          </PopoverFooter>
-          <PopoverFooter className={styles.profileMenuFooter}>
-            <Box className={styles.profileMenuFooterPlatforms}>
-              <a href={instagramUrl} target="_blank">
-                <FontAwesomeIcon
-                  className={styles.profileMenuPlatformIcon}
-                  icon={brands('instagram')}
-                />
-              </a>
-              <a href={twitterUrl} target="_blank">
-                <FontAwesomeIcon
-                  className={styles.profileMenuPlatformIcon}
-                  icon={brands('twitter')}
-                />
-              </a>
-              <a href={githubUrl} target="_blank">
-                <FontAwesomeIcon
-                  className={styles.profileMenuPlatformIcon}
-                  icon={brands('github')}
-                />
-              </a>
             </Box>
           </PopoverFooter>
         </PopoverContent>

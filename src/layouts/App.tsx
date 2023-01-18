@@ -4,14 +4,17 @@ import Header from '@layouts/Header';
 import LayoutLeft from '@layouts/Side';
 import MainContainer from '@layouts/Main';
 import MakeSnow from '@components/Snow';
-import { snowState } from '@recoil/profile/atoms';
+import MakeSpark from '@components/Spark';
+import { snowState, sparkState } from '@recoil/profile/atoms';
 import CurrentBlockHeight from '@components/current/BlockHeight';
 
 export default function App() {
   const snow = useRecoilValue(snowState);
+  const spark = useRecoilValue(sparkState);
   return (
     <>
       {snow ? <MakeSnow /> : null}
+      {spark ? <MakeSpark /> : null}
       <div className={styles.app}>
         <div className={styles.header}>
           <Header />
@@ -20,7 +23,7 @@ export default function App() {
           <LayoutLeft />
           <MainContainer />
         </div>
-        <div className={styles['overlay-app']}></div>
+        <div className={styles.appOverlay}></div>
       </div>
       <CurrentBlockHeight />
     </>

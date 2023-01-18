@@ -10,16 +10,8 @@ import styles from '@scss/app.module.scss';
 import { Icons } from '@utilities/variables/icons';
 
 export default function MenuNotConnected() {
-  const {
-    status,
-    network,
-    wallets,
-    availableConnectTypes,
-    availableInstallTypes,
-    availableConnections,
-    connect,
-    availableInstallations
-  } = useWallet();
+  const { network, availableConnections, connect, availableInstallations } =
+    useWallet();
 
   console.log(network);
   return (

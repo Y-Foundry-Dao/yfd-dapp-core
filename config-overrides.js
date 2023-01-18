@@ -28,6 +28,7 @@ module.exports = function override(config) {
     '@hooks': 'src/hooks',
     '@recoil': 'src/recoil',
     '@utilities': 'src/utilities',
+    '@types': 'src/types',
     '@var': 'src/utilities/variables',
     'Variables': 'src/utilities/variables.ts'
   })(config);

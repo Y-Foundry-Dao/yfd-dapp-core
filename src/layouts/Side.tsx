@@ -3,7 +3,7 @@ import NavLeft from '@features/nav/Side';
 
 export default function layoutLeft() {
   return (
-    <div className={styles['left-side']}>
+    <div className={styles.sideLeft}>
       <NavLeft />
     </div>
   );

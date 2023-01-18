@@ -1,3 +1,12 @@
+.menu {
+    width: 0.313rem;
+    height: 0.313rem;
+    background-color: var(--button-inactive);
+    border-radius: 50%;
+    box-shadow: 0.438rem 0 0 0 var(--button-inactive), 0.875rem 0 0 0 var(--button-inactive);
+    margin: 0 0.75rem;
+}
+
 .menuSection {
     padding-top: 0.5rem;
     border-right: 0.15rem solid var(--theme-inactive-color);

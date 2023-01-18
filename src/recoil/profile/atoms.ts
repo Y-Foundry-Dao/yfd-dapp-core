@@ -4,7 +4,6 @@ type Profile = {
   name: string;
   address: string;
   platform_preference: string;
-  platformAddress: string;
   platforms: Array<{
     email: string;
     keybase: string;
@@ -16,8 +15,17 @@ type Profile = {
   }>;
 };
 
+export type dAppConfig = {
+  snow: boolean;
+};
+
 export const snowState = atom({
   key: 'snowState',
+  default: false
+});
+
+export const sparkState = atom({
+  key: 'sparkState',
   default: false
 });
 
@@ -27,7 +35,6 @@ export const profileState = atom<Profile>({
     name: '',
     address: '',
     platform_preference: '',
-    platformAddress: '',
     platforms: [
       {
         email: '',
