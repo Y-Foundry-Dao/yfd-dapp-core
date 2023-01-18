@@ -71,12 +71,11 @@ export default function MenuProfile() {
             <Flex>
               <Box>
                 <div className={styles.profileMenuText}>
-                  <Text>Reputation: Chaotic Good.</Text>
+                  <Text>Welcome to Y-Foundry</Text>
                   <br />
                   <hr />
                   <br />
-                  <Text>Initiatives Funded: 0</Text>
-                  <Text>Proposals Submitted: 0</Text>
+                  <Text>Personalized Site Updates will appear here.</Text>
                   <br />
                   <hr />
                   <br />
