@@ -37,6 +37,7 @@
 .profileMenuName {
     font-weight: 600;
     color: var(--theme-special-color);
+    letter-spacing: 0.25rem;
 }
 
 .arrowProfileMenu {
@@ -62,13 +63,24 @@
     opacity: 0.1;
 }
 
-.profileMenuText {
+.wrapperProfileMenuText {
+    width: 100%;
+}
+
+.containerProfileMenuText {
     padding: 0.75rem;
-    width: 93%;
-    position: absolute;
+    width: 100%;
+    margin-top: 0.1rem;
+    margin-bottom: 1rem;
+    position: inline-block;
     background: var(--theme-color-darkest);
     border-radius: var(--theme-border-radius);
-    filter: brightness(2);
+    filter: brightness(2) drop-shadow(0.1rem 0.1rem 0.5rem var(--theme-color-darkest));
+}
+
+.containerProfileMenuTextTitle {
+    @extend .profileMenuName;
+    filter: drop-shadow(0.1rem 0.1rem 0.3rem var(--theme-color-darkest));
 }
 
 .profileMenuWallet {

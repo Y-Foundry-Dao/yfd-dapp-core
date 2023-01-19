@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { useWallet, useConnectedWallet } from '@terra-money/wallet-provider';
 import { Coins, Msg, MsgExecuteContract } from '@terra-money/terra.js';
-import { ConnectLCDClient } from '@utilities/MyValues';
+import { ConnectLCDClient } from '@hooks/useChainInfo';
 import useTx from './useTx';
 import { useSetRecoilState } from 'recoil';
 import txHashAtom from 'recoil/txHash/atom';

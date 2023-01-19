@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 import {
   Button,
   Popover,
@@ -6,7 +8,7 @@ import {
   Box,
   Tooltip
 } from '@chakra-ui/react';
-import { useRecoilValueLoadable } from 'recoil';
+import { addressConnectedAtom } from '@recoil/governance/parameters/atoms';
 // import { myYFD, myFYFD } from '@utilities/myValues';
 
 import {
@@ -25,5 +27,13 @@ const styleProposal = 'material-symbols-outlined';
 const styleGuardian = 'material-symbols-outlined';
 
 export default function LockYFDMenu() {
-  return <>Hello World</>;
+  return (
+    <>
+      <Popover placement="bottom-end">
+        <PopoverTrigger>
+          <Button className={styles.menuButton}>Lock $YFD</Button>
+        </PopoverTrigger>
+      </Popover>
+    </>
+  );
 }

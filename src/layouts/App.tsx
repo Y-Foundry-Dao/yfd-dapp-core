@@ -7,6 +7,7 @@ import MakeSnow from '@components/Snow';
 import MakeSpark from '@components/Spark';
 import { snowState, sparkState } from '@recoil/profile/atoms';
 import CurrentBlockHeight from '@components/current/BlockHeight';
+import 'material-symbols';
 
 export default function App() {
   const snow = useRecoilValue(snowState);

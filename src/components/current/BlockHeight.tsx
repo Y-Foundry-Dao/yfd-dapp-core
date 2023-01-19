@@ -1,8 +1,7 @@
 import { Text, Tooltip } from '@chakra-ui/react';
 import Loading from '@components/NoticeLoading';
 import styles from '@scss/app.module.scss';
-import useChainInfo from '@hooks/useChainInfo';
-import { ConnectLCDClient } from '@utilities/MyValues';
+import useChainInfo, { ConnectLCDClient } from '@hooks/useChainInfo';
 
 export default function CurrentBlockHeight() {
   const lcd = ConnectLCDClient();

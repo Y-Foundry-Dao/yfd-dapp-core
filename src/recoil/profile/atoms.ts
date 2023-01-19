@@ -3,19 +3,19 @@ import { atom } from 'recoil';
 type Profile = {
   name: string;
   address: string;
-  platform_preference: string;
+  platform_preference: string | 'none';
   platforms: Array<{
-    email: string;
-    keybase: string;
-    instagram: string;
-    twitter: string;
-    discord: string;
-    telegram: string;
-    github: string;
+    email?: string;
+    keybase?: string;
+    instagram?: string;
+    twitter?: string;
+    discord?: string;
+    telegram?: string;
+    github?: string;
   }>;
 };
 
-export type dAppConfig = {
+type dAppConfig = {
   snow: boolean;
 };
 
@@ -35,16 +35,6 @@ export const profileState = atom<Profile>({
     name: '',
     address: '',
     platform_preference: '',
-    platforms: [
-      {
-        email: '',
-        keybase: '',
-        instagram: '',
-        twitter: '',
-        discord: '',
-        telegram: '',
-        github: ''
-      }
-    ]
+    platforms: []
   }
 });

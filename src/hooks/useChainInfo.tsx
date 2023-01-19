@@ -1,11 +1,24 @@
 import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
-import { currentBlockHeightAtom } from '@recoil/chainInfo/atoms';
-import { currentChainIDAtom } from '@recoil/chainInfo/atoms';
-import { currentContractForgeAtom } from '@recoil/chainInfo/atoms';
-import { useWallet } from '@terra-money/wallet-provider';
-import { ConnectLCDClient } from '@utilities/MyValues';
+import { useRecoilValue, useRecoilState } from 'recoil';
+import {
+  currentBlockHeightAtom,
+  currentChainIDAtom,
+  currentContractForgeAtom
+} from '@recoil/chainInfo/atoms';
+import {
+  useConnectedWallet,
+  useLCDClient,
+  useWallet
+} from '@terra-money/wallet-provider';
 import getChainDeploy from '@utilities/getValues';
+import {
+  addressStatusAtom,
+  addressConnectedAtom
+} from '@recoil/connected/address/atoms';
+
+export function ConnectLCDClient() {
+  return useLCDClient();
+}
 
 const useChainInfo = () => {
   const lcd = ConnectLCDClient();

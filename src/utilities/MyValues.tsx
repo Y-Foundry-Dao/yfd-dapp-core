@@ -1,10 +1,19 @@
-import { useRecoilState, useRecoilValue, useRecoilValueLoadable } from 'recoil';
+import React, { useEffect, useState } from 'react';
 import { useConnectedWallet, useLCDClient } from '@terra-money/wallet-provider';
+import {
+  useRecoilState,
+  useRecoilValue,
+  useRecoilValueLoadable,
+  useSetRecoilState
+} from 'recoil';
 import useChainInfo from '@hooks/useChainInfo';
-
 import convertFromBase from '@utilities/converters/convertFromBase';
 
-import { addressConnectedAtom } from '@recoil/connected/address/atoms';
+import {
+  addressConnectedAtom,
+  addressStatusAtom,
+  balanceBankConnectedAtom
+} from '@recoil/connected/address/atoms';
 import {
   selectFYFDConnected,
   selectYFDConnected
@@ -37,4 +46,4 @@ export const MyFYFD = () => {
   return balance.toString();
 };
 
-export default MyChain;
+export default ConnectLCDClient;
