@@ -11,7 +11,7 @@
     @media screen and (max-width: 30em) {
      padding: 0 1rem;
     }
-    &-menu {
+    &Menu {
         @extend .footer;
      align-items: center;
      a {
@@ -23,7 +23,7 @@
       transition: 0.3s;
       opacity: 1;
       @media screen and (max-width: 38.125em) {
-       &:not(.main-header-link) {
+       &:not(.mainHeaderLink) {
         display: none;
        }
       }

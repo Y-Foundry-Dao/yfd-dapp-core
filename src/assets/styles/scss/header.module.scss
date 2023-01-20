@@ -24,7 +24,7 @@ $maxWidth: 40.625rem;
       border-bottom: 0.125rem solid transparent;
       transition: 0.3s;
       @media screen and (max-width: 38.125em) {
-       &:not(.main-header-link) {
+       &:not(.mainHeaderLink) {
         display: none;
        }
       }
@@ -78,6 +78,30 @@ $maxWidth: 40.625rem;
     color: var(--theme-color);
     backdrop-filter: blur(var(--theme-blur));
     box-shadow: 0.1rem 0.3rem 0.7rem 0.1rem var(--theme-inactive-color);
+}
+
+.menuHeader {
+    display: flex;
+    align-items: center;
+    a {
+        padding: 1.25rem 1.875rem;
+        text-decoration: none;
+        color: var(--theme-inactive-color);
+        border-bottom: 0.125rem solid transparent;
+        transition: 0.3s;
+
+        @media screen and (max-width: 38.125em) {
+            &:not(.mainHeaderLink) {
+                display: none;
+            }
+        }
+        
+        &.is-active,
+        &:hover {
+            color: var(--theme-color);
+            border-bottom: 0.125rem solid var(--theme-color);
+        }
+    }
 }
 
 .menuButton { 

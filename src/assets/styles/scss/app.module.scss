@@ -9,28 +9,26 @@
 
 // core components
 @import "_root.module.scss";
-@import "_image.module.scss";
-@import "icon.module.scss";
 
 // layout components
 @import "nav/main.module.scss";
 @import "wrapper.module.scss";
-@import "header.module.scss";
-@import "footer.module.scss";
 @import "content.module.scss";
 @import "menu.module.scss";
 @import "list.module.scss";
 @import "chakra.module.scss";
+@import "header.module.scss";
+@import "footer.module.scss";
+@import "side.module.scss";
 
 // features / elements
 @import "profile.module.scss";
 @import "feedback.module.scss";
 @import "proposal.module.scss";
 
-//animations
-@import "loader.module.scss";
-
 //components
+@import "component/icon.module.scss";
+@import "component/image.module.scss";
 @import "component/appcard.module.scss";
 @import "component/button.module.scss";
 @import "component/card.module.scss";
@@ -333,7 +331,7 @@ body {
 .blockHeight {
     margin-top: 0.625rem;
     margin-bottom: 0.625rem;
-    &-text {
+    &Text {
         font-size: 0.75rem;
         color: var(--theme-inactive-color);
         margin-top: 0.625rem;

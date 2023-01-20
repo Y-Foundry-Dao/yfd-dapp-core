@@ -8,7 +8,7 @@ import styles from '@scss/app.module.scss';
 export default function MenuLeft() {
   return (
     <>
-      <div className={styles['side-wrapper']}>
+      <div className={styles.wrapperSide}>
         <Personal />
         <Initiatives />
         <MenuGovernance />

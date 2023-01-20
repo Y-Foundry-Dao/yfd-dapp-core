@@ -20,9 +20,9 @@ export default function MenuLeftAbout() {
 
   return (
     <>
-      <div className={styles['side-wrapper-menu']}>
-        <div className={styles['side-title']}>About Y-Foundry DAO</div>
-        <div className={styles['side-menu']}>
+      <div className={styles.wrapperSideMenu}>
+        <div className={styles.sideTitle}>About Y-Foundry DAO</div>
+        <div className={styles.sideMenu}>
           <TutorialModalButton onOpen={tutorialOnOpen} />
           <TutorialModal isOpen={tutorialIsOpen} onClose={tutorialOnClose} />
           <a href={URL_DOCS} target="_blank">

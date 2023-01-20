@@ -17,11 +17,7 @@ export default function MenuProfileBody() {
                 Testing Objectives
               </Text>
               <br />
-              <hr />
-              <br />
               <Text>Personalized Test Objectives will appear here.</Text>
-              <br />
-              <hr />
               <br />
             </div>
             <div className={styles.containerProfileMenuText}>
@@ -29,11 +25,7 @@ export default function MenuProfileBody() {
                 Y-Foundry
               </Text>
               <br />
-              <hr />
-              <br />
               <Text>Personalized Site Updates will appear here.</Text>
-              <br />
-              <hr />
               <br />
               <Text>
                 Preferred Platform:{' '}

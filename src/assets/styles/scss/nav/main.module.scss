@@ -1,4 +1,4 @@
-.main-header {
+.mainHeader {
     display: flex;
     align-items: center;
     background: var(--theme-bg-menu);
@@ -24,39 +24,5 @@
     }
     @media screen and (max-width: 515px) {
         font-size: 0.85rem;
-    }
-}
- 
-.menu-link-main {
-    text-decoration: none;
-    color: var(--theme-color);
-    padding: 0 1.9rem;
-
-    @media screen and (max-width: 65.938rem) {
-     display: none;
-    }
-}
-   
-.header-menu {
-    display: flex;
-    align-items: center;
-    a {
-        padding: 1.25rem 1.875rem;
-        text-decoration: none;
-        color: var(--theme-inactive-color);
-        border-bottom: 0.125rem solid transparent;
-        transition: 0.3s;
-
-        @media screen and (max-width: 38.125em) {
-            &:not(.main-header-link) {
-                display: none;
-            }
-        }
-        
-        &.is-active,
-        &:hover {
-            color: var(--theme-color);
-            border-bottom: 0.125rem solid var(--theme-color);
-        }
     }
 }

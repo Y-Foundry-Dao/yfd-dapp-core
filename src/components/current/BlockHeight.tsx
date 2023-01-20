@@ -16,9 +16,7 @@ export default function CurrentBlockHeight() {
       <>
         <div className={styles.blockHeight}>
           <Tooltip label={label} aria-label={label} placement="bottom-start">
-            <Text className={styles['blockHeight-text']}>
-              {currentBlockHeight}
-            </Text>
+            <Text className={styles.blockHeightText}>{currentBlockHeight}</Text>
           </Tooltip>
         </div>
       </>
