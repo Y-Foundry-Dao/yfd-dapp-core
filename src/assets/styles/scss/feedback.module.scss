@@ -15,10 +15,6 @@
      color: var(--theme-inactive-color);
      border-bottom: 0.125rem solid transparent;
      transition: 0.3s;
-     @media screen and (max-width: 38.125em) {
-      &:not(.mainHeaderLink) {
-       display: none;
-      }
      }
      &.is-active,
      &:hover {
@@ -27,7 +23,6 @@
      }
     }
    }
-}
 
 .feedbackSelect {
    padding: 1rem;

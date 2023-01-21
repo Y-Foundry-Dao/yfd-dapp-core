@@ -22,10 +22,6 @@
       border-top: 0.125rem solid transparent;
       transition: 0.3s;
       opacity: 1;
-      @media screen and (max-width: 38.125em) {
-       &:not(.mainHeaderLink) {
-        display: none;
-       }
       }
       &.is-active,
       &:hover {
@@ -33,6 +29,5 @@
        padding-bottom: 2rem;
        filter: drop-shadow( 0rem 0.1rem 0.5rem var(--theme-color));
       }
-     }
     }
 }
