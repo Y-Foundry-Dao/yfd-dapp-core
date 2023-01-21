@@ -37,28 +37,26 @@ export default function ModalConnectWallet({ isOpen, onClose }: any) {
           <Wrap spacing="2rem" justify="center" className={styles.modalHeading}>
             {availableConnections.map(
               ({ type, name, icon, identifier = '' }) => (
-                <>
-                  <WrapItem
-                    key={'connection-' + type + identifier}
-                    className={styles.modalContentItem}
-                  >
-                    <div onClick={onClose} className={styles.modalLink}>
-                      <a
-                        href="#"
-                        onClick={() => {
-                          connect(type, identifier);
-                        }}
-                      >
-                        <img
-                          src={icon}
-                          alt={name}
-                          className={styles.imgModalFeatured}
-                        />
-                        {name}
-                      </a>
-                    </div>
-                  </WrapItem>
-                </>
+                <WrapItem
+                  key={'connection-' + type + identifier}
+                  className={styles.modalContentItem}
+                >
+                  <div onClick={onClose} className={styles.modalLink}>
+                    <a
+                      href="#"
+                      onClick={() => {
+                        connect(type, identifier);
+                      }}
+                    >
+                      <img
+                        src={icon}
+                        alt={name}
+                        className={styles.imgModalFeatured}
+                      />
+                      {name}
+                    </a>
+                  </div>
+                </WrapItem>
               )
             )}
           </Wrap>
@@ -74,19 +72,17 @@ export default function ModalConnectWallet({ isOpen, onClose }: any) {
             >
               {availableInstallations.map(
                 ({ icon, type, url, identifier, name }) => (
-                  <>
-                    <WrapItem
-                      key={`${type}:${identifier}`}
-                      className={styles.modalContentItem}
-                    >
-                      <div onClick={onClose} className={styles.modalLinkSmall}>
-                        <a href={url}>
-                          <img src={icon} />
-                          {name}
-                        </a>
-                      </div>
-                    </WrapItem>
-                  </>
+                  <WrapItem
+                    key={`${type}:${identifier}`}
+                    className={styles.modalContentItem}
+                  >
+                    <div onClick={onClose} className={styles.modalLinkSmall}>
+                      <a href={url}>
+                        <img src={icon} />
+                        {name}
+                      </a>
+                    </div>
+                  </WrapItem>
                 )
               )}
             </Wrap>
