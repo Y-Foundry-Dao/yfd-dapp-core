@@ -50,3 +50,14 @@ img {
         }
     }
 }
+
+.imgFeatured {
+    object-fit: cover;
+    margin-right: 0.5rem;
+    object-position: center;
+    border-radius: 2rem;
+    width: 5rem;
+    height: 5rem;
+    border: 0.125rem solid var(--theme-color);
+    filter: drop-shadow( 5px 5px 10px black );
+}

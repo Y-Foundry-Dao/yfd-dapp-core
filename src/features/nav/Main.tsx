@@ -4,8 +4,8 @@ import styles from '@scss/nav/main.module.scss';
 
 export default function MainMenu() {
   return (
-    <div className={styles['mainHeader']}>
-      <div className={styles['menuHeader']}>
+    <div className={styles.mainHeader}>
+      <div className={styles.menuHeader}>
         <Flex>
           <Spacer />
           <Box>

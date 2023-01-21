@@ -16,7 +16,11 @@ export default function MenuLeftAbout() {
     onOpen: tutorialOnOpen,
     onClose: tutorialOnClose
   } = useDisclosure();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: feedbackIsOpen,
+    onOpen: feedbackOnOpen,
+    onClose: feedbackOnClose
+  } = useDisclosure();
 
   return (
     <>
@@ -33,8 +37,8 @@ export default function MenuLeftAbout() {
             <Image className={styles.image} src={imgDework} />
             Dework
           </a>
-          <FeedbackModalButton onOpen={onOpen} />
-          <FeedbackModal isOpen={isOpen} onClose={onClose} />
+          <FeedbackModalButton onOpen={feedbackOnOpen} />
+          <FeedbackModal isOpen={feedbackIsOpen} onClose={feedbackOnClose} />
         </div>
       </div>
     </>
