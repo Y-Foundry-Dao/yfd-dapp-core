@@ -13,6 +13,7 @@ export const Icons: { [key: string]: string } = {
   favorite: 'favorite',
   gettingstarted: 'rocket_launch',
   propose: 'lightbulb_circle',
+  support: 'device_hub',
   docs: 'local_library',
   build: 'handyman',
   management: 'engineering',

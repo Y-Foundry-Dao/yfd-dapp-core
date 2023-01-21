@@ -14,27 +14,6 @@ $maxWidth: 40.625rem;
     @media screen and (max-width: 30em) {
      padding: 0 1rem;
     }
-    &-menu {
-     display: flex;
-     align-items: center;
-     a {
-      padding: 1.25rem 1.875rem;
-      text-decoration: none;
-      color: var(--theme-inactive-color);
-      border-bottom: 0.125rem solid transparent;
-      transition: 0.3s;
-      @media screen and (max-width: 38.125em) {
-       &:not(.mainHeaderLink) {
-        display: none;
-       }
-      }
-      &.is-active,
-      &:hover {
-       color: var(--theme-color);
-       border-bottom: 0.125rem solid var(--theme-color);
-      }
-     }
-    }
     .logo {
         content:"";
         height: 100%;
@@ -55,7 +34,7 @@ $maxWidth: 40.625rem;
     }
 }
 
-.header-profile {
+.headerProfile {
     display: flex;
     align-items: center;
     padding-left: 1rem;
