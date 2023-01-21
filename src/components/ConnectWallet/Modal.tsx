@@ -6,9 +6,7 @@ import {
   ModalHeader,
   ModalBody,
   ModalCloseButton,
-  SimpleGrid,
-  GridItem,
-  Spacer,
+  Text,
   Wrap,
   WrapItem
 } from '@chakra-ui/react';
@@ -26,15 +24,20 @@ export default function ModalConnectWallet({ isOpen, onClose }: any) {
       onClose={onClose}
       isCentered
       useInert={false}
+      preserveScrollBarGap={true}
     >
       <ModalOverlay />
       <ModalContent>
         <ModalHeader className={styles.modalHeading}>
-          Connect A Wallet...
+          <Text className={styles.modalHeadingText}>Connect A Wallet...</Text>
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody className={styles.modalContent}>
-          <Wrap spacing="2rem" justify="center" className={styles.modalHeading}>
+          <Wrap
+            spacing="2rem"
+            justify="center"
+            className={styles.modalHeadingText}
+          >
             {availableConnections.map(
               ({ type, name, icon, identifier = '' }) => (
                 <WrapItem
@@ -61,9 +64,9 @@ export default function ModalConnectWallet({ isOpen, onClose }: any) {
             )}
           </Wrap>
           <div className={styles.modalBorderTop}></div>
-          <div className={styles.modalHeadingText}>- OR -</div>
+          <div className={styles.modalHeadingTextSmall}>- OR -</div>
           <div className={styles.modalBorderBottom}></div>
-          <div className={styles.modalHeadingText}>
+          <div className={styles.modalHeadingTextSmall}>
             Install A Wallet...
             <Wrap
               spacing="2rem"
