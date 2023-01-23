@@ -5,8 +5,8 @@ interface Props {
   name: string;
   placeholder: string;
   decimalsLimit: number;
-  amount: number;
-  setAmount: (value: number) => void;
+  amount: string;
+  setAmount: (value: string) => void;
   label: string;
 }
 
@@ -19,8 +19,8 @@ function InputCurrency({
   setAmount,
   label
 }: Props) {
-  const handleValueChange = (value: any) => {
-    setAmount(value === undefined ? 0 : value);
+  const handleValueChange = (value: string | undefined) => {
+    setAmount(value === undefined ? '0' : value);
   };
 
   return (
