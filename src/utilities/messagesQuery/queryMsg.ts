@@ -10,22 +10,13 @@ const queryMsg = async <T>(
 ): Promise<T> => {
   const lcd = ConnectLCDClient();
   try {
-    if (contractAddress) {
-      const queryResponse = await lcd.wasm.contractQuery(
-        contractAddress,
-        msgQuery
-      );
-      return queryResponse as T;
-    }
+    const queryResponse = await lcd.wasm.contractQuery(
+      contractAddress,
+      msgQuery
+    );
+    return queryResponse as T;
   } catch (error: any) {
-    console.log('inside error in queryMsg function: ', error);
-    if (
-      error.response.data.message ===
-      'cosmwasm_std::addresses::Addr not found: query wasm contract failed: invalid request'
-    ) {
-      // console.log({ addr: 'Contract Address Not Found' });
-      return { addr: 'Contract Address Not Found' } as T;
-    }
+    console.log(error);
   }
   return undefined as T;
 };
