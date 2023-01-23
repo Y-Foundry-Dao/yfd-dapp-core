@@ -70,17 +70,22 @@
 .containerProfileMenuText {
     padding: 0.75rem;
     width: 100%;
+    font-weight: 100;
+    letter-spacing: 0.06rem;
     margin-top: 0.1rem;
     margin-bottom: 1rem;
     position: inline-block;
     background: var(--theme-color-darkest);
     border-radius: var(--theme-border-radius);
-    filter: brightness(2) drop-shadow(0.1rem 0.1rem 0.5rem var(--theme-color-darkest));
+    filter: brightness(2) drop-shadow(0.1rem 0.1rem 0.5rem var(--theme-color-black));
 }
 
 .containerProfileMenuTextTitle {
     @extend .profileMenuName;
-    filter: drop-shadow(0.1rem 0.1rem 0.3rem var(--theme-color-darkest));
+    margin: 0;
+    padding-bottom: 0.25rem;
+    border-bottom: 0.125rem solid var(--theme-border-color);
+    filter: drop-shadow(0.1rem 0.1rem 0.3rem var(--theme-color-black));
 }
 
 .profileMenuWallet {

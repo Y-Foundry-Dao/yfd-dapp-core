@@ -7,18 +7,18 @@
 .spark {
   $total: 200;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0vh;
+  left: 0vw;
+  margin-top: -1rem;
   width: 0.3em;
   height: 0.3em;
   background: orange;
   border-radius: 50%;
-  margin-left: 0;
   z-index: -10;
 
 
   @for $i from 1 through $total {
-    $random-x: random(1000000) * 0.0001vw;
+    $random-x: random(900000) * 0.0001vw;
     $random-offset: random_range(-100000, 100000) * 0.0001vw;
     $random-x-end: $random-x + $random-offset;
     $random-x-end-yoyo: $random-x + calc($random-offset / 2);

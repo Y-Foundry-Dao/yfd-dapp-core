@@ -13,6 +13,7 @@ export const Icons: { [key: string]: string } = {
   favorite: 'favorite',
   gettingstarted: 'rocket_launch',
   propose: 'lightbulb_circle',
+  support: 'device_hub',
   docs: 'local_library',
   build: 'handyman',
   management: 'engineering',
@@ -41,5 +42,6 @@ export const Icons: { [key: string]: string } = {
   research: 'biotech',
   team: 'groups',
   discuss: 'diversity_3',
-  expand_down: 'expand_more'
+  expand_down: 'expand_more',
+  wallet: 'account_balance_wallet'
 };

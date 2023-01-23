@@ -9,9 +9,9 @@ export default function MenuLeftInitiatives() {
 
   return (
     <>
-      <div className={styles['side-wrapper-menu']}>
-        <div className={styles['side-title']}>Initatives</div>
-        <div className={styles['side-menu']}>
+      <div className={styles.wrapperSideMenu}>
+        <div className={styles.sideTitle}>Initatives</div>
+        <div className={styles.sideMenu}>
           <Link to="/proposals-vaults">
             <i className="material-symbols-outlined">{Icons.vault}</i>
             Vaults

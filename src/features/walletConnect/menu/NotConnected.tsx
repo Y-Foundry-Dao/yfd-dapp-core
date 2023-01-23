@@ -12,8 +12,6 @@ import { Icons } from '@utilities/variables/icons';
 export default function MenuNotConnected() {
   const { network, availableConnections, connect, availableInstallations } =
     useWallet();
-
-  console.log(network);
   return (
     <>
       <MenuButton

@@ -5,7 +5,9 @@ import { Icons } from '@var/icons';
 export default function GSDescription() {
   return (
     <div className={styles['content-feature-frame']}>
-      <div className={[styles['gsBorder'], styles['gsContent']].join(' ')}>
+      <div
+        className={[styles['gsBorder'], styles['gsContentCenter']].join(' ')}
+      >
         <p>
           Y-Foundry provides a platform for creators to trustlessly propose,
           fund, and build ideas.

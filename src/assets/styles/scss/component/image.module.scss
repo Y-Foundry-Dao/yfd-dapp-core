@@ -2,29 +2,17 @@ img {
     max-width: 100%;
    }
 
-
-   // MAYBE CAN DELETE THIS
-   .img-content {
+.imgContent {
     font-weight: 500;
     font-size: 17px;
     display: flex;
     align-items: center;
     margin: 0;
     svg {
-     width: 28px;
-     margin-right: 14px;
+        width: 28px;
+        margin-right: 14px;
     }
-   }
-
-   .content-wrapper-img {
-    width: 186px;
-    object-fit: cover;
-    margin-top: -25px;
-    object-position: center;
-    @media screen and (max-width: 570px) {
-        width: 110px;
-    }
-   }
+}
 
    .tutorial-intro {
     object-fit: cover;
@@ -61,4 +49,15 @@ img {
             display: none;
         }
     }
+}
+
+.imgFeatured {
+    object-fit: cover;
+    margin-right: 0.5rem;
+    object-position: center;
+    border-radius: 2rem;
+    width: 5rem;
+    height: 5rem;
+    border: 0.125rem solid var(--theme-color);
+    filter: drop-shadow( 5px 5px 10px black );
 }

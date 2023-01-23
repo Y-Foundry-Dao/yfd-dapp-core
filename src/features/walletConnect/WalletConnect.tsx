@@ -7,9 +7,8 @@ import {
   addressConnectedAtom
 } from '@recoil/connected/address/atoms';
 
-import styles from '@scss/app.module.scss';
-import NoticeLoading from '@components/NoticeLoading';
 import MenuNotConnected from './menu/NotConnected';
+import ObjectConnectWallet from '@components/ConnectWallet/Object';
 import MenuInitializing from './menu/Initializing';
 import MenuConnected from './menu/Connected';
 
@@ -33,10 +32,14 @@ export default function WalletConnect() {
   }, [network, setAddressStatus, wallets, status]);
 
   return (
-    <Menu placement="bottom-end">
-      {status === WalletStatus.INITIALIZING && <MenuInitializing />}
-      {status === WalletStatus.WALLET_NOT_CONNECTED && <MenuNotConnected />}
-      {status === WalletStatus.WALLET_CONNECTED && <MenuConnected />}
-    </Menu>
+    <>
+      <Menu placement="bottom-end">
+        {status === WalletStatus.INITIALIZING && <MenuInitializing />}
+        {status === WalletStatus.WALLET_NOT_CONNECTED && (
+          <ObjectConnectWallet />
+        )}
+        {status === WalletStatus.WALLET_CONNECTED && <MenuConnected />}
+      </Menu>
+    </>
   );
 }
