@@ -20,8 +20,6 @@ import {
 import { Icons } from '@var/icons';
 import styles from '@scss/app.module.scss';
 
-import { selectMyFYFD, selectMyYFD } from '@recoil/connected/balance/selectors';
-
 const styleVote = 'material-symbols-outlined';
 const styleProposal = 'material-symbols-outlined';
 const styleGuardian = 'material-symbols-outlined';
