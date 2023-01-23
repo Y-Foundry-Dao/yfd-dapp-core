@@ -9,13 +9,19 @@ import {
 } from '@recoil/chainInfo/atoms';
 import convertFromBase from '@utilities/converters/convertFromBase';
 
+type BalanceResponse = {
+  balance: string;
+};
+
+// Gets the connected wallets YFD balance from the smart contract
 export const selectYFDConnected = selector({
   key: 'selectYFDConnected',
   get: async ({ get }) => {
-    if (get(addressConnectedAtom) == '') {
+    const currentContractGovToken = get(currentContractGovTokenAtom);
+    if (get(addressConnectedAtom) === '' || currentContractGovToken === '') {
       return 0;
     }
-    const response = await queryMsg(
+    const response: BalanceResponse = await queryMsg(
       get(currentContractGovTokenAtom),
       queryBalance(get(addressConnectedAtom))
     );
@@ -24,25 +30,28 @@ export const selectYFDConnected = selector({
   }
 });
 
+// Uses the selectYFDConnected selector to convert the balance from base to human readable format and returns it as a string.
 export const selectMyYFD = selector({
   key: 'selectMyYFD',
   get: async ({ get }) => {
-    if (get(addressConnectedAtom) == '') {
-      return 0;
-    }
     const YFDConnected = get(selectYFDConnected);
-    const balance = parseFloat(convertFromBase(YFDConnected).toFixed(5));
+    if (get(addressConnectedAtom) === '' || YFDConnected === undefined) {
+      return '0';
+    }
+
+    const balance = convertFromBase(YFDConnected).toFixed(5);
     return balance.toString();
   }
 });
 
+// Gets the connected wallets fYFD balance from the smart contract
 export const selectFYFDConnected = selector({
   key: 'selectFYFDConnected',
   get: async ({ get }) => {
-    if (get(addressConnectedAtom) == '') {
+    if (get(addressConnectedAtom) === '') {
       return 0;
     }
-    const response = await queryMsg(
+    const response: BalanceResponse = await queryMsg(
       get(currentContractForgeAtom),
       queryBalance(get(addressConnectedAtom))
     );
@@ -50,16 +59,15 @@ export const selectFYFDConnected = selector({
   }
 });
 
+// Uses the selectFYFDConnected selector to convert the balance from base to human readable format and returns it as a string
 export const selectMyFYFD = selector({
   key: 'selectMyYFFD',
   get: async ({ get }) => {
-    if (get(addressConnectedAtom) == '') {
-      return 0;
-    }
     const FYFDConnected = get(selectFYFDConnected);
-    const balance = parseFloat(convertFromBase(FYFDConnected).toFixed(5));
+    if (get(addressConnectedAtom) === '' || FYFDConnected === undefined) {
+      return '0';
+    }
+    const balance = convertFromBase(FYFDConnected).toFixed(5);
     return balance.toString();
   }
 });
-
-// export default { selectYFDConnected, selectFYFDConnected };

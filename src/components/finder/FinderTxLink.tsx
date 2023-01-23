@@ -1,7 +1,11 @@
 import { Link } from '@chakra-ui/react';
 import { Web3Address } from '@saas-ui/web3';
 
-function FinderTxLink({ txHash }: any) {
+type FinderTxLinkProps = {
+  txHash: string;
+};
+
+function FinderTxLink({ txHash }: FinderTxLinkProps) {
   if (!txHash) {
     return null;
   }
