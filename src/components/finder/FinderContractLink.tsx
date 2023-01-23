@@ -1,7 +1,11 @@
 import { Link } from '@chakra-ui/react';
 import { Web3Address } from '@saas-ui/web3';
 
-function FinderContractLink({ contract }: any) {
+type FinderContractLinkProps = {
+  contract: string;
+};
+
+function FinderContractLink({ contract }: FinderContractLinkProps) {
   if (!contract) {
     return null;
   }
