@@ -11,11 +11,17 @@ import {
   WrapItem
 } from '@chakra-ui/react';
 import styles from '@scss/app.module.scss';
-import { Icons } from '@var/icons';
 
-export default function ModalConnectWallet({ isOpen, onClose }: any) {
-  const { network, availableConnections, connect, availableInstallations } =
-    useWallet();
+type ModalConnectWalletProps = {
+  isOpen: boolean;
+  onClose: () => void;
+};
+
+export default function ModalConnectWallet({
+  isOpen,
+  onClose
+}: ModalConnectWalletProps) {
+  const { availableConnections, connect, availableInstallations } = useWallet();
 
   return (
     <Modal
