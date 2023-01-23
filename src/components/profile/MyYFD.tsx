@@ -11,14 +11,10 @@ function MyYFD() {
       return (
         <div className={styles.containerProfileMenuText}>
           <Text className={styles.containerProfileMenuTextTitle}>
-            Testing Objectives
+            Testing Query
           </Text>
           <br />
-          <hr />
-          <br />
           <div>My YFD Balance: {myYFD.contents}</div>
-          <br />
-          <hr />
           <br />
         </div>
       );
