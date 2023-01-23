@@ -20,6 +20,8 @@ import {
 import { Icons } from '@var/icons';
 import styles from '@scss/app.module.scss';
 
+//import FyfdPopoverEmpty from './PopoverEmpty';
+//import FyfdPopoverBalance from './PopoverBalance';
 import { selectMyFYFD, selectMyYFD } from '@recoil/connected/balance/selectors';
 
 const styleVote = 'material-symbols-outlined';
@@ -27,6 +29,13 @@ const styleProposal = 'material-symbols-outlined';
 const styleGuardian = 'material-symbols-outlined';
 
 export default function LockYFDMenu() {
+  const balanceYFD = useRecoilValueLoadable(selectMyYFD);
+  const balancefYFD = useRecoilValueLoadable(selectMyFYFD);
+  //  const minFYFDVaultProp = useRecoilValueLoadable(selectMinFYFDVaultProp);
+  //const minFYFDGovProp = useRecoilValueLoadable(selectMinFYFDGovProp);
+  //const minFYFDEmergencyProp = useRecoilValueLoadable(
+  // selectMinFYFDEmergencyProp
+  //);
   return (
     <>
       <Popover placement="bottom-end">
