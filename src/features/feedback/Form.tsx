@@ -21,7 +21,7 @@ import styles from '@scss/app.module.scss';
 import { URL_DISCORD } from '@var/links';
 
 export default function FeedbackForm({ onClose }: any) {
-  const webhookUrl: string = WEBHOOK_FEEDBACK;
+  const webhookUrl: any = WEBHOOK_FEEDBACK;
   const feedbackName: string = useRecoilValue(inputFeedbackName);
   const feedbackHandle: string = useRecoilValue(inputFeedbackHandle);
   const feedbackMethod: string = useRecoilValue(inputFeedbackMethod);

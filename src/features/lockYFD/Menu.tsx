@@ -20,13 +20,10 @@ import {
 import { Icons } from '@var/icons';
 import styles from '@scss/app.module.scss';
 
-<<<<<<< HEAD
 //import FyfdPopoverEmpty from './PopoverEmpty';
 //import FyfdPopoverBalance from './PopoverBalance';
 import { selectMyFYFD, selectMyYFD } from '@recoil/connected/balance/selectors';
 
-=======
->>>>>>> origin/fix-types
 const styleVote = 'material-symbols-outlined';
 const styleProposal = 'material-symbols-outlined';
 const styleGuardian = 'material-symbols-outlined';
