@@ -15,6 +15,10 @@ import {
   balanceBankConnectedAtom
 } from '@recoil/connected/address/atoms';
 import {
+  currentContractForgeAtom,
+  currentContractGovTokenAtom
+} from '@recoil/chainInfo/atoms';
+import {
   selectFYFDConnected,
   selectYFDConnected
 } from '@recoil/connected/balance/selectors';
@@ -47,13 +51,19 @@ export const MyFYFD = () => {
 };
 
 export const MyForge = () => {
-  const { currentContractGovToken } = useChainInfo();
-  return currentContractGovToken;
+  const [forge, setForge] = useRecoilState(currentContractForgeAtom);
+  const { currentContractForge } = useChainInfo();
+  setForge(currentContractForge);
+  console.log('MY FORGE: ', forge);
+  return forge;
 };
 
 export const MyGovToken = () => {
+  const [token, setToken] = useRecoilState(currentContractGovTokenAtom);
   const { currentContractGovToken } = useChainInfo();
-  return currentContractGovToken;
+  setToken(currentContractGovToken);
+  console.log('MY GOV TOKEN (YFD): ', token);
+  return token;
 };
 
 export default ConnectLCDClient;
