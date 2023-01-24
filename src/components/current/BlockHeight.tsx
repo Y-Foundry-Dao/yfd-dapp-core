@@ -1,3 +1,4 @@
+import { useWallet } from '@terra-money/wallet-provider';
 import { useRecoilValue } from 'recoil';
 import { Text, Tooltip } from '@chakra-ui/react';
 import Loading from '@components/NoticeLoading';
@@ -7,7 +8,7 @@ import { currentBlockHeightAtom } from '@recoil/chainInfo/atoms';
 
 export default function CurrentBlockHeight() {
   const lcd = ConnectLCDClient();
-  const { currentChainID } = useChainInfo();
+  const currentChainID = useWallet().network.chainID;
   const currentBlockHeight = useRecoilValue(currentBlockHeightAtom);
   if (currentBlockHeight) {
     console.log(

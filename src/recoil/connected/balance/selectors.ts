@@ -8,6 +8,8 @@ import {
   currentContractGovTokenAtom
 } from '@recoil/chainInfo/atoms';
 import convertFromBase from '@utilities/converters/convertFromBase';
+import useChainInfo from '@hooks/useChainInfo';
+import { MyGovToken, MyForge } from '@utilities/MyValues';
 
 type BalanceResponse = {
   balance: string;
@@ -18,6 +20,10 @@ export const selectYFDConnected = selector({
   key: 'selectYFDConnected',
   get: async ({ get }) => {
     const currentContractGovToken = get(currentContractGovTokenAtom);
+    console.log(
+      '{SELECTOR} currentContractGovToken: ',
+      currentContractGovToken
+    );
     if (get(addressConnectedAtom) === '' || currentContractGovToken === '') {
       return 0;
     }
@@ -25,7 +31,7 @@ export const selectYFDConnected = selector({
       get(currentContractGovTokenAtom),
       queryBalance(get(addressConnectedAtom))
     );
-    console.log('{SELECTOR} YFD Balance: ', response);
+    console.warn('{SELECTOR} YFD Balance: ', response);
     return parseFloat(response.balance);
   }
 });

@@ -21,7 +21,7 @@ export default function WalletConnect() {
 
   useEffect(() => {
     setAddressStatus(status);
-    console.warn('WALLET STATUS CHANGED: ', status);
+    console.log('WALLET STATUS CHANGED: ', status);
     if (status !== WalletStatus.WALLET_CONNECTED && wallets.length == 0) {
       return;
     }

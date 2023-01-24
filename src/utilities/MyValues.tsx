@@ -46,4 +46,14 @@ export const MyFYFD = () => {
   return balance.toString();
 };
 
+export const MyForge = () => {
+  const { currentContractGovToken } = useChainInfo();
+  return currentContractGovToken;
+};
+
+export const MyGovToken = () => {
+  const { currentContractGovToken } = useChainInfo();
+  return currentContractGovToken;
+};
+
 export default ConnectLCDClient;

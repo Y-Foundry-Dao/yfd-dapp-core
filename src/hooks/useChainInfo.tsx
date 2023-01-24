@@ -3,7 +3,8 @@ import { useRecoilValue, useRecoilState } from 'recoil';
 import {
   currentBlockHeightAtom,
   currentChainIDAtom,
-  currentContractForgeAtom
+  currentContractForgeAtom,
+  currentContractGovTokenAtom
 } from '@recoil/chainInfo/atoms';
 import {
   useConnectedWallet,
@@ -36,24 +37,38 @@ const useChainInfo = () => {
   const [currentContractForge, setCurrentContractForge] =
     useRecoilState<string>(currentContractForgeAtom);
 
+  const [currentContractGovToken, setCurrentContractGovToken] =
+    useRecoilState<string>(currentContractGovTokenAtom);
+
   const getCurrentChainID = async () => {
-    const chainID: string = connection.network.chainID;
-    return chainID;
+    const currentChainID: string = connection.network.chainID;
+    return currentChainID;
   };
 
   const setCurrentChainIDToState = async () => {
-    const chainID = await getCurrentChainID();
-    setCurrentChainID(chainID);
+    const currentChainID = await getCurrentChainID();
+    setCurrentChainID(currentChainID);
   };
 
-  const getCurrentContractForge = async () => {
-    const contractForge = getChainDeploy(currentChainID, 'forge');
+  const getCurrentContractForge = () => {
+    const contractForge = getChainDeploy(chainID, 'forge');
     return contractForge;
   };
 
-  const setCurrentContractForgeToState = async () => {
-    const contractForge = await getCurrentContractForge();
+  const setCurrentContractForgeToState = () => {
+    const contractForge = getCurrentContractForge();
     setCurrentContractForge(contractForge);
+  };
+
+  const getCurrentContractGovToken = () => {
+    const contractGovToken = getChainDeploy(chainID, 'token');
+    console.log('{ USECHAININFO } contractGovToken: ', contractGovToken);
+    return contractGovToken;
+  };
+
+  const setCurrentContractGovTokenToState = () => {
+    const contractGovToken = getCurrentContractGovToken();
+    setCurrentContractGovToken(contractGovToken);
   };
 
   const getCurrentBlockHeight = async () => {
@@ -70,6 +85,7 @@ const useChainInfo = () => {
 
   useEffect(() => {
     setCurrentBlockHeightToState();
+    setCurrentContractGovTokenToState();
     setCurrentChainIDToState();
     setCurrentContractForgeToState();
   }, []);
@@ -84,7 +100,8 @@ const useChainInfo = () => {
   return {
     currentBlockHeight,
     currentChainID,
-    currentContractForge
+    currentContractForge,
+    currentContractGovToken
   };
 };
 
