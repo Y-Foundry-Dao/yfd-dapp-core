@@ -40,7 +40,7 @@ export default function LockYFDMenu() {
   if (balanceYFD.state === 'loading') {
     return <NoticeLoading />;
   } else if (balanceYFD.state === 'hasError') {
-    return <>ERROR: {balanceYFD.contents.message}</>;
+    console.error('ERROR: ', balanceYFD.contents.message);
   } else if (balanceYFD.state === 'hasValue') {
     const YFD = balanceYFD.contents;
     console.log('Balance YFD: ', balanceYFD);
