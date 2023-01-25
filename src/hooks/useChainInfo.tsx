@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import {
+  currentBlockIntervalAtom,
   currentBlockHeightAtom,
   currentChainIDAtom,
   currentContractForgeAtom,
@@ -24,12 +25,16 @@ const useChainInfo = () => {
   const [currentBlockHeight, setCurrentBlockHeight] = useRecoilState<any>(
     currentBlockHeightAtom
   );
+  const [currentBlockInterval, setCurrentBlockInterval] = useRecoilState<any>(
+    currentBlockIntervalAtom
+  );
   const [currentChainID, setCurrentChainID] =
     useRecoilState<string>(currentChainIDAtom);
   const [currentContractForge, setCurrentContractForge] =
     useRecoilState<string>(currentContractForgeAtom);
   const [currentContractGovToken, setCurrentContractGovToken] =
     useRecoilState<string>(currentContractGovTokenAtom);
+
   const getCurrentChainID = async () => {
     const currentChainID: string = connection.network.chainID;
     return currentChainID;
@@ -39,7 +44,7 @@ const useChainInfo = () => {
     setCurrentChainID(currentChainID);
   };
   const getCurrentContractForge = () => {
-    const contractForge = getChainDeploy(chainID, 'forge');
+    const contractForge = String(getChainDeploy(chainID, 'forge'));
     return contractForge;
   };
   const setCurrentContractForgeToState = () => {
@@ -47,13 +52,28 @@ const useChainInfo = () => {
     setCurrentContractForge(contractForge);
   };
   const getCurrentContractGovToken = () => {
-    const contractGovToken = getChainDeploy(chainID, 'token');
+    const contractGovToken = String(getChainDeploy(chainID, 'token'));
     return contractGovToken;
   };
 
   const setCurrentContractGovTokenToState = () => {
     const contractGovToken = getCurrentContractGovToken();
     setCurrentContractGovToken(contractGovToken);
+  };
+
+  const getCurrentBlockInterval = () => {
+    const newBlockInterval = Number(getChainDeploy(chainID, 'interval'));
+    if (typeof newBlockInterval === 'number') {
+      console.log('blockInterval is a number: ', newBlockInterval);
+    } else {
+      console.error('blockInterval is not a number: ', newBlockInterval);
+    }
+    return newBlockInterval;
+  };
+
+  const setCurrentBlockIntervalToState = () => {
+    const blockInterval = getCurrentBlockInterval();
+    setCurrentBlockInterval(blockInterval);
   };
 
   const getCurrentBlockHeight = async () => {
@@ -69,6 +89,7 @@ const useChainInfo = () => {
   };
 
   useEffect(() => {
+    setCurrentBlockIntervalToState();
     setCurrentBlockHeightToState();
     setCurrentContractGovTokenToState();
     setCurrentChainIDToState();
@@ -76,9 +97,10 @@ const useChainInfo = () => {
   }, []);
 
   useEffect(() => {
+    const blockInterval = getCurrentBlockInterval();
     const interval = setInterval(async () => {
       return setCurrentBlockHeight(await getCurrentBlockHeight());
-    }, 6000);
+    }, blockInterval);
     return () => clearInterval(interval);
   }, []);
 

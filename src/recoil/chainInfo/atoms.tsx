@@ -1,5 +1,10 @@
 import { atom } from 'recoil';
 
+const currentBlockIntervalAtom = atom({
+  key: 'currentBlockIntervalAtom',
+  default: 6000
+});
+
 const currentBlockHeightAtom = atom({
   key: 'currentBlockHeightAtom',
   default: 0
@@ -20,6 +25,7 @@ const currentContractGovTokenAtom = atom({
   default: ''
 });
 export {
+  currentBlockIntervalAtom,
   currentBlockHeightAtom,
   currentChainIDAtom,
   currentContractForgeAtom,
