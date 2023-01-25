@@ -50,6 +50,20 @@ export const MyFYFD = () => {
   return balance.toString();
 };
 
+/*
+export function MyYFD() {
+  return convertFromBase(
+    Number(useRecoilValue(balanceYfdConnectedAtom))
+  ).toFixed(5);
+};
+
+export function MyFYFD() {
+  return convertFromBase(
+    Number(useRecoilValue(balanceFyfdConnectedAtom))
+  ).toFixed(5);
+};
+*/
+
 export const MyForge = () => {
   const [forge, setForge] = useRecoilState(currentContractForgeAtom);
   const { currentContractForge } = useChainInfo();

@@ -1,27 +1,9 @@
-import { useEffect } from 'react';
-import { useRecoilValue, useRecoilValueLoadable, useRecoilState } from 'recoil';
-import {
-  Button,
-  Popover,
-  PopoverTrigger,
-  Flex,
-  Box,
-  Tooltip
-} from '@chakra-ui/react';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { addressConnectedAtom } from '@recoil/governance/parameters/atoms';
-// import { myYFD, myFYFD } from '@utilities/myValues';
 import {
   balanceYfdConnectedAtom,
   balanceFyfdConnectedAtom
 } from '@recoil/connected/address/atoms';
-import {
-  selectMinFYFDVaultProp,
-  selectMinFYFDGovProp,
-  selectMinFYFDEmergencyProp
-} from '@recoil/governance/parameters/selectors';
-
-import { Icons } from '@var/icons';
-import styles from '@scss/app.module.scss';
 
 //import FyfdPopoverEmpty from './PopoverEmpty';
 //import FyfdPopoverBalance from './PopoverBalance';
@@ -29,17 +11,13 @@ import {
   currentContractForgeAtom,
   currentContractGovTokenAtom
 } from '@recoil/chainInfo/atoms';
+
 import useChainInfo from 'hooks/useChainInfo';
 import PopoverEmpty from './PopoverEmpty';
 import queryMsg from '@utilities/messagesQuery/queryMsg';
 import queryBalance from '@utilities/messagesQuery/cw20/queryBalance';
 import MenuPopoverBalance from './BalanceLUNA';
-import { unset } from 'lodash';
 import convertFromBase from '@utilities/converters/convertFromBase';
-
-const styleVote = 'material-symbols-outlined';
-const styleProposal = 'material-symbols-outlined';
-const styleGuardian = 'material-symbols-outlined';
 
 type BalanceResponse = {
   balance: string;
@@ -72,13 +50,15 @@ async function getBalanceFYFD(address: string, forge: any) {
 }
 
 function MyYFD() {
-  const address = useRecoilValue(addressConnectedAtom);
-  const token = useRecoilValue(currentContractGovTokenAtom);
-  const [yfd, setYFD] = useRecoilState(balanceYfdConnectedAtom);
-  getBalanceYFD(address, token).then((result) => {
-    setYFD(result.toString());
-    return result;
-  });
+  return convertFromBase(
+    Number(useRecoilValue(balanceYfdConnectedAtom))
+  ).toFixed(5);
+}
+
+function MyFYFD() {
+  return convertFromBase(
+    Number(useRecoilValue(balanceFyfdConnectedAtom))
+  ).toFixed(5);
 }
 
 export default function LockYFDMenu() {
@@ -93,20 +73,17 @@ export default function LockYFDMenu() {
   setToken(currentContractGovToken);
 
   const balanceYFD = getBalanceYFD(address, token).then((result) => {
-    if (result > 0) {
-      const balance = convertFromBase(Number(result)).toFixed(5);
-      setYFD(balance);
-    }
+    const yfd = Number(result);
+    setYFD(yfd);
   });
 
-  const BalanceFYFD = getBalanceFYFD(address, forge).then((result) => {
-    if (result > 0) {
-      const balance = convertFromBase(Number(result)).toFixed(5);
-      setFYFD(balance);
-    }
+  const balanceFYFD = getBalanceFYFD(address, forge).then((result) => {
+    const fyfd = Number(result);
+    setFYFD(fyfd);
   });
 
-  console.log('{ - YFD -}: ', yfd);
-  console.log('{ FYFD: }: ', fyfd);
+  if (Number(fyfd) > 0) {
+    return <MenuPopoverBalance />;
+  }
   return <PopoverEmpty />;
 }

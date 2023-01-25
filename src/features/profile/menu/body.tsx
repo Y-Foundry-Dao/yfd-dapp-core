@@ -4,7 +4,6 @@ import styles from '@scss/app.module.scss';
 import useProfile from '@hooks/useProfile';
 import { addressConnectedAtom } from '@recoil/connected/address/atoms';
 import { selectYFDConnected } from '@recoil/connected/balance/selectors';
-import MyYFD from '@components/profile/MyYFD';
 export default function MenuProfileBody() {
   const walletAddress = useRecoilValue(addressConnectedAtom);
   const profile = useProfile(walletAddress);
@@ -14,7 +13,6 @@ export default function MenuProfileBody() {
       <PopoverBody>
         <Flex>
           <Box>
-            <MyYFD />
             <div className={styles.containerProfileMenuText}>
               <Text className={styles.containerProfileMenuTextTitle}>
                 Testing Objectives

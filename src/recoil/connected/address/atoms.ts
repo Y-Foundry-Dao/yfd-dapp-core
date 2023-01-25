@@ -16,10 +16,10 @@ export const balanceBankConnectedAtom = atom({
 
 export const balanceYfdConnectedAtom = atom({
   key: 'balanceYfdConnectedAtom',
-  default: '0'
+  default: 0
 });
 
 export const balanceFyfdConnectedAtom = atom({
   key: 'balancefYfdConnectedAtom',
-  default: '0'
+  default: 0
 });
