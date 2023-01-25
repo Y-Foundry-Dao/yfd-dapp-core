@@ -6,11 +6,7 @@ import {
   currentContractForgeAtom,
   currentContractGovTokenAtom
 } from '@recoil/chainInfo/atoms';
-import {
-  useConnectedWallet,
-  useLCDClient,
-  useWallet
-} from '@terra-money/wallet-provider';
+import { useLCDClient, useWallet } from '@terra-money/wallet-provider';
 import getChainDeploy from '@utilities/getValues';
 import {
   addressStatusAtom,
@@ -25,44 +21,33 @@ const useChainInfo = () => {
   const lcd = ConnectLCDClient();
   const connection = useWallet();
   const chainID = useWallet().network.chainID;
-  console.log('useChainInfo: ', connection);
-
   const [currentBlockHeight, setCurrentBlockHeight] = useRecoilState<any>(
     currentBlockHeightAtom
   );
-
   const [currentChainID, setCurrentChainID] =
     useRecoilState<string>(currentChainIDAtom);
-
   const [currentContractForge, setCurrentContractForge] =
     useRecoilState<string>(currentContractForgeAtom);
-
   const [currentContractGovToken, setCurrentContractGovToken] =
     useRecoilState<string>(currentContractGovTokenAtom);
-
   const getCurrentChainID = async () => {
     const currentChainID: string = connection.network.chainID;
     return currentChainID;
   };
-
   const setCurrentChainIDToState = async () => {
     const currentChainID = await getCurrentChainID();
     setCurrentChainID(currentChainID);
   };
-
   const getCurrentContractForge = () => {
     const contractForge = getChainDeploy(chainID, 'forge');
     return contractForge;
   };
-
   const setCurrentContractForgeToState = () => {
     const contractForge = getCurrentContractForge();
     setCurrentContractForge(contractForge);
   };
-
   const getCurrentContractGovToken = () => {
     const contractGovToken = getChainDeploy(chainID, 'token');
-    console.log('{ USECHAININFO } contractGovToken: ', contractGovToken);
     return contractGovToken;
   };
 
