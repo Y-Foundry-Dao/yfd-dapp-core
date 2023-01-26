@@ -1,14 +1,7 @@
 // import { LCDClient } from '@terra-money/terra.js';
 import { LCDClient } from '@terra-money/feather.js';
-import getChainDeploy from '@utilities/getValues';
-import { useWallet } from '@terra-money/wallet-provider';
-
-function CurrentChain() {
-  console.log('{LCD CLIENT}: ', useWallet().network.chainID);
-}
 
 export const lcd = () => {
-  const chainID = CurrentChain();
   return new LCDClient({
     'pisco-1': {
       lcd: 'https://pisco-lcd.terra.dev',

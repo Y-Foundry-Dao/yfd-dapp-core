@@ -12,7 +12,7 @@ import {
 } from '@recoil/chainInfo/atoms';
 
 import useChainInfo from 'hooks/useChainInfo';
-import queryMsg from '@utilities/messagesQuery/queryMsg';
+import useMsg from '@hooks/useMsg';
 import queryBalance from '@utilities/messagesQuery/cw20/queryBalance';
 
 import MenuPopoverBalance from './MenuPopoverBalance';
@@ -23,32 +23,7 @@ type BalanceResponse = {
   balance: string;
 };
 
-async function getBalanceYFD(address: string, token: any) {
-  try {
-    const result: BalanceResponse = await queryMsg(
-      token,
-      queryBalance(address)
-    );
-    return result.balance;
-  } catch (error) {
-    console.error('ERROR getting YFD Balance: ', error);
-    return 0;
-  }
-}
-
-async function getBalanceFYFD(address: string, forge: any) {
-  try {
-    const result: BalanceResponse = await queryMsg(
-      forge,
-      queryBalance(address)
-    );
-    return result.balance;
-  } catch (error) {
-    console.error('ERROR getting fYFD Balance: ', error);
-    return 0;
-  }
-}
-
+/*
 function MyYFD() {
   return convertFromBase(
     Number(useRecoilValue(balanceYfdConnectedAtom))
@@ -60,8 +35,10 @@ function MyFYFD() {
     Number(useRecoilValue(balanceFyfdConnectedAtom))
   ).toFixed(5);
 }
+*/
 
 export default function LockYFDMenu() {
+  const { queryMsg } = useMsg();
   const { currentContractForge, currentContractGovToken } = useChainInfo();
   const forge = useRecoilValue(currentContractForgeAtom);
   const token = useRecoilValue(currentContractGovTokenAtom);
@@ -78,15 +55,23 @@ export default function LockYFDMenu() {
   setMinFYFDVaultProp(mfvp);
   setMinFYFDEmergencyProp(mfep);
   */
-  const balanceYFD = getBalanceYFD(address, token).then((result) => {
+  try {
+    const result = queryMsg(forge, queryBalance(address));
     const yfd = Number(result);
     setYFD(yfd);
-  });
+  } catch (error) {
+    console.error('ERROR getting fYFD Balance: ', error);
+    //return 0;
+  }
 
-  const balanceFYFD = getBalanceFYFD(address, forge).then((result) => {
+  try {
+    const result = queryMsg(token, queryBalance(address));
     const fyfd = Number(result);
     setFYFD(fyfd);
-  });
+  } catch (error) {
+    console.error('ERROR getting YFD Balance: ', error);
+    //return 0;
+  }
 
   return <MenuLockYFD />;
 }

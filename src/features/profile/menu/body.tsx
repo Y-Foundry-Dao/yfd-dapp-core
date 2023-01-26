@@ -3,7 +3,7 @@ import { PopoverBody, Text, Flex, Box } from '@chakra-ui/react';
 import styles from '@scss/app.module.scss';
 import useProfile from '@hooks/useProfile';
 import { addressConnectedAtom } from '@recoil/connected/address/atoms';
-import { selectYFDConnected } from '@recoil/connected/balance/selectors';
+//import { selectYFDConnected } from '@recoil/connected/balance/selectors';
 export default function MenuProfileBody() {
   const walletAddress = useRecoilValue(addressConnectedAtom);
   const profile = useProfile(walletAddress);

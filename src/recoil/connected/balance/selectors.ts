@@ -1,7 +1,7 @@
 import { selector } from 'recoil';
 import queryBalance from '@utilities/messagesQuery/cw20/queryBalance';
-import queryMsg from '@utilities/messagesQuery/queryMsg';
-
+//import queryMsg from '@utilities/messagesQuery/queryMsg';
+/*
 import { addressConnectedAtom } from '@recoil/connected/address/atoms';
 import {
   currentContractForgeAtom,
@@ -78,3 +78,4 @@ export const selectMyFYFD = selector({
     return balance.toString();
   }
 });
+*/

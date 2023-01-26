@@ -45,7 +45,7 @@ import {
 import ProposalModal from '@features/proposal/modal';
 import ProposalModalButton from '@features/proposal/create/ButtonModelOpen';
 //import LockYfdForm from './Form';
-import { selectMyFYFD, selectMyYFD } from '@recoil/connected/balance/selectors';
+// import { selectMyFYFD, selectMyYFD } from '@recoil/connected/balance/selectors';
 // import { myFYFD, myYFD } from '@utilities/myValues';
 
 let styleVote = 'material-symbols-outlined';
@@ -63,10 +63,10 @@ export default function MenuFyfdBalance() {
   const amountStakeYFD = useRecoilValue(inputStakeYFD);
   const { handleClickStakeYFD } = useHandleClicks();
   const { handleInputStakeYFD } = useHandleInputs();
-  const myYFD = useRecoilValueLoadable(selectMyYFD);
-  const balanceYFD = myYFD.state == 'hasValue' ? myYFD.contents : 'loading';
-  const myfYFD = useRecoilValueLoadable(selectMyFYFD);
-  const balancefYFD = myfYFD.state == 'hasValue' ? myfYFD.contents : 'loading';
+  const myYFD = 0;
+  const balanceYFD = myYFD;
+  const myfYFD = 0;
+  const balancefYFD = myfYFD;
 
   if (1000 < +balancefYFD) {
     styleVote = styleVote + ' ' + styles['icon-create'];

@@ -7,20 +7,18 @@ import {
   currentContractForgeAtom,
   currentContractGovTokenAtom
 } from '@recoil/chainInfo/atoms';
+/*
 import {
   selectFYFDConnected,
   selectYFDConnected
 } from '@recoil/connected/balance/selectors';
-
-export const MyLCD = () => {
-  return useLCDClient();
-};
-
+*/
 export const MyChain = () => {
   const chainInfo = useChainInfo();
   return chainInfo.currentChainID;
 };
 
+/*
 export const MyYFD = () => {
   const response = useRecoilValueLoadable(selectYFDConnected);
   const balance = parseFloat(convertFromBase(response.contents).toFixed(5));
@@ -33,7 +31,6 @@ export const MyFYFD = () => {
   return balance.toString();
 };
 
-/*
 export function MyYFD() {
   return convertFromBase(
     Number(useRecoilValue(balanceYfdConnectedAtom))
@@ -61,4 +58,4 @@ export const MyGovToken = () => {
   return token;
 };
 
-export default MyLCD;
+export default MyChain;
