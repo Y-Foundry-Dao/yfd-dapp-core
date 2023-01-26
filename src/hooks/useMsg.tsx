@@ -2,14 +2,14 @@ import { useState } from 'react';
 
 import { useWallet, useConnectedWallet } from '@terra-money/wallet-provider';
 import { Coins, Msg, MsgExecuteContract } from '@terra-money/terra.js';
-import { ConnectLCDClient } from '@hooks/useChainInfo';
+import { MyLCD } from '@utilities/MyValues';
 import useTx from './useTx';
 import { useSetRecoilState } from 'recoil';
 import txHashAtom from 'recoil/txHash/atom';
 import queryNftInfo from 'utilities/messagesQuery/proposals/vaultProposal/queryNftInfo';
 
 const useMsg = () => {
-  const lcd = ConnectLCDClient();
+  const lcd = MyLCD();
   const chainID = useWallet().network.chainID;
   const { post } = useWallet();
   const { toastError } = useTx();

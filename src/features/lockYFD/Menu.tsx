@@ -1,89 +1,167 @@
-import { useRecoilValue, useRecoilState } from 'recoil';
-import { addressConnectedAtom } from '@recoil/governance/parameters/atoms';
 import {
-  balanceYfdConnectedAtom,
-  balanceFyfdConnectedAtom
-} from '@recoil/connected/address/atoms';
+  Button,
+  Popover,
+  PopoverTrigger,
+  Flex,
+  Box,
+  Tooltip
+} from '@chakra-ui/react';
+import { useRecoilValue, useRecoilState, useRecoilValueLoadable } from 'recoil';
 
-//import FyfdPopoverEmpty from './PopoverEmpty';
-//import FyfdPopoverBalance from './PopoverBalance';
+import { Icons } from '@var/icons';
+import styles from '@scss/app.module.scss';
+import useMsg from '@hooks/useMsg';
+import queryGovernanceParameter from '@utilities/messagesQuery/forge/queryGovernanceParameter';
+import FyfdPopoverBalance from './MenuPopoverBalance';
+import MenuPopoverNoFYFD from './MenuNoFYFD';
+
 import {
   currentContractForgeAtom,
   currentContractGovTokenAtom
 } from '@recoil/chainInfo/atoms';
+import {
+  balanceYfdConnectedAtom,
+  balanceFyfdConnectedAtom
+} from '@recoil/connected/address/atoms';
+import {
+  minFYFDVaultPropAtom,
+  minFYFDGovPropAtom,
+  minFYFDEmergencyPropAtom
+} from '@recoil/governance/parameters/atoms';
 
-import useChainInfo from 'hooks/useChainInfo';
-import PopoverEmpty from './PopoverEmpty';
-import queryMsg from '@utilities/messagesQuery/queryMsg';
-import queryBalance from '@utilities/messagesQuery/cw20/queryBalance';
-import MenuPopoverBalance from './BalanceLUNA';
-import convertFromBase from '@utilities/converters/convertFromBase';
+const styleVote = 'material-symbols-outlined';
+const styleProposal = 'material-symbols-outlined';
+const styleGuardian = 'material-symbols-outlined';
 
-type BalanceResponse = {
-  balance: string;
-};
+export default function MenuLockYFD() {
+  const forge = useRecoilValue(currentContractForgeAtom);
+  const balanceYFD = useRecoilValue(balanceYfdConnectedAtom);
+  const balancefYFD = useRecoilValue(balanceFyfdConnectedAtom);
+  const [minFYFDVaultProp, setMinFYFDVaultProp] =
+    useRecoilState(minFYFDVaultPropAtom);
+  const [minFYFDGovProp, setMinFYFDGovProp] =
+    useRecoilState(minFYFDGovPropAtom);
+  const [minFYFDEmergencyProp, setMinFYFDEmergencyProp] = useRecoilState(
+    minFYFDEmergencyPropAtom
+  );
 
-async function getBalanceYFD(address: string, token: any) {
-  try {
-    const result: BalanceResponse = await queryMsg(
-      token,
-      queryBalance(address)
-    );
-    return result.balance;
-  } catch (error) {
-    console.error('ERROR getting YFD Balance: ', error);
-    return 0;
-  }
-}
-
-async function getBalanceFYFD(address: string, forge: any) {
-  try {
-    const result: BalanceResponse = await queryMsg(
-      forge,
-      queryBalance(address)
-    );
-    return result.balance;
-  } catch (error) {
-    console.error('ERROR getting fYFD Balance: ', error);
-    return 0;
-  }
-}
-
-function MyYFD() {
-  return convertFromBase(
-    Number(useRecoilValue(balanceYfdConnectedAtom))
-  ).toFixed(5);
-}
-
-function MyFYFD() {
-  return convertFromBase(
-    Number(useRecoilValue(balanceFyfdConnectedAtom))
-  ).toFixed(5);
-}
-
-export default function LockYFDMenu() {
-  const { currentContractForge } = useChainInfo();
-  const { currentContractGovToken } = useChainInfo();
-  const address = useRecoilValue(addressConnectedAtom);
-  const [forge, setForge] = useRecoilState(currentContractForgeAtom);
-  const [token, setToken] = useRecoilState(currentContractGovTokenAtom);
-  const [yfd, setYFD] = useRecoilState(balanceYfdConnectedAtom);
-  const [fyfd, setFYFD] = useRecoilState(balanceFyfdConnectedAtom);
-  setForge(currentContractForge);
-  setToken(currentContractGovToken);
-
-  const balanceYFD = getBalanceYFD(address, token).then((result) => {
-    const yfd = Number(result);
-    setYFD(yfd);
+  const { queryMsg } = useMsg();
+  const qVault = queryGovernanceParameter('fYFD_VaultProposalMin');
+  const rVault = queryMsg(forge, qVault).then((res) => {
+    console.log('the Vault Proposal Query results: ', res);
   });
-
-  const balanceFYFD = getBalanceFYFD(address, forge).then((result) => {
-    const fyfd = Number(result);
-    setFYFD(fyfd);
+  const qGov = queryGovernanceParameter('fYFD_GovernanceProposalMin');
+  const rGov = queryMsg(forge, qGov).then((res) => {
+    console.log('Gov Prop FYFD: ', res);
   });
+  const qEmerg = queryGovernanceParameter('fYFD_EmergencyProposalMin');
+  const rEmerg = queryMsg(forge, qEmerg).then((res) => {
+    console.log('Emergency Prop FYFD: ', res);
+  });
+  //const mfvp = getMinFYFDVaultProp(forge);
+  //const mfgp = getMinFYFDGovProp(forge);
+  //const mfep = getMinFYFDEmergencyProp(forge);
+  //setMinFYFDVaultProp(mfvp);
+  //setMinFYFDGovProp(mfgp);
+  //setMinFYFDEmergencyProp(mfep);
 
-  if (Number(fyfd) > 0) {
-    return <MenuPopoverBalance />;
+  /*
+  if (
+    minFYFDVaultProp.state === 'hasValue' &&
+    typeof minFYFDVaultProp.contents !== 'undefined' &&
+    minFYFDGovProp.state === 'hasValue' &&
+    minFYFDGovProp.contents !== 'undefined' &&
+    minFYFDEmergencyProp.state === 'hasValue' &&
+    minFYFDEmergencyProp.contents !== 'undefined'
+  ) {
+    const vKey = Object.keys(minFYFDVaultProp.contents.parameter_type)[0];
+    const minVaultValue =
+      minFYFDVaultProp.contents.parameter_type[vKey].value.toString();
+    const minVaultName = minFYFDVaultProp.contents.name || undefined;
+    console.log(minVaultName + ': ' + minVaultValue);
+
+    const gKey = Object.keys(minFYFDGovProp.contents.parameter_type)[0];
+    const minGovValue =
+      minFYFDGovProp.contents.parameter_type[vKey].value.toString();
+    const minGovName = minFYFDGovProp.contents.name;
+    console.log(minGovName + ': ' + minGovValue);
+
+    const eKey = Object.keys(minFYFDEmergencyProp.contents.parameter_type)[0];
+    const minEmergencyValue =
+      minFYFDEmergencyProp.contents.parameter_type[eKey].value.toString();
+    const minEmergencyName = minFYFDEmergencyProp.contents.name || undefined;
+    console.log(minEmergencyName + ': ' + minEmergencyValue);
+
+    /*
+    console.log(
+      '{MENU.tsx} Vault Proposal Minimum ( ' + vaultMinimum + ' ) FYFD: ',
+      JSON.stringify(minFYFDVaultProp)
+    );
+    console.log(
+      '{MENU.tsx} Vault Proposal Minimum FYFD: ',
+      JSON.stringify(minFYFDGovProp)
+    );
+    console.log(
+      '{MENU.tsx} Emergency Proposal Minimum FYFD: ',
+      JSON.stringify(minFYFDEmergencyProp)
+    );
+
+    if (minGovValue < +balancefYFD) {
+      styleVote = styleVote + ' ' + styles['icon-create'];
+    }
+
+    if (minVaultValue < +balancefYFD) {
+      styleProposal = styleProposal + ' ' + styles['icon-create'];
+    }
+
+    if (minEmergencyValue < +balancefYFD) {
+      styleGuardian = styleGuardian + ' ' + styles['icon-create'];
+    }
+  //  console.log('BalancefYFD', BalancefYFD);
+  if (1 > +balancefYFD) {
+    return <MenuPopoverNoFYFD />;
+  } else {
+    return (
+      <Popover>
+        <PopoverTrigger>
+          <Button className={styles.stakeYfd}>
+            <Flex className={styles.stakeYfdIcons}>
+              <Box className={styles.stakeYfdIcon}>
+                <Tooltip
+                  label={minGovName}
+                  aria-label={minGovName}
+                  placement="top"
+                >
+                  <span className={styleVote}>{Icons.vote}</span>
+                </Tooltip>
+              </Box>
+              <Box className={styles.stakeYfdIcon}>
+                <Tooltip
+                  label={minVaultName}
+                  aria-label={minVaultName}
+                  placement="top"
+                >
+                  <span className={styleProposal}>{Icons.proposal}</span>
+                </Tooltip>
+              </Box>
+              <Box className={styles.stakeYfdIcon}>
+                <Tooltip
+                  label={minEmergencyName}
+                  aria-label={minEmergencyName}
+                  placement="top"
+                >
+                  <span className={styleGuardian}>{Icons.guardian}</span>
+                </Tooltip>
+              </Box>
+            </Flex>
+          </Button>
+        </PopoverTrigger>
+        <FyfdPopoverBalance />
+      </Popover>
+    );
   }
-  return <PopoverEmpty />;
+  */
+  //} else {
+  return <></>;
+  //}
 }

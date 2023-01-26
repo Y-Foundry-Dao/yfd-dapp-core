@@ -5,7 +5,7 @@ import { useWallet } from '@terra-money/wallet-provider';
 import styles from '@scss/app.module.scss';
 import yLogo from '@yfd/logo-horizontal-orange-white.svg';
 
-import LockFYFDMenu from '@features/lockYFD/Menu';
+import LockFYFDMenu from '@features/lockYFD/MenuPreload';
 
 // display the lockYFD menu if the wallet is connected
 function lockYFDMenuDisplay(status: string) {

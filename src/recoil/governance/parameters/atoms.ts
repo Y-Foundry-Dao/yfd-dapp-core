@@ -1,22 +1,22 @@
 import { atom } from 'recoil';
 
-export const addressConnectedAtom = atom({
-  key: 'addressConnectedAtom',
+export const minFYFDVaultPropAtom = atom({
+  key: 'minFYFDVaultPropAtom',
   default: ''
 });
 
-export const balanceYfdConnectedAtom = atom({
-  key: 'balanceYfdConnectedAtom',
+export const minFYFDGovPropAtom = atom({
+  key: 'minFYFDGovPropAtom',
   default: '0'
 });
 
-export const balanceFyfdConnectedAtom = atom({
-  key: 'balancefYfdConnectedAtom',
+export const minFYFDEmergencyPropAtom = atom({
+  key: 'minFYFDEmergencyPropAtom',
   default: '0'
 });
 
 export default {
-  addressConnectedAtom,
-  balanceYfdConnectedAtom,
-  balanceFyfdConnectedAtom
+  minFYFDVaultPropAtom,
+  minFYFDGovPropAtom,
+  minFYFDEmergencyPropAtom
 };

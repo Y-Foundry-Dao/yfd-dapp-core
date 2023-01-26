@@ -2,7 +2,7 @@ import { createRoot } from 'react-dom/client';
 import { RecoilRoot } from 'recoil';
 import { getChainOptions, WalletProvider } from '@terra-money/wallet-provider';
 import { BrowserRouter } from 'react-router-dom';
-
+import React from 'react';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 
@@ -33,7 +33,9 @@ getChainOptions().then((chainOptions) => {
           <BrowserRouter>
             <CacheProvider value={emotionCache}>
               <main>
-                <AppLayout />
+                <React.StrictMode>
+                  <AppLayout />
+                </React.StrictMode>
               </main>
             </CacheProvider>
           </BrowserRouter>

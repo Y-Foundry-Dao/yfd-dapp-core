@@ -23,9 +23,9 @@ import {
   selectYFDConnected
 } from '@recoil/connected/balance/selectors';
 
-export function ConnectLCDClient() {
+export const MyLCD = () => {
   return useLCDClient();
-}
+};
 
 export const MyChain = () => {
   const chainInfo = useChainInfo();
@@ -80,4 +80,4 @@ export const MyGovToken = () => {
   return token;
 };
 
-export default ConnectLCDClient;
+export default MyLCD;

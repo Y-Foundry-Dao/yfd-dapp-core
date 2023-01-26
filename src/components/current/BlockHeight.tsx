@@ -3,7 +3,6 @@ import { useRecoilValue } from 'recoil';
 import { Text, Tooltip } from '@chakra-ui/react';
 import Loading from '@components/NoticeLoading';
 import styles from '@scss/app.module.scss';
-import useChainInfo, { ConnectLCDClient } from '@hooks/useChainInfo';
 import { currentBlockHeightAtom } from '@recoil/chainInfo/atoms';
 import {
   balanceYfdConnectedAtom,
@@ -11,7 +10,6 @@ import {
 } from '@recoil/connected/address/atoms';
 
 export default function CurrentBlockHeight() {
-  const lcd = ConnectLCDClient();
   const currentChainID = useWallet().network.chainID;
   const currentBlockHeight = useRecoilValue(currentBlockHeightAtom);
   const yfd = useRecoilValue(balanceYfdConnectedAtom);
