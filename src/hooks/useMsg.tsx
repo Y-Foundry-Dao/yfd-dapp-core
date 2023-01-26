@@ -47,7 +47,7 @@ const useMsg = () => {
             // Causes errors in console because it hits the catch statement until the transaction has been broadcast
             // console.log(result.result);
             const data = await lcd.tx
-              .txInfo(result.result.txhash)
+              .txInfo(result.result.txhash, chainID)
               .catch((error) => {
                 setTxHashInRecoil('Waiting for TX to Broadcast...');
                 console.log('Inside catch', error);
