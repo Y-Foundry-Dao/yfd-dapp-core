@@ -18,56 +18,57 @@ import queryBalance from '@utilities/messagesQuery/cw20/queryBalance';
 import MenuPopoverBalance from './MenuPopoverBalance';
 import convertFromBase from '@utilities/converters/convertFromBase';
 import MenuLockYFD from './Menu';
+import { useLCDClient } from '@terra-money/wallet-provider';
 
 type BalanceResponse = {
   balance: string;
 };
 
-async function getBalanceYFD(address: string, token: any) {
-  try {
-    const result: BalanceResponse = await queryMsg(
-      token,
-      queryBalance(address)
-    );
-    return result.balance;
-  } catch (error) {
-    console.error('ERROR getting YFD Balance: ', error);
-    return 0;
-  }
-}
+// async function getBalanceYFD(address: string, token: any) {
+//   try {
+//     const result: BalanceResponse = await queryMsg(
+//       token,
+//       queryBalance(address)
+//     );
+//     return result.balance;
+//   } catch (error) {
+//     console.error('ERROR getting YFD Balance: ', error);
+//     return 0;
+//   }
+// }
 
-async function getBalanceFYFD(address: string, forge: any) {
-  try {
-    const result: BalanceResponse = await queryMsg(
-      forge,
-      queryBalance(address)
-    );
-    return result.balance;
-  } catch (error) {
-    console.error('ERROR getting fYFD Balance: ', error);
-    return 0;
-  }
-}
+// async function getBalanceFYFD(address: string, forge: any) {
+//   try {
+//     const result: BalanceResponse = await queryMsg(
+//       forge,
+//       queryBalance(address)
+//     );
+//     return result.balance;
+//   } catch (error) {
+//     console.error('ERROR getting fYFD Balance: ', error);
+//     return 0;
+//   }
+// }
 
-function MyYFD() {
-  return convertFromBase(
-    Number(useRecoilValue(balanceYfdConnectedAtom))
-  ).toFixed(5);
-}
+// function MyYFD() {
+//   return convertFromBase(
+//     Number(useRecoilValue(balanceYfdConnectedAtom))
+//   ).toFixed(5);
+// }
 
-function MyFYFD() {
-  return convertFromBase(
-    Number(useRecoilValue(balanceFyfdConnectedAtom))
-  ).toFixed(5);
-}
+// function MyFYFD() {
+//   return convertFromBase(
+//     Number(useRecoilValue(balanceFyfdConnectedAtom))
+//   ).toFixed(5);
+// }
 
 export default function LockYFDMenu() {
   const { currentContractForge, currentContractGovToken } = useChainInfo();
-  const forge = useRecoilValue(currentContractForgeAtom);
-  const token = useRecoilValue(currentContractGovTokenAtom);
-  const address = useRecoilValue(addressConnectedAtom);
-  const setYFD = useSetRecoilState(balanceYfdConnectedAtom);
-  const setFYFD = useSetRecoilState(balanceFyfdConnectedAtom);
+  // const forge = useRecoilValue(currentContractForgeAtom);
+  // const token = useRecoilValue(currentContractGovTokenAtom);
+  // const address = useRecoilValue(addressConnectedAtom);
+  // const setYFD = useSetRecoilState(balanceYfdConnectedAtom);
+  // const setFYFD = useSetRecoilState(balanceFyfdConnectedAtom);
 
   //  'minFYFDGovPropAtom'
   //
@@ -78,15 +79,16 @@ export default function LockYFDMenu() {
   setMinFYFDVaultProp(mfvp);
   setMinFYFDEmergencyProp(mfep);
   */
-  const balanceYFD = getBalanceYFD(address, token).then((result) => {
-    const yfd = Number(result);
-    setYFD(yfd);
-  });
 
-  const balanceFYFD = getBalanceFYFD(address, forge).then((result) => {
-    const fyfd = Number(result);
-    setFYFD(fyfd);
-  });
-
+  // useEffect(() => {
+  //   getBalanceYFD(address, token).then((result) => {
+  //     const yfd = Number(result);
+  //     setYFD(yfd);
+  //   });
+  //   getBalanceFYFD(address, forge).then((result) => {
+  //     const fyfd = Number(result);
+  //     setFYFD(fyfd);
+  //   });
+  // }, []);
   return <MenuLockYFD />;
 }
