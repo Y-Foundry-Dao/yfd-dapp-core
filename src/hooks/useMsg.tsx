@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { useWallet, useConnectedWallet } from '@terra-money/wallet-provider';
 import { Coins, Msg, MsgExecuteContract } from '@terra-money/terra.js';
 import { MyLCD } from '@utilities/MyValues';

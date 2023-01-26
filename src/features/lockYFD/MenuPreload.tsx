@@ -1,4 +1,5 @@
-import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
+import { useEffect } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { addressConnectedAtom } from '@recoil/connected/address/atoms';
 import {
   balanceYfdConnectedAtom,
@@ -17,7 +18,6 @@ import queryBalance from '@utilities/messagesQuery/cw20/queryBalance';
 import MenuPopoverBalance from './MenuPopoverBalance';
 import convertFromBase from '@utilities/converters/convertFromBase';
 import MenuLockYFD from './Menu';
-import { useEffect } from 'react';
 
 type BalanceResponse = {
   balance: string;

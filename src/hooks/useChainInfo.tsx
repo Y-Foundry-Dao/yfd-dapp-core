@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import {
   currentBlockIntervalAtom,
   currentBlockHeightAtom,
@@ -9,25 +9,15 @@ import {
 } from '@recoil/chainInfo/atoms';
 import { useLCDClient, useWallet } from '@terra-money/wallet-provider';
 import getChainDeploy from '@utilities/getValues';
-import {
-  addressStatusAtom,
-  addressConnectedAtom
-} from '@recoil/connected/address/atoms';
-
-export function ConnectLCDClient() {
-  return useLCDClient();
-}
 
 const useChainInfo = () => {
-  const lcd = ConnectLCDClient();
+  const lcd = useLCDClient();
   const connection = useWallet();
   const chainID = useWallet().network.chainID;
   const [currentBlockHeight, setCurrentBlockHeight] = useRecoilState<any>(
     currentBlockHeightAtom
   );
-  const [currentBlockInterval, setCurrentBlockInterval] = useRecoilState<any>(
-    currentBlockIntervalAtom
-  );
+  const setCurrentBlockInterval = useSetRecoilState(currentBlockIntervalAtom);
   const [currentChainID, setCurrentChainID] =
     useRecoilState<string>(currentChainIDAtom);
   const [currentContractForge, setCurrentContractForge] =
