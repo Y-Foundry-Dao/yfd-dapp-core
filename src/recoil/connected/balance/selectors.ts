@@ -9,7 +9,6 @@ import {
 } from '@recoil/chainInfo/atoms';
 import convertFromBase from '@utilities/converters/convertFromBase';
 import useChainInfo from '@hooks/useChainInfo';
-import { MyGovToken, MyForge } from '@utilities/MyValues';
 
 type BalanceResponse = {
   balance: string;
@@ -19,14 +18,11 @@ type BalanceResponse = {
 export const selectYFDConnected = selector({
   key: 'selectYFDConnected',
   get: async ({ get }) => {
-    const currentContractGovToken = await get(currentContractGovTokenAtom);
-    const address = await get(addressConnectedAtom);
+    const currentContractGovToken = get(currentContractGovTokenAtom);
+    const address = get(addressConnectedAtom);
     console.log('{SELECTOR} $YFD Token Contract: ', currentContractGovToken);
-    if (address === '') {
+    if (address === '' || currentContractGovToken === '') {
       return 0;
-    }
-    if (currentContractGovToken === '') {
-      const currentContractGovToken = MyGovToken();
     }
     console.warn(
       'getting balance for: ',
@@ -47,7 +43,10 @@ export const selectYFDConnected = selector({
 export const selectFYFDConnected = selector({
   key: 'selectFYFDConnected',
   get: async ({ get }) => {
-    if (get(addressConnectedAtom) === '') {
+    if (
+      get(addressConnectedAtom) === '' ||
+      get(currentContractForgeAtom) === ''
+    ) {
       return 0;
     }
     console.log('{SELECTOR} Forge: ', currentContractForgeAtom);
@@ -62,8 +61,8 @@ export const selectFYFDConnected = selector({
 // Uses the selectYFDConnected selector to convert the balance from base to human readable format and returns it as a string.
 export const selectMyYFD = selector({
   key: 'selectMyYFD',
-  get: async ({ get }) => {
-    const YFDConnected = await get(selectYFDConnected);
+  get: ({ get }) => {
+    const YFDConnected = get(selectYFDConnected);
     const balance = convertFromBase(YFDConnected).toFixed(5);
     return balance.toString();
   }
@@ -72,8 +71,8 @@ export const selectMyYFD = selector({
 // Uses the selectFYFDConnected selector to convert the balance from base to human readable format and returns it as a string
 export const selectMyFYFD = selector({
   key: 'selectMyYFFD',
-  get: async ({ get }) => {
-    const FYFDConnected = await get(selectFYFDConnected);
+  get: ({ get }) => {
+    const FYFDConnected = get(selectFYFDConnected);
     const balance = convertFromBase(FYFDConnected).toFixed(5);
     return balance.toString();
   }
