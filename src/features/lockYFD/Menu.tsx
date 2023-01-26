@@ -6,7 +6,12 @@ import {
   Box,
   Tooltip
 } from '@chakra-ui/react';
-import { useRecoilValue, useRecoilState, useRecoilValueLoadable } from 'recoil';
+import {
+  useRecoilValue,
+  useRecoilState,
+  useRecoilValueLoadable,
+  useSetRecoilState
+} from 'recoil';
 
 import { Icons } from '@var/icons';
 import styles from '@scss/app.module.scss';
@@ -34,6 +39,7 @@ const styleProposal = 'material-symbols-outlined';
 const styleGuardian = 'material-symbols-outlined';
 
 export default function MenuLockYFD() {
+  const { queryMsg } = useMsg();
   const forge = useRecoilValue(currentContractForgeAtom);
   const balanceYFD = useRecoilValue(balanceYfdConnectedAtom);
   const balancefYFD = useRecoilValue(balanceFyfdConnectedAtom);
@@ -45,18 +51,30 @@ export default function MenuLockYFD() {
     minFYFDEmergencyPropAtom
   );
 
-  const { queryMsg } = useMsg();
   const qVault = queryGovernanceParameter('fYFD_VaultProposalMin');
-  const rVault = queryMsg(forge, qVault).then((res) => {
-    console.log('the Vault Proposal Query results: ', res);
+  const rVault = queryMsg(forge, qVault).then((minFYFDVaultProp) => {
+    //console.warn('Vault Prop FYFD: ', minFYFDVaultProp);
+    //const vKey = Object.keys(minFYFDVaultProp.contents.parameter_type)[0];
+    const minimum = minFYFDVaultProp['parameter_type']['integer']['value'];
+    console.log('vault minimum: ', minimum);
+    //const minVaultValue =
+    //  minFYFDVaultProp.contents.parameter_type[vKey].value.toString();
+    //const minVaultName = minFYFDVaultProp.contents.name || undefined;
+    //console.warn(minVaultName + ': ' + minVaultValue);
   });
   const qGov = queryGovernanceParameter('fYFD_GovernanceProposalMin');
-  const rGov = queryMsg(forge, qGov).then((res) => {
-    console.log('Gov Prop FYFD: ', res);
+  const rGov = queryMsg(forge, qGov).then((minFYFDGovProp) => {
+    console.log(
+      'gov minimum: ',
+      minFYFDGovProp['parameter_type']['integer']['value']
+    );
   });
   const qEmerg = queryGovernanceParameter('fYFD_EmergencyProposalMin');
-  const rEmerg = queryMsg(forge, qEmerg).then((res) => {
-    console.log('Emergency Prop FYFD: ', res);
+  const rEmerg = queryMsg(forge, qEmerg).then((minFYFDEmergencyProp) => {
+    console.log(
+      'emergency minimum: ',
+      minFYFDEmergencyProp['parameter_type']['integer']['value']
+    );
   });
   //const mfvp = getMinFYFDVaultProp(forge);
   //const mfgp = getMinFYFDGovProp(forge);
@@ -74,11 +92,7 @@ export default function MenuLockYFD() {
     minFYFDEmergencyProp.state === 'hasValue' &&
     minFYFDEmergencyProp.contents !== 'undefined'
   ) {
-    const vKey = Object.keys(minFYFDVaultProp.contents.parameter_type)[0];
-    const minVaultValue =
-      minFYFDVaultProp.contents.parameter_type[vKey].value.toString();
-    const minVaultName = minFYFDVaultProp.contents.name || undefined;
-    console.log(minVaultName + ': ' + minVaultValue);
+
 
     const gKey = Object.keys(minFYFDGovProp.contents.parameter_type)[0];
     const minGovValue =
