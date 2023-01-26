@@ -1,5 +1,5 @@
 import { useWallet } from '@terra-money/wallet-provider';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 import { Text, Tooltip } from '@chakra-ui/react';
 import Loading from '@components/NoticeLoading';
 import styles from '@scss/app.module.scss';
@@ -8,20 +8,21 @@ import {
   balanceYfdConnectedAtom,
   balanceFyfdConnectedAtom
 } from '@recoil/connected/address/atoms';
+import { selectMyFYFD, selectMyYFD } from '@recoil/connected/balance/selectors';
 
 export default function CurrentBlockHeight() {
   const currentChainID = useWallet().network.chainID;
   const currentBlockHeight = useRecoilValue(currentBlockHeightAtom);
-  const yfd = useRecoilValue(balanceYfdConnectedAtom);
-  const fyfd = useRecoilValue(balanceFyfdConnectedAtom);
+  const yfd = useRecoilValueLoadable(selectMyYFD);
+  const fyfd = useRecoilValueLoadable(selectMyFYFD);
   if (currentBlockHeight) {
     console.log(
       'currentBlockHeight [ ' + currentChainID + ' ]: ',
       currentBlockHeight,
       '{YFD}: ',
-      yfd,
+      yfd.contents,
       ' {FYFD}: ',
-      fyfd
+      fyfd.contents
     );
     const label = 'Current Block Height - ' + currentChainID;
     return (

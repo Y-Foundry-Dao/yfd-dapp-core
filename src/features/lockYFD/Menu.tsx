@@ -4,7 +4,8 @@ import {
   PopoverTrigger,
   Flex,
   Box,
-  Tooltip
+  Tooltip,
+  Text
 } from '@chakra-ui/react';
 import {
   useRecoilValue,
@@ -33,6 +34,9 @@ import {
   minFYFDGovPropAtom,
   minFYFDEmergencyPropAtom
 } from '@recoil/governance/parameters/atoms';
+import { useEffect } from 'react';
+import MyYFD from '@components/profile/MyYFD';
+import { selectMyFYFD, selectMyYFD } from '@recoil/connected/balance/selectors';
 
 const styleVote = 'material-symbols-outlined';
 const styleProposal = 'material-symbols-outlined';
@@ -41,8 +45,8 @@ const styleGuardian = 'material-symbols-outlined';
 export default function MenuLockYFD() {
   const { queryMsg } = useMsg();
   const forge = useRecoilValue(currentContractForgeAtom);
-  const balanceYFD = useRecoilValue(balanceYfdConnectedAtom);
-  const balancefYFD = useRecoilValue(balanceFyfdConnectedAtom);
+  const myYFD = useRecoilValueLoadable(selectMyYFD);
+  const myFYFD = useRecoilValueLoadable(selectMyFYFD);
   const [minFYFDVaultProp, setMinFYFDVaultProp] =
     useRecoilState(minFYFDVaultPropAtom);
   const [minFYFDGovProp, setMinFYFDGovProp] =
@@ -52,30 +56,56 @@ export default function MenuLockYFD() {
   );
 
   const qVault = queryGovernanceParameter('fYFD_VaultProposalMin');
-  const rVault = queryMsg(forge, qVault).then((minFYFDVaultProp) => {
-    //console.warn('Vault Prop FYFD: ', minFYFDVaultProp);
-    //const vKey = Object.keys(minFYFDVaultProp.contents.parameter_type)[0];
-    const minimum = minFYFDVaultProp['parameter_type']['integer']['value'];
-    console.log('vault minimum: ', minimum);
-    //const minVaultValue =
-    //  minFYFDVaultProp.contents.parameter_type[vKey].value.toString();
-    //const minVaultName = minFYFDVaultProp.contents.name || undefined;
-    //console.warn(minVaultName + ': ' + minVaultValue);
-  });
   const qGov = queryGovernanceParameter('fYFD_GovernanceProposalMin');
-  const rGov = queryMsg(forge, qGov).then((minFYFDGovProp) => {
-    console.log(
-      'gov minimum: ',
-      minFYFDGovProp['parameter_type']['integer']['value']
-    );
-  });
   const qEmerg = queryGovernanceParameter('fYFD_EmergencyProposalMin');
-  const rEmerg = queryMsg(forge, qEmerg).then((minFYFDEmergencyProp) => {
-    console.log(
-      'emergency minimum: ',
-      minFYFDEmergencyProp['parameter_type']['integer']['value']
-    );
-  });
+  useEffect(() => {
+    async function getData() {
+      if (forge === '') {
+        return;
+      }
+      const rVault = await queryMsg(forge, qVault);
+      const vaultMinimum = rVault['parameter_type']['integer']['value'];
+      const rGov = await queryMsg(forge, qGov);
+      const govMinimum = rGov['parameter_type']['integer']['value'];
+      const rEmerg = await queryMsg(forge, qEmerg);
+      const emergencyMinimum = rEmerg['parameter_type']['integer']['value'];
+      console.log('rVault', rVault);
+      console.log('vault minimum: ', vaultMinimum);
+      console.log('rGov', rGov);
+      console.log('gov minimum: ', govMinimum);
+      console.log('rEmerg', rEmerg);
+      console.log('emergency minimum: ', emergencyMinimum);
+      setMinFYFDVaultProp(vaultMinimum);
+      setMinFYFDGovProp(govMinimum);
+      setMinFYFDEmergencyProp(emergencyMinimum);
+    }
+    getData().then((res) => res);
+  }, [forge]);
+  // const rVault = queryMsg(forge, qVault).then((minFYFDVaultProp) => {
+  //   //console.warn('Vault Prop FYFD: ', minFYFDVaultProp);
+  //   //const vKey = Object.keys(minFYFDVaultProp.contents.parameter_type)[0];
+  //   const minimum = minFYFDVaultProp['parameter_type']['integer']['value'];
+  //   console.log('vault minimum: ', minimum);
+  //   //const minVaultValue =
+  //   //  minFYFDVaultProp.contents.parameter_type[vKey].value.toString();
+  //   //const minVaultName = minFYFDVaultProp.contents.name || undefined;
+  //   //console.warn(minVaultName + ': ' + minVaultValue);
+  // });
+
+  // const qGov = queryGovernanceParameter('fYFD_GovernanceProposalMin');
+  // const rGov = queryMsg(forge, qGov).then((minFYFDGovProp) => {
+  //   console.log(
+  //     'gov minimum: ',
+  //     minFYFDGovProp['parameter_type']['integer']['value']
+  //   );
+  // });
+  // const qEmerg = queryGovernanceParameter('fYFD_EmergencyProposalMin');
+  // const rEmerg = queryMsg(forge, qEmerg).then((minFYFDEmergencyProp) => {
+  //   console.log(
+  //     'emergency minimum: ',
+  //     minFYFDEmergencyProp['parameter_type']['integer']['value']
+  //   );
+  // });
   //const mfvp = getMinFYFDVaultProp(forge);
   //const mfgp = getMinFYFDGovProp(forge);
   //const mfep = getMinFYFDEmergencyProp(forge);
@@ -176,6 +206,17 @@ export default function MenuLockYFD() {
   }
   */
   //} else {
-  return <></>;
+  if (myYFD.state === 'loading' || myFYFD.state === 'loading') {
+    return <>loading...</>;
+  } else if (myFYFD.state === 'hasValue' && myFYFD.state === 'hasValue') {
+    return (
+      <>
+        yfd Balance: {myYFD.contents} and fYFD balance: {myFYFD.contents}
+      </>
+    );
+  } else {
+    return <>Loading...</>;
+  }
+
   //}
 }
