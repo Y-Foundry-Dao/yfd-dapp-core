@@ -20,21 +20,13 @@ export const selectYFDConnected = selector({
   get: async ({ get }) => {
     const currentContractGovToken = get(currentContractGovTokenAtom);
     const address = get(addressConnectedAtom);
-    console.log('{SELECTOR} $YFD Token Contract: ', currentContractGovToken);
     if (address === '' || currentContractGovToken === '') {
       return 0;
     }
-    console.warn(
-      'getting balance for: ',
-      get(addressConnectedAtom),
-      ' from: ',
-      currentContractGovToken
-    );
     const response: BalanceResponse = await queryMsg(
       currentContractGovToken,
       queryBalance(address)
     );
-    console.warn('{SELECTOR} YFD Balance: ', response);
     return parseFloat(response.balance);
   }
 });
@@ -49,11 +41,11 @@ export const selectFYFDConnected = selector({
     ) {
       return 0;
     }
-    console.log('{SELECTOR} Forge: ', currentContractForgeAtom);
     const response: BalanceResponse = await queryMsg(
       get(currentContractForgeAtom),
       queryBalance(get(addressConnectedAtom))
     );
+    console.warn('{SELECTOR} FYFD Balance: ', response);
     return parseFloat(response.balance);
   }
 });
@@ -63,7 +55,7 @@ export const selectMyYFD = selector({
   key: 'selectMyYFD',
   get: ({ get }) => {
     const YFDConnected = get(selectYFDConnected);
-    const balance = convertFromBase(YFDConnected).toFixed(5);
+    const balance = convertFromBase(YFDConnected).toFixed(6);
     return balance.toString();
   }
 });
@@ -73,7 +65,7 @@ export const selectMyFYFD = selector({
   key: 'selectMyYFFD',
   get: ({ get }) => {
     const FYFDConnected = get(selectFYFDConnected);
-    const balance = convertFromBase(FYFDConnected).toFixed(5);
+    const balance = convertFromBase(FYFDConnected).toFixed(6);
     return balance.toString();
   }
 });
