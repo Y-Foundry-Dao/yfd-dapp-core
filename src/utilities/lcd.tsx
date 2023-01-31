@@ -1,6 +1,5 @@
 // import { LCDClient } from '@terra-money/terra.js';
 import { LCDClient } from '@terra-money/feather.js';
-import getChainDeploy from '@utilities/getValues';
 import { useWallet } from '@terra-money/wallet-provider';
 
 function CurrentChain() {

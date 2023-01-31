@@ -7,7 +7,6 @@ import {
   addressConnectedAtom
 } from '@recoil/connected/address/atoms';
 
-import MenuNotConnected from './menu/NotConnected';
 import ObjectConnectWallet from '@components/ConnectWallet/Object';
 import MenuInitializing from './menu/Initializing';
 import MenuConnected from './menu/Connected';
@@ -21,15 +20,11 @@ export default function WalletConnect() {
 
   useEffect(() => {
     setAddressStatus(status);
-    console.log('WALLET STATUS CHANGED: ', status);
     if (status !== WalletStatus.WALLET_CONNECTED && wallets.length == 0) {
       return;
     }
     setAddressConnected(wallets[0].terraAddress);
-    console.log('WALLET IS CONNECTED: ', wallets[0].terraAddress);
-    console.log('NETWORK IS: ', network.name + ' CHAINID: ' + network.chainID);
-    console.log('NETWORK: ', network);
-  }, [network, setAddressStatus, wallets, status]);
+  }, [network, setAddressStatus, wallets, status, setAddressConnected]);
 
   return (
     <>

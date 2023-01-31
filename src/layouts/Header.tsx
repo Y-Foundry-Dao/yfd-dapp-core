@@ -5,14 +5,14 @@ import { useWallet } from '@terra-money/wallet-provider';
 import styles from '@scss/app.module.scss';
 import yLogo from '@yfd/logo-horizontal-orange-white.svg';
 
-import LockFYFDMenu from '@features/lockYFD/MenuPreload';
+import MenuLockYFD from '@features/lockYFD/Menu';
 
 // display the lockYFD menu if the wallet is connected
-function lockYFDMenuDisplay(status: string) {
+function menuLockYFDDisplay(status: string) {
   if (status === 'WALLET_CONNECTED') {
     return (
       <>
-        <LockFYFDMenu />
+        <MenuLockYFD />
       </>
     );
   } else {
@@ -31,7 +31,7 @@ export default function Header() {
         </Box>
         <Box className={styles.menuHeader}></Box>
         <Box className={styles.headerProfile}>
-          {lockYFDMenuDisplay(status)}
+          {menuLockYFDDisplay(status)}
           <WalletConnect />
         </Box>
       </Flex>

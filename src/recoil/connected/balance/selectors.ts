@@ -8,7 +8,6 @@ import {
   currentContractGovTokenAtom
 } from '@recoil/chainInfo/atoms';
 import convertFromBase from '@utilities/converters/convertFromBase';
-import useChainInfo from '@hooks/useChainInfo';
 
 type BalanceResponse = {
   balance: string;
@@ -45,7 +44,6 @@ export const selectFYFDConnected = selector({
       get(currentContractForgeAtom),
       queryBalance(get(addressConnectedAtom))
     );
-    console.warn('{SELECTOR} FYFD Balance: ', response);
     return parseFloat(response.balance);
   }
 });
@@ -62,7 +60,7 @@ export const selectMyYFD = selector({
 
 // Uses the selectFYFDConnected selector to convert the balance from base to human readable format and returns it as a string
 export const selectMyFYFD = selector({
-  key: 'selectMyYFFD',
+  key: 'selectMyFYFD',
   get: ({ get }) => {
     const FYFDConnected = get(selectFYFDConnected);
     const balance = convertFromBase(FYFDConnected).toFixed(6);

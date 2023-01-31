@@ -1,15 +1,11 @@
 import { useState } from 'react';
 import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
-import { useWallet } from '@terra-money/wallet-provider';
-import convertFromBase from 'utilities/converters/convertFromBase';
 import { format } from 'date-fns';
 
 import {
   useDisclosure,
   Wrap,
   WrapItem,
-  Popover,
-  PopoverTrigger,
   PopoverContent,
   PopoverHeader,
   PopoverBody,
@@ -18,9 +14,7 @@ import {
   PopoverCloseButton,
   Portal,
   Button,
-  Flex,
   Box,
-  Grid,
   SimpleGrid,
   GridItem,
   Text
@@ -29,10 +23,14 @@ import {
 //import selectFyfd from '@recoil/connected/balance/selectors';
 //import selectYFD from '@recoil/connected/balance/selectors';
 import { inputStakeYFD } from 'recoil/input/atoms';
+import {
+  minFYFDVaultPropAtom,
+  minFYFDGovPropAtom,
+  minFYFDEmergencyPropAtom
+} from '@recoil/governance/parameters/atoms';
 
 import useHandleClicks from '@hooks/useHandleClicks';
 import useHandleInputs from '@hooks/useHandleInputs';
-import useContractForge from '@hooks/useContractForge';
 
 import styles from '@scss/app.module.scss';
 import { Icons } from '@var/icons';
@@ -46,38 +44,45 @@ import ProposalModal from '@features/proposal/modal';
 import ProposalModalButton from '@features/proposal/create/ButtonModelOpen';
 //import LockYfdForm from './Form';
 import { selectMyFYFD, selectMyYFD } from '@recoil/connected/balance/selectors';
+import NoticeLoading from '@components/NoticeLoading';
 // import { myFYFD, myYFD } from '@utilities/myValues';
 
 let styleVote = 'material-symbols-outlined';
 let styleGuardian = 'material-symbols-outlined';
 
 export default function MenuFyfdBalance() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const myYFD = useRecoilValueLoadable(selectMyYFD);
+  const myFYFD = useRecoilValueLoadable(selectMyFYFD);
+  const balanceYFD =
+    myYFD.state == 'hasValue' ? myYFD.contents : <NoticeLoading />;
+  const balancefYFD =
+    myFYFD.state == 'hasValue' ? myFYFD.contents : <NoticeLoading />;
+  const minVault = useRecoilValue(minFYFDVaultPropAtom);
+  const minGov = useRecoilValue(minFYFDGovPropAtom);
+  const minEmergency = useRecoilValue(minFYFDEmergencyPropAtom);
   const [durationDepositYFD, setDurationDepositYFD] = useState(
     DEFAULT_YFD_LOCK_DURATION
   );
   const [durationDepositYFDDate, setDurationDepositYFDDate] = useState(
     format(DEFAULT_YFD_LOCK_DURATION_DATE, 'dd-MMM-yyyy')
   );
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const amountStakeYFD = useRecoilValue(inputStakeYFD);
   const { handleClickStakeYFD } = useHandleClicks();
   const { handleInputStakeYFD } = useHandleInputs();
-  const myYFD = useRecoilValueLoadable(selectMyYFD);
-  const balanceYFD = myYFD.state == 'hasValue' ? myYFD.contents : 'loading';
-  const myfYFD = useRecoilValueLoadable(selectMyFYFD);
-  const balancefYFD = myfYFD.state == 'hasValue' ? myfYFD.contents : 'loading';
 
-  if (1000 < +balancefYFD) {
+  console.warn('Emergency', minEmergency, 'balancefYFD', balancefYFD);
+  if (+minGov < +balancefYFD) {
     styleVote = styleVote + ' ' + styles['icon-create'];
   }
 
-  if (100000 < +balancefYFD) {
+  if (+minEmergency < +balancefYFD) {
     styleGuardian = styleGuardian + ' ' + styles['icon-create'];
   }
 
   function actionPropose() {
-    if (25000 < +balancefYFD) {
+    if (+minVault < +balancefYFD) {
       return (
         <>
           <ProposalModalButton onOpen={onOpen} />

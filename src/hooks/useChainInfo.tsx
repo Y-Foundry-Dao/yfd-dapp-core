@@ -53,9 +53,7 @@ const useChainInfo = () => {
 
   const getCurrentBlockInterval = () => {
     const newBlockInterval = Number(getChainDeploy(chainID, 'interval'));
-    if (typeof newBlockInterval === 'number') {
-      console.log('blockInterval is a number: ', newBlockInterval);
-    } else {
+    if (typeof newBlockInterval !== 'number') {
       console.error('blockInterval is not a number: ', newBlockInterval);
     }
     return newBlockInterval;
