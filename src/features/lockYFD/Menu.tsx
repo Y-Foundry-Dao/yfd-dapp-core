@@ -31,40 +31,52 @@ let styleProposal = 'material-symbols-outlined';
 let styleGuardian = 'material-symbols-outlined';
 
 export default function MenuLockYFD() {
-  const { currentContractForge, currentContractGovToken } = useChainInfo();
+  // load the chain contracts and parameters into state
+  useChainInfo();
+  //prepare the contract query function
   const { queryMsg } = useMsg();
+  // get the current contract forge from state created by useChainInfo to query governance parameters below
   const forge = useRecoilValue(currentContractForgeAtom);
+  // get the user's fyfd and yfd balances and format them for display ( 6 decimals )
   const myYFD = useRecoilValueLoadable(selectMyYFD);
   const myFYFD = useRecoilValueLoadable(selectMyFYFD);
+  // prepare variables to set the minimum fyfd required for each proposal type to state
   const [minVault, setMinFYFDVaultProp] = useRecoilState(minFYFDVaultPropAtom);
   const [minGov, setMinFYFDGovProp] = useRecoilState(minFYFDGovPropAtom);
   const [minEmergency, setMinFYFDEmergencyProp] = useRecoilState(
     minFYFDEmergencyPropAtom
   );
 
+  // query the governance parameters for the minimum fyfd required for each proposal type
   const qVault = queryGovernanceParameter('fYFD_VaultProposalMin');
   const qGov = queryGovernanceParameter('fYFD_GovernanceProposalMin');
   const qEmerg = queryGovernanceParameter('fYFD_EmergencyProposalMin');
+
   useEffect(() => {
     async function getData() {
+      // if the forge contract is not loaded or the fyfd or yfd balances are loading, return until the data is loaded
+      const rVault = await queryMsg(forge, qVault);
+      const rGov = await queryMsg(forge, qGov);
+      const rEmerg = await queryMsg(forge, qEmerg);
       if (
         forge === '' ||
         myYFD.state === 'loading' ||
-        myFYFD.state === 'loading'
+        myFYFD.state === 'loading' ||
+        rVault.state === 'loading' ||
+        rGov.state === 'loading' ||
+        rEmerg.state === 'loading'
       ) {
         return;
       }
       const fyfd = myFYFD.contents;
-      const yfd = myYFD.contents;
-      const rVault = await queryMsg(forge, qVault);
-      const minVault = rVault['parameter_type']['integer']['value'];
-      const rGov = await queryMsg(forge, qGov);
-      const minGov = rGov['parameter_type']['integer']['value'];
-      const rEmerg = await queryMsg(forge, qEmerg);
-      const minEmergency = rEmerg['parameter_type']['integer']['value'];
-      setMinFYFDVaultProp(minVault);
-      setMinFYFDGovProp(minGov);
-      setMinFYFDEmergencyProp(minEmergency);
+      setMinFYFDVaultProp(rVault['parameter_type']['integer']['value']);
+      setMinFYFDGovProp(rGov['parameter_type']['integer']['value']);
+      setMinFYFDEmergencyProp(rEmerg['parameter_type']['integer']['value']);
+      // check to make sure the minimum fyfd required for each proposal type is greater than 0
+      if (+minEmergency === 0 || +minGov === 0 || +minVault === 0) {
+        return;
+      }
+      // set the icon style for each proposal type based on the user's fyfd balance
       if (+minGov < +fyfd) {
         styleVote = styleVote + ' ' + styles['icon-create'];
       }
@@ -72,20 +84,37 @@ export default function MenuLockYFD() {
         styleProposal = styleProposal + ' ' + styles['icon-create'];
       }
       if (+minEmergency < +fyfd) {
+        console.warn(
+          'FYFD balance is GREATER Than Required for emergency proposal: ',
+          +minEmergency - +fyfd,
+          'rEMERGENCY: ',
+          +minEmergency
+        );
         styleGuardian = styleGuardian + ' ' + styles['icon-create'];
       }
     }
     getData().then((res) => res);
-  }, [forge, myYFD.state, myFYFD.state]);
-
-  if (myYFD.state === 'loading' || myFYFD.state === 'loading') {
-    return <NoticeLoading title="Loading Balances..." />;
-  }
+  }, [
+    forge,
+    myYFD.state,
+    myFYFD.state,
+    queryMsg,
+    qVault,
+    qGov,
+    qEmerg,
+    myFYFD.contents,
+    setMinFYFDVaultProp,
+    setMinFYFDGovProp,
+    setMinFYFDEmergencyProp,
+    minGov,
+    minVault,
+    minEmergency
+  ]);
 
   if (myFYFD.state === 'hasValue' && myYFD.state === 'hasValue') {
     const fyfd = myFYFD.contents;
-    const yfd = myYFD.contents;
 
+    // if the user has no fyfd, return the "Lock $YFD" button instead of the fyfd menu
     if (+fyfd === 0) {
       return <MenuPopoverNoFYFD />;
     }
@@ -117,5 +146,5 @@ export default function MenuLockYFD() {
       </Popover>
     );
   }
-  return <NoticeLoading title="Loading Balances..." />;
+  return <NoticeLoading />;
 }

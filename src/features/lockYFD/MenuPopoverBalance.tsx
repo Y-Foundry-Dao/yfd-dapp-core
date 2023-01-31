@@ -66,13 +66,12 @@ export default function MenuFyfdBalance() {
   const [durationDepositYFDDate, setDurationDepositYFDDate] = useState(
     format(DEFAULT_YFD_LOCK_DURATION_DATE, 'dd-MMM-yyyy')
   );
-
   const { isOpen, onOpen, onClose } = useDisclosure();
   const amountStakeYFD = useRecoilValue(inputStakeYFD);
   const { handleClickStakeYFD } = useHandleClicks();
   const { handleInputStakeYFD } = useHandleInputs();
 
-  console.warn('Emergency', minEmergency, 'balancefYFD', balancefYFD);
+  console.log('Emergency', minEmergency, 'balancefYFD', balancefYFD);
   if (+minGov < +balancefYFD) {
     styleVote = styleVote + ' ' + styles['icon-create'];
   }
