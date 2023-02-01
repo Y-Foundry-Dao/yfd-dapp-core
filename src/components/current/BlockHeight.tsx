@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useWallet } from '@terra-money/wallet-provider';
+import { useWallet, useConnectedWallet } from '@terra-money/wallet-provider';
 import {
   useRecoilState,
   useRecoilValue,
@@ -17,7 +17,8 @@ import {
   addressCanVoteAtom,
   addressCanProposeGovAtom,
   addressCanProposeVaultAtom,
-  addressCanProposeEmergencyAtom
+  addressCanProposeEmergencyAtom,
+  addressConnectedAtom
 } from '@recoil/connected/address/atoms';
 import { selectMyFYFD, selectMyYFD } from '@recoil/connected/balance/selectors';
 import {
@@ -28,6 +29,8 @@ import {
 
 export default function CurrentBlockHeight() {
   const currentChainID = useWallet().network.chainID;
+  const [addressConnected, setAddressConnected] =
+    useRecoilState(addressConnectedAtom);
   const currentBlockHeight = useRecoilValue(currentBlockHeightAtom);
   const yfd = useRecoilValueLoadable(selectMyYFD);
   const refreshFYFD = useRecoilRefresher_UNSTABLE(selectMyFYFD);
@@ -40,8 +43,12 @@ export default function CurrentBlockHeight() {
   const minVault = useRecoilValue(minFYFDVaultPropAtom);
   const minGov = useRecoilValue(minFYFDGovPropAtom);
   const minEmergency = useRecoilValue(minFYFDEmergencyPropAtom);
+  const connectedWallet = useConnectedWallet()?.walletAddress as string;
   useEffect(() => {
     refreshFYFD();
+    if (connectedWallet !== addressConnected) {
+      setAddressConnected(connectedWallet as string);
+    }
     // if the user has fyfd, set the hasFYFD state to true
     if (+fyfd.contents > 0) {
       setHasFYFD(true);
@@ -76,11 +83,15 @@ export default function CurrentBlockHeight() {
     console.log(
       'currentBlockHeight [ ' + currentChainID + ' ]: ',
       currentBlockHeight,
-      'yfd: ',
+      '\naddressConnected: ',
+      addressConnected,
+      ' --- ',
+      connectedWallet,
+      '\nyfd: ',
       yfd.contents,
       'fyfd: ',
       fyfd.contents,
-      'hasFYFD: ',
+      '\nhasFYFD: ',
       hasFYFD,
       'canVote: ',
       canVote,

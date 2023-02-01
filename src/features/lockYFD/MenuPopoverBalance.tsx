@@ -75,11 +75,7 @@ export default function MenuFyfdBalance() {
           <PopoverBalanceFYFD />
           <PopoverBalanceYFD />
           <Box>Lock $YFD:</Box>
-          <Box>
-            {
-              // <LockYfdForm />
-            }
-          </Box>
+          <Box>{/* <LockYfdForm /> */}</Box>
         </PopoverBody>
         <PopoverFooter>
           <Button

@@ -45,7 +45,6 @@ export default function PopoverIconProposal() {
       return (
         <>
           <ProposalModalButton onOpen={onOpen} />
-          <ProposalModal isOpen={isOpen} onClose={onClose} />
         </>
       );
     } else {
@@ -95,6 +94,7 @@ export default function PopoverIconProposal() {
       <WrapItem className={styles['lockAction']}>
         <SimpleGrid>
           <GridItem>{actionPropose()}</GridItem>
+          <ProposalModal isOpen={isOpen} onClose={onClose} />
           <GridItem>
             Propose
             <br />

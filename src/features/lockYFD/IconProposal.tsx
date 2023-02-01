@@ -20,60 +20,14 @@ import styles from '@scss/app.module.scss';
 let styleProposal = 'material-symbols-outlined';
 
 export default function IconProposal() {
-  //prepare the contract query function
-  const { queryMsg } = useMsg();
-  // get the current contract forge from state created by useChainInfo to query governance parameters below
-  const forge = useRecoilValue(currentContractForgeAtom);
-  // get the user's fyfd and yfd balances and format them for display ( 6 decimals )
-  const myFYFD = useRecoilValueLoadable(selectMyFYFD);
-  // prepare variables to set the minimum fyfd required for each proposal type to state
-  const [minVault, setMinFYFDVaultProp] = useRecoilState(minFYFDVaultPropAtom);
-  const [minGov, setMinFYFDGovProp] = useRecoilState(minFYFDGovPropAtom);
   const canProposeGov = useRecoilValue(addressCanProposeGovAtom);
   const canProposeVault = useRecoilValue(addressCanProposeVaultAtom);
 
-  // query the governance parameters for the minimum fyfd required for each proposal type
-  const qVault = queryGovernanceParameter('fYFD_VaultProposalMin');
-  const qGov = queryGovernanceParameter('fYFD_GovernanceProposalMin');
-
   useEffect(() => {
-    async function getData() {
-      // if the forge contract is not loaded or the fyfd or yfd balances are loading, return until the data is loaded
-      const rVault = await queryMsg(forge, qVault);
-      const rGov = await queryMsg(forge, qGov);
-      // if everything isn't ready to go don't load anything
-      if (
-        forge === '' ||
-        myFYFD.state === 'hasValue' ||
-        rVault.state === 'hasValue' ||
-        rGov.state === 'hasValue'
-      ) {
-        const fyfd = myFYFD.contents;
-        setMinFYFDVaultProp(rVault['parameter_type']['integer']['value']);
-        setMinFYFDGovProp(rGov['parameter_type']['integer']['value']);
-        // check to make sure the minimum fyfd required for each proposal type is greater than 0
-        // set the icon style for each proposal type based on the user's fyfd balance
-        // any amount of YFD can vote so the icon color is active if the user has any fyfd
-        if (canProposeGov || canProposeVault) {
-          styleProposal = styleProposal + ' ' + styles['icon-create'];
-        }
-      }
+    if (canProposeGov || canProposeVault) {
+      styleProposal = styleProposal + ' ' + styles['icon-create'];
     }
-    getData().then((res) => res);
-  }, [
-    forge,
-    myFYFD.state,
-    minGov,
-    minVault,
-    qGov,
-    qVault,
-    queryMsg,
-    setMinFYFDGovProp,
-    setMinFYFDVaultProp,
-    myFYFD.contents,
-    canProposeGov,
-    canProposeVault
-  ]);
+  }, [canProposeGov, canProposeVault]);
 
   return (
     <>
