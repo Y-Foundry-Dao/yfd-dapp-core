@@ -1,23 +1,20 @@
 import { useEffect } from 'react';
 import { WrapItem, SimpleGrid, GridItem } from '@chakra-ui/react';
-import { useRecoilValueLoadable } from 'recoil';
-import { currentContractForgeAtom } from '@recoil/chainInfo/atoms';
-import { selectMyFYFD } from '@recoil/connected/balance/selectors';
+import { useRecoilValue } from 'recoil';
 
 import { Icons } from '@var/icons';
 import styles from '@scss/app.module.scss';
+import { addressCanVoteAtom } from '@recoil/connected/address/atoms';
 
 let styleVote = 'material-symbols-outlined';
 
 export default function PopoverIconVote() {
-  const myFYFD = useRecoilValueLoadable(selectMyFYFD);
-
+  const canVote = useRecoilValue(addressCanVoteAtom);
   useEffect(() => {
-    const fyfd = myFYFD.contents;
-    if (+fyfd > 0) {
+    if (canVote) {
       styleVote = styleVote + ' ' + styles['icon-create'];
     }
-  }, [myFYFD.contents]);
+  }, [canVote]);
   return (
     <>
       <WrapItem className={styles['lockAction']}>
@@ -27,7 +24,8 @@ export default function PopoverIconVote() {
           </GridItem>
           <GridItem>
             Vote
-            <br />1
+            <br />
+            <span className={styleVote}>{Icons.all}</span>
           </GridItem>
         </SimpleGrid>
       </WrapItem>

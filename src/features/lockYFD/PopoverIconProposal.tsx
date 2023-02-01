@@ -22,7 +22,7 @@ import styles from '@scss/app.module.scss';
 import ProposalModal from '@features/proposal/modal';
 import ProposalModalButton from '@features/proposal/create/ButtonModelOpen';
 
-let styleProposal = 'material-symbols-outlined';
+let styleIcon = 'material-symbols-outlined';
 
 export default function PopoverIconProposal() {
   //prepare the contract query function
@@ -49,7 +49,7 @@ export default function PopoverIconProposal() {
         </>
       );
     } else {
-      return <i className={styleProposal}>{Icons.propose}</i>;
+      return <i className={styleIcon}>{Icons.propose}</i>;
     }
   }
 
@@ -72,7 +72,7 @@ export default function PopoverIconProposal() {
         // set the icon style for each proposal type based on the user's fyfd balance
         // any amount of YFD can vote so the icon color is active if the user has any fyfd
         if (+minVault > 0 && +minGov > 0 && +minVault < +fyfd) {
-          styleProposal = styleProposal + ' ' + styles['icon-create'];
+          styleIcon = styleIcon + ' ' + styles['icon-create'];
         }
       }
     }

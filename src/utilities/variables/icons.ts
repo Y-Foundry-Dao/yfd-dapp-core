@@ -2,6 +2,7 @@
 // https://fonts.google.com/icons?selected=Material+Icons&icon.set=Material+Symbols
 
 export const Icons: { [key: string]: string } = {
+  all: 'all_inclusive',
   vault: 'account_balance',
   nft: 'filter_frames',
   initiative: 'diversity_1',
