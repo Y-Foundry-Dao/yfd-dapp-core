@@ -29,7 +29,7 @@ import {
 import useHandleClicks from '@hooks/useHandleClicks';
 import useHandleInputs from '@hooks/useHandleInputs';
 
-//import LockYfdForm from './Form';
+import LockYfdForm from './Form';
 import { selectMyYFD } from '@recoil/connected/balance/selectors';
 import NoticeLoading from '@components/NoticeLoading';
 // import { myFYFD, myYFD } from '@utilities/myValues';
@@ -75,7 +75,9 @@ export default function MenuFyfdBalance() {
           <PopoverBalanceFYFD />
           <PopoverBalanceYFD />
           <Box>Lock $YFD:</Box>
-          <Box>{/* <LockYfdForm /> */}</Box>
+          <Box>
+            <LockYfdForm />
+          </Box>
         </PopoverBody>
         <PopoverFooter>
           <Button
