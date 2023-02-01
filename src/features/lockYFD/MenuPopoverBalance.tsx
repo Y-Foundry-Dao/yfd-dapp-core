@@ -111,8 +111,7 @@ export default function MenuFyfdBalance() {
                 </GridItem>
                 <GridItem>
                   Vote
-                  <br />
-                  1,000
+                  <br />1
                 </GridItem>
               </SimpleGrid>
             </WrapItem>

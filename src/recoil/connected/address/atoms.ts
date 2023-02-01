@@ -23,3 +23,8 @@ export const balanceFyfdConnectedAtom = atom({
   key: 'balancefYfdConnectedAtom',
   default: 0
 });
+
+export const addressHasYFDAtom = atom({
+  key: 'addressHasYFDAtom',
+  default: false
+});
