@@ -1,30 +1,19 @@
 import { useEffect } from 'react';
-import {
-  Button,
-  Popover,
-  PopoverTrigger,
-  Flex,
-  Box,
-  Tooltip
-} from '@chakra-ui/react';
-import { useRecoilValue, useRecoilState, useRecoilValueLoadable } from 'recoil';
-import { currentContractForgeAtom } from '@recoil/chainInfo/atoms';
-import { selectMyFYFD, selectMyYFD } from '@recoil/connected/balance/selectors';
-
+import { Box, Tooltip } from '@chakra-ui/react';
+import { useRecoilValue } from 'recoil';
 import { Icons } from '@var/icons';
 import styles from '@scss/app.module.scss';
+import { addressCanVoteAtom } from '@recoil/connected/address/atoms';
 
 let styleVote = 'material-symbols-outlined';
 
 export default function IconVote() {
-  const myFYFD = useRecoilValueLoadable(selectMyFYFD);
-
+  const canVote = useRecoilValue(addressCanVoteAtom);
   useEffect(() => {
-    const fyfd = myFYFD.contents;
-    if (+fyfd > 0) {
+    if (canVote) {
       styleVote = styleVote + ' ' + styles['icon-create'];
     }
-  }, [myFYFD.contents]);
+  }, [canVote]);
   return (
     <>
       <Box className={styles.stakeYfdIcon}>

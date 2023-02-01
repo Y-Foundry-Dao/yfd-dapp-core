@@ -24,7 +24,27 @@ export const balanceFyfdConnectedAtom = atom({
   default: 0
 });
 
-export const addressHasYFDAtom = atom({
-  key: 'addressHasYFDAtom',
+export const addressHasFYFDAtom = atom({
+  key: 'addressHasFYFDAtom',
+  default: false
+});
+
+export const addressCanVoteAtom = atom({
+  key: 'addressCanVoteAtom',
+  default: false
+});
+
+export const addressCanProposeVaultAtom = atom({
+  key: 'addressCanProposeVaultAtom',
+  default: false
+});
+
+export const addressCanProposeGovAtom = atom({
+  key: 'addressCanProposeGovAtom',
+  default: false
+});
+
+export const addressCanProposeEmergencyAtom = atom({
+  key: 'addressCanProposeEmergencyAtom',
   default: false
 });

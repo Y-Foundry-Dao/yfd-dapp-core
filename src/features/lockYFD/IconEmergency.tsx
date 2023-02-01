@@ -6,8 +6,8 @@ import queryGovernanceParameter from '@utilities/messagesQuery/forge/queryGovern
 
 import { minFYFDEmergencyPropAtom } from '@recoil/governance/parameters/atoms';
 import { currentContractForgeAtom } from '@recoil/chainInfo/atoms';
-import { selectMyFYFD, selectMyYFD } from '@recoil/connected/balance/selectors';
-
+import { selectMyFYFD } from '@recoil/connected/balance/selectors';
+import { addressCanProposeEmergencyAtom } from '@recoil/connected/address/atoms';
 import { Icons } from '@var/icons';
 import styles from '@scss/app.module.scss';
 import NoticeLoading from '@components/NoticeLoading';
@@ -25,6 +25,7 @@ export default function IconEmergency() {
   const [minEmergency, setMinFYFDEmergencyProp] = useRecoilState(
     minFYFDEmergencyPropAtom
   );
+  const canProposeEmergency = useRecoilValue(addressCanProposeEmergencyAtom);
 
   // query the governance parameters for the minimum fyfd required for each proposal type
   const qEmerg = queryGovernanceParameter('fYFD_EmergencyProposalMin');
@@ -46,19 +47,21 @@ export default function IconEmergency() {
       // check to make sure the minimum fyfd required for each proposal type is greater than 0
       // set the icon style for each proposal type based on the user's fyfd balance
       // any amount of YFD can vote so the icon color is active if the user has any fyfd
-      if (+minEmergency > 0 && +minEmergency < +fyfd) {
+      if (canProposeEmergency) {
+        console.log('canProposeEmergency: ', canProposeEmergency);
         styleGuardian = styleGuardian + ' ' + styles['icon-create'];
       }
     }
     getData().then((res) => res);
   }, [
     forge,
-    myFYFD.state,
+    minEmergency,
+    canProposeEmergency,
     queryMsg,
     qEmerg,
+    myFYFD.state,
     myFYFD.contents,
-    setMinFYFDEmergencyProp,
-    minEmergency
+    setMinFYFDEmergencyProp
   ]);
 
   return (

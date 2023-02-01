@@ -27,6 +27,7 @@ function ProposalModal({ isOpen, onClose }: any) {
       onClose={onClose}
       isCentered
       useInert={false}
+      preserveScrollBarGap={true}
     >
       <ModalOverlay />
       <ModalContent>

@@ -10,10 +10,13 @@ import {
 } from '@recoil/governance/parameters/atoms';
 import { currentContractForgeAtom } from '@recoil/chainInfo/atoms';
 import { selectMyFYFD } from '@recoil/connected/balance/selectors';
+import {
+  addressCanProposeGovAtom,
+  addressCanProposeVaultAtom
+} from '@recoil/connected/address/atoms';
 
 import { Icons } from '@var/icons';
 import styles from '@scss/app.module.scss';
-
 let styleProposal = 'material-symbols-outlined';
 
 export default function IconProposal() {
@@ -26,6 +29,8 @@ export default function IconProposal() {
   // prepare variables to set the minimum fyfd required for each proposal type to state
   const [minVault, setMinFYFDVaultProp] = useRecoilState(minFYFDVaultPropAtom);
   const [minGov, setMinFYFDGovProp] = useRecoilState(minFYFDGovPropAtom);
+  const canProposeGov = useRecoilValue(addressCanProposeGovAtom);
+  const canProposeVault = useRecoilValue(addressCanProposeVaultAtom);
 
   // query the governance parameters for the minimum fyfd required for each proposal type
   const qVault = queryGovernanceParameter('fYFD_VaultProposalMin');
@@ -49,7 +54,7 @@ export default function IconProposal() {
         // check to make sure the minimum fyfd required for each proposal type is greater than 0
         // set the icon style for each proposal type based on the user's fyfd balance
         // any amount of YFD can vote so the icon color is active if the user has any fyfd
-        if (+minVault > 0 && +minGov > 0 && +minVault < +fyfd) {
+        if (canProposeGov || canProposeVault) {
           styleProposal = styleProposal + ' ' + styles['icon-create'];
         }
       }
@@ -65,7 +70,9 @@ export default function IconProposal() {
     queryMsg,
     setMinFYFDGovProp,
     setMinFYFDVaultProp,
-    myFYFD.contents
+    myFYFD.contents,
+    canProposeGov,
+    canProposeVault
   ]);
 
   return (

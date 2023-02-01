@@ -10,21 +10,20 @@ import NoticeLoading from '@components/NoticeLoading';
 import IconProposal from './IconProposal';
 import IconVote from './IconVote';
 import IconEmergency from './IconEmergency';
-import { addressHasYFDAtom } from '@recoil/connected/address/atoms';
+import { addressHasFYFDAtom } from '@recoil/connected/address/atoms';
 
 export default function MenuLockYFD() {
   // load the chain contracts and parameters into state
   useChainInfo();
   // get the user's fyfd and yfd balances and format them for display ( 6 decimals )
   const myFYFD = useRecoilValueLoadable(selectMyFYFD);
-  const [hasFYFD, setHasFYFD] = useRecoilState(addressHasYFDAtom);
+  const hasFYFD = useRecoilValue(addressHasFYFDAtom);
   // prepare variables to set the minimum fyfd required for each proposal type to state
-  const fyfd = myFYFD.contents;
-  // if the user has no fyfd or yfd, set the hasFYFD state to false
-  if (+fyfd > 0 && myFYFD.state === 'hasValue') {
-    // if the user has fyfd, set the hasFYFD state to true
-    setHasFYFD(true);
-  }
+
+  useEffect(() => {
+    // if the fyfd or yfd balances are loading, return until the data is loaded
+    console.log('hasFYFD state changed. hasFYFD: ', hasFYFD);
+  }, [hasFYFD]);
 
   // if the user has no fyfd, return the "Lock $YFD" button instead of the fyfd menu
   if (hasFYFD) {
