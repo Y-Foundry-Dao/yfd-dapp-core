@@ -53,6 +53,9 @@
       "@recoil/*":[
         "./recoil/*"
       ],
+      "@types/*":[
+        "./types/*"
+      ],
       "Variables":[
         "./utilities/variables.ts"
       ]

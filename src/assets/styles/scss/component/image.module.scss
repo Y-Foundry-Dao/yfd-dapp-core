@@ -1,0 +1,63 @@
+img {
+    max-width: 100%;
+   }
+
+.imgContent {
+    font-weight: 500;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    svg {
+        width: 28px;
+        margin-right: 14px;
+    }
+}
+
+   .tutorial-intro {
+    object-fit: cover;
+    margin-right: 0.5rem;
+    object-position: center;
+    border-radius: 2rem;
+    filter: drop-shadow( 5px 5px 10px black );
+    &-middle {
+        @extend .tutorial-intro;
+        vertical-align: middle;
+    }
+   }
+
+   .getting-started-img {
+    width: 130px;
+    object-fit: cover;
+    margin-top: -5px;
+    margin-right: 10px;
+    object-position: center;
+    border-radius: 2rem;
+    filter: drop-shadow( 5px 5px 10px #88664a );
+    @media screen and (max-width: 700px) {
+     width: 50px;
+    }
+    &-two {
+        @extend .getting-started-img;
+        @media screen and (max-width: 1080px) {
+            display: none;
+        }
+    }
+    &-three {
+        @extend .getting-started-img;
+        @media screen and (max-width: 1218px) {
+            display: none;
+        }
+    }
+}
+
+.imgFeatured {
+    object-fit: cover;
+    margin-right: 0.5rem;
+    object-position: center;
+    border-radius: 2rem;
+    width: 5rem;
+    height: 5rem;
+    border: 0.125rem solid var(--theme-color);
+    filter: drop-shadow( 5px 5px 10px black );
+}

@@ -16,6 +16,7 @@ function ProposalTypeSelector() {
       <option value="governanceParameter">Governance Parameter</option>
       <option value="governanceWhitelistWalletAddress">Role Whitelist</option>
       <option value="governanceWhitelistTokenAddress">Token Whitelist</option>
+      <option value="governanceText">Text Proposal</option>
     </Select>
   );
 }

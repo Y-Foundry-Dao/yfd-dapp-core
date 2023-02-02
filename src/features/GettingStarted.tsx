@@ -10,7 +10,7 @@ export default function GettingStarted() {
       <div className={styles['div-full']}>
         <div className={styles['content-wrapper-header']}>
           <div className={styles['content-wrapper-context']}>
-            <h3 className={styles['img-content']}>Getting Started</h3>
+            <h3 className={styles.imgContent}>Getting Started</h3>
             <div className={styles['content-text']}>
               Learning about
               <span className={styles['text-enhanced']}> Y-Foundry DAO </span>

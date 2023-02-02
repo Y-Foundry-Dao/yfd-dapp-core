@@ -1,5 +1,5 @@
-.left-side {
-//    flex-basis: 15rem;
+.sideLeft {
+    flex-basis: 14.5rem;
     padding-top: 0.5rem;
     border-right: 0.15rem solid var(--border-color);
     background-color: var(--theme-bg-menu);
@@ -11,14 +11,15 @@
     }
    }
 
-.side-wrapper {
+.wrapperSide {
     padding-top: 0.5rem;
-    &-menu {
+    width: 100%;
+    &Menu {
         margin-top: 1rem;
         padding-left: 2rem;
         padding-right: 2rem;
     }
-    &-menu::after {
+    &Menu::after {
         content: "";
         display: block;
         margin: 0 auto;
@@ -27,13 +28,13 @@
     }
 }
    
-.side-title {
+.sideTitle {
     color: var(--text-menu-title-color);
     margin-bottom: 0.3em;
     font-size: 0.9em;
 }
 
-.side-menu {
+.sideMenu {
     display: flex;
     flex-direction: column;
     white-space: nowrap;

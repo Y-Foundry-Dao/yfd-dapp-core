@@ -1,6 +1,5 @@
 import styles from '@scss/app.module.scss';
 import { Heading } from '@chakra-ui/react';
-import ListFyfdBalance from '@features/lockYFD/history/list/Layout';
 export default function FyfdBalance() {
   return (
     <>
@@ -8,7 +7,6 @@ export default function FyfdBalance() {
         <div className={styles['content-section-title']}>
           <Heading size="md"></Heading>
         </div>
-        <ListFyfdBalance />
       </div>
     </>
   );

@@ -1,6 +1,34 @@
-export const URL_LCD = 'https://pisco-lcd.terra.dev';
-export const CHAIN_ID = 'pisco-1';
+type ChainDeploy = {
+  chainID: string;
+  config: { interval: number; forge: string; token: string }[];
+};
 
-//const settenProject = 'a322f9bb68354790b8385d6b21df7a01';
-//const settenKey = 'b1dbc97838ac4ec1b95fasdf5ccc61458210';
-//  URL: `https://lcd.pisco.terra.setten.io/${settenProject}?key=${settenKey}`,
+const pisco: ChainDeploy[] = [
+  {
+    chainID: 'pisco-1',
+    config: [
+      {
+        interval: 6000,
+        forge:
+          'terra1s5hg4kusnnp5q8r8l0das4tftd50xcve4e2l95eqjy3fgducekfsw6yder',
+        token:
+          'terra1293l9rgqk5vxndaeqmengssg3pdch57qpepgslh7p2sg3lqd87rss8du4s'
+      }
+    ]
+  }
+];
+
+const testnet: ChainDeploy[] = [
+  {
+    chainID: 'testnet',
+    config: [
+      {
+        interval: pisco[0].config[0].interval,
+        forge: pisco[0].config[0].forge,
+        token: pisco[0].config[0].token
+      }
+    ]
+  }
+];
+
+export const chainDeploy = [...pisco, ...testnet];

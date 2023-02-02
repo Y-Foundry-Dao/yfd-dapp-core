@@ -11,28 +11,23 @@
     @media screen and (max-width: 30em) {
      padding: 0 1rem;
     }
-    &-menu {
+    &Menu {
         @extend .footer;
-     align-items: center;
-     a {
-      padding: 1.25rem 1.875rem;
-      margin: 0;
-      text-decoration: none;
-      color: var(--theme-color);
-      border-top: 0.125rem solid transparent;
-      transition: 0.3s;
-      opacity: 1;
-      @media screen and (max-width: 38.125em) {
-       &:not(.main-header-link) {
-        display: none;
-       }
-      }
-      &.is-active,
-      &:hover {
-       color: var(--theme-special-color);
-       padding-bottom: 2rem;
-       filter: drop-shadow( 0rem 0.1rem 0.5rem var(--theme-color));
-      }
-     }
+        align-items: center;
+        a {
+            padding: 1.25rem 1.875rem;
+            margin: 0;
+            text-decoration: none;
+            color: var(--theme-color);
+            border-top: 0.125rem solid transparent;
+            transition: 0.3s;
+            opacity: 1;
+            &.is-active,
+            &:hover {
+                color: var(--theme-special-color);
+                padding-bottom: 2rem;
+                filter: drop-shadow( 0rem 0.1rem 0.5rem var(--theme-color));
+            }
+        }
     }
 }

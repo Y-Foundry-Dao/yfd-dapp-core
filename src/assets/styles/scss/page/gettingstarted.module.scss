@@ -78,6 +78,12 @@
     p {
         text-align: justify;
     }
+    &Center {
+        @extend .gsContent;
+        p {
+            text-align: center;
+        }
+    }
 }
 
 .gsDescImage {

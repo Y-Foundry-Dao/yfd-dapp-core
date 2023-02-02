@@ -1,0 +1,134 @@
+.profile-img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 0.125rem solid var(--theme-color);
+    margin-left: 1.375rem;
+   }
+   
+.popupProfile {
+    background: rgba(255, 255, 255, 0.8);
+    background-color: var(--popup-bg);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-width: 0.188rem;
+    border-radius: 0.938rem;
+}
+
+.buttonProfileMenu {
+    overflow: hidden;
+    height: ($headerHeight * 0.75);
+    width: 3rem;
+    padding: 0px;
+    border-radius: var(--theme-border-radius);
+    border-width: var(--theme-border-width);
+    border-color: var(--theme-border-color);
+    background-color: var(--theme-bg-menu);
+    box-shadow: inset 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+
+    &:hover {
+        background-color: var(--theme-blur);
+        filter: drop-shadow(0.1rem 0.1rem 0.5rem var(--theme-inactive-color));
+    }
+}
+
+.profileMenuName {
+    font-weight: 600;
+    color: var(--theme-special-color);
+    letter-spacing: 0.25rem;
+}
+
+.arrowProfileMenu {
+    filter: drop-shadow(0.1rem 0.1rem 0.5rem var(#FF0000));
+}
+.profileMenuLayout {
+    border-radius: var(--theme-border-radius);
+    border-width: var(--theme-border-width);
+    border-color: var(--theme-border-color);
+    background-color: var(--theme-bg-menu);
+    box-shadow: inset 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+.profileMenuIcon {
+    width: 100%;
+    font-size: 1.5rem;
+    vertical-align: middle;
+    color: var(--theme-inactive-color);
+}
+
+.profileMenuPfp {
+    object-fit: contain;
+    object-fit: cover;
+    opacity: 0.1;
+}
+
+.wrapperProfileMenuText {
+    width: 100%;
+}
+
+.containerProfileMenuText {
+    padding: 0.75rem;
+    width: 100%;
+    font-weight: 100;
+    letter-spacing: 0.06rem;
+    margin-top: 0.1rem;
+    margin-bottom: 1rem;
+    position: inline-block;
+    background: var(--theme-color-darkest);
+    border-radius: var(--theme-border-radius);
+    filter: brightness(2) drop-shadow(0.1rem 0.1rem 0.5rem var(--theme-color-black));
+}
+
+.containerProfileMenuTextTitle {
+    @extend .profileMenuName;
+    margin: 0;
+    padding-bottom: 0.25rem;
+    border-bottom: 0.125rem solid var(--theme-border-color);
+    filter: drop-shadow(0.1rem 0.1rem 0.3rem var(--theme-color-black));
+}
+
+.profileMenuWallet {
+    width: 100%;
+    text-align: center;
+    background: var(--theme-color-darker);
+}
+
+.profileMenuAddress {
+    font-size: 0.75rem;
+    width: 85%;
+    background-color: var(--theme-color-darkest);
+}
+
+.profileMenuDisconnect {
+    width: 85%;
+    margin-left: auto;
+    background: var(--theme-color-darker);
+}
+.profileMenuFooter {
+    justify-content: space-between;
+    background-color: var(--theme-color-darkest);
+}
+
+.profileMenuFooterText {
+    font-size: 0.75rem;
+    text-align: center;
+    justify-content: center;
+}
+
+.profileMenuFooterPlatforms {
+    width: 100%;
+    padding: 0.25rem;
+    justify-content: center;
+    text-align: center;
+}
+
+.profileMenuPlatformIcon {
+    width: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+
+    &:hover {
+        filter: drop-shadow(0rem 0rem 0.2rem var(--theme-special-color));
+    }
+}

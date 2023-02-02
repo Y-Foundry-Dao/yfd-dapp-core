@@ -7,7 +7,7 @@ import { URL_DISCORD, URL_GITHUB, URL_TWITTER } from '@var/links';
 export default function MenuLeftFooter() {
   return (
     <>
-      <div className={styles['footer-menu']}>
+      <div className={styles.footerMenu}>
         <a href={URL_DISCORD} target="_blank">
           <FontAwesomeIcon icon={brands('discord')} />
         </a>

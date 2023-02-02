@@ -1,26 +1,3 @@
-// the forge contract address
-type ContractGovernance = { network: string; contract: string };
-export const contractForge: ContractGovernance[] = [
-  {
-    network: 'pisco-1',
-    contract: 'terra1s5hg4kusnnp5q8r8l0das4tftd50xcve4e2l95eqjy3fgducekfsw6yder'
-  }
-];
-
-// the YFD token address
-type ContractGovernanceToken = {
-  chainID: string;
-  address: string;
-  symbol: string;
-};
-export const contractYFD: ContractGovernanceToken[] = [
-  {
-    chainID: 'pisco-1',
-    address: 'terra1293l9rgqk5vxndaeqmengssg3pdch57qpepgslh7p2sg3lqd87rss8du4s',
-    symbol: 'YFD'
-  }
-];
-
 //contracts -- deprecated for arrays
 export const FORGE_TEST_VERYOLD =
   'terra1pmayk6e2zt78hlmkwyk6qxfhu390urw6prkd46jc9e7d8k45wq3sldycwz';

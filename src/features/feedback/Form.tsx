@@ -1,5 +1,5 @@
 import { Form, FormLayout, Field, SubmitButton } from '@saas-ui/react';
-import { Box, Flex, Spacer, Select } from '@chakra-ui/react';
+import { Box, Flex, Select } from '@chakra-ui/react';
 import { useRecoilValue } from 'recoil';
 import { format } from 'date-fns';
 import {
@@ -12,11 +12,13 @@ import useHandleInputsFeedback from 'hooks/handleInput/useFeedback';
 import { SUCCESS_FEEDBACK_DISCORD } from 'utilities/variables/toastMessages';
 import useTx from 'hooks/useTx';
 import { WEBHOOK_FEEDBACK } from 'utilities/variables/discord';
-import { useConnectedWallet } from '@terra-money/wallet-provider';
+import {
+  ConnectedWallet,
+  useConnectedWallet
+} from '@terra-money/wallet-provider';
 
 import styles from '@scss/app.module.scss';
 import { URL_DISCORD } from '@var/links';
-import { env } from 'process';
 
 export default function FeedbackForm({ onClose }: any) {
   const webhookUrl: any = WEBHOOK_FEEDBACK;
@@ -24,7 +26,7 @@ export default function FeedbackForm({ onClose }: any) {
   const feedbackHandle: string = useRecoilValue(inputFeedbackHandle);
   const feedbackMethod: string = useRecoilValue(inputFeedbackMethod);
   const feedbackDesc: string = useRecoilValue(inputFeedbackDesc);
-  const connectedWallet: any = useConnectedWallet();
+  const connectedWallet: ConnectedWallet | undefined = useConnectedWallet();
   const {
     handleInputFeedbackName,
     handleInputFeedbackHandle,
@@ -35,7 +37,7 @@ export default function FeedbackForm({ onClose }: any) {
   const { toastSuccessful } = useTx();
 
   const onSubmit = async () => {
-    const msgContent = `**${feedbackHandle}** from ${feedbackMethod}\n${connectedWallet.walletAddress}\n\n ${feedbackDesc}`;
+    const msgContent = `**${feedbackHandle}** from ${feedbackMethod}\n${connectedWallet?.walletAddress}\n\n ${feedbackDesc}`;
     const message = {
       content: '**Beep. Boop.**',
       embeds: [

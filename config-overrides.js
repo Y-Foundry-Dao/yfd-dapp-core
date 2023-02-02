@@ -28,12 +28,14 @@ module.exports = function override(config) {
     '@hooks': 'src/hooks',
     '@recoil': 'src/recoil',
     '@utilities': 'src/utilities',
+    '@types': 'src/types',
     '@var': 'src/utilities/variables',
     'Variables': 'src/utilities/variables.ts'
   })(config);
   Object.assign(fallback, {
     crypto: require.resolve("crypto-browserify"),
     stream: require.resolve("stream-browserify"),
+    buffer: require.resolve('buffer'),
     assert: require.resolve("assert"),
     http: require.resolve("stream-http"),
     https: require.resolve("https-browserify"),

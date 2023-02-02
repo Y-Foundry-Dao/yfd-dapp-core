@@ -1,77 +1,47 @@
-import { Button, Popover, PopoverTrigger, Flex, Box } from '@chakra-ui/react';
-import { Icons } from '@var/icons';
+import { useEffect } from 'react';
+import { Button, Popover, PopoverTrigger, Flex } from '@chakra-ui/react';
+import { useRecoilValue, useRecoilState, useRecoilValueLoadable } from 'recoil';
+import useChainInfo from 'hooks/useChainInfo';
+import { selectMyFYFD } from '@recoil/connected/balance/selectors';
 import styles from '@scss/app.module.scss';
-import queryBalance from '@hooks/useContractYFD';
-import tokenBalance from '@hooks/useContractYFD';
-import convertFromBase from 'utilities/converters/convertFromBase';
-import FyfdPopoverEmpty from './PopoverEmpty';
-import FyfdPopoverBalance from './PopoverBalance';
-import { useRecoilValueLoadable } from 'recoil';
-import {
-  balancefYFDQuery,
-  balanceYFDQuery
-} from '@recoil/balanceConnected/selectors';
+import MenuPopoverBalance from './MenuPopoverBalance';
+import MenuPopoverNoFYFD from './MenuNoFYFD';
+import NoticeLoading from '@components/NoticeLoading';
+import IconProposal from './IconProposal';
+import IconVote from './IconVote';
+import IconEmergency from './IconEmergency';
+import { addressHasFYFDAtom } from '@recoil/connected/address/atoms';
 
-let styleVote = 'material-symbols-outlined';
-let styleProposal = 'material-symbols-outlined';
-let styleGuardian = 'material-symbols-outlined';
+export default function MenuLockYFD() {
+  // load the chain contracts and parameters into state
+  useChainInfo();
+  // get the user's fyfd and yfd balances and format them for display ( 6 decimals )
+  const myFYFD = useRecoilValueLoadable(selectMyFYFD);
+  const hasFYFD = useRecoilValue(addressHasFYFDAtom);
+  // prepare variables to set the minimum fyfd required for each proposal type to state
 
-export default function LockYFDMenu() {
-  // const balanceYfd = tokenBalance();
-  // const balanceFyfd = queryBalance();
-  const balanceYFDLoadable = useRecoilValueLoadable(balanceYFDQuery);
-  const balancefYFDLoadable = useRecoilValueLoadable(balancefYFDQuery);
+  useEffect(() => {
+    // if the fyfd or yfd balances are loading, return until the data is loaded
+    console.log('hasFYFD state changed. hasFYFD: ', hasFYFD);
+  }, [hasFYFD]);
 
-  console.log('YFD Balance: ', balanceYFDLoadable.contents);
-  console.log('fYFD Balance: ', balancefYFDLoadable.contents);
-  console.log('Query Balance: ', queryBalance);
-
-  const balancefYFD = parseInt(
-    convertFromBase(balancefYFDLoadable.contents).toFixed(5),
-    10
-  );
-  if (1000 < balancefYFD) {
-    styleVote = styleVote + ' ' + styles['icon-create'];
-  }
-
-  if (25000 < balancefYFD) {
-    styleProposal = styleProposal + ' ' + styles['icon-create'];
-  }
-
-  if (100000 < balancefYFD) {
-    styleGuardian = styleGuardian + ' ' + styles['icon-create'];
-  }
-
-  //  console.log('BalancefYFD', BalancefYFD);
-  if (1 > balancefYFD) {
-    return (
-      <Popover placement="bottom-end">
-        <PopoverTrigger>
-          <Button className={styles.menuButton}>Lock $YFD</Button>
-        </PopoverTrigger>
-        <FyfdPopoverEmpty />
-      </Popover>
-    );
-  } else {
+  // if the user has no fyfd, return the "Lock $YFD" button instead of the fyfd menu
+  if (hasFYFD) {
     return (
       <Popover>
         <PopoverTrigger>
           <Button className={styles.stakeYfd}>
             <Flex className={styles.stakeYfdIcons}>
-              <Box className={styles.stakeYfdIcon}>
-                <span className={styleVote}>{Icons.vote}</span>
-              </Box>
-              <Box className={styles.stakeYfdIcon}>
-                <span className={styleProposal}>{Icons.proposal}</span>
-              </Box>
-              <Box className={styles.stakeYfdIcon}>
-                <span className={styleGuardian}>{Icons.guardian}</span>
-              </Box>
+              <IconVote />
+              <IconProposal />
+              <IconEmergency />
             </Flex>
           </Button>
         </PopoverTrigger>
-        <FyfdPopoverBalance />
+        <MenuPopoverBalance />
       </Popover>
     );
   }
+
+  return <MenuPopoverNoFYFD />;
 }
