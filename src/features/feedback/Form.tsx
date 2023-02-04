@@ -12,10 +12,7 @@ import useHandleInputsFeedback from 'hooks/handleInput/useFeedback';
 import { SUCCESS_FEEDBACK_DISCORD } from 'utilities/variables/toastMessages';
 import useTx from 'hooks/useTx';
 import { WEBHOOK_FEEDBACK } from 'utilities/variables/discord';
-import {
-  ConnectedWallet,
-  useConnectedWallet
-} from '@terra-money/wallet-provider';
+import { addressConnectedAtom } from '@recoil/connected/address/atoms';
 
 import styles from '@scss/app.module.scss';
 import { URL_DISCORD } from '@var/links';
@@ -26,7 +23,7 @@ export default function FeedbackForm({ onClose }: any) {
   const feedbackHandle: string = useRecoilValue(inputFeedbackHandle);
   const feedbackMethod: string = useRecoilValue(inputFeedbackMethod);
   const feedbackDesc: string = useRecoilValue(inputFeedbackDesc);
-  const connectedWallet: ConnectedWallet | undefined = useConnectedWallet();
+  const connectedWallet: string = useRecoilValue(addressConnectedAtom);
   const {
     handleInputFeedbackName,
     handleInputFeedbackHandle,
@@ -37,7 +34,7 @@ export default function FeedbackForm({ onClose }: any) {
   const { toastSuccessful } = useTx();
 
   const onSubmit = async () => {
-    const msgContent = `**${feedbackHandle}** from ${feedbackMethod}\n${connectedWallet?.walletAddress}\n\n ${feedbackDesc}`;
+    const msgContent = `**${feedbackHandle}** from ${feedbackMethod}\n${connectedWallet}\n\n ${feedbackDesc}`;
     const message = {
       content: '**Beep. Boop.**',
       embeds: [

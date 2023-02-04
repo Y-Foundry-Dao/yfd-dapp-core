@@ -5,7 +5,7 @@ import queryTokenInfo from 'utilities/messagesQuery/cw20/queryTokenInfo';
 import queryVotes from 'utilities/messagesQuery/proposals/queryVotes';
 import { FORGE_TEST } from '@utilities/variables';
 import queryBalance from '@utilities/messagesQuery/cw20/queryBalance';
-import { useConnectedWallet } from '@terra-money/wallet-provider';
+import useChainInfo from '@hooks/useChainInfo';
 
 type BalanceObject = {
   balance: string;
@@ -16,7 +16,7 @@ const useContractGovernanceProposal = ({
   proposalIndex
 }: any) => {
   const { queryMsg } = useMsg();
-  const connectedWallet = useConnectedWallet();
+  const { currentAddress } = useChainInfo();
   const [governanceProposalInfo, setGovernanceProposalInfo] = useState<any>({});
   const [tokenSymbol, setTokenSymbol] = useState('Vote');
   const [proposalVoteInfo, setProposalVoteInfo] = useState<any>({});
@@ -33,10 +33,10 @@ const useContractGovernanceProposal = ({
   };
 
   const getVoteTokenBalance = async () => {
-    if (connectedWallet) {
+    if (currentAddress) {
       const response: BalanceObject = await queryMsg(
         proposalContract,
-        queryBalance(connectedWallet.walletAddress)
+        queryBalance(currentAddress)
       );
       return response.balance;
     }
@@ -91,7 +91,7 @@ const useContractGovernanceProposal = ({
 
   useEffect(() => {
     setVoteTokenBalanceToState();
-  }, [proposalContract, connectedWallet]);
+  }, [proposalContract, currentAddress]);
 
   useEffect(() => {
     setProposalInfoToState();

@@ -1,6 +1,11 @@
 import { useEffect } from 'react';
 import { Button, Popover, PopoverTrigger, Flex } from '@chakra-ui/react';
-import { useRecoilValue, useRecoilState, useRecoilValueLoadable } from 'recoil';
+import {
+  useRecoilValue,
+  useRecoilState,
+  useRecoilValueLoadable,
+  useSetRecoilState
+} from 'recoil';
 import useChainInfo from 'hooks/useChainInfo';
 import { selectMyFYFD } from '@recoil/connected/balance/selectors';
 import styles from '@scss/app.module.scss';
@@ -10,7 +15,10 @@ import NoticeLoading from '@components/NoticeLoading';
 import IconProposal from './IconProposal';
 import IconVote from './IconVote';
 import IconEmergency from './IconEmergency';
-import { addressHasFYFDAtom } from '@recoil/connected/address/atoms';
+import {
+  addressHasFYFDAtom,
+  estimatedFyfdConnectedAtom
+} from '@recoil/connected/address/atoms';
 
 export default function MenuLockYFD() {
   // load the chain contracts and parameters into state
@@ -18,7 +26,6 @@ export default function MenuLockYFD() {
   // get the user's fyfd and yfd balances and format them for display ( 6 decimals )
   const myFYFD = useRecoilValueLoadable(selectMyFYFD);
   const hasFYFD = useRecoilValue(addressHasFYFDAtom);
-  // prepare variables to set the minimum fyfd required for each proposal type to state
 
   useEffect(() => {
     // if the fyfd or yfd balances are loading, return until the data is loaded
@@ -41,7 +48,8 @@ export default function MenuLockYFD() {
         <MenuPopoverBalance />
       </Popover>
     );
+  } else {
+    return <MenuPopoverNoFYFD />;
   }
-
-  return <MenuPopoverNoFYFD />;
+  return <NoticeLoading />;
 }

@@ -9,32 +9,51 @@ import {
 } from '@recoil/chainInfo/atoms';
 import { useLCDClient, useWallet } from '@terra-money/wallet-provider';
 import getChainDeploy from '@utilities/getValues';
+import { addressConnectedAtom } from '@recoil/connected/address/atoms';
 
 const useChainInfo = () => {
   const lcd = useLCDClient();
-  const connection = useWallet();
-  const chainID = useWallet().network.chainID;
+  const chainID = 'pisco-1';
+  const { status, wallets } = useWallet();
+
   const [currentBlockHeight, setCurrentBlockHeight] = useRecoilState<any>(
     currentBlockHeightAtom
   );
   const setCurrentBlockInterval = useSetRecoilState(currentBlockIntervalAtom);
   const [currentChainID, setCurrentChainID] =
     useRecoilState<string>(currentChainIDAtom);
+  const [currentAddress, setCurrentAddress] =
+    useRecoilState<string>(addressConnectedAtom);
   const [currentContractForge, setCurrentContractForge] =
     useRecoilState<string>(currentContractForgeAtom);
   const [currentContractGovToken, setCurrentContractGovToken] =
     useRecoilState<string>(currentContractGovTokenAtom);
 
-  const getCurrentChainID = async () => {
-    const currentChainID: string = connection.network.chainID;
+  const getCurrentChainID = () => {
+    const currentChainID = chainID;
     return currentChainID;
   };
   const setCurrentChainIDToState = async () => {
     const currentChainID = await getCurrentChainID();
     setCurrentChainID(currentChainID);
   };
+
+  const getCurrentAddress = async () => {
+    if (status !== 'WALLET_CONNECTED') return;
+    const currentAddress = wallets[0].addresses[currentChainID];
+    return currentAddress;
+  };
+
+  const setCurrentAddressToState = async () => {
+    const currentAddress = await getCurrentAddress();
+    if (currentAddress) {
+      setCurrentAddress(currentAddress);
+    }
+    return currentAddress;
+  };
+
   const getCurrentContractForge = () => {
-    const contractForge = String(getChainDeploy(chainID, 'forge'));
+    const contractForge = String(getChainDeploy(currentChainID, 'forge'));
     return contractForge;
   };
   const setCurrentContractForgeToState = () => {
@@ -42,7 +61,7 @@ const useChainInfo = () => {
     setCurrentContractForge(contractForge);
   };
   const getCurrentContractGovToken = () => {
-    const contractGovToken = String(getChainDeploy(chainID, 'token'));
+    const contractGovToken = String(getChainDeploy(currentChainID, 'token'));
     return contractGovToken;
   };
 
@@ -51,8 +70,8 @@ const useChainInfo = () => {
     setCurrentContractGovToken(contractGovToken);
   };
 
-  const getCurrentBlockInterval = () => {
-    const newBlockInterval = Number(getChainDeploy(chainID, 'interval'));
+  const getCurrentBlockInterval = (chain: string) => {
+    const newBlockInterval = Number(getChainDeploy(chain, 'interval'));
     if (typeof newBlockInterval !== 'number') {
       console.error('blockInterval is not a number: ', newBlockInterval);
     }
@@ -60,20 +79,28 @@ const useChainInfo = () => {
   };
 
   const setCurrentBlockIntervalToState = () => {
-    const blockInterval = getCurrentBlockInterval();
+    const blockInterval = getCurrentBlockInterval(currentChainID);
     setCurrentBlockInterval(blockInterval);
   };
 
-  const getCurrentBlockHeight = async () => {
-    const newBlockHeight = Number.parseInt(
-      (await lcd.tendermint.blockInfo()).block.header.height
-    );
-    return newBlockHeight;
+  const getCurrentBlockHeight = async (chain: string) => {
+    try {
+      const newBlockHeight = Number.parseInt(
+        (await lcd.tendermint.blockInfo(chain)).block.header.height
+      );
+      return newBlockHeight;
+    } catch (error) {
+      console.error('error in getCurrentBlockHeight: ', error);
+    }
   };
 
   const setCurrentBlockHeightToState = async () => {
-    const blockHeight = await getCurrentBlockHeight();
-    setCurrentBlockHeight(blockHeight);
+    const blockHeight = await getCurrentBlockHeight(currentChainID);
+    if (blockHeight == undefined) {
+      console.warn('blockHeight returned as undefined');
+    } else {
+      setCurrentBlockHeight(blockHeight);
+    }
   };
 
   useEffect(() => {
@@ -82,12 +109,18 @@ const useChainInfo = () => {
     setCurrentContractGovTokenToState();
     setCurrentChainIDToState();
     setCurrentContractForgeToState();
+    setCurrentAddressToState();
   }, []);
 
   useEffect(() => {
-    const blockInterval = getCurrentBlockInterval();
+    const currentChainID = getCurrentChainID();
+    const blockInterval = getCurrentBlockInterval(currentChainID);
+    if (blockInterval == undefined) {
+      console.warn('blockInterval returned as undefined... TRYING AGAIN');
+      const blockInterval = getCurrentBlockInterval(currentChainID);
+    }
     const interval = setInterval(async () => {
-      return setCurrentBlockHeight(await getCurrentBlockHeight());
+      return setCurrentBlockHeight(await getCurrentBlockHeight(currentChainID));
     }, blockInterval);
     return () => clearInterval(interval);
   }, []);
@@ -96,7 +129,8 @@ const useChainInfo = () => {
     currentBlockHeight,
     currentChainID,
     currentContractForge,
-    currentContractGovToken
+    currentContractGovToken,
+    currentAddress
   };
 };
 

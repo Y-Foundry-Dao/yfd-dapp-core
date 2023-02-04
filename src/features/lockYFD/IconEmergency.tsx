@@ -48,7 +48,6 @@ export default function IconEmergency() {
       // set the icon style for each proposal type based on the user's fyfd balance
       // any amount of YFD can vote so the icon color is active if the user has any fyfd
       if (canProposeEmergency) {
-        console.log('canProposeEmergency: ', canProposeEmergency);
         styleGuardian = styleGuardian + ' ' + styles['icon-create'];
       }
     }

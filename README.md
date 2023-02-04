@@ -32,9 +32,10 @@ yarn e2etest
 
 ### Core packages needed for Terra Development
 
-[Terra.js](https://terra-money.github.io/terra.js/)
-
-[wallet-provider](https://github.com/terra-money/wallet-provider)
+[@terra-money/feather.js](https://terra-money.github.io/feather.js/)
+[@terra-money/wallet-provider v4](https://github.com/terra-money/wallet-provider)
+[@terra-money/wallet-types] ()
+[@terra-money/use-wallet] ()
 
 ### Routing
 

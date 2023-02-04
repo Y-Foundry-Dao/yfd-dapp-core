@@ -1,21 +1,19 @@
-import useMsg from './useMsg';
 import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import useMsg from './useMsg';
 import queryTokens from 'utilities/messagesQuery/nft/queryTokens';
-import { useConnectedWallet } from '@terra-money/wallet-provider';
+import { addressConnectedAtom } from '@recoil/connected/address/atoms';
 
 const useContractNFT = ({ contract }: any) => {
   const { queryMsg } = useMsg();
   const [tokenIds, setTokenIds] = useState<any>([]);
-  const connectedWallet = useConnectedWallet();
+  const connectedWallet = useRecoilValue(addressConnectedAtom);
 
   const getTokens = async () => {
     if (!connectedWallet) {
       return;
     }
-    const response = await queryMsg(
-      contract,
-      queryTokens(connectedWallet?.walletAddress)
-    );
+    const response = await queryMsg(contract, queryTokens(connectedWallet));
     console.log(response);
     return response;
   };

@@ -1,16 +1,3 @@
-import { useLCDClient } from '@terra-money/wallet-provider';
-import { useRecoilState, useRecoilValueLoadable } from 'recoil';
-import useChainInfo from '@hooks/useChainInfo';
-import convertFromBase from '@utilities/converters/convertFromBase';
-
-import {
-  currentContractForgeAtom,
-  currentContractGovTokenAtom
-} from '@recoil/chainInfo/atoms';
-import {
-  selectFYFDConnected,
-  selectYFDConnected
-} from '@recoil/connected/balance/selectors';
 import { LCDClient } from '@terra-money/feather.js';
 
 export const MyLCD = () => {
