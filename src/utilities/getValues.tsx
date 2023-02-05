@@ -1,5 +1,4 @@
 import { chainDeploy } from './variables/blockchain';
-import { useRecoilValueLoadable } from 'recoil';
 
 export const getChainDeploy = (
   chain: string,

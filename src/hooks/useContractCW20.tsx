@@ -43,18 +43,6 @@ const useContractCW20 = (contract: string, address: string) => {
     const response = await queryMsg(contract, queryAllAccounts());
     return response;
   };
-  // TODO: Add queryAllAllowances and queryAllowance calls.
-  // * Ultimately Allowances aren't used in v1 but just available through the CW20 token standard
-
-  const setTokenBalanceToState = async () => {
-    const tokenBalance: any = await getBalance(address);
-    if (tokenBalance === undefined) {
-      setTokenBalance(0);
-      return;
-    }
-    console.log(tokenBalance);
-    setTokenBalance(Number(tokenBalance.balance));
-  };
 
   const setTokenInfoToState = async () => {
     const tokenInfo: any = await getTokenInfo();
@@ -72,7 +60,9 @@ const useContractCW20 = (contract: string, address: string) => {
   };
 
   useEffect(() => {
-    setTokenBalanceToState();
+    console.log(
+      'this is where the token balances can be updated from the chain'
+    );
   }, [contract, txHashInRecoil]);
 
   useEffect(() => {

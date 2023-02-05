@@ -1,14 +1,16 @@
-import { useWallet, useConnectedWallet } from '@terra-money/wallet-provider';
-import { Coins, Msg, MsgExecuteContract } from '@terra-money/terra.js';
+import { useConnectedWallet, useWallet } from '@terra-money/wallet-provider';
+import { Coins, Msg, MsgExecuteContract } from '@terra-money/feather.js';
 import { MyLCD } from '@utilities/MyValues';
 import useTx from './useTx';
 import { useSetRecoilState } from 'recoil';
 import txHashAtom from 'recoil/txHash/atom';
 import queryNftInfo from 'utilities/messagesQuery/proposals/vaultProposal/queryNftInfo';
+import useChainInfo from '@hooks/useChainInfo';
+import { useCallback, useState } from 'react';
 
 const useMsg = () => {
   const lcd = MyLCD();
-  const chainID = useWallet().network.chainID;
+  const { currentChainID, currentAddress } = useChainInfo();
   const { post } = useWallet();
   const { toastError } = useTx();
   const setTxHashInRecoil = useSetRecoilState(txHashAtom);
@@ -27,18 +29,18 @@ const useMsg = () => {
   ) => {
     try {
       // Creates a new message with our parameters
-      if (!connectedWallet) {
+      if (!currentAddress) {
         return;
       }
       const msg: Msg = new MsgExecuteContract(
-        connectedWallet.walletAddress,
+        currentAddress,
         contractAddress,
         msgExecute,
         amount
       );
 
       // posts the message to the blockchain
-      const tx = await post({ msgs: [msg] })
+      const tx = await post({ chainID: currentChainID, msgs: [msg] })
         .then(async (result) => {
           // TODO: use a for or add a timeout to prevent infinite loops
           //eslint-disable-next-line
@@ -47,7 +49,7 @@ const useMsg = () => {
             // Causes errors in console because it hits the catch statement until the transaction has been broadcast
             // console.log(result.result);
             const data = await lcd.tx
-              .txInfo(result.result.txhash, chainID)
+              .txInfo(result.result.txhash, currentChainID)
               .catch((error) => {
                 setTxHashInRecoil('Waiting for TX to Broadcast...');
                 console.log('Inside catch', error);

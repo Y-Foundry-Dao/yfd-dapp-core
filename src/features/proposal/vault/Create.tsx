@@ -35,13 +35,18 @@ import msgExecuteSend from '@utilities/messagesExecute/yfd/msgExecuteSend';
 import useTx from '@hooks/useTx';
 import { SUCCESS_CREATE_PROPOSAL } from '@utilities/variables/toastMessages';
 import convertToBase from '@utilities/converters/convertToBase';
-import { FORGE_TEST, YFD_TEST } from '@utilities/variables';
 import Base64 from '@utilities/base64';
 import useMsg from '@hooks/useMsg';
 import { useState } from 'react';
 import useContractForge from '@hooks/useContractForge';
+import {
+  currentContractForgeAtom,
+  currentContractGovTokenAtom
+} from '@recoil/chainInfo/atoms';
 
 function ProposalCreationForm({ onClose }: any) {
+  const contractForge = useRecoilValue(currentContractForgeAtom);
+  const contractGovToken = useRecoilValue(currentContractGovTokenAtom);
   const [name, setName] = useState('');
   const [ticker, setTicker] = useState('');
   const [proposalUrl, setProposalUrl] = useState('');
@@ -50,7 +55,8 @@ function ProposalCreationForm({ onClose }: any) {
   const [developer, setDeveloper] = useState('');
   const [developmentCost, setDevelopmentCost] = useState(0.067);
   const [fundingOnly, setFundingOnly] = useState(false);
-  const [fundingDenomination, setFundingDenomination] = useState(YFD_TEST);
+  const [fundingDenomination, setFundingDenomination] =
+    useState(contractGovToken);
   const [nftQuantity, setNftQuantity] = useState(100);
   const [statementOfWork, setStatementOfWork] = useState('');
   const [numberOfPayments, setNumberOfPayments] = useState(2);
@@ -90,11 +96,11 @@ function ProposalCreationForm({ onClose }: any) {
       );
       const encodedMessage = Base64.btoa(msgToEncode);
       const msgCreateProposal = msgExecuteSend(
-        FORGE_TEST,
+        contractForge,
         encodedMessage,
         convertToBase(initialFunding)
       );
-      const tx = await executeMsg(YFD_TEST, msgCreateProposal);
+      const tx = await executeMsg(contractGovToken, msgCreateProposal);
       console.log(tx);
       toastSuccessful(tx, SUCCESS_CREATE_PROPOSAL);
     }

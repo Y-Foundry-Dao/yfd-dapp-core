@@ -18,7 +18,8 @@ import {
   addressCanProposeGovAtom,
   addressCanProposeVaultAtom,
   addressCanProposeEmergencyAtom,
-  addressConnectedAtom
+  addressConnectedAtom,
+  estimatedFyfdConnectedAtom
 } from '@recoil/connected/address/atoms';
 import { selectMyFYFD, selectMyYFD } from '@recoil/connected/balance/selectors';
 import {
@@ -26,11 +27,13 @@ import {
   minFYFDGovPropAtom,
   minFYFDVaultPropAtom
 } from '@recoil/governance/parameters/atoms';
+import { FYFD_LOCK_DECAY_RATE } from '@var/chrono';
+import useChainInfo from '@hooks/useChainInfo';
+import MyLCD from '@utilities/MyValues';
+import { Wallet } from '@terra-money/feather.js';
 
 export default function CurrentBlockHeight() {
-  const currentChainID = useWallet().network.chainID;
-  const [addressConnected, setAddressConnected] =
-    useRecoilState(addressConnectedAtom);
+  const { currentChainID, currentAddress } = useChainInfo();
   const currentBlockHeight = useRecoilValue(currentBlockHeightAtom);
   const yfd = useRecoilValueLoadable(selectMyYFD);
   const refreshFYFD = useRecoilRefresher_UNSTABLE(selectMyFYFD);
@@ -40,18 +43,23 @@ export default function CurrentBlockHeight() {
   const [canGov, setCanGov] = useRecoilState(addressCanProposeGovAtom);
   const [canEmer, setCanEmer] = useRecoilState(addressCanProposeEmergencyAtom);
   const [hasFYFD, setHasFYFD] = useRecoilState(addressHasFYFDAtom);
+  const [estimatedFYFD, setEstimatedFYFD] = useRecoilState(
+    estimatedFyfdConnectedAtom
+  );
   const minVault = useRecoilValue(minFYFDVaultPropAtom);
   const minGov = useRecoilValue(minFYFDGovPropAtom);
   const minEmergency = useRecoilValue(minFYFDEmergencyPropAtom);
-  const connectedWallet = useConnectedWallet()?.walletAddress as string;
+  const wallet = useConnectedWallet();
+  // to do: setup a estimatedFYFD using the amount of FYFD between the current block height and the last block height
   useEffect(() => {
     refreshFYFD();
-    if (connectedWallet !== addressConnected) {
-      setAddressConnected(connectedWallet as string);
-    }
+    // add a check here to make sure the connected wallet is the same as the address in Recoil State
     // if the user has fyfd, set the hasFYFD state to true
     if (+fyfd.contents > 0) {
       setHasFYFD(true);
+      const decay = FYFD_LOCK_DECAY_RATE * estimatedFYFD;
+      console.log('Estimated FYFD decay: ', decay);
+      setEstimatedFYFD(estimatedFYFD - decay);
     } else {
       // set hasFYFD to false if the user has no fyfd left
       setHasFYFD(false);
@@ -83,14 +91,14 @@ export default function CurrentBlockHeight() {
     console.log(
       'currentBlockHeight [ ' + currentChainID + ' ]: ',
       currentBlockHeight,
-      '\naddressConnected: ',
-      addressConnected,
-      ' --- ',
-      connectedWallet,
+      '\ncurrentAddress: ',
+      currentAddress,
       '\nyfd: ',
       yfd.contents,
       'fyfd: ',
       fyfd.contents,
+      'estimatedFYFD: ',
+      estimatedFYFD,
       '\nhasFYFD: ',
       hasFYFD,
       'canVote: ',

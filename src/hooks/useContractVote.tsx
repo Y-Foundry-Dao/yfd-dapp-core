@@ -7,10 +7,11 @@ import { useRecoilValue } from 'recoil';
 import txHashAtom from 'recoil/txHash/atom';
 import useContractProposal from './useContractProposal';
 import queryVotes from 'utilities/messagesQuery/proposals/queryVotes';
+import { addressConnectedAtom } from '@recoil/connected/address/atoms';
 
 const useContractVote = ({ proposalContract }: any) => {
   const { queryMsg } = useMsg();
-  const connectedWallet = useConnectedWallet();
+  const connectedWallet = useRecoilValue(addressConnectedAtom);
   const { voteContract } = useContractProposal({ proposalContract });
   const [voteTokenBalance, setVoteTokenBalance] = useState(0);
   const [voteCount, setVoteCount] = useState({});
@@ -22,7 +23,7 @@ const useContractVote = ({ proposalContract }: any) => {
     }
     const voteTokenBalance: any = await queryMsg(
       voteContract,
-      queryBalance(connectedWallet?.walletAddress)
+      queryBalance(connectedWallet)
     );
     return voteTokenBalance;
   };

@@ -1,4 +1,3 @@
-// import { LCDClient } from '@terra-money/terra.js';
 import { LCDClient } from '@terra-money/feather.js';
 import { useWallet } from '@terra-money/wallet-provider';
 
