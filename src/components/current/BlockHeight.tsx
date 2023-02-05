@@ -29,6 +29,8 @@ import {
 } from '@recoil/governance/parameters/atoms';
 import { FYFD_LOCK_DECAY_RATE } from '@var/chrono';
 import useChainInfo from '@hooks/useChainInfo';
+import MyLCD from '@utilities/MyValues';
+import { Wallet } from '@terra-money/feather.js';
 
 export default function CurrentBlockHeight() {
   const { currentChainID, currentAddress } = useChainInfo();
@@ -47,7 +49,7 @@ export default function CurrentBlockHeight() {
   const minVault = useRecoilValue(minFYFDVaultPropAtom);
   const minGov = useRecoilValue(minFYFDGovPropAtom);
   const minEmergency = useRecoilValue(minFYFDEmergencyPropAtom);
-
+  const wallet = useConnectedWallet();
   // to do: setup a estimatedFYFD using the amount of FYFD between the current block height and the last block height
   useEffect(() => {
     refreshFYFD();

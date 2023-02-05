@@ -1,4 +1,4 @@
-import { useWallet, useConnectedWallet } from '@terra-money/wallet-provider';
+import { useConnectedWallet, useWallet } from '@terra-money/wallet-provider';
 import { Coins, Msg, MsgExecuteContract } from '@terra-money/feather.js';
 import { MyLCD } from '@utilities/MyValues';
 import useTx from './useTx';
@@ -6,6 +6,7 @@ import { useSetRecoilState } from 'recoil';
 import txHashAtom from 'recoil/txHash/atom';
 import queryNftInfo from 'utilities/messagesQuery/proposals/vaultProposal/queryNftInfo';
 import useChainInfo from '@hooks/useChainInfo';
+import { useCallback, useState } from 'react';
 
 const useMsg = () => {
   const lcd = MyLCD();
@@ -13,6 +14,8 @@ const useMsg = () => {
   const { post } = useWallet();
   const { toastError } = useTx();
   const setTxHashInRecoil = useSetRecoilState(txHashAtom);
+  const connectedWallet = useConnectedWallet();
+
   // custom executeMsg function
   // Takes 4 parameters
   // connectedWallet - comes from wallet-provider
@@ -37,7 +40,7 @@ const useMsg = () => {
       );
 
       // posts the message to the blockchain
-      const tx = await post({ msgs: [msg], chainID: currentChainID })
+      const tx = await post({ chainID: currentChainID, msgs: [msg] })
         .then(async (result) => {
           // TODO: use a for or add a timeout to prevent infinite loops
           //eslint-disable-next-line

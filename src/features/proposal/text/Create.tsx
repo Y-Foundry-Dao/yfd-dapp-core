@@ -1,11 +1,32 @@
-import { useState } from 'react';
 import {
-  FormControl,
-  FormLabel,
-  Checkbox,
+  ButtonGroup,
+  FormLayout,
+  FormStep,
+  FormStepper,
+  Loader,
+  NextButton,
+  PrevButton,
+  Property,
+  PropertyList,
+  StepForm,
+  StepperCompleted
+} from '@saas-ui/react';
+import {
+  Divider,
+  Text,
   Input,
-  Stack,
-  Button
+  InputGroup,
+  InputLeftAddon,
+  Flex,
+  Heading,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+  VStack,
+  Switch,
+  FormLabel
 } from '@chakra-ui/react';
 import { useRecoilValue } from 'recoil';
 import txHashAtom from 'recoil/txHash/atom';
@@ -15,90 +36,110 @@ import msgEncodedProposal from '@utilities/messagesToEncode/msgEncodedProposal';
 import msgExecuteSend from '@utilities/messagesExecute/yfd/msgExecuteSend';
 import useTx from '@hooks/useTx';
 import { SUCCESS_CREATE_PROPOSAL } from '@utilities/variables/toastMessages';
-import convertToBase from '@utilities/converters/convertToBase';
-import getChainDeploy from '@utilities/getValues';
-import Base64 from '@utilities/base64';
 import useMsg from '@hooks/useMsg';
-import useContractForge from '@hooks/useContractForge';
-import useChainInfo from '@hooks/useChainInfo';
+import { useState } from 'react';
+import {
+  currentContractForgeAtom,
+  currentContractGovTokenAtom
+} from '@recoil/chainInfo/atoms';
+import msgCreateProposalText from '@utilities/messagesExecute/forge/msgCreateProposalText';
 
-const msgCreateProposalText = (
-  text: string,
-  isEmergency: boolean,
-  justification: string
-) => {
-  return {
-    create_proposal: {
-      proposal_type: {
-        text: {
-          text: text
-        }
-      },
-      emergency: isEmergency,
-      justification_link: justification
-    }
-  };
-};
-
-export default function ProposalCreationForm({ onClose }: any) {
-  const chainID = useChainInfo().currentChainID;
-  const tokenContract = getChainDeploy(chainID, 'token');
-
-  const txHash = useRecoilValue(txHashAtom);
-  const connectedWallet = useConnectedWallet();
-  const { executeMsg } = useMsg();
-  const { toastSuccessful } = useTx();
-
+function FormTextProposalCreation({ onClose }: any) {
+  const contractForge = useRecoilValue(currentContractForgeAtom);
   const [text, setText] = useState('');
   const [isEmergency, setIsEmergency] = useState(false);
   const [justification, setJustification] = useState('');
 
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
-    const msgCreateProposal = msgCreateProposalText(
-      text,
-      isEmergency,
-      justification
-    );
-    console.log('submitting prop: ', msgCreateProposal);
-    const tx = executeMsg(String(tokenContract), msgCreateProposal);
-    console.log(tx);
-    toastSuccessful(tx, SUCCESS_CREATE_PROPOSAL);
+  const txHash = useRecoilValue(txHashAtom);
+
+  const connectedWallet = useConnectedWallet();
+  const { executeMsg } = useMsg();
+  const { toastSuccessful } = useTx();
+
+  const handleClickCreateTextProposal = async () => {
+    if (connectedWallet) {
+      const msgCreateProposal = msgCreateProposalText(
+        text,
+        isEmergency,
+        justification
+      );
+      const tx = await executeMsg(contractForge, msgCreateProposal);
+      console.log(tx);
+      toastSuccessful(tx, SUCCESS_CREATE_PROPOSAL);
+    }
+  };
+
+  const onSubmit = () => {
+    handleClickCreateTextProposal();
+  };
+
+  const toggleEmergency = () => {
+    setIsEmergency((prevIsEmergency) => !prevIsEmergency);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Stack>
-        <FormControl>
-          <FormLabel htmlFor="text">Text</FormLabel>
-          <Input
-            id="text"
-            type="text"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-          />
-        </FormControl>
-        <FormControl>
-          <FormLabel htmlFor="isEmergency">Emergency</FormLabel>
-          <Checkbox
-            id="isEmergency"
-            checked={isEmergency}
-            onChange={(e) => setIsEmergency(e.target.checked)}
-          />
-        </FormControl>
-        <FormControl>
-          <FormLabel htmlFor="justification">Justification</FormLabel>
-          <Input
-            id="justification"
-            type="text"
-            value={justification}
-            onChange={(e) => setJustification(e.target.value)}
-          />
-        </FormControl>
-        <Button mt={4} type="submit">
-          Submit
-        </Button>
-      </Stack>
-    </form>
+    <StepForm w="95%" onSubmit={onSubmit}>
+      <FormLayout>
+        <FormStepper orientation="vertical">
+          <FormStep name="proposal" title="Text Proposal Details">
+            <FormLayout>
+              <Input
+                value={text}
+                onChange={(event: any) => setText(event.target.value)}
+                placeholder="Enter Proposal Text"
+              />
+              Emergency Proposal
+              <Switch
+                id="emergencyTextSwitch"
+                size="lg"
+                onChange={toggleEmergency}
+              />
+              <InputGroup>
+                <InputLeftAddon children="https://" />
+                <Input
+                  value={justification}
+                  onChange={(event: any) =>
+                    setJustification(event.target.value)
+                  }
+                  placeholder="Enter Justification URL"
+                />
+              </InputGroup>
+              <ButtonGroup>
+                <NextButton />
+                <PrevButton variant="ghost" />
+              </ButtonGroup>
+            </FormLayout>
+          </FormStep>
+          <FormStep name="confirm" title="Confirm">
+            <FormLayout>
+              <Text>Please confirm the information below is correct.</Text>
+              <PropertyList>
+                <Text mt="5" size="sm">
+                  Text Proposal Info
+                </Text>
+                <Divider />
+                <Property label="Text" value={text} />
+                <Property label="Emergency Proposal?" value={isEmergency} />
+                <Property label="Justification URL" value={justification} />
+              </PropertyList>
+              <ButtonGroup>
+                <NextButton />
+                <PrevButton variant="ghost" />
+              </ButtonGroup>
+            </FormLayout>
+          </FormStep>
+
+          <StepperCompleted>
+            {txHash !== '' ? (
+              <ProposalSubmittedText onClose={onClose} />
+            ) : (
+              <Loader>Submitting proposal, just a moment...</Loader>
+            )}
+          </StepperCompleted>
+        </FormStepper>
+      </FormLayout>
+    </StepForm>
   );
 }
+
+export default FormTextProposalCreation;
