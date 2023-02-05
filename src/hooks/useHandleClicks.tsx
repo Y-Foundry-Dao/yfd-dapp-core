@@ -1,5 +1,4 @@
 import useMsg from 'hooks/useMsg';
-import { FORGE_TEST, YFD_TEST } from '@utilities/variables';
 import Base64 from 'utilities/base64';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import msgEncodedStake from 'utilities/messagesToEncode/msgEncodedStake';
@@ -39,18 +38,24 @@ import {
   SUCCESS_VOTE
 } from 'utilities/variables/toastMessages';
 import useTx from './useTx';
-import msgCreateProposalWhitelistWalletAddress from 'utilities/messagesExecute/forge/msgCreateProposalWhitelistWalletAddress';
-import msgCreateProposalWhitelistTokenAddress from 'utilities/messagesExecute/forge/msgCreateProposalWhitelistTokenAddress';
+import msgCreateProposalWhitelistRole from '@utilities/messagesExecute/forge/msgCreateProposalWhitelistRole';
+import msgCreateProposalWhitelistTokenAddress from '@utilities/messagesExecute/forge/msgCreateProposalWhitelistToken';
 import msgCreateProposalParameter from 'utilities/messagesExecute/forge/msgCreateProposalParameter';
 import msgCreateProposalText from 'utilities/messagesExecute/forge/msgCreateProposalText';
 import msgCreateProposalMessage from 'utilities/messagesExecute/forge/msgCreateProposalMessage';
 import msgCreateProposalLiquidateVault from 'utilities/messagesExecute/forge/msgCreateProposalLiquidateVault';
 import msgCreateProposalStopVaultProposal from 'utilities/messagesExecute/forge/msgCreateProposalStopVaultProposal';
 import msgCreateProposalVaultMigrate from 'utilities/messagesExecute/forge/msgCreateProposalVaultMigrate';
+import {
+  currentContractForgeAtom,
+  currentContractGovTokenAtom
+} from '@recoil/chainInfo/atoms';
 
 const useHandleClicks = () => {
   const { executeMsg } = useMsg();
   const connectedWallet = useConnectedWallet();
+  const contractForge = useRecoilValue(currentContractForgeAtom);
+  const contractGovToken = useRecoilValue(currentContractGovTokenAtom);
 
   const setAmountStakeYFD = useSetRecoilState(inputStakeYFD);
 
@@ -104,7 +109,7 @@ const useHandleClicks = () => {
     const msgToEncode = msgEncodedStake(duration);
     const encodedMessage = Base64.btoa(msgToEncode);
     const msgStakeYFDToken = msgStakeYFD(
-      FORGE_TEST,
+      contractForge,
       convertToBase(amount),
       encodedMessage
     );
@@ -112,17 +117,17 @@ const useHandleClicks = () => {
     // Therefore it does not need user input.
     // For now the contract is hard coded to testnet but can be made dynamic later
     // By detecting what network we are from and using the appropriate networks contract from there
-    const tx = await executeMsg(YFD_TEST, msgStakeYFDToken);
+    const tx = await executeMsg(contractGovToken, msgStakeYFDToken);
     console.log(tx);
     toastSuccessful(tx, SUCCESS_STAKE);
     setAmountStakeYFD(0);
     return;
   };
 
-  const handleClickCreateProposalWhitelistWalletAddress = async () => {
+  const handleClickCreateProposalWhitelistRole = async () => {
     const tx = await executeMsg(
-      FORGE_TEST,
-      msgCreateProposalWhitelistWalletAddress(
+      contractForge,
+      msgCreateProposalWhitelistRole(
         whitelistWalletAddress,
         whitelistWalletAddressName,
         whitelistWalletAddressImageLink,
@@ -143,7 +148,7 @@ const useHandleClicks = () => {
 
   const handleClickCreateProposalWhitelistTokenAddress = async () => {
     const tx = await executeMsg(
-      FORGE_TEST,
+      contractForge,
       msgCreateProposalWhitelistTokenAddress(
         whitelistTokenAddress,
         whitelistTokenName,
@@ -169,7 +174,7 @@ const useHandleClicks = () => {
       'eyJzdGFrZSI6e319',
       convertToBase(inputFundingAmount)
     );
-    const tx = await executeMsg(YFD_TEST, msgFundProposal);
+    const tx = await executeMsg(contractGovToken, msgFundProposal);
     toastSuccessful(tx, SUCCESS_FUND_PROPOSAL);
   };
 
@@ -227,7 +232,7 @@ const useHandleClicks = () => {
 
   const handleClickFinalizeEmergency = async (index: any) => {
     if (connectedWallet) {
-      const tx = await executeMsg(FORGE_TEST, {
+      const tx = await executeMsg(contractForge, {
         finalize_emergency: { idx: index }
       });
       toastSuccessful(tx, SUCCESS_FINALIZED);
@@ -236,7 +241,7 @@ const useHandleClicks = () => {
 
   const handleClickFinalizeProposal = async (index: any) => {
     if (connectedWallet) {
-      const tx = await executeMsg(FORGE_TEST, {
+      const tx = await executeMsg(contractForge, {
         finalize_proposal: { idx: index }
       });
       toastSuccessful(tx, SUCCESS_FINALIZED);
@@ -245,7 +250,7 @@ const useHandleClicks = () => {
 
   const handleClickFinalizeVaultProposal = async (index: any) => {
     if (connectedWallet) {
-      const tx = await executeMsg(FORGE_TEST, {
+      const tx = await executeMsg(contractForge, {
         finalize_vault_proposal: { idx: index }
       });
       toastSuccessful(tx, SUCCESS_FINALIZED);
@@ -263,7 +268,7 @@ const useHandleClicks = () => {
     handleClickFinalizeEmergency,
     handleClickFinalizeProposal,
     handleClickFinalizeVaultProposal,
-    handleClickCreateProposalWhitelistWalletAddress,
+    // handleClickCreateProposalWhitelistRole,
     handleClickCreateProposalWhitelistTokenAddress
   };
 };

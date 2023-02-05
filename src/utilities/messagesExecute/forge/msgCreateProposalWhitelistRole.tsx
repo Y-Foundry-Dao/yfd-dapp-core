@@ -1,4 +1,4 @@
-const msgCreateProposalAddressWhitelist = (
+export const msgCreateProposalWhitelistRole = (
   address: string,
   name: string,
   imageLink: string,
@@ -38,4 +38,4 @@ const msgCreateProposalAddressWhitelist = (
   };
 };
 
-export default msgCreateProposalAddressWhitelist;
+export default msgCreateProposalWhitelistRole;
