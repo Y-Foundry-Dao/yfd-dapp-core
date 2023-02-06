@@ -90,13 +90,14 @@ const useChainInfo = () => {
       );
       return newBlockHeight;
     } catch (error) {
+      return '';
       console.error('error in getCurrentBlockHeight: ', error);
     }
   };
 
   const setCurrentBlockHeightToState = async () => {
     const blockHeight = await getCurrentBlockHeight(currentChainID);
-    if (blockHeight == undefined) {
+    if (blockHeight == undefined || blockHeight == '') {
       console.warn('blockHeight returned as undefined');
     } else {
       setCurrentBlockHeight(blockHeight);

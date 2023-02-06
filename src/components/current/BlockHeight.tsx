@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useWallet, useConnectedWallet } from '@terra-money/wallet-provider';
 import {
   useRecoilState,
   useRecoilValue,
@@ -11,14 +10,11 @@ import Loading from '@components/NoticeLoading';
 import styles from '@scss/app.module.scss';
 import { currentBlockHeightAtom } from '@recoil/chainInfo/atoms';
 import {
-  balanceYfdConnectedAtom,
-  balanceFyfdConnectedAtom,
   addressHasFYFDAtom,
   addressCanVoteAtom,
   addressCanProposeGovAtom,
   addressCanProposeVaultAtom,
   addressCanProposeEmergencyAtom,
-  addressConnectedAtom,
   estimatedFyfdConnectedAtom
 } from '@recoil/connected/address/atoms';
 import { selectMyFYFD, selectMyYFD } from '@recoil/connected/balance/selectors';
@@ -29,8 +25,7 @@ import {
 } from '@recoil/governance/parameters/atoms';
 import { FYFD_LOCK_DECAY_RATE } from '@var/chrono';
 import useChainInfo from '@hooks/useChainInfo';
-import MyLCD from '@utilities/MyValues';
-import { Wallet } from '@terra-money/feather.js';
+import NoticeLoading from '@components/NoticeLoading';
 
 export default function CurrentBlockHeight() {
   const { currentChainID, currentAddress } = useChainInfo();
@@ -49,9 +44,13 @@ export default function CurrentBlockHeight() {
   const minVault = useRecoilValue(minFYFDVaultPropAtom);
   const minGov = useRecoilValue(minFYFDGovPropAtom);
   const minEmergency = useRecoilValue(minFYFDEmergencyPropAtom);
-  const wallet = useConnectedWallet();
+
   // to do: setup a estimatedFYFD using the amount of FYFD between the current block height and the last block height
   useEffect(() => {
+    if (currentBlockHeight == 0) {
+      // going to do nothing if the currentBlockHeight is empty
+      return;
+    }
     refreshFYFD();
     // add a check here to make sure the connected wallet is the same as the address in Recoil State
     // if the user has fyfd, set the hasFYFD state to true
@@ -110,7 +109,7 @@ export default function CurrentBlockHeight() {
       'canEmer: ',
       canEmer
     );
-  }, [currentBlockHeight, currentChainID, minEmergency, minGov, minVault]);
+  }, [currentBlockHeight]);
   if (currentBlockHeight) {
     const label = 'Current Block Height - ' + currentChainID;
     return (
@@ -123,6 +122,6 @@ export default function CurrentBlockHeight() {
       </>
     );
   } else {
-    return <Loading title="Block Height Loading..." />;
+    return <NoticeLoading title="Block Height Loading..." />;
   }
 }
