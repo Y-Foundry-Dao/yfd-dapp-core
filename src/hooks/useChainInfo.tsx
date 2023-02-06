@@ -84,6 +84,8 @@ const useChainInfo = () => {
   };
 
   const getCurrentBlockHeight = async (chain: string) => {
+    // also collectable here: https://lcd.terra.dev/blocks/latest
+    // https://pisco-lcd.terra.dev/blocks/latest
     try {
       const newBlockHeight = Number.parseInt(
         (await lcd.tendermint.blockInfo(chain)).block.header.height

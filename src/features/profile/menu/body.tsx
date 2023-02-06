@@ -19,6 +19,17 @@ export default function MenuProfileBody() {
               </Text>
               <br />
               <Text>Personalized Test Objectives will appear here.</Text>
+              <ul>
+                <li>
+                  Forge Contract:
+                  <pre>
+                    terra1s5hg4kusnnp5q8r8l0das4tftd50xcve4e2l95eqjy3fgducekfsw6yder
+                  </pre>
+                </li>
+                <li>
+                  YFD Token Contract:<pre>coming up</pre>
+                </li>
+              </ul>
               <br />
             </div>
             <div className={styles.containerProfileMenuText}>

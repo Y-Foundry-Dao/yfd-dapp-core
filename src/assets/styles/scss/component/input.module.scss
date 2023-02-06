@@ -1,3 +1,24 @@
+.inputUrl {
+    :valid {
+        @extend .inputValid;
+    }
+    :invalid {
+        @extend .inputInvalid;
+    }
+}
+
+.inputValid {
+    color: var(--theme-confirm-color);
+}
+
+.inputInvalid {
+    color: var(--theme-error-color);
+}
+
+.inputEmergency {
+    color: var(--theme-emergency-color);
+}
+
 .checkbox-wrapper {
     display: flex;
     align-items: center;
