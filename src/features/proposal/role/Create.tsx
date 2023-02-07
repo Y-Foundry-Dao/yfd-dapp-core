@@ -91,7 +91,7 @@ function FormRoleProposalCreation({ onClose }: any) {
     whitelistImage =
       PATH_PROFILE_PFP + profile.address.toString() + PATH_PROFILE_PFP_SUFFIX;
   }
-  
+
   const whitelistGithub = platforms.github.toString();
   const whitelistTwitter = platforms.twitter.toString();
   const whitelistTelegram = platforms.telegram.toString();
