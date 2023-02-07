@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import ProposalTypeSelector from './create/TypeSelector';
 import { inputProposalType } from 'recoil/input/atoms';
-import CreationFormWhitelistTokenAddress from './governance/create/CreationFormWhitelistTokenAddress';
+import CreationFormWhitelistTokenAddress from './token/Create';
 import CreationFormParameter from './governance/create/CreationFormParameter';
 import CreationFormSpend from './governance/create/CreationFormSpend';
 import FormProposalVault from './vault/Create';

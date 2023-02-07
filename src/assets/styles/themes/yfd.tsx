@@ -7,6 +7,11 @@ import Select from '@chakra/select';
 import Input from '@chakra/input';
 import NumberInput from '@chakra/number-input';
 import Switch from '@chakra/switch';
+import Form from '@chakra/form';
+
+const activeLabelStyles = {
+  transform: 'scale(0.85) translateY(-24px)'
+};
 
 const base = {
   body: {
@@ -68,6 +73,7 @@ const extended = {
     Menu,
     Popover,
     Modal,
+    Form,
     Select,
     Input,
     NumberInput,

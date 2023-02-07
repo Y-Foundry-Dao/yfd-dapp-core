@@ -22,6 +22,5 @@ function ProposalTypeSelector() {
   );
 }
 // <option value="governanceSpend">Spend Proposal</option>
-// <option value="governanceText">Text Proposal</option>
 
 export default ProposalTypeSelector;

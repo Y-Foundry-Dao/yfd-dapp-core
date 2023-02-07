@@ -50,5 +50,8 @@ export const Icons: { [key: string]: string } = {
   checkmark: 'check_circle',
   copy: 'content_copy',
   paste: 'content_paste',
-  profile_paste: 'person_pin'
+  profile_paste: 'person_pin',
+  money: 'attach_money',
+  money_confirm: 'price_check',
+  money_disable: 'money_off'
 };
