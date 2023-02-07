@@ -9,8 +9,7 @@
     }
    }
    
-.standard {
-    width: 100%;
+.buttonStandard {
     color: var(--button-standard-color);
     background-color: var(--button-standard-bg);
     border: none;
@@ -21,6 +20,16 @@
     cursor: pointer;
     transition: 0.3s;
     white-space: nowrap;
+    &:hover {
+        filter: brightness(1.5);
+    }
+    &-wide {
+        width: 100%;
+    }
+    &-dark {
+        @extend .buttonStandard;
+        filter: brightness(0.5);
+    }
     svg {
         color: var(--button-special-color);
         margin-right: 1em;
@@ -39,7 +48,7 @@
     }
 }
 
-.outline {
+.buttonOutline {
     color: var(--button-standard-color);
     border: var(--button-special-bg) solid 0.35rem;
     padding: 0.5rem 1.6rem;
@@ -60,7 +69,7 @@
     }
 }
 
-.simple {
+.buttonSimple {
     color: var(--button-standard-color);
     border: none;
     padding: 0.5rem 1.6rem;
@@ -81,7 +90,7 @@
     }
 }
 
-.clear {
+.buttonClear {
     display: flex;
     flex-direction: column;
     color: var(--theme-color);
@@ -105,4 +114,25 @@
         padding-right: 0.4rem;
         padding-left: 0.4rem;
     }
+}
+
+.standard {
+    // delete this after replacing all uses with buttonStandard
+    @extend .buttonStandard;
+    width: 100%;
+}
+
+.clear {
+    // delete this after replacing all uses with buttonClear
+    @extend .buttonClear;
+}
+
+.simple {
+    // delete this after replacing all uses with buttonSimple
+    @extend .buttonSimple;
+}
+
+.outline {
+    // delete this after replacing all uses with buttonOutline
+    @extend .buttonOutline;
 }
