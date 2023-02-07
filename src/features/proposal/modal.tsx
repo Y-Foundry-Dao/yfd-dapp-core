@@ -5,7 +5,10 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
-  ModalCloseButton
+  ModalCloseButton,
+  Flex,
+  Box,
+  Spacer
 } from '@chakra-ui/react';
 import ProposalTypeSelector from './create/TypeSelector';
 import { inputProposalType } from 'recoil/input/atoms';
@@ -32,19 +35,26 @@ function ProposalModal({ isOpen, onClose }: any) {
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>
-          <span
-            className={
-              styles['icon-create'] +
-              ' ' +
-              styles['icon-menu'] +
-              ' material-symbols-outlined'
-            }
-          >
-            {Icons.propose}
-          </span>
-          Create A Proposal
+          <Flex direction="row">
+            <Box>
+              <span
+                className={
+                  'material-symbols-outlined ' + styles['iconProposalCreate']
+                }
+              >
+                {Icons.propose}
+              </span>
+            </Box>
+            <Box width="50%">
+              <span className={styles['text-header-proposal-create']}>
+                Create Proposal
+              </span>
+            </Box>
+            <Box>
+              <ProposalTypeSelector />
+            </Box>
+          </Flex>
         </ModalHeader>
-        <ProposalTypeSelector />
         <ModalCloseButton />
         <ModalBody>
           {/* <ProposalCreationForm onClose={onClose} /> */}

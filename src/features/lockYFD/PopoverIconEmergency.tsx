@@ -15,21 +15,22 @@ export default function PopoverIconEmergency() {
 
   useEffect(() => {
     if (canEmergency) {
-      styleIcon = styleIcon + ' ' + styles['icon-create'];
+      styleIcon = styleIcon + ' ' + styles['iconLockYFD-enable'];
+    } else {
+      styleIcon = styleIcon + ' ' + styles.iconLockYFD;
     }
   }, [canEmergency]);
 
+  const title = minEmergency + ' fYFD';
   return (
     <WrapItem className={styles['lockAction']}>
       <SimpleGrid>
         <GridItem>
-          <i className={styleIcon}>{Icons.guardian}</i>
+          <span title={title} className={styleIcon}>
+            {Icons.guardian}
+          </span>
         </GridItem>
-        <GridItem>
-          Protect
-          <br />
-          {minEmergency}
-        </GridItem>
+        <GridItem>Protect</GridItem>
       </SimpleGrid>
     </WrapItem>
   );

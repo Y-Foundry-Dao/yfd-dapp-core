@@ -6,13 +6,15 @@ import { Icons } from '@var/icons';
 import styles from '@scss/app.module.scss';
 import { addressCanVoteAtom } from '@recoil/connected/address/atoms';
 
-let styleVote = 'material-symbols-outlined';
+let styleIcon = 'material-symbols-outlined';
 
 export default function PopoverIconVote() {
   const canVote = useRecoilValue(addressCanVoteAtom);
   useEffect(() => {
     if (canVote) {
-      styleVote = styleVote + ' ' + styles['icon-create'];
+      styleIcon = styleIcon + ' ' + styles['iconLockYFD-enable'];
+    } else {
+      styleIcon = styleIcon + ' ' + styles.iconLockYFD;
     }
   }, [canVote]);
   return (
@@ -20,13 +22,11 @@ export default function PopoverIconVote() {
       <WrapItem className={styles['lockAction']}>
         <SimpleGrid>
           <GridItem>
-            <i className={styleVote}>{Icons.vote}</i>
+            <span title="Any Amount of fYFD" className={styleIcon}>
+              {Icons.vote}
+            </span>
           </GridItem>
-          <GridItem>
-            Vote
-            <br />
-            <span className={styleVote}>{Icons.all}</span>
-          </GridItem>
+          <GridItem>Vote</GridItem>
         </SimpleGrid>
       </WrapItem>
     </>
