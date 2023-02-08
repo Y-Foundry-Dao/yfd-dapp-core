@@ -37,6 +37,21 @@
             filter: drop-shadow(0.1rem 0.1rem 0.5rem var(--theme-bg-icon-hover));
         }
     }
+
+    &Confirm {
+        @extend .icon;
+        color: var(--theme-confirm-color);
+    }
+
+    &Paste {
+        @extend .icon;
+        color: var(--theme-paste-color);
+        cursor: pointer;
+        align-self: bottom;
+        &:hover {
+            filter: drop-shadow(0.1rem 0.1rem 0.5rem var(--theme-bg-icon-hover));
+        }
+    }
 }
 
 .iconLockYFD {

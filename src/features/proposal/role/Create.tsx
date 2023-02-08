@@ -82,6 +82,7 @@ function FormRoleProposalCreation({ onClose }: any) {
   const platforms: any = profile.platforms;
   console.log(platforms);
   let whitelistName = '';
+
   if (profile.name.length > 0) {
     whitelistName = profile.name.toString();
   }
@@ -90,6 +91,7 @@ function FormRoleProposalCreation({ onClose }: any) {
     whitelistImage =
       PATH_PROFILE_PFP + profile.address.toString() + PATH_PROFILE_PFP_SUFFIX;
   }
+  
   const whitelistGithub = platforms.github.toString();
   const whitelistTwitter = platforms.twitter.toString();
   const whitelistTelegram = platforms.telegram.toString();
