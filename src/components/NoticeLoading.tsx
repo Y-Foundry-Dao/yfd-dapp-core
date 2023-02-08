@@ -4,10 +4,5 @@ interface LoadingProps {
   title?: string;
 }
 export default function NoticeLoading({ title = '' }: LoadingProps) {
-  return (
-    <>
-      <Spinner size={'sm'} color={'gray'} />
-      <span className={styles.noticeLoading}>{title}</span>
-    </>
-  );
+  return <Spinner size="xs" colorScheme="facebook" label={title} />;
 }

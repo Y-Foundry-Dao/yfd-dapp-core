@@ -422,11 +422,7 @@ body {
     margin-top: 0.625rem;
     margin-bottom: 0.625rem;
     &Text {
-        font-size: 0.75rem;
-        color: var(--theme-inactive-color);
-        margin-top: 0.625rem;
-        margin-bottom: 0.625rem;
-        cursor: help;
+        @extend .textConsole;
     }
 }
 
