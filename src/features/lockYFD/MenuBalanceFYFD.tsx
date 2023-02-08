@@ -20,33 +20,26 @@ export default function PopoverBalanceFYFD() {
 
   return (
     <>
-      <fieldset className={styles.popoverActionsSection} role="presentation">
-        <legend className={styles.headingLegend} role="presentation">
-          <h2>fYFD</h2>
-        </legend>
-        <>
-          <Text
-            className={styles.popoverFyfdBalance}
-            // onClick copy to clipboard
-            onClick={() => {
-              navigator.clipboard.writeText(balancefYFD.toString());
-              toast({
-                position: 'top',
-                title: 'Copied!',
-                description:
-                  'Your fYFD balance of ' +
-                  Math.round(+balancefYFD).toLocaleString() +
-                  ' has been copied to your clipboard.',
-                status: 'info',
-                duration: 5000,
-                isClosable: true
-              });
-            }}
-          >
-            {Math.round(parseInt(balancefYFD.toString())).toLocaleString()}
-          </Text>
-        </>
-      </fieldset>
+      <Text
+        className={styles.popoverFyfdBalance}
+        // onClick copy to clipboard
+        onClick={() => {
+          navigator.clipboard.writeText(balancefYFD.toString());
+          toast({
+            position: 'top',
+            title: 'Copied!',
+            description:
+              'Your fYFD balance of ' +
+              Math.round(+balancefYFD).toLocaleString() +
+              ' has been copied to your clipboard.',
+            status: 'info',
+            duration: 5000,
+            isClosable: true
+          });
+        }}
+      >
+        {Math.round(parseInt(balancefYFD.toString())).toLocaleString()}
+      </Text>
     </>
   );
 }

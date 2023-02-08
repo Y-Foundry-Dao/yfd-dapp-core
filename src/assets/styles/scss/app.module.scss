@@ -100,6 +100,8 @@ body {
     color: var(--theme-gray-light);
 
     h2 {
+        display: flex;
+        align-items: center;
         font-size: 1rem;
         background-color: rgba(40, 40, 40, 1);
         margin: 0;
@@ -111,7 +113,12 @@ body {
         text-transform: uppercase;
         letter-spacing: 0.25em;
         color: var(--theme-text-color);
+        transform: translateY(-5%);
     }
+}
+
+.headingLegendText {
+    padding-left: 0.75em;
 }
 
 .video-bg {

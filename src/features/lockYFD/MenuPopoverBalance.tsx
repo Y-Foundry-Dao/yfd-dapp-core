@@ -25,7 +25,7 @@ import styles from '@scss/app.module.scss';
 
 //import selectFyfd from '@recoil/connected/balance/selectors';
 //import selectYFD from '@recoil/connected/balance/selectors';
-import { selectMyYFD } from '@recoil/connected/balance/selectors';
+import { selectMyYFD, selectMyFYFD } from '@recoil/connected/balance/selectors';
 import NoticeLoading from '@components/NoticeLoading';
 // import { myFYFD, myYFD } from '@utilities/myValues';
 import PopoverBalanceFYFD from './MenuBalanceFYFD';
@@ -38,9 +38,10 @@ import { Icons } from '@utilities/variables/icons';
 export default function MenuFyfdBalance() {
   const toast = useToast();
   const myYFD = useRecoilValueLoadable(selectMyYFD);
+  const myFYFD = useRecoilValueLoadable(selectMyFYFD);
   const balanceYFD =
     myYFD.state == 'hasValue' ? myYFD.contents : <NoticeLoading />;
-
+  const balanceFYFD = myFYFD.state == 'hasValue' ? myFYFD.contents : 0;
   return (
     <Portal>
       <PopoverContent className={styles.popoverWrapper}>
@@ -59,89 +60,89 @@ export default function MenuFyfdBalance() {
           </Wrap>
         </fieldset>
         <PopoverBody className={styles.popoverBalancesWrapper}>
-          <PopoverBalanceFYFD />
-          <br />
-          <fieldset className={styles['headingWrapper']} role="presentation">
+          <fieldset
+            className={styles.popoverActionsSection}
+            role="presentation"
+          >
             <legend className={styles.headingLegend} role="presentation">
-              <h2>
-                <span className="material-symbols-outlined">
-                  {Icons.lock_yfd}
-                </span>{' '}
-                LOCK
-              </h2>
+              <h2>fYFD</h2>
             </legend>
-            <PopoverBalanceYFD />
-          </fieldset>
-          <br />
-          <fieldset className={styles['headingWrapper']} role="presentation">
-            <legend className={styles.headingLegend} role="presentation">
-              <h2>
-                <span className="material-symbols-outlined">
-                  {Icons.reclaim_yfd}
-                </span>{' '}
-                RECLAIM
-              </h2>
-            </legend>
-            <Accordion allowToggle>
-              <AccordionItem className={styles.profileMenuLayout}>
-                <AccordionButton>
-                  <Box flex="1" textAlign="left">
-                    <h2>$YFD:</h2>
-                  </Box>
-                  <Box flex="1" textAlign="right">
-                    <h2 className={styles.textSpecial}>ZERO</h2>
-                  </Box>
-                  <AccordionIcon ml={'1rem'} />
-                </AccordionButton>
-                <AccordionPanel pb={4}>
-                  {+balanceYFD < -1 ? (
-                    <>
-                      <SimpleGrid columns={2} spacing={2}>
-                        <Box>
-                          <span
-                            className={
-                              'material-symbols-outlined ' + styles.inputValid
-                            }
-                          >
-                            {Icons.checkmark}
-                          </span>
-                        </Box>
-                        <Box>
-                          <Text ml={'1rem'}>You have YFD to Reclaim</Text>
-                        </Box>
-                        <Box>
-                          <span className={styles.textSpecial}>CLAIM</span>
-                        </Box>
-                        <Box>
-                          <button
-                            className={styles.buttonPopoverDeposit}
-                            onClick={async () => {
-                              toast({
-                                position: 'top',
-                                title: '[NOT IMPLEMENTED] Claimed!',
-                                description:
-                                  'Your YFD balance of ' +
-                                  balanceYFD +
-                                  ' has been claimed.',
-                                status: 'success',
-                                duration: 5000,
-                                isClosable: true
-                              });
-                            }}
-                          >
-                            Claim $YFD
-                          </button>
-                        </Box>
-                      </SimpleGrid>
-                    </>
+            <PopoverBalanceFYFD />
+            <br />
+            <SimpleGrid columns={2} spacing={5}>
+              <Box>
+                <fieldset className={styles.profileMenuLayout}>
+                  <legend className={styles.headingLegend} role="presentation">
+                    <h2>FUNDING</h2>
+                  </legend>
+                  {balanceYFD ? (
+                    '$ ' +
+                    Math.round(
+                      parseInt((+balanceFYFD * 0.01).toString())
+                    ).toLocaleString() +
+                    ' USD'
                   ) : (
-                    <>
-                      <Box>You have no $YFD to reclaim.</Box>
-                    </>
-                  )}{' '}
-                </AccordionPanel>
-              </AccordionItem>
-            </Accordion>
+                    <NoticeLoading />
+                  )}
+                </fieldset>
+              </Box>
+              <Box>
+                <Button
+                  as="button"
+                  variant="outline"
+                  title="Lock YFD"
+                  size="sm"
+                >
+                  <span className="material-symbols-outlined">
+                    {Icons.money}
+                  </span>
+                  <span className={styles.headingLegendText}>Fund</span>
+                </Button>
+              </Box>
+              <Box>
+                <fieldset className={styles.profileMenuLayout}>
+                  <legend className={styles.headingLegend} role="presentation">
+                    <h2>Available</h2>
+                  </legend>
+                  {balanceYFD ? (
+                    Math.round(
+                      parseInt(balanceYFD.toString())
+                    ).toLocaleString() + ' $YFD'
+                  ) : (
+                    <NoticeLoading />
+                  )}
+                </fieldset>
+              </Box>
+              <Box>
+                <Button
+                  as="button"
+                  variant="outline"
+                  title="Lock YFD"
+                  size="sm"
+                >
+                  <span className="material-symbols-outlined">
+                    {Icons.lock_yfd}
+                  </span>
+                  <span className={styles.headingLegendText}>Lock</span>
+                </Button>
+              </Box>
+              <Box>
+                <fieldset className={styles.profileMenuLayout}>
+                  <legend className={styles.headingLegend} role="presentation">
+                    <h2>Unlocked</h2>
+                  </legend>
+                  <NoticeLoading />
+                </fieldset>
+              </Box>
+              <Box>
+                <Button as="button" variant="outline" size="sm">
+                  <span className="material-symbols-outlined">
+                    {Icons.reclaim_yfd}
+                  </span>
+                  <span className={styles.headingLegendText}>Reclaim</span>
+                </Button>
+              </Box>
+            </SimpleGrid>
           </fieldset>
           <br />
         </PopoverBody>
