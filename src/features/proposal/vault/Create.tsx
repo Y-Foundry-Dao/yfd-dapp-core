@@ -44,7 +44,7 @@ import {
   currentContractGovTokenAtom
 } from '@recoil/chainInfo/atoms';
 
-function ProposalCreationForm({ onClose }: any) {
+export default function FormProposalVault({ onClose }: any) {
   const contractForge = useRecoilValue(currentContractForgeAtom);
   const contractGovToken = useRecoilValue(currentContractGovTokenAtom);
   const [name, setName] = useState('');
@@ -382,5 +382,3 @@ function ProposalCreationForm({ onClose }: any) {
     </StepForm>
   );
 }
-
-export default ProposalCreationForm;

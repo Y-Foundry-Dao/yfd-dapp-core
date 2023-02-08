@@ -44,5 +44,11 @@ export const Icons: { [key: string]: string } = {
   team: 'groups',
   discuss: 'diversity_3',
   expand_down: 'expand_more',
-  wallet: 'account_balance_wallet'
+  wallet: 'account_balance_wallet',
+  person: 'person',
+  person_confirm: 'how_to_reg',
+  checkmark: 'check_circle',
+  copy: 'content_copy',
+  paste: 'content_paste',
+  profile_paste: 'person_pin'
 };

@@ -14,7 +14,7 @@ function ProposalTypeSelector() {
     <Select w="60%" value={proposalTypeSelected} onChange={handleChange}>
       <option value="vault">Vault Proposal</option>
       <option value="governanceParameter">Governance Parameter</option>
-      <option value="governanceWhitelistWalletAddress">Role Whitelist</option>
+      <option value="governanceWhitelistRole">Role Whitelist</option>
       <option value="governanceWhitelistTokenAddress">Token Whitelist</option>
       <option value="governanceText">Text Proposal</option>
     </Select>

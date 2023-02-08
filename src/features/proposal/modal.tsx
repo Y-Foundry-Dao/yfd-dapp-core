@@ -1,3 +1,4 @@
+import { useRecoilValue } from 'recoil';
 import {
   Modal,
   ModalOverlay,
@@ -6,15 +7,14 @@ import {
   ModalBody,
   ModalCloseButton
 } from '@chakra-ui/react';
-import ProposalCreationForm from './vault/Create';
 import ProposalTypeSelector from './create/TypeSelector';
-import CreationFormWhitelistWalletAddress from './governance/create/CreationFormWhitelistWalletAddress';
 import { inputProposalType } from 'recoil/input/atoms';
-import { useRecoilValue } from 'recoil';
 import CreationFormWhitelistTokenAddress from './governance/create/CreationFormWhitelistTokenAddress';
 import CreationFormParameter from './governance/create/CreationFormParameter';
-import CreationFormText from './text/Create';
 import CreationFormSpend from './governance/create/CreationFormSpend';
+import FormProposalVault from './vault/Create';
+import CreationFormText from './text/Create';
+import CreationRoleWhitelist from './role/Create';
 import styles from '@scss/app.module.scss';
 import { Icons } from '@var/icons';
 
@@ -49,10 +49,10 @@ function ProposalModal({ isOpen, onClose }: any) {
         <ModalBody>
           {/* <ProposalCreationForm onClose={onClose} /> */}
           {proposalTypeSelected === 'vault' && (
-            <ProposalCreationForm onClose={onClose} />
+            <FormProposalVault onClose={onClose} />
           )}
-          {proposalTypeSelected === 'governanceWhitelistWalletAddress' && (
-            <CreationFormWhitelistWalletAddress onClose={onClose} />
+          {proposalTypeSelected === 'governanceWhitelistRole' && (
+            <CreationRoleWhitelist onClose={onClose} />
           )}
           {proposalTypeSelected === 'governanceWhitelistTokenAddress' && (
             <CreationFormWhitelistTokenAddress onClose={onClose} />

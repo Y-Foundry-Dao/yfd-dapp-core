@@ -84,19 +84,22 @@ const useChainInfo = () => {
   };
 
   const getCurrentBlockHeight = async (chain: string) => {
+    // also collectable here: https://lcd.terra.dev/blocks/latest
+    // https://pisco-lcd.terra.dev/blocks/latest
     try {
       const newBlockHeight = Number.parseInt(
         (await lcd.tendermint.blockInfo(chain)).block.header.height
       );
       return newBlockHeight;
     } catch (error) {
+      return '';
       console.error('error in getCurrentBlockHeight: ', error);
     }
   };
 
   const setCurrentBlockHeightToState = async () => {
     const blockHeight = await getCurrentBlockHeight(currentChainID);
-    if (blockHeight == undefined) {
+    if (blockHeight == undefined || blockHeight == '') {
       console.warn('blockHeight returned as undefined');
     } else {
       setCurrentBlockHeight(blockHeight);
