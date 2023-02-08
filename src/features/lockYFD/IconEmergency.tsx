@@ -26,6 +26,7 @@ export default function IconEmergency() {
     minFYFDEmergencyPropAtom
   );
   const canProposeEmergency = useRecoilValue(addressCanProposeEmergencyAtom);
+  let contentGuardian = '';
 
   // query the governance parameters for the minimum fyfd required for each proposal type
   const qEmerg = queryGovernanceParameter('fYFD_EmergencyProposalMin');
@@ -49,6 +50,13 @@ export default function IconEmergency() {
       // any amount of YFD can vote so the icon color is active if the user has any fyfd
       if (canProposeEmergency) {
         styleGuardian = styleGuardian + ' ' + styles['icon-create'];
+        contentGuardian =
+          '<Box className={styles.stakeYfdIcon}><Tooltip label="Protect" aria-label="Protect" placement="top">' +
+          '<span className=' +
+          styleGuardian +
+          '>' +
+          Icons.guardian +
+          '</span></Tooltip></Box>';
       }
     }
     getData().then((res) => res);
@@ -63,11 +71,5 @@ export default function IconEmergency() {
     setMinFYFDEmergencyProp
   ]);
 
-  return (
-    <Box className={styles.stakeYfdIcon}>
-      <Tooltip label="Protect" aria-label="Protect" placement="top">
-        <span className={styleGuardian}>{Icons.guardian}</span>
-      </Tooltip>
-    </Box>
-  );
+  return <>{contentGuardian}</>;
 }

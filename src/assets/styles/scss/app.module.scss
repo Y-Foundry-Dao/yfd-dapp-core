@@ -81,6 +81,10 @@ body {
     box-shadow: 0.2rem 0.2em 0.3em 0.2em var(--theme-shadow-color);
 }
 
+.noticeLoading {
+    margin-left: 0.5em;
+    color: var(--theme-inactive-color);
+}
 .headingWrapper {
     @extend .boxShadow;
     background-color: rgba(0, 0, 0, 0.3);
@@ -119,6 +123,56 @@ body {
 
 .headingLegendText {
     padding-left: 0.75em;
+}
+
+// text inside the border
+.headingLegendTextMinimal {
+    text-decoration: underline;
+   
+}
+
+.headingWrapperMinimal {
+    background-color: rgba(0, 0, 0, 0.1);
+    //border-width: 0.7em 0 0 0;
+    //border-width: 0.15em 0.0em 0.15em 0.01em;
+    border: 0;
+    border-radius: var(--theme-border-radius);
+    border-color: var(--theme-border-color);
+    padding: 0.5em;
+    padding-bottom: 1em;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+}
+
+.headingWrapperInset {
+    @extend .wrapperInset;
+    color: var(--theme-gray-light);
+    
+    fieldset {
+        width: 100%;
+    }
+    
+    span {
+        padding-left: 0.5em;
+        transition-duration: 1.5s;
+        transition-timing-function: ease-in-out;
+        transition-property: color, font-size;
+        &:hover {
+            color: var(--theme-special-color);
+            font-size: 125%;
+        }
+    }
+
+    legend {
+        color: var(--theme-inactive-color);
+        margin-left: 0.75em;
+
+        h2 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+    }
 }
 
 .video-bg {
