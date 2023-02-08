@@ -8,10 +8,7 @@ import Input from '@chakra/input';
 import NumberInput from '@chakra/number-input';
 import Switch from '@chakra/switch';
 import Form from '@chakra/form';
-
-const activeLabelStyles = {
-  transform: 'scale(0.85) translateY(-24px)'
-};
+import Accordion from '@chakra/accordion';
 
 const base = {
   body: {
@@ -68,6 +65,7 @@ const base = {
 const extended = {
   ...base,
   components: {
+    Accordion,
     Button,
     Card,
     Menu,

@@ -14,12 +14,12 @@
     --theme-bg-header: rgba(39, 45, 64, 0.9);
     --theme-bg-footer: var(--theme-bg-header);
     --theme-bg-menu: rgba(32, 36, 46, 0.8);
-    --theme-bg-filter: drop-shadow(0 0 10px var(--theme-gray-dark));
+    --theme-bg-filter: drop-shadow(0 0 10px var(--theme-shadow-color));
     --theme-bg-menu-hover: rgba(254, 254, 255, 0.3);
     --theme-bg-icon-hover: var(--theme-inactive-color);
     
     /* colors */
-    --theme-color: var(--theme-text);
+    --theme-color: var(--theme-text-color);
     --theme-inactive-color: rgb(113 119 144 / 78%);
     --theme-brand-color: #d8552a;
     --theme-enhanced-color: #f37402;
@@ -30,6 +30,7 @@
     --theme-confirm-color: #4fd1c5; //#4f684f;
     --theme-error-color: #f56565;
     --theme-emergency-color: var(--theme-error-color);
+    --theme-shadow-color: var(--theme-color-black);
 
     --theme-link-color: rgba(208, 199, 130, 0.78);
 
@@ -47,15 +48,16 @@
     --theme-color-lighter: #EDD892;
     --theme-color-lightest: #f9fafb;
 
+    --theme-gray-darkest: #1b2735;
     --theme-gray-darker: #3f3f40;
     --theme-gray-dark: #6d7989;
     --theme-gray-base: #aebbcd;
     --theme-gray-light: #a9aea9;
     --theme-gray-ligher: #c5c6c7;
 
-    --theme-text: #f9fafb;
-    --theme-text2: #29dec6;
-    --theme-text3: #ff2c45;
+    --theme-text-color: #f9fafb;
+    // --theme-text2: #29dec6;
+    // --theme-text3: #ff2c45;
 
     --theme-heading-text: var(--theme-text);
     --theme-heading-bg-gradient: linear-gradient(

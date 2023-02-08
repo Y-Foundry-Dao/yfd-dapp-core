@@ -111,6 +111,7 @@
 // much of the styling of the popover is set in the chakra ui theme
 // Path: src/assets/styles/chakra/components/popover.module.scss
 .popoverWrapper {
+    @extend .boxShadow;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -120,8 +121,7 @@
     border-color: var(--theme-special-color-dark);
     color: var(--theme-color);
     backdrop-filter: blur(var(--theme-blur-heavy));
-    box-shadow: 0rem 0rem 0.5rem 0.1rem var(--theme-shadow-color);
-    padding: 1rem 0.5rem;
+    padding: 1rem 0.7rem;
 }
 
 .popoverActionsWrapper {
@@ -130,6 +130,8 @@
 }
 
 .popoverActionsSection {
+    @extend .boxShadow;
+    background-color: rgba(0, 0, 0, 0.3);
     border-width: 0.7em 0 0.7em 0;
     border-radius: var(--theme-border-radius);
     border-style: ridge;
@@ -176,6 +178,7 @@
 .popoverYfdSection {
     margin: auto;
     width: 80%;
+    background-color: rgba(0, 0, 0, 0.3);
     border-radius: 0;
     border-top: 0.7em solid var(--theme-special-color-dark);
     border-color: var(--theme-border-color);
