@@ -4,9 +4,12 @@
     &-create {
         @extend .icon;
         color: var(--theme-create-color);
-
     }
-
+    &-proposal {
+        @extend .iconLockYFD-enable;
+        @extend .icon-menu; // for padding
+        font-size: 3rem;
+    }
     &-menu {
         margin-right: 0.5rem;
     }
@@ -16,9 +19,8 @@
         color: var(--theme-create-color);
     }
     &-action:hover {
+        @extend .icon-shadow;
         cursor: pointer;
-        filter: drop-shadow(0.1rem 0.1rem 0.5rem var(--theme-bg-icon-hover));
-
     }
 
     &Confirm {
@@ -35,6 +37,45 @@
             filter: drop-shadow(0.1rem 0.1rem 0.5rem var(--theme-bg-icon-hover));
         }
     }
+
+    &Confirm {
+        @extend .icon;
+        color: var(--theme-confirm-color);
+    }
+
+    &Paste {
+        @extend .icon;
+        color: var(--theme-paste-color);
+        cursor: pointer;
+        align-self: bottom;
+        &:hover {
+            filter: drop-shadow(0.1rem 0.1rem 0.5rem var(--theme-bg-icon-hover));
+        }
+    }
+}
+
+.iconLockYFD {
+    font-variation-settings: 'FILL' 0;
+    font-size: 50px !important;
+    cursor: not-allowed;
+    &-enable {
+        @extend .iconLockYFD;
+        @extend .icon;
+        @extend .icon-shadow;
+        font-variation-settings: 'FILL' 1;
+        color: var(--theme-create-color);
+        cursor: pointer;
+    }    
+}
+
+.iconProposalCreate {
+    @extend .iconLockYFD-enable;
+    cursor: default;
+    margin-right: 1rem;
+}
+
+.icon-shadow {
+    filter: drop-shadow(0.1rem 0.1rem 0.5rem var(--theme-bg-icon-hover));
 }
 
 /*

@@ -1,6 +1,7 @@
 import { Select } from '@chakra-ui/react';
 import { useRecoilState } from 'recoil';
 import { inputProposalType } from 'recoil/input/atoms';
+import styles from '@scss/app.module.scss';
 
 function ProposalTypeSelector() {
   const [proposalTypeSelected, setProposalTypeSelected] =
@@ -11,7 +12,7 @@ function ProposalTypeSelector() {
   };
 
   return (
-    <Select w="60%" value={proposalTypeSelected} onChange={handleChange}>
+    <Select value={proposalTypeSelected} onChange={handleChange}>
       <option value="vault">Vault Proposal</option>
       <option value="governanceParameter">Governance Parameter</option>
       <option value="governanceWhitelistRole">Role Whitelist</option>
@@ -21,6 +22,5 @@ function ProposalTypeSelector() {
   );
 }
 // <option value="governanceSpend">Spend Proposal</option>
-// <option value="governanceText">Text Proposal</option>
 
 export default ProposalTypeSelector;

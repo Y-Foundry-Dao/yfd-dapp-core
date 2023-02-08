@@ -71,9 +71,18 @@ function FormRoleProposalCreation({ onClose }: any) {
     addressCanProposeEmergencyAtom
   );
 
+  type platforms = {
+    github: string;
+    twitter: string;
+    telegram: string;
+    keybase: string;
+  };
   // profile info
   const profile = useRecoilValue(profileState);
-  let whitelistName = profile.name.toString();
+  const platforms: any = profile.platforms;
+  console.log(platforms);
+  let whitelistName = '';
+
   if (profile.name.length > 0) {
     whitelistName = profile.name.toString();
   }
@@ -82,6 +91,11 @@ function FormRoleProposalCreation({ onClose }: any) {
     whitelistImage =
       PATH_PROFILE_PFP + profile.address.toString() + PATH_PROFILE_PFP_SUFFIX;
   }
+
+  const whitelistGithub = platforms.github.toString();
+  const whitelistTwitter = platforms.twitter.toString();
+  const whitelistTelegram = platforms.telegram.toString();
+  const whitelistKeybase = platforms.keybase.toString();
 
   // emergency
   const [isEmergency, setIsEmergency] = useState(false);
@@ -254,7 +268,7 @@ function FormRoleProposalCreation({ onClose }: any) {
     <StepForm w="95%" onSubmit={onSubmit}>
       <FormLayout>
         <FormStepper orientation="vertical">
-          <FormStep name="proposal" title="Role Whitelist Proposal Details">
+          <FormStep name="proposal" title="Details">
             <FormLayout>
               <Box>
                 <p>
@@ -326,7 +340,7 @@ function FormRoleProposalCreation({ onClose }: any) {
               </Box>
             </FormLayout>
           </FormStep>
-          <FormStep name="whitelistRoles" title="Whitelist Roles">
+          <FormStep name="whitelistRoles" title="Roles">
             <FormLayout>
               <SimpleGrid columns={2} spacing={5}>
                 <Box>
@@ -487,23 +501,39 @@ function FormRoleProposalCreation({ onClose }: any) {
               </SimpleGrid>
             </FormLayout>
           </FormStep>
-          <FormStep
-            name="whitelistRoleLinks"
-            title="Whitelist Address Social Links"
-          >
+          <FormStep name="whitelistRoleLinks" title="Idenity/Social">
             <FormLayout>
               <InputGroup>
-                <InputLeftAddon width="20%" children="github.com/" />
-                <Input
-                  id="github"
-                  type="text"
-                  value={github}
-                  onChange={(event) => setGithub(event.target.value)}
-                  placeholder="Github Username"
-                  pattern={REGEX_GITHUB.toString()}
-                  width="100%"
-                  className={styles.inputUsername}
-                />
+                <Flex width="100%">
+                  <Box width="20%">
+                    <InputLeftAddon width="100%" children="github.com/" />
+                  </Box>
+                  <Box width="75%">
+                    <Input
+                      id="github"
+                      type="text"
+                      value={github}
+                      onChange={(event) => setGithub(event.target.value)}
+                      placeholder="Github Username"
+                      pattern={REGEX_GITHUB.toString()}
+                      width="100%"
+                      className={styles.inputUsername}
+                    />
+                  </Box>
+                  <Box>
+                    <span
+                      title={whitelistGithub}
+                      className={
+                        'material-symbols-outlined ' + styles.iconPaste
+                      }
+                      onClick={() => {
+                        setGithub(whitelistGithub);
+                      }}
+                    >
+                      {Icons.profile_paste}
+                    </span>
+                  </Box>
+                </Flex>
               </InputGroup>
               <InputGroup>
                 <InputLeftAddon width="20%" children="keybase.io/" />
@@ -555,7 +585,7 @@ function FormRoleProposalCreation({ onClose }: any) {
               </InputGroup>
             </FormLayout>
           </FormStep>
-          <FormStep name="confirm" title="Confirm Proposal Details">
+          <FormStep name="confirm" title="Confirm">
             <FormLayout>
               <Divider />
               <Heading size="md">Address Role Whitelist Proposal</Heading>
@@ -615,8 +645,11 @@ function FormRoleProposalCreation({ onClose }: any) {
           </StepperCompleted>
         </FormStepper>
         <ButtonGroup>
-          <NextButton />
-          <PrevButton variant="ghost" />
+          <NextButton className={styles['buttonStandard']} />
+          <PrevButton
+            variant="unstyled"
+            className={styles['buttonStandard-dark']}
+          />
         </ButtonGroup>
       </FormLayout>
     </StepForm>

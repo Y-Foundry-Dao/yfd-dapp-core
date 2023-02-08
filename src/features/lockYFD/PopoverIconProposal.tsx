@@ -22,7 +22,7 @@ import styles from '@scss/app.module.scss';
 import ProposalModal from '@features/proposal/modal';
 import ProposalModalButton from '@features/proposal/create/ButtonModelOpen';
 
-let styleIcon = 'material-symbols-outlined';
+let styleIcon = 'icon-enable material-symbols-outlined';
 
 export default function PopoverIconProposal() {
   //prepare the contract query function
@@ -48,7 +48,7 @@ export default function PopoverIconProposal() {
         </>
       );
     } else {
-      return <i className={styleIcon}>{Icons.propose}</i>;
+      return <span className={styleIcon}>{Icons.propose}</span>;
     }
   }
 
@@ -71,7 +71,9 @@ export default function PopoverIconProposal() {
         // set the icon style for each proposal type based on the user's fyfd balance
         // any amount of YFD can vote so the icon color is active if the user has any fyfd
         if (+minVault > 0 && +minGov > 0 && +minVault < +fyfd) {
-          styleIcon = styleIcon + ' ' + styles['icon-create'];
+          styleIcon = styleIcon + ' ' + styles['iconLockYFD-enable'];
+        } else {
+          styleIcon = styleIcon + ' ' + styles.iconLockYFD;
         }
       }
     }
@@ -95,11 +97,7 @@ export default function PopoverIconProposal() {
         <SimpleGrid>
           <GridItem>{actionPropose()}</GridItem>
           <ProposalModal isOpen={isOpen} onClose={onClose} />
-          <GridItem>
-            Propose
-            <br />
-            {minVault}
-          </GridItem>
+          <GridItem>Propose</GridItem>
         </SimpleGrid>
       </WrapItem>
     </>

@@ -124,7 +124,7 @@ function FormTextProposalCreation({ onClose }: any) {
               </PropertyList>
               <ButtonGroup>
                 <NextButton />
-                <PrevButton variant="ghost" />
+                <PrevButton />
               </ButtonGroup>
             </FormLayout>
           </FormStep>
