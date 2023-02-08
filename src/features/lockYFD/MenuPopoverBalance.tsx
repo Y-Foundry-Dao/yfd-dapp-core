@@ -56,22 +56,22 @@ export default function MenuFyfdBalance() {
 
   return (
     <Portal>
-      <PopoverContent className={styles.portal}>
-        <PopoverArrow />
-        <PopoverHeader>
+      <PopoverContent className={styles.popoverWrapper}>
+        <fieldset className={styles.popoverActionsSection} role="presentation">
+          <legend className={styles.headingLegend} role="presentation">
+            <h2>Actions</h2>
+          </legend>
           <Wrap
-            className={styles['gsContent']}
+            className={styles.popoverActionsWrapper}
             justify="center"
-            align="center"
-            spacing="2rem"
+            spacing="2.5rem"
           >
             <PopoverIconVote />
             <PopoverIconProposal />
             <PopoverIconEmergency />
           </Wrap>
-        </PopoverHeader>
-        <PopoverCloseButton />
-        <PopoverBody>
+        </fieldset>
+        <PopoverBody className={styles.popoverBalancesWrapper}>
           <PopoverBalanceFYFD />
           <PopoverBalanceYFD />
           <Box>Lock $YFD:</Box>
@@ -79,9 +79,9 @@ export default function MenuFyfdBalance() {
             <LockYfdForm />
           </Box>
         </PopoverBody>
-        <PopoverFooter>
-          <Button
-            className={styles['wide']}
+        <PopoverFooter className={styles.popoverFooter}>
+          <button
+            className={styles.buttonPopoverDeposit}
             onClick={async () => {
               return await handleClickStakeYFD(
                 amountStakeYFD,
@@ -89,8 +89,19 @@ export default function MenuFyfdBalance() {
               );
             }}
           >
-            Deposit
-          </Button>
+            Lock $YFD
+          </button>
+          <button
+            className={styles.buttonPopoverDeposit}
+            onClick={async () => {
+              return await handleClickStakeYFD(
+                amountStakeYFD,
+                Number(durationDepositYFD)
+              );
+            }}
+          >
+            Claim $YFD
+          </button>
         </PopoverFooter>
       </PopoverContent>
     </Portal>

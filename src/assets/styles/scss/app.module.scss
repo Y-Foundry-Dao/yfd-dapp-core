@@ -7,6 +7,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;500;600;700&display=swap");
 
+// global variables
+$headerHeight: 3.625rem;
+$maxWidth: 40.625rem;
+
 // core components
 @import "_root.module.scss";
 
@@ -71,6 +75,36 @@ body {
  @media screen and (min-width: 655px) {
   padding: 2rem;
  }
+}
+
+.headingWrapper {
+    border-width: 0.7em 0 0 0;
+    border-radius: var(--theme-border-radius);
+    border-style: ridge;
+    border-color: var(--theme-border-color);
+    padding: 0.5em;
+    padding-bottom: 1em;
+
+    &-bottom {
+        border-width: 0.7em 0 0.7em 0;
+    }
+}
+
+.headingLegend {
+    font-size: 1.25rem;
+    margin: auto;
+    padding: 0 0.2em;
+
+    h2 {
+        margin: 0;
+        padding: 0.75em 0.35em 0.65em 0.65em;
+        border: 3px solid var(--theme-border-color);
+        border-radius: var(--theme-border-radius);
+        line-height: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.25em;
+        color: var(--theme-text-color);
+    }
 }
 
 .video-bg {

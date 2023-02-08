@@ -2,6 +2,7 @@
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { useWallet } from '@terra-money/wallet-provider';
 import {
+  PopoverBody,
   PopoverFooter,
   Button,
   Box,
@@ -31,7 +32,7 @@ export default function MenuProfileFooter() {
 
   return (
     <>
-  <PopoverFooter>
+  <PopoverBody className={styles.profileMenuConfig}>
     <FormControl display="flex" alignItems="center">
       Open Flue?
       <Switch id="snowSwitch" size="lg" onChange={toggleSnow} />
@@ -40,8 +41,8 @@ export default function MenuProfileFooter() {
       Stoke Forge?
       <Switch id="sparkSwitch" size="lg" onChange={toggleSpark} />
     </FormControl>
-  </PopoverFooter>
-  <PopoverFooter className={styles.profileMenuWallet}>
+  </PopoverBody>
+  <PopoverFooter className={styles.profileMenuFooter}>
     <Box>
       <Button onClick={onCopy} className={styles.profileMenuAddress}>
         {hasCopied ? (

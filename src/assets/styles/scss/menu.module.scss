@@ -2,7 +2,7 @@
     width: 0.313rem;
     height: 0.313rem;
     background-color: var(--button-inactive);
-    border-radius: 50%;
+    border-radius: var(--theme-border-radius);
     box-shadow: 0.438rem 0 0 0 var(--button-inactive), 0.875rem 0 0 0 var(--button-inactive);
     margin: 0 0.75rem;
 }
@@ -82,4 +82,168 @@
     span {
         margin-right: 0.5rem;
     }
+}
+
+.menuContent {
+    &-flex {
+        @extend .menuContent;
+        padding: 1rem;
+    }
+    &-feature {
+        text-align: center;
+        margin: 1em;
+        i {
+            color: var(--theme-gray-light);
+            font-size: 3rem;
+        }
+    }
+    p {
+        text-align: justify;
+    }
+    &Center {
+        @extend .menuContent;
+        p {
+            text-align: center;
+        }
+    }
+}
+
+// much of the styling of the popover is set in the chakra ui theme
+// Path: src/assets/styles/chakra/components/popover.module.scss
+.popoverWrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-width: 0.7em 0em 0.7em 0em;
+    border-radius: var(--theme-border-radius);
+    border-style: single;
+    border-color: var(--theme-special-color-dark);
+    color: var(--theme-color);
+    backdrop-filter: blur(var(--theme-blur-heavy));
+    box-shadow: 0rem 0rem 0.5rem 0.1rem var(--theme-shadow-color);
+    padding: 1rem 0.5rem;
+}
+
+.popoverActionsWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.popoverActionsSection {
+    border-width: 0.7em 0 0.7em 0;
+    border-radius: var(--theme-border-radius);
+    border-style: ridge;
+    border-color: var(--theme-border-color);
+    padding: 0.5em;
+    padding-bottom: 1em;
+}
+
+.popoverBalancesWrapper {
+    margin: 1rem 0 0 0;
+    padding: 0rem;
+}
+
+.popoverFooter {
+    padding: 0;
+    margin: 0.1rem;
+}
+
+.buttonPopoverDeposit {
+    @extend .buttonSimple;
+    background-color: var(--button-deposit);
+    color: var(--button-deposit-text);
+    &:hover {
+        background-color: var(--button-deposit-hover);
+    }
+}
+
+.menuButton { 
+    margin-right: 1rem;
+}
+
+.popoverFyfdBalance {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    transition: 1s ease-in-out;
+    &:hover {
+        color: var(--theme-special-color);
+        cursor: pointer;
+        transition: 1s ease-in-out;
+    }
+}
+
+.popoverYfdSection {
+    margin: auto;
+    width: 80%;
+    border-radius: 0;
+    border-top: 0.7em solid var(--theme-special-color-dark);
+    border-color: var(--theme-border-color);
+    padding-bottom: 1em;
+}
+
+.popoverYfdLegend {
+
+}
+
+.popoverYfdBalance {
+    font-size: 1.25rem;
+    font-weight: 600;
+    transition: 1s ease-in-out;
+    &:hover {
+        color: var(--theme-brand-color);
+        cursor: pointer;
+        transition: 1s ease-in-out;
+    }
+}
+
+.menuStakeYfd {
+    height: ($headerHeight * 0.75);
+    margin-right: 1rem;
+    padding: 0.25rem 1rem;
+    border-radius: var(--theme-border-radius);
+    border-width: var(--theme-border-width);
+    border-color: var(--theme-border-color);
+    background-color: var(--theme-bg-menu);
+    box-shadow: inset 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+
+    &:hover {
+        background-color: var(--theme-blur);
+        filter: drop-shadow(0.1rem 0.1rem 0.5rem var(--theme-inactive-color));
+    }
+}
+
+.stakeYfdIcons {
+    font-size: 1.5rem;
+    vertical-align: middle;
+    padding-top: 0.5rem;
+    color: var(--theme-inactive-color);
+}
+
+.lockAction {
+    text-align: center;
+    margin: 1em;
+    color: var(--theme-gray-light);
+    i {
+        font-size: 3rem;
+    }
+}
+
+.stakeYfdIcon {
+    vertical-align: baseline;
+    margin: 0 0.5rem;
+    padding-top: 0rem;
+}
+
+.menuProfile {
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    flex-shrink: 0;
+    svg {
+     width: 1.375rem;
+     color: #f9fafb;
+     flex-shrink: 0;
+    }
+
 }

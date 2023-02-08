@@ -37,7 +37,7 @@ export default function MenuLockYFD() {
     return (
       <Popover>
         <PopoverTrigger>
-          <Button className={styles.stakeYfd}>
+          <Button className={styles.menuStakeYfd}>
             <Flex className={styles.stakeYfdIcons}>
               <IconVote />
               <IconProposal />

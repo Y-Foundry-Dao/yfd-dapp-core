@@ -19,12 +19,14 @@ export default function PopoverBalanceFYFD() {
 
   return (
     <>
-      <Box>
-        fYFD
+      <fieldset className={styles.headingWrapper} role="presentation">
+        <legend className={styles.headingLegend} role="presentation">
+          <h2>fYFD</h2>
+        </legend>
         <>
-          <Text className={styles.menuFyfdBalance}>{balancefYFD}</Text>
+          <Text className={styles.popoverFyfdBalance}>{balancefYFD}</Text>
         </>
-      </Box>
+      </fieldset>
     </>
   );
 }
