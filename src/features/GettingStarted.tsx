@@ -13,11 +13,11 @@ export default function GettingStarted() {
             <h3 className={styles.imgContent}>Getting Started</h3>
             <div className={styles['content-text']}>
               Learning about
-              <span className={styles['text-enhanced']}> Y-Foundry DAO </span>
+              <span className={styles.textEnhanced}> Y-Foundry DAO </span>
               can be intense.
               <br />
               Don't worry. The
-              <span className={styles['text-enhanced']}> FoundryBots </span>
+              <span className={styles.textEnhanced}> FoundryBots </span>
               are here to help.
             </div>
             <Link to="/getting-started">

@@ -22,3 +22,20 @@
     margin-bottom: 0.625rem;
     cursor: help;
 }
+
+.textEnhanced {
+    color: var(--text-enhanced-color);
+    filter: drop-shadow( 1rem 1rem 2rem var(--text-enhanced-filter-color));
+}
+
+.notice {
+    margin-top: 0.625rem;
+    margin-bottom: 0.625rem;
+    &-loading {
+        font-size: 0.75rem;
+        color: var(--theme-inactive-color);
+        margin-top: 0.625rem;
+        margin-bottom: 0.625rem;
+        cursor: help;
+    }
+}

@@ -110,16 +110,7 @@ export default function CurrentBlockHeight() {
     );
   }, [currentBlockHeight]);
   if (currentBlockHeight) {
-    const label = 'Current Block Height - ' + currentChainID;
-    return (
-      <>
-        <div className={styles.blockHeight}>
-          <Tooltip label={label} aria-label={label} placement="bottom-start">
-            <Text className={styles.blockHeightText}>{currentBlockHeight}</Text>
-          </Tooltip>
-        </div>
-      </>
-    );
+    return <>{currentBlockHeight}</>;
   } else {
     return <Spinner />;
   }
