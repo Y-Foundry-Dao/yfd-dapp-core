@@ -152,6 +152,13 @@
     }
 }
 
+.buttonMinimal {
+    &:hover {
+        background:var(--theme-bg-hover);
+        color: var(--theme-create-color);
+    }
+
+}
 .standard {
     // delete this after replacing all uses with buttonStandard
     @extend .buttonStandard;

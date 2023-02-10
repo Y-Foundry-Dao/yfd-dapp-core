@@ -2,6 +2,7 @@ import { useRecoilValueLoadable } from 'recoil';
 import {
   Button,
   Box,
+  Divider,
   useToast,
   SimpleGrid,
   Collapse,
@@ -67,6 +68,7 @@ export default function MenuFyfdBalance() {
       </SimpleGrid>
       <Collapse in={isOpen} animateOpacity>
         <LockYfdForm />
+        <Divider pb={'1.5em'} />
       </Collapse>
     </Box>
   );

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 import useHandleClicks from '@hooks/useHandleClicks';
 import { format } from 'date-fns';
 import {
@@ -19,7 +19,8 @@ import {
   MenuDivider,
   Badge,
   Box,
-  Spacer
+  Spacer,
+  Divider
 } from '@chakra-ui/react';
 import {
   DATE_ONE_MONTH,
@@ -41,8 +42,13 @@ import {
 } from '@utilities/variables';
 import { inputStakeYFD } from 'recoil/input/atoms';
 import useHandleInputs from '@hooks/useHandleInputs';
+import styles from '@scss/app.module.scss';
+import { Icons } from '@var/icons';
+import { selectMyYFD } from '@recoil/connected/balance/selectors';
 
 export default function LockYfdForm() {
+  const myYFD = useRecoilValueLoadable(selectMyYFD);
+  const balanceYFD = myYFD.state == 'hasValue' ? +myYFD.contents : 0;
   const [durationDepositYFD, setDurationDepositYFD] = useState(
     DEFAULT_YFD_LOCK_DURATION
   );
@@ -61,6 +67,7 @@ export default function LockYfdForm() {
         precision={0}
         min={1000}
         step={1000}
+        max={balanceYFD}
         maxW="140px"
         inputMode="decimal"
         onChange={handleInputStakeYFD}
@@ -294,6 +301,24 @@ export default function LockYfdForm() {
           </MenuOptionGroup>
         </MenuList>
       </Menu>
+      <Box>
+        <Button
+          as="button"
+          variant="outline"
+          title="Lock YFD for fYFD"
+          size="sm"
+          ml={'1em'}
+          className={styles.buttonMinimal}
+          onClick={async () => {
+            return await handleClickStakeYFD(
+              amountStakeYFD,
+              Number(durationDepositYFD)
+            );
+          }}
+        >
+          <span className="material-symbols-outlined">{Icons.submit}</span>
+        </Button>
+      </Box>
     </Flex>
   );
 }
