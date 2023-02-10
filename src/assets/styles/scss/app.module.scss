@@ -33,19 +33,19 @@ $maxWidth: 40.625rem;
 @import "proposal.module.scss";
 
 //components
-@import "component/icon.module.scss";
-@import "component/image.module.scss";
 @import "component/appcard.module.scss";
 @import "component/button.module.scss";
 @import "component/card.module.scss";
 @import "component/heading.module.scss";
+@import "component/icon.module.scss";
+@import "component/image.module.scss";
 @import "component/input.module.scss";
 @import "component/modal.module.scss";
+@import "component/spinner.module.scss";
 @import "component/timeline.module.scss";
 @import "component/text.module.scss";
 
 // functions
-@import "loader.module.scss";
 
 //pages 
 @import 'page/gettingstarted.module.scss';
@@ -132,7 +132,7 @@ body {
 }
 
 .headingWrapperMinimal {
-    background-color: rgba(0, 0, 0, 0.1);
+    //background-color: rgba(0, 0, 0, 0.1);
     //border-width: 0.7em 0 0 0;
     //border-width: 0.15em 0.0em 0.15em 0.01em;
     border: 0;
@@ -405,7 +405,6 @@ body {
     margin-top: 0.625rem;
     margin-bottom: 0.625rem;
     height: 2rem;
-    color: white;
     &Text {
         @extend .textConsole;
         color: var(--theme-inactive-color);

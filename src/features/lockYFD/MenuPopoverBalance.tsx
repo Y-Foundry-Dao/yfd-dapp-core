@@ -20,7 +20,8 @@ import {
   Flex,
   Text,
   SimpleGrid,
-  Tooltip
+  Tooltip,
+  Divider
 } from '@chakra-ui/react';
 import styles from '@scss/app.module.scss';
 
@@ -34,6 +35,9 @@ import PopoverBalanceYFD from './MenuBalanceYFD';
 import PopoverIconEmergency from './PopoverIconEmergency';
 import PopoverIconVote from './PopoverIconVote';
 import PopoverIconProposal from './PopoverIconProposal';
+import MenuFyfdBalanceClaim from './menu/Claim';
+import MenuFyfdBalanceLock from './menu/Lock';
+import MenuFyfdBalanceFund from './menu/Fund';
 import { Icons } from '@utilities/variables/icons';
 
 export default function MenuFyfdBalance() {
@@ -65,110 +69,11 @@ export default function MenuFyfdBalance() {
             <h2>fYFD</h2>
           </legend>
           <PopoverBalanceFYFD />
-          <Box>
-            <SimpleGrid
-              columns={2}
-              spacingY={5}
-              spacingX={10}
-              alignItems={'center'}
-            >
-              <Box>
-                <fieldset className={styles.headingWrapperMinimal}>
-                  <legend
-                    className={styles.headingLegendTextMinimal}
-                    role="presentation"
-                  >
-                    Funding Limit
-                  </legend>
-                  <span className={styles.textSpecial}>
-                    {balanceYFD ? (
-                      '$ ' +
-                      Math.round(
-                        parseInt((+balanceFYFD * 0.01).toString())
-                      ).toLocaleString() +
-                      ' USD'
-                    ) : (
-                      <NoticeLoading />
-                    )}
-                  </span>
-                </fieldset>
-              </Box>
-              <Box>
-                <Button
-                  as="button"
-                  className={styles.buttonSimpleWide}
-                  variant="outline"
-                  title="Fund Proposals"
-                  size="sm"
-                >
-                  <span className="material-symbols-outlined">
-                    {Icons.money}
-                  </span>
-                  <span className={styles.headingLegendText}>Fund</span>
-                </Button>
-              </Box>
-              <Box>
-                <fieldset className={styles.headingWrapperMinimal}>
-                  <legend
-                    className={styles.headingLegendTextMinimal}
-                    role="presentation"
-                  >
-                    $YFD Available
-                  </legend>
-                  <span className={styles.textSpecial}>
-                    {balanceYFD ? (
-                      Math.round(
-                        parseInt(balanceYFD.toString())
-                      ).toLocaleString()
-                    ) : (
-                      <NoticeLoading />
-                    )}
-                  </span>
-                </fieldset>
-              </Box>
-              <Box>
-                <Button
-                  as="button"
-                  variant="outline"
-                  title="Lock YFD for fYFD"
-                  size="sm"
-                  className={styles.buttonSimpleWide}
-                >
-                  <span className="material-symbols-outlined">
-                    {Icons.lock_yfd}
-                  </span>
-                  <span className={styles.headingLegendText}>Lock</span>
-                </Button>
-              </Box>
-              <Box>
-                <fieldset className={styles.headingWrapperMinimal}>
-                  <legend
-                    className={styles.headingLegendTextMinimal}
-                    role="presentation"
-                  >
-                    Unlocked
-                  </legend>
-                  <span className={styles.textSpecial}>
-                    <NoticeLoading />
-                  </span>
-                </fieldset>
-              </Box>
-              <Box>
-                <Button
-                  as="button"
-                  variant="outline"
-                  title="Reclaim YFD from decayed fYFD"
-                  size="sm"
-                  className={styles.buttonSimpleWide}
-                >
-                  <span className="material-symbols-outlined">
-                    {Icons.reclaim_yfd}
-                  </span>
-                  <span className={styles.headingLegendText}>Claim</span>
-                </Button>
-              </Box>
-            </SimpleGrid>
-          </Box>
+          <Divider ml={'25%'} w={'50%'} />
+          <br />
+          <MenuFyfdBalanceFund />
+          <MenuFyfdBalanceLock />
+          <MenuFyfdBalanceClaim />
         </fieldset>
         <br />
       </PopoverBody>

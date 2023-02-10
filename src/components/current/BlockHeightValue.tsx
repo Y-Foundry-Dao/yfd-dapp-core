@@ -25,6 +25,7 @@ import {
 } from '@recoil/governance/parameters/atoms';
 import { FYFD_LOCK_DECAY_RATE } from '@var/chrono';
 import useChainInfo from '@hooks/useChainInfo';
+import NoticeLoading from '../NoticeLoading';
 
 export default function CurrentBlockHeight() {
   const { currentChainID, currentAddress } = useChainInfo();
@@ -112,6 +113,6 @@ export default function CurrentBlockHeight() {
   if (currentBlockHeight) {
     return <>{currentBlockHeight}</>;
   } else {
-    return <Spinner />;
+    return <NoticeLoading />;
   }
 }

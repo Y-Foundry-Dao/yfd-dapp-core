@@ -91,7 +91,14 @@
         @extend .buttonSimple;
         width: 100%;
     }
-    &:hover {
+}
+
+.buttonCollapse {
+    @extend .buttonSimple;
+    width: 100%;
+
+    &Active {
+        @extend .buttonCollapse;
         color: var(--button-standard-color);
         background: none;
 
@@ -113,6 +120,9 @@
             border-radius: 50%;
             margin-left: 1rem;
         }
+    }
+    &:hover {
+        @extend .buttonCollapseActive;
     }
 }
 
