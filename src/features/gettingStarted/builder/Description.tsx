@@ -27,7 +27,7 @@ export default function GSDescription() {
           <Box className={styles.gsDescText}>
             <div className={styles.gsHeading}>What are Builders?</div>
             <p>
-              <span className={styles['text-enhanced']}>Builders</span> are
+              <span className={styles.textEnhanced}>Builders</span> are
               whitelisted members of the Y-Foundry DAO community that are doing
               the work. This includes completing general tasks for the DAO as
               well as any development needed for proposed vaults.

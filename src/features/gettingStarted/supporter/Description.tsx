@@ -27,10 +27,10 @@ export default function GSDescription() {
           <Box className={styles.gsDescText}>
             <div className={styles.gsHeading}>What are Supporters?</div>
             <p>
-              <span className={styles['text-enhanced']}>Supporters</span>{' '}
-              contribute resources to a proposal. These resources are released
-              at proposal milestones and utilized by the Builder to achieve
-              proposal objectives.
+              <span className={styles.textEnhanced}>Supporters</span> contribute
+              resources to a proposal. These resources are released at proposal
+              milestones and utilized by the Builder to achieve proposal
+              objectives.
             </p>
             <br />
             <a

@@ -27,7 +27,7 @@ export default function GSDescription() {
           <Box className={styles.gsDescText}>
             <div className={styles.gsHeading}>What are Voters?</div>
             <p>
-              <span className={styles['text-enhanced']}>Voters</span> decide the
+              <span className={styles.textEnhanced}>Voters</span> decide the
               collective actions of the DAO by expressing their preference on
               governance and initiative proposals.
             </p>

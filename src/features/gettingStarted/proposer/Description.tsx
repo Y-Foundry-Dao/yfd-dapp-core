@@ -27,8 +27,8 @@ export default function GSDescription() {
           <Box className={styles.gsDescText}>
             <div className={styles.gsHeading}>What are Proposers?</div>
             <p>
-              <span className={styles['text-enhanced']}>Proposers</span> submit
-              an idea as a proposal to be voted on by the community.
+              <span className={styles.textEnhanced}>Proposers</span> submit an
+              idea as a proposal to be voted on by the community.
             </p>
             <br />
             <a
