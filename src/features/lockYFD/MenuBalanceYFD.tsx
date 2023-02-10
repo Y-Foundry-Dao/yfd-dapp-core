@@ -23,7 +23,7 @@ import {
 
 import useHandleClicks from '@hooks/useHandleClicks';
 import useHandleInputs from '@hooks/useHandleInputs';
-import LockYfdForm from './Form';
+import LockYfdForm from './menu/LockForm';
 
 export default function PopoverBalanceYFD() {
   const { handleInputStakeYFD } = useHandleInputs();

@@ -2,35 +2,15 @@ import { useRecoilValueLoadable } from 'recoil';
 import {
   Wrap,
   PopoverContent,
-  PopoverHeader,
   PopoverBody,
-  PopoverFooter,
-  PopoverArrow,
-  PopoverCloseButton,
-  Portal,
-  Button,
-  Spacer,
-  Box,
   useToast,
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Flex,
-  Text,
-  SimpleGrid,
-  Tooltip,
   Divider
 } from '@chakra-ui/react';
 import styles from '@scss/app.module.scss';
 
-//import selectFyfd from '@recoil/connected/balance/selectors';
-//import selectYFD from '@recoil/connected/balance/selectors';
 import { selectMyYFD, selectMyFYFD } from '@recoil/connected/balance/selectors';
 import NoticeLoading from '@components/NoticeLoading';
-// import { myFYFD, myYFD } from '@utilities/myValues';
-import PopoverBalanceFYFD from './MenuBalanceFYFD';
+import PopoverBalanceFYFD from './menu/FYFD';
 import PopoverBalanceYFD from './MenuBalanceYFD';
 import PopoverIconEmergency from './PopoverIconEmergency';
 import PopoverIconVote from './PopoverIconVote';
@@ -38,7 +18,6 @@ import PopoverIconProposal from './PopoverIconProposal';
 import MenuFyfdBalanceClaim from './menu/Claim';
 import MenuFyfdBalanceLock from './menu/Lock';
 import MenuFyfdBalanceFund from './menu/Fund';
-import { Icons } from '@utilities/variables/icons';
 
 export default function MenuFyfdBalance() {
   const toast = useToast();

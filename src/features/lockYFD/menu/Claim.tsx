@@ -29,7 +29,7 @@ export default function MenuFyfdBalance() {
             </span>
           </fieldset>
         </Box>
-        <Box pb={'1.5em'}>
+        <Box pb={'0.5em'}>
           <Button
             as="button"
             variant="outline"
