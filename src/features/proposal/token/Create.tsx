@@ -126,7 +126,7 @@ function FormTokenProposalCreation({ onClose }: any) {
     if (addressToken.length > 0) {
       return (
         <>
-          <p className={styles.inputInvalid}>Invalid Address</p>
+          <span className={styles.inputInvalid}>Invalid Address</span>
         </>
       );
     } else {
@@ -138,7 +138,7 @@ function FormTokenProposalCreation({ onClose }: any) {
     if (addressToken.length > 0) {
       return (
         <>
-          <p className={styles.inputInvalid}>Invalid Address</p>
+          <span className={styles.inputInvalid}>Invalid Address</span>
         </>
       );
     } else {
@@ -346,7 +346,7 @@ function FormTokenProposalCreation({ onClose }: any) {
                   }
                 />
                 {addressOracleValid ? (
-                  <p className={styles.inputValid}>Address is Valid</p>
+                  <span className={styles.inputValid}>Address is Valid</span>
                 ) : (
                   addressOracleInvalidMessage()
                 )}

@@ -6,17 +6,18 @@ import {
   GridItem,
   Wrap,
   WrapItem,
-  Flex
+  Flex,
+  Text
 } from '@chakra-ui/react';
 import { Icons } from '@var/icons';
 import { URL_GUIDE_BUILDER } from '@utilities/variables';
 
 export default function GSDescription() {
   return (
-    <div className={styles['content-feature-frame']}>
-      <div className={styles['heading']}>The Builder</div>
+    <fieldset className={styles.headingWrapperInset}>
+      <legend className={styles.headingLegend}>The Builder</legend>
       <div className={styles.gsContent}>
-        <Flex>
+        <Flex pb={5} pr={2}>
           <Box className={styles.gsDescImage}>
             <img
               src={imgBot}
@@ -26,20 +27,15 @@ export default function GSDescription() {
           </Box>
           <Box className={styles.gsDescText}>
             <div className={styles.gsHeading}>What are Builders?</div>
-            <p>
+            <Text>
               <span className={styles.textEnhanced}>Builders</span> are
               whitelisted members of the Y-Foundry DAO community that are doing
               the work. This includes completing general tasks for the DAO as
               well as any development needed for proposed vaults.
-            </p>
+            </Text>
             <br />
-            <a
-              href={URL_GUIDE_BUILDER}
-              className={styles['wide']}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Read more in the Builder Guide
+            <a href={URL_GUIDE_BUILDER} target="_blank" rel="noreferrer">
+              Read More in the Builder Guide
             </a>
             <br />
             <br />
@@ -111,6 +107,6 @@ export default function GSDescription() {
           </Box>
         </Flex>
       </div>
-    </div>
+    </fieldset>
   );
 }
