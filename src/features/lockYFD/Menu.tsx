@@ -30,7 +30,7 @@ export default function MenuLockYFD() {
   // if the user has no fyfd, return the "Lock $YFD" button instead of the fyfd menu
   if (hasFYFD) {
     return (
-      <Popover isLazy placement={'bottom'}>
+      <Popover placement={'bottom'}>
         <PopoverTrigger>
           <Button className={styles.menuStakeYfd}>
             <Flex className={styles.stakeYfdIcons}>

@@ -11,15 +11,9 @@ export default function PopoverBalanceFYFD() {
   const myFYFD = useRecoilValueLoadable(selectMyFYFD);
   const toast = useToast();
   // need to wrap balancefYFD in useMemo to avoid infinite loop
-  const balancefYFD = useMemo(() => {
-    if (myFYFD.state == 'hasValue' && isNumber(+myFYFD.contents)) {
-      return Math.round(parseInt(myFYFD.contents)).toLocaleString();
-    } else {
-      return <></>;
-    }
-  }, [myFYFD]);
+  const balancefYFD = Math.round(parseInt(myFYFD.contents)).toLocaleString();
 
-  if (isNumber(+balancefYFD)) {
+  if (myFYFD.state == 'hasValue') {
     return <>{balancefYFD}</>;
   } else {
     return <NoticeLoading />;

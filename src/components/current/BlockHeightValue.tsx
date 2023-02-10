@@ -30,11 +30,13 @@ import queryGovernanceParameter from '@utilities/messagesQuery/forge/queryGovern
 import useMsg from '@hooks/useMsg';
 
 export default function CurrentBlockHeight() {
+  const { queryMsg } = useMsg();
   const { currentChainID, currentAddress } = useChainInfo();
   const currentBlockHeight = useRecoilValue(currentBlockHeightAtom);
   const yfd = useRecoilValueLoadable(selectMyYFD);
   const refreshFYFD = useRecoilRefresher_UNSTABLE(selectMyFYFD);
   const fyfd = useRecoilValueLoadable(selectMyFYFD);
+  const forge = useRecoilValue(currentContractForgeAtom);
   const [canVote, setCanVote] = useRecoilState(addressCanVoteAtom);
   const [canVault, setCanVault] = useRecoilState(addressCanProposeVaultAtom);
   const [canGov, setCanGov] = useRecoilState(addressCanProposeGovAtom);
@@ -43,47 +45,42 @@ export default function CurrentBlockHeight() {
   const [estimatedFYFD, setEstimatedFYFD] = useRecoilState(
     estimatedFyfdConnectedAtom
   );
-  const minVault = useRecoilValue(minFYFDVaultPropAtom);
-  const minGov = useRecoilValue(minFYFDGovPropAtom);
-  const { queryMsg } = useMsg();
-  // get the current contract forge from state created by useChainInfo to query governance parameters below
-  const forge = useRecoilValue(currentContractForgeAtom);
-  // get the user's fyfd and yfd balances and format them for display ( 6 decimals )
-  const myFYFD = useRecoilValueLoadable(selectMyFYFD);
-  // prepare variables to set the minimum fyfd required for each proposal type to state
+  const [minVault, setMinFYFDVaultProp] = useRecoilState(minFYFDVaultPropAtom);
+  const [minGov, setMinFYFDGovProp] = useRecoilState(minFYFDGovPropAtom);
   const [minEmergency, setMinFYFDEmergencyProp] = useRecoilState(
     minFYFDEmergencyPropAtom
   );
-  // query the governance parameters for the minimum fyfd required for each proposal type
-  const qEmerg = queryGovernanceParameter('fYFD_EmergencyProposalMin');
+
+  useEffect(() => {
+    const qEmerg = queryGovernanceParameter('fYFD_EmergencyProposalMin');
+    async function getData() {
+      const rEmerg = await queryMsg(forge, qEmerg);
+      if (
+        rEmerg !== undefined &&
+        rEmerg['parameter_type']['integer']['value'] != minEmergency
+      ) {
+        console.log('rEmerg', rEmerg);
+        setMinFYFDEmergencyProp(rEmerg['parameter_type']['integer']['value']);
+      }
+    }
+    getData().then((res) => res);
+  }, [forge, minEmergency, setMinFYFDEmergencyProp]);
 
   useEffect(() => {
     async function getData() {
-      // if the forge contract is not loaded or the fyfd or yfd balances are loading, return until the data is loaded
-      const rEmerg = await queryMsg(forge, qEmerg);
-      // if everything isn't ready to go don't load anything
-      if (
-        forge === '' ||
-        myFYFD.state === 'loading' ||
-        rEmerg.state === 'loading'
-      ) {
-        return <NoticeLoading />;
-      }
-      const fyfd = myFYFD.contents;
-      setMinFYFDEmergencyProp(rEmerg['parameter_type']['integer']['value']);
+      const qVault = queryGovernanceParameter('fYFD_VaultProposalMin');
+      const qGov = queryGovernanceParameter('fYFD_GovernanceProposalMin');
+      const rVault = await queryMsg(forge, qVault);
+      const rGov = await queryMsg(forge, qGov);
+      if (rVault === undefined || rGov === undefined) return;
+      setMinFYFDVaultProp(rVault['parameter_type']['integer']['value']);
+      setMinFYFDGovProp(rGov['parameter_type']['integer']['value']);
     }
     getData().then((res) => res);
-  }, [
-    forge,
-    minEmergency,
-    setMinFYFDEmergencyProp,
-    queryMsg,
-    qEmerg,
-    myFYFD.state,
-    myFYFD.contents
-  ]);
+  }, [forge, minGov, minVault, setMinFYFDGovProp, setMinFYFDVaultProp]);
 
   // to do: setup a estimatedFYFD using the amount of FYFD between the current block height and the last block height
+
   useEffect(() => {
     if (currentBlockHeight == 0) {
       // going to do nothing if the currentBlockHeight is empty
