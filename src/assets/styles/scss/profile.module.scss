@@ -44,12 +44,7 @@
     filter: drop-shadow(0.1rem 0.1rem 0.5rem var(#FF0000));
 }
 .profileMenuLayout {
-    border-radius: var(--theme-border-radius);
-    border-width: var(--theme-border-width);
-    border-color: var(--theme-border-color);
-    background-color: var(--theme-bg-menu);
-    box-shadow: inset 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(var(--theme-blur-heavy));
+    @extend .wrapperInset;
 }
 
 

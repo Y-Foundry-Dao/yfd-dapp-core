@@ -1,0 +1,99 @@
+// https://cssloaders.github.io/
+.loader {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+  
+ .loader div {
+    width: 20px;
+    height: 20px;
+    margin: 7.5px;
+    border-radius: 50%;
+    background: black;
+    animation: 1.75s dotAnim infinite;
+    position: relative;
+  }
+  
+.loader div:nth-child(1) {
+    background: #353434;
+    animation-delay: 1s;
+  }
+.loader div:nth-child(2) {
+    background: #515457;
+    animation-delay: 1.2s;
+  }
+.loader div:nth-child(3) {
+    background: #28282e;
+    animation-delay: 1.4s;
+  }
+  
+  @keyframes dotAnim {
+    0% {top: 0;}
+    25% {top: -20px;}
+    50% {top: 0};
+    100% {top: 0};
+  }
+
+  .loaderConnect {
+    width: 32px;
+    height: 84px;
+    border-radius: 0 0 20px 20px;
+    position: relative;
+    background: #FFF radial-gradient(circle 5px at 50% 85%, #FF3D00 100%, transparent 0);
+  }
+  .loaderConnect:before , .loaderConnect:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 32px;
+    height: 84px;
+    border-radius: 0 0 20px 20px;
+    background: #FFF;
+    opacity: 0.8;
+    transform: rotate(60deg);
+    transform-origin: 50% 85%;
+    z-index: -2;
+    animation: rotate 1s infinite linear alternate;
+  }
+  .loaderConnect:after {
+    animation: rotate2 1s infinite linear alternate;
+    opacity: 0.5;
+  }
+  @keyframes rotate {
+    0% , 20% { transform: rotate(0deg) }
+    80% , 100% { transform: rotate(30deg) }
+  }
+  @keyframes rotate2 {
+    0% , 20% { transform: rotate(0deg) }
+    80% , 100% { transform: rotate(60deg) }
+  }
+  
+  .loaderBars {
+    position: relative;
+    width: 85px;
+    height: 50px;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(rgb(143, 64, 12) 50px, transparent 0),
+                      linear-gradient(rgb(143, 64, 12) 50px, transparent 0),
+                      linear-gradient(#FFF 50px, transparent 0),
+                      linear-gradient(#FFF 50px, transparent 0),
+                      linear-gradient(#FFF 50px, transparent 0),
+                      linear-gradient(#FFF 50px, transparent 0);
+    background-position: 0px center, 15px center, 30px center, 45px center, 60px center, 75px center, 90px center;
+    animation: rikSpikeRoll 0.65s linear infinite alternate;
+  }
+@keyframes rikSpikeRoll {
+  0% { background-size: 10px 3px;}
+  16% { background-size: 10px 50px, 10px 3px, 10px 3px, 10px 3px, 10px 3px, 10px 3px}
+  33% { background-size: 10px 30px, 10px 50px, 10px 3px, 10px 3px, 10px 3px, 10px 3px}
+  50% { background-size: 10px 10px, 10px 30px, 10px 50px, 10px 3px, 10px 3px, 10px 3px}
+  66% { background-size: 10px 3px, 10px 10px, 10px 30px, 10px 50px, 10px 3px, 10px 3px}
+  83% { background-size: 10px 3px, 10px 3px,  10px 10px, 10px 30px, 10px 50px, 10px 3px}
+  100% { background-size: 10px 3px, 10px 3px, 10px 3px,  10px 10px, 10px 30px, 10px 50px}
+}
+    
