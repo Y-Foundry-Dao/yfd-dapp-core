@@ -5,10 +5,10 @@ import {
   useRecoilValueLoadable,
   useRecoilRefresher_UNSTABLE
 } from 'recoil';
-import { Text, Tooltip, Spinner } from '@chakra-ui/react';
-import Loading from '@components/NoticeLoading';
-import styles from '@scss/app.module.scss';
-import { currentBlockHeightAtom } from '@recoil/chainInfo/atoms';
+import {
+  currentBlockHeightAtom,
+  currentContractForgeAtom
+} from '@recoil/chainInfo/atoms';
 import {
   addressHasFYFDAtom,
   addressCanVoteAtom,
@@ -26,6 +26,8 @@ import {
 import { FYFD_LOCK_DECAY_RATE } from '@var/chrono';
 import useChainInfo from '@hooks/useChainInfo';
 import NoticeLoading from '../NoticeLoading';
+import queryGovernanceParameter from '@utilities/messagesQuery/forge/queryGovernanceParameter';
+import useMsg from '@hooks/useMsg';
 
 export default function CurrentBlockHeight() {
   const { currentChainID, currentAddress } = useChainInfo();
@@ -43,7 +45,43 @@ export default function CurrentBlockHeight() {
   );
   const minVault = useRecoilValue(minFYFDVaultPropAtom);
   const minGov = useRecoilValue(minFYFDGovPropAtom);
-  const minEmergency = useRecoilValue(minFYFDEmergencyPropAtom);
+  const { queryMsg } = useMsg();
+  // get the current contract forge from state created by useChainInfo to query governance parameters below
+  const forge = useRecoilValue(currentContractForgeAtom);
+  // get the user's fyfd and yfd balances and format them for display ( 6 decimals )
+  const myFYFD = useRecoilValueLoadable(selectMyFYFD);
+  // prepare variables to set the minimum fyfd required for each proposal type to state
+  const [minEmergency, setMinFYFDEmergencyProp] = useRecoilState(
+    minFYFDEmergencyPropAtom
+  );
+  // query the governance parameters for the minimum fyfd required for each proposal type
+  const qEmerg = queryGovernanceParameter('fYFD_EmergencyProposalMin');
+
+  useEffect(() => {
+    async function getData() {
+      // if the forge contract is not loaded or the fyfd or yfd balances are loading, return until the data is loaded
+      const rEmerg = await queryMsg(forge, qEmerg);
+      // if everything isn't ready to go don't load anything
+      if (
+        forge === '' ||
+        myFYFD.state === 'loading' ||
+        rEmerg.state === 'loading'
+      ) {
+        return <NoticeLoading />;
+      }
+      const fyfd = myFYFD.contents;
+      setMinFYFDEmergencyProp(rEmerg['parameter_type']['integer']['value']);
+    }
+    getData().then((res) => res);
+  }, [
+    forge,
+    minEmergency,
+    setMinFYFDEmergencyProp,
+    queryMsg,
+    qEmerg,
+    myFYFD.state,
+    myFYFD.contents
+  ]);
 
   // to do: setup a estimatedFYFD using the amount of FYFD between the current block height and the last block height
   useEffect(() => {
@@ -52,6 +90,7 @@ export default function CurrentBlockHeight() {
       return;
     }
     refreshFYFD();
+
     // add a check here to make sure the connected wallet is the same as the address in Recoil State
     // if the user has fyfd, set the hasFYFD state to true
     if (+fyfd.contents > 0) {

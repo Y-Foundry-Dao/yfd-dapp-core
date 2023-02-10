@@ -1,11 +1,6 @@
 import { useEffect } from 'react';
-import { Box, Button, Popover, PopoverTrigger, Flex } from '@chakra-ui/react';
-import {
-  useRecoilValue,
-  useRecoilState,
-  useRecoilValueLoadable,
-  useSetRecoilState
-} from 'recoil';
+import { Button, Popover, PopoverTrigger, Flex } from '@chakra-ui/react';
+import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 import useChainInfo from 'hooks/useChainInfo';
 import { selectMyFYFD } from '@recoil/connected/balance/selectors';
 import styles from '@scss/app.module.scss';
