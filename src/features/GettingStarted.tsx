@@ -3,6 +3,9 @@ import styles from '@scss/app.module.scss';
 import imgBot1 from '@images/bots/bot1.png';
 import imgBot2 from '@images/bots/bot2.png';
 import imgBot3 from '@images/bots/bot3.png';
+//import imgBot1 from '@images/bots/proposer/proposer-square-256.png';
+//import imgBot2 from '@images/bots/supporter/supporter-square-256.png';
+//import imgBot3 from '@images/bots/builder/builder-square-256.png';
 
 export default function GettingStarted() {
   return (

@@ -129,3 +129,29 @@
     }
 
 }
+
+
+.getting-started-img {
+    width: 130px;
+    object-fit: cover;
+    margin-top: -5px;
+    margin-right: 10px;
+    object-position: center;
+    border-radius: 2rem;
+    filter: drop-shadow( 5px 5px 10px #88664a );
+    @media screen and (max-width: 700px) {
+     width: 50px;
+    }
+    &-two {
+        @extend .getting-started-img;
+        @media screen and (max-width: 1080px) {
+            display: none;
+        }
+    }
+    &-three {
+        @extend .getting-started-img;
+        @media screen and (max-width: 1218px) {
+            display: none;
+        }
+    }
+}

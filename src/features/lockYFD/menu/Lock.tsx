@@ -18,7 +18,7 @@ import { useState } from 'react';
 
 export default function MenuFyfdBalance() {
   const toast = useToast();
-  const { isOpen, onToggle } = useDisclosure();
+  const { isOpen: isOpenLockYFD, onToggle } = useDisclosure();
   const [isClicked, setIsClicked] = useState(false);
   const buttonClass = isClicked
     ? styles.buttonCollapseActive
@@ -66,7 +66,7 @@ export default function MenuFyfdBalance() {
           </Button>
         </Box>
       </SimpleGrid>
-      <Collapse in={isOpen} animateOpacity>
+      <Collapse in={isOpenLockYFD} animateOpacity>
         <LockYfdForm />
         <Divider pb={'1.5em'} />
       </Collapse>
