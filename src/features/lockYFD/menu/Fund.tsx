@@ -4,16 +4,11 @@ import styles from '@scss/app.module.scss';
 
 import { selectMyYFD, selectMyFYFD } from '@recoil/connected/balance/selectors';
 import NoticeLoading from '@components/NoticeLoading';
+import FYFDFundValue from './FundValue';
 import { Icons } from '@utilities/variables/icons';
 
 export default function MenuFyfdBalanceFund() {
   const toast = useToast();
-  const myYFD = useRecoilValueLoadable(selectMyYFD);
-  const myFYFD = useRecoilValueLoadable(selectMyFYFD);
-  const balanceYFD =
-    myYFD.state == 'hasValue' ? myYFD.contents : <NoticeLoading />;
-  const balanceFYFD =
-    myFYFD.state == 'hasValue' ? myFYFD.contents : <NoticeLoading />;
   return (
     <Box>
       <SimpleGrid columns={2} spacingX={10} alignItems={'center'} pb={'0.5em'}>
@@ -26,15 +21,7 @@ export default function MenuFyfdBalanceFund() {
               Funding Limit
             </legend>
             <span className={styles.textSpecial}>
-              {+balanceFYFD > 0 ? (
-                '$ ' +
-                Math.round(
-                  parseInt((+balanceFYFD * 0.01).toString())
-                ).toLocaleString() +
-                ' USD'
-              ) : (
-                <NoticeLoading />
-              )}
+              <FYFDFundValue />
             </span>
           </fieldset>
         </Box>

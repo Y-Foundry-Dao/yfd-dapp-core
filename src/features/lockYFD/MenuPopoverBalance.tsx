@@ -1,5 +1,6 @@
 import { useRecoilValueLoadable } from 'recoil';
 import {
+  Box,
   Wrap,
   PopoverContent,
   PopoverBody,
@@ -21,11 +22,6 @@ import MenuFyfdBalanceFund from './menu/Fund';
 
 export default function MenuFyfdBalance() {
   const toast = useToast();
-  const myYFD = useRecoilValueLoadable(selectMyYFD);
-  const myFYFD = useRecoilValueLoadable(selectMyFYFD);
-  const balanceYFD =
-    myYFD.state == 'hasValue' ? myYFD.contents : <NoticeLoading />;
-  const balanceFYFD = myFYFD.state == 'hasValue' ? myFYFD.contents : 0;
   return (
     <PopoverContent className={styles.popoverWrapper}>
       <fieldset className={styles.popoverActionsSection} role="presentation">
@@ -47,7 +43,9 @@ export default function MenuFyfdBalance() {
           <legend className={styles.headingLegend} role="presentation">
             <h2>fYFD</h2>
           </legend>
-          <PopoverBalanceFYFD />
+          <Box h={'2em'}>
+            <PopoverBalanceFYFD />
+          </Box>
           <Divider ml={'25%'} w={'50%'} />
           <br />
           <MenuFyfdBalanceFund />
