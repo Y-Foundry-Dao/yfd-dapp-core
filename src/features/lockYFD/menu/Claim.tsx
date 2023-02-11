@@ -33,7 +33,7 @@ export default function MenuYFDClaim() {
             variant="outline"
             title="Reclaim YFD from decayed fYFD"
             size="sm"
-            className={styles.buttonSimpleWide}
+            className={styles.buttonMenu}
             onClick={async () => {
               return await handleClickClaimYFD('1');
             }}
