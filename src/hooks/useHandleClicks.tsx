@@ -1,6 +1,10 @@
 import useMsg from 'hooks/useMsg';
 import Base64 from 'utilities/base64';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import {
+  useRecoilRefresher_UNSTABLE,
+  useRecoilValue,
+  useSetRecoilState
+} from 'recoil';
 import msgEncodedStake from 'utilities/messagesToEncode/msgEncodedStake';
 import msgStakeYFD from 'utilities/messagesExecute/msgStakeYFD';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
@@ -52,8 +56,11 @@ import {
 } from '@recoil/chainInfo/atoms';
 import { CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_MINIMUM } from '@utilities/variables';
 import msgClaimYFD from '@utilities/messagesExecute/forge/msgClaimYFD';
+import { selectMyFYFD, selectMyYFD } from '@recoil/connected/balance/selectors';
 
 const useHandleClicks = () => {
+  const refreshFYFD = useRecoilRefresher_UNSTABLE(selectMyFYFD);
+  const refreshYFD = useRecoilRefresher_UNSTABLE(selectMyYFD);
   const { executeMsg } = useMsg();
   const { toastSuccessful, toastError } = useTx();
   const connectedWallet = useConnectedWallet();
@@ -150,6 +157,7 @@ const useHandleClicks = () => {
 
     const tx = await executeMsg(contractForge, msgClaimYFD(idx));
     toastSuccessful(tx, SUCCESS_STAKE);
+    refreshYFD();
     return;
   };
 
