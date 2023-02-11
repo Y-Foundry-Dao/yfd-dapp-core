@@ -6,7 +6,8 @@ import {
   GridItem,
   Wrap,
   WrapItem,
-  Flex
+  Flex,
+  Text
 } from '@chakra-ui/react';
 import { Icons } from '@var/icons';
 import { URL_GUIDE_PROPOSER } from '@utilities/variables';
@@ -26,10 +27,10 @@ export default function GSDescription() {
           </Box>
           <Box className={styles.gsDescText}>
             <div className={styles.gsHeading}>What are Proposers?</div>
-            <p>
-              <span className={styles['text-enhanced']}>Proposers</span> submit
-              an idea as a proposal to be voted on by the community.
-            </p>
+            <Text>
+              <span className={styles.textEnhanced}>Proposers</span> submit an
+              idea as a proposal to be voted on by the community.
+            </Text>
             <br />
             <a
               href={URL_GUIDE_PROPOSER}

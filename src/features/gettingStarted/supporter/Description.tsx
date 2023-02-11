@@ -6,7 +6,8 @@ import {
   GridItem,
   Wrap,
   WrapItem,
-  Flex
+  Flex,
+  Text
 } from '@chakra-ui/react';
 import { Icons } from '@var/icons';
 import { URL_GUIDE_SUPPORTER } from '@utilities/variables';
@@ -26,12 +27,12 @@ export default function GSDescription() {
           </Box>
           <Box className={styles.gsDescText}>
             <div className={styles.gsHeading}>What are Supporters?</div>
-            <p>
-              <span className={styles['text-enhanced']}>Supporters</span>{' '}
-              contribute resources to a proposal. These resources are released
-              at proposal milestones and utilized by the Builder to achieve
-              proposal objectives.
-            </p>
+            <Text>
+              <span className={styles.textEnhanced}>Supporters</span> contribute
+              resources to a proposal. These resources are released at proposal
+              milestones and utilized by the Builder to achieve proposal
+              objectives.
+            </Text>
             <br />
             <a
               href={URL_GUIDE_SUPPORTER}

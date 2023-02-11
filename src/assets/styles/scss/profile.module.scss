@@ -44,12 +44,10 @@
     filter: drop-shadow(0.1rem 0.1rem 0.5rem var(#FF0000));
 }
 .profileMenuLayout {
-    border-radius: var(--theme-border-radius);
-    border-width: var(--theme-border-width);
-    border-color: var(--theme-border-color);
-    background-color: var(--theme-bg-menu);
-    box-shadow: inset 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    @extend .wrapperInset;
 }
+
+
 .profileMenuIcon {
     width: 100%;
     font-size: 1.5rem;
@@ -88,10 +86,11 @@
     filter: drop-shadow(0.1rem 0.1rem 0.3rem var(--theme-color-black));
 }
 
-.profileMenuWallet {
+.profileMenuFooter {
     width: 100%;
     text-align: center;
     background: var(--theme-color-darker);
+    border-radius: 0 0 0.8rem 0.8rem;
 }
 
 .profileMenuAddress {
@@ -105,9 +104,10 @@
     margin-left: auto;
     background: var(--theme-color-darker);
 }
-.profileMenuFooter {
+.profileMenuConfig {
     justify-content: space-between;
-    background-color: var(--theme-color-darkest);
+    background-color: var(--theme-bg-menu);
+    border-radius: 0 0 var(--theme-border-radius) var(--theme-border-radius);
 }
 
 .profileMenuFooterText {

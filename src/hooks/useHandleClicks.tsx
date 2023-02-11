@@ -1,6 +1,10 @@
 import useMsg from 'hooks/useMsg';
 import Base64 from 'utilities/base64';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import {
+  useRecoilRefresher_UNSTABLE,
+  useRecoilValue,
+  useSetRecoilState
+} from 'recoil';
 import msgEncodedStake from 'utilities/messagesToEncode/msgEncodedStake';
 import msgStakeYFD from 'utilities/messagesExecute/msgStakeYFD';
 import { useConnectedWallet } from '@terra-money/wallet-provider';
@@ -50,16 +54,21 @@ import {
   currentContractForgeAtom,
   currentContractGovTokenAtom
 } from '@recoil/chainInfo/atoms';
+import { CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_MINIMUM } from '@utilities/variables';
+import msgClaimYFD from '@utilities/messagesExecute/forge/msgClaimYFD';
+import { selectMyFYFD, selectMyYFD } from '@recoil/connected/balance/selectors';
 
 const useHandleClicks = () => {
+  const refreshFYFD = useRecoilRefresher_UNSTABLE(selectMyFYFD);
+  const refreshYFD = useRecoilRefresher_UNSTABLE(selectMyYFD);
   const { executeMsg } = useMsg();
+  const { toastSuccessful, toastError } = useTx();
   const connectedWallet = useConnectedWallet();
   const contractForge = useRecoilValue(currentContractForgeAtom);
   const contractGovToken = useRecoilValue(currentContractGovTokenAtom);
 
+  // used to reset the input fields after a successful transaction
   const setAmountStakeYFD = useSetRecoilState(inputStakeYFD);
-
-  const { toastSuccessful } = useTx();
 
   const isEmergency = useRecoilValue(inputIsEmergency);
   const justificationLink = useRecoilValue(inputJustificationLink);
@@ -103,8 +112,27 @@ const useHandleClicks = () => {
 
   const handleClickStakeYFD = async (amount: number, duration: number) => {
     if (!connectedWallet) {
+      const e = new Error('No connected wallet');
+      toastError(e);
       return;
     }
+
+    if (amount <= 0) {
+      const e = new Error('Amount must be greater than 0');
+      toastError(e);
+      return;
+    }
+
+    if (duration < CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_MINIMUM) {
+      const e = new Error(
+        `Duration ` +
+          duration +
+          ` must be greater than ${CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_MINIMUM} blocks`
+      );
+      toastError(e);
+      return;
+    }
+
     // parameter is stake lock duration and set to maximum time
     const msgToEncode = msgEncodedStake(duration);
     const encodedMessage = Base64.btoa(msgToEncode);
@@ -114,13 +142,22 @@ const useHandleClicks = () => {
       encodedMessage
     );
     // YFD will always be staked to the YFD contract.
-    // Therefore it does not need user input.
-    // For now the contract is hard coded to testnet but can be made dynamic later
-    // By detecting what network we are from and using the appropriate networks contract from there
     const tx = await executeMsg(contractGovToken, msgStakeYFDToken);
-    console.log(tx);
     toastSuccessful(tx, SUCCESS_STAKE);
     setAmountStakeYFD(0);
+    return;
+  };
+
+  const handleClickClaimYFD = async (idx: string) => {
+    if (!connectedWallet) {
+      const e = new Error('No connected wallet');
+      toastError(e);
+      return;
+    }
+
+    const tx = await executeMsg(contractForge, msgClaimYFD(idx));
+    toastSuccessful(tx, SUCCESS_STAKE);
+    refreshYFD();
     return;
   };
 
@@ -259,6 +296,7 @@ const useHandleClicks = () => {
 
   return {
     handleClickStakeYFD,
+    handleClickClaimYFD,
     // handleClickCreateVaultProposal,
     handleClickFundProposal,
     handleClickVoteAffirm,

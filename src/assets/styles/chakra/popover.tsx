@@ -17,7 +17,7 @@ export default helpers.defineMultiStyleConfig({
       boxShadow: 'lg',
       rounded: 'lg',
       color: 'black',
-      bg: 'rgba(32, 36, 46, 0.8)',
+      //bg: 'rgba(32, 36, 46, 0.8)',
       flexDirection: 'column',
       py: '2'
     },
@@ -31,7 +31,7 @@ export default helpers.defineMultiStyleConfig({
       fontWeight: 'medium',
       lineHeight: 'normal',
       color: 'gray.300',
-      bg: 'rgba(32, 36, 46, 0.8)'
+      bg: 'rgba(32, 36, 46, 0.7)'
     },
     header: {
       fontWeight: 'medium',
@@ -40,20 +40,20 @@ export default helpers.defineMultiStyleConfig({
     body: {
       fontWeight: 'medium',
       lineHeight: 'normal',
-      color: 'gray.300',
-      bg: 'rgba(32, 36, 46, 0.8)'
+      color: 'gray.300'
+      //bg: 'rgba(32, 36, 46, 0.8)'
     },
     footer: {
       fontWeight: 'medium',
       lineHeight: 'normal',
-      color: 'gray.300',
-      bg: 'rgba(32, 36, 46, 0.8)'
+      color: 'gray.300'
+      //bg: 'rgba(32, 36, 46, 0.8)'
     },
     arrow: {
       fontWeight: 'medium',
       lineHeight: 'normal',
-      color: 'gray.300',
-      bg: 'rgba(32, 36, 46, 0.8)'
+      color: 'gray.300'
+      //bg: 'rgba(32, 36, 46, 0.8)'
     }
   },
   sizes: {

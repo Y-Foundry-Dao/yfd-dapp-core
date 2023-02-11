@@ -29,6 +29,14 @@ const useTx = () => {
         duration: 9000,
         isClosable: true
       });
+    } else {
+      toast({
+        title: error.name,
+        description: error.message,
+        status: 'error',
+        duration: 9000,
+        isClosable: true
+      });
     }
     return 'failed';
   };

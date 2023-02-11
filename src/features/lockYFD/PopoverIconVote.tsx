@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { WrapItem, SimpleGrid, GridItem } from '@chakra-ui/react';
 import { useRecoilValue } from 'recoil';
 
@@ -10,13 +9,12 @@ let styleIcon = 'material-symbols-outlined';
 
 export default function PopoverIconVote() {
   const canVote = useRecoilValue(addressCanVoteAtom);
-  useEffect(() => {
-    if (canVote) {
-      styleIcon = styleIcon + ' ' + styles['iconLockYFD-enable'];
-    } else {
-      styleIcon = styleIcon + ' ' + styles.iconLockYFD;
-    }
-  }, [canVote]);
+  styleIcon = styleIcon + ' ' + styles.iconLockYFD;
+
+  if (canVote) {
+    styleIcon = styleIcon + ' ' + styles['iconLockYFD-enable'];
+  }
+
   return (
     <>
       <WrapItem className={styles['lockAction']}>

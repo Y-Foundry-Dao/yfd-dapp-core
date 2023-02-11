@@ -7,6 +7,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;500;600;700&display=swap");
 
+// global variables
+$headerHeight: 3.625rem;
+$maxWidth: 40.625rem;
+
 // core components
 @import "_root.module.scss";
 
@@ -29,19 +33,19 @@
 @import "proposal.module.scss";
 
 //components
-@import "component/icon.module.scss";
-@import "component/image.module.scss";
 @import "component/appcard.module.scss";
 @import "component/button.module.scss";
 @import "component/card.module.scss";
 @import "component/heading.module.scss";
+@import "component/icon.module.scss";
+@import "component/image.module.scss";
 @import "component/input.module.scss";
 @import "component/modal.module.scss";
+@import "component/spinner.module.scss";
 @import "component/timeline.module.scss";
 @import "component/text.module.scss";
 
 // functions
-@import "loader.module.scss";
 
 //pages 
 @import 'page/gettingstarted.module.scss';
@@ -71,6 +75,104 @@ body {
  @media screen and (min-width: 655px) {
   padding: 2rem;
  }
+}
+
+.boxShadow {
+    box-shadow: 0.2rem 0.2em 0.3em 0.2em var(--theme-shadow-color);
+}
+
+.noticeLoading {
+    margin-left: 0.5em;
+    color: var(--theme-inactive-color);
+}
+.headingWrapper {
+    @extend .boxShadow;
+    background-color: rgba(0, 0, 0, 0.3);
+    //border-width: 0.7em 0 0 0;
+    border-width: 0.35em 0.0em 0.35em 0.01em;
+    border-radius: var(--theme-border-radius);
+    border-style: ridge;
+    border-color: var(--theme-border-color);
+    padding: 0.5em;
+    padding-bottom: 1em;
+    }
+
+.headingLegend {
+    font-size: 1.1rem;
+    margin: auto;
+    padding: 0 0.2em;
+    color: var(--theme-gray-light);
+
+    h2 {
+        display: flex;
+        align-items: center;
+        font-size: 1rem;
+        background-color: rgba(40, 40, 40, 1);
+        margin: 0;
+        padding: 0.75em 0.35em 0.65em 0.65em;
+        border: 3px solid var(--theme-border-color);
+        border-radius: var(--theme-border-radius);
+        border-style: outset;
+        line-height: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.25em;
+        color: var(--theme-text-color);
+        transform: translateY(-5%);
+    }
+}
+
+.headingLegendText {
+    padding-left: 0.75em;
+}
+
+// text inside the border
+.headingLegendTextMinimal {
+    text-decoration: underline;
+   
+}
+
+.headingWrapperMinimal {
+    //background-color: rgba(0, 0, 0, 0.1);
+    //border-width: 0.7em 0 0 0;
+    //border-width: 0.15em 0.0em 0.15em 0.01em;
+    border: 0;
+    border-radius: var(--theme-border-radius);
+    border-color: var(--theme-border-color);
+    padding: 0.5em;
+    padding-bottom: 1em;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+}
+
+.headingWrapperInset {
+    @extend .wrapperInset;
+    color: var(--theme-gray-light);
+    
+    fieldset {
+        width: 100%;
+    }
+    
+    span {
+        padding-left: 0.5em;
+        transition-duration: 1.5s;
+        transition-timing-function: ease-in-out;
+        transition-property: color, font-size;
+        &:hover {
+            color: var(--theme-special-color);
+            font-size: 125%;
+        }
+    }
+
+    legend {
+        color: var(--theme-inactive-color);
+        margin-left: 0.75em;
+
+        h2 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+    }
 }
 
 .video-bg {
@@ -299,32 +401,13 @@ body {
  }
 }
 
-.text-enhanced {
-    color: var(--text-enhanced-color);
-    filter: drop-shadow( 1rem 1rem 2rem var(--text-enhanced-filter-color));
-}
-
-.notice {
+.layoutBlockHeight {
     margin-top: 0.625rem;
     margin-bottom: 0.625rem;
-    &-loading {
-        font-size: 0.75rem;
-        color: var(--theme-inactive-color);
-        margin-top: 0.625rem;
-        margin-bottom: 0.625rem;
-        cursor: help;
-    }
-}
-
-.blockHeight {
-    margin-top: 0.625rem;
-    margin-bottom: 0.625rem;
+    height: 2rem;
     &Text {
-        font-size: 0.75rem;
+        @extend .textConsole;
         color: var(--theme-inactive-color);
-        margin-top: 0.625rem;
-        margin-bottom: 0.625rem;
-        cursor: help;
     }
 }
 

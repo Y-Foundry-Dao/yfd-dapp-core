@@ -177,7 +177,7 @@ function FormRoleProposalCreation({ onClose }: any) {
     if (address.length > 0) {
       return (
         <>
-          <p className={styles.inputInvalid}>Invalid Address</p>
+          <span className={styles.inputInvalid}>Invalid Address</span>
         </>
       );
     } else {

@@ -29,8 +29,7 @@ export default function Header() {
         <Box className={styles.logo}>
           <Image src={yLogo} alt="Y-Foundry Logo" />
         </Box>
-        <Box className={styles.menuHeader}></Box>
-        <Box className={styles.headerProfile}>
+        <Box className={styles.menuProfile}>
           {menuLockYFDDisplay(status)}
           <WalletConnect />
         </Box>

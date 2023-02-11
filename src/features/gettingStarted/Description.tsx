@@ -1,5 +1,5 @@
 import styles from '@scss/app.module.scss';
-import { SimpleGrid, GridItem, Wrap, WrapItem } from '@chakra-ui/react';
+import { SimpleGrid, GridItem, Wrap, WrapItem, Text } from '@chakra-ui/react';
 import { Icons } from '@var/icons';
 
 export default function GSDescription() {
@@ -8,10 +8,10 @@ export default function GSDescription() {
       <div
         className={[styles['gsBorder'], styles['gsContentCenter']].join(' ')}
       >
-        <p>
+        <Text>
           Y-Foundry provides a platform for creators to trustlessly propose,
           fund, and build ideas.
-        </p>
+        </Text>
         <Wrap
           className={styles['gsContent']}
           justify="center"

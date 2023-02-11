@@ -3,6 +3,9 @@ import styles from '@scss/app.module.scss';
 import imgBot1 from '@images/bots/bot1.png';
 import imgBot2 from '@images/bots/bot2.png';
 import imgBot3 from '@images/bots/bot3.png';
+//import imgBot1 from '@images/bots/proposer/proposer-square-256.png';
+//import imgBot2 from '@images/bots/supporter/supporter-square-256.png';
+//import imgBot3 from '@images/bots/builder/builder-square-256.png';
 
 export default function GettingStarted() {
   return (
@@ -13,11 +16,11 @@ export default function GettingStarted() {
             <h3 className={styles.imgContent}>Getting Started</h3>
             <div className={styles['content-text']}>
               Learning about
-              <span className={styles['text-enhanced']}> Y-Foundry DAO </span>
+              <span className={styles.textEnhanced}> Y-Foundry DAO </span>
               can be intense.
               <br />
               Don't worry. The
-              <span className={styles['text-enhanced']}> FoundryBots </span>
+              <span className={styles.textEnhanced}> FoundryBots </span>
               are here to help.
             </div>
             <Link to="/getting-started">

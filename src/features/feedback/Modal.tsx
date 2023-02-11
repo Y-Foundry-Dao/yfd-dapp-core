@@ -52,7 +52,9 @@ function FeedbackModal({ isOpen, onClose }: any) {
               <WrapItem className={styles['gsContent-feature']}>
                 <SimpleGrid>
                   <GridItem>
-                    <p>OR</p>
+                    <br />
+                    OR
+                    <br />
                   </GridItem>
                 </SimpleGrid>
               </WrapItem>

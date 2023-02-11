@@ -53,5 +53,9 @@ export const Icons: { [key: string]: string } = {
   profile_paste: 'person_pin',
   money: 'attach_money',
   money_confirm: 'price_check',
-  money_disable: 'money_off'
+  money_disable: 'money_off',
+  lock_yfd: 'lock_clock',
+  reclaim_yfd: 'lock_reset',
+  submit: 'send',
+  arrow_right: 'arrow_forward'
 };

@@ -1,11 +1,6 @@
 import { useEffect } from 'react';
 import { Button, Popover, PopoverTrigger, Flex } from '@chakra-ui/react';
-import {
-  useRecoilValue,
-  useRecoilState,
-  useRecoilValueLoadable,
-  useSetRecoilState
-} from 'recoil';
+import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 import useChainInfo from 'hooks/useChainInfo';
 import { selectMyFYFD } from '@recoil/connected/balance/selectors';
 import styles from '@scss/app.module.scss';
@@ -35,9 +30,9 @@ export default function MenuLockYFD() {
   // if the user has no fyfd, return the "Lock $YFD" button instead of the fyfd menu
   if (hasFYFD) {
     return (
-      <Popover>
+      <Popover placement={'bottom'}>
         <PopoverTrigger>
-          <Button className={styles.stakeYfd}>
+          <Button className={styles.menuStakeYfd}>
             <Flex className={styles.stakeYfdIcons}>
               <IconVote />
               <IconProposal />

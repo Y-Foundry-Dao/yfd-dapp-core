@@ -6,7 +6,8 @@ import {
   GridItem,
   Wrap,
   WrapItem,
-  Flex
+  Flex,
+  Text
 } from '@chakra-ui/react';
 import { Icons } from '@var/icons';
 import { URL_GUIDE_VOTER } from '@utilities/variables';
@@ -26,11 +27,11 @@ export default function GSDescription() {
           </Box>
           <Box className={styles.gsDescText}>
             <div className={styles.gsHeading}>What are Voters?</div>
-            <p>
-              <span className={styles['text-enhanced']}>Voters</span> decide the
+            <Text>
+              <span className={styles.textEnhanced}>Voters</span> decide the
               collective actions of the DAO by expressing their preference on
               governance and initiative proposals.
-            </p>
+            </Text>
             <br />
             <a
               href={URL_GUIDE_VOTER}
