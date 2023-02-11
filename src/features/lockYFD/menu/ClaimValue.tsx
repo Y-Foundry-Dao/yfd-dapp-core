@@ -59,7 +59,9 @@ export default function YFDClaimValue() {
               return (
                 <div key={item.idx}>
                   <span className={styles.textEnhanced}>{item.idx}. </span>
-                  <Tooltip label={'Block Height: ' + item.deposit_height}>
+                  <Tooltip
+                    label={'Initial Block Height: ' + item.deposit_height}
+                  >
                     {depositDate.toLocaleString()}
                   </Tooltip>
                   <span
