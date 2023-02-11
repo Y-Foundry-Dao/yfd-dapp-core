@@ -1,4 +1,4 @@
-import { useRecoilValueLoadable } from 'recoil';
+import { useRecoilValueLoadable, useSetRecoilState } from 'recoil';
 import {
   Button,
   Box,
@@ -6,10 +6,12 @@ import {
   useToast,
   SimpleGrid,
   Collapse,
-  useDisclosure
+  useDisclosure,
+  Tooltip
 } from '@chakra-ui/react';
 import styles from '@scss/app.module.scss';
 
+import { inputStakeYFD } from '@recoil/input/atoms';
 import { selectMyYFD, selectMyFYFD } from '@recoil/connected/balance/selectors';
 import NoticeLoading from '@components/NoticeLoading';
 import { Icons } from '@utilities/variables/icons';
@@ -25,9 +27,9 @@ export default function MenuFyfdBalance() {
     : styles.buttonCollapse;
   const myYFD = useRecoilValueLoadable(selectMyYFD);
   const myFYFD = useRecoilValueLoadable(selectMyFYFD);
-  const balanceYFD =
-    myYFD.state == 'hasValue' ? myYFD.contents : <NoticeLoading />;
-  const balanceFYFD = myFYFD.state == 'hasValue' ? myFYFD.contents : 0;
+  const balanceYFD = myYFD.state == 'hasValue' ? myYFD.contents : 0;
+  const yfd = Math.round(parseInt(balanceYFD.toString())).toLocaleString();
+  const setInputLockYFD = useSetRecoilState(inputStakeYFD);
 
   return (
     <Box pb={'0.5em'}>
@@ -40,13 +42,20 @@ export default function MenuFyfdBalance() {
             >
               $YFD Available
             </legend>
-            <span className={styles.textSpecial}>
-              {balanceYFD ? (
-                Math.round(parseInt(balanceYFD.toString())).toLocaleString()
-              ) : (
-                <NoticeLoading />
-              )}
-            </span>
+            {yfd ? (
+              <Button
+                variant="link"
+                title="Lock Maximum YFD"
+                className={styles.textSpecial}
+                onClick={() => {
+                  setInputLockYFD(+balanceYFD);
+                }}
+              >
+                {yfd}
+              </Button>
+            ) : (
+              <NoticeLoading />
+            )}
           </fieldset>
         </Box>
         <Box pb={'0.5em'}>

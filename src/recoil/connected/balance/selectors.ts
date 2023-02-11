@@ -1,6 +1,7 @@
 import { selector } from 'recoil';
 import queryBalance from '@utilities/messagesQuery/cw20/queryBalance';
 import queryMsg from '@utilities/messagesQuery/queryMsg';
+import queryBalanceDetail from '@utilities/messagesQuery/forge/queryBalanceDetail';
 
 import { addressConnectedAtom } from '@recoil/connected/address/atoms';
 import {
@@ -11,6 +12,10 @@ import convertFromBase from '@utilities/converters/convertFromBase';
 
 type BalanceResponse = {
   balance: string;
+};
+
+type ClaimableResponse = {
+  contents: object[];
 };
 
 // Gets the connected wallets YFD balance from the smart contract
@@ -48,6 +53,28 @@ export const selectFYFDConnected = selector({
   }
 });
 
+// Gets the connected wallets YFD Claimable balance from the Forge
+export const selectYFDClaimableConnected = selector({
+  key: 'selectYFDClaimableConnected',
+  get: async ({ get }) => {
+    if (
+      get(addressConnectedAtom) === '' ||
+      get(currentContractForgeAtom) === ''
+    ) {
+      return 0;
+    }
+    console.log(
+      'querying balance detail',
+      queryBalanceDetail(get(addressConnectedAtom))
+    );
+    const response: any = await queryMsg(
+      get(currentContractForgeAtom),
+      queryBalanceDetail(get(addressConnectedAtom))
+    );
+    return response;
+  }
+});
+
 // Uses the selectYFDConnected selector to convert the balance from base to human readable format and returns it as a string.
 export const selectMyYFD = selector({
   key: 'selectMyYFD',
@@ -65,5 +92,39 @@ export const selectMyFYFD = selector({
     const FYFDConnected = get(selectFYFDConnected);
     const balance = convertFromBase(FYFDConnected).toFixed(6);
     return balance.toString();
+  }
+});
+
+export const selectMyYFDClaimableJSON = selector({
+  key: 'selectMyYFDClaimable',
+  get: ({ get }) => {
+    return get(selectYFDClaimableConnected);
+  }
+});
+
+export const selectMyYFDClaimableBalance = selector({
+  key: 'selectMyYFDClaimableBalance',
+  get: ({ get }) => {
+    const claimable: any = get(selectMyYFDClaimableJSON);
+    if (claimable.contents.length === 0) {
+      return 0;
+    }
+    let total = 0;
+    let withdrawn = 0;
+    let remainder = 0;
+    claimable.contents.stakes.forEach((element: any) => {
+      switch (element.key) {
+        case 'asset_deposit_amount':
+          total = total + element.value;
+          break;
+        case 'asset_withdrawn_amount':
+          withdrawn = withdrawn + element.value;
+          break;
+        default:
+          break;
+      }
+    });
+    remainder = total - withdrawn;
+    return remainder;
   }
 });

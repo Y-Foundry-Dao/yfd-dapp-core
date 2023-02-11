@@ -43,7 +43,17 @@ export default defineStyleConfig({
       boxShadow: '0 0 2px 2px #efdfde'
     },
     // 4. We can override existing variants
-
+    link: {
+      bg: 'transparent',
+      fontWeight: 'normal',
+      letterSpacing: '0.25rem',
+      fontSize: '1em',
+      _hover: {
+        bg: 'transparent',
+        fontWeight: 'bold',
+        textDecoration: 'none'
+      }
+    },
     // 5. We can add responsive variants
     sm: {
       bg: 'red.400',

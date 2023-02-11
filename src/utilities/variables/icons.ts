@@ -56,5 +56,6 @@ export const Icons: { [key: string]: string } = {
   money_disable: 'money_off',
   lock_yfd: 'lock_clock',
   reclaim_yfd: 'lock_reset',
-  submit: 'send'
+  submit: 'send',
+  arrow_right: 'arrow_forward'
 };

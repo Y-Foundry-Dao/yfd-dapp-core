@@ -29,7 +29,7 @@ export default function PopoverBalanceFYFD() {
             title: 'Copied!',
             description:
               'Your fYFD balance of ' +
-              Math.round(+balancefYFD).toLocaleString() +
+              balancefYFD +
               ' has been copied to your clipboard.',
             status: 'info',
             duration: 5000,

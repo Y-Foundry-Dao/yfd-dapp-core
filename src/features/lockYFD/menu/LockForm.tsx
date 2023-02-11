@@ -312,7 +312,7 @@ export default function LockYfdForm() {
           onClick={async () => {
             return await handleClickStakeYFD(
               amountStakeYFD,
-              Number(durationDepositYFD)
+              +durationDepositYFD
             );
           }}
         >

@@ -28,6 +28,15 @@
         color: var(--theme-confirm-color);
     }
 
+    &Inline {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        @extend .icon;
+        align-self: bottom;
+    }
+
     &Paste {
         @extend .icon;
         color: var(--theme-paste-color);

@@ -1,5 +1,13 @@
 import { atom, atomFamily } from 'recoil';
 
+// new active
+
+// used in the LockYFD Menu to lock YFD
+const inputStakeYFD = atom({
+  key: 'inputStakeYFD',
+  default: 0
+});
+
 //~~~~~~~~~~~~~~~~
 // atom only
 //~~~~~~~~~~~~~~~~
@@ -12,11 +20,6 @@ const inputIsEmergency = atom({
 const inputJustificationLink = atom({
   key: 'inputJustificationLink',
   default: ''
-});
-
-const inputStakeYFD = atom({
-  key: 'inputStakeYFD',
-  default: 0
 });
 
 const inputProposalType = atom({

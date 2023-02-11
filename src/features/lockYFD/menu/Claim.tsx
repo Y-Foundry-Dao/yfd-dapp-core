@@ -1,18 +1,12 @@
 import { useRecoilValueLoadable } from 'recoil';
 import { Button, Box, useToast, SimpleGrid, Text } from '@chakra-ui/react';
 import styles from '@scss/app.module.scss';
-
-import { selectMyYFD, selectMyFYFD } from '@recoil/connected/balance/selectors';
 import NoticeLoading from '@components/NoticeLoading';
 import { Icons } from '@utilities/variables/icons';
+import YFDClaimValue from './ClaimValue';
 
 export default function MenuFyfdBalance() {
   const toast = useToast();
-  const myYFD = useRecoilValueLoadable(selectMyYFD);
-  const myFYFD = useRecoilValueLoadable(selectMyFYFD);
-  const balanceYFD =
-    myYFD.state == 'hasValue' ? myYFD.contents : <NoticeLoading />;
-  const balanceFYFD = myFYFD.state == 'hasValue' ? myFYFD.contents : 0;
   return (
     <Box>
       <SimpleGrid columns={2} spacingX={10} alignItems={'center'} pb={'0.5em'}>
@@ -25,7 +19,9 @@ export default function MenuFyfdBalance() {
               Unlocked
             </legend>
             <span className={styles.textSpecial}>
-              <NoticeLoading />
+              <Button as="button" variant="link" className={styles.textSpecial}>
+                claim details
+              </Button>
             </span>
           </fieldset>
         </Box>
@@ -37,6 +33,9 @@ export default function MenuFyfdBalance() {
             size="sm"
             className={styles.buttonSimpleWide}
             isDisabled={true}
+            onClick={async () => {
+              return await handleClickClaimYFD();
+            }}
           >
             <span className="material-symbols-outlined">
               {Icons.reclaim_yfd}
@@ -45,6 +44,9 @@ export default function MenuFyfdBalance() {
           </Button>
         </Box>
       </SimpleGrid>
+      <span className={styles.textSpecial}>
+        <YFDClaimValue />
+      </span>
     </Box>
   );
 }
