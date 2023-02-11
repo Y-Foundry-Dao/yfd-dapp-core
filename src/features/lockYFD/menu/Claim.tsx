@@ -4,9 +4,11 @@ import styles from '@scss/app.module.scss';
 import NoticeLoading from '@components/NoticeLoading';
 import { Icons } from '@utilities/variables/icons';
 import YFDClaimValue from './ClaimValue';
+import useHandleClicks from '@hooks/useHandleClicks';
 
-export default function MenuFyfdBalance() {
-  const toast = useToast();
+export default function MenuYFDClaim() {
+  const { handleClickClaimYFD } = useHandleClicks();
+
   return (
     <Box>
       <SimpleGrid columns={2} spacingX={10} alignItems={'center'} pb={'0.5em'}>
@@ -32,9 +34,8 @@ export default function MenuFyfdBalance() {
             title="Reclaim YFD from decayed fYFD"
             size="sm"
             className={styles.buttonSimpleWide}
-            isDisabled={true}
             onClick={async () => {
-              return await handleClickClaimYFD();
+              return await handleClickClaimYFD('1');
             }}
           >
             <span className="material-symbols-outlined">

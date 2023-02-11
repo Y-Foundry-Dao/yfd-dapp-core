@@ -43,6 +43,9 @@ export default function YFDClaimValue() {
                 item.deposit_timestamp / 1000000,
                 'yyyy-MMM-dd'
               );
+              const depositAmount = (
+                item.asset_deposit_amount / 1000000
+              ).toLocaleString();
               const endBlock = item.lock_duration + item.deposit_height;
               const blocksLeft = endBlock - currentBlockHeight;
               const claimDate = format(
@@ -69,7 +72,7 @@ export default function YFDClaimValue() {
                   </Tooltip>
                   <br />
                   <span className={styles.headingLegendText}>
-                    {remainingBalance.toLocaleString()}
+                    {remainingBalance.toLocaleString()} of {depositAmount}
                   </span>{' '}
                   $YFD Remaining
                   <br />

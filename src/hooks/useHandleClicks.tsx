@@ -51,6 +51,7 @@ import {
   currentContractGovTokenAtom
 } from '@recoil/chainInfo/atoms';
 import { CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_MINIMUM } from '@utilities/variables';
+import msgClaimYFD from '@utilities/messagesExecute/forge/msgClaimYFD';
 
 const useHandleClicks = () => {
   const { executeMsg } = useMsg();
@@ -137,6 +138,18 @@ const useHandleClicks = () => {
     const tx = await executeMsg(contractGovToken, msgStakeYFDToken);
     toastSuccessful(tx, SUCCESS_STAKE);
     setAmountStakeYFD(0);
+    return;
+  };
+
+  const handleClickClaimYFD = async (idx: string) => {
+    if (!connectedWallet) {
+      const e = new Error('No connected wallet');
+      toastError(e);
+      return;
+    }
+
+    const tx = await executeMsg(contractForge, msgClaimYFD(idx));
+    toastSuccessful(tx, SUCCESS_STAKE);
     return;
   };
 
@@ -275,6 +288,7 @@ const useHandleClicks = () => {
 
   return {
     handleClickStakeYFD,
+    handleClickClaimYFD,
     // handleClickCreateVaultProposal,
     handleClickFundProposal,
     handleClickVoteAffirm,
