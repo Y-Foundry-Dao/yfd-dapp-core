@@ -56,7 +56,6 @@ export default function YFDClaimValue() {
         array = { ...entry, idx: idx };
         lockList = { ...lockList, [`${id}`]: array };
         if (count == 1) {
-          console.log('count = 1 -- setting claimable index: ', idx);
           setMyClaimableYFDIndex(idx);
         }
         // to-do: sort by deposit_timestamp
