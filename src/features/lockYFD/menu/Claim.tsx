@@ -1,13 +1,16 @@
-import { useRecoilValueLoadable } from 'recoil';
+import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 import { Button, Box, useToast, SimpleGrid, Text } from '@chakra-ui/react';
 import styles from '@scss/app.module.scss';
 import NoticeLoading from '@components/NoticeLoading';
 import { Icons } from '@utilities/variables/icons';
 import YFDClaimValue from './ClaimValue';
 import useHandleClicks from '@hooks/useHandleClicks';
+import { myClaimableYFDIndexAtom } from '@recoil/connected/balance/atoms';
+import { isDisabled } from '@chakra-ui/utils';
 
 export default function MenuYFDClaim() {
   const { handleClickClaimYFD } = useHandleClicks();
+  const idx = useRecoilValue(myClaimableYFDIndexAtom);
 
   return (
     <Box>
@@ -33,9 +36,10 @@ export default function MenuYFDClaim() {
             variant="outline"
             title="Reclaim YFD from decayed fYFD"
             size="sm"
-            className={styles.buttonSimpleWide}
+            className={styles.buttonMenu}
+            isDisabled={idx ? false : true}
             onClick={async () => {
-              return await handleClickClaimYFD('1');
+              return await handleClickClaimYFD(idx);
             }}
           >
             <span className="material-symbols-outlined">

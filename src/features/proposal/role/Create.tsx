@@ -26,7 +26,6 @@ import {
   Box,
   Heading,
   Flex,
-  AlertIcon,
   AccordionPanel,
   AccordionItem,
   Accordion,
@@ -271,7 +270,7 @@ function FormRoleProposalCreation({ onClose }: any) {
           <FormStep name="proposal" title="Details">
             <FormLayout>
               <Box>
-                <p>
+                <span>
                   Name{' '}
                   <span
                     title={whitelistName}
@@ -282,7 +281,7 @@ function FormRoleProposalCreation({ onClose }: any) {
                   >
                     {Icons.profile_paste}
                   </span>
-                </p>
+                </span>
                 <Input
                   value={name}
                   onChange={(event: any) => setName(event.target.value)}
@@ -290,7 +289,7 @@ function FormRoleProposalCreation({ onClose }: any) {
                 />
               </Box>
               <Box>
-                <p>
+                <span>
                   Address{' '}
                   <span
                     title={addressConnected}
@@ -302,7 +301,7 @@ function FormRoleProposalCreation({ onClose }: any) {
                   >
                     {Icons.profile_paste}
                   </span>
-                </p>
+                </span>
                 <Input
                   value={address}
                   onChange={(event: any) => addressValidate(event.target.value)}
@@ -312,13 +311,13 @@ function FormRoleProposalCreation({ onClose }: any) {
                   }
                 />
                 {addressValid ? (
-                  <p className={styles.inputValid}>Address is Valid</p>
+                  <span className={styles.inputValid}>Address is Valid</span>
                 ) : (
                   addressInvalidMessage()
                 )}
               </Box>
               <Box>
-                <p>
+                <span>
                   Image for Whitelisted Address{' '}
                   <span
                     title={whitelistImage}
@@ -329,7 +328,7 @@ function FormRoleProposalCreation({ onClose }: any) {
                   >
                     <img src={whitelistImage} width="25px" />
                   </span>
-                </p>
+                </span>
                 <Input
                   type="url"
                   pattern="https://.*|http://.*|ipfs://.*"
