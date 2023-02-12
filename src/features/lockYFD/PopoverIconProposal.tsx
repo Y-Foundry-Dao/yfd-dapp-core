@@ -15,6 +15,7 @@ import {
   addressCanProposeGovAtom,
   addressCanProposeVaultAtom
 } from '@recoil/connected/address/atoms';
+import { minFYFDVaultPropAtom } from '@recoil/governance/parameters/atoms';
 
 export default function PopoverIconProposal() {
   const {
@@ -24,13 +25,20 @@ export default function PopoverIconProposal() {
   } = useDisclosure();
   const canProposeVault = useRecoilValue(addressCanProposeVaultAtom);
   const canProposeGov = useRecoilValue(addressCanProposeGovAtom);
+  const minFYFDVaultProp = useRecoilValue(minFYFDVaultPropAtom);
+
+  const title = minFYFDVaultProp + ' fYFD required';
+  const styleIcon = 'material-symbols-outlined ' + styles.iconLockYFD;
 
   function loadModalPropose() {
     if (canProposeVault || canProposeGov) {
       return <ProposalModalButton onOpen={onOpenProposalCreate} />;
     } else {
-      const styleIcon = 'icon-enable material-symbols-outlined';
-      return <span className={styleIcon}>{Icons.propose}</span>;
+      return (
+        <span title={title} className={styleIcon}>
+          {Icons.propose}
+        </span>
+      );
     }
   }
 
@@ -38,11 +46,11 @@ export default function PopoverIconProposal() {
     <>
       <WrapItem className={styles['lockAction']}>
         <SimpleGrid>
-          <GridItem>{loadModalPropose()}</GridItem>
           <ProposalModal
             isOpen={isOpenProposalCreate}
             onClose={onCloseProposalCreate}
           />
+          <GridItem>{loadModalPropose()}</GridItem>
           <GridItem>Propose</GridItem>
         </SimpleGrid>
       </WrapItem>

@@ -101,3 +101,17 @@
     font-family: "Material Symbols Outlined";
 }
 */
+
+.iconCaret {
+    
+    &Up {
+    border-bottom: 10px solid #000000;
+    border-left: 6px solid rgba(0, 0, 0, 0);
+    border-right: 6px solid rgba(0, 0, 0, 0);
+    content: "";
+    display: inline-block;
+    height: 0;
+    vertical-align: top;
+    width: 0;
+  }
+}
