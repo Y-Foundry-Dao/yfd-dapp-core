@@ -7,6 +7,7 @@ import {
   useRecoilRefresher_UNSTABLE
 } from 'recoil';
 import {
+  selectMyFYFD,
   selectMyYFD,
   selectMyYFDClaimableBalance,
   selectMyYFDClaimableJSON,
@@ -31,6 +32,7 @@ export default function YFDClaimValue() {
   const claimableBalance = useRecoilValueLoadable(selectMyYFDClaimableBalance);
   const setMyClaimableYFDIndex = useSetRecoilState(myClaimableYFDIndexAtom);
   const myLockedYFD = useRecoilValueLoadable(selectMyYFDLocked);
+  const myFYFD = useRecoilValueLoadable(selectMyFYFD);
   const [lockBalance, setLockBalance] = useState('0');
   const [claimCount, setClaimCount] = useState(0);
   const [claimBalance, setClaimBalance] = useState('0');
@@ -145,6 +147,21 @@ export default function YFDClaimValue() {
             {Math.round(parseInt((+lockBalance).toString())).toLocaleString()}{' '}
           </span>{' '}
           $YFD Locked in {claimCount} positions
+          <br />
+          <br />
+          The fYFD potency of your locked $YFD is{' '}
+          <span className={styles.textEnhanced}>
+            {(+myLockedYFD.contents.potency * 100).toLocaleString()}%
+          </span>
+          <br />
+          <br />
+          Currently{' '}
+          <span className={styles.textEnhanced}>
+            {(+myLockedYFD.contents.portion * 100).toLocaleString()}%
+          </span>{' '}
+          of your $YFD is locked.
+          <br />
+          <br />
         </Box>
         <Divider mb={'1rem'} />
       </>

@@ -104,16 +104,17 @@ export const selectMyYFDLocked = selector({
   key: 'selectMyYFDLocked',
   get: ({ get }) => {
     const claimable: any = get(selectMyYFDClaimableJSON);
-    console.log('selectMyYFDLockBalance', claimable);
+    const yfd = get(selectMyYFD);
+    const fyfd = get(selectMyFYFD);
     const balance = {
       deposited: '0',
       withdrawn: '0',
-      balance: '0'
+      balance: '0',
+      potency: '0',
+      portion: '0'
     };
     const stakes: any = [];
-    if (claimable.length === 0) {
-      console.log('No claimable balance found');
-    } else {
+    if (claimable.length > 0) {
       let total = 0;
       let withdrawn = 0;
       claimable.forEach((claim: any) => {
@@ -128,6 +129,8 @@ export const selectMyYFDLocked = selector({
       balance.deposited = convertFromBase(total).toFixed(6);
       balance.withdrawn = convertFromBase(withdrawn).toFixed(6);
       balance.balance = (+balance.deposited - +balance.withdrawn).toFixed(6);
+      balance.potency = (+fyfd / +balance.balance).toFixed(2);
+      balance.portion = (+balance.balance / +yfd).toFixed(4);
     }
     return { ...balance, stakes };
   }
