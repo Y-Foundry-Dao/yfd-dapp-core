@@ -140,10 +140,11 @@ export default function YFDClaimValue() {
       <>
         <Divider mb={'1rem'} />
         <Box>
+          You have{' '}
           <span className={styles.textEnhanced}>
-            {lockBalance.toLocaleString()}
+            {Math.round(parseInt((+lockBalance).toString())).toLocaleString()}{' '}
           </span>{' '}
-          is $YFD Locked in {claimCount} positions
+          $YFD Locked in {claimCount} positions
         </Box>
         <Divider mb={'1rem'} />
       </>
