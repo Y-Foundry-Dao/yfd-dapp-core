@@ -15,8 +15,26 @@ export const minFYFDEmergencyPropAtom = atom({
   default: '0'
 });
 
+export const govFundRatioAtom = atom({
+  key: 'govFundRatioAtom',
+  default: '0'
+});
+
+export const govMinLockTimeAtom = atom({
+  key: 'govMinLockTimeAtom',
+  default: '0'
+});
+
+export const govMaxLockTimeAtom = atom({
+  key: 'govMaxLockTimeAtom',
+  default: '0'
+});
+
 export default {
   minFYFDVaultPropAtom,
   minFYFDGovPropAtom,
-  minFYFDEmergencyPropAtom
+  minFYFDEmergencyPropAtom,
+  govFundRatioAtom,
+  govMinLockTimeAtom,
+  govMaxLockTimeAtom
 };

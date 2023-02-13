@@ -23,3 +23,8 @@ export const myClaimableYFDIndexAtom = atom({
   key: 'myClaimableYFDIndexAtom',
   default: ''
 });
+
+export const myClaimableYFDAtom = atom({
+  key: 'myClaimableYFDAtom',
+  default: 0
+});
