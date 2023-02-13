@@ -1,38 +1,14 @@
 import { useEffect, useState } from 'react';
-import {
-  useRecoilValue,
-  useRecoilState,
-  useRecoilValueLoadable,
-  useSetRecoilState,
-  useRecoilRefresher_UNSTABLE
-} from 'recoil';
-import {
-  selectMyFYFD,
-  selectMyYFD,
-  selectMyYFDClaimableBalance,
-  selectMyYFDClaimableJSON,
-  selectMyYFDLocked
-} from '@recoil/connected/balance/selectors';
-import {
-  currentClaimableBalanceAtom,
-  currentLockYFDArrayAtom,
-  myClaimableYFDIndexAtom
-} from '@recoil/connected/balance/atoms';
+import { useRecoilValueLoadable, useSetRecoilState } from 'recoil';
+import { selectMyYFDLocked } from '@recoil/connected/balance/selectors';
+import { myClaimableYFDIndexAtom } from '@recoil/connected/balance/atoms';
 import NoticeLoading from '@components/NoticeLoading';
-import { addSeconds, format } from 'date-fns';
-import { Box, Collapse, Divider, Tooltip } from '@chakra-ui/react';
-import { CHAIN_SECONDS_PER_BLOCK } from '@utilities/variables';
-import { currentBlockHeightAtom } from '@recoil/chainInfo/atoms';
-import { Icons } from '@var/icons';
+import { Box, Divider, Tooltip } from '@chakra-ui/react';
 import styles from '@scss/app.module.scss';
 
 export default function YFDClaimValue() {
-  const result = useRecoilValueLoadable(selectMyYFDClaimableJSON);
-  const claimList = result.contents;
-  const claimableBalance = useRecoilValueLoadable(selectMyYFDClaimableBalance);
   const setMyClaimableYFDIndex = useSetRecoilState(myClaimableYFDIndexAtom);
   const myLockedYFD = useRecoilValueLoadable(selectMyYFDLocked);
-  const myFYFD = useRecoilValueLoadable(selectMyFYFD);
   const [lockBalance, setLockBalance] = useState('0');
   const [claimCount, setClaimCount] = useState(0);
   const [claimBalance, setClaimBalance] = useState('0');
@@ -54,10 +30,9 @@ export default function YFDClaimValue() {
       setMyClaimableYFDIndex(myLockedYFD.contents.stakes[0].idx);
       setClaimCount(myLockedYFD.contents.stakes.length);
     } else {
-      console.warn('Claimable YFD list is empty', claimList);
       return;
     }
-  }, [myLockedYFD]);
+  }, [myLockedYFD.state]);
 
   //console.log('lockList: ', lockList);
 
