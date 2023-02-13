@@ -24,6 +24,11 @@ export const balanceFyfdConnectedAtom = atom({
   default: 0
 });
 
+export const balanceFundingConnectedAtom = atom({
+  key: 'balanceFundingConnectedAtom',
+  default: 0
+});
+
 export const estimatedFyfdConnectedAtom = atom({
   key: 'estimateFyfdConnectedAtom',
   default: 0

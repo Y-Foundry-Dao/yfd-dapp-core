@@ -45,6 +45,10 @@ import useHandleInputs from '@hooks/useHandleInputs';
 import styles from '@scss/app.module.scss';
 import { Icons } from '@var/icons';
 import { selectMyYFD } from '@recoil/connected/balance/selectors';
+import {
+  govMaxLockTimeAtom,
+  govMinLockTimeAtom
+} from '@recoil/governance/parameters/atoms';
 
 export default function LockYfdForm() {
   const myYFD = useRecoilValueLoadable(selectMyYFD);
@@ -56,6 +60,8 @@ export default function LockYfdForm() {
     format(DEFAULT_YFD_LOCK_DURATION_DATE, 'dd-MMM-yyyy')
   );
   const amountStakeYFD = useRecoilValue(inputStakeYFD);
+  const minLock = useRecoilValue(govMinLockTimeAtom);
+  const maxLock = useRecoilValue(govMaxLockTimeAtom);
   const { handleClickStakeYFD } = useHandleClicks();
   const { handleInputStakeYFD } = useHandleInputs();
 

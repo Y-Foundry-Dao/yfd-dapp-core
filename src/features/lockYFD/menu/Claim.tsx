@@ -1,12 +1,10 @@
-import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
-import { Button, Box, useToast, SimpleGrid, Text } from '@chakra-ui/react';
+import { useRecoilValue } from 'recoil';
+import { Button, Box, SimpleGrid } from '@chakra-ui/react';
 import styles from '@scss/app.module.scss';
-import NoticeLoading from '@components/NoticeLoading';
 import { Icons } from '@utilities/variables/icons';
 import YFDClaimValue from './ClaimValue';
 import useHandleClicks from '@hooks/useHandleClicks';
 import { myClaimableYFDIndexAtom } from '@recoil/connected/balance/atoms';
-import { isDisabled } from '@chakra-ui/utils';
 
 export default function MenuYFDClaim() {
   const { handleClickClaimYFD } = useHandleClicks();

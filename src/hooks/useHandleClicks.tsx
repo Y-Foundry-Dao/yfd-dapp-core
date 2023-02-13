@@ -56,11 +56,16 @@ import {
 } from '@recoil/chainInfo/atoms';
 import { CHAIN_BLOCK_FYFD_YFD_LOCK_VALUE_MINIMUM } from '@utilities/variables';
 import msgClaimYFD from '@utilities/messagesExecute/forge/msgClaimYFD';
-import { selectMyFYFD, selectMyYFD } from '@recoil/connected/balance/selectors';
+import {
+  selectMyFYFD,
+  selectMyYFD,
+  selectMyYFDLocked
+} from '@recoil/connected/balance/selectors';
 
 const useHandleClicks = () => {
   const refreshFYFD = useRecoilRefresher_UNSTABLE(selectMyFYFD);
   const refreshYFD = useRecoilRefresher_UNSTABLE(selectMyYFD);
+  const refreshYFDLocked = useRecoilRefresher_UNSTABLE(selectMyYFDLocked);
   const { executeMsg } = useMsg();
   const { toastSuccessful, toastError } = useTx();
   const connectedWallet = useConnectedWallet();
@@ -158,6 +163,8 @@ const useHandleClicks = () => {
     const tx = await executeMsg(contractForge, msgClaimYFD(idx));
     toastSuccessful(tx, SUCCESS_STAKE);
     refreshYFD();
+    refreshYFDLocked();
+    console.log('refreshing YFD');
     return;
   };
 
