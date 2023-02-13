@@ -150,9 +150,11 @@ export default function YFDClaimValue() {
           <br />
           <br />
           The fYFD potency of your locked $YFD is{' '}
-          <span className={styles.textEnhanced}>
-            {(+myLockedYFD.contents.potency * 100).toLocaleString()}%
-          </span>
+          <Tooltip label="Increase fYFD potency by locking $YFD for longer durations.">
+            <span className={styles.textEnhanced}>
+              {(+myLockedYFD.contents.potency * 100).toLocaleString()}%
+            </span>
+          </Tooltip>
           <br />
           <br />
           Currently{' '}

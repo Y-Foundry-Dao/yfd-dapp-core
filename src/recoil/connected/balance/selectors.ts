@@ -130,7 +130,9 @@ export const selectMyYFDLocked = selector({
       balance.withdrawn = convertFromBase(withdrawn).toFixed(6);
       balance.balance = (+balance.deposited - +balance.withdrawn).toFixed(6);
       balance.potency = (+fyfd / +balance.balance).toFixed(2);
-      balance.portion = (+balance.balance / +yfd).toFixed(4);
+      balance.portion = (+balance.balance / (+yfd + +balance.balance)).toFixed(
+        4
+      );
     }
     return { ...balance, stakes };
   }

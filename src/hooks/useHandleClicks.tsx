@@ -149,6 +149,7 @@ const useHandleClicks = () => {
     // YFD will always be staked to the YFD contract.
     const tx = await executeMsg(contractGovToken, msgStakeYFDToken);
     toastSuccessful(tx, SUCCESS_STAKE);
+    refreshYFD();
     setAmountStakeYFD(0);
     return;
   };
