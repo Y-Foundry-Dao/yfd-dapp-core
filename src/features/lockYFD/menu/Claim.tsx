@@ -4,11 +4,15 @@ import styles from '@scss/app.module.scss';
 import { Icons } from '@utilities/variables/icons';
 import YFDClaimValue from './ClaimValue';
 import useHandleClicks from '@hooks/useHandleClicks';
-import { myClaimableYFDIndexAtom } from '@recoil/connected/balance/atoms';
+import {
+  myClaimableYFDAtom,
+  myClaimableYFDIndexAtom
+} from '@recoil/connected/balance/atoms';
 
 export default function MenuYFDClaim() {
   const { handleClickClaimYFD } = useHandleClicks();
   const idx = useRecoilValue(myClaimableYFDIndexAtom);
+  const claimBalance = useRecoilValue(myClaimableYFDAtom);
 
   return (
     <Box>
@@ -21,11 +25,7 @@ export default function MenuYFDClaim() {
             >
               Unlocked
             </legend>
-            <span className={styles.textSpecial}>
-              <Button as="button" variant="link" className={styles.textSpecial}>
-                claim details
-              </Button>
-            </span>
+            <span className={styles.textSpecial}>{claimBalance}</span>
           </fieldset>
         </Box>
         <Box pb={'0.5em'}>
