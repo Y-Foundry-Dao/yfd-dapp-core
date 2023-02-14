@@ -179,10 +179,11 @@ export default function YFDClaimValue() {
           <span className={styles.textEnhanced}>
             {(
               secondsToHours(+myLockedYFD.contents.average.lock_duration * 6) /
-              (24 * 7)
+              (24 * 7) /
+              4
             ).toFixed(1)}{' '}
           </span>
-          weeks
+          months
           <br />
           <br />
           Your next position will completely decay on{' '}
