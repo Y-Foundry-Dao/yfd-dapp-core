@@ -148,14 +148,19 @@ export default function YFDClaimValue() {
       <>
         <Divider mb={'1rem'} />
         <Box>
-          You have{' '}
           <span className={styles.textEnhanced}>
-            {Math.round(parseInt((+lockBalance).toString())).toLocaleString()}{' '}
-          </span>
-          $YFD Locked in {claimCount} positions
+            {(+myLockedYFD.contents.portion * 100).toLocaleString()}%
+          </span>{' '}
+          (
+          <span className={styles.textEnhanced}>
+            {' '}
+            {Math.round(parseInt((+lockBalance).toString())).toLocaleString()}
+          </span>{' '}
+          ) of your $YFD is locked in{' '}
+          <span className={styles.textEnhanced}>{claimCount}</span> positions
           <br />
           <br />
-          The fYFD potency of your locked $YFD is{' '}
+          Your fYFD potency is{' '}
           <Tooltip label="Increase fYFD potency by locking $YFD for longer durations.">
             <span className={styles.textEnhanced}>
               {(+myLockedYFD.contents.potency * 100).toLocaleString()}%
@@ -163,18 +168,11 @@ export default function YFDClaimValue() {
           </Tooltip>
           <br />
           <br />
-          Currently{' '}
+          Your Est. Rate of $YFD Reclaimation is{' '}
           <span className={styles.textEnhanced}>
-            {(+myLockedYFD.contents.portion * 100).toLocaleString()}%
+            {(+myLockedYFD.contents.average.decay * 600).toFixed(2)}
           </span>{' '}
-          of your $YFD is locked.
-          <br />
-          <br />
-          Your Est. Rate of fYFD Decay is:{' '}
-          <span className={styles.textEnhanced}>
-            {(+myLockedYFD.contents.average.decay * (600 * 24)).toFixed(2)}
-          </span>{' '}
-          per day
+          per hour
           <br />
           <br />
           Your Average Locking Period:{' '}
@@ -189,7 +187,6 @@ export default function YFDClaimValue() {
           <br />
           Your next position will completely decay on{' '}
           <span className={styles.textEnhanced}>{nextUnlock}</span>
-          <br />
           <br />
           Your final position will completely decay on{' '}
           <span className={styles.textEnhanced}>{lastUnlock}</span>
