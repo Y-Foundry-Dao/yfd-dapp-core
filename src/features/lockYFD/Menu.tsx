@@ -2,9 +2,10 @@ import { useEffect } from 'react';
 import { Button, Popover, PopoverTrigger, Flex } from '@chakra-ui/react';
 import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 import useChainInfo from 'hooks/useChainInfo';
-import { selectMyFYFD } from '@recoil/connected/balance/selectors';
+import { selectMyFYFD, selectMyYFD } from '@recoil/connected/balance/selectors';
 import styles from '@scss/app.module.scss';
 import MenuPopoverBalance from './MenuPopoverBalance';
+import PopoverBalanceYFD from './MenuBalanceYFD';
 import MenuPopoverNoFYFD from './MenuNoFYFD';
 import NoticeLoading from '@components/NoticeLoading';
 import IconProposal from './IconProposal';
@@ -20,6 +21,7 @@ export default function MenuLockYFD() {
   useChainInfo();
   // get the user's fyfd and yfd balances and format them for display ( 6 decimals )
   const myFYFD = useRecoilValueLoadable(selectMyFYFD);
+  const myYFD = useRecoilValueLoadable(selectMyYFD);
   const hasFYFD = useRecoilValue(addressHasFYFDAtom);
 
   useEffect(() => {
@@ -44,7 +46,11 @@ export default function MenuLockYFD() {
       </Popover>
     );
   } else {
-    return <MenuPopoverNoFYFD />;
+    if (myYFD.state === 'hasValue' && +myYFD.contents > 0) {
+      return <MenuPopoverNoFYFD />;
+    } else {
+      return <PopoverBalanceYFD />;
+    }
   }
   return <NoticeLoading />;
 }

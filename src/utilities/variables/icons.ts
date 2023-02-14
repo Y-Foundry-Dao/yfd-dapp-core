@@ -57,5 +57,6 @@ export const Icons: { [key: string]: string } = {
   lock_yfd: 'lock_clock',
   reclaim_yfd: 'lock_reset',
   submit: 'send',
-  arrow_right: 'arrow_forward'
+  arrow_right: 'arrow_forward',
+  warning: 'warning'
 };

@@ -23,6 +23,12 @@
     padding-left: 2rem;
     padding-right: 2rem;
 
+    &Small {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        margin-right: 1.5rem;
+    }
+
     &-menu::after {
         content: "";
         display: block;
@@ -31,7 +37,7 @@
         padding-top: 1rem;
     }
 }
-   
+
 .menuTitle {
     color: var(--text-menu-title-color);
     margin-top: 0.3rem;
@@ -158,6 +164,10 @@
     &:hover {
         background-color: var(--button-deposit-hover);
     }
+}
+
+.menuOnTop {
+    z-index: 100;
 }
 
 .menuButton { 

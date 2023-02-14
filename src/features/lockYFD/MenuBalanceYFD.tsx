@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import {
   Flex,
   Box,
-  Text,
+  Tooltip,
   AccordionPanel,
   AccordionItem,
   Accordion,
@@ -12,8 +12,8 @@ import {
   AccordionIcon
 } from '@chakra-ui/react';
 import { selectMyYFD } from '@recoil/connected/balance/selectors';
-import styles from '@scss/app.module.scss';
 import NoticeLoading from '@components/NoticeLoading';
+import styles from '@scss/app.module.scss';
 import { Icons } from '@var/icons';
 import { inputStakeYFD } from 'recoil/input/atoms';
 import {
@@ -46,21 +46,21 @@ export default function PopoverBalanceYFD() {
     }
   }, [myYFD]);
 
-  return (
-    <>
-      <Accordion allowToggle>
-        <AccordionItem className={styles.profileMenuLayout}>
-          <AccordionButton>
-            <Box flex="1" textAlign="left">
-              <h2>$YFD:</h2>
-            </Box>
-            <Box flex="1" textAlign="right">
-              <h2>{Math.round(+balanceYFD).toLocaleString()}</h2>
-            </Box>
-            <AccordionIcon ml={'1rem'} />
-          </AccordionButton>
-          <AccordionPanel pb={4}>
-            {+balanceYFD > 0 ? (
+  if (+balanceYFD > 0) {
+    return (
+      <>
+        <Accordion allowToggle>
+          <AccordionItem className={styles.profileMenuLayout}>
+            <AccordionButton>
+              <Box flex="1" textAlign="left">
+                <h2>$YFD:</h2>
+              </Box>
+              <Box flex="1" textAlign="right">
+                <h2>{Math.round(+balanceYFD).toLocaleString()}</h2>
+              </Box>
+              <AccordionIcon ml={'1rem'} />
+            </AccordionButton>
+            <AccordionPanel pb={4}>
               <>
                 <LockYfdForm />
                 <br />
@@ -78,12 +78,28 @@ export default function PopoverBalanceYFD() {
                   </button>
                 </Box>
               </>
-            ) : (
-              <>You have no $YFD.</>
-            )}{' '}
-          </AccordionPanel>
-        </AccordionItem>
-      </Accordion>
-    </>
-  );
+            </AccordionPanel>
+          </AccordionItem>
+        </Accordion>
+      </>
+    );
+  } else {
+    const styleIcon =
+      'material-symbols-outlined' +
+      ' ' +
+      styles.iconWarning +
+      ' ' +
+      styles.cursorPointer;
+    return (
+      <>
+        <div className={styles.wrapperInset + ' ' + styles.menuWrapperSmall}>
+          <Tooltip label="You have no $YFD" placement="bottom">
+            <span className={styleIcon}>{Icons.warning}</span>
+          </Tooltip>
+        </div>
+      </>
+    );
+  }
+
+  return <NoticeLoading />;
 }
