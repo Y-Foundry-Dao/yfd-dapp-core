@@ -1,5 +1,9 @@
 .textSpecial {
     color: var(--theme-special-color);
+    &Heading {
+        @extend .textSpecial;
+        @extend .text-header-proposal-create;
+    }
 }
 
 .text-header-proposal-create {

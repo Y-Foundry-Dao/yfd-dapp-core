@@ -8,7 +8,11 @@
      width: auto;
     }
    }
-   
+
+.buttonWrapper {
+    @extend .button-wrapper;
+}
+
 .buttonStandard {
     color: var(--button-standard-color);
     background-color: var(--button-standard-bg);

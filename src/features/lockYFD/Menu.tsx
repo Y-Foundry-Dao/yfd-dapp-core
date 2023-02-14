@@ -5,8 +5,7 @@ import useChainInfo from 'hooks/useChainInfo';
 import { selectMyFYFD, selectMyYFD } from '@recoil/connected/balance/selectors';
 import styles from '@scss/app.module.scss';
 import MenuPopoverBalance from './MenuPopoverBalance';
-import PopoverBalanceYFD from './MenuBalanceYFD';
-import MenuPopoverNoFYFD from './MenuNoFYFD';
+import MenuBalanceYFD from './MenuBalanceYFD';
 import NoticeLoading from '@components/NoticeLoading';
 import IconProposal from './IconProposal';
 import IconVote from './IconVote';
@@ -46,11 +45,9 @@ export default function MenuLockYFD() {
       </Popover>
     );
   } else {
-    if (myYFD.state === 'hasValue' && +myYFD.contents > 0) {
-      return <MenuPopoverNoFYFD />;
-    } else {
-      return <PopoverBalanceYFD />;
+    if (myYFD.state === 'hasValue' && !hasFYFD) {
+      return <MenuBalanceYFD />;
     }
+    return <NoticeLoading />;
   }
-  return <NoticeLoading />;
 }

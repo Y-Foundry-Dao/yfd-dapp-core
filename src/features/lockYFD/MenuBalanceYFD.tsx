@@ -1,15 +1,22 @@
 import { useMemo, useState } from 'react';
-import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
+import { useRecoilState, useRecoilValue, useRecoilValueLoadable } from 'recoil';
 import { format } from 'date-fns';
 import {
-  Flex,
   Box,
   Tooltip,
   AccordionPanel,
   AccordionItem,
   Accordion,
   AccordionButton,
-  AccordionIcon
+  AccordionIcon,
+  Button,
+  Text,
+  Flex,
+  Popover,
+  PopoverTrigger,
+  PopoverBody,
+  PopoverContent,
+  Wrap
 } from '@chakra-ui/react';
 import { selectMyYFD } from '@recoil/connected/balance/selectors';
 import NoticeLoading from '@components/NoticeLoading';
@@ -33,8 +40,7 @@ export default function PopoverBalanceYFD() {
   const [durationDepositYFDDate, setDurationDepositYFDDate] = useState(
     format(DEFAULT_YFD_LOCK_DURATION_DATE, 'dd-MMM-yyyy')
   );
-
-  const amountStakeYFD = useRecoilValue(inputStakeYFD);
+  const [inputLockYFD, setInputLockYFD] = useRecoilState(inputStakeYFD);
   const { handleClickStakeYFD } = useHandleClicks();
   const myYFD = useRecoilValueLoadable(selectMyYFD);
   // need to wrap balancefYFD in useMemo to avoid infinite loop
@@ -49,38 +55,60 @@ export default function PopoverBalanceYFD() {
   if (+balanceYFD > 0) {
     return (
       <>
-        <Accordion allowToggle>
-          <AccordionItem className={styles.profileMenuLayout}>
-            <AccordionButton>
-              <Box flex="1" textAlign="left">
-                <h2>$YFD:</h2>
-              </Box>
-              <Box flex="1" textAlign="right">
-                <h2>{Math.round(+balanceYFD).toLocaleString()}</h2>
-              </Box>
-              <AccordionIcon ml={'1rem'} />
-            </AccordionButton>
-            <AccordionPanel pb={4}>
-              <>
+        <Popover placement={'bottom'}>
+          <PopoverTrigger>
+            <Button className={styles.buttonWrapper}>
+              <Text>Lock $YFD</Text>
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className={styles.popoverWrapper}>
+            <fieldset
+              className={styles.popoverActionsSection}
+              role="presentation"
+            >
+              <legend className={styles.headingLegend} role="presentation">
+                <h2>YFD</h2>
+              </legend>
+              <Wrap
+                className={styles.popoverActionsWrapper}
+                justify="center"
+                spacing="2.5rem"
+              >
+                <Text
+                  className={
+                    styles.textSpecialHeading + ' ' + styles.cursorPointer
+                  }
+                  onClick={() => {
+                    setInputLockYFD(+balanceYFD);
+                  }}
+                >
+                  {balanceYFD}
+                </Text>
+              </Wrap>
+            </fieldset>
+            <br />
+            <br />
+            <fieldset
+              className={styles.popoverActionsSection}
+              role="presentation"
+            >
+              <legend className={styles.headingLegend} role="presentation">
+                <h2>LOCK YFD</h2>
+              </legend>
+              <Wrap
+                className={styles.popoverActionsWrapper}
+                justify="center"
+                spacing="2.5rem"
+                padding="0.3rem"
+              >
                 <LockYfdForm />
-                <br />
-                <Box>
-                  <button
-                    className={styles.buttonStandard}
-                    onClick={async () => {
-                      return await handleClickStakeYFD(
-                        amountStakeYFD,
-                        Number(durationDepositYFD)
-                      );
-                    }}
-                  >
-                    Lock $YFD
-                  </button>
-                </Box>
-              </>
-            </AccordionPanel>
-          </AccordionItem>
-        </Accordion>
+              </Wrap>
+            </fieldset>
+            <PopoverBody
+              className={styles.popoverBalancesWrapper}
+            ></PopoverBody>
+          </PopoverContent>
+        </Popover>
       </>
     );
   } else {
@@ -89,7 +117,7 @@ export default function PopoverBalanceYFD() {
       ' ' +
       styles.iconWarning +
       ' ' +
-      styles.cursorPointer;
+      styles.cursorHelp;
     return (
       <>
         <div className={styles.wrapperInset + ' ' + styles.menuWrapperSmall}>

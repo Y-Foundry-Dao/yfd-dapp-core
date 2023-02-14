@@ -69,8 +69,14 @@
     }
 }
 
-.cursorPointer {
-    cursor: help;
+.cursor {
+
+    &Pointer {
+        cursor: pointer;
+    }
+    &Help {
+        cursor: help;
+    }
 }
 
 .iconLockYFD {
