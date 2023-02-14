@@ -8,7 +8,11 @@
      width: auto;
     }
    }
-   
+
+.buttonWrapper {
+    @extend .button-wrapper;
+}
+
 .buttonStandard {
     color: var(--button-standard-color);
     background-color: var(--button-standard-bg);
@@ -94,8 +98,10 @@
 }
 
 .buttonMenu {
-    @extend .buttonSimple;
-    width: 100%;
+    @extend .buttonSimpleWide;
+    border: var(--button-menu-border);
+    color: var(--button-menu-color);
+    background: var(--button-menu-bg);
 
     &Active {
         @extend .buttonMenu;

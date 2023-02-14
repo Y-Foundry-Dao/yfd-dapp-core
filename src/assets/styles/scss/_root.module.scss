@@ -91,9 +91,9 @@
     --icon-special-color: var(--theme-special-color);
 
     --button-standard-color: #fff;
-    --theme-button-bg: rgb(19, 95, 93);
-    --theme-button-bg-alt: #144378;
-    --button-standard-bg: var(--theme-button-bg); // #3a6df0
+    --button-standard-color-alt: var(--button-standard-bg);
+    --button-standard-bg-alt: #144378;
+    --button-standard-bg: rgb(19, 95, 93);
     --button-standard-not-open-bg: rgb(0, 172, 169);
     --button-standard-not-open-bg-alt: #1e59f1;
     --button-disable-bg: var(--theme-inactive-color);
@@ -101,6 +101,9 @@
     --button-create-color: var(--button-standard-color);
     --button-create-bg: var(--theme-create-color);
     --button-inactive: rgb(249 250 251 / 55%);
+    --button-menu-color: var(--button-standard-bg);
+    --button-menu-bg: none;
+    --button-menu-border: 2px solid var(--button-standard-bg);
 
     --dropdown-bg: #21242d;
     --dropdown-hover: rgb(42 46 60);

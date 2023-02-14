@@ -1,18 +1,45 @@
 import { useEffect, useState } from 'react';
-import { useRecoilValueLoadable, useSetRecoilState } from 'recoil';
+import {
+  useRecoilValueLoadable,
+  useSetRecoilState,
+  useRecoilValue
+} from 'recoil';
 import { selectMyYFDLocked } from '@recoil/connected/balance/selectors';
-import { myClaimableYFDIndexAtom } from '@recoil/connected/balance/atoms';
+import {
+  myClaimableYFDAtom,
+  myClaimableYFDIndexAtom
+} from '@recoil/connected/balance/atoms';
 import NoticeLoading from '@components/NoticeLoading';
 import { Box, Divider, Tooltip } from '@chakra-ui/react';
 import styles from '@scss/app.module.scss';
+import { addSeconds, format, secondsToHours, subSeconds } from 'date-fns';
+import { CHAIN_SECONDS_PER_BLOCK } from '@utilities/variables/chrono';
+import { currentBlockHeightAtom } from 'recoil/chainInfo/atoms';
+
+function blockToDate(block: number) {
+  const currentDate = new Date();
+  if (block < 0) {
+    return format(
+      subSeconds(currentDate, block * CHAIN_SECONDS_PER_BLOCK),
+      'yyyy-MMM-dd'
+    );
+  } else {
+    return format(
+      addSeconds(currentDate, block * CHAIN_SECONDS_PER_BLOCK),
+      'yyyy-MMM-dd'
+    );
+  }
+}
 
 export default function YFDClaimValue() {
+  const currentBlockHeight = useRecoilValue(currentBlockHeightAtom);
   const setMyClaimableYFDIndex = useSetRecoilState(myClaimableYFDIndexAtom);
+  const setClaimableYFD = useSetRecoilState(myClaimableYFDAtom);
   const myLockedYFD = useRecoilValueLoadable(selectMyYFDLocked);
   const [lockBalance, setLockBalance] = useState('0');
   const [claimCount, setClaimCount] = useState(0);
-  const [claimBalance, setClaimBalance] = useState('0');
-  console.log('lockData: ', myLockedYFD);
+  const [nextUnlock, setNextUnlock] = useState('0');
+  const [lastUnlock, setLastUnlock] = useState('0');
   /*
   const [claimableBalance, setClaimableBalance] = useRecoilState(
     currentClaimableBalanceAtom
@@ -26,18 +53,22 @@ export default function YFDClaimValue() {
       myLockedYFD.state == 'hasValue' &&
       myLockedYFD.contents.stakes.length > 0
     ) {
-      setLockBalance(myLockedYFD.contents.balance);
-      setMyClaimableYFDIndex(myLockedYFD.contents.stakes[0].idx);
+      setLockBalance(myLockedYFD.contents.total.balance);
+      setMyClaimableYFDIndex(myLockedYFD.contents.last.idx);
       setClaimCount(myLockedYFD.contents.stakes.length);
+      setClaimableYFD(+myLockedYFD.contents.total.available);
+      setNextUnlock(
+        blockToDate(+myLockedYFD.contents.next.block - +currentBlockHeight)
+      );
+      setLastUnlock(
+        blockToDate(+myLockedYFD.contents.last.block - +currentBlockHeight)
+      );
     } else {
       return;
     }
-  }, [myLockedYFD.state]);
+  }, [myLockedYFD.state, setClaimableYFD, setMyClaimableYFDIndex]);
 
-  //console.log('lockList: ', lockList);
-
-  // set the current list of locked YFD to the global state
-  //setCurrentLockYFDArray(lockList);
+  //console.log('Locked YFD Data: ', myLockedYFD.contents);
 
   // set the current claimable balance to the global state
   //setClaimableBalance(claimBalance);
@@ -117,14 +148,19 @@ export default function YFDClaimValue() {
       <>
         <Divider mb={'1rem'} />
         <Box>
-          You have{' '}
           <span className={styles.textEnhanced}>
-            {Math.round(parseInt((+lockBalance).toString())).toLocaleString()}{' '}
+            {(+myLockedYFD.contents.portion * 100).toLocaleString()}%
           </span>{' '}
-          $YFD Locked in {claimCount} positions
+          (
+          <span className={styles.textEnhanced}>
+            {' '}
+            {Math.round(parseInt((+lockBalance).toString())).toLocaleString()}
+          </span>{' '}
+          ) of your $YFD is locked in{' '}
+          <span className={styles.textEnhanced}>{claimCount}</span> positions
           <br />
           <br />
-          The fYFD potency of your locked $YFD is{' '}
+          Your fYFD potency is{' '}
           <Tooltip label="Increase fYFD potency by locking $YFD for longer durations.">
             <span className={styles.textEnhanced}>
               {(+myLockedYFD.contents.potency * 100).toLocaleString()}%
@@ -132,13 +168,29 @@ export default function YFDClaimValue() {
           </Tooltip>
           <br />
           <br />
-          Currently{' '}
+          Your Est. Rate of $YFD Reclaimation is{' '}
           <span className={styles.textEnhanced}>
-            {(+myLockedYFD.contents.portion * 100).toLocaleString()}%
+            {(+myLockedYFD.contents.average.decay * 600).toFixed(2)}
           </span>{' '}
-          of your $YFD is locked.
+          per hour
           <br />
           <br />
+          Your Average Locking Period:{' '}
+          <span className={styles.textEnhanced}>
+            {(
+              secondsToHours(+myLockedYFD.contents.average.lock_duration * 6) /
+              (24 * 7) /
+              4
+            ).toFixed(1)}{' '}
+          </span>
+          months
+          <br />
+          <br />
+          Your next position will completely decay on{' '}
+          <span className={styles.textEnhanced}>{nextUnlock}</span>
+          <br />
+          Your final position will completely decay on{' '}
+          <span className={styles.textEnhanced}>{lastUnlock}</span>
         </Box>
         <Divider mb={'1rem'} />
       </>

@@ -5,6 +5,7 @@ import queryBalanceDetail from '@utilities/messagesQuery/forge/queryBalanceDetai
 
 import { addressConnectedAtom } from '@recoil/connected/address/atoms';
 import {
+  currentBlockHeightAtom,
   currentContractForgeAtom,
   currentContractGovTokenAtom
 } from '@recoil/chainInfo/atoms';
@@ -104,68 +105,113 @@ export const selectMyYFDLocked = selector({
   key: 'selectMyYFDLocked',
   get: ({ get }) => {
     const claimable: any = get(selectMyYFDClaimableJSON);
-    const yfd = get(selectMyYFD);
-    const fyfd = get(selectMyFYFD);
     const balance = {
-      deposited: '0',
-      withdrawn: '0',
-      balance: '0',
+      total: {
+        deposit: '0',
+        withdrawn: '0',
+        balance: '0',
+        available: '0'
+      },
+      average: {
+        lock_duration: '0',
+        decay: '0'
+      },
       potency: '0',
-      portion: '0'
+      portion: '0',
+      next: {
+        idx: '0',
+        block: '0'
+      },
+      last: {
+        idx: '0',
+        block: '0'
+      }
     };
     const stakes: any = [];
-    if (claimable.length > 0) {
+    const currentBlockHeight = get(currentBlockHeightAtom);
+    if (claimable.length > 0 && currentBlockHeight > 0) {
+      const yfd = get(selectMyYFD);
+      const fyfd = get(selectMyFYFD);
       let total = 0;
       let withdrawn = 0;
+      let available = 0;
+      let decayRate = 0;
+      let avgLock = 0;
+      let nextIdx = '0';
+      let nextBlock = 0;
+      let lastIdx = '0';
+      let lastBlock = 0;
+      const claimCount = claimable.length;
       claimable.forEach((claim: any) => {
+        let decay = 0;
+        let endBlock = 0;
+        let claimUnlocked = 0;
         let stake = claim.stake;
         const idx: string = claim.idx;
-        console.log('stake', stake);
+        //helpers
+        decay = stake.asset_deposit_amount / stake.lock_duration;
+        decayRate = decayRate + decay;
+        endBlock = +stake.deposit_height + +stake.lock_duration;
+        avgLock = avgLock + +stake.lock_duration;
+        const pastBlocks = currentBlockHeight - stake.deposit_height;
+        // data to return
         total = total + +stake.asset_deposit_amount;
         withdrawn = withdrawn + +stake.asset_withdrawn_amount;
-        stake = { ...stake, idx };
+        claimUnlocked = pastBlocks * decay - stake.asset_withdrawn_amount;
+        // if the current claim is the next to unlock then store that index)
+        if (nextBlock === 0 || endBlock < nextBlock) {
+          nextIdx = idx;
+          nextBlock = endBlock;
+        }
+        // if the current claim is the last to unlock then store that index
+        if (lastBlock === 0 || endBlock > lastBlock) {
+          lastIdx = idx;
+          lastBlock = endBlock;
+        }
+        /*
+        console.log('Stake [', idx, ']: ', stake);
+        console.log(
+          'amount locked: ',
+          stake.asset_deposit_amount / 1000000,
+          ' past blocks: ',
+          pastBlocks,
+          ' (curr: ',
+          currentBlockHeight,
+          ' )',
+          ' ending block: ',
+          endBlock,
+          ' decay: ',
+          decay,
+          ' withdrawn: ',
+          stake.asset_withdrawn_amount / 1000000,
+          'total unlocked: ',
+          pastBlocks * decay,
+          'claimable now: ',
+          claimUnlocked / 1000000
+        );
+        */
+        available = available + claimUnlocked;
+        stake = { ...stake, idx, claimUnlocked };
         stakes.push(stake);
       });
-      balance.deposited = convertFromBase(total).toFixed(6);
-      balance.withdrawn = convertFromBase(withdrawn).toFixed(6);
-      balance.balance = (+balance.deposited - +balance.withdrawn).toFixed(6);
-      balance.potency = (+fyfd / +balance.balance).toFixed(2);
-      balance.portion = (+balance.balance / (+yfd + +balance.balance)).toFixed(
-        4
-      );
+      balance.total.deposit = convertFromBase(total).toFixed(6);
+      balance.total.withdrawn = convertFromBase(withdrawn).toFixed(6);
+      balance.total.balance = (
+        +balance.total.deposit - +balance.total.withdrawn
+      ).toFixed(6);
+      balance.total.available = convertFromBase(available).toFixed(6);
+      balance.average.decay = (decayRate / +claimCount / 100000).toString();
+      balance.average.lock_duration = (avgLock / +claimCount).toString();
+      balance.potency = (+fyfd / +balance.total.balance).toFixed(2);
+      balance.portion = (
+        +balance.total.balance /
+        (+yfd + +balance.total.balance)
+      ).toFixed(4);
+      balance.next.idx = nextIdx;
+      balance.next.block = nextBlock.toString();
+      balance.last.idx = lastIdx;
+      balance.last.block = lastBlock.toString();
     }
     return { ...balance, stakes };
-  }
-});
-
-export const selectMyYFDClaimableBalance = selector({
-  key: 'selectMyYFDClaimableBalance',
-  get: ({ get }) => {
-    const claimable: any = get(selectMyYFDClaimableJSON);
-    console.log('selectMyYFDClaimableBalance', claimable);
-    return 0;
-    if (claimable.contents.length === 0) {
-      console.log('No claimable balance found');
-      return 0;
-    } else {
-      console.log('Claimable balance found: ', claimable.contents);
-      let total = 0;
-      let withdrawn = 0;
-      let remainder = 0;
-      claimable.contents.stakes.forEach((element: any) => {
-        switch (element.key) {
-          case 'asset_deposit_amount':
-            total = total + element.value;
-            break;
-          case 'asset_withdrawn_amount':
-            withdrawn = withdrawn + element.value;
-            break;
-          default:
-            break;
-        }
-      });
-      remainder = total - withdrawn;
-      return remainder;
-    }
   }
 });

@@ -1,5 +1,9 @@
 .textSpecial {
     color: var(--theme-special-color);
+    &Heading {
+        @extend .textSpecial;
+        @extend .text-header-proposal-create;
+    }
 }
 
 .text-header-proposal-create {
@@ -25,7 +29,7 @@
 
 .textEnhanced {
     color: var(--text-enhanced-color);
-    filter: drop-shadow( 1rem 1rem 2rem var(--text-enhanced-filter-color));
+    //filter: drop-shadow( 1rem 1rem 2rem var(--text-enhanced-filter-color));
 }
 
 .notice {

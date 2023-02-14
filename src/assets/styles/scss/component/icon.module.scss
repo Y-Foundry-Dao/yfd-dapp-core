@@ -14,6 +14,12 @@
         margin-right: 0.5rem;
     }
 
+    &Warning {
+        @extend .icon;
+        color: var(--theme-special-color);
+        padding: 0.25rem 0.7rem;
+    }
+
     &-action { 
         @extend .icon;
         color: var(--theme-create-color);
@@ -63,6 +69,16 @@
     }
 }
 
+.cursor {
+
+    &Pointer {
+        cursor: pointer;
+    }
+    &Help {
+        cursor: help;
+    }
+}
+
 .iconLockYFD {
     font-variation-settings: 'FILL' 0;
     font-size: 50px !important;
@@ -101,17 +117,3 @@
     font-family: "Material Symbols Outlined";
 }
 */
-
-.iconCaret {
-    
-    &Up {
-    border-bottom: 10px solid #000000;
-    border-left: 6px solid rgba(0, 0, 0, 0);
-    border-right: 6px solid rgba(0, 0, 0, 0);
-    content: "";
-    display: inline-block;
-    height: 0;
-    vertical-align: top;
-    width: 0;
-  }
-}
