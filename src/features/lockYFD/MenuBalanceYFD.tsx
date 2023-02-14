@@ -57,7 +57,7 @@ export default function PopoverBalanceYFD() {
       <>
         <Popover placement={'bottom'}>
           <PopoverTrigger>
-            <Button className={styles.buttonWrapper}>
+            <Button mr={'1.5rem'} className={styles.buttonWrapper}>
               <Text>Lock $YFD</Text>
             </Button>
           </PopoverTrigger>
