@@ -9,6 +9,9 @@ export default function MenuLeft() {
   return (
     <>
       <div className={styles.wrapperSide}>
+        <Personal />
+        <Initiatives />
+        <MenuGovernance />
         <AboutYFD />
       </div>
       <Footer />

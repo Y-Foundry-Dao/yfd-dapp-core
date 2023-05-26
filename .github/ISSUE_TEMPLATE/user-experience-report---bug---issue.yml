@@ -54,6 +54,7 @@ body:
       description:  Where did you experience the issue?
       options:
         - pisco-1 Terra Testnet (Default)
+        - uni-6 Juno Testnet
     validations:
       required: true
   - type: dropdown
